@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Profile\UserProfileController;
 use App\Http\Controllers\Admin\User\UsersController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('login');
 });
-
+Route::get('/execute-command', function () {
+//    return redirect()->route('login');
+    Artisan::call('storage:link');
+    Artisan::call('migrate:fresh --seed');
+    dd('All commands executed successfully');
+});
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
