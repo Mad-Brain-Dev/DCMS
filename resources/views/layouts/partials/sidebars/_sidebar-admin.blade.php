@@ -8,8 +8,8 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Main</li>
 
-                <li>
-                    <a href="#" class="waves-effect">
+                <li class="mm-active">
+                    <a href="#" class="waves-effect active">
                         <i class="fa fa-home"></i><span> Dashboard </span>
                     </a>
                 </li>
@@ -28,14 +28,19 @@
                                 Users
                             </a>
                         </li>
-
-                        {{--                            <li class="{{ request()->is('admin/mentors*') ? 'mm-active' : '' }}">--}}
-                        {{--                                <a href="{{ route('admin.mentors.index') }}"--}}
-                        {{--                                   class="{{ (request()->routeIs('admin.mentors.index') || request()->routeIs('admin.mentors.create') || request()->routeIs('admin.mentors.edit')) ? 'active' : '' }}">--}}
-                        {{--                                    Mentor--}}
-                        {{--                                </a>--}}
-                        {{--                            </li>--}}
                     </ul>
+                </li>
+
+                <li class="">
+                    <a href="{{ route('admin.clients.index') }}" class="waves-effect active">
+                        <i class="fa fa-home"></i><span> Client </span>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="{{ route('admin.debtors.index') }}" class="waves-effect active">
+                        <i class="fa fa-home"></i><span> Debtor </span>
+                    </a>
                 </li>
 
             </ul>

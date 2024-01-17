@@ -2,7 +2,7 @@
 
 
 @section('content')
-<h1>dashboard</h1>
+<h1>Dashboard</h1>
 @endsection
 
 @push('style')
