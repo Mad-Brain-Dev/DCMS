@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Debtor;
 
 use App\DataTables\DebtorDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\DebtorRequest;
+Use App\Http\Requests\DebtorRequest;
 use App\Models\User;
 use App\Services\DebtorService;
 use Illuminate\Http\Request;
@@ -39,7 +39,6 @@ class DebtorController extends Controller
      */
     public function store(DebtorRequest $request)
     {
-
         $data = $request->validated();
         $this->debtorService->storeOrUpdate($data, null);
             record_created_flash();
@@ -71,7 +70,7 @@ class DebtorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(DebtorRequest $request, string $id)
+    public function update($request, string $id)
     {
         $data = $request->validated();
         $this->debtorService->storeOrUpdate($data, $id);

@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
 
 class DebtorRequest extends FormRequest
 {
@@ -19,7 +19,7 @@ class DebtorRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules()
     {
@@ -28,7 +28,8 @@ class DebtorRequest extends FormRequest
             'last_name'  => ['required'],
             'email'      => ['required', 'string', Rule::unique('users')->ignore($this->user)],
             'phone'      => ['required'],
-            'status'      => ['required'],
+            'status'     => ['required'],
+            'user_type'  => ['required'],
             'password'   => [
                 'required', 'string', 'confirmed', Password::min(8)
                     ->mixedCase()
@@ -51,4 +52,5 @@ class DebtorRequest extends FormRequest
         }
         return $rules;
     }
+
 }
