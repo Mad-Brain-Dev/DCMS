@@ -49,16 +49,6 @@
                                         </span>
                                     @enderror
                             </div>
-
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label">Email <span class="error">*</span></label>
-                                <input type="email" name="email" class="form-control" placeholder="Email"
-                                       value="{{ $clients->email }}">
-                                @error('email')
-                                <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Phone <span class="error">*</span></label>
                                 <input type="tel" name="phone" class="form-control" placeholder="Phone"
@@ -67,28 +57,6 @@
                                 <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label">Password <span class="error">*</span></label>
-                                <input type="password" name="password" id="password" class="form-control"
-                                       placeholder="Password" value="{{ $clients->password }}">
-                                @error('password')
-                                <p class="error">{{ $message }}</p>
-                                @enderror
-                                <span id="StrengthDisp" class="input_bellow_text">
-                                    Should contains Letters(uppercase & lowercase), Number and Special Characters.
-                                </span>
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label">Confirm Password <span class="error">*</span></label>
-                                <input type="password" name="password_confirmation" class="form-control"
-                                       placeholder="Confirm Password" value="{{ $clients->password }}">
-                                @error('password_confirmation')
-                                <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-
                         <div class="row">
                             <div class="mb-3 offset-md-6 col-md-6">
                                 <div class="text-end">

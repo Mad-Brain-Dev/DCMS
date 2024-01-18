@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\DataTables\ClientDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClientEditRequest;
 use App\Http\Requests\ClientRequest;
 use App\Models\User;
 use App\Services\ClientService;
@@ -41,9 +42,9 @@ class ClientController extends Controller
     public function store(ClientRequest $request)
     {
         $data = $request->validated();
-        $this->clientService->storeOrUpdate($data, null);
-            record_created_flash();
         try {
+            $this->clientService->storeOrUpdate($data, null);
+            record_created_flash();
 
         } catch (\Exception $e) {
         }
@@ -71,12 +72,13 @@ class ClientController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ClientRequest $request, string $id)
+    public function update(ClientEditRequest $request, string $id)
     {
         $data = $request->validated();
-        $this->clientService->storeOrUpdate($data, $id);
-            record_created_flash();
+
         try {
+            $this->clientService->storeOrUpdate($data, $id);
+            record_created_flash();
 
         } catch (\Exception $e) {
         }

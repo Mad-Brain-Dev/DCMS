@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Debtor;
 
 use App\DataTables\DebtorDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DebtorEditRequest;
 Use App\Http\Requests\DebtorRequest;
 use App\Models\User;
 use App\Services\DebtorService;
@@ -39,11 +40,11 @@ class DebtorController extends Controller
      */
     public function store(DebtorRequest $request)
     {
-        $data = $request->validated();
-        $this->debtorService->storeOrUpdate($data, null);
-            record_created_flash();
-        try {
 
+        $data = $request->validated();
+        try {
+            $this->debtorService->storeOrUpdate($data, null);
+            record_created_flash();
         } catch (\Exception $e) {
         }
         return redirect()->route('admin.debtors.index');
@@ -70,12 +71,13 @@ class DebtorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update($request, string $id)
+    public function update(DebtorEditRequest $request, string $id)
     {
         $data = $request->validated();
-        $this->debtorService->storeOrUpdate($data, $id);
-            record_created_flash();
+
         try {
+            $this->debtorService->storeOrUpdate($data, $id);
+            record_created_flash();
 
         } catch (\Exception $e) {
         }

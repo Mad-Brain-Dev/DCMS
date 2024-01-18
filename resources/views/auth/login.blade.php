@@ -71,7 +71,7 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-6 d-flex justify-content-end ">
-                                            <a class="" href="">Forgot Password</a>
+                                            <a class="" href="{{ route('password.request') }}">Forgot Password</a>
                                         </div>
                                         <div class="offset-6 col-sm-6 text-end pt-4">
                                             <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Log

@@ -20,7 +20,6 @@ class DebtorService extends BaseService
 
     public function storeOrUpdate($data, $id = null)
     {
-        return "Hello";
         try {
             // manage additional data
             $data['user_type'] = 'debtor';
