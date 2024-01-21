@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Profile\UserProfileController;
+use App\Http\Controllers\Admin\Role\RoleController;
 use App\Http\Controllers\Admin\User\UsersController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Debtor\DebtorController;
@@ -36,13 +37,12 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //all routes for admin
 Route::prefix('admin')->as('admin.')->group(function () {
-    // USER
+    // User
     Route::resource('users', UsersController::class);
     //Client
     Route::resource('clients', ClientController::class);
     //Debtor
     Route::resource('debtors', DebtorController::class);
-    // PROFILE
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile.info');
     Route::post('/avatar/update', [UserProfileController::class, 'avatarUpdate'])->name('avatar.update');
     Route::put('/profile/update/{id}', [UserProfileController::class, 'updateProfile'])->name('profile.update');

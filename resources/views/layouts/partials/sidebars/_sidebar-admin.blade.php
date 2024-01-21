@@ -28,9 +28,14 @@
                                 Users
                             </a>
                         </li>
+                        <li class="{{ request()->is('admin/users*') ? 'mm-active' : '' }}">
+                            <a href="{{ route('admin.users.index') }}"
+                               class="{{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
+                                Role
+                            </a>
+                        </li>
                     </ul>
                 </li>
-
                 <li class="">
                     <a href="{{ route('admin.clients.index') }}" class="waves-effect active">
                         <i class="fa fa-home"></i><span> Client </span>
