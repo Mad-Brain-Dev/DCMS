@@ -28,10 +28,7 @@ class UserRequest extends FormRequest
             'last_name'  => ['required'],
             'email'      => ['required', 'string', Rule::unique('users')->ignore($this->user)],
             'phone'      => ['required'],
-            'date_of_hire' => ['required'],
-            'status'     => ['required'],
-            'user_type'  => ['required'],
-            'department' => ['required_if:user_type,employee'],
+            'role'  => ['required'],
             'password'   => [
                 'required', 'string', 'confirmed', Password::min(8)
                     ->mixedCase()

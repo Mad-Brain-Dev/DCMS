@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('last_name')->index()->nullable();
             $table->string('email')->index()->unique();
             $table->string('phone', 25)->index()->nullable();
-            $table->string('title')->nullable();
+            $table->string('role')->nullable();
             $table->string('password');
             $table->string('avatar')->nullable();
-            $table->string('user_type', 50)->index();
+            $table->string('user_type', 50)->index()->default('admin');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->string('status', 50)->index()->default(GlobalConstant::STATUS_INACTIVE);

@@ -8,6 +8,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
 {
@@ -28,15 +29,18 @@ class UsersController extends Controller
     public function create()
     {
         set_page_meta('Create User');
-        return view('admin.users.create');
+        $roles = Role::all();
+        return view('admin.users.create', compact('roles'));
     }
 
     public function store(UserRequest $request)
     {
         $data = $request->validated();
+        $user = $this->userService->storeOrUpdate($data, null);
+        $user->assignRole([$request->input('role')]);
+        record_created_flash();
         try {
-            $this->userService->storeOrUpdate($data, null);
-            record_created_flash();
+
         } catch (\Exception $e) {
         }
         return back();

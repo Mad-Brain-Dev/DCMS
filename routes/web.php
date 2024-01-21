@@ -43,6 +43,8 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::resource('clients', ClientController::class);
     //Debtor
     Route::resource('debtors', DebtorController::class);
+    //Role
+    Route::resource('roles', RoleController::class);
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile.info');
     Route::post('/avatar/update', [UserProfileController::class, 'avatarUpdate'])->name('avatar.update');
     Route::put('/profile/update/{id}', [UserProfileController::class, 'updateProfile'])->name('profile.update');

@@ -6,6 +6,7 @@ use App\DataTables\ClientDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientEditRequest;
 use App\Http\Requests\ClientRequest;
+use App\Models\Role;
 use App\Models\User;
 use App\Services\ClientService;
 use Illuminate\Http\Request;
@@ -33,7 +34,8 @@ class ClientController extends Controller
      */
     public function create()
     {
-       return view('admin.clients.create');
+        $roles = Role::all();
+       return view('admin.clients.create', compact('roles'));
     }
 
     /**

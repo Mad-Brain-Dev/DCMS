@@ -22,8 +22,8 @@ class UserService extends BaseService
     {
         try {
             // manage additional data
-            $data['department'] = Str::lower($data['department']);
-            $data['password'] = Hash::make($data['password']);
+            // $data['department'] = Str::lower($data['department']);
+            // $data['password'] = Hash::make($data['password']);
             //$data['slug'] = Str::slug($data['title']);
             // Call patent method
             return parent::storeOrUpdate($data, $id);

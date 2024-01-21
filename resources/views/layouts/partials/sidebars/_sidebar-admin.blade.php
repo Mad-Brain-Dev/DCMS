@@ -32,7 +32,7 @@
                             </a>
                         </li>
                         <li class="{{ request()->is('admin/users*') ? 'mm-active' : '' }}">
-                            <a href="{{ route('admin.users.index') }}"
+                            <a href="{{ route('admin.roles.index') }}"
                                class="{{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
                                 Role
                             </a>
