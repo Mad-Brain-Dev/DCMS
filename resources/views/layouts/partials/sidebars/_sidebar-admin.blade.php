@@ -4,9 +4,12 @@
 
         <!-- Sidemenu -->
         <div id="sidebar-menu">
+            <div class="top-logo mb-3 ms-3">
+                <img src="{{asset('admin/images/logo-sm.png')}}" class="img-fluid" width="100px">
+            </div>
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title">Main</li>
+                {{-- <li class="menu-title">Main</li> --}}
 
                 <li class="mm-active">
                     <a href="#" class="waves-effect active">
