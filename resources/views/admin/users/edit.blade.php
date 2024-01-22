@@ -44,7 +44,7 @@
                                     <select class="form-control select2" name="role[]" required multiple>
                                         <option selected disabled>Select One</option>
                                         @forelse ($roles as $role)
-                                            <option value="{{ $role->id }}" {{ $user->id ? (in_array($role->name, $userRole) ? 'selected' : '' ) : ''}}>{{ Str::ucfirst($role->name) }}</option>
+                                            <option value="{{ $role->name }}" {{ $user->id ? (in_array($role->name, $userRole) ? 'selected' : '' ) : ''}}>{{ Str::ucfirst($role->name) }}</option>
                                         @empty
                                             <option value="">Nothing in the list</option>
                                         @endforelse
