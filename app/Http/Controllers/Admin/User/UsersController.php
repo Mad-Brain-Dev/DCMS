@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\User;
 
 use App\DataTables\UserDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Services\UserService;
@@ -43,31 +44,37 @@ class UsersController extends Controller
             record_created_flash();
         } catch (\Exception $e) {
         }
-        return redirect()->route('admin.users.index');;
+        return redirect()->route('admin.users.index');
     }
 
     public function edit($id)
     {
+
         try {
             set_page_meta('Edit User');
             $user = $this->userService->get($id);
-            return view('admin.users.edit', compact('user'));
+            $userRole = $user->roles->pluck('name')->toArray();
+            $roles = Role::latest()->get();
+            return view('admin.users.edit', compact('user','roles','userRole'));
         } catch (\Exception $e) {
             log_error($e);
         }
         return back();
     }
 
-    public function update(UserRequest $request, $id)
+    public function update(UserEditRequest $request, $id)
     {
         $data = $request->validated();
+
+        $user = $this->userService->storeOrUpdate($data, $id);
+        $user->syncRoles([$request->input('role')]);
+        record_updated_flash();
         try {
-            $this->userService->storeOrUpdate($data, $id);
-            record_updated_flash();
-            return redirect()->route('admin.users.index');
+
         } catch (\Exception $e) {
             return back();
         }
+        return redirect()->route('admin.users.index');
     }
 
     /**

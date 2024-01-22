@@ -11,8 +11,8 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 {{-- <li class="menu-title">Main</li> --}}
 
-                <li class="mm-active">
-                    <a href="#" class="waves-effect active">
+                <li class="">
+                    <a href="#" class="">
                         <i class="fa fa-home"></i><span> Dashboard </span>
                     </a>
                 </li>
@@ -30,21 +30,21 @@
                                 Users
                             </a>
                         </li>
-                        <li class="{{ request()->is('admin/users*') ? 'mm-active' : '' }}">
+                        <li class="{{ request()->is('admin/roles*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.roles.index') }}"
-                                class="{{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
-                                Role
+                                class="{{ request()->routeIs('admin.roles.index') ? 'active' : '' }}">
+                                Roles
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="">
-                    <a href="{{ route('admin.clients.index') }}" class="waves-effect active">
+                <li class="{{ request()->is('admin/clients*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.clients.index') }}" class="{{ request()->routeIs('admin.clients.index') ? 'active' : '' }}">
                         <i class="fa fa-home"></i><span> Client </span>
                     </a>
                 </li>
-                <li class="">
-                    <a href="{{ route('admin.debtors.index') }}" class="waves-effect active">
+                <li class="{{ request()->is('admin/debtors*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.debtors.index') }}" class="{{ request()->routeIs('admin.debtors.index') ? 'active' : '' }}">
                         <i class="fa fa-home"></i><span> Debtor </span>
                     </a>
                 </li>
