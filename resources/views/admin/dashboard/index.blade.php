@@ -16,7 +16,6 @@
     <script src="{{ asset('/admin/js/chartjs.init.js') }}"></script> --}}
 
     <script>
-
     </script>
 @endpush
 
