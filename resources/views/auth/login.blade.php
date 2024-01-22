@@ -56,8 +56,8 @@
                                         @enderror
                                     </div>
 
-                                    <div class="mb-3 row">
-                                        <div class="col-sm-6">
+                                    <div class="mb-3 d-flex justify-content-between" >
+                                        <div>
                                             <div class="form-check">
                                                 {{--                                                <input type="checkbox" class="form-check-input" id="customControlInline"> --}}
                                                 {{--                                                <label class="form-check-label" for="customControlInline">Remember me</label> --}}
@@ -70,18 +70,20 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 d-flex justify-content-end ">
+                                        <div class="">
                                             <a class="" href="{{ route('password.request') }}">Forgot Password</a>
                                         </div>
-                                        <div class="offset-6 col-sm-6 text-end pt-4">
+                                    </div>
+                                    <div class="row">
+                                        <div class="offset-md-6 col-sm-6 text-end pt-4">
                                             <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Log
                                                 In</button>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12 text-center" style="margin-top: 100px">
+                                        <div class="col-md-12 text-center" style="margin-top: 200px">
                                            <div class="">
-                                            © {{ date('Y') }} Narkose Wien <span class="d-none d-sm-inline-block"> -
+                                            © {{ date('Y') }} DCMS <span class="d-none d-sm-inline-block"> -
                                                 Crafted with <i class="mdi mdi-heart text-danger"></i> by <a
                                                     href="https://madbrain.dev" target="_blank" class="text-dark">Mad Brain</a>.</span>
                                            </div>
@@ -96,7 +98,7 @@
 
                                 </form>
 
-                                <div class="mt-5 pt-4 text-center">
+                                <div class="text-center">
                                     {{--                                    <p>Don't have an account ? <a href="pages-register-2.html" class="fw-medium text-primary"> Signup now </a> </p> --}}
                                     {{--                                    <p>© <script>document.write(new Date().getFullYear())</script> Veltrix. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p> --}}
                                 </div>
