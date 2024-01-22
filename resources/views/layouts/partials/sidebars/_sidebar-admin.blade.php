@@ -5,7 +5,7 @@
         <!-- Sidemenu -->
         <div id="sidebar-menu">
             <div class="top-logo mb-3 ms-3">
-                <img src="{{asset('admin/images/logo-sm.png')}}" class="img-fluid" width="100px">
+                <img src="{{ asset('admin/images/logo-sm.png') }}" class="img-fluid" width="100px">
             </div>
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
@@ -17,23 +17,22 @@
                     </a>
                 </li>
 
-                <li
-                    class="{{ request()->is('admin/users*') ? 'mm-active' : '' }}">
+                <li class="{{ request()->is('admin/users*') ? 'mm-active' : '' }}">
                     <a href="javascript: void(0);"
-                       class="has-arrow waves-effect {{ request()->is('admin/users*') ? 'mm-active' : '' }}">
+                        class="has-arrow waves-effect {{ request()->is('admin/users*') ? 'mm-active' : '' }}">
                         <i class="fas fa-users"></i>
                         <span>Administration</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
                         <li class="{{ request()->is('admin/users*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.users.index') }}"
-                               class="{{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
+                                class="{{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
                                 Users
                             </a>
                         </li>
                         <li class="{{ request()->is('admin/users*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.roles.index') }}"
-                               class="{{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
+                                class="{{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
                                 Role
                             </a>
                         </li>
@@ -44,15 +43,11 @@
                         <i class="fa fa-home"></i><span> Client </span>
                     </a>
                 </li>
-@can('All Debtor')
-<li class="">
-    <a href="{{ route('admin.debtors.index') }}" class="waves-effect active">
-        <i class="fa fa-home"></i><span> Debtor </span>
-    </a>
-</li>
-@endcan
-
-
+                <li class="">
+                    <a href="{{ route('admin.debtors.index') }}" class="waves-effect active">
+                        <i class="fa fa-home"></i><span> Debtor </span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

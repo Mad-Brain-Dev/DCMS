@@ -4,8 +4,8 @@
 
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class="col-md-5 ">
-                <div class="card">
+            <div class="col-md-5">
+                <div class="card text-center">
                     <div class="card-header text-center fs-5">{{ __('Reset Password') }}</div>
 
                     <div class="card-body px-5">
