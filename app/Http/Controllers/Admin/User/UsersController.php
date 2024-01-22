@@ -36,14 +36,14 @@ class UsersController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request->validated();
-        $user = $this->userService->storeOrUpdate($data, null);
-        $user->assignRole([$request->input('role')]);
-        record_created_flash();
-        try {
 
+        try {
+            $user = $this->userService->storeOrUpdate($data, null);
+            $user->assignRole([$request->input('role')]);
+            record_created_flash();
         } catch (\Exception $e) {
         }
-        return back();
+        return redirect()->route('admin.users.index');;
     }
 
     public function edit($id)
@@ -86,5 +86,4 @@ class UsersController extends Controller
             return back();
         }
     }
-
 }

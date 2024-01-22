@@ -54,7 +54,10 @@ class UserSeeder extends Seeder
 
 
         foreach ($users as $user) {
-            User::create($user);
+           $user =  User::create($user);
+           if($user->user_type == User::USER_TYPE_ADMIN){
+            $user->assignRole(['Admin']);
+           }
         }
 
     }

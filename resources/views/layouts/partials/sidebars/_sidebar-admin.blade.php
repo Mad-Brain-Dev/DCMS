@@ -44,12 +44,14 @@
                         <i class="fa fa-home"></i><span> Client </span>
                     </a>
                 </li>
+@can('All Debtor')
+<li class="">
+    <a href="{{ route('admin.debtors.index') }}" class="waves-effect active">
+        <i class="fa fa-home"></i><span> Debtor </span>
+    </a>
+</li>
+@endcan
 
-                <li class="">
-                    <a href="{{ route('admin.debtors.index') }}" class="waves-effect active">
-                        <i class="fa fa-home"></i><span> Debtor </span>
-                    </a>
-                </li>
 
             </ul>
         </div>

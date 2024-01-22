@@ -25,11 +25,11 @@ class PermissionSeeder extends Seeder
                'Edit User',
                'Delete User',
            ],
-           'Entry' => [
-               'All Entries',
-               'Create Entry',
-               'Edit Entry',
-               'Delete Entry',
+           'Debtor' => [
+               'All Debtor',
+               'Create Debtor',
+               'Edit Debtor',
+               'Delete Debtor',
            ],
            'Grading' => [
                'All Gradings',
