@@ -47,5 +47,19 @@
 </div>
 
 @endsection
+@push('style')
+<style>
+    #app{
+        background-image: url({{ asset('admin/images/bg.jpg') }});
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+    }
+    .card-header{
+        background-color: transparent !important;
+    }
+    </style>
+@endpush
 
 
