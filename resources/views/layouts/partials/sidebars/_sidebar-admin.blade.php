@@ -36,6 +36,12 @@
                                 Roles
                             </a>
                         </li>
+                        <li class="{{ request()->is('admin/cases*') ? 'mm-active' : '' }}">
+                            <a href="{{ route('admin.cases.index') }}"
+                                class="{{ request()->routeIs('admin.cases.index') ? 'active' : '' }}">
+                                Cases
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="{{ request()->is('admin/clients*') ? 'mm-active' : '' }}">

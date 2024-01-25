@@ -94,6 +94,12 @@ class ClientController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $this->clientService->delete($id);
+            record_deleted_flash();
+            return back();
+        } catch (\Exception $e) {
+            return back();
+        }
     }
 }

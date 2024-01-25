@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Profile\UserProfileController;
 use App\Http\Controllers\Admin\Role\RoleController;
 use App\Http\Controllers\Admin\User\UsersController;
+use App\Http\Controllers\Cases\CaseController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Debtor\DebtorController;
 use App\Http\Controllers\HomeController;
@@ -45,6 +46,8 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::resource('debtors', DebtorController::class);
     //Role
     Route::resource('roles', RoleController::class);
+    //Role
+    Route::resource('cases', CaseController::class);
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile.info');
     Route::post('/avatar/update', [UserProfileController::class, 'avatarUpdate'])->name('avatar.update');
     Route::put('/profile/update/{id}', [UserProfileController::class, 'updateProfile'])->name('profile.update');

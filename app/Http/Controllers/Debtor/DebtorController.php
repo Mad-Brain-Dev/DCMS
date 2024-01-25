@@ -89,6 +89,12 @@ class DebtorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $this->debtorService->delete($id);
+            record_deleted_flash();
+            return back();
+        } catch (\Exception $e) {
+            return back();
+        }
     }
 }

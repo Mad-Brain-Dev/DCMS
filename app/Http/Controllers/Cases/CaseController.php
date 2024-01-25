@@ -1,0 +1,102 @@
+<?php
+
+namespace App\Http\Controllers\Cases;
+
+use App\DataTables\CaseDataTable;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CaseEditRequest;
+use App\Http\Requests\CaseRequest;
+use App\Models\Cases;
+use App\Models\User;
+use App\Services\CaseService;
+use Illuminate\Http\Request;
+
+class CaseController extends Controller
+{
+    protected $caseService;
+
+    public function __construct(CaseService $caseService)
+    {
+        $this->caseService = $caseService;
+    }
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(CaseDataTable $dataTable)
+    {
+        set_page_meta('Case');
+        return $dataTable->render('admin.cases.index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $debtors = User::where('user_type','=' , User::USER_TYPE_DEBTOR)->get();
+        return view('admin.cases.create', compact('debtors'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(CaseRequest $request)
+    {
+        $data = $request->validated();
+        $this->caseService->storeOrUpdate($data, null);
+        record_created_flash();
+        try {
+
+
+        } catch (\Exception $e) {
+        }
+        return redirect()->route('admin.cases.index');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $cases = Cases::find($id);
+        return view('admin.cases.edit', compact('cases'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(CaseEditRequest $request, string $id)
+    {
+        $data = $request->validated();
+        $this->caseService->storeOrUpdate($data, $id);
+        record_created_flash();
+        try {
+
+
+        } catch (\Exception $e) {
+        }
+        return redirect()->route('admin.cases.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        try {
+            $this->caseService->delete($id);
+            record_deleted_flash();
+            return back();
+        } catch (\Exception $e) {
+            return back();
+        }
+    }
+}
