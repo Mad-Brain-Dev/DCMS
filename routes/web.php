@@ -48,6 +48,8 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::resource('roles', RoleController::class);
     //Role
     Route::resource('cases', CaseController::class);
+    //Download Case Pdf
+    Route::get('download/case/pdf/file/{id}', [CaseController::class, 'downloadCasePdf'])->name('download.case.pdf');
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile.info');
     Route::post('/avatar/update', [UserProfileController::class, 'avatarUpdate'])->name('avatar.update');
     Route::put('/profile/update/{id}', [UserProfileController::class, 'updateProfile'])->name('profile.update');

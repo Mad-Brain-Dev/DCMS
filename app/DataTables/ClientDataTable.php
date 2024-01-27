@@ -100,7 +100,6 @@ class ClientDataTable extends DataTable
             Column::make('first_name', 'first_name')->title('Name'),
             Column::make('email', 'email')->title('Email'),
             Column::make('phone', 'phone')->title('Phone'),
-            Column::make('user_type', 'user_type')->title('User Type'),
             Column::make('status', 'status')->title('Status'),
         ];
     }

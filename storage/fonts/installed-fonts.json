@@ -1,0 +1,32 @@
+{
+    "material design icons": {
+        "normal": "material_design_icons_normal_04e8b309f5cc4c7d9ea1b4d9ed179d0f"
+    },
+    "ionicons": {
+        "normal": "ionicons_normal_48dedf54a1d47d844901b1954819a258"
+    },
+    "font awesome 5 brands": {
+        "normal": "font_awesome_5_brands_normal_435419d0815c876e01b28f37c1980992"
+    },
+    "font awesome 5 free": {
+        "normal": "C:\\laragon\\www\\DCMS\\storage\\fonts\/font_awesome_5_free_normal_8a60fd2a0cc77ec5b4bee42e69d452a6",
+        "900": "font_awesome_5_free_900_02e5e740f5bdf9b97e727c75344a6813"
+    },
+    "dripicons-v2": {
+        "normal": "dripicons_v2_normal_83ff4a12422e9a3dab2f35d586ef58ea"
+    },
+    "themify": {
+        "normal": "themify_normal_a1df0874cbb82954a9f7a495aeebd483"
+    },
+    "typicons": {
+        "normal": "typicons_normal_20058bdb3fd49efe02a0764ae2914d99"
+    },
+    "roboto": {
+        "300_italic": "C:\\laragon\\www\\DCMS\\storage\\fonts\/roboto_300_italic_3d719d848a0b6b3f4f0918985ffd2db7",
+        "300": "C:\\laragon\\www\\DCMS\\storage\\fonts\/roboto_300_32acfcb296f555e063ebba2be7db9e2f",
+        "normal": "C:\\laragon\\www\\DCMS\\storage\\fonts\/roboto_normal_7bc701b343c10631f60048716b96e4f7",
+        "500": "C:\\laragon\\www\\DCMS\\storage\\fonts\/roboto_500_5774d6fb05eba3d096525f821dbe4137",
+        "bold": "C:\\laragon\\www\\DCMS\\storage\\fonts\/roboto_bold_8db5cb5d0586c1e891426d13097b1d04",
+        "900": "roboto_900_7bf41cacaff90e7097ddd49fb9296601"
+    }
+}

@@ -10,6 +10,7 @@ use App\Models\Cases;
 use App\Models\User;
 use App\Services\CaseService;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CaseController extends Controller
 {
@@ -58,7 +59,9 @@ class CaseController extends Controller
      */
     public function show(string $id)
     {
-        //
+        set_page_meta('Details');
+        $case = Cases::find($id);
+        return view('admin.cases.show',compact('case'));
     }
 
     /**
@@ -98,5 +101,11 @@ class CaseController extends Controller
         } catch (\Exception $e) {
             return back();
         }
+    }
+
+    public function downloadCasePdf($id){
+        $data = Cases::find($id);
+        $pdf = Pdf::loadView('admin.cases.export-pdf', compact('data'));
+        return $pdf->stream('cases.pdf');
     }
 }
