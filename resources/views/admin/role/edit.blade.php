@@ -17,8 +17,9 @@
                                         <div class="card-body">
                                             <div class="form-group mb-2">
                                                 <label for="name">Grading Name <span class="error">*</span></label>
-                                                <input type="text" class="form-control" id="name" name="name" autocomplete="off"
-                                                       placeholder="Enter Grade Name" value="{{ $role->name }}" required>
+                                                <input type="text" class="form-control" id="name" name="name"
+                                                    autocomplete="off" placeholder="Enter Grade Name"
+                                                    value="{{ $role->name }}" required>
                                             </div>
                                         </div>
                                     </div>
@@ -31,7 +32,7 @@
                                                 <br />
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" id="check"
-                                                           onClick="permissionAll(this)">
+                                                        onClick="permissionAll(this)">
                                                     <label class="form-check-label" for="check">
                                                         All Permission
                                                     </label>
@@ -40,18 +41,16 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         @foreach ($permissions as $permission)
-                                                            <div class="form-group ic-single-permission @if (isset($permission->parent_id))ic-child-permission parent-{{$permission->parent_id}} @else ic-parent-permission @endif"
-                                                                 @if ($permission->parent_id === null)
-                                                                     data-id="{{$permission->id}}"
-                                                                @endif >
+                                                            <div class="form-group ic-single-permission @if (isset($permission->parent_id)) ic-child-permission parent-{{ $permission->parent_id }} @else ic-parent-permission @endif"
+                                                                @if ($permission->parent_id === null) data-id="{{ $permission->id }}" @endif>
                                                                 <label
-                                                                    class="ic-permission-label @if($permission->parent_id === null) ic-parent-permission-label @endif()">
-                                                                    <input @if (isset($permission->parent_id))
-                                                                               class="child-permission-{{$permission->parent_id}}"@else
-                                                                               class="ic-parent-check" @endif value="{{ $permission->name }}"
-                                                                           name="permission[]" type="checkbox" {{
-                                            in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
-                                                                    >
+                                                                    class="ic-permission-label @if ($permission->parent_id === null) ic-parent-permission-label @endif()">
+                                                                    <input
+                                                                        @if (isset($permission->parent_id)) class="child-permission-{{ $permission->parent_id }}"@else
+                                                                               class="ic-parent-check" @endif
+                                                                        value="{{ $permission->name }}" name="permission[]"
+                                                                        type="checkbox"
+                                                                        {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}>
                                                                     <span class="ml-1">{{ $permission->name }}</span>
 
                                                                 </label>
@@ -89,37 +88,36 @@
 @endsection
 
 @push('script')
-
     <script>
         $(document).ready(function() {
 
             // show and close group of permission
             const parentPermission = $(".ic-parent-permission");
-            parentPermission.on("click", function(){
+            parentPermission.on("click", function() {
                 const parentId = $(this).data('id');
-                const classname =  "." +"parent-"+ parentId;
+                const classname = "." + "parent-" + parentId;
                 const childPermission = $(classname);
                 if (childPermission.css("display") == 'none') {
                     childPermission.css('display', 'block');
-                }else{
+                } else {
                     childPermission.css('display', 'none');
                 }
             });
 
             // select all group wise permission by clicking
-            $(".ic-parent-permission-label").change(function(){
+            $(".ic-parent-permission-label").change(function() {
                 const parentId = $(this).parent().data('id');
                 const parentCheckBox = $(this).find('input[type=checkbox]')[0];
                 const childClassName = "." + "child-permission-" + parentId;
                 const childCheckBox = $(childClassName);
-                if (parentCheckBox.checked ) {
+                if (parentCheckBox.checked) {
                     if (childCheckBox) {
                         for (let i = 0; i < childCheckBox.length; i++) {
                             const checkBox = childCheckBox[i];
                             checkBox.checked = true;
                         }
                     }
-                }else{
+                } else {
                     if (childCheckBox) {
                         for (let i = 0; i < childCheckBox.length; i++) {
                             const checkBox = childCheckBox[i];
@@ -130,14 +128,13 @@
             });
 
             // To hide if not checked anyone
-            $('.ic-child-permission').css('display','none');
-            $('.ic-parent-permission').each(function(){
-                if($(this).children().children().prop('checked') == true)
-                {
+            $('.ic-child-permission').css('display', 'none');
+            $('.ic-parent-permission').each(function() {
+                if ($(this).children().children().prop('checked') == true) {
                     var p_id = $(this).attr('data-id');
                     console.log('Checked');
                     console.log(p_id);
-                    $(this).parent().find('.parent-'+p_id).css('display','block');
+                    $(this).parent().find('.parent-' + p_id).css('display', 'block');
                 }
             });
         });
@@ -149,7 +146,6 @@
                 if (checkboxes[i] != source) checkboxes[i].checked = source.checked;
             }
         }
-
     </script>
 @endpush
 @push('style')

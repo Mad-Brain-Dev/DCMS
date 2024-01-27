@@ -65,11 +65,10 @@ class UsersController extends Controller
     public function update(UserEditRequest $request, $id)
     {
          $data = $request->validated();
-         $user = $this->userService->storeOrUpdate($data, $id);
-         $user->syncRoles([$request->input('role')]);
-        record_updated_flash();
         try {
-
+          $user = $this->userService->storeOrUpdate($data, $id);
+          $user->syncRoles([$request->input('role')]);
+          record_updated_flash();
         } catch (\Exception $e) {
             return back();
         }
