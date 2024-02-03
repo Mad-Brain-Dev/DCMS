@@ -10,6 +10,8 @@
                         <a href="{{ route('admin.debtors.create') }}" class="btn btn-sm btn-primary text-capitalize" style="padding-top: 8px;">Create Debtor</a>
                     </div>
                     {!! $dataTable->table(['class'=>'table-responsive']) !!}
+
+
                 </div>
             </div>
         </div>
