@@ -20,17 +20,37 @@ class Cases extends Model
     public const CASE_PRIORITY_MEDIUM   = 'Medium';
     public const CASE_PRIORITY_LOW   = 'Low';
     protected $fillable = [
-        'debtor_id',
-        'amount_owed',
-        'case_type',
-        'case_status',
-        'case_priority',
-        'due_date',
+        'case_number',
+        'current_status',
+        'date_of_agreement',
+        'date_of_expiry',
+        'client_id',
+        'collection_commission',
+        'field_visit',
+        'bal_field_visit',
+        'manager_ic',
+        'collector_ic',
+        'name',
+        'nric' ,
+        'company_name',
+        'company_uen',
+        'phone',
+        'email',
+        'adderss',
+        'debt_amount',
+        'legal_cost',
+        'debt_interest',
+        'interest_start_date',
+        'interest_end_date',
+        'total_interest',
+        'total_amount_owed',
+        'total_amount_paid',
+        'total_amount_balance',
     ];
 
-    public function debtor()
+    public function client()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Client::class);
     }
 
 }

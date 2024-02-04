@@ -6,6 +6,7 @@ use App\DataTables\ClientDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientEditRequest;
 use App\Http\Requests\ClientRequest;
+use App\Models\Client;
 use App\Models\Role;
 use App\Models\User;
 use App\Services\ClientService;
@@ -44,9 +45,10 @@ class ClientController extends Controller
     public function store(ClientRequest $request)
     {
         $data = $request->validated();
+        $this->clientService->storeOrUpdate($data, null);
+        record_created_flash();
         try {
-            $this->clientService->storeOrUpdate($data, null);
-            record_created_flash();
+
 
         } catch (\Exception $e) {
         }
@@ -59,7 +61,9 @@ class ClientController extends Controller
      */
     public function show(string $id)
     {
-        //
+        set_page_meta('Client Details');
+        $client = Client::find($id);
+        return view('admin.clients.show', compact('client'));
     }
 
     /**
@@ -67,8 +71,8 @@ class ClientController extends Controller
      */
     public function edit(string $id)
     {
-        $clients = User::find($id);
-        return view('admin.clients.edit', compact('clients'));
+        $client = Client::find($id);
+        return view('admin.clients.edit', compact('client'));
     }
 
     /**
@@ -80,7 +84,7 @@ class ClientController extends Controller
 
         try {
             $this->clientService->storeOrUpdate($data, $id);
-            record_created_flash();
+            record_updated_flash();
 
         } catch (\Exception $e) {
         }

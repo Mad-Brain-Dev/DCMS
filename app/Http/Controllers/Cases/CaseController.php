@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CaseEditRequest;
 use App\Http\Requests\CaseRequest;
 use App\Models\Cases;
+use App\Models\Client;
 use App\Models\User;
 use App\Services\CaseService;
 use Illuminate\Http\Request;
@@ -34,8 +35,8 @@ class CaseController extends Controller
      */
     public function create()
     {
-        $debtors = User::where('user_type','=' , User::USER_TYPE_DEBTOR)->get();
-        return view('admin.cases.create', compact('debtors'));
+        $clients = Client::all();
+        return view('admin.cases.create', compact('clients'));
     }
 
     /**
@@ -103,9 +104,9 @@ class CaseController extends Controller
         }
     }
 
-    public function downloadCasePdf($id){
-        $data = Cases::find($id);
-        $pdf = Pdf::loadView('admin.cases.export-pdf', compact('data'));
-        return $pdf->stream('cases.pdf');
-    }
+    // public function downloadCasePdf($id){
+    //     $data = Cases::find($id);
+    //     $pdf = Pdf::loadView('admin.cases.export-pdf', compact('data'));
+    //     return $pdf->stream('cases.pdf');
+    // }
 }

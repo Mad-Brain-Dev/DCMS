@@ -24,10 +24,19 @@ class ClientEditRequest extends FormRequest
     public function rules()
     {
         $rules =  [
-            'first_name' => ['required'],
-            'last_name'  => ['required'],
-            'status'  => ['required'],
+            'name' => ['required'],
+            'nric' => ['nullable'],
+            'company_name' => ['nullable'],
+            'company_uen' => ['nullable'],
             'phone'      => ['required'],
+            'address' => ['required'],
+            'date_of_agreement' => ['required'],
+            'date_of_expiry' => ['required'],
+            'admin_fee' => ['required'],
+            'admin_fee_paid' => ['required'],
+            'admin_fee_balance' => ['required'],
+            'collection_commission' => ['required'],
+            'field_visit_per_case' => ['required'],
         ];
         return $rules;
     }

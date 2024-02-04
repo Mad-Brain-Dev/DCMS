@@ -36,22 +36,24 @@
                                 Roles
                             </a>
                         </li>
-                        <li class="{{ request()->is('admin/cases*') ? 'mm-active' : '' }}">
+                        {{-- <li class="{{ request()->is('admin/cases*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.cases.index') }}"
                                 class="{{ request()->routeIs('admin.cases.index') ? 'active' : '' }}">
                                 Cases
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
                 <li class="{{ request()->is('admin/clients*') ? 'mm-active' : '' }}">
-                    <a href="{{ route('admin.clients.index') }}" class="{{ request()->routeIs('admin.clients.index') ? 'active' : '' }}">
-                        <i class="fa fa-home"></i><span> Client </span>
+                    <a href="{{ route('admin.clients.index') }}"
+                        class="{{ request()->routeIs('admin.clients.index') ? 'active' : '' }}">
+                        <i class="fa fa-user" aria-hidden="true"></i><span> Clients </span>
                     </a>
                 </li>
-                <li class="{{ request()->is('admin/debtors*') ? 'mm-active' : '' }}">
-                    <a href="{{ route('admin.debtors.index') }}" class="{{ request()->routeIs('admin.debtors.index') ? 'active' : '' }}">
-                        <i class="fa fa-home"></i><span> Debtor </span>
+                <li class="{{ request()->is('admin/cases*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.cases.index') }}"
+                        class="{{ request()->routeIs('admin.cases.index') ? 'active' : '' }}">
+                        <span class="mdi mdi-briefcase-edit-outline pe-2"></span><span> Cases </span>
                     </a>
                 </li>
             </ul>

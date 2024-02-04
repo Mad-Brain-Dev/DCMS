@@ -24,30 +24,21 @@ class ClientRequest extends FormRequest
     public function rules()
     {
         $rules =  [
-            'first_name' => ['required'],
-            'last_name'  => ['required'],
-            'email'      => ['required', 'string', Rule::unique('users')->ignore($this->user)],
+            'name' => ['required'],
+            'nric' => ['nullable'],
+            'company_name' => ['nullable'],
+            'company_uen' => ['nullable'],
+            'email'      => ['required'],
             'phone'      => ['required'],
-            'password'   => [
-                'required', 'string', 'confirmed', Password::min(8)
-                    ->mixedCase()
-                    ->letters()
-                    ->numbers()
-                    ->symbols()
-            ],
-            'password_confirmation' => ['required', Password::min(8)],
+            'address' => ['required'],
+            'date_of_agreement' => ['required'],
+            'date_of_expiry' => ['required'],
+            'admin_fee' => ['required'],
+            'admin_fee_paid' => ['required'],
+            'admin_fee_balance' => ['required'],
+            'collection_commission' => ['required'],
+            'field_visit_per_case' => ['required'],
         ];
-
-        if ($this->user) {
-            $rules['password'] =  [
-                'nullable', 'string', 'confirmed', Password::min(8)
-                    ->mixedCase()
-                    ->letters()
-                    ->numbers()
-                    ->symbols()
-            ];
-            $rules['password_confirmation'] = ['nullable', Password::min(8)];
-        }
         return $rules;
     }
 

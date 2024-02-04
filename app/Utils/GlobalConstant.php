@@ -18,6 +18,23 @@ class GlobalConstant
     public const STATUS_ACCEPTED  = 'accepted';
     public const STATUS_ENROLLED  = 'enrolled';
 
+    //Case Status
+
+    public const CASE_PENDING = 'PDG';
+    public const CASE_OPEN = 'OPN';
+    public const CASE_FIELD  = 'FLD';
+    public const  CASE_DESPATCHED = 'DSP';
+    public const CASE_INVESTIGATION_NEEDED = 'INV';
+    public const CASE_NEGOTIATING_WITH_DB = 'NGD';
+    public const CASE_UNDER_INSTALMENT = 'INS';
+    public const CASE_FULLY_SETTELED = 'FST';
+    public const CASE_PARTIALLY_SETTELED = 'PST';
+    public const CASE_CASE_ON_HOLD_BY_CLIENT = 'OHC';
+    public const CASE_ON_HOLD_BY_MANAGEMENT = 'OHM';
+    public const CASE_CLOSED_WITHOUT_PAYMENT = 'CST';
+    public const CASE_AWAITING_UPDATE_FR_CLIENT = 'AFC';
+    public const CASE_UNDER_LITIGATION = 'ULT';
+
     // Default
     public const DEFAULT_PER_PAGE     = 12;
     public const DEFAULT_RECENT_LIMIT = 5;

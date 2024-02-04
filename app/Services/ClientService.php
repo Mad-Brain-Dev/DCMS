@@ -2,10 +2,7 @@
 
 namespace App\Services;
 
-
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use \Illuminate\Support\Str;
+use App\Models\Client;
 use App\Services\BaseService;
 
 class ClientService extends BaseService
@@ -15,14 +12,13 @@ class ClientService extends BaseService
 
     public function __construct()
     {
-        $this->model = User::class;
+        $this->model = Client::class;
     }
 
     public function storeOrUpdate($data, $id = null)
     {
         try {
             // manage additional data
-            $data['user_type'] = 'client';
             return parent::storeOrUpdate($data, $id);
         } catch (\Exception $e) {
             $this->logFlashThrow($e);

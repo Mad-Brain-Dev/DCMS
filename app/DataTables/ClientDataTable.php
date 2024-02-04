@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Models\Client;
 use App\Models\User;
 use App\Utils\GlobalConstant;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
@@ -25,8 +26,10 @@ class ClientDataTable extends DataTable
                 $buttons = '';
                     $buttons .= '<a class="dropdown-item" href="' . route('admin.clients.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
 
+                    $buttons .= '<a class="dropdown-item" href="' . route('admin.clients.show', $item->id) . '" title="Edit"><i class="fa fa-eye" aria-hidden="true"></i> View </a>';
+
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
-                        $buttons .= '<form action="' . route('admin.users.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
+                        $buttons .= '<form action="' . route('admin.clients.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
                         <input type="hidden" name="_token" value="' . csrf_token() . '">
                         <input type="hidden" name="_method" value="DELETE">
                         <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Delete</button></form>
@@ -53,15 +56,14 @@ class ClientDataTable extends DataTable
             })
             ->rawColumns(['action', 'avatar', 'status','user_type'])
             ->setRowId('id');
-
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(User $model): QueryBuilder
+    public function query(Client $model): QueryBuilder
     {
-        return $model->newQuery()->where('user_type','=',User::USER_TYPE_CLIENT)->orderBy('id', 'DESC')->select('users.*');
+        return $model->newQuery()->orderBy('id', 'DESC')->select('clients.*');
     }
 
     /**
@@ -96,11 +98,10 @@ class ClientDataTable extends DataTable
 
         return [
 //            Column::computed('DT_RowIndex', 'SL#'),
-            Column::make('avatar', 'avatar')->title('Avatar'),
-            Column::make('first_name', 'first_name')->title('Name'),
+            // Column::make('avatar', 'avatar')->title('Avatar'),
+            Column::make('name', 'name')->title('Name'),
             Column::make('email', 'email')->title('Email'),
             Column::make('phone', 'phone')->title('Phone'),
-            Column::make('status', 'status')->title('Status'),
         ];
     }
 
@@ -109,6 +110,6 @@ class ClientDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'User_' . date('YmdHis');
+        return 'Client_' . date('YmdHis');
     }
 }

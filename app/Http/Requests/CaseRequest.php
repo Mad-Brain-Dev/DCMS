@@ -24,16 +24,35 @@ class CaseRequest extends FormRequest
     public function rules()
     {
         $rules =  [
-            'debtor_id'        => ['required'],
-            'amount_owed'      => ['required'],
-            'case_type'        => ['required'],
-            'case_status'      => ['required'],
-            'case_priority'    => ['required'],
-            'due_date'    => ['required'],
+            'case_number'        => ['required'],
+            'current_status'      => ['required'],
+            'client_id'    => ['required'],
+            'date_of_agreement'        => ['required'],
+            'date_of_expiry'      => ['required'],
+            'collection_commission'    => ['required'],
+            'field_visit'    => ['required'],
+            'bal_field_visit'    => ['required'],
+            'manager_ic'    => ['required'],
+            'collector_ic'    => ['required'],
+            'name'    => ['required'],
+            'nric'    => ['nullable'],
+            'company_name'    => ['nullable'],
+            'company_uen'    => ['nullable'],
+            'phone'    => ['required'],
+            'email'    => ['required'],
+            'adderss'    => ['required'],
+            'debt_amount'    => ['required'],
+            'legal_cost'    => ['required'],
+            'debt_interest'    => ['required'],
+            'interest_start_date'    => ['required'],
+            'interest_end_date'    => ['required'],
+            'total_interest'    => ['required'],
+            'total_amount_owed'    => ['required'],
+            'total_amount_paid'    => ['required'],
+            'total_amount_balance'    => ['required'],
         ];
 
 
         return $rules;
     }
-
 }

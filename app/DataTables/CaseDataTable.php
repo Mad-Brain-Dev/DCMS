@@ -43,11 +43,9 @@ class CaseDataTable extends DataTable
                 </div>';
             // })->editColumn('avatar', function ($item) {
             //     return '<img class="ic-img-32" src="' . $item->avatar_url . '" alt="' . $item->last_name . '" />';
-            })->editColumn('debtor_id', function ($item) {
-                $first_name = $item->debtor->first_name;
-                $last_name = $item->debtor->last_name;
-
-                return $first_name . ' ' . $last_name;
+            })->editColumn('client_id', function ($item) {
+                $name = $item->client->name;
+                return $name;
              })
             //->editColumn('status',function ($item){
             //     $badge = $item->status == GlobalConstant::STATUS_ACTIVE ? "bg-success" : "bg-danger";
@@ -103,12 +101,9 @@ class CaseDataTable extends DataTable
 
         return [
 //            Column::computed('DT_RowIndex', 'SL#'),
-            Column::make('debtor_id', 'debtor_id')->title('Debtor Name'),
-            Column::make('amount_owed', 'amount_owed')->title('Amount Owed'),
-            Column::make('case_type', 'case_type')->title('Case Type'),
-            Column::make('case_status', 'case_status')->title('Case Status'),
-            Column::make('case_priority', 'case_priority')->title('Case Priority'),
-            Column::make('due_date', 'due_date')->title('Due_Date'),
+            Column::make('case_number', 'case_number')->title('Case Number'),
+            Column::make('client_id', 'client_id')->title('Client Name'),
+            Column::make('name', 'name')->title('Debtor Name'),
         ];
     }
 
