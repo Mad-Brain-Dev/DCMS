@@ -27,7 +27,7 @@ Route::get('/', function () {
 });
 Route::get('/execute-command', function () {
 //    return redirect()->route('login');
-    Artisan::call('storage:link');
+//    Artisan::call('storage:link');
     Artisan::call('migrate:fresh --seed');
     dd('All commands executed successfully');
 });
