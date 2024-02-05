@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Services\CaseService;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
 
 class CaseController extends Controller
 {
@@ -45,13 +46,13 @@ class CaseController extends Controller
     public function store(CaseRequest $request)
     {
         $data = $request->validated();
-        $this->caseService->storeOrUpdate($data, null);
-        record_created_flash();
-        try {
 
+        try {
+            $this->caseService->storeOrUpdate($data, null);
 
         } catch (\Exception $e) {
         }
+        record_created_flash();
         return redirect()->route('admin.cases.index');
     }
 
@@ -70,6 +71,7 @@ class CaseController extends Controller
      */
     public function edit(string $id)
     {
+
         $case = Cases::find($id);
         return view('admin.cases.edit', compact('case'));
     }
@@ -109,4 +111,9 @@ class CaseController extends Controller
     //     $pdf = Pdf::loadView('admin.cases.export-pdf', compact('data'));
     //     return $pdf->stream('cases.pdf');
     // }
+
+    public function casesShowtoClient(){
+        $cases = Cases::where('client_id', Auth::user()->id)->get();
+        return view('admin.cases.show-to-client', compact('cases'));
+    }
 }

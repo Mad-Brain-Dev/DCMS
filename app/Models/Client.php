@@ -14,6 +14,7 @@ class Client extends Model
       ];
     protected $fillable = [
         'name',
+        'user_id',
         'nric',
         'company_name',
         'company_uen',
@@ -28,4 +29,9 @@ class Client extends Model
         'collection_commission',
         'field_visit_per_case',
     ];
+
+    public function cases()
+    {
+        return $this->hasMany(Cases::class);
+    }
 }

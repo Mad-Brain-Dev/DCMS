@@ -8,13 +8,20 @@
             </div>
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title">Main</li>
 
                 <li class="mm-active">
                     <a href="#" class="waves-effect active">
                         <i class="fa fa-home"></i><span> Dashboard </span>
                     </a>
                 </li>
+
+                <li class="{{ request()->is('case/show/client') ? 'mm-active' : '' }}">
+                    <a href="{{ route('case.show.client') }}"
+                        class="{{ request()->routeIs('case.show.client') ? 'active' : '' }}">
+                        <span class="mdi mdi-briefcase-edit-outline pe-2"></span><span> Cases </span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->

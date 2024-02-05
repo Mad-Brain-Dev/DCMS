@@ -6,11 +6,13 @@ use App\DataTables\ClientDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientEditRequest;
 use App\Http\Requests\ClientRequest;
+use App\Models\Cases;
 use App\Models\Client;
 use App\Models\Role;
 use App\Models\User;
 use App\Services\ClientService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
@@ -45,9 +47,20 @@ class ClientController extends Controller
     public function store(ClientRequest $request)
     {
         $data = $request->validated();
-        $this->clientService->storeOrUpdate($data, null);
-        record_created_flash();
         try {
+
+            $client = $this->clientService->storeOrUpdate($data, null);
+
+        if($client){
+            $user= new User();
+            $user->name= $request['name'];
+            $user->email= $request['email'];
+            $user->password=  Hash::make("12345678");   // 12345678;
+            $user->save();
+            $client->user_id = $user->id;
+            $client->save();
+        }
+        record_created_flash();
 
 
         } catch (\Exception $e) {
@@ -63,7 +76,8 @@ class ClientController extends Controller
     {
         set_page_meta('Client Details');
         $client = Client::find($id);
-        return view('admin.clients.show', compact('client'));
+        $cases = Cases::where('client_id', $id)->get();
+        return view('admin.clients.show', compact('client', 'cases'));
     }
 
     /**

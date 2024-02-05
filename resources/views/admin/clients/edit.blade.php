@@ -64,7 +64,7 @@
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Date of Agreement <span class="error">*</span></label>
                                 <input type="date" name="date_of_agreement" class="form-control" placeholder="Address"
-                                    value="{{ old('date', $client->date_of_agreement) }}">
+                                    value="{{ date('Y-m-d', strtotime($client->date_of_agreement)) }}">
                                 @error('date_of_agreement')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -73,7 +73,7 @@
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Date of Expiry <span class="error">*</span></label>
                                 <input type="date" name="date_of_expiry" class="form-control" placeholder="Address"
-                                    value="{{ $client->date_of_expiry }}">
+                                    value="{{ date('Y-m-d', strtotime($client->date_of_expiry)) }}">
                                 @error('date_of_expiry')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
