@@ -35,6 +35,9 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+//case show to client
+Route::get('/case/show/client', [ClientController::class, 'casesShowtoClient'])->name('case.show.client');
+
 
 //all routes for admin
 Route::prefix('admin')->as('admin.')->group(function () {
@@ -56,6 +59,8 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::post('/pass/update/', [UserProfileController::class, 'updatePassword'])->name('update.password');
 
 });
+
+
 
 //all routes for manager
 Route::prefix('manager')->as('manager.')->group(function () {

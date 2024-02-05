@@ -120,4 +120,10 @@ class ClientController extends Controller
             return back();
         }
     }
+
+    public function casesShowtoClient(){
+
+        $cases = Cases::where();
+
+    }
 }

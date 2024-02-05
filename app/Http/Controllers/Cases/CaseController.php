@@ -70,6 +70,7 @@ class CaseController extends Controller
      */
     public function edit(string $id)
     {
+
         $case = Cases::find($id);
         return view('admin.cases.edit', compact('case'));
     }

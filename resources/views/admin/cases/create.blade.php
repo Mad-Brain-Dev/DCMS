@@ -21,7 +21,7 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Case Status <span class="error">*</span></label>
-                                <select class="form-select" id="case_status" name="current_status" aria-label="Default select example">
+                                <select class="form-select select2" id="current_status" name="current_status" aria-label="Default select example">
                                     <option selected disabled>Select Case Status</option>
                                     <option value="{{ \App\Utils\GlobalConstant::CASE_PENDING }}">{{ \App\Utils\GlobalConstant::CASE_PENDING }}</option>
                                     <option value="{{ \App\Utils\GlobalConstant::CASE_OPEN }}">{{ \App\Utils\GlobalConstant::CASE_OPEN }}</option>
@@ -45,7 +45,7 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Client Name <span class="error">*</span></label>
-                                <select class="form-select" id="client_id" name="client_id" aria-label="Default select example">
+                                <select class="form-select select2" id="client_id" name="client_id" aria-label="Default select example">
                                     <option selected disabled>Select Client Name</option>
                                     @foreach ($clients as $client )
                                     <option value="{{ $client->id }}">{{ $client->name }}</option>
@@ -279,6 +279,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>
