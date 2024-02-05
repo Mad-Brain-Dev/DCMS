@@ -36,7 +36,7 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //case show to client
-Route::get('/case/show/client', [ClientController::class, 'casesShowtoClient'])->name('case.show.client');
+Route::get('/case/show/to/client', [CaseController::class, 'casesShowtoClient'])->name('case.show.client');
 
 
 //all routes for admin

@@ -110,4 +110,9 @@ class CaseController extends Controller
     //     $pdf = Pdf::loadView('admin.cases.export-pdf', compact('data'));
     //     return $pdf->stream('cases.pdf');
     // }
+
+    public function casesShowtoClient(){
+        $cases = Cases::with('getUser')->get();
+        return $cases;
+    }
 }

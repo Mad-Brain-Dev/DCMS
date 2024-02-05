@@ -6,6 +6,7 @@ use App\DataTables\UserDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UserRequest;
+use App\Models\Cases;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;

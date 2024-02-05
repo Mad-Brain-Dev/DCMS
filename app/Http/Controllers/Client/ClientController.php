@@ -47,20 +47,20 @@ class ClientController extends Controller
     public function store(ClientRequest $request)
     {
         $data = $request->validated();
-        $client = $this->clientService->storeOrUpdate($data, null);
+        try {
+
+            $client = $this->clientService->storeOrUpdate($data, null);
 
         if($client){
             $user= new User();
             $user->name= $request['name'];
             $user->email= $request['email'];
             $user->password=  Hash::make("12345678");   // 12345678;
-        // add other fields
-        $user->save();
-
+            $user->save();
+            $client->user_id = $user->id;
+            $client->save();
         }
-
         record_created_flash();
-        try {
 
 
         } catch (\Exception $e) {
@@ -119,11 +119,5 @@ class ClientController extends Controller
         } catch (\Exception $e) {
             return back();
         }
-    }
-
-    public function casesShowtoClient(){
-
-        $cases = Cases::where();
-
     }
 }

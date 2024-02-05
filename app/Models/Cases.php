@@ -53,4 +53,9 @@ class Cases extends Model
         return $this->belongsTo(Client::class);
     }
 
+    public function getUser()
+    {
+        return $this->hasOneThrough(User::class, Client::class);
+    }
+
 }

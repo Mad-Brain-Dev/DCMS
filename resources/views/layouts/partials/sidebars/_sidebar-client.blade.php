@@ -17,7 +17,7 @@
 
                 <li class="{{ request()->is('case/show/client') ? 'mm-active' : '' }}">
                     <a href="{{ route('case.show.client') }}"
-                        class="{{ request()->routeIs('acase.show.client') ? 'active' : '' }}">
+                        class="{{ request()->routeIs('case.show.client') ? 'active' : '' }}">
                         <span class="mdi mdi-briefcase-edit-outline pe-2"></span><span> Cases </span>
                     </a>
                 </li>

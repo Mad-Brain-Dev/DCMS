@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('role')->nullable();
             $table->string('password');
             $table->string('avatar')->nullable();
-            $table->string('user_type', 50)->index()->default('admin');
+            $table->string('user_type', 50)->index()->default('client');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->string('status', 50)->index()->default(GlobalConstant::STATUS_INACTIVE);

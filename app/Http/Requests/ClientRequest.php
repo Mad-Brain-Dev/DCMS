@@ -25,6 +25,7 @@ class ClientRequest extends FormRequest
     {
         $rules =  [
             'name' => ['required'],
+            'user_id' => ['nullable'],
             'nric' => ['nullable'],
             'company_name' => ['nullable'],
             'company_uen' => ['nullable'],

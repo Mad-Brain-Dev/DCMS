@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('user_id')->nullable();
             $table->string('nric')->nullable();
             $table->string('company_name')->nullable();
             $table->string('company_uen')->nullable();
@@ -22,10 +23,10 @@ return new class extends Migration
             $table->string('address');
             $table->dateTime('date_of_agreement');
             $table->dateTime('date_of_expiry');
-            $table->integer('admin_fee');
-            $table->integer('admin_fee_paid');
-            $table->integer('admin_fee_balance');
-            $table->integer('collection_commission');
+            $table->string('admin_fee');
+            $table->string('admin_fee_paid');
+            $table->string('admin_fee_balance');
+            $table->string('collection_commission');
             $table->string('field_visit_per_case');
             $table->timestamps();
         });
