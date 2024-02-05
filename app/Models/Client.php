@@ -28,4 +28,9 @@ class Client extends Model
         'collection_commission',
         'field_visit_per_case',
     ];
+
+    public function cases()
+    {
+        return $this->hasMany(Cases::class);
+    }
 }

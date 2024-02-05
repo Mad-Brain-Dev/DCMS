@@ -45,13 +45,13 @@ class CaseController extends Controller
     public function store(CaseRequest $request)
     {
         $data = $request->validated();
-        $this->caseService->storeOrUpdate($data, null);
-        record_created_flash();
-        try {
 
+        try {
+            $this->caseService->storeOrUpdate($data, null);
 
         } catch (\Exception $e) {
         }
+        record_created_flash();
         return redirect()->route('admin.cases.index');
     }
 

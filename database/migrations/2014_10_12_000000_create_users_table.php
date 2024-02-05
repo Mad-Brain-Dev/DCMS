@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('first_name')->index()->nullable();
             $table->string('last_name')->index()->nullable();
+            $table->string('name')->index()->nullable();
             $table->string('email')->index()->unique();
             $table->string('phone', 25)->index()->nullable();
             $table->string('role')->nullable();
