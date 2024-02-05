@@ -48,7 +48,7 @@
                                 <select class="form-select select2" id="client_id" name="client_id" aria-label="Default select example">
                                     <option selected disabled>Select Client Name</option>
                                     @foreach ($clients as $client )
-                                    <option value="{{ $client->id }}">{{ $client->name }}</option>
+                                    <option value="{{ $client->user_id }}">{{ $client->name }}</option>
                                     @endforeach
                                   </select>
                                 @error('current_status')

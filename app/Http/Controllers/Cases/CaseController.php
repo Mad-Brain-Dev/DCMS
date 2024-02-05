@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Services\CaseService;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
 
 class CaseController extends Controller
 {
@@ -112,7 +113,7 @@ class CaseController extends Controller
     // }
 
     public function casesShowtoClient(){
-        $cases = Cases::with('getUser')->get();
-        return $cases;
+        $cases = Cases::where('client_id', Auth::user()->id)->get();
+        return view('admin.cases.show-to-client', compact('cases'));
     }
 }
