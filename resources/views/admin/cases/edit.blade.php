@@ -25,33 +25,55 @@
                                 <select class="form-select select2" id="case_status" name="current_status"
                                     aria-label="Default select example">
                                     <option selected disabled>Select Case Status</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_PENDING }}">
-                                        {{ \App\Utils\GlobalConstant::CASE_PENDING }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_OPEN }}">
-                                        {{ \App\Utils\GlobalConstant::CASE_OPEN }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_FIELD }}">
+
+
+                                    <option value="{{ \App\Utils\GlobalConstant::CASE_PENDING }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_PENDING ? 'selected' : ''}}>{{ \App\Utils\GlobalConstant::CASE_PENDING }}</option>
+                                    <option value="{{ \App\Utils\GlobalConstant::CASE_OPEN }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_OPEN ? 'selected' : ''}}>{{ \App\Utils\GlobalConstant::CASE_OPEN }}</option>
+
+                                    <option value="{{ \App\Utils\GlobalConstant::CASE_FIELD }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_FIELD ? 'selected' : ''}}>
                                         {{ \App\Utils\GlobalConstant::CASE_FIELD }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_DESPATCHED }}">
+
+                                    <option value="{{ \App\Utils\GlobalConstant::CASE_DESPATCHED }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_DESPATCHED ? 'selected' : ''}}>
                                         {{ \App\Utils\GlobalConstant::CASE_DESPATCHED }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_INVESTIGATION_NEEDED }}">
+
+
+                                    <option value="{{ \App\Utils\GlobalConstant::CASE_INVESTIGATION_NEEDED }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_INVESTIGATION_NEEDED ? 'selected' : ''}}>
                                         {{ \App\Utils\GlobalConstant::CASE_INVESTIGATION_NEEDED }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_NEGOTIATING_WITH_DB }}">
+
+
+                                    <option value="{{ \App\Utils\GlobalConstant::CASE_NEGOTIATING_WITH_DB }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_NEGOTIATING_WITH_DB ? 'selected' : ''}}>
                                         {{ \App\Utils\GlobalConstant::CASE_NEGOTIATING_WITH_DB }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_UNDER_INSTALMENT }}">
+
+
+                                    <option value="{{ \App\Utils\GlobalConstant::CASE_UNDER_INSTALMENT }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_UNDER_INSTALMENT ? 'selected' : ''}}>
                                         {{ \App\Utils\GlobalConstant::CASE_UNDER_INSTALMENT }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_FULLY_SETTELED }}">
+
+
+                                    <option value="{{ \App\Utils\GlobalConstant::CASE_FULLY_SETTELED }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_FULLY_SETTELED ? 'selected' : ''}}>
                                         {{ \App\Utils\GlobalConstant::CASE_FULLY_SETTELED }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_PARTIALLY_SETTELED }}">
+
+
+                                    <option value="{{ \App\Utils\GlobalConstant::CASE_PARTIALLY_SETTELED }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_PARTIALLY_SETTELED ? 'selected' : ''}}>
                                         {{ \App\Utils\GlobalConstant::CASE_PARTIALLY_SETTELED }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_CASE_ON_HOLD_BY_CLIENT }}">
+
+
+                                    <option value="{{ \App\Utils\GlobalConstant::CASE_CASE_ON_HOLD_BY_CLIENT }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_CASE_ON_HOLD_BY_CLIENT ? 'selected' : ''}}>
                                         {{ \App\Utils\GlobalConstant::CASE_CASE_ON_HOLD_BY_CLIENT }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_ON_HOLD_BY_MANAGEMENT }}">
+
+
+                                    <option value="{{ \App\Utils\GlobalConstant::CASE_ON_HOLD_BY_MANAGEMENT }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_ON_HOLD_BY_MANAGEMENT ? 'selected' : ''}}>
                                         {{ \App\Utils\GlobalConstant::CASE_ON_HOLD_BY_MANAGEMENT }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_CLOSED_WITHOUT_PAYMENT }}">
+
+
+                                    <option value="{{ \App\Utils\GlobalConstant::CASE_CLOSED_WITHOUT_PAYMENT }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_CLOSED_WITHOUT_PAYMENT ? 'selected' : ''}}>
                                         {{ \App\Utils\GlobalConstant::CASE_CLOSED_WITHOUT_PAYMENT }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_AWAITING_UPDATE_FR_CLIENT }}">
+
+
+                                    <option value="{{ \App\Utils\GlobalConstant::CASE_AWAITING_UPDATE_FR_CLIENT }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_AWAITING_UPDATE_FR_CLIENT ? 'selected' : ''}}>
                                         {{ \App\Utils\GlobalConstant::CASE_AWAITING_UPDATE_FR_CLIENT }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_UNDER_LITIGATION }}">
+
+
+                                    <option value="{{ \App\Utils\GlobalConstant::CASE_UNDER_LITIGATION }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_UNDER_LITIGATION ? 'selected' : ''}}>
                                         {{ \App\Utils\GlobalConstant::CASE_UNDER_LITIGATION }}</option>
                                 </select>
                                 @error('current_status')
