@@ -9,18 +9,25 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
 
-                <li class="mm-active">
-                    <a href="#" class="waves-effect active">
+                <li class="">
+                    <a href="#" class="">
                         <i class="fa fa-home"></i><span> Dashboard </span>
                     </a>
                 </li>
 
-                <li class="{{ request()->is('case/show/client') ? 'mm-active' : '' }}">
+               <li class="{{ request()->is('/case/show/to/perticular/client') ? 'mm-active' : '' }}">
+                    <a href="{{ route('case.show.perticual.client') }}"
+                        class="{{ request()->routeIs('case.show.perticual.client') ? 'active' : '' }}">
+                        <span class="mdi mdi-briefcase-edit-outline pe-2"></span><span> Cases </span>
+                    </a>
+                </li>
+
+                {{-- <li class="{{ request()->is('case/show/client') ? 'mm-active' : '' }}">
                     <a href="{{ route('case.show.client') }}"
                         class="{{ request()->routeIs('case.show.client') ? 'active' : '' }}">
                         <span class="mdi mdi-briefcase-edit-outline pe-2"></span><span> Cases </span>
                     </a>
-                </li>
+                </li> --}}
 
             </ul>
         </div>

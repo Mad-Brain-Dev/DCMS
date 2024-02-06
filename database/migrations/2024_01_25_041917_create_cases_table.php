@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('current_status');
             $table->dateTime('date_of_agreement');
             $table->dateTime('date_of_expiry');
+            $table->foreignId('user_id')->nullable();
             $table->foreignId('client_id');
             $table->string('collection_commission');
             $table->string('field_visit');

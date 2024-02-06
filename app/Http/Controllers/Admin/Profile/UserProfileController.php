@@ -31,14 +31,12 @@ class UserProfileController extends Controller
                 'last_name'     => 'required|string|max:50',
                 'phone'         => 'required|string|max:16',
                 'email'         => "required|email|unique:users,email,$id",
-                'date_of_hire' => 'required',
             ],
             [
                 'first_name.required'    => 'First Name is Required!',
                 'last_name.required'     => 'Last Name is Required!',
                 'phone.required'         => 'Phone Number is Required!',
                 'email.required'         => 'Email is Required!',
-                'date_of_hire.required' => 'Date of hire is Required!',
             ]
         );
 

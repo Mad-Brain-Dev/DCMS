@@ -29,17 +29,6 @@ class UserSeeder extends Seeder
                 'phone'             => '012345678910',
             ],
             [
-                'first_name'        => 'Debtor',
-                'last_name'         => 'Last',
-                'email'             => 'debtor@app.com',
-                'email_verified_at' => now(),
-                'password'          => Hash::make("12345678"),   // 12345678
-                'user_type'         => User::USER_TYPE_DEBTOR,
-                'status'            => GlobalConstant::STATUS_ACTIVE,
-                'remember_token'    => Str::random(60),
-                'phone'             => '012345678910',
-            ],
-            [
                 'first_name'        => 'Client',
                 'last_name'         => 'Last',
                 'email'             => 'client@app.com',
