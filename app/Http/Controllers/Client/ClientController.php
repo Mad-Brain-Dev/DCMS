@@ -57,7 +57,7 @@ class ClientController extends Controller
             $user->email= $request['email'];
             $user->password=  Hash::make("12345678");   // 12345678;
             $user->save();
-            $client->user_id = $user->id;
+            $client->client_id = $user->id;
             $client->save();
         }
         record_created_flash();
@@ -76,7 +76,7 @@ class ClientController extends Controller
     {
         set_page_meta('Client Details');
         $client = Client::find($id);
-        $cases = Cases::where('client_id', $id)->get();
+        $cases = Cases::where('client_id', $client->client_id)->get();
         return view('admin.clients.show', compact('client', 'cases'));
     }
 

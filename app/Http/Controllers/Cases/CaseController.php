@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cases;
 
 use App\DataTables\CaseDataTable;
+use App\DataTables\CasesforPerticularClientDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CaseEditRequest;
 use App\Http\Requests\CaseRequest;
@@ -46,13 +47,14 @@ class CaseController extends Controller
     public function store(CaseRequest $request)
     {
         $data = $request->validated();
-
+        $this->caseService->storeOrUpdate($data, null);
+            record_created_flash();
         try {
-            $this->caseService->storeOrUpdate($data, null);
+
 
         } catch (\Exception $e) {
         }
-        record_created_flash();
+
         return redirect()->route('admin.cases.index');
     }
 
@@ -112,8 +114,15 @@ class CaseController extends Controller
     //     return $pdf->stream('cases.pdf');
     // }
 
+
+    //All case show to perticular client in datatable
+    public function casesForPerticularClient(CasesforPerticularClientDataTable $dataTable){
+        set_page_meta('Case');
+        return $dataTable->render('client.cases.index');
+    }
+    //Single case show to client
     public function casesShowtoClient(){
         $cases = Cases::where('client_id', Auth::user()->id)->get();
-        return view('admin.cases.show-to-client', compact('cases'));
+        return view('client.cases.show-to-client', compact('cases'));
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('user_id')->nullable();
+            $table->foreignId('client_id')->nullable();
             $table->string('nric')->nullable();
             $table->string('company_name')->nullable();
             $table->string('company_uen')->nullable();

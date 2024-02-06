@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5>Case Number</h5>
-                            <p>{{$case->case_number}}</p>
+                            <p>{{ $case->case_number }}</p>
                         </div>
                     </div>
                 </div>
@@ -16,7 +16,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5>Current Status</h5>
-                            <p>{{$case->current_status}}</p>
+                            <p>{{ $case->current_status }}</p>
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5>Date of Agreement</h5>
-                            <p>{{date('d-m-Y', strtotime($case->date_of_agreement))}}</p>
+                            <p>{{ date('d-m-Y', strtotime($case->date_of_agreement)) }}</p>
                         </div>
                     </div>
                 </div>
@@ -32,15 +32,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5>Date of Expiry</h5>
-                            <p>{{date('d-m-Y', strtotime($case->date_of_expiry))}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Client Name</h5>
-                            <p>{{$case->client->name}}</p>
+                            <p>{{ date('d-m-Y', strtotime($case->date_of_expiry)) }}</p>
                         </div>
                     </div>
                 </div>
@@ -48,7 +40,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5>Collection Commission</h5>
-                            <p>{{$case->collection_commission}}</p>
+                            <p>{{ $case->collection_commission }}</p>
                         </div>
                     </div>
                 </div>
@@ -56,7 +48,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5>Field Visit</h5>
-                            <p>{{$case->field_visit}}</p>
+                            <p>{{ $case->field_visit }}</p>
                         </div>
                     </div>
                 </div>
@@ -64,7 +56,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5>Bal Field Visit</h5>
-                            <p>{{$case->bal_field_visit}}</p>
+                            <p>{{ $case->bal_field_visit }}</p>
                         </div>
                     </div>
                 </div>
@@ -72,7 +64,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5>Manager IC</h5>
-                            <p>{{$case->manager_ic}}</p>
+                            <p>{{ $case->manager_ic }}</p>
                         </div>
                     </div>
                 </div>
@@ -80,7 +72,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5>Collector IC</h5>
-                            <p>{{$case->collector_ic}}</p>
+                            <p>{{ $case->collector_ic }}</p>
                         </div>
                     </div>
                 </div>
@@ -88,7 +80,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5>Debtor Name</h5>
-                            <p>{{$case->name}}</p>
+                            <p>{{ $case->name }}</p>
                         </div>
                     </div>
                 </div>
@@ -96,7 +88,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5>Debtor NRIC</h5>
-                            <p>{{$case->nric}}</p>
+                            <p>{{ $case->nric }}</p>
                         </div>
                     </div>
                 </div>
@@ -176,7 +168,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5>Interest Start Date</h5>
-                            <p>{{date('d-m-Y', strtotime($case->interest_start_date))}}</p>
+                            <p>{{ date('d-m-Y', strtotime($case->interest_start_date)) }}</p>
                         </div>
                     </div>
                 </div>
@@ -185,7 +177,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5>Interest End Date</h5>
-                            <p>{{date('d-m-Y', strtotime($case->interest_end_date))}}</p>
+                            <p>{{ date('d-m-Y', strtotime($case->interest_end_date)) }}</p>
                         </div>
                     </div>
                 </div>
@@ -226,8 +218,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 @endsection

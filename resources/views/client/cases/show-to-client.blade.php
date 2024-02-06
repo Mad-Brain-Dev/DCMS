@@ -2,84 +2,6 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Name</th>
-                                        <td>{{ $client->name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">NRIC</th>
-                                        <td>{{ $client->nric }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Company Name</th>
-                                        <td>{{ $client->company_name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Company Uen</th>
-                                        <td>{{ $client->company_uen }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Phone</th>
-                                        <td>{{ $client->phone }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Email</th>
-                                        <td>{{ $client->email }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Address</th>
-                                        <td>{{ $client->address }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-md-4">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Date of Agreement</th>
-                                        <td>{{ date('d-m-Y', strtotime($client->date_of_agreement)) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Date of Expiry</th>
-                                        <td>{{ date('d-m-Y', strtotime($client->date_of_expiry)) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Admin Fee</th>
-                                        <td>{{ $client->admin_fee }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Admin Fee Paid</th>
-                                        <td>{{ $client->admin_fee_paid }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Admin Fee Balance</th>
-                                        <td>{{ $client->admin_fee_balance}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Collection Commission</th>
-                                        <td>{{ $client->collection_commission }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Field Visit Per Case</th>
-                                        <td>{{ $client->field_visit_per_case }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
             @foreach ($cases as $case)
                 <div class="col-md-6">
                     <div class="card">
@@ -108,10 +30,6 @@
                                     <tr>
                                         <th scope="row">Date of Expiry</th>
                                         <td>{{ $case->date_of_expiry }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Client Name</th>
-                                        <td>{{ $case->client->name }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Collection Commission</th>
@@ -204,7 +122,6 @@
                 </div>
             @endforeach
         </div>
-    </div>
     @endsection
 
     @push('script')
