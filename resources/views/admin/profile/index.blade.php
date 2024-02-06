@@ -41,18 +41,6 @@
                                 </div>
 
                                 <div class="form-group mb-2">
-                                    <label for="middle_name">
-                                        Middle Name <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="text" id="middle_name" name="middle_name" class="form-control"
-                                           autocomplete="off" value="{{ $user->middle_name }}"
-                                           placeholder="Enter your middle name">
-                                    @error('email')
-                                    <p class="middle_name">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group mb-2">
                                     <label for="last_name">
                                         Last Name <span class="text-danger">*</span>
                                     </label>
@@ -60,39 +48,6 @@
                                            autocomplete="off" value="{{ $user->last_name }}" placeholder="Enter your last name"
                                            required>
                                     @error('last_name')
-                                    <p class="error">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group mb-2">
-                                    <label for="department">
-                                        Department
-                                    </label>
-                                    <input type="text" id="department" name="department" class="form-control"
-                                           autocomplete="off" value="{{ $user->department }}" placeholder="Enter your department"
-                                           >
-                                    @error('department')
-                                    <p class="error">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group mb-2">
-                                    <label for="department">
-                                        Title
-                                    </label>
-                                    <input type="text" id="title" name="title" class="form-control"
-                                           autocomplete="off" value="{{ $user->title }}" placeholder="Enter your title"
-                                    >
-                                    @error('title')
-                                    <p class="error">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-2">
-                                    <label class="form-label">Date of Hire <span class="error">*</span></label>
-                                    <input type="date" name="date_of_hire" class="form-control" required=""
-                                           placeholder="Enter date of birth" value="{{ $user->date_of_hire }}">
-                                    @error('date_of_hire')
                                     <p class="error">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -116,28 +71,6 @@
                                     <p class="error">{{ $message }}</p>
                                     @enderror
                                 </div>
-
-{{--                                <div class="mb-3">--}}
-{{--                                    <label class="form-label mb-2 w-100">Gender <span class="error">*</span></label>--}}
-{{--                                    <div class="form-check form-check-inline">--}}
-{{--                                        <input type="radio" id="male" value="male" name="gender" class="form-check-input" {{--}}
-{{--                                        $user->gender == 'male' ?--}}
-{{--                                    'checked' : '' }}>--}}
-{{--                                        <label class="custom-control-label" for="male">Male</label>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-check form-check-inline">--}}
-{{--                                        <input type="radio" id="female" value="female" name="gender"--}}
-{{--                                               class="form-check-input" {{ $user->gender ==--}}
-{{--                                    'female' ? 'checked' : '' }}>--}}
-{{--                                        <label class="custom-control-label" for="female">Female</label>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-check form-check-inline">--}}
-{{--                                        <input type="radio" id="other" value="other" name="gender" class="form-check-input"--}}
-{{--                                            {{ $user->gender == 'other'--}}
-{{--                                        ? 'checked' : '' }}>--}}
-{{--                                        <label class="custom-control-label" for="other">Other</label>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
 
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
                                     Update Profile
