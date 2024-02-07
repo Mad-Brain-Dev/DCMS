@@ -2,226 +2,130 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-8 mx-auto">
                     <div class="card">
+                        <div class="card-header text-center">
+                            <h5>CASE</h5>
+                        </div>
                         <div class="card-body">
-                            <h5>Case Number</h5>
-                            <p>{{ $case->case_number }}</p>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Key</th>
+                                        <td>Value</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Case Number</th>
+                                        <td>{{ $case->case_number }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Current Status</th>
+                                        <td>{{ $case->current_status }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Date of Agreement</th>
+                                        <td>{{ $case->date_of_agreement }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Date of Expiry</th>
+                                        <td>{{ $case->date_of_expiry }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Client Name</th>
+                                        <td>{{ $case->client->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Collection Commission</th>
+                                        <td>{{ $case->collection_commission }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Field Visit</th>
+                                        <td>{{ $case->field_visit }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Bal Field Visit</th>
+                                        <td>{{ $case->bal_field_visit }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Manager IC</th>
+                                        <td>{{ $case->manager_ic }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Collector IC</th>
+                                        <td>{{ $case->collector_ic }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Debtor Name</th>
+                                        <td>{{ $case->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Debtor NRIC</th>
+                                        <td>{{ $case->nric }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Debtor Company Name</th>
+                                        <td>{{ $case->company_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Debtor Company UEN</th>
+                                        <td>{{ $case->company_uen }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Debtor Phone</th>
+                                        <td>{{ $case->phone }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Debtor Email</th>
+                                        <td>{{ $case->email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Debtor Address</th>
+                                        <td>{{ $case->adderss }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Debt Amount</th>
+                                        <td>{{ $case->debt_amount }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Legal Cost</th>
+                                        <td>{{ $case->legal_cost }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Debt Interest</th>
+                                        <td>{{ $case->debt_interest }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Interest Start Date</th>
+                                        <td>{{ $case->interest_start_date }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Interest End Date</th>
+                                        <td>{{ $case->interest_start_date }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Total Interest</th>
+                                        <td>{{ $case->total_interest }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Total Amount Owed</th>
+                                        <td>{{ $case->total_amount_owed }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Total Amount Paid</th>
+                                        <td>{{ $case->total_amount_paid }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Total Amount Balance</th>
+                                        <td>{{ $case->total_amount_balance }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Current Status</h5>
-                            <p>{{ $case->current_status }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Date of Agreement</h5>
-                            <p>{{ date('d-m-Y', strtotime($case->date_of_agreement)) }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Date of Expiry</h5>
-                            <p>{{ date('d-m-Y', strtotime($case->date_of_expiry)) }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Collection Commission</h5>
-                            <p>{{ $case->collection_commission }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Field Visit</h5>
-                            <p>{{ $case->field_visit }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Bal Field Visit</h5>
-                            <p>{{ $case->bal_field_visit }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Manager IC</h5>
-                            <p>{{ $case->manager_ic }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Collector IC</h5>
-                            <p>{{ $case->collector_ic }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Debtor Name</h5>
-                            <p>{{ $case->name }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Debtor NRIC</h5>
-                            <p>{{ $case->nric }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Debtor Company Name</h5>
-                            <p>{{ $case->company_name }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Debtor Company UEN</h5>
-                            <p>{{ $case->company_uen }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Debtor Phone</h5>
-                            <p>{{ $case->phone }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Debtor Email</h5>
-                            <p>{{ $case->email }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Debtor Address</h5>
-                            <p>{{ $case->adderss }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Debt Amount</h5>
-                            <p>{{ $case->debt_amount }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Legal Cost</h5>
-                            <p>{{ $case->legal_cost }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Debt interest</h5>
-                            <p>{{ $case->debt_interest }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Interest Start Date</h5>
-                            <p>{{ date('d-m-Y', strtotime($case->interest_start_date)) }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Interest End Date</h5>
-                            <p>{{ date('d-m-Y', strtotime($case->interest_end_date)) }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Total Interest</h5>
-                            <p>{{ $case->total_interest }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Total Amount Owed</h5>
-                            <p>{{ $case->total_amount_owed }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Total Amount Paid</h5>
-                            <p>{{ $case->total_amount_paid }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Total Amount Balance</h5>
-                            <p>{{ $case->total_amount_balance }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
-@endsection
+    @endsection
 
-@push('script')
-    <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
-@endpush
+    @push('script')
+        <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
+    @endpush

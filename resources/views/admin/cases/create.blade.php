@@ -146,7 +146,7 @@
                             </div>
 
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">DB NRIC</label>
+                                <label class="form-label">DB NRIC <span class="error">*</span></label>
                                 <input type="text" name="nric" class="form-control"
                                     placeholder="Enter DB NRIC" value="{{ old('nric') }}">
                                 @error('nric')
@@ -155,7 +155,7 @@
                             </div>
 
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">DB Company Name</label>
+                                <label class="form-label">DB Company Name <span class="error">*</span></label>
                                 <input type="text" name="company_name" class="form-control"
                                     placeholder="Enter DB Company Name" value="{{ old('company_name') }}">
                                 @error('company_name')
@@ -164,7 +164,7 @@
                             </div>
 
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">DB Company UEN</label>
+                                <label class="form-label">DB Company UEN <span class="error">*</span></label>
                                 <input type="text" name="company_uen" class="form-control"
                                     placeholder="Enter DB Company UEN" value="{{ old('company_uen') }}">
                                 @error('company_uen')
