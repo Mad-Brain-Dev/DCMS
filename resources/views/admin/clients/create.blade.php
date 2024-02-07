@@ -10,16 +10,16 @@
                         @csrf
                         <div class="row">
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">Client Name <span class="error">*</span></label>
-                                <input type="text" name="name" class="form-control" placeholder="Enter Client Name"
+                                <label class="form-label">CL Name <span class="error">*</span></label>
+                                <input type="text" name="name" class="form-control" placeholder="Enter CL Name"
                                     value="{{ old('name') }}">
                                 @error('name')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">Client NRIC</label>
-                                <input type="text" name="nric" class="form-control" placeholder="Enter Client NRIC"
+                                <label class="form-label">CL NRIC</label>
+                                <input type="text" name="nric" class="form-control" placeholder="Enter CL NRIC"
                                     value="{{ old('nric') }}">
                                 @error('nric')
                                     <p class="error">{{ $message }}</p>
@@ -28,7 +28,7 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Company name</label>
-                                <input type="text" name="company_name" class="form-control" placeholder="Enter Client Company Name"
+                                <input type="text" name="company_name" class="form-control" placeholder="Enter CL Company Name"
                                     value="{{ old('company_name') }}">
                                 @error('company_name')
                                     <p class="error">{{ $message }}</p>
@@ -37,7 +37,7 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Company Uen</label>
-                                <input type="text" name="company_uen" class="form-control" placeholder="Enter Client Company Uen"
+                                <input type="text" name="company_uen" class="form-control" placeholder="Enter CL Company Uen"
                                     value="{{ old('company_uen') }}">
                                 @error('company_uen')
                                     <p class="error">{{ $message }}</p>
@@ -46,7 +46,7 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Email <span class="error">*</span></label>
-                                <input type="email" name="email" class="form-control" placeholder="Enter Client Email Address"
+                                <input type="email" name="email" class="form-control" placeholder="Enter CL Email Address"
                                     value="{{ old('email') }}">
                                 @error('email')
                                     <p class="error">{{ $message }}</p>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Phone <span class="error">*</span></label>
-                                <input type="text" name="phone" class="form-control" placeholder="Enter Client Phone Number"
+                                <input type="text" name="phone" class="form-control" placeholder="Enter CL Phone Number"
                                     value="{{ old('phone') }}">
                                 @error('phone')
                                     <p class="error">{{ $message }}</p>

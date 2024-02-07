@@ -27,7 +27,7 @@ class ClientController extends Controller
      */
     public function index(ClientDataTable $dataTable)
     {
-        set_page_meta('Client');
+        set_page_meta('CL');
         return $dataTable->render('admin.clients.index');
     }
 
@@ -38,7 +38,7 @@ class ClientController extends Controller
     public function create()
     {
         $roles = Role::all();
-       return view('admin.clients.create', compact('roles'));
+        return view('admin.clients.create', compact('roles'));
     }
 
     /**
