@@ -35,10 +35,11 @@ class CaseController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         $clients = Client::all();
         return view('admin.cases.create', compact('clients'));
+
     }
 
     /**
@@ -124,5 +125,13 @@ class CaseController extends Controller
     public function casesShowtoClient(){
         $cases = Cases::where('client_id', Auth::user()->id)->get();
         return view('client.cases.show-to-client', compact('cases'));
+    }
+
+    public function dateOfAgreementForCase(Request $request){
+        $dateofAgreement = Client::where('client_id', $request->client_id)->first();
+        return response()->json([
+            'status' => 'success',
+            'dateofagreement' => $dateofAgreement,
+        ]);
     }
 }

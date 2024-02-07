@@ -48,7 +48,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="mb-3 col-md-3">
+                            <div class="mb-3 col-md-4">
                                 <label class="form-label">Email <span class="error">*</span></label>
                                 <input type="email" name="email" class="form-control" placeholder="Enter CL Email Address"
                                     value="{{ old('email') }}">
@@ -56,7 +56,7 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="mb-3 col-md-3">
+                            <div class="mb-3 col-md-4">
                                 <label class="form-label">Phone <span class="error">*</span></label>
                                 <input type="text" name="phone" class="form-control" placeholder="Enter CL Phone Number"
                                     value="{{ old('phone') }}">
@@ -64,7 +64,7 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="mb-3 col-md-3">
+                            <div class="mb-3 col-md-4">
                                 <label class="form-label">Address <span class="error">*</span></label>
                                 <input type="text" name="address" class="form-control" placeholder="Enter Address Here"
                                     value="{{ old('address') }}">

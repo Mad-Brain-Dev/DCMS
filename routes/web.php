@@ -39,6 +39,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/case/show/to/client', [CaseController::class, 'casesShowtoClient'])->name('case.show.client');
 //case show to client in datatable
 Route::get('/case/show/to/perticular/client', [CaseController::class, 'casesForPerticularClient'])->name('case.show.perticual.client');
+// Date of agreement depend on client
+Route::get('/date/of/agreement/for/case', [CaseController::class, 'dateOfAgreementForCase'])->name('date.of.agreement');
 
 
 //all routes for admin
