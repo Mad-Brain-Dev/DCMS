@@ -9,8 +9,13 @@ use App\Http\Requests\CaseEditRequest;
 use App\Http\Requests\CaseRequest;
 use App\Models\Cases;
 use App\Models\Client;
+use App\Models\CorrespondenceUpdate;
+use App\Models\FieldVisitUpdate;
+use App\Models\GeneralCaseUpdate;
+use App\Models\MiscellaneousUpdate;
 use App\Models\User;
 use App\Services\CaseService;
+use App\Services\Utils\FileUploadService;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
@@ -19,9 +24,12 @@ class CaseController extends Controller
 {
     protected $caseService;
 
-    public function __construct(CaseService $caseService)
+    protected $fileUploadService;
+
+    public function __construct(CaseService $caseService, FileUploadService $fileUploadService)
     {
         $this->caseService = $caseService;
+        $this->fileUploadService = $fileUploadService;
     }
     /**
      * Display a listing of the resource.
@@ -126,7 +134,7 @@ class CaseController extends Controller
         $cases = Cases::where('client_id', Auth::user()->id)->get();
         return view('client.cases.show-to-client', compact('cases'));
     }
-
+    //Show date of agreement from client table when create cases
     public function dateOfAgreementForCase(Request $request){
         $dateofAgreement = Client::where('client_id', $request->client_id)->first();
         return response()->json([
@@ -134,4 +142,66 @@ class CaseController extends Controller
             'dateofagreement' => $dateofAgreement,
         ]);
     }
+    // Create Case Update
+    public function caseUpdateCreate(Request $request){
+
+        $request->validate([
+            'gn_update' => 'nullable|mimes:png,jpg,jpeg,pdf',
+            'cr_update' => 'nullable|mimes:png,jpg,jpeg,pdf',
+            'fv_update' => 'nullable|mimes:png,jpg,jpeg,pdf',
+            'ms_update' => 'nullable|mimes:png,jpg,jpeg,pdf',
+        ]);
+
+        if($request->gn_update){
+            $document = GeneralCaseUpdate::create([
+                'case_id' => $request->case_id,
+            ]);
+
+            if ($request->hasFile('gn_update')) {
+                $image = $this->fileUploadService->upload($request['gn_update'], GeneralCaseUpdate::FILE_STORE_DOCUMENT_PATH, false, true);
+                $document->gn_update = $image;
+                $document->save();
+            }
+        }
+
+        if($request->cr_update){
+            $document = CorrespondenceUpdate::create([
+                'case_id' => $request->case_id,
+            ]);
+
+            if ($request->hasFile('cr_update')) {
+                $image = $this->fileUploadService->upload($request['cr_update'], CorrespondenceUpdate::FILE_STORE_DOCUMENT_PATH, false, true);
+                $document->cr_update = $image;
+                $document->save();
+            }
+        }
+
+        if($request->fv_update){
+            $document = FieldVisitUpdate::create([
+                'case_id' => $request->case_id,
+            ]);
+
+            if ($request->hasFile('fv_update')) {
+                $image = $this->fileUploadService->upload($request['fv_update'], FieldVisitUpdate::FILE_STORE_DOCUMENT_PATH, false, true);
+                $document->fv_update = $image;
+                $document->save();
+            }
+        }
+
+        if($request->ms_update){
+            $document = MiscellaneousUpdate::create([
+                'case_id' => $request->case_id,
+            ]);
+
+            if ($request->hasFile('ms_update')) {
+                $image = $this->fileUploadService->upload($request['ms_update'], MiscellaneousUpdate::FILE_STORE_DOCUMENT_PATH, false, true);
+                $document->ms_update = $image;
+                $document->save();
+            }
+        }
+
+                record_updated_flash();
+                return back();
+    }
+
 }

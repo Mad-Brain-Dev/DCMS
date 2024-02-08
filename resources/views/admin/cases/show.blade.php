@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-                <div class="col-md-8 mx-auto">
+                <div class="col-md-4">
                     <div class="card">
                         <div class="card-header text-center">
                             <h5>CASE</h5>
@@ -123,9 +123,63 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <div id="success" class="text-success"></div>
+                    <div class="card">
+                        <div class="card-header text-center">Documents</div>
+                        <div class="card-body">
+                            <form enctype="multipart/form-data" action="{{ route('create.case.update') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="case_id" value="{{$case->id}}" id="case_id">
+                                <div class="mb-3">
+                                    <label class="form-label">GN Case Update</label>
+                                    <input type="file" name="gn_update" class="form-control">
+                                    @error('gn_update')
+                                        <p class="error">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">CR Update</label>
+                                    <input type="file" name="cr_update" class="form-control">
+                                    @error('cr_update')
+                                        <p class="error">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">FV Update</label>
+                                    <input type="file" name="fv_update" class="form-control">
+                                    @error('fv_update')
+                                        <p class="error">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">MS Update </label>
+                                    <input type="file" name="ms_update" class="form-control">
+                                    @error('ms_update')
+                                        <p class="error">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <input type="hidden" name="case_id" value="{{$case->id}}" id="case_id">
+
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <div class="text-end">
+                                            <button class="btn btn-primary waves-effect waves-lightml-2 me-2" type="submit">
+                                                <i class="fa fa-save"></i> Save
+                                            </button>
+                                            <a class="btn btn-secondary waves-effect"
+                                                href="{{ route('admin.cases.index') }}">
+                                                <i class="fa fa-times"></i> Cancel
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
         </div>
     @endsection
-
     @push('script')
         <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
     @endpush

@@ -46,6 +46,7 @@ class Cases extends Model
         'total_amount_owed',
         'total_amount_paid',
         'total_amount_balance',
+        'gn_update',
     ];
 
     public function client()

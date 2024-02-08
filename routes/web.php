@@ -42,6 +42,9 @@ Route::get('/case/show/to/perticular/client', [CaseController::class, 'casesForP
 // Date of agreement depend on client
 Route::get('/date/of/agreement/for/case', [CaseController::class, 'dateOfAgreementForCase'])->name('date.of.agreement');
 
+// Create updates for case
+Route::post('/create/update/for/case', [CaseController::class, 'caseUpdateCreate'])->name('create.case.update');
+
 
 //all routes for admin
 Route::prefix('admin')->as('admin.')->group(function () {
