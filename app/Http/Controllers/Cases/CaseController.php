@@ -74,7 +74,8 @@ class CaseController extends Controller
     {
         set_page_meta('Details');
         $case = Cases::find($id);
-        return view('admin.cases.show',compact('case'));
+        $gr_updates = GeneralCaseUpdate::where('case_id', $id)->get();
+        return view('admin.cases.show',compact('case','gr_updates'));
     }
 
     /**
