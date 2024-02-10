@@ -47,7 +47,6 @@ class CaseController extends Controller
     {
         $clients = Client::all();
         return view('admin.cases.create', compact('clients'));
-
     }
 
     /**
@@ -57,10 +56,8 @@ class CaseController extends Controller
     {
         $data = $request->validated();
         $this->caseService->storeOrUpdate($data, null);
-            record_created_flash();
+        record_created_flash();
         try {
-
-
         } catch (\Exception $e) {
         }
 
@@ -74,8 +71,11 @@ class CaseController extends Controller
     {
         set_page_meta('Details');
         $case = Cases::find($id);
-        $gr_updates = GeneralCaseUpdate::where('case_id', $id)->get();
-        return view('admin.cases.show',compact('case','gr_updates'));
+        $gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
+        $cr_updates = CorrespondenceUpdate::where('case_id', $id)->latest()->get();
+        $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
+        $ms_updates = MiscellaneousUpdate::where('case_id', $id)->latest()->get();
+        return view('admin.cases.show', compact('case', 'gn_updates','cr_updates','fv_updates','ms_updates'));
     }
 
     /**
@@ -97,8 +97,6 @@ class CaseController extends Controller
         $this->caseService->storeOrUpdate($data, $id);
         record_created_flash();
         try {
-
-
         } catch (\Exception $e) {
         }
         return redirect()->route('admin.cases.index');
@@ -126,17 +124,20 @@ class CaseController extends Controller
 
 
     //All case show to perticular client in datatable
-    public function casesForPerticularClient(CasesforPerticularClientDataTable $dataTable){
+    public function casesForPerticularClient(CasesforPerticularClientDataTable $dataTable)
+    {
         set_page_meta('Case');
         return $dataTable->render('client.cases.index');
     }
     //Single case show to client
-    public function casesShowtoClient(){
+    public function casesShowtoClient()
+    {
         $cases = Cases::where('client_id', Auth::user()->id)->get();
         return view('client.cases.show-to-client', compact('cases'));
     }
     //Show date of agreement from client table when create cases
-    public function dateOfAgreementForCase(Request $request){
+    public function dateOfAgreementForCase(Request $request)
+    {
         $dateofAgreement = Client::where('client_id', $request->client_id)->first();
         return response()->json([
             'status' => 'success',
@@ -144,18 +145,26 @@ class CaseController extends Controller
         ]);
     }
     // Create Case Update
-    public function caseUpdateCreate(Request $request){
+    public function generalCaseCreate(Request $request)
+    {
 
         $request->validate([
             'gn_update' => 'nullable|mimes:png,jpg,jpeg,pdf',
+            'fv_date' => 'nullable',
+            'gn_summary' => 'nullable',
             'cr_update' => 'nullable|mimes:png,jpg,jpeg,pdf',
+            'cr_summary' => 'nullable',
             'fv_update' => 'nullable|mimes:png,jpg,jpeg,pdf',
+            'fv_summary' => 'nullable',
             'ms_update' => 'nullable|mimes:png,jpg,jpeg,pdf',
+            'ms_summary' => 'nullable',
         ]);
 
-        if($request->gn_update){
+        if ($request->gn_update) {
             $document = GeneralCaseUpdate::create([
                 'case_id' => $request->case_id,
+                'fv_date' => $request->fv_date,
+                'gn_summary' => $request->gn_summary,
             ]);
 
             if ($request->hasFile('gn_update')) {
@@ -168,6 +177,8 @@ class CaseController extends Controller
         if($request->cr_update){
             $document = CorrespondenceUpdate::create([
                 'case_id' => $request->case_id,
+                'fv_date' => $request->fv_date,
+                'cr_summary' => $request->cr_summary,
             ]);
 
             if ($request->hasFile('cr_update')) {
@@ -180,6 +191,8 @@ class CaseController extends Controller
         if($request->fv_update){
             $document = FieldVisitUpdate::create([
                 'case_id' => $request->case_id,
+                'fv_date' => $request->fv_date,
+                'fv_summary' => $request->fv_summary,
             ]);
 
             if ($request->hasFile('fv_update')) {
@@ -192,6 +205,8 @@ class CaseController extends Controller
         if($request->ms_update){
             $document = MiscellaneousUpdate::create([
                 'case_id' => $request->case_id,
+                'fv_date' => $request->fv_date,
+                'ms_summary' => $request->ms_summary,
             ]);
 
             if ($request->hasFile('ms_update')) {
@@ -201,8 +216,12 @@ class CaseController extends Controller
             }
         }
 
-                record_updated_flash();
-                return back();
+        record_updated_flash();
+        return back();
     }
 
+    public function showSingleGeneralUpdate($id)
+    {
+        return $id;
+    }
 }

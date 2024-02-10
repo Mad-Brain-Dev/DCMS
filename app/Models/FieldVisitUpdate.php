@@ -12,5 +12,7 @@ class FieldVisitUpdate extends Model
     protected $fillable = [
         'fv_update',
         'case_id',
+        'fv_summary',
+        'fv_date'
     ];
 }

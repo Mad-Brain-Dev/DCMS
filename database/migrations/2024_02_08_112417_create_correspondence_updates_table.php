@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('correspondence_updates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('case_id')->nullable();
             $table->string('cr_update')->nullable();
+            $table->foreignId('case_id')->nullable();
+            $table->dateTime('fv_date')->nullable();
+            $table->string('cr_summary')->nullable();
             $table->timestamps();
         });
     }

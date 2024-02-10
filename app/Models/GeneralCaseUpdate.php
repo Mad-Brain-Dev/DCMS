@@ -11,6 +11,8 @@ class GeneralCaseUpdate extends Model
     public const FILE_STORE_DOCUMENT_PATH = 'document';
     protected $fillable = [
         'gn_update',
+        'fv_date',
+        'gn_summary',
         'case_id',
     ];
 }

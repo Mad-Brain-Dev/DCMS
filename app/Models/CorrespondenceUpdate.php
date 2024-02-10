@@ -12,5 +12,7 @@ class CorrespondenceUpdate extends Model
     protected $fillable = [
         'cr_update',
         'case_id',
+        'fv_date',
+        'cr_summary',
     ];
 }

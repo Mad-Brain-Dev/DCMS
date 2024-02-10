@@ -123,12 +123,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
             <div id="success" class="text-success"></div>
             <div class="card">
-                <div class="card-header text-center">Updates Upload</div>
+                <div class="card-header text-center">GN Case Update</div>
                 <div class="card-body">
-                    <form enctype="multipart/form-data" action="{{ route('create.case.update') }}" method="POST">
+                    <form enctype="multipart/form-data" action="{{ route('general.case.create') }}" method="POST">
                         @csrf
                         <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
                         <div class="mb-3">
@@ -139,6 +139,66 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Field Visit Date</label>
+                            <input type="date" name="fv_date" class="form-control">
+                            @error('fv_date')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">GN Case Summary</label>
+                            <textarea name="gn_summary" class="form-control" id="" rows="2"></textarea>
+                            @error('gn_summary')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
+
+                        <div class="row">
+                            <div class="mb-3 text-end">
+                                <div>
+                                    <button class="btn btn-primary waves-effect waves-lightml-2 " type="submit">
+                                        <i class="fa fa-save"></i> Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    @foreach ($gn_updates as $gn_update)
+                        <div class="mt-5"> <span>Created at:</span>
+                        {{ date('d-m-Y', strtotime($gn_update->created_at)) }},
+                        {{ date('h:i a', strtotime($gn_update->created_at)) }} </div>
+                    <iframe src="{{ asset('storage/document/' . $gn_update->gn_update) }}" class="mt-2"
+                        width="100%"></iframe>
+
+
+                        <div class="div text-end mt-2">
+                            @csrf
+                            <a href="#" class="btn btn-primary mt-2 viewGNUpdate" data-toggle="modal"
+                                data-target="#exampleModal">
+                                <span class="gn_id d-none">{{ $gn_update->id }}</span>
+                                <i class="far fa-eye"></i> View
+                            </a>
+                        </div>
+                        <div class="mt-2">Field Visited At: {{ date('d-m-Y', strtotime($gn_update->fv_date)) }}</div>
+                        <div class="mt-2">{{ $gn_update->gn_summary }}</div>
+                        <hr class="mt-3">
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div id="success" class="text-success"></div>
+            <div class="card">
+                <div class="card-header text-center">CR Update</div>
+                <div class="card-body">
+                    <form enctype="multipart/form-data" action="{{ route('general.case.create') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
+                        <div class="mb-3">
                             <label class="form-label">CR Update</label>
                             <input type="file" name="cr_update" class="form-control">
                             @error('cr_update')
@@ -146,44 +206,212 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">FV Update</label>
-                            <input type="file" name="fv_update" class="form-control">
-                            @error('fv_update')
+                            <label class="form-label">Field Visit Date</label>
+                            <input type="date" name="fv_date" class="form-control">
+                            @error('fv_date')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">MS Update </label>
-                            <input type="file" name="ms_update" class="form-control">
-                            @error('ms_update')
+                            <label class="form-label">CR Summary</label>
+                            <textarea name="cr_summary" class="form-control" id="" rows="2"></textarea>
+                            @error('cr_summary')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
                         <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
 
                         <div class="row">
-                            <div class="mb-3">
-                                <div class="text-end">
-                                    <button class="btn btn-primary waves-effect waves-lightml-2 me-2" type="submit">
+                            <div class="mb-3 text-end">
+                                <div>
+                                    <button class="btn btn-primary waves-effect waves-lightml-2 " type="submit">
                                         <i class="fa fa-save"></i> Save
                                     </button>
-                                    <a class="btn btn-secondary waves-effect" href="{{ route('admin.cases.index') }}">
-                                        <i class="fa fa-times"></i> Cancel
-                                    </a>
                                 </div>
                             </div>
                         </div>
                     </form>
+
+                    @foreach ($cr_updates as $cr_update)
+                        <div class="mt-5"> <span>Created at:</span>
+                        {{ date('d-m-Y', strtotime($cr_update->created_at)) }},
+                        {{ date('h:i a', strtotime($cr_update->created_at)) }} </div>
+                    <iframe src="{{ asset('storage/document/' . $cr_update->cr_update) }}" class="mt-2"
+                        width="100%"></iframe>
+
+
+                        <div class="div text-end mt-2">
+                            @csrf
+                            <a href="#" class="btn btn-primary mt-2 viewGNUpdate" data-toggle="modal"
+                                data-target="#exampleModal">
+                                <span class="gn_id d-none">{{ $cr_update->id }}</span>
+                                <i class="far fa-eye"></i> View
+                            </a>
+                        </div>
+                        <div class="mt-2">Field Visited At: {{ date('d-m-Y', strtotime($cr_update->fv_date)) }}</div>
+                        <div class="mt-2">{{ $cr_update->cr_summary }}</div>
+                        <hr class="mt-3">
+                    @endforeach
+
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+
+        <div class="col-md-2">
+            <div id="success" class="text-success"></div>
             <div class="card">
-                <div class="card-header text-center">Documents</div>
+                <div class="card-header text-center">FV Update</div>
                 <div class="card-body">
-                    @foreach ($gr_updates as $gr_update)
-                        <iframe src="{{ asset('storage/document/' . $gr_update->gr_update) }}"></iframe>
+                    <form enctype="multipart/form-data" action="{{ route('general.case.create') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
+                        <div class="mb-3">
+                            <label class="form-label">FV Update</label>
+                            <input type="file" name="fv_update" class="form-control">
+                            @error('cr_update')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Field Visit Date</label>
+                            <input type="date" name="fv_date" class="form-control">
+                            @error('fv_date')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">FV Summary</label>
+                            <textarea name="fv_summary" class="form-control" id="" rows="2"></textarea>
+                            @error('fv_summary')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
+
+                        <div class="row">
+                            <div class="mb-3 text-end">
+                                <div>
+                                    <button class="btn btn-primary waves-effect waves-lightml-2 " type="submit">
+                                        <i class="fa fa-save"></i> Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    @foreach ($fv_updates as $fv_update)
+                        <div class="mt-5"> <span>Created at:</span>
+                        {{ date('d-m-Y', strtotime($fv_update->created_at)) }},
+                        {{ date('h:i a', strtotime($fv_update->created_at)) }} </div>
+                    <iframe src="{{ asset('storage/document/' . $fv_update->fv_update) }}" class="mt-2"
+                        width="100%"></iframe>
+
+
+                        <div class="div text-end mt-2">
+                            @csrf
+                            <a href="#" class="btn btn-primary mt-2 viewGNUpdate" data-toggle="modal"
+                                data-target="#exampleModal">
+                                <span class="gn_id d-none">{{ $fv_update->id }}</span>
+                                <i class="far fa-eye"></i> View
+                            </a>
+                        </div>
+                        <div class="mt-2">Field Visited At: {{ date('d-m-Y', strtotime($fv_update->fv_date)) }}</div>
+                        <div class="mt-2">{{ $fv_update->fv_summary }}</div>
+                        <hr class="mt-3">
                     @endforeach
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div id="success" class="text-success"></div>
+            <div class="card">
+                <div class="card-header text-center">MS Update</div>
+                <div class="card-body">
+                    <form enctype="multipart/form-data" action="{{ route('general.case.create') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
+                        <div class="mb-3">
+                            <label class="form-label">Ms Update</label>
+                            <input type="file" name="ms_update" class="form-control">
+                            @error('ms_update')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Field Visit Date</label>
+                            <input type="date" name="fv_date" class="form-control">
+                            @error('fv_date')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">MS Summary</label>
+                            <textarea name="ms_summary" class="form-control" id="" rows="2"></textarea>
+                            @error('ms_summary')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
+
+                        <div class="row">
+                            <div class="mb-3 text-end">
+                                <div>
+                                    <button class="btn btn-primary waves-effect waves-lightml-2 " type="submit">
+                                        <i class="fa fa-save"></i> Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    @foreach ($ms_updates as $ms_update)
+                        <div class="mt-5"> <span>Created at:</span>
+                        {{ date('d-m-Y', strtotime($ms_update->created_at)) }},
+                        {{ date('h:i a', strtotime($ms_update->created_at)) }} </div>
+                    <iframe src="{{ asset('storage/document/' . $ms_update->ms_update) }}" class="mt-2"
+                        width="100%"></iframe>
+
+
+                        <div class="div text-end mt-2">
+                            @csrf
+                            <a href="#" class="btn btn-primary mt-2 viewGNUpdate" data-toggle="modal"
+                                data-target="#exampleModal">
+                                <span class="gn_id d-none">{{ $ms_update->id }}</span>
+                                <i class="far fa-eye"></i> View
+                            </a>
+                        </div>
+                        <div class="mt-2">Field Visited At: {{ date('d-m-Y', strtotime($ms_update->fv_date)) }}</div>
+                        <div class="mt-2">{{ $ms_update->ms_summary }}</div>
+                        <hr class="mt-5">
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for GN Update -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    {{-- <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">GN Update</h5>
+                    </div> --}}
+                    {{-- <div class="modal-body">
+                        <iframe src="{{ asset('storage/document/' . $gn_update->gn_update) }}" class="mt-2"
+                            width="100%" height="400">
+                        </iframe>
+                        <div class="d-flex justify-content-between mt-3">
+                            <p>Field Visited at: {{ date('d-m-Y', strtotime($gn_update->fv_update)) }}</p>
+                            <p>Created at: {{ date('d-m-Y', strtotime($gn_update->fv_update)) }}</p>
+                        </div>
+                            <p>{{ $gn_update->gn_summary }}</p>
+                    </div> --}}
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -191,134 +419,28 @@
 @endsection
 @push('script')
     <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
-@endpush
-@push('style')
-    <style>
-        .timeline {
-            border-left: 1px solid #353535;
-            border-bottom-right-radius: 4px;
-            border-top-right-radius: 4px;
-            background: rgba(108, 108, 108, 0.09);
-            margin: 0 auto;
-            letter-spacing: 0.2px;
-            position: relative;
-            line-height: 1.4em;
-            font-size: 1.03em;
-            padding: 50px;
-            list-style: none;
-            text-align: left;
-            max-width: 40%;
-        }
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
 
-        .btn-color {
-            background-color: #F66B0E;
-            outline: none;
-            border: 0
-        }
+    <script>
+        $(document).ready(function() {
+            $('.viewGNUpdate').click(function(e) {
+                var gn_update_id = $(this).find('.gn_id').text();
+                alert(gn_update_id);
+                $.ajax({
+                    type: 'GET',
+                    url: "show/single/generel/update/" + gn_update_id,
+                    // dataType: "json",
+                    success: (response) => {
+                        alert(response);
+                    },
+                    error: function(response) {
+                        //$('#error').text(response.responseJSON.message);
+                    }
 
-        .btn-color:hover {
-            background-color: #F66B0E;
-            outline: none;
-            border: 0
-        }
-
-        @media (max-width: 767px) {
-            .timeline {
-                max-width: 98%;
-                padding: 25px;
-            }
-        }
-
-        .timeline h1 {
-            font-weight: 300;
-            font-size: 1.4em;
-        }
-
-        .timeline h2,
-        .timeline h3 {
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 10px;
-        }
-
-        .timeline .event {
-            border-bottom: 1px dashed #e8ebf1;
-            padding-bottom: 25px;
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-        @media (max-width: 767px) {
-            .timeline .event {
-                padding-top: 30px;
-            }
-        }
-
-        .timeline .event:last-of-type {
-            padding-bottom: 0;
-            margin-bottom: 0;
-            border: none;
-        }
-
-        .timeline .event:before,
-        .timeline .event:after {
-            position: absolute;
-            display: block;
-            top: 0;
-        }
-
-        .timeline .event:before {
-            left: -207px;
-            content: attr(data-date);
-            text-align: right;
-            font-weight: 100;
-            font-size: 0.9em;
-            min-width: 120px;
-        }
-
-        @media (max-width: 767px) {
-            .timeline .event:before {
-                left: 0px;
-                text-align: left;
-            }
-        }
-
-        .timeline .event:after {
-            -webkit-box-shadow: 0 0 0 3px #e2e2e2;
-            box-shadow: 0 0 0 3px #e2e2e2;
-            left: -55.8px;
-            background: #fff;
-            border-radius: 50%;
-            height: 9px;
-            width: 9px;
-            content: "";
-            top: 5px;
-        }
-
-        @media (max-width: 767px) {
-            .timeline .event:after {
-                left: -31.8px;
-            }
-        }
-
-        .rtl .timeline {
-            border-left: 0;
-            text-align: right;
-            border-bottom-right-radius: 0;
-            border-top-right-radius: 0;
-            border-bottom-left-radius: 4px;
-            border-top-left-radius: 4px;
-            border-right: 3px solid #727cf5;
-        }
-
-        .rtl .timeline .event::before {
-            left: 0;
-            right: -170px;
-        }
-
-        .rtl .timeline .event::after {
-            left: 0;
-            right: -55.8px;
-        }
-    </style>
+                });
+            });
+        });
+    </script>
 @endpush
