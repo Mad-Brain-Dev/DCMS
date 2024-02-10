@@ -200,6 +200,18 @@ class CaseController extends Controller
                 $document->fv_update = $image;
                 $document->save();
             }
+
+            if($document){
+                $field_visit_number = Cases::where('id', '=', $request->case_id)->first();
+                $remaining = $field_visit_number->field_visit - 1;
+                $field_visit_number->field_visit = $remaining;
+                $field_visit_number->save();
+            }
+
+
+
+
+
         }
 
         if($request->ms_update){
@@ -222,6 +234,9 @@ class CaseController extends Controller
 
     public function showSingleGeneralUpdate($id)
     {
-        return $id;
+        $gn_case_update = GeneralCaseUpdate::find($id);
+
+        return $gn_case_update;
+        return response()->json('gn_case_update');
     }
 }

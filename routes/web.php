@@ -46,7 +46,7 @@ Route::get('/date/of/agreement/for/case', [CaseController::class, 'dateOfAgreeme
 Route::post('/generel/update/create/for/case', [CaseController::class, 'generalCaseCreate'])->name('general.case.create');
 
 // show single general update
-Route::get('show/single/generel/update/{id}', [CaseController::class, 'showSingleGeneralUpdate'])->name('show.single.general.update');
+Route::get('/show/single/generel/update/{id}', [CaseController::class, 'showSingleGeneralUpdate'])->name('show.single.general.update');
 
 
 //all routes for admin

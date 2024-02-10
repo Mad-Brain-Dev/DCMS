@@ -299,14 +299,16 @@
                         </div>
                     </form>
 
+                    <div class="mt-5">
+                        <h6 class="bg-success d-inline px-3 py-1 rounded-1 text-white">Bal FV: {{ $case->field_visit }}</h6>
+                    </div>
+
                     @foreach ($fv_updates as $fv_update)
-                        <div class="mt-5"> <span>Created at:</span>
+                        <div class="mt-2"> <span>Created at:</span>
                         {{ date('d-m-Y', strtotime($fv_update->created_at)) }},
                         {{ date('h:i a', strtotime($fv_update->created_at)) }} </div>
                     <iframe src="{{ asset('storage/document/' . $fv_update->fv_update) }}" class="mt-2"
                         width="100%"></iframe>
-
-
                         <div class="div text-end mt-2">
                             @csrf
                             <a href="#" class="btn btn-primary mt-2 viewGNUpdate" data-toggle="modal"
@@ -427,13 +429,13 @@
         $(document).ready(function() {
             $('.viewGNUpdate').click(function(e) {
                 var gn_update_id = $(this).find('.gn_id').text();
-                alert(gn_update_id);
+                console.log(gn_update_id)
                 $.ajax({
                     type: 'GET',
                     url: "show/single/generel/update/" + gn_update_id,
                     // dataType: "json",
                     success: (response) => {
-                        alert(response);
+                        console.log(response)
                     },
                     error: function(response) {
                         //$('#error').text(response.responseJSON.message);
