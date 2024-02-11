@@ -75,7 +75,7 @@ class CaseController extends Controller
         $cr_updates = CorrespondenceUpdate::where('case_id', $id)->latest()->get();
         $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
         $ms_updates = MiscellaneousUpdate::where('case_id', $id)->latest()->get();
-        return view('admin.cases.show', compact('case', 'gn_updates','cr_updates','fv_updates','ms_updates'));
+        return view('admin.cases.show', compact('case', 'gn_updates', 'cr_updates', 'fv_updates', 'ms_updates'));
     }
 
     /**
@@ -172,9 +172,10 @@ class CaseController extends Controller
                 $document->gn_update = $image;
                 $document->save();
             }
+            record_updated_flash();
         }
 
-        if($request->cr_update){
+        if ($request->cr_update) {
             $document = CorrespondenceUpdate::create([
                 'case_id' => $request->case_id,
                 'fv_date' => $request->fv_date,
@@ -186,9 +187,10 @@ class CaseController extends Controller
                 $document->cr_update = $image;
                 $document->save();
             }
+            record_updated_flash();
         }
 
-        if($request->fv_update){
+        if ($request->fv_update) {
             $document = FieldVisitUpdate::create([
                 'case_id' => $request->case_id,
                 'fv_date' => $request->fv_date,
@@ -201,20 +203,16 @@ class CaseController extends Controller
                 $document->save();
             }
 
-            if($document){
+            if ($document) {
                 $field_visit_number = Cases::where('id', '=', $request->case_id)->first();
                 $remaining = $field_visit_number->field_visit - 1;
                 $field_visit_number->field_visit = $remaining;
                 $field_visit_number->save();
             }
-
-
-
-
-
+            record_updated_flash();
         }
 
-        if($request->ms_update){
+        if ($request->ms_update) {
             $document = MiscellaneousUpdate::create([
                 'case_id' => $request->case_id,
                 'fv_date' => $request->fv_date,
@@ -226,17 +224,103 @@ class CaseController extends Controller
                 $document->ms_update = $image;
                 $document->save();
             }
+            record_updated_flash();
         }
-
-        record_updated_flash();
         return back();
     }
 
-    public function showSingleGeneralUpdate($id)
-    {
-        $gn_case_update = GeneralCaseUpdate::find($id);
 
-        return $gn_case_update;
-        return response()->json('gn_case_update');
+
+    public function showSingleFieldVisitUpdate(Request $request)
+    {
+        $fv_case_update = FieldVisitUpdate::find($request->id);
+        $response = [
+            'status' => 200,
+            'message' => 'Data Fetched Successfully',
+            'data' =>  $fv_case_update,
+        ];
+        return response()->json($response);
+    }
+
+    public function showGeneralCaseUpdate(Request $request)
+    {
+        $gn_case_update = GeneralCaseUpdate::find($request->id);
+        $response = [
+            'status' => 200,
+            'message' => 'Data Fetched Successfully',
+            'data' =>  $gn_case_update,
+        ];
+        return response()->json($response);
+    }
+
+    public function showCorrespondenceUpdate(Request $request)
+    {
+        $cr_case_update = CorrespondenceUpdate::find($request->id);
+        $response = [
+            'status' => 200,
+            'message' => 'Data Fetched Successfully',
+            'data' =>  $cr_case_update,
+        ];
+        return response()->json($response);
+    }
+
+    public function showMiscellaneousUpdate(Request $request)
+    {
+        $ms_case_update = MiscellaneousUpdate::find($request->id);
+        $response = [
+            'status' => 200,
+            'message' => 'Data Fetched Successfully',
+            'data' =>  $ms_case_update,
+        ];
+        return response()->json($response);
+    }
+
+
+
+
+    public function viewFieldVisitUpdate($id)
+    {
+        set_page_meta('FV Update');
+        $case = Cases::find($id);
+        $case_id = $id;
+        //$gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
+        //$cr_updates = CorrespondenceUpdate::where('case_id', $id)->latest()->get();
+        $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
+        //$ms_updates = MiscellaneousUpdate::where('case_id', $id)->latest()->get();
+        return view('admin.cases.show-fv-update', compact('fv_updates', 'case'));
+    }
+    public function viewGeneralCaseUpdate($id)
+    {
+        set_page_meta('General Case Update');
+        $case = Cases::find($id);
+        $case_id = $id;
+        $gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
+        //$cr_updates = CorrespondenceUpdate::where('case_id', $id)->latest()->get();
+        //$fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
+        //$ms_updates = MiscellaneousUpdate::where('case_id', $id)->latest()->get();
+        return view('admin.cases.show-gn-case-update', compact('gn_updates', 'case'));
+    }
+
+    public function viewCorrespondenceUpdate($id)
+    {
+        set_page_meta('CR Update');
+        $case = Cases::find($id);
+        $case_id = $id;
+        //$gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
+        $cr_updates = CorrespondenceUpdate::where('case_id', $id)->latest()->get();
+        //$fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
+        //$ms_updates = MiscellaneousUpdate::where('case_id', $id)->latest()->get();
+        return view('admin.cases.show-cr-case-update', compact('cr_updates', 'case'));
+    }
+    public function viewMiscellaneousUpdate($id)
+    {
+        set_page_meta('MS Update');
+        $case = Cases::find($id);
+        $case_id = $id;
+        //$gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
+        //$cr_updates = CorrespondenceUpdate::where('case_id', $id)->latest()->get();
+        //$fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
+        $ms_updates = MiscellaneousUpdate::where('case_id', $id)->latest()->get();
+        return view('admin.cases.show-ms-case-update', compact('ms_updates', 'case'));
     }
 }

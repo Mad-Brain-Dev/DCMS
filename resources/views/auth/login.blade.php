@@ -3,11 +3,10 @@
 @section('content')
     <div class="account-pages">
         <!-- Begin page -->
-        <div class="accountbg"
-            style="background: url('admin/images/bg.jpg');background-size: cover;background-position: center;"></div>
+        <div class="accountbg" style="background: url('admin/images/bg.jpg');background-size: cover;background-position: center;">
+        </div>
 
         <div class="wrapper-page account-page-full">
-
             <div class="card shadow-none">
                 <div class="card-block">
 
@@ -56,7 +55,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="mb-3 d-flex justify-content-between" >
+                                    <div class="mb-3 d-flex justify-content-between">
                                         <div>
                                             <div class="form-check">
                                                 {{--                                                <input type="checkbox" class="form-check-input" id="customControlInline"> --}}
@@ -81,7 +80,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12 text-center" style="margin-top: 200px">
+                                        <div class="col-md-12 text-center" style="margin-top: 130px">
                                            <div class="">
                                             © {{ date('Y') }} DCMS <span class="d-none d-sm-inline-block"> -
                                                 Crafted with <i class="mdi mdi-heart text-danger"></i> by <a
@@ -111,4 +110,3 @@
         </div>
     </div>
 @endsection
-

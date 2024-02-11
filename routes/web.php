@@ -45,8 +45,36 @@ Route::get('/date/of/agreement/for/case', [CaseController::class, 'dateOfAgreeme
 // create updates for case
 Route::post('/generel/update/create/for/case', [CaseController::class, 'generalCaseCreate'])->name('general.case.create');
 
-// show single general update
-Route::get('/show/single/generel/update/{id}', [CaseController::class, 'showSingleGeneralUpdate'])->name('show.single.general.update');
+
+
+
+
+// show field visit update in modal
+Route::get('/show/single/field/visit/update/', [CaseController::class, 'showSingleFieldVisitUpdate'])->name('single.field.vist.update');
+
+// show general case update in modal
+Route::get('/show/general/case/update/', [CaseController::class, 'showGeneralCaseUpdate'])->name('single.general.case.update');
+
+// show correspondence case update in modal
+Route::get('/show/correspondence/case/update/', [CaseController::class, 'showCorrespondenceUpdate'])->name('single.correspondence.case.update');
+
+// show miscellaneous case update in modal
+Route::get('/show/miscellaneous/case/update/', [CaseController::class, 'showMiscellaneousUpdate'])->name('single.miscellaneous.case.update');
+
+
+
+
+
+
+
+// view fv update
+Route::get('/show/field/visit/update/{id}', [CaseController::class, 'viewFieldVisitUpdate'])->name('show.field.visit.update');
+// view gn case update
+Route::get('/show/general/case/update/{id}', [CaseController::class, 'viewGeneralCaseUpdate'])->name('view.general.case.update');
+// view cr case update
+Route::get('/show/correspondence/case/update/{id}', [CaseController::class, 'viewCorrespondenceUpdate'])->name('view.correspondence.update');
+// view ms case update
+Route::get('/show/miscellaneous/case/update/{id}', [CaseController::class, 'viewMiscellaneousUpdate'])->name('view.miscellaneous.update');
 
 
 //all routes for admin
