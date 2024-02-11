@@ -12,7 +12,7 @@
                 {{-- <li class="menu-title">Main</li> --}}
 
                 <li class="">
-                    <a href="#" class="">
+                    <a href="{{ route('home') }}" class="">
                         <i class="fa fa-home"></i><span> Dashboard </span>
                     </a>
                 </li>
@@ -47,7 +47,7 @@
                 <li class="{{ request()->is('admin/clients*') ? 'mm-active' : '' }}">
                     <a href="{{ route('admin.clients.index') }}"
                         class="{{ request()->routeIs('admin.clients.index') ? 'active' : '' }}">
-                        <i class="fa fa-user" aria-hidden="true"></i><span> Clients </span>
+                        <i class="fa fa-user" aria-hidden="true"></i><span> CL </span>
                     </a>
                 </li>
                 <li class="{{ request()->is('admin/cases*') ? 'mm-active' : '' }}">

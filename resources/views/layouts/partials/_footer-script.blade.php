@@ -4,6 +4,7 @@
 <script src="{{ asset('admin/libs/metismenu/metisMenu.min.js') }}"></script>
 <script src="{{ asset('admin/libs/simplebar/simplebar.min.js') }}"></script>
 {{-- <script src="{{ asset('admin/libs/node-waves/waves.min.js') }}"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 
 <script src="{{ asset('admin/libs/select2/js/select2.min.js') }}"></script>
 

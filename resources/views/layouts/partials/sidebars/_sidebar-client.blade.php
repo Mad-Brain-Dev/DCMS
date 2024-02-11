@@ -10,7 +10,7 @@
             <ul class="metismenu list-unstyled" id="side-menu">
 
                 <li class="">
-                    <a href="#" class="">
+                    <a href="{{ route('home') }}" class="">
                         <i class="fa fa-home"></i><span> Dashboard </span>
                     </a>
                 </li>

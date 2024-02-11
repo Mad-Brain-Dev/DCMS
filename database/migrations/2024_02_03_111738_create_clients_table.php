@@ -13,21 +13,21 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->foreignId('client_id')->nullable();
             $table->string('nric')->nullable();
             $table->string('company_name')->nullable();
             $table->string('company_uen')->nullable();
-            $table->string('phone');
-            $table->string('email');
-            $table->string('address');
-            $table->dateTime('date_of_agreement');
-            $table->dateTime('date_of_expiry');
-            $table->string('admin_fee');
-            $table->string('admin_fee_paid');
-            $table->string('admin_fee_balance');
-            $table->string('collection_commission');
-            $table->string('field_visit_per_case');
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('address')->nullable();
+            $table->dateTime('date_of_agreement')->nullable();
+            $table->dateTime('date_of_expiry')->nullable();
+            $table->string('admin_fee')->nullable();
+            $table->string('admin_fee_paid')->nullable();
+            $table->string('admin_fee_balance')->nullable();
+            $table->string('collection_commission')->nullable();
+            $table->string('field_visit_per_case')->nullable();
             $table->timestamps();
         });
     }

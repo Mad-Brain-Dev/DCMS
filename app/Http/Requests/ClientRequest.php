@@ -25,20 +25,20 @@ class ClientRequest extends FormRequest
     {
         $rules =  [
             'name' => ['required'],
-            'user_id' => ['nullable'],
-            'nric' => ['nullable'],
-            'company_name' => ['nullable'],
-            'company_uen' => ['nullable'],
+            'client_id' => ['nullable'],
+            'nric' => ['required'],
+            'company_name' => ['required'],
+            'company_uen' => ['required'],
             'email'      => ['required'],
             'phone'      => ['required'],
             'address' => ['required'],
-            'date_of_agreement' => ['required'],
-            'date_of_expiry' => ['required'],
-            'admin_fee' => ['required'],
-            'admin_fee_paid' => ['required'],
-            'admin_fee_balance' => ['required'],
-            'collection_commission' => ['required'],
-            'field_visit_per_case' => ['required'],
+            'date_of_agreement' => ['nullable'],
+            'date_of_expiry' => ['nullable'],
+            'admin_fee' => ['nullable'],
+            'admin_fee_paid' => ['nullable'],
+            'admin_fee_balance' => ['nullable'],
+            'collection_commission' => ['nullable'],
+            'field_visit_per_case' => ['nullable'],
         ];
         return $rules;
     }
