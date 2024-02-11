@@ -150,7 +150,7 @@ class CaseController extends Controller
 
         $request->validate([
             'gn_update' => 'nullable|mimes:png,jpg,jpeg,pdf',
-            'fv_date' => 'nullable',
+            'fv_date' => 'required',
             'gn_summary' => 'nullable',
             'cr_update' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'cr_summary' => 'nullable',
