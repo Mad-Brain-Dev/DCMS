@@ -50,6 +50,12 @@ Route::get('/show/single/generel/update/', [CaseController::class, 'showSingleGe
 
 // view fv update
 Route::get('/show/field/visit/update/{id}', [CaseController::class, 'viewFieldVisitUpdate'])->name('show.field.visit.update');
+// view gn case update
+Route::get('/show/general/case/update/{id}', [CaseController::class, 'viewGeneralCaseUpdate'])->name('view.general.case.update');
+// view cr case update
+Route::get('/show/correspondence/case/update/{id}', [CaseController::class, 'viewCorrespondenceUpdate'])->name('view.correspondence.update');
+// view ms case update
+Route::get('/show/miscellaneous/case/update/{id}', [CaseController::class, 'viewMiscellaneousUpdate'])->name('view.miscellaneous.update');
 
 
 //all routes for admin

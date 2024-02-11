@@ -132,7 +132,7 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Field Visit Per Case</label>
-                                <input type="text" name="field_visit_per_case" class="form-control"
+                                <input type="number" name="field_visit_per_case" class="form-control"
                                     placeholder="Field Visit Per Case" value="{{ old('field_visit_per_case') }}">
                                 @error('field_visit_per_case')
                                     <p class="error">{{ $message }}</p>
