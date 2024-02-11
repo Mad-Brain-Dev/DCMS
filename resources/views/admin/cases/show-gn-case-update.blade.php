@@ -35,6 +35,7 @@
 
                         <div class="row">
                             <div class="mb-3 text-end">
+                                <a href="{{ route('admin.cases.show', $case->id) }}" class="btn btn-warning">Cancel</a>
                                 <button class="btn btn-primary waves-effect waves-lightml-2 " type="submit">
                                     <i class="fa fa-save"></i> Save
                                 </button>
@@ -45,27 +46,31 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div id="content">
-                <ul class="timeline">
-                    @foreach ($gn_updates as $gn_update)
-                        <li class="event"
-                            data-date="{{ date('d-m-Y', strtotime($gn_update->created_at)) }}, {{ date('h:i a', strtotime($gn_update->created_at)) }} ">
-                            <iframe src="{{ asset('storage/document/' . $gn_update->gn_update) }}" width="300"
-                                height="200"></iframe>
+           <div class="card">
+            <div class="card-body">
+                <div id="content">
+                    <ul class="timeline">
+                        @foreach ($gn_updates as $gn_update)
+                            <li class="event"
+                                data-date="{{ date('d-m-Y', strtotime($gn_update->created_at)) }}, {{ date('h:i a', strtotime($gn_update->created_at)) }} ">
+                                <iframe src="{{ asset('storage/document/' . $gn_update->gn_update) }}" width="300"
+                                    height="200"></iframe>
 
-                            <h6 class="mt-2">Field Visited at: {{ date('d-m-Y', strtotime($gn_update->fv_date)) }}</h6>
-                            <span class="d-block">{{ $gn_update->gn_summary }}</span>
-                            <div>
-                                <a href="#" class="btn  btn-primary mt-2 viewFVUpdate" data-toggle="modal"
-                                data-target="#exampleModal">
-                                <span class="fv_id d-none">{{ $gn_update->id }}</span>
-                                <i class="far fa-eye"></i> View
-                            </a>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
+                                <h6 class="mt-2">Field Visited at: {{ date('d-m-Y', strtotime($gn_update->fv_date)) }}</h6>
+                                <span class="d-block">{{ $gn_update->gn_summary }}</span>
+                                <div>
+                                    <a href="#" class="btn  btn-primary mt-2 viewFVUpdate" data-toggle="modal"
+                                    data-target="#exampleModal">
+                                    <span class="gn_id d-none">{{ $gn_update->id }}</span>
+                                    <i class="far fa-eye"></i> View
+                                </a>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
+           </div>
         </div>
         <!-- Modal for GN Update -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -76,7 +81,7 @@
                         <h5 class="modal-title" id="exampleModalLabel">Gn Update</h5>
                     </div>
                     <div class="modal-body">
-                        <iframe id="fv_update" src="" class="mt-2" width="100%" height="400">
+                        <iframe id="gn_update" src="" class="mt-2" width="100%" height="400">
                         </iframe>
                     </div>
                     <div class="modal-footer">
@@ -96,22 +101,18 @@
     <script>
         $(document).ready(function() {
             $('.viewFVUpdate').click(function(e) {
-                var fv_update_id = $(this).find('.fv_id').text();
+                var gn_update_id = $(this).find('.gn_id').text();
                 $.ajax({
                     type: 'get',
-                    url: '{{ route('single.general.update') }}',
+                    url: '{{ route('single.general.case.update') }}',
                     data: {
-                        id: fv_update_id
+                        id: gn_update_id
                     },
                     success: (response) => {
                         console.log(response);
                         let href = "{{ asset('/storage/document/') }}" + "/" + response.data
-                            .fv_update
-                        let fv_update = $('#fv_update').attr('src', href);
-                        let field_visited_at = $('#field_visited_at').text(
-                            'Field Visited at : ' + response.data.fv_date);
-                        let created_at = $('#created_at').text('Created at : ' + response.data
-                            .created_at);
+                            .gn_update
+                        let gn_update = $('#gn_update').attr('src', href);
                     },
                     error: function(response) {
                         $('#error').text(response.responseJSON.message);

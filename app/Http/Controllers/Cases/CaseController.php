@@ -229,9 +229,22 @@ class CaseController extends Controller
         return back();
     }
 
-    public function showSingleGeneralUpdate(Request $request)
+
+
+    public function showSingleFieldVisitUpdate(Request $request)
     {
-        $gn_case_update = FieldVisitUpdate::find($request->id);
+        $fv_case_update = FieldVisitUpdate::find($request->id);
+        $response = [
+            'status' => 200,
+            'message' => 'Data Fetched Successfully',
+            'data' =>  $fv_case_update,
+        ];
+        return response()->json($response);
+    }
+
+    public function showGeneralCaseUpdate(Request $request)
+    {
+        $gn_case_update = GeneralCaseUpdate::find($request->id);
         $response = [
             'status' => 200,
             'message' => 'Data Fetched Successfully',
@@ -239,6 +252,31 @@ class CaseController extends Controller
         ];
         return response()->json($response);
     }
+
+    public function showCorrespondenceUpdate(Request $request)
+    {
+        $cr_case_update = CorrespondenceUpdate::find($request->id);
+        $response = [
+            'status' => 200,
+            'message' => 'Data Fetched Successfully',
+            'data' =>  $cr_case_update,
+        ];
+        return response()->json($response);
+    }
+
+    public function showMiscellaneousUpdate(Request $request)
+    {
+        $ms_case_update = MiscellaneousUpdate::find($request->id);
+        $response = [
+            'status' => 200,
+            'message' => 'Data Fetched Successfully',
+            'data' =>  $ms_case_update,
+        ];
+        return response()->json($response);
+    }
+
+
+
 
     public function viewFieldVisitUpdate($id)
     {

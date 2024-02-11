@@ -135,33 +135,4 @@
 @endsection
 @push('script')
     <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('.viewGNUpdate').click(function(e) {
-                var gn_update_id = $(this).find('.gn_id').text();
-                $.ajax({
-                    type: 'get',
-                    url:'{{ route("single.general.update") }}',
-                    data:{
-                        id : gn_update_id
-                    },
-                    success: (response) => {
-                        console.log(response);
-                            let href = "{{ asset('/storage/document/') }}" + "/" + response.data.fv_update
-                            let fv_update = $('#fv_update').attr('src', href);
-                            let field_visited_at = $('#field_visited_at').text('Field Visited at : ' + response.data.fv_date);
-                            let created_at = $('#created_at').text('Created at : ' + response.data.created_at);
-                    },
-                    error: function(response) {
-                        $('#error').text(response.responseJSON.message);
-                    }
-
-                });
-            });
-        });
-    </script>
 @endpush

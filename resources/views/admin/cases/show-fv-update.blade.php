@@ -39,9 +39,12 @@
 
                                     <span class="bg-success d-inline px-3 py-2 rounded-1 text-white">Bal FV :
                                         {{ $case->field_visit }}</span>
+                                    <div class="div">
+                                        <a href="{{ route('admin.cases.show', $case->id) }}" class="btn btn-warning">Cancel</a>
                                     <button class="btn btn-primary waves-effect waves-lightml-2 " type="submit">
                                         <i class="fa fa-save"></i> Save
                                     </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -50,26 +53,31 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div id="content">
-                <ul class="timeline">
-                    @foreach ($fv_updates as $fv_update)
-                        <li class="event"
-                            data-date="{{ date('d-m-Y', strtotime($fv_update->created_at)) }}, {{ date('h:i a', strtotime($fv_update->created_at)) }} ">
-                            <iframe src="{{ asset('storage/document/' . $fv_update->fv_update) }}" width="300"
-                                height="200"></iframe>
+            <div class="card">
+                <div class="card-body">
+                    <div id="content">
+                        <ul class="timeline">
+                            @foreach ($fv_updates as $fv_update)
+                                <li class="event"
+                                    data-date="{{ date('d-m-Y', strtotime($fv_update->created_at)) }}, {{ date('h:i a', strtotime($fv_update->created_at)) }} ">
+                                    <iframe src="{{ asset('storage/document/' . $fv_update->fv_update) }}" width="300"
+                                        height="200"></iframe>
 
-                            <h6 class="mt-2">Field Visited at: {{ date('d-m-Y', strtotime($fv_update->fv_date)) }}</h6>
-                            <span class="d-block">{{ $fv_update->fv_summary }}</span>
-                            <div>
-                                <a href="#" class="btn  btn-primary mt-2 viewFVUpdate" data-toggle="modal"
-                                data-target="#exampleModal">
-                                <span class="fv_id d-none">{{ $fv_update->id }}</span>
-                                <i class="far fa-eye"></i> View
-                            </a>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
+                                    <h6 class="mt-2">Field Visited at:
+                                        {{ date('d-m-Y', strtotime($fv_update->fv_date)) }}</h6>
+                                    <span class="d-block">{{ $fv_update->fv_summary }}</span>
+                                    <div>
+                                        <a href="#" class="btn  btn-primary mt-2 viewFVUpdate" data-toggle="modal"
+                                            data-target="#exampleModal">
+                                            <span class="fv_id d-none">{{ $fv_update->id }}</span>
+                                            <i class="far fa-eye"></i> View
+                                        </a>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- Modal for GN Update -->
@@ -104,7 +112,7 @@
                 var fv_update_id = $(this).find('.fv_id').text();
                 $.ajax({
                     type: 'get',
-                    url: '{{ route('single.general.update') }}',
+                    url: '{{ route('single.field.vist.update') }}',
                     data: {
                         id: fv_update_id
                     },
@@ -113,10 +121,6 @@
                         let href = "{{ asset('/storage/document/') }}" + "/" + response.data
                             .fv_update
                         let fv_update = $('#fv_update').attr('src', href);
-                        let field_visited_at = $('#field_visited_at').text(
-                            'Field Visited at : ' + response.data.fv_date);
-                        let created_at = $('#created_at').text('Created at : ' + response.data
-                            .created_at);
                     },
                     error: function(response) {
                         $('#error').text(response.responseJSON.message);
