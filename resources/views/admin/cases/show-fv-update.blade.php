@@ -40,7 +40,7 @@
                                     <span class="bg-success d-inline px-3 py-2 rounded-1 text-white">Bal FV :
                                         {{ $case->field_visit }}</span>
                                     <div class="div">
-                                        <a href="{{ route('admin.cases.show', $case->id) }}" class="btn btn-warning">Cancel</a>
+                                        <a href="{{ route('admin.cases.show', $case->id) }}" class="btn btn-light">Cancel</a>
                                     <button class="btn btn-primary waves-effect waves-lightml-2 " type="submit">
                                         <i class="fa fa-save"></i> Save
                                     </button>

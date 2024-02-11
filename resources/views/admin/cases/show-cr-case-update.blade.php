@@ -35,7 +35,7 @@
 
                         <div class="row">
                             <div class="mb-3 text-end">
-                                <a href="{{ route('admin.cases.show', $case->id) }}" class="btn btn-warning">Cancel</a>
+                                <a href="{{ route('admin.cases.show', $case->id) }}" class="btn btn-light">Cancel</a>
                                 <button class="btn btn-primary waves-effect waves-lightml-2 " type="submit">
                                     <i class="fa fa-save"></i> Save
                                 </button>
