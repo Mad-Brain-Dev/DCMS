@@ -49,7 +49,7 @@ Route::post('/generel/update/create/for/case', [CaseController::class, 'generalC
 Route::get('/show/single/generel/update/', [CaseController::class, 'showSingleGeneralUpdate'])->name('single.general.update');
 
 // view fv update
-Route::get('/show/field/visit/update', [CaseController::class, 'viewFieldVisitUpdate'])->name('show.field.visit.update');
+Route::get('/show/field/visit/update/{id}', [CaseController::class, 'viewFieldVisitUpdate'])->name('show.field.visit.update');
 
 
 //all routes for admin

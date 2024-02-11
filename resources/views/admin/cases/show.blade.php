@@ -122,7 +122,7 @@
                     </table>
                 </div>
                 <div class="div">
-                    <a href="{{ route('show.field.visit.update') }}" class="btn btn-primary">View FV Update</a>
+                    <a href="{{ URL('/show/field/visit/update/'.$case->id )}}" class="btn btn-primary">View FV Update</a>
                 </div>
             </div>
         </div>

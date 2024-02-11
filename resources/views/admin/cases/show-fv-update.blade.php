@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-4">
             <div id="success" class="text-success"></div>
             <div class="card">
                 <div class="card-header text-center">FV Update</div>
@@ -34,8 +34,11 @@
                         <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
 
                         <div class="row">
-                            <div class="mb-3 text-end">
-                                <div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+
+                                    <span class="bg-success d-inline px-3 py-2 rounded-1 text-white">Bal FV :
+                                        {{ $case->field_visit }}</span>
                                     <button class="btn btn-primary waves-effect waves-lightml-2 " type="submit">
                                         <i class="fa fa-save"></i> Save
                                     </button>
@@ -43,31 +46,30 @@
                             </div>
                         </div>
                     </form>
-
-                    <div class="mt-5">
-                        <h6 class="bg-success d-inline px-3 py-1 rounded-1 text-white">Bal FV: {{ $case->field_visit }}</h6>
-                    </div>
-
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div id="content">
+                <ul class="timeline">
                     @foreach ($fv_updates as $fv_update)
-                        <div class="mt-2"> <span>Created at:</span>
-                        {{ date('d-m-Y', strtotime($fv_update->created_at)) }},
-                        {{ date('h:i a', strtotime($fv_update->created_at)) }} </div>
-                    <iframe src="{{ asset('storage/document/' . $fv_update->fv_update) }}" class="mt-2"
-                        width="100%"></iframe>
-                        <div class="div text-end mt-2">
-                            @csrf
-                            <a href="#" class="btn btn-primary mt-2 viewGNUpdate" data-toggle="modal"
+                        <li class="event"
+                            data-date="{{ date('d-m-Y', strtotime($fv_update->created_at)) }}, {{ date('h:i a', strtotime($fv_update->created_at)) }} ">
+                            <iframe src="{{ asset('storage/document/' . $fv_update->fv_update) }}" width="300"
+                                height="200"></iframe>
+
+                            <h6 class="mt-2">Field Visited at: {{ date('d-m-Y', strtotime($fv_update->fv_date)) }}</h6>
+                            <span class="d-block">{{ $fv_update->fv_summary }}</span>
+                            <div>
+                                <a href="#" class="btn  btn-primary mt-2 viewFVUpdate" data-toggle="modal"
                                 data-target="#exampleModal">
-                                <span class="gn_id d-none">{{ $fv_update->id }}</span>
+                                <span class="fv_id d-none">{{ $fv_update->id }}</span>
                                 <i class="far fa-eye"></i> View
                             </a>
-                        </div>
-                        <div class="mt-2">Field Visited At: {{ date('d-m-Y', strtotime($fv_update->fv_date)) }}</div>
-                        <div class="mt-2">{{ $fv_update->fv_summary }}</div>
-                        <hr class="mt-3">
+                            </div>
+                        </li>
                     @endforeach
-
-                </div>
+                </ul>
             </div>
         </div>
         <!-- Modal for GN Update -->
@@ -75,18 +77,12 @@
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                   <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">FV</h5>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">FV Update</h5>
                     </div>
-                     <div class="modal-body">
-                        <iframe id="fv_update" src="" class="mt-2"
-                            width="100%" height="400">
+                    <div class="modal-body">
+                        <iframe id="fv_update" src="" class="mt-2" width="100%" height="400">
                         </iframe>
-                        <div class="d-flex justify-content-between mt-3">
-                            <p id="field_visited_at"></p>
-                            <p id="created_at"></p>
-                        </div>
-                            <p>{{ $fv_update->fv_summary }}</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -104,20 +100,23 @@
 
     <script>
         $(document).ready(function() {
-            $('.viewGNUpdate').click(function(e) {
-                var gn_update_id = $(this).find('.gn_id').text();
+            $('.viewFVUpdate').click(function(e) {
+                var fv_update_id = $(this).find('.fv_id').text();
                 $.ajax({
                     type: 'get',
-                    url:'{{ route("single.general.update") }}',
-                    data:{
-                        id : gn_update_id
+                    url: '{{ route('single.general.update') }}',
+                    data: {
+                        id: fv_update_id
                     },
                     success: (response) => {
                         console.log(response);
-                            let href = "{{ asset('/storage/document/') }}" + "/" + response.data.fv_update
-                            let fv_update = $('#fv_update').attr('src', href);
-                            let field_visited_at = $('#field_visited_at').text('Field Visited at : ' + response.data.fv_date);
-                            let created_at = $('#created_at').text('Created at : ' + response.data.created_at);
+                        let href = "{{ asset('/storage/document/') }}" + "/" + response.data
+                            .fv_update
+                        let fv_update = $('#fv_update').attr('src', href);
+                        let field_visited_at = $('#field_visited_at').text(
+                            'Field Visited at : ' + response.data.fv_date);
+                        let created_at = $('#created_at').text('Created at : ' + response.data
+                            .created_at);
                     },
                     error: function(response) {
                         $('#error').text(response.responseJSON.message);
@@ -127,4 +126,133 @@
             });
         });
     </script>
+@endpush
+@push('style')
+    <style>
+        .timeline {
+            border-left: 3px solid #858AB6;
+            border-bottom-right-radius: 4px;
+            border-top-right-radius: 4px;
+            margin: 0 auto;
+            letter-spacing: 0.2px;
+            position: relative;
+            line-height: 1.4em;
+            font-size: 1.03em;
+            padding: 50px;
+            list-style: none;
+            text-align: left;
+            max-width: 40%;
+        }
+
+        .btn-color {
+            background-color: #858AB6;
+            outline: none;
+            border: 0
+        }
+
+        .btn-color:hover {
+            background-color: #858AB6;
+            outline: none;
+            border: 0
+        }
+
+        @media (max-width: 767px) {
+            .timeline {
+                max-width: 98%;
+                padding: 25px;
+            }
+        }
+
+        .timeline h1 {
+            font-weight: 300;
+            font-size: 1.4em;
+        }
+
+        .timeline h2,
+        .timeline h3 {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline .event {
+            border-bottom: 1px dashed #e8ebf1;
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        @media (max-width: 767px) {
+            .timeline .event {
+                padding-top: 30px;
+            }
+        }
+
+        .timeline .event:last-of-type {
+            padding-bottom: 0;
+            margin-bottom: 0;
+            border: none;
+        }
+
+        .timeline .event:before,
+        .timeline .event:after {
+            position: absolute;
+            display: block;
+            top: 0;
+        }
+
+        .timeline .event:before {
+            left: -207px;
+            content: attr(data-date);
+            text-align: right;
+            font-weight: 100;
+            font-size: 0.9em;
+            min-width: 120px;
+        }
+
+        @media (max-width: 767px) {
+            .timeline .event:before {
+                left: 0px;
+                text-align: left;
+            }
+        }
+
+        .timeline .event:after {
+            -webkit-box-shadow: 0 0 0 3px #858AB6;
+            box-shadow: 0 0 0 3px #858AB6;
+            left: -55.8px;
+            background: #fff;
+            border-radius: 50%;
+            height: 9px;
+            width: 9px;
+            content: "";
+            top: 5px;
+        }
+
+        @media (max-width: 767px) {
+            .timeline .event:after {
+                left: -31.8px;
+            }
+        }
+
+        .rtl .timeline {
+            border-left: 0;
+            text-align: right;
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 4px;
+            border-top-left-radius: 4px;
+            border-right: 3px solid #727cf5;
+        }
+
+        .rtl .timeline .event::before {
+            left: 0;
+            right: -170px;
+        }
+
+        .rtl .timeline .event::after {
+            left: 0;
+            right: -55.8px;
+        }
+    </style>
 @endpush

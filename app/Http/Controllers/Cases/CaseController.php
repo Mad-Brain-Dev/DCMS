@@ -238,8 +238,15 @@ class CaseController extends Controller
         return response()->json($response);
     }
 
-    public function viewFieldVisitUpdate()
+    public function viewFieldVisitUpdate($id)
     {
-        return view('admin.cases.show-fv-update');
+        set_page_meta('FV Update');
+        $case = Cases::find($id);
+        $case_id = $id;
+        //$gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
+        //$cr_updates = CorrespondenceUpdate::where('case_id', $id)->latest()->get();
+        $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
+        //$ms_updates = MiscellaneousUpdate::where('case_id', $id)->latest()->get();
+        return view('admin.cases.show-fv-update', compact('fv_updates', 'case'));
     }
 }
