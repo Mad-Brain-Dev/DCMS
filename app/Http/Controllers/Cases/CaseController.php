@@ -75,7 +75,7 @@ class CaseController extends Controller
         $cr_updates = CorrespondenceUpdate::where('case_id', $id)->latest()->get();
         $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
         $ms_updates = MiscellaneousUpdate::where('case_id', $id)->latest()->get();
-        return view('admin.cases.show', compact('case', 'gn_updates','cr_updates','fv_updates','ms_updates'));
+        return view('admin.cases.show', compact('case', 'gn_updates', 'cr_updates', 'fv_updates', 'ms_updates'));
     }
 
     /**
@@ -174,7 +174,7 @@ class CaseController extends Controller
             }
         }
 
-        if($request->cr_update){
+        if ($request->cr_update) {
             $document = CorrespondenceUpdate::create([
                 'case_id' => $request->case_id,
                 'fv_date' => $request->fv_date,
@@ -188,7 +188,7 @@ class CaseController extends Controller
             }
         }
 
-        if($request->fv_update){
+        if ($request->fv_update) {
             $document = FieldVisitUpdate::create([
                 'case_id' => $request->case_id,
                 'fv_date' => $request->fv_date,
@@ -201,20 +201,15 @@ class CaseController extends Controller
                 $document->save();
             }
 
-            if($document){
+            if ($document) {
                 $field_visit_number = Cases::where('id', '=', $request->case_id)->first();
                 $remaining = $field_visit_number->field_visit - 1;
                 $field_visit_number->field_visit = $remaining;
                 $field_visit_number->save();
             }
-
-
-
-
-
         }
 
-        if($request->ms_update){
+        if ($request->ms_update) {
             $document = MiscellaneousUpdate::create([
                 'case_id' => $request->case_id,
                 'fv_date' => $request->fv_date,
@@ -232,11 +227,19 @@ class CaseController extends Controller
         return back();
     }
 
-    public function showSingleGeneralUpdate($id)
+    public function showSingleGeneralUpdate(Request $request)
     {
-        $gn_case_update = GeneralCaseUpdate::find($id);
+        $gn_case_update = FieldVisitUpdate::find($request->id);
+        $response = [
+            'status' => 200,
+            'message' => 'Data Fetched Successfully',
+            'data' =>  $gn_case_update,
+        ];
+        return response()->json($response);
+    }
 
-        return $gn_case_update;
-        return response()->json('gn_case_update');
+    public function viewFieldVisitUpdate()
+    {
+        return view('admin.cases.show-fv-update');
     }
 }

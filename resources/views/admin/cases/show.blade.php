@@ -121,6 +121,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="div">
+                    <a href="{{ route('show.field.visit.update') }}" class="btn btn-primary">View FV Update</a>
+                </div>
             </div>
         </div>
         <div class="col-md-2">
@@ -398,19 +401,19 @@
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    {{-- <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">GN Update</h5>
-                    </div> --}}
-                    {{-- <div class="modal-body">
-                        <iframe src="{{ asset('storage/document/' . $gn_update->gn_update) }}" class="mt-2"
+                   <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">FV</h5>
+                    </div>
+                     <div class="modal-body">
+                        <iframe id="fv_update" src="" class="mt-2"
                             width="100%" height="400">
                         </iframe>
                         <div class="d-flex justify-content-between mt-3">
-                            <p>Field Visited at: {{ date('d-m-Y', strtotime($gn_update->fv_update)) }}</p>
-                            <p>Created at: {{ date('d-m-Y', strtotime($gn_update->fv_update)) }}</p>
+                            <p id="field_visited_at"></p>
+                            <p id="created_at"></p>
                         </div>
-                            <p>{{ $gn_update->gn_summary }}</p>
-                    </div> --}}
+                            <p>{{ $fv_update->fv_summary }}</p>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
@@ -429,16 +432,21 @@
         $(document).ready(function() {
             $('.viewGNUpdate').click(function(e) {
                 var gn_update_id = $(this).find('.gn_id').text();
-                console.log(gn_update_id)
                 $.ajax({
-                    type: 'GET',
-                    url: "show/single/generel/update/" + gn_update_id,
-                    // dataType: "json",
+                    type: 'get',
+                    url:'{{ route("single.general.update") }}',
+                    data:{
+                        id : gn_update_id
+                    },
                     success: (response) => {
-                        console.log(response)
+                        console.log(response);
+                            let href = "{{ asset('/storage/document/') }}" + "/" + response.data.fv_update
+                            let fv_update = $('#fv_update').attr('src', href);
+                            let field_visited_at = $('#field_visited_at').text('Field Visited at : ' + response.data.fv_date);
+                            let created_at = $('#created_at').text('Created at : ' + response.data.created_at);
                     },
                     error: function(response) {
-                        //$('#error').text(response.responseJSON.message);
+                        $('#error').text(response.responseJSON.message);
                     }
 
                 });
