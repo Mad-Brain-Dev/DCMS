@@ -54,8 +54,25 @@ class CaseController extends Controller
      */
     public function store(CaseRequest $request)
     {
+
+        // $client =  Client::where('client_id',  $request->client_id)->first();
+        // $case_number = $request->case_number;
+
         $data = $request->validated();
-        $this->caseService->storeOrUpdate($data, null);
+        $case =  $this->caseService->storeOrUpdate($data, null);
+        $case_id = $case->id;
+
+        if($case){
+            $case = Cases::where('id',$case_id)->first();
+            $case->case_sku = "000000";
+            $case->save();
+            if($case){
+                $case_number = Cases::where('id',$case_id)->first();
+                $case_number->case_number = $case_number->case_number.$case_number->case_sku + $case->id;
+                $case_number->save();
+            }
+        }
+
         record_created_flash();
         try {
         } catch (\Exception $e) {

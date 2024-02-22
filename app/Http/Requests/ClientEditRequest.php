@@ -25,11 +25,12 @@ class ClientEditRequest extends FormRequest
     {
         $rules =  [
             'name' => ['required'],
-            'nric' => ['required'],
-            'company_name' => ['required'],
-            'company_uen' => ['required'],
-            'phone'      => ['required'],
-            'address' => ['required'],
+            'abbr' => ['nullable'],
+            'nric' => ['nullable'],
+            'company_name' => ['nullable'],
+            'company_uen' => ['nullable'],
+            'phone'      => ['nullable'],
+            'address' => ['nullable'],
             'date_of_agreement' => ['nullable'],
             'date_of_expiry' => ['nullable'],
             'admin_fee' => ['nullable'],
