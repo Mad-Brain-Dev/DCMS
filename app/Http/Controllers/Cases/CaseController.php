@@ -59,25 +59,38 @@ class CaseController extends Controller
         // $case_number = $request->case_number;
 
         $data = $request->validated();
-        $case =  $this->caseService->storeOrUpdate($data, null);
-        $case_id = $case->id;
-
-        if($case){
-            $case = Cases::where('id',$case_id)->first();
-            $case->case_sku = "000000";
-            $case->save();
-            if($case){
-                $case_number = Cases::where('id',$case_id)->first();
-                $case_number->case_number = $case_number->case_number.$case_number->case_sku + $case->id;
-                $case_number->save();
+        $count = Cases::count();
+        if ($count <= 0) {
+            $case =  $this->caseService->storeOrUpdate($data, null);
+            $case_id = $case->id;
+            if ($case) {
+                $case = Cases::where('id', $case_id)->first();
+                $case->case_sku = "000001";
+                $case->save();
+                if ($case) {
+                    $case_number = Cases::where('id', $case_id)->first();
+                    $case_number->case_number = $case_number->case_number . $case_number->case_sku;
+                    $case_number->save();
+                }
             }
         }
-
+        else {
+            $case =  $this->caseService->storeOrUpdate($data, null);
+            $case_id = $case->id;
+            if ($case) {
+                $case = Cases::where('id', $case_id)->first();
+                $case->save();
+                if ($case) {
+                    $case_number = Cases::where('id', $case_id)->first();
+                    $case_number->case_number = $case_number->case_number . $case_number->case_sku + $case->id;
+                    $case_number->save();
+                }
+            }
+        }
         record_created_flash();
         try {
         } catch (\Exception $e) {
         }
-
         return redirect()->route('admin.cases.index');
     }
 

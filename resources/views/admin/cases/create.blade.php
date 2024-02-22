@@ -17,7 +17,6 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">CL Name</label>
                                 <select class="form-select select2" id="client_id" name="client_id"
@@ -33,7 +32,7 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Date of Warrant</label>
-                                <input type="date" name="date_of_expiry" id="date_of_expiry" class="form-control"
+                                <input type="date" name="date_of_warrant" id="date_of_warrant" class="form-control"
                                     placeholder="Enter Date of Warrant" value="{{ old('date_of_warrant') }}">
                                 @error('date_of_warrant')
                                     <p class="error">{{ $message }}</p>
@@ -90,6 +89,13 @@
                                         {{ \App\Utils\GlobalConstant::CASE_UNDER_LITIGATION }}</option>
                                 </select>
                                 @error('current_status')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Case Summary</label>
+                                    <textarea name="case_summary" cols="30" rows="2" class="form-control">Enter Case Summary Here</textarea>
+                                @error('case_summary')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
