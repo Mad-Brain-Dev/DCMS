@@ -19,7 +19,7 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">CL Name</label>
-                                <select class="form-select select2" id="client_id" name="client_id"
+                                <select class="form-select select2 form-control" id="client_id" name="client_id"
                                     aria-label="Default select example">
                                     <option selected disabled>Select CL Name</option>
                                     @foreach ($clients as $client)
@@ -107,8 +107,8 @@
                         <div class="row">
                             <div class="mb-3 col-md-4">
                                 <label class="form-label">Collection Commission</label>
-                                <input type="text" name="collection_commission" class="form-control"
-                                    placeholder="Enter Collection Commission" value="{{ old('collection_commission') }}">
+                                <input type="text" name="collection_commission" id="collection_commission" class="form-control"
+                                    placeholder="Enter Collection Commission" value="">
                                 @error('collection_commission')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -120,14 +120,14 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="mb-3 col-md-4">
+                            {{-- <div class="mb-3 col-md-4">
                                 <label class="form-label">Bal Field Visits</label>
                                 <input type="text" name="bal_field_visit" class="form-control"
-                                    placeholder="Enter Bal Field Visits" value="{{ old('bal_field_visit') }}">
+                                    placeholder="Enter Bal Field Visits" value="">
                                 @error('bal_field_visit')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -327,6 +327,9 @@
 
                         var fieldVisit = response.dateofagreement.field_visit_per_case
                         $('#field_visit').val(fieldVisit);
+
+                        var collection_commission = response.dateofagreement.collection_commission
+                        $('#collection_commission').val(collection_commission);
 
                         var clNameAbbr = response.dateofagreement.abbr
                         var getDate = response.dateofagreement.created_at

@@ -31,7 +31,7 @@ class CaseRequest extends FormRequest
             'date_of_warrant'      => ['nullable'],
             'collection_commission'    => ['nullable'],
             'field_visit'    => ['nullable'],
-            'bal_field_visit'    => ['nullable'],
+            // 'bal_field_visit'    => ['nullable'],
             'manager_ic'    => ['nullable'],
             'collector_ic'    => ['nullable'],
             'name'    => ['required'],

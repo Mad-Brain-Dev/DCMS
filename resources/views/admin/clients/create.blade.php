@@ -18,7 +18,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">CL Name Abbr</span></label>
+                                <label class="form-label">CL Name Abbr <span class="error">*</span></label>
                                 <input type="text" name="abbr" class="form-control" placeholder="Enter CL Name"
                                     value="{{ old('abbr') }}">
                                 @error('abbr')

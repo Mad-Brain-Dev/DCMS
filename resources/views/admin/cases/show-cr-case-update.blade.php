@@ -5,15 +5,15 @@
         <div class="col-md-4">
             <div id="success" class="text-success"></div>
             <div class="card">
-                <div class="card-header text-center">Gn Case Update</div>
+                <div class="card-header text-center">CR Case Update</div>
                 <div class="card-body">
                     <form enctype="multipart/form-data" action="{{ route('general.case.create') }}" method="POST">
                         @csrf
                         <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
                         <div class="mb-3">
-                            <label class="form-label">Gn Case Update</label>
-                            <input type="file" name="cr_update" class="form-control">
-                            @error('cr_update')
+                            <label class="form-label">CR Case Update</label>
+                            <input type="file" name="cr_updates[]" class="form-control" multiple>
+                            @error('cr_updates')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
@@ -25,7 +25,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Gn Summary</label>
+                            <label class="form-label">CR Summary</label>
                             <textarea name="cr_summary" class="form-control" id="" rows="2"></textarea>
                             @error('cr_summary')
                                 <p class="error">{{ $message }}</p>
@@ -53,7 +53,7 @@
                             @foreach ($cr_updates as $cr_update)
                                 <li class="event"
                                     data-date="{{ date('d-m-Y', strtotime($cr_update->created_at)) }}, {{ date('h:i a', strtotime($cr_update->created_at)) }} ">
-                                    <iframe src="{{ asset('storage/document/' . $cr_update->cr_update) }}" width="300"
+                                    <iframe src="{{ asset('/documents/' . $cr_update->cr_update) }}" width="300"
                                         height="200"></iframe>
 
                                     <h6 class="mt-2">Field Visited at: {{ date('d-m-Y', strtotime($cr_update->fv_date)) }}</h6>
@@ -110,7 +110,7 @@
                     },
                     success: (response) => {
                         console.log(response);
-                        let href = "{{ asset('/storage/document/') }}" + "/" + response.data
+                        let href = "{{ asset('/documents/') }}" + "/" + response.data
                             .cr_update
                         let cr_update = $('#cr_update').attr('src', href);
                     },

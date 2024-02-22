@@ -12,8 +12,8 @@
                         <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
                         <div class="mb-3">
                             <label class="form-label">Gn Case Update</label>
-                            <input type="file" name="gn_update" class="form-control">
-                            @error('gn_update')
+                            <input type="file" name="gn_updates[]" multiple class="form-control">
+                            @error('gn_updates')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
@@ -53,7 +53,7 @@
                         @foreach ($gn_updates as $gn_update)
                             <li class="event"
                                 data-date="{{ date('d-m-Y', strtotime($gn_update->created_at)) }}, {{ date('h:i a', strtotime($gn_update->created_at)) }} ">
-                                <iframe src="{{ asset('storage/document/' . $gn_update->gn_update) }}" width="300"
+                                <iframe src="{{ asset('/documents/' . $gn_update->gn_update) }}" width="300"
                                     height="200"></iframe>
 
                                 <h6 class="mt-2">Field Visited at: {{ date('d-m-Y', strtotime($gn_update->fv_date)) }}</h6>
@@ -110,7 +110,7 @@
                     },
                     success: (response) => {
                         console.log(response);
-                        let href = "{{ asset('/storage/document/') }}" + "/" + response.data
+                        let href = "{{ asset('/documents/') }}" + "/" + response.data
                             .gn_update
                         let gn_update = $('#gn_update').attr('src', href);
                     },

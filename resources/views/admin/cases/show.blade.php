@@ -2,18 +2,16 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-8 offset-md-2">
+        <div class="div text-end pb-3">
+            <a href="{{ URL('/show/general/case/update/'.$case->id )}}" class="btn btn-primary">GN Update</a>
+            <a href="{{ URL('/show/field/visit/update/'.$case->id )}}" class="btn btn-primary">FV Update</a>
+            <a href="{{ URL('/show/correspondence/case/update/'.$case->id )}}" class="btn btn-primary">CR Update</a>
+            <a href="{{ URL('/show/miscellaneous/case/update/'.$case->id )}}" class="btn btn-primary">MS Update</a>
+        </div>
+        <div class="col-md-4">
             <div class="card">
-                <div class="card-header text-center">
-                    Case
-                </div>
-                <div class="card-body">
                     <table class="table">
                         <tbody>
-                            <tr>
-                                <th scope="row">Key</th>
-                                <td>Value</td>
-                            </tr>
                             <tr>
                                 <th scope="row">Case Number</th>
                                 <td>{{ $case->case_number }}</td>
@@ -23,28 +21,20 @@
                                 <td>{{ $case->current_status }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Date of Agreement</th>
-                                <td>{{ $case->date_of_agreement }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Date of Expiry</th>
-                                <td>{{ $case->date_of_expiry }}</td>
-                            </tr>
-                            <tr>
                                 <th scope="row">Client Name</th>
                                 <td>{{ $case->client->name }}</td>
                             </tr>
+                            {{-- <tr>
+                                <th scope="row">Client Company</th>
+                                <td>{{ $case->clientDetails->company_name }}</td>
+                            </tr> --}}
                             <tr>
-                                <th scope="row">Collection Commission</th>
-                                <td>{{ $case->collection_commission }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Field Visit</th>
+                                <th scope="row">Bal Field Visit</th>
                                 <td>{{ $case->field_visit }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Bal Field Visit</th>
-                                <td>{{ $case->bal_field_visit }}</td>
+                                <th scope="row">Date Of Warrant</th>
+                                <td>{{ $case->date_of_warrant }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Manager IC</th>
@@ -54,6 +44,15 @@
                                 <th scope="row">Collector IC</th>
                                 <td>{{ $case->collector_ic }}</td>
                             </tr>
+                        </tbody>
+                    </table>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                    <table class="table">
+                        <tbody>
                             <tr>
                                 <th scope="row">Debtor Name</th>
                                 <td>{{ $case->name }}</td>
@@ -81,6 +80,18 @@
                             <tr>
                                 <th scope="row">Debtor Address</th>
                                 <td>{{ $case->adderss }}</td>
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Collection Commission</th>
+                                <td>{{ $case->collection_commission }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Debt Amount</th>
@@ -110,10 +121,10 @@
                                 <th scope="row">Total Amount Owed</th>
                                 <td>{{ $case->total_amount_owed }}</td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <th scope="row">Total Amount Paid</th>
                                 <td>{{ $case->total_amount_paid }}</td>
-                            </tr>
+                            </tr> --}}
                             <tr>
                                 <th scope="row">Total Amount Balance</th>
                                 <td>{{ $case->total_amount_balance }}</td>
@@ -121,14 +132,6 @@
 
                         </tbody>
                     </table>
-                    <div class="div text-end">
-                        <a href="{{ URL('/show/general/case/update/'.$case->id )}}" class="btn btn-primary">GN Update</a>
-                        <a href="{{ URL('/show/field/visit/update/'.$case->id )}}" class="btn btn-primary">FV Update</a>
-                        <a href="{{ URL('/show/correspondence/case/update/'.$case->id )}}" class="btn btn-primary">CR Update</a>
-                        <a href="{{ URL('/show/miscellaneous/case/update/'.$case->id )}}" class="btn btn-primary">MS Update</a>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>

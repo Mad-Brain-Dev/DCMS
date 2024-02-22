@@ -65,16 +65,15 @@ class CaseController extends Controller
             $case_id = $case->id;
             if ($case) {
                 $case = Cases::where('id', $case_id)->first();
-                $case->case_sku = "000001";
+                $case->case_sku = "1";
                 $case->save();
                 if ($case) {
                     $case_number = Cases::where('id', $case_id)->first();
-                    $case_number->case_number = $case_number->case_number . $case_number->case_sku;
+                    $case_number->case_number = $case_number->case_number . '000' . $case_number->case_sku;
                     $case_number->save();
                 }
             }
-        }
-        else {
+        } else {
             $case =  $this->caseService->storeOrUpdate($data, null);
             $case_id = $case->id;
             if ($case) {
@@ -82,7 +81,7 @@ class CaseController extends Controller
                 $case->save();
                 if ($case) {
                     $case_number = Cases::where('id', $case_id)->first();
-                    $case_number->case_number = $case_number->case_number . $case_number->case_sku + $case->id;
+                    $case_number->case_number = $case_number->case_number . '000' . $case_number->case_sku + $case->id;
                     $case_number->save();
                 }
             }
@@ -179,81 +178,103 @@ class CaseController extends Controller
     {
 
         $request->validate([
-            'gn_update' => 'nullable|mimes:png,jpg,jpeg,pdf',
+            'gn_updates.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_date' => 'required',
             'gn_summary' => 'nullable',
-            'cr_update' => 'nullable|mimes:png,jpg,jpeg,pdf',
+            'cr_updates.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'cr_summary' => 'nullable',
-            'fv_update' => 'nullable|mimes:png,jpg,jpeg,pdf',
+            'fv_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_summary' => 'nullable',
-            'ms_update' => 'nullable|mimes:png,jpg,jpeg,pdf',
+            'ms_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'ms_summary' => 'nullable',
         ]);
 
-        if ($request->gn_update) {
-            $document = GeneralCaseUpdate::create([
-                'case_id' => $request->case_id,
-                'fv_date' => $request->fv_date,
-                'gn_summary' => $request->gn_summary,
-            ]);
+        if ($request->gn_updates) {
 
-            if ($request->hasFile('gn_update')) {
-                $image = $this->fileUploadService->upload($request['gn_update'], GeneralCaseUpdate::FILE_STORE_DOCUMENT_PATH, false, true);
-                $document->gn_update = $image;
-                $document->save();
+            $gn_updates = [];
+            if ($request->gn_updates) {
+                foreach ($request->gn_updates as $key => $gn_update) {
+                    $imageName = time() . rand(1000, 10000) . '.' . $gn_update->extension();
+                    $gn_update->move(public_path('documents'), $imageName);
+
+                  //  $gn_updates[]['gn_update'] = $imageName;
+
+                    GeneralCaseUpdate::create([
+                        'case_id' => $request->case_id,
+                        'fv_date' => $request->fv_date,
+                        'cr_summary' => $request->cr_summary,
+                        'gn_update' => $imageName,
+                    ]);
+                }
             }
+
             record_updated_flash();
         }
 
-        if ($request->cr_update) {
-            $document = CorrespondenceUpdate::create([
-                'case_id' => $request->case_id,
-                'fv_date' => $request->fv_date,
-                'cr_summary' => $request->cr_summary,
-            ]);
+        if ($request->cr_updates) {
+            $cr_updates = [];
+            if ($request->cr_updates) {
+                foreach ($request->cr_updates as $key => $cr_update) {
+                    $imageName = time() . rand(1000, 10000) . '.' . $cr_update->extension();
+                    $cr_update->move(public_path('documents'), $imageName);
 
-            if ($request->hasFile('cr_update')) {
-                $image = $this->fileUploadService->upload($request['cr_update'], CorrespondenceUpdate::FILE_STORE_DOCUMENT_PATH, false, true);
-                $document->cr_update = $image;
-                $document->save();
+                  //  $gn_updates[]['gn_update'] = $imageName;
+
+                    CorrespondenceUpdate::create([
+                        'case_id' => $request->case_id,
+                        'fv_date' => $request->fv_date,
+                        'cr_summary' => $request->cr_summary,
+                        'cr_update' => $imageName,
+                    ]);
+                }
             }
+
             record_updated_flash();
         }
 
-        if ($request->fv_update) {
-            $document = FieldVisitUpdate::create([
-                'case_id' => $request->case_id,
-                'fv_date' => $request->fv_date,
-                'fv_summary' => $request->fv_summary,
-            ]);
+        if ($request->fv_updates) {
+            $cr_updates = [];
+            if ($request->fv_updates) {
+                foreach ($request->fv_updates as $key => $fv_update) {
+                    $imageName = time() . rand(1000, 10000) . '.' . $fv_update->extension();
+                    $fv_update->move(public_path('documents'), $imageName);
 
-            if ($request->hasFile('fv_update')) {
-                $image = $this->fileUploadService->upload($request['fv_update'], FieldVisitUpdate::FILE_STORE_DOCUMENT_PATH, false, true);
-                $document->fv_update = $image;
-                $document->save();
+                  //  $gn_updates[]['gn_update'] = $imageName;
+
+                    FieldVisitUpdate::create([
+                        'case_id' => $request->case_id,
+                        'fv_date' => $request->fv_date,
+                        'fv_summary' => $request->fv_summary,
+                        'fv_update' => $imageName,
+                    ]);
+                }
             }
-
-            if ($document) {
                 $field_visit_number = Cases::where('id', '=', $request->case_id)->first();
                 $remaining = $field_visit_number->field_visit - 1;
                 $field_visit_number->field_visit = $remaining;
                 $field_visit_number->save();
-            }
+
             record_updated_flash();
         }
 
-        if ($request->ms_update) {
-            $document = MiscellaneousUpdate::create([
-                'case_id' => $request->case_id,
-                'fv_date' => $request->fv_date,
-                'ms_summary' => $request->ms_summary,
-            ]);
+        if ($request->ms_updates) {
+            $ms_updates = [];
+            if ($request->ms_updates) {
+                foreach ($request->ms_updates as $key => $ms_update) {
+                    $imageName = time() . rand(1000, 10000) . '.' . $ms_update->extension();
+                    $ms_update->move(public_path('documents'), $imageName);
 
-            if ($request->hasFile('ms_update')) {
-                $image = $this->fileUploadService->upload($request['ms_update'], MiscellaneousUpdate::FILE_STORE_DOCUMENT_PATH, false, true);
-                $document->ms_update = $image;
-                $document->save();
+                  //  $gn_updates[]['gn_update'] = $imageName;
+
+                    MiscellaneousUpdate::create([
+                        'case_id' => $request->case_id,
+                        'fv_date' => $request->fv_date,
+                        'cr_summary' => $request->ms_summary,
+                        'ms_update' => $imageName,
+                    ]);
+                }
             }
+
             record_updated_flash();
         }
         return back();

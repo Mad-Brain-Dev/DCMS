@@ -12,8 +12,8 @@
                         <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
                         <div class="mb-3">
                             <label class="form-label">FV Update</label>
-                            <input type="file" name="fv_update" class="form-control">
-                            @error('cr_update')
+                            <input type="file" name="fv_updates[]" class="form-control" multiple>
+                            @error('fv_updates')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
@@ -60,7 +60,7 @@
                             @foreach ($fv_updates as $fv_update)
                                 <li class="event"
                                     data-date="{{ date('d-m-Y', strtotime($fv_update->created_at)) }}, {{ date('h:i a', strtotime($fv_update->created_at)) }} ">
-                                    <iframe src="{{ asset('storage/document/' . $fv_update->fv_update) }}" width="300"
+                                    <iframe src="{{ asset('/documents/' . $fv_update->fv_update) }}" width="300"
                                         height="200"></iframe>
 
                                     <h6 class="mt-2">Field Visited at:
@@ -118,7 +118,7 @@
                     },
                     success: (response) => {
                         console.log(response);
-                        let href = "{{ asset('/storage/document/') }}" + "/" + response.data
+                        let href = "{{ asset('/documents/') }}" + "/" + response.data
                             .fv_update
                         let fv_update = $('#fv_update').attr('src', href);
                     },

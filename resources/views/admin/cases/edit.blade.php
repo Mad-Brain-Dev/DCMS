@@ -122,14 +122,14 @@
                                             @enderror
                                         </div>
 
-                                        <div class="mb-3 col-md-4">
+                                        {{-- <div class="mb-3 col-md-4">
                                             <label class="form-label">Bal Field Visits</label>
                                             <input type="text" name="bal_field_visit" class="form-control"
                                                 value="{{ $case->bal_field_visit }}">
                                             @error('bal_field_visit')
                                                 <p class="error">{{ $message }}</p>
                                             @enderror
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
