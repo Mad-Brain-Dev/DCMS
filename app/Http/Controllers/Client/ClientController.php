@@ -27,7 +27,7 @@ class ClientController extends Controller
      */
     public function index(ClientDataTable $dataTable)
     {
-        set_page_meta('CL');
+        set_page_meta('Clients');
         return $dataTable->render('admin.clients.index');
     }
 

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('cases', function (Blueprint $table) {
             $table->id();
             $table->string('case_number')->nullable();
+            $table->string('case_sku')->nullable();
             $table->string('current_status')->nullable();
-            $table->dateTime('date_of_agreement')->nullable();
-            $table->dateTime('date_of_expiry')->nullable();
-            $table->foreignId('user_id')->nullable();
+            $table->string('case_summary')->nullable();
+            $table->dateTime('date_of_warrant')->nullable();
             $table->foreignId('client_id')->nullable();
             $table->string('collection_commission')->nullable();
             $table->string('field_visit')->nullable();

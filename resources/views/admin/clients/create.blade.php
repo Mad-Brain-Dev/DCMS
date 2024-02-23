@@ -18,7 +18,15 @@
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">CL NRIC <span class="error">*</span></label>
+                                <label class="form-label">CL Name Abbr <span class="error">*</span></label>
+                                <input type="text" name="abbr" class="form-control" placeholder="Enter CL Name"
+                                    value="{{ old('abbr') }}">
+                                @error('abbr')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">CL NRIC</span></label>
                                 <input type="text" name="nric" class="form-control" placeholder="Enter CL NRIC"
                                     value="{{ old('nric') }}">
                                 @error('nric')
@@ -27,7 +35,7 @@
                             </div>
 
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">Company name <span class="error">*</span></label>
+                                <label class="form-label">Company Name</span></label>
                                 <input type="text" name="company_name" class="form-control" placeholder="Enter CL Company Name"
                                     value="{{ old('company_name') }}">
                                 @error('company_name')
@@ -35,7 +43,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">Company Uen <span class="error">*</span></label>
+                                <label class="form-label">Company UEN</span></label>
                                 <input type="text" name="company_uen" class="form-control" placeholder="Enter CL Company Uen"
                                     value="{{ old('company_uen') }}">
                                 @error('company_uen')
@@ -49,7 +57,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="mb-3 col-md-4">
-                                <label class="form-label">Email <span class="error">*</span></label>
+                                <label class="form-label">Email</label>
                                 <input type="email" name="email" class="form-control" placeholder="Enter CL Email Address"
                                     value="{{ old('email') }}">
                                 @error('email')
@@ -57,7 +65,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-4">
-                                <label class="form-label">Phone <span class="error">*</span></label>
+                                <label class="form-label">Phone</label>
                                 <input type="text" name="phone" class="form-control" placeholder="Enter CL Phone Number"
                                     value="{{ old('phone') }}">
                                 @error('phone')
@@ -65,7 +73,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-4">
-                                <label class="form-label">Address <span class="error">*</span></label>
+                                <label class="form-label">Address</label>
                                 <input type="text" name="address" class="form-control" placeholder="Enter Address Here"
                                     value="{{ old('address') }}">
                                 @error('address')

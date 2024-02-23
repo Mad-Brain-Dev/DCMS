@@ -21,9 +21,10 @@ class Cases extends Model
     public const CASE_PRIORITY_LOW   = 'Low';
     protected $fillable = [
         'case_number',
+        'case_sku',
+        'case_summary',
         'current_status',
-        'date_of_agreement',
-        'date_of_expiry',
+        'date_of_warrant',
         'client_id',
         'collection_commission',
         'field_visit',
@@ -52,6 +53,10 @@ class Cases extends Model
     public function client()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function clientDetails(){
+        return $this->belongsTo(Client::class);
     }
 
     public function getUser()

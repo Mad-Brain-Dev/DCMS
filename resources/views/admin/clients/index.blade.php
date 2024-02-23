@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h4 class="card-title mb-3">CL</h4>
-                        <a href="{{ route('admin.clients.create') }}" class="btn btn-sm btn-primary text-capitalize" style="padding-top: 8px;">Create CL</a>
+                        <a href="{{ route('admin.clients.create') }}" class="btn btn-sm btn-primary text-capitalize" style="padding-top: 8px;">Create Client</a>
                     </div>
                     {!! $dataTable->table(['class'=>'table-responsive']) !!}
                 </div>

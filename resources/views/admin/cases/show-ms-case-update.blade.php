@@ -12,7 +12,7 @@
                         <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
                         <div class="mb-3">
                             <label class="form-label">MS Update</label>
-                            <input type="file" name="ms_update" class="form-control">
+                            <input type="file" name="ms_updates[]" class="form-control" multiple>
                             @error('ms_update')
                                 <p class="error">{{ $message }}</p>
                             @enderror
@@ -53,7 +53,7 @@
                             @foreach ($ms_updates as $ms_update)
                                 <li class="event"
                                     data-date="{{ date('d-m-Y', strtotime($ms_update->created_at)) }}, {{ date('h:i a', strtotime($ms_update->created_at)) }} ">
-                                    <iframe src="{{ asset('storage/document/' . $ms_update->ms_update) }}" width="300"
+                                    <iframe src="{{ asset('/documents/' . $ms_update->ms_update) }}" width="300"
                                         height="200"></iframe>
 
                                     <h6 class="mt-2">Field Visited at: {{ date('d-m-Y', strtotime($ms_update->fv_date)) }}</h6>
@@ -110,7 +110,7 @@
                     },
                     success: (response) => {
                         console.log(response);
-                        let href = "{{ asset('/storage/document/') }}" + "/" + response.data
+                        let href = "{{ asset('/documents/') }}" + "/" + response.data
                             .ms_update
                         let ms_update = $('#ms_update').attr('src', href);
                     },

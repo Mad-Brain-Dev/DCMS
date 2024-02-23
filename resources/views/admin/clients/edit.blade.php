@@ -19,7 +19,7 @@
                             @enderror
                         </div>
                         <div class="mb-3 col-md-3">
-                            <label class="form-label">Client NRIC <span class="error">*</span></label>
+                            <label class="form-label">Client NRIC</label>
                             <input type="text" name="nric" class="form-control" placeholder="Enter Client NRIC"
                                 value="{{ $client->nric }}">
                             @error('nric')
@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="mb-3 col-md-3">
-                            <label class="form-label">Company name <span class="error">*</span></label>
+                            <label class="form-label">Company name</label>
                             <input type="text" name="company_name" class="form-control"
                                 placeholder="Enter Client Company Name" value="{{ $client->company_name }}">
                             @error('company_name')
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="mb-3 col-md-3">
-                            <label class="form-label">Company Uen <span class="error">*</span></label>
+                            <label class="form-label">Company UEN</label>
                             <input type="text" name="company_uen" class="form-control" placeholder="Enter Client Company Uen"
                                 value="{{ $client->company_uen }}">
                             @error('company_uen')
@@ -63,15 +63,6 @@
                                 <input type="text" name="address" class="form-control" placeholder="Enter Address Here"
                                     value="{{ $client->address }}">
                                 @error('address')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Date of Agreement <span class="error">*</span></label>
-                                <input type="date" name="date_of_agreement" class="form-control" placeholder="Address"
-                                    value="{{ date('Y-m-d', strtotime($client->date_of_agreement)) }}">
-                                @error('date_of_agreement')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
