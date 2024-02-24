@@ -18,7 +18,10 @@ return new class extends Migration
             $table->string('current_status')->nullable();
             $table->string('case_summary')->nullable();
             $table->dateTime('date_of_warrant')->nullable();
+            //for client name
             $table->foreignId('client_id')->nullable();
+             //for client details
+            $table->foreignId('user_id')->nullable();
             $table->string('collection_commission')->nullable();
             $table->string('field_visit')->nullable();
             $table->string('bal_field_visit')->nullable();

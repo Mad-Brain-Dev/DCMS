@@ -26,6 +26,7 @@ class Cases extends Model
         'current_status',
         'date_of_warrant',
         'client_id',
+        'user_id',
         'collection_commission',
         'field_visit',
         'bal_field_visit',
