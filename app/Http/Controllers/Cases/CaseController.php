@@ -100,7 +100,7 @@ class CaseController extends Controller
     {
         set_page_meta('Details');
         $case = Cases::find($id);
-        $client_details = Client::where('client_id', $case->client_id)->get();
+        $client_details = Client::where('client_id', $case->client_id)->first();
         $gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
         $cr_updates = CorrespondenceUpdate::where('case_id', $id)->latest()->get();
         $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
