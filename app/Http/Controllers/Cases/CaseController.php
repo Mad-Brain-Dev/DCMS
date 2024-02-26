@@ -100,11 +100,12 @@ class CaseController extends Controller
     {
         set_page_meta('Details');
         $case = Cases::find($id);
+        $client_details = Client::where('client_id', $case->client_id)->first();
         $gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
         $cr_updates = CorrespondenceUpdate::where('case_id', $id)->latest()->get();
         $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
         $ms_updates = MiscellaneousUpdate::where('case_id', $id)->latest()->get();
-        return view('admin.cases.show', compact('case', 'gn_updates', 'cr_updates', 'fv_updates', 'ms_updates'));
+        return view('admin.cases.show', compact('case', 'gn_updates', 'cr_updates', 'fv_updates', 'ms_updates','client_details'));
     }
 
     /**
