@@ -12,10 +12,6 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th scope="row">Key</th>
-                                        <td>Value</td>
-                                    </tr>
-                                    <tr>
                                         <th scope="row">Case Number</th>
                                         <td>{{ $case->case_number }}</td>
                                     </tr>
@@ -24,12 +20,12 @@
                                         <td>{{ $case->current_status }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Date of Agreement</th>
-                                        <td>{{ $case->date_of_agreement }}</td>
+                                        <th scope="row">Date of Warrant</th>
+                                        <td>{{ date('d-m-Y', strtotime($case->date_of_warrant)) }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Date of Expiry</th>
-                                        <td>{{ $case->date_of_expiry }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($case->date_of_expiry)) }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Collection Commission</th>
@@ -93,11 +89,11 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Interest Start Date</th>
-                                        <td>{{ $case->interest_start_date }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($case->interest_start_date)) }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Interest End Date</th>
-                                        <td>{{ $case->interest_start_date }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($case->interest_end_date)) }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Total Interest</th>

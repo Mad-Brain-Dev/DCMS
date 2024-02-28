@@ -234,7 +234,7 @@ class CaseController extends Controller
         }
 
         if ($request->fv_updates) {
-            $cr_updates = [];
+            $fv_updates = [];
             if ($request->fv_updates) {
                 foreach ($request->fv_updates as $key => $fv_update) {
                     $imageName = time() . rand(1000, 10000) . '.' . $fv_update->extension();
@@ -252,7 +252,7 @@ class CaseController extends Controller
             }
                 $field_visit_number = Cases::where('id', '=', $request->case_id)->first();
                 $remaining = $field_visit_number->field_visit - 1;
-                $field_visit_number->field_visit = $remaining;
+                $field_visit_number->bal_field_visit = $remaining;
                 $field_visit_number->save();
 
             record_updated_flash();

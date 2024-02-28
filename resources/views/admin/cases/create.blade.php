@@ -9,14 +9,12 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Case Number</label>
-                                <input type="text" name="case_number" class="form-control"
+                                {{-- <label class="form-label">Case Number</label> --}}
+                                <input type="hidden" name="case_number" class="form-control"
                                     placeholder="Enter Case Number" id="case_number" value="">
-                                @error('case_number')
+                                {{-- @error('case_number')
                                     <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
+                                @enderror --}}
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">CL Name</label>
                                 <select class="form-select select2 form-control" id="client_id" name="client_id"
@@ -120,6 +118,9 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
+                                <input type="hidden" name="bal_field_visit" placeholder="Enter Field Visit Number Here" class="form-control" id="bal_field_visit"  value="">
+
+
                             {{-- <div class="mb-3 col-md-4">
                                 <label class="form-label">Bal Field Visits</label>
                                 <input type="text" name="bal_field_visit" class="form-control"
@@ -387,6 +388,9 @@
 
                         var fieldVisit = response.dateofagreement.field_visit_per_case
                         $('#field_visit').val(fieldVisit);
+
+                        var balFieldVisit = response.dateofagreement.field_visit_per_case
+                        $('#bal_field_visit').val(balFieldVisit);
 
                         var collection_commission = response.dateofagreement.collection_commission
                         $('#collection_commission').val(collection_commission);
