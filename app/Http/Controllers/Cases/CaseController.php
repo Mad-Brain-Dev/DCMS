@@ -90,7 +90,9 @@ class CaseController extends Controller
         try {
         } catch (\Exception $e) {
         }
-        return redirect()->route('admin.cases.index');
+        // return redirect()->route('printable.case.agreement');
+        $client_details = Client::where('client_id', $case->client_id)->first();
+        return view('admin.agreement.agreement', compact('case','client_details'));
     }
 
     /**
@@ -378,6 +380,6 @@ class CaseController extends Controller
 
     public function printableCaseAgreement()
     {
-        return "hello";
+        return view('admin.agreement.agreement');
     }
 }
