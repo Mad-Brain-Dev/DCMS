@@ -279,6 +279,66 @@
                         </div>
                     </div>
                 </div>
+
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Administrative Fee</label>
+                                <input type="number" name="administrative_fee" class="form-control"
+                                    placeholder="Enter Administrative Fee" value="{{ old('administrative_fee') }}">
+                                @error('administrative_fee')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Enforcement Fee</label>
+                                <input type="number" name="enforcement_fee" class="form-control"
+                                    placeholder="Enter Enforcement Fee" value="{{ old('enforcement_fee') }}">
+                                @error('enforcement_fee')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Professional Fee</label>
+                                <input type="number" name="professional_fee" class="form-control"
+                                    placeholder="Enter Professional Fee" value="{{ old('professional_fee') }}">
+                                @error('professional_fee')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Annual Fee</label>
+                                <input type="number" name="annual_fee" class="form-control"
+                                    placeholder="Enter Annual Fee" value="{{ old('annual_fee') }}">
+                                @error('annual_fee')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Skip-Tracing Fee</label>
+                                <input type="number" name="skip_tracing_fee" class="form-control"
+                                    placeholder="Enter Skip Tracing Fee" value="{{ old('skip_tracing_fee') }}">
+                                @error('skip_tracing_fee')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Overseas Allowance</label>
+                                <input type="number" name="overseas_allowance" class="form-control"
+                                    placeholder="Enter Overseas Allowance" value="{{ old('overseas_allowance') }}">
+                                @error('overseas_allowance')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="mb-3 offset-md-6 col-md-6">
                         <div class="text-end">

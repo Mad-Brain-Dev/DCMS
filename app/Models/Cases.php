@@ -49,6 +49,12 @@ class Cases extends Model
         'total_amount_paid',
         'total_amount_balance',
         'gn_update',
+        'administrative_fee',
+        'enforcement_fee',
+        'professional_fee',
+        'annual_fee',
+        'skip_tracing_fee',
+        'overseas_allowance',
     ];
 
     public function client()

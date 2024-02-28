@@ -121,15 +121,6 @@
                                                 <p class="error">{{ $message }}</p>
                                             @enderror
                                         </div>
-
-                                        {{-- <div class="mb-3 col-md-4">
-                                            <label class="form-label">Bal Field Visits</label>
-                                            <input type="text" name="bal_field_visit" class="form-control"
-                                                value="{{ $case->bal_field_visit }}">
-                                            @error('bal_field_visit')
-                                                <p class="error">{{ $message }}</p>
-                                            @enderror
-                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -257,14 +248,14 @@
                                                 <p class="error">{{ $message }}</p>
                                             @enderror
                                         </div>
-                                        <div class="mb-3 col-md-3">
+                                        {{-- <div class="mb-3 col-md-3">
                                             <label class="form-label">Total Amount Paid</label>
                                             <input type="Number" name="total_amount_paid" class="form-control"
                                                 value="{{ $case->total_amount_paid }}">
                                             @error('total_amount_paid')
                                                 <p class="error">{{ $message }}</p>
                                             @enderror
-                                        </div>
+                                        </div> --}}
                                         <div class="mb-3 col-md-3">
                                             <label class="form-label">Total Amount Balance</label>
                                             <input type="Number" name="total_amount_balance" class="form-control"
