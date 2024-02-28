@@ -9,14 +9,12 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Case Number</label>
-                                <input type="text" name="case_number" class="form-control"
+                                {{-- <label class="form-label">Case Number</label> --}}
+                                <input type="hidden" name="case_number" class="form-control"
                                     placeholder="Enter Case Number" id="case_number" value="">
-                                @error('case_number')
+                                {{-- @error('case_number')
                                     <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
+                                @enderror --}}
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">CL Name</label>
                                 <select class="form-select select2 form-control" id="client_id" name="client_id"
@@ -120,6 +118,9 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
+                                <input type="hidden" name="bal_field_visit" placeholder="Enter Field Visit Number Here" class="form-control" id="bal_field_visit"  value="">
+
+
                             {{-- <div class="mb-3 col-md-4">
                                 <label class="form-label">Bal Field Visits</label>
                                 <input type="text" name="bal_field_visit" class="form-control"
@@ -279,6 +280,66 @@
                         </div>
                     </div>
                 </div>
+
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Administrative Fee</label>
+                                <input type="number" name="administrative_fee" class="form-control"
+                                    placeholder="Enter Administrative Fee" value="{{ old('administrative_fee') }}">
+                                @error('administrative_fee')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Enforcement Fee</label>
+                                <input type="number" name="enforcement_fee" class="form-control"
+                                    placeholder="Enter Enforcement Fee" value="{{ old('enforcement_fee') }}">
+                                @error('enforcement_fee')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Professional Fee</label>
+                                <input type="number" name="professional_fee" class="form-control"
+                                    placeholder="Enter Professional Fee" value="{{ old('professional_fee') }}">
+                                @error('professional_fee')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Annual Fee</label>
+                                <input type="number" name="annual_fee" class="form-control"
+                                    placeholder="Enter Annual Fee" value="{{ old('annual_fee') }}">
+                                @error('annual_fee')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Skip-Tracing Fee</label>
+                                <input type="number" name="skip_tracing_fee" class="form-control"
+                                    placeholder="Enter Skip Tracing Fee" value="{{ old('skip_tracing_fee') }}">
+                                @error('skip_tracing_fee')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Overseas Allowance</label>
+                                <input type="number" name="overseas_allowance" class="form-control"
+                                    placeholder="Enter Overseas Allowance" value="{{ old('overseas_allowance') }}">
+                                @error('overseas_allowance')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="mb-3 offset-md-6 col-md-6">
                         <div class="text-end">
@@ -327,6 +388,9 @@
 
                         var fieldVisit = response.dateofagreement.field_visit_per_case
                         $('#field_visit').val(fieldVisit);
+
+                        var balFieldVisit = response.dateofagreement.field_visit_per_case
+                        $('#bal_field_visit').val(balFieldVisit);
 
                         var collection_commission = response.dateofagreement.collection_commission
                         $('#collection_commission').val(collection_commission);

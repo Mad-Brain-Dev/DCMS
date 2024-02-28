@@ -37,8 +37,12 @@
                                 <td>{{ date('d-m-Y', strtotime($client_details->date_of_expiry)) }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Bal Field Visits</th>
+                                <th scope="row">Field Visits</th>
                                 <td>{{ $case->field_visit }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Bal Field Visits</th>
+                                <td>{{ $case->bal_field_visit }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Manager IC</th>
@@ -53,42 +57,6 @@
 
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <th scope="row">Debtor Name</th>
-                                <td>{{ $case->name }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Debtor NRIC</th>
-                                <td>{{ $case->nric }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Debtor Company Name</th>
-                                <td>{{ $case->company_name }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Debtor Company UEN</th>
-                                <td>{{ $case->company_uen }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Debtor Phone</th>
-                                <td>{{ $case->phone }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Debtor Email</th>
-                                <td>{{ $case->email }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Debtor Address</th>
-                                <td>{{ $case->adderss }}</td>
-                        </tbody>
-                    </table>
-            </div>
-        </div>
-
         <div class="col-md-4">
             <div class="card">
                     <table class="table">
@@ -134,10 +102,48 @@
                                 <td>{{ $case->total_amount_balance }}</td>
                             </tr>
 
+
                         </tbody>
                     </table>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="card">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Debtor Name</th>
+                                <td>{{ $case->name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Debtor NRIC</th>
+                                <td>{{ $case->nric }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Debtor Company Name</th>
+                                <td>{{ $case->company_name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Debtor Company UEN</th>
+                                <td>{{ $case->company_uen }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Debtor Phone</th>
+                                <td>{{ $case->phone }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Debtor Email</th>
+                                <td>{{ $case->email }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Debtor Address</th>
+                                <td>{{ $case->adderss }}</td>
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+
+
     </div>
 @endsection
 @push('script')

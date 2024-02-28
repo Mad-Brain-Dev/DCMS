@@ -47,6 +47,12 @@ class CaseEditRequest extends FormRequest
             'total_amount_owed'    => ['nullable'],
             'total_amount_paid'    => ['nullable'],
             'total_amount_balance'    => ['nullable'],
+            'administrative_fee'    => ['nullable'],
+            'enforcement_fee'    => ['nullable'],
+            'professional_fee'    => ['nullable'],
+            'annual_fee'    => ['nullable'],
+            'skip_tracing_fee'    => ['nullable'],
+            'overseas_allowance'    => ['nullable'],
         ];
 
 

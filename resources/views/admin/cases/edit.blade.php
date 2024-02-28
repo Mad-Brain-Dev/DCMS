@@ -121,15 +121,6 @@
                                                 <p class="error">{{ $message }}</p>
                                             @enderror
                                         </div>
-
-                                        {{-- <div class="mb-3 col-md-4">
-                                            <label class="form-label">Bal Field Visits</label>
-                                            <input type="text" name="bal_field_visit" class="form-control"
-                                                value="{{ $case->bal_field_visit }}">
-                                            @error('bal_field_visit')
-                                                <p class="error">{{ $message }}</p>
-                                            @enderror
-                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -257,19 +248,77 @@
                                                 <p class="error">{{ $message }}</p>
                                             @enderror
                                         </div>
-                                        <div class="mb-3 col-md-3">
+                                        {{-- <div class="mb-3 col-md-3">
                                             <label class="form-label">Total Amount Paid</label>
                                             <input type="Number" name="total_amount_paid" class="form-control"
                                                 value="{{ $case->total_amount_paid }}">
                                             @error('total_amount_paid')
                                                 <p class="error">{{ $message }}</p>
                                             @enderror
-                                        </div>
+                                        </div> --}}
                                         <div class="mb-3 col-md-3">
                                             <label class="form-label">Total Amount Balance</label>
                                             <input type="Number" name="total_amount_balance" class="form-control"
                                                 value="{{ $case->total_amount_balance }}">
                                             @error('total_amount_balance')
+                                                <p class="error">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="mb-3 col-md-3">
+                                            <label class="form-label">Administrative Fee</label>
+                                            <input type="number" name="administrative_fee" class="form-control"
+                                                placeholder="Enter Administrative Fee" value="{{ $case->administrative_fee }}">
+                                            @error('administrative_fee')
+                                                <p class="error">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-3 col-md-3">
+                                            <label class="form-label">Enforcement Fee</label>
+                                            <input type="number" name="enforcement_fee" class="form-control"
+                                                placeholder="Enter Enforcement Fee" value="{{ $case->enforcement_fee }}">
+                                            @error('enforcement_fee')
+                                                <p class="error">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-3 col-md-3">
+                                            <label class="form-label">Professional Fee</label>
+                                            <input type="number" name="professional_fee" class="form-control"
+                                                placeholder="Enter Professional Fee" value="{{ $case->professional_fee }}">
+                                            @error('professional_fee')
+                                                <p class="error">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-3 col-md-3">
+                                            <label class="form-label">Annual Fee</label>
+                                            <input type="number" name="annual_fee" class="form-control"
+                                                placeholder="Enter Annual Fee" value="{{ $case->annual_fee }}">
+                                            @error('annual_fee')
+                                                <p class="error">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-3 col-md-3">
+                                            <label class="form-label">Skip-Tracing Fee</label>
+                                            <input type="number" name="skip_tracing_fee" class="form-control"
+                                                placeholder="Enter Skip Tracing Fee" value="{{ $case->skip_tracing_fee }}">
+                                            @error('skip_tracing_fee')
+                                                <p class="error">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3 col-md-3">
+                                            <label class="form-label">Overseas Allowance</label>
+                                            <input type="number" name="overseas_allowance" class="form-control"
+                                                placeholder="Enter Overseas Allowance" value="{{ $case->overseas_allowance }}">
+                                            @error('overseas_allowance')
                                                 <p class="error">{{ $message }}</p>
                                             @enderror
                                         </div>

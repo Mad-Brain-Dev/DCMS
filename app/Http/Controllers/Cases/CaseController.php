@@ -90,7 +90,9 @@ class CaseController extends Controller
         try {
         } catch (\Exception $e) {
         }
-        return redirect()->route('admin.cases.index');
+        // return redirect()->route('printable.case.agreement');
+        $client_details = Client::where('client_id', $case->client_id)->first();
+        return view('admin.agreement.agreement', compact('case','client_details'));
     }
 
     /**
@@ -105,7 +107,7 @@ class CaseController extends Controller
         $cr_updates = CorrespondenceUpdate::where('case_id', $id)->latest()->get();
         $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
         $ms_updates = MiscellaneousUpdate::where('case_id', $id)->latest()->get();
-        return view('admin.cases.show', compact('case', 'gn_updates', 'cr_updates', 'fv_updates', 'ms_updates','client_details'));
+        return view('admin.cases.show', compact('case', 'gn_updates', 'cr_updates', 'fv_updates', 'ms_updates', 'client_details'));
     }
 
     /**
@@ -198,7 +200,7 @@ class CaseController extends Controller
                     $imageName = time() . rand(1000, 10000) . '.' . $gn_update->extension();
                     $gn_update->move(public_path('documents'), $imageName);
 
-                  //  $gn_updates[]['gn_update'] = $imageName;
+                    //  $gn_updates[]['gn_update'] = $imageName;
 
                     GeneralCaseUpdate::create([
                         'case_id' => $request->case_id,
@@ -219,7 +221,7 @@ class CaseController extends Controller
                     $imageName = time() . rand(1000, 10000) . '.' . $cr_update->extension();
                     $cr_update->move(public_path('documents'), $imageName);
 
-                  //  $gn_updates[]['gn_update'] = $imageName;
+                    //  $gn_updates[]['gn_update'] = $imageName;
 
                     CorrespondenceUpdate::create([
                         'case_id' => $request->case_id,
@@ -234,13 +236,13 @@ class CaseController extends Controller
         }
 
         if ($request->fv_updates) {
-            $cr_updates = [];
+            $fv_updates = [];
             if ($request->fv_updates) {
                 foreach ($request->fv_updates as $key => $fv_update) {
                     $imageName = time() . rand(1000, 10000) . '.' . $fv_update->extension();
                     $fv_update->move(public_path('documents'), $imageName);
 
-                  //  $gn_updates[]['gn_update'] = $imageName;
+                    //  $gn_updates[]['gn_update'] = $imageName;
 
                     FieldVisitUpdate::create([
                         'case_id' => $request->case_id,
@@ -250,10 +252,10 @@ class CaseController extends Controller
                     ]);
                 }
             }
-                $field_visit_number = Cases::where('id', '=', $request->case_id)->first();
-                $remaining = $field_visit_number->field_visit - 1;
-                $field_visit_number->field_visit = $remaining;
-                $field_visit_number->save();
+            $field_visit_number = Cases::where('id', '=', $request->case_id)->first();
+            $remaining = $field_visit_number->field_visit - 1;
+            $field_visit_number->bal_field_visit = $remaining;
+            $field_visit_number->save();
 
             record_updated_flash();
         }
@@ -265,7 +267,7 @@ class CaseController extends Controller
                     $imageName = time() . rand(1000, 10000) . '.' . $ms_update->extension();
                     $ms_update->move(public_path('documents'), $imageName);
 
-                  //  $gn_updates[]['gn_update'] = $imageName;
+                    //  $gn_updates[]['gn_update'] = $imageName;
 
                     MiscellaneousUpdate::create([
                         'case_id' => $request->case_id,
@@ -374,5 +376,10 @@ class CaseController extends Controller
         //$fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
         $ms_updates = MiscellaneousUpdate::where('case_id', $id)->latest()->get();
         return view('admin.cases.show-ms-case-update', compact('ms_updates', 'case'));
+    }
+
+    public function printableCaseAgreement()
+    {
+        return view('admin.agreement.agreement');
     }
 }
