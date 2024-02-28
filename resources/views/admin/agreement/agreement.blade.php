@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -291,7 +291,7 @@
             bottom: 0;
             left: 100%;
         }
-
+     
         .new-text p{
             font-size: 13px;
             font-weight: 600;
@@ -302,7 +302,9 @@
         .new-text .further{
             padding-left: 10px;
         }
-
+        .bold{
+            font-weight: 800;
+        }
         .right-padd{
             padding-left: 30px;
         }
@@ -328,10 +330,14 @@
             content: '';
             position: absolute;
             background: #000;
-            width: 130px;
-            height: 1.5px;
-            bottom: -5px;
-            right: -260%;
+            width: 170px;
+            height: 2px;
+            bottom: -8px;
+            right: -410%;
+        }
+        .january-4{
+            padding-left: 50px;
+            font-weight: 700;
         }
         .another-row{
             margin-top: 20px;
@@ -354,10 +360,13 @@
             padding-left: 110px;
         }
         .sincere h4{
-            padding-left: 35px;
+            padding-left: 47px;
             position: relative;
             margin-top: 75px;
             margin-bottom: 40px;
+            font-size: 20px;
+            font-weight: 700;
+            font-family: "Open Sans", sans-serif;
         }
         .sincere h4::after{
             content: '';
@@ -381,11 +390,11 @@
         .company::after{
             content: '';
             position: absolute;
-            width: 350px;
+            width: 290px;
             height: 1.5px;
             background: #000;
-            bottom: 0;
-            right: 100;
+            bottom: -6px;
+            right: -305%;
         }
         .uen{
             position: relative;
@@ -393,11 +402,11 @@
         .uen::after{
             content: '';
             position: absolute;
-            width: 350px;
+            width: 290px;
             height: 1.5px;
             background: #000;
-            bottom: 0;
-            right: 100;
+            bottom: -6px;
+            right: -305%;
         }
         .nric{
             position: relative;
@@ -405,11 +414,11 @@
         .nric::after{
             content: '';
             position: absolute;
-            width: 350px;
+            width: 290px;
             height: 1.5px;
             background: #000;
-            bottom: 0;
-            right: 100;
+            bottom: -6px;
+            right: -425%;
         }
         .designation{ 
             position: relative;
@@ -417,29 +426,40 @@
         .designation::after{
             content: '';
             position: absolute;
-            width: 350px;
+            width: 290px;
             height: 1.5px;
             background: #000;
-            bottom: 0;
-            right: 100;
+            bottom: -6px;
+            right: -390%;
         }
         .stamp{
             position: relative;
+            font-size: 13px;
         }
         .stamp:after{
             content: '';
             position: absolute;
-            width: 350px;
+            width: 290px;
             height: 1.5px;
             background: #000;
-            bottom: 0;
-            right: 100;
+            bottom: -6px;
+            right: -278%;
         }
         .take-note{
             margin-bottom: 200px;
-            
+        }
+        .please-take{
+            font-size: 17px;
+            font-weight: 500px;
+            font-family: "Work Sans", sans-serif;
+        }
+        .coll-comm{
+            text-decoration: underline;
         }
         .serve{
+            font-size: 15px;
+            font-weight: 600px;
+            font-family: "Inter", sans-serif;
 
         }
 
@@ -604,7 +624,7 @@ Any further enforcement procedures requires the same and will incur additional c
                              </ul>
                         </li>
                         <h6>Collection Commission</h6>
-                        <li>4.  <span class="pl-3">In addition to the above-mentioned fee, the respective <a href="#">Collection Commission</a> as per the debt amount recovered is payable to us, whether the debt is <span class="right-padd">recovered in full or in part, or upon termination or expiry of this Agreement, as whatever the case may be.</span> </span></li>
+                        <li>4.  <span class="pl-3">In addition to the above-mentioned fee, the respective <span class="coll-comm">Collection Commission</span> as per the debt amount recovered is payable to us, whether the debt is <span class="right-padd">recovered in full or in part, or upon termination or expiry of this Agreement, as whatever the case may be.</span> </span></li>
 
                         <h6>Expiration of Agreement</h6>
                         <li>5. <span class="pl-3">For the avoidance of doubt, the criteria for expiration of this Agreement applies severally to individual cases referred to us byyou (in the event that there are <span class="right-padd">multiple cases assigned to us, they would apply to these terms individually of the same). ThisAgreement shall automatically expire and the relevant case file in  </span> <span class="right-padd">our records shall be closed in the following circumstances;</span></span>
@@ -619,9 +639,9 @@ Any further enforcement procedures requires the same and will incur additional c
                         <li>6.  <span class="pl-3">In a situation described at paragraph 5.1 above, any and all unutilized fees and/or enforcement procedures, shall be forfeited upon expiration of the <span class="right-padd"> Agreement.</span></span></li>
                         <li>7.  <span class="pl-3">You acknowledge and agree that all the information and documents provided to us in respect of each and every case is true and accurate to the best of your <span class="right-padd"> knowledge and information.</span></span></li>
                         <li>8.  <span class="pl-3">In the event that the information on the debtor (e.g. the residential address, commercial address and as well as other contact details) provided by you to us <span class="right-padd"> are inaccurate, there shall be no refund of any of the fees whatsoever.</span></span></li>
-                        <li>9.  <span class="pl-3">The contractual agreement between you and us is embodied in this <b>Agreement,</b> the <b>"Terms and Conditions"</b> as annexed hereto</span>
-                            and the <b>Warrant to Act</b> as <span class="right-padd"> attached herewith on Page 3 of 3. Together, these shall be indentified as the <b>"Contract
-                            Documents".</b> Your execution of this Agreement confirms that you </span>  <span class="right-padd"> have read, understood and accepted any and all the terms
+                        <li>9.  <span class="pl-3">The contractual agreement between you and us is embodied in this <span class="bold">Agreement,</span> the <span class="bold">"Terms and Conditions"</span> as annexed hereto</span>
+                            and the <span class="bold">Warrant to Act</span> as <span class="right-padd"> attached herewith on Page 3 of 3. Together, these shall be indentified as the <span class="bold">"Contract
+                            Documents".</span> Your execution of this Agreement confirms that you </span>  <span class="right-padd"> have read, understood and accepted any and all the terms
                             as set out in the Contract Documents.</span></li>
                         <li>10.  <span class="pl-3">As per the terms of this Agreement set out in paragraph 5, this Agreement shall be considered void after the Date of Expiry as</span>
                             stated above unless renewed  <span class="right-within"> within 14 days prior to expiry by both parties.</span></li>
@@ -641,7 +661,7 @@ Any further enforcement procedures requires the same and will incur additional c
                          <p class="enclosed">* Enclosed herein: Warrant to Act, herewith: T&C.</p>
                     </div>
                     <div class="col-md-6 second-box py-4">
-                        <p>I have read, and hereby confirm acceptance of all terms and conditions set-out herein <span class="dated">dated: </span>4-January-2024</p><br>
+                        <p>I have read, and hereby confirm acceptance of all terms and <br>conditions set-out herein <span class="dated">dated: </span> <span class="january-4">4-January-2024</span></p><br>
                         <span class="company">Company/UEN:</span><br>
                         <span class="uen">Company/UEN:</span><br><br>
                         <span class="nric">Name/NRIC</span><br>
@@ -652,7 +672,7 @@ Any further enforcement procedures requires the same and will incur additional c
               </div>
 
               <div class="col-md-12 take-note">
-                    <div class="col-md-3 bg-dark text-white py-2 my-4 d-flex justify-content-center"><span class="">PLEASE TAKE NOTE:</span></div>
+                    <div class="col-md-3 bg-dark text-white py-2 my-4 d-flex justify-content-center"><span class="please-take">PLEASE TAKE NOTE:</span></div>
                     <div class="col-md-12">
                         <ol class="serve">
                             <li class="pl-4">All payments shall be made via CASH/CHEQUE or PAYNOW and this contract will serve as an official receipt.
@@ -660,9 +680,9 @@ Any further enforcement procedures requires the same and will incur additional c
                             <li class="pl-4 pt-2">Cheques should be made to Securre Collection Pte Ltd.</li>
                             <li class="pl-4 pt-2">Bank transfer receipts should be submitted to us for bank transfers. (Upon receiving full payment your case file will be allocated accordingly and an official receipts will be issued via email/letter accordingly.
                             </li>
-                            <li class="pl-4 pt-2">All case updates communications should be via email <a href="#">hello@securre.net</a> or via our App/Website. Login details will be issued to you within 14 working days upon full payment of registration fees.
+                            <li class="pl-4 pt-2">All case updates communications should be via email <span class="coll-comm">hello@securre.net</span> or via our App/Website. Login details will be issued to you within 14 working days upon full payment of registration fees.
                             </li>
-                            <li class="pl-4 pt-2">All communications on payments should be via email to <a href="#">dcms@securre.net</a> (cc: hello@securre.net). 
+                            <li class="pl-4 pt-2">All communications on payments should be via email to <span class="coll-comm">dcms@securre.net</span> (cc: hello@securre.net). 
                             </li>
                             <li class="pl-4 pt-2">1st case update will be within 10-14 working days, subsequently, fortnightly. Any and all updates will be made available in your login 24hrs/day, everyday.
                             </li>
