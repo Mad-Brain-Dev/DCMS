@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\User\UsersController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Agreement\AgreementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::prefix('admin')->as('admin.')->group(function () {
     // USER
     Route::resource('users', UsersController::class);
+    //Agreement
+    Route::get('/agreement', [ AgreementController::class, 'index'])->name('agreement.info');
     // PROFILE
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile.info');
     Route::post('/avatar/update', [UserProfileController::class, 'avatarUpdate'])->name('avatar.update');
