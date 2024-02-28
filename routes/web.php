@@ -35,6 +35,8 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+//show printable case agreement with details
+Route::get('/printable/case/agreement/show', [CaseController::class, 'printableCaseAgreement'])->name('printable.case.agreement');
 //single case show to client
 Route::get('/case/show/to/client', [CaseController::class, 'casesShowtoClient'])->name('case.show.client');
 //case show to client in datatable
