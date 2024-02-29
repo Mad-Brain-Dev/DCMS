@@ -91,7 +91,6 @@ class CaseController extends Controller
         return view('admin.agreement.agreement', compact('case_number', 'client_details'));
         record_created_flash();
     }
-
     /**
      * Display the specified resource.
      */
