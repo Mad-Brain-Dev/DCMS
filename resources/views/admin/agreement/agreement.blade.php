@@ -32,6 +32,7 @@
             <div class="container first-agreement-container">
                 <div class="row hide-print-button">
                         <div class="col-12 d-flex justify-content-end mt-3">
+                            <a href="{{ route('admin.cases.index') }}" class="btn btn-dark mr-2">Back</a>
                             <div class="btn btn-dark" id="document_print" onclick="printDocument()">Print Document</div>
                         </div>
                 </div>
@@ -41,12 +42,10 @@
                             class="debt-text">DEBT COLLECTION AGREEMENT</span>
                     </div>
                 </div>
-
                 <hr>
-
                 <div class="row">
                     <div class="col-6">
-                        <span class="text-to">To: </span><span class="to-margin">{{ $case->name }}</span>
+                        <span class="text-to">To: </span><span class="to-margin">{{ $case_number->name }}</span>
                     </div>
                     <div class="col-6">
                         <div class="col-10 justify-content-end d-flex pt-2 pb-3">
@@ -55,12 +54,10 @@
                         </div>
                         <div class="col-10 justify-content-end d-flex pt-3 pb-2 expiry">
                             <span class="d-f-expiry">Date of Expiry:</span> <span
-                                class="">{{ \Carbon\Carbon::parse($client_details->date_of_expiry)->format('d - F - Y') }}</span>
+                                class="date_of_expiry">{{ \Carbon\Carbon::parse($client_details->date_of_expiry)->format('d - F - Y') }}</span>
                         </div>
                     </div>
                 </div>
-
-
                 <div class="row mt-4">
                     <div class="col-4 ml-3 dear-sir">
                         <h5>Dear Sir / Madam,</h5>
@@ -68,15 +65,13 @@
                     <div class="col-7 ml-2">
                         <div class="row justify-content-end d-flex cases">
                             <div class="col-2 case-num">CASE NUMBER</div>
-                            <div class="col-5 box-1st">{{ $case->case_number }}</div>
+                            <div class="col-5 box-1st">{{ $case_number->case_number }}</div>
                             <div class="w-100"></div>
                             <div class="col-2 case-prov">CASE PROVISION</div>
-                            <div class="col-5 box-2nd">{{ $case->current_status }}</div>
+                            <div class="col-5 box-2nd">{{ $case_number->current_status }}</div>
                         </div>
                     </div>
                 </div>
-
-
                 <div class="row">
                     <div class="ol-start mt-3">
                         <ol class="first-ol">
@@ -103,8 +98,6 @@
                         </ol>
                     </div>
                 </div>
-
-
                 <div class="col-12 information-box">
                     <div class="row">
                         <div class="debt-collection col-md-3">
@@ -128,22 +121,22 @@
                             <div class="col-2 amount-data pl-0 ml-0">
                                 <ul class="pl-1 amount-ul">
                                     <li><i class="fa fa-usd" aria-hidden="true"></i><span
-                                            class="fee">{{ $case->administrative_fee }}</span></li>
+                                            class="fee">{{ $case_number->administrative_fee }}</span></li>
                                     <li><i class="fa fa-usd" aria-hidden="true"></i><span
-                                            class="fee">{{ $case->enforcement_fee }}</span></li>
+                                            class="fee">{{ $case_number->enforcement_fee }}</span></li>
                                     <li><i class="fa fa-usd" aria-hidden="true"></i> <span
-                                            class="fee">{{ $case->professional_fee }}</span></li>
+                                            class="fee">{{ $case_number->professional_fee }}</span></li>
                                     <li>
-                                        <h6>{{ $case->annual_fee }}</h6>
+                                        <h6>{{ $case_number->annual_fee }}</h6>
                                     </li>
                                     <li>
-                                        <h6>{{ $case->skip_tracing_fee }}</h6>
+                                        <h6>{{ $case_number->skip_tracing_fee }}</h6>
                                     </li>
                                     <li>
-                                        <h6>{{ $case->overseas_allowance }}</h6>
+                                        <h6>{{ $case_number->overseas_allowance }}</h6>
                                     </li>
                                     <li>
-                                        <h6>{{ $case->field_visit }}</h6>
+                                        <h6>{{ $case_number->field_visit }}</h6>
                                     </li>
                                 </ul>
                             </div>
@@ -164,7 +157,7 @@
                         <div class="new-informetion col-11 mx-auto">
                             <ul class="d-flex align-items-center pl-0">
                                 <li class="collection-li">Collection Comm.:</li>
-                                <li class="percenteg-li">{{ $case->collection_commission }} <span
+                                <li class="percenteg-li">{{ $case_number->collection_commission }} <span
                                         class="collection_comm_per">%</span></li>
                                 <li class="total-li">Total Fees Payable:<i class="fa fa-usd"
                                         aria-hidden="true"></i><span class="fee-total">1000</span>
@@ -276,15 +269,6 @@
                                     class="ravin-date">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d - F - Y') }}</span></span>
                             <p class="enclosed">* Enclosed herein: Warrant to Act, herewith: T&C.</p>
                         </div>
-                        {{-- <div class="col-md-6 second-box py-4">
-                            <p>I have read, and hereby confirm acceptance of all terms and<br> conditions set-out herein
-                                <span class="dated">dated: </span>{{ $client_details->date_of_agreement }}</p><br>
-                            <span class="company">Company/UEN: </span> {{ $client_details->company_uen }}<br>
-                            <span class="uen">Company/UEN: </span>{{ $client_details->company_uen }}<br><br>
-                            <span class="nric">Name/NRIC: </span>{{ $client_details->company_uen }}<br>
-                            <span class="designation">Designation:</span><br><br>
-                            <span class="stamp">Signature/Stamp:</span><br>
-                        </div> --}}
                         <div class="col-6 second-box py-4">
                             <p>I have read, and hereby confirm acceptance of all terms and <br>conditions set-out herein
                                 <span class="dated">dated: </span> <span
@@ -295,7 +279,7 @@
                             <span class="uen">Company/UEN: </span> <span
                                 class="company_uen">{{ $client_details->company_uen }}</span><br><br>
                             <span class="nric">Name/NRIC: </span> <span
-                                class="company_uen_2">{{ $client_details->company_uen }}</span><br>
+                                class="company_uen_2">{{ $client_details->nric }}</span><br>
                             <span class="designation">Designation:</span><span class="company_uen_2"></span><br><br>
                             <span class="stamp">Signature/Stamp:</span><br>
                         </div>

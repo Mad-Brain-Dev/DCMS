@@ -72,8 +72,11 @@ hr {
 }
 
 .d-f-expiry {
-    margin-right: 41px;
+    margin-right: 15px;
     position: relative;
+}
+.date_of_expiry{
+    /* padding-left: 100px; */
 }
 
 .d-f-expiry::after {
