@@ -3,6 +3,7 @@
     font-size: 14px;
     font-weight: 600;
 }
+
 .logo {
     width: 380px;
     margin-right: 10px;
@@ -27,8 +28,12 @@ hr {
     padding-left: 38px;
 }
 
+.to-margin {
+    margin-left: 260px;
+}
+
 .text-to::after {
-    content: "";
+    content: '';
     position: absolute;
     background: #000;
     height: 1px;
@@ -38,7 +43,7 @@ hr {
 }
 
 .text-to::before {
-    content: "";
+    content: '';
     position: absolute;
     background: #000;
     height: 1px;
@@ -53,31 +58,32 @@ hr {
 }
 
 .d-f-agreement::after {
-    content: "";
+    content: '';
     position: absolute;
     background: #000;
     height: 1px;
-    width: 95%;
+    width: 190px;
     bottom: -5px;
-    left: 92%;
+    left: 140px;
 }
+
 .expiry {
     padding-right: 30px;
 }
 
 .d-f-expiry {
-    margin-right: 30px;
+    margin-right: 41px;
     position: relative;
 }
 
 .d-f-expiry::after {
-    content: "";
+    content: '';
     position: absolute;
     background: #000;
     height: 1px;
-    width: 155%;
+    width: 190px;
     bottom: -5px;
-    left: 107%;
+    left: 108px;
 }
 
 .case-num {
@@ -120,6 +126,7 @@ hr {
     border-right: 3px solid #000;
     border-bottom: 1px solid #000;
     border-left: 1px solid #000;
+    padding-top: 7px;
 }
 
 .box-2nd {
@@ -127,7 +134,9 @@ hr {
     border-right: 3px solid #000;
     border-bottom: 3px solid #000;
     border-left: 1px solid #000;
+    padding-top: 7px;
 }
+
 .dear-sir h5 {
     padding-top: 17px;
     padding-left: 15px;
@@ -135,12 +144,14 @@ hr {
     font-weight: 700;
     font-family: "Open Sans", sans-serif;
 }
+
 .ol-start .first-ol {
     padding-right: 50px;
     font-size: 14px;
     font-weight: 600;
     font-family: "Open Sans", sans-serif;
 }
+
 .ol-start .first-ol h5 {
     padding-top: 30px;
     font-size: 18px;
@@ -153,12 +164,14 @@ hr {
     padding-bottom: 20px;
     list-style: none;
 }
+
 .new-ul-start .provisions h6 {
     padding-left: 30px;
     font-size: 18px;
     font-weight: 700;
     font-family: "Open Sans", sans-serif;
 }
+
 /* provisions ends */
 .information-box {
     border: 3px solid #000;
@@ -170,37 +183,52 @@ hr {
     border-bottom: 2px solid #000;
     border-right: 2px solid #000;
 }
+
 .debt-collection h6 {
     font-size: 17px;
     font-weight: 700;
     font-family: "Open Sans", sans-serif;
 }
+
 .fees-ul {
     font-size: 15px;
 }
+
 .fees-ul li {
     font-size: 14px;
     font-weight: 600;
     font-family: "Open Sans", sans-serif;
 }
+
 .amount-ul li i {
     font-size: 18px;
     font-weight: 600;
     font-family: "Open Sans", sans-serif;
     font-style: italic;
 }
+
+.fee {
+    margin-left: 57px;
+}
+
+.fee-total {
+    margin-left: 70px
+}
+
 .amount-ul li h6 {
     font-size: 15px;
     font-weight: 600;
     font-family: "Open Sans", sans-serif;
     font-style: italic;
 }
+
 .another-ul {
     font-size: 13px;
     font-weight: 500;
     font-family: "Open Sans", sans-serif;
     font-style: italic;
 }
+
 .another-ul .cost {
     font-size: 13px;
     font-weight: 700;
@@ -208,6 +236,7 @@ hr {
     font-style: italic;
     border-bottom: 1.5px solid #000;
 }
+
 .amount-informetion {
     margin-top: 30px;
 }
@@ -224,20 +253,23 @@ hr {
 .amount-data ul li h6 {
     text-align: center;
 }
+
 .amount-data ul li i {
     position: relative;
 }
+
 .amount-data ul li i::after {
-    content: attr(data-content);
+    content: '';
     position: absolute;
     background: #000;
-    width: 120px;
-    height: 1.5px;
-    bottom: 0;
+    width: 130px;
+    height: 1px;
+    bottom: -3px;
     left: 100%;
 }
-.new-informetion {
-}
+
+.new-informetion {}
+
 
 .new-informetion ul li {
     list-style: none;
@@ -250,25 +282,33 @@ hr {
     padding-left: 28px;
 }
 
+.collection-commission-bold {
+    font-weight: 800;
+    text-decoration: underline;
+
+}
+
 .percenteg-li {
-    padding-left: 90px;
+    padding-left: 154px;
 }
 
 .total-li {
     padding-left: 90px;
 }
+
 .total-li i {
     position: relative;
     padding-left: 30px;
     font-style: italic;
 }
+
 .total-li i::after {
-    content: "";
+    content: '';
     position: absolute;
     background: #000;
     width: 180px;
     height: 1.5px;
-    bottom: 0;
+    bottom: -3px;
     left: 100%;
 }
 
@@ -279,6 +319,7 @@ hr {
     font-style: italic;
     padding-left: 35px;
 }
+
 .new-text .further {
     padding-left: 10px;
 }
@@ -286,16 +327,20 @@ hr {
 .right-padd {
     padding-left: 30px;
 }
+
 .right-within {
     padding-left: 38px;
 }
+
 .another-padd {
     padding-left: 38px;
 }
+
 .continue-ul {
     margin-top: 15px;
     padding-left: 150px;
 }
+
 .after-ul {
     margin-top: 15px;
     padding-left: 60px;
@@ -304,43 +349,64 @@ hr {
 .dated {
     position: relative;
 }
+
 .dated::after {
-    content: "";
+    content: '';
     position: absolute;
     background: #000;
-    width: 130px;
-    height: 1.5px;
-    bottom: -5px;
-    right: -260%;
+    width: 170px;
+    height: 2px;
+    bottom: -8px;
+    right: -410%;
 }
+
+.january-4 {
+    padding-left: 34px;
+    font-weight: 700;
+}
+
+.company_uen {
+    padding-left: 85px;
+}
+
+.company_uen_2 {
+    padding-left: 105px;
+}
+
 .another-row {
     margin-top: 20px;
     margin-block: 40px;
 }
+
 .another-row .second-box {
     border: 2px solid #000;
     padding-top: 30px;
     padding-bottom: 30px;
 }
+
 .sincere .director {
     font-size: 14px;
     font-weight: 600;
     font-family: "Open Sans", sans-serif;
 }
+
 .ravin {
     padding-left: 65px;
 }
+
 .ravin-date {
-    padding-left: 110px;
+    padding-left: 86px;
 }
+
 .sincere h4 {
     padding-left: 35px;
     position: relative;
     margin-top: 75px;
     margin-bottom: 40px;
 }
+
 .sincere h4::after {
-    content: "";
+    content: '';
     position: absolute;
     width: 340px;
     height: 1.6px;
@@ -348,6 +414,7 @@ hr {
     top: -15px;
     left: 10px;
 }
+
 .sincere .enclosed {
     font-size: 13px;
     font-weight: 500;
@@ -355,70 +422,107 @@ hr {
     font-style: italic;
     padding-top: 20px;
 }
+
 .company {
     position: relative;
 }
+
 .company::after {
-    content: "";
+    content: '';
     position: absolute;
-    width: 350px;
+    width: 290px;
     height: 1.5px;
     background: #000;
-    bottom: 0;
-    right: 100;
+    bottom: -1px;
+    right: -305px;
 }
+
 .uen {
     position: relative;
 }
+
 .uen::after {
-    content: "";
+    content: '';
     position: absolute;
-    width: 350px;
+    width: 290px;
     height: 1.5px;
     background: #000;
-    bottom: 0;
-    right: 100;
+    bottom: -1px;
+    right: -305px;
 }
+
+.location{
+    display: none;
+}
+.location-for-second-page{
+    display: none;
+}
+
 .nric {
     position: relative;
 }
+
 .nric::after {
-    content: "";
+    content: '';
     position: absolute;
-    width: 350px;
+    width: 290px;
     height: 1.5px;
     background: #000;
-    bottom: 0;
-    right: 100;
+    bottom: -1px;
+    right: -325px;
 }
+
 .designation {
     position: relative;
 }
+
 .designation::after {
-    content: "";
+    content: '';
     position: absolute;
-    width: 350px;
+    width: 290px;
     height: 1.5px;
     background: #000;
-    bottom: 0;
-    right: 100;
+    bottom: -1px;
+    right: -326px;
 }
+
 .stamp {
     position: relative;
+    font-size: 13px;
 }
+
 .stamp:after {
-    content: "";
+    content: '';
     position: absolute;
-    width: 350px;
+    width: 290px;
     height: 1.5px;
-    background: #000;
+    border: 1px dotted #000000;
+    bottom: -6px;
+    right: -302px;
+}
+
+.collection_comm_per {
+    padding-left: 41px;
+}
+
+.collection-li {
+    position: relative;
+}
+
+.collection-li::after {
+    position: absolute;
+    content: '';
+    height: 1px;
+    width: 100px;
+    background: #000000;
+    right: -210px;
     bottom: 0;
-    right: 100;
+
 }
-.take-note {
-    margin-bottom: 200px;
-}
-.serve {
+
+.hello_securre_mail,
+.hello_securre_web {
+    text-decoration: underline;
 }
 
 /*  */

@@ -1,0 +1,542 @@
+.first-agreement-container {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.logo {
+    width: 380px;
+    margin-right: 10px;
+}
+
+.debt-text {
+    margin-left: 20px;
+    font-size: 45px;
+    font-weight: 500;
+    font-family: "Barlow", sans-serif;
+    margin-top: -10px;
+}
+
+hr {
+    background: #000;
+    padding-top: 2px;
+    transform: translateY(-21px);
+}
+
+.text-to {
+    position: relative;
+    padding-left: 38px;
+}
+
+.to-margin {
+    margin-left: 180px;
+}
+
+.text-to::after {
+    content: '';
+    position: absolute;
+    background: #000;
+    height: 1px;
+    width: 400px;
+    bottom: -7px;
+    left: 78px;
+}
+
+.text-to::before {
+    content: '';
+    position: absolute;
+    background: #000;
+    height: 1px;
+    width: 400px;
+    bottom: -57px;
+    left: 78px;
+}
+.logo{
+    width: 200px;
+}
+.d-f-agreement {
+    /* padding-left: 20px; */
+    position: relative;
+}
+.date_of_agreement_top{
+    margin-left: 10px;
+}
+
+.d-f-agreement::after {
+    content: '';
+    position: absolute;
+    background: #000;
+    height: 1px;
+    width: 190px;
+    bottom: -5px;
+    left: 140px;
+}
+
+.expiry {
+    padding-right: 0;
+}
+.location{
+    display: block;
+    margin-top: 10px;
+    font-weight: 700;
+}
+.location-for-second-page{
+    padding-top: 150px;
+    font-weight: 700;
+    display: block;
+}
+.d-f-expiry {
+    margin-right: 55px;
+    position: relative;
+}
+
+.d-f-expiry::after {
+    content: '';
+    position: absolute;
+    background: #000;
+    height: 1px;
+    width: 190px;
+    bottom: -5px;
+    left: 108px;
+}
+
+.case-num {
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+    text-align: center;
+    color: #ffff;
+    background: #000;
+    font-weight: 600;
+    padding-left: 0;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-right: 0;
+    border-bottom: none;
+    border-top: 3px solid #000;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-left: 3px solid #000;
+}
+
+.case-prov {
+    font-family: "Open Sans", sans-serif;
+    text-align: center;
+    font-size: 13px;
+    color: #ffff;
+    background: #000;
+    font-weight: 600;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    border-bottom: 3px solid #000;
+    border-left: 3px solid #000;
+}
+
+.box-1st {
+    border-top: 3px solid #000;
+    border-right: 3px solid #000;
+    border-bottom: 1px solid #000;
+    border-left: 1px solid #000;
+    padding-top: 7px;
+}
+
+.box-2nd {
+    border-top: 1px solid #000;
+    border-right: 3px solid #000;
+    border-bottom: 3px solid #000;
+    border-left: 1px solid #000;
+    padding-top: 7px;
+}
+
+.dear-sir h5 {
+    padding-top: 17px;
+    padding-left: 15px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: "Open Sans", sans-serif;
+}
+
+.ol-start .first-ol {
+    padding-right: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Open Sans", sans-serif;
+}
+
+.ol-start .first-ol h5 {
+    padding-top: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: "Open Sans", sans-serif;
+}
+
+/* provisions start */
+.new-ul-start .provisions li {
+    padding-bottom: 20px;
+    list-style: none;
+}
+
+.new-ul-start .provisions h6 {
+    padding-left: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: "Open Sans", sans-serif;
+}
+
+/* provisions ends */
+.information-box {
+    border: 3px solid #000;
+}
+
+.debt-collection {
+    padding-top: 5px;
+    text-align: center;
+    border-bottom: 2px solid #000;
+    border-right: 2px solid #000;
+}
+
+.debt-collection h6 {
+    font-size: 17px;
+    font-weight: 700;
+    font-family: "Open Sans", sans-serif;
+}
+
+.fees-ul {
+    font-size: 15px;
+}
+
+.fees-ul li {
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Open Sans", sans-serif;
+}
+
+.amount-ul li i {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: "Open Sans", sans-serif;
+    font-style: italic;
+}
+
+.fee {
+    margin-left: 57px;
+}
+
+.fee-total {
+    margin-left: 70px
+}
+
+.amount-ul li h6 {
+    font-size: 15px;
+    font-weight: 600;
+    font-family: "Open Sans", sans-serif;
+    font-style: italic;
+}
+
+.another-ul {
+    font-size: 13px;
+    font-weight: 500;
+    font-family: "Open Sans", sans-serif;
+    font-style: italic;
+}
+
+.another-ul .cost {
+    font-size: 13px;
+    font-weight: 700;
+    font-family: "Open Sans", sans-serif;
+    font-style: italic;
+    border-bottom: 1.5px solid #000;
+}
+
+.amount-informetion {
+    margin-top: 30px;
+}
+
+.amount-informetion ul li {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.amount-data ul {
+    font-size: 15px;
+}
+
+.amount-data ul li h6 {
+    text-align: center;
+}
+
+.amount-data ul li i {
+    position: relative;
+}
+
+.amount-data ul li i::after {
+    content: '';
+    position: absolute;
+    background: #000;
+    width: 130px;
+    height: 1.5px;
+    bottom: -3px;
+    left: 100%;
+}
+
+.new-informetion {}
+
+
+.new-informetion ul li {
+    list-style: none;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Open Sans", sans-serif;
+}
+
+.collection-li {
+    padding-left: 28px;
+}
+
+.collection-commission-bold {
+    font-weight: 800;
+    text-decoration: underline;
+
+}
+
+.percenteg-li {
+    padding-left: 154px;
+}
+
+.total-li {
+    padding-left: 90px;
+}
+
+.total-li i {
+    position: relative;
+    padding-left: 30px;
+    font-style: italic;
+}
+
+.total-li i::after {
+    content: '';
+    position: absolute;
+    background: #000;
+    width: 180px;
+    height: 1.5px;
+    bottom: -3px;
+    left: 100%;
+}
+
+.new-text p {
+    font-size: 13px;
+    font-weight: 600;
+    font-family: "Open Sans", sans-serif;
+    font-style: italic;
+    padding-left: 35px;
+}
+
+.new-text .further {
+    padding-left: 10px;
+}
+
+.right-padd {
+    padding-left: 30px;
+}
+
+.right-within {
+    padding-left: 38px;
+}
+
+.another-padd {
+    padding-left: 38px;
+}
+
+.continue-ul {
+    margin-top: 15px;
+    padding-left: 150px;
+}
+
+.after-ul {
+    margin-top: 15px;
+    padding-left: 60px;
+}
+
+.dated {
+    position: relative;
+}
+
+.dated::after {
+    content: '';
+    position: absolute;
+    background: #000;
+    width: 170px;
+    height: 2px;
+    bottom: -8px;
+    right: -410%;
+}
+
+.january-4 {
+    padding-left: 34px;
+    font-weight: 700;
+}
+
+.company_uen {
+    padding-left: 85px;
+}
+
+.company_uen_2 {
+    padding-left: 105px;
+}
+
+.another-row {
+    margin-top: 20px;
+    margin-block: 40px;
+}
+
+.another-row .second-box {
+    border: 2px solid #000;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.sincere .director {
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Open Sans", sans-serif;
+}
+
+.ravin {
+    padding-left: 65px;
+}
+
+.ravin-date {
+    padding-left: 86px;
+}
+
+.sincere h4 {
+    padding-left: 35px;
+    position: relative;
+    margin-top: 75px;
+    margin-bottom: 40px;
+}
+
+.sincere h4::after {
+    content: '';
+    position: absolute;
+    width: 340px;
+    height: 1.6px;
+    background: #000;
+    top: -15px;
+    left: 10px;
+}
+
+.sincere .enclosed {
+    font-size: 13px;
+    font-weight: 500;
+    font-family: "Open Sans", sans-serif;
+    font-style: italic;
+    padding-top: 20px;
+}
+
+.company {
+    position: relative;
+}
+
+.company::after {
+    content: '';
+    position: absolute;
+    width: 290px;
+    height: 1.5px;
+    background: #000;
+    bottom: -1px;
+    right: -305px;
+}
+
+.uen {
+    position: relative;
+}
+
+.uen::after {
+    content: '';
+    position: absolute;
+    width: 290px;
+    height: 1.5px;
+    background: #000;
+    bottom: -1px;
+    right: -305px;
+}
+
+.nric {
+    position: relative;
+}
+
+.nric::after {
+    content: '';
+    position: absolute;
+    width: 290px;
+    height: 1.5px;
+    background: #000;
+    bottom: -1px;
+    right: -325px;
+}
+
+.designation {
+    position: relative;
+}
+
+.designation::after {
+    content: '';
+    position: absolute;
+    width: 290px;
+    height: 1.5px;
+    background: #000;
+    bottom: -1px;
+    right: -326px;
+}
+
+.stamp {
+    position: relative;
+    font-size: 13px;
+}
+
+.stamp:after {
+    content: '';
+    position: absolute;
+    width: 290px;
+    height: 1.5px;
+    border: 1px dotted #000000;
+    bottom: -6px;
+    right: -302px;
+}
+
+.collection_comm_per {
+    padding-left: 41px;
+}
+
+.collection-li {
+    position: relative;
+    padding-left: 0px;
+    margin-left: -10px;
+}
+
+.collection-li::after {
+    position: absolute;
+    content: '';
+    height: 1px;
+    width: 100px;
+    background: #000000;
+    right: -210px;
+    bottom: 0;
+
+}
+
+.hello_securre_mail,
+.hello_securre_web {
+    text-decoration: underline;
+}
+
+/*  */
+.warrant-act h1 {
+    font-size: 110px;
+    font-weight: 400;
+    font-family: "Playfair Display", serif;
+}

@@ -20,489 +20,8 @@
     <title>Hello, world!</title>
 
 
-    <style>
-        .first-row {}
-
-        .first-agreement-container {
-            font-family: "Open Sans", sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .logo {
-            width: 380px;
-            margin-right: 10px;
-        }
-
-        .debt-text {
-            margin-left: 20px;
-            padding-top: 24px;
-            font-size: 45px;
-            font-weight: 500;
-            font-family: "Barlow", sans-serif;
-        }
-
-        hr {
-            background: #000;
-            padding-top: 2px;
-            transform: translateY(-21px);
-        }
-
-        .text-to {
-            position: relative;
-            padding-left: 38px;
-        }
-        .to-margin{
-            margin-left: 260px;
-        }
-
-        .text-to::after {
-            content: '';
-            position: absolute;
-            background: #000;
-            height: 1px;
-            width: 595px;
-            bottom: -7px;
-            left: 78px;
-        }
-
-        .text-to::before {
-            content: '';
-            position: absolute;
-            background: #000;
-            height: 1px;
-            width: 595px;
-            bottom: -57px;
-            left: 78px;
-        }
-
-        .d-f-agreement {
-            padding-right: 25px;
-            position: relative;
-        }
-
-        .d-f-agreement::after {
-            content: '';
-            position: absolute;
-            background: #000;
-            height: 1px;
-            width: 95%;
-            bottom: -5px;
-            left: 92%;
-        }
-
-        .expiry {
-            padding-right: 30px;
-        }
-
-        .d-f-expiry {
-            margin-right: 30px;
-            position: relative;
-        }
-
-        .d-f-expiry::after {
-            content: '';
-            position: absolute;
-            background: #000;
-            height: 1px;
-            width: 155%;
-            bottom: -5px;
-            left: 107%;
-        }
-
-        .case-num {
-            font-family: "Open Sans", sans-serif;
-            font-size: 13px;
-            text-align: center;
-            color: #ffff;
-            background: #000;
-            font-weight: 600;
-            padding-left: 0;
-            padding-top: 7px;
-            padding-bottom: 7px;
-            padding-right: 0;
-            border-bottom: none;
-            border-top: 3px solid #000;
-            border-right: 1px solid #000;
-            border-bottom: 1px solid #000;
-            border-left: 3px solid #000;
-        }
-
-        .case-prov {
-            font-family: "Open Sans", sans-serif;
-            text-align: center;
-            font-size: 13px;
-            color: #ffff;
-            background: #000;
-            font-weight: 600;
-            padding-left: 0;
-            padding-right: 0;
-            padding-top: 7px;
-            padding-bottom: 7px;
-            border-top: 1px solid #000;
-            border-right: 1px solid #000;
-            border-bottom: 3px solid #000;
-            border-left: 3px solid #000;
-        }
-
-        .box-1st {
-            border-top: 3px solid #000;
-            border-right: 3px solid #000;
-            border-bottom: 1px solid #000;
-            border-left: 1px solid #000;
-            padding-top: 7px;
-        }
-
-        .box-2nd {
-            border-top: 1px solid #000;
-            border-right: 3px solid #000;
-            border-bottom: 3px solid #000;
-            border-left: 1px solid #000;
-            padding-top: 7px;
-        }
-
-        .dear-sir h5 {
-            padding-top: 17px;
-            padding-left: 15px;
-            font-size: 15px;
-            font-weight: 700;
-            font-family: "Open Sans", sans-serif;
-        }
-
-        .ol-start .first-ol {
-            padding-right: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            font-family: "Open Sans", sans-serif;
-        }
-
-        .ol-start .first-ol h5 {
-            padding-top: 30px;
-            font-size: 18px;
-            font-weight: 700;
-            font-family: "Open Sans", sans-serif;
-        }
-
-        /* provisions start */
-        .new-ul-start .provisions li {
-            padding-bottom: 20px;
-            list-style: none;
-        }
-
-        .new-ul-start .provisions h6 {
-            padding-left: 30px;
-            font-size: 18px;
-            font-weight: 700;
-            font-family: "Open Sans", sans-serif;
-        }
-
-        /* provisions ends */
-        .information-box {
-            border: 3px solid #000;
-        }
-
-        .debt-collection {
-            padding-top: 5px;
-            text-align: center;
-            border-bottom: 2px solid #000;
-            border-right: 2px solid #000;
-        }
-
-        .debt-collection h6 {
-            font-size: 17px;
-            font-weight: 700;
-            font-family: "Open Sans", sans-serif;
-        }
-
-        .fees-ul {
-            font-size: 15px;
-        }
-
-        .fees-ul li {
-            font-size: 14px;
-            font-weight: 600;
-            font-family: "Open Sans", sans-serif;
-        }
-
-        .amount-ul li i {
-            font-size: 18px;
-            font-weight: 600;
-            font-family: "Open Sans", sans-serif;
-            font-style: italic;
-        }
-        .fee{
-            margin-left: 57px;
-        }
-        .fee-total{
-            margin-left: 70px
-        }
-
-        .amount-ul li h6 {
-            font-size: 15px;
-            font-weight: 600;
-            font-family: "Open Sans", sans-serif;
-            font-style: italic;
-        }
-
-        .another-ul {
-            font-size: 13px;
-            font-weight: 500;
-            font-family: "Open Sans", sans-serif;
-            font-style: italic;
-        }
-
-        .another-ul .cost {
-            font-size: 13px;
-            font-weight: 700;
-            font-family: "Open Sans", sans-serif;
-            font-style: italic;
-            border-bottom: 1.5px solid #000;
-        }
-
-        .amount-informetion {
-            margin-top: 30px;
-        }
-
-        .amount-informetion ul li {
-            list-style: none;
-            margin-top: 15px;
-        }
-
-        .amount-data ul {
-            font-size: 15px;
-        }
-
-        .amount-data ul li h6 {
-            text-align: center;
-        }
-
-        .amount-data ul li i {
-            position: relative;
-        }
-
-        .amount-data ul li i::after {
-            content: '';
-            position: absolute;
-            background: #000;
-            width: 130px;
-            height: 1.5px;
-            bottom: 0;
-            left: 100%;
-        }
-
-        .new-informetion {}
-
-        .new-informetion ul li {
-            list-style: none;
-            font-size: 14px;
-            font-weight: 600;
-            font-family: "Open Sans", sans-serif;
-        }
-
-        .collection-li {
-            padding-left: 28px;
-        }
-
-        .percenteg-li {
-            padding-left: 90px;
-        }
-
-        .total-li {
-            padding-left: 90px;
-        }
-
-        .total-li i {
-            position: relative;
-            padding-left: 30px;
-            font-style: italic;
-        }
-
-        .total-li i::after {
-            content: '';
-            position: absolute;
-            background: #000;
-            width: 180px;
-            height: 1.5px;
-            bottom: 0;
-            left: 100%;
-        }
-
-        .new-text p {
-            font-size: 13px;
-            font-weight: 600;
-            font-family: "Open Sans", sans-serif;
-            font-style: italic;
-            padding-left: 35px;
-        }
-
-        .new-text .further {
-            padding-left: 10px;
-        }
-
-        .right-padd {
-            padding-left: 30px;
-        }
-
-        .right-within {
-            padding-left: 38px;
-        }
-
-        .another-padd {
-            padding-left: 38px;
-        }
-
-        .continue-ul {
-            margin-top: 15px;
-            padding-left: 150px;
-        }
-
-        .after-ul {
-            margin-top: 15px;
-            padding-left: 60px;
-        }
-
-        .dated{
-            position: relative;
-        }
-        .dated::after{
-            content: '';
-            position: absolute;
-            background: #000;
-            width: 170px;
-            height: 2px;
-            bottom: -8px;
-            right: -410%;
-        }
-        .january-4{
-            padding-left: 50px;
-            font-weight: 700;
-        }
-        .company_uen{
-            padding-left: 85px;
-        }
-        .company_uen_2{
-            padding-left: 105px;
-        }
-        .another-row {
-            margin-top: 20px;
-            margin-block: 40px;
-        }
-
-        .another-row .second-box {
-            border: 2px solid #000;
-            padding-top: 30px;
-            padding-bottom: 30px;
-        }
-
-        .sincere .director {
-            font-size: 14px;
-            font-weight: 600;
-            font-family: "Open Sans", sans-serif;
-        }
-
-        .ravin {
-            padding-left: 65px;
-        }
-
-        .ravin-date {
-            padding-left: 110px;
-        }
-
-        .sincere h4 {
-            padding-left: 35px;
-            position: relative;
-            margin-top: 75px;
-            margin-bottom: 40px;
-        }
-
-        .sincere h4::after {
-            content: '';
-            position: absolute;
-            width: 340px;
-            height: 1.6px;
-            background: #000;
-            top: -15px;
-            left: 10px;
-        }
-
-        .sincere .enclosed {
-            font-size: 13px;
-            font-weight: 500;
-            font-family: "Open Sans", sans-serif;
-            font-style: italic;
-            padding-top: 20px;
-        }
-
-        .company{
-            position: relative;
-        }
-        .company::after{
-            content: '';
-            position: absolute;
-            width: 290px;
-            height: 1.5px;
-            background: #000;
-            bottom: -6px;
-            right: -305px;
-        }
-        .uen{
-            position: relative;
-        }
-        .uen::after{
-            content: '';
-            position: absolute;
-            width: 290px;
-            height: 1.5px;
-            background: #000;
-            bottom: -6px;
-            right: -305px;
-        }
-        .nric{
-            position: relative;
-        }
-        .nric::after{
-            content: '';
-            position: absolute;
-            width: 290px;
-            height: 1.5px;
-            background: #000;
-            bottom: -6px;
-            right: -325px;
-        }
-        .designation{
-            position: relative;
-        }
-        .designation::after{
-            content: '';
-            position: absolute;
-            width: 290px;
-            height: 1.5px;
-            background: #000;
-            bottom: -6px;
-            right: -326px;
-        }
-        .stamp{
-            position: relative;
-            font-size: 13px;
-        }
-        .stamp:after{
-            content: '';
-            position: absolute;
-            width: 290px;
-            height: 1.5px;
-            background: #000;
-            bottom: -6px;
-            right: -302px;
-        }
-
-
-        /*  */
-        .warrant-act h1 {
-            font-size: 110px;
-            font-weight: 400;
-            font-family: "Playfair Display", serif;
-        }
-    </style>
+   <link rel="stylesheet" href="{{ asset('admin/css/agreement-print-screen.css') }}" media="screen">
+   <link rel="stylesheet" href="{{ asset('admin/css/agreement-print.css') }}" media="print">
 
 </head>
 
@@ -521,33 +40,33 @@
                 <hr>
 
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-6">
                         <span class="text-to">To: </span><span class="to-margin">{{ $case->name }}</span>
                     </div>
-                    <div class="col-md-5">
-                        <div class="col-md-10 justify-content-end d-flex pt-2 pb-3">
+                    <div class="col-6">
+                        <div class="col-10 justify-content-end d-flex pt-2 pb-3">
                             <span class="d-f-agreement">Date of
-                                Agreement:</span><span>{{ $client_details->date_of_agreement }}</span>
+                                Agreement:</span><span class="date_of_agreement_top">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d - F - Y') }}</span>
                         </div>
-                        <div class="col-md-10 justify-content-end d-flex pt-3 pb-2 expiry">
+                        <div class="col-10 justify-content-end d-flex pt-3 pb-2 expiry">
                             <span class="d-f-expiry">Date of Expiry:</span> <span
-                                class="">{{ $client_details->date_of_expiry }}</span>
+                                class="">{{ \Carbon\Carbon::parse($client_details->date_of_expiry)->format('d - F - Y') }}</span>
                         </div>
                     </div>
                 </div>
 
 
                 <div class="row mt-4">
-                    <div class="col-md-4 ml-3 dear-sir">
+                    <div class="col-4 ml-3 dear-sir">
                         <h5>Dear Sir / Madam,</h5>
                     </div>
-                    <div class="col-md-7 ml-2">
+                    <div class="col-7 ml-2">
                         <div class="row justify-content-end d-flex cases">
-                            <div class="col-md-2 case-num">CASE NUMBER</div>
-                            <div class="col-md-5 box-1st">{{ $case->case_number }}</div>
+                            <div class="col-2 case-num">CASE NUMBER</div>
+                            <div class="col-5 box-1st">{{ $case->case_number }}</div>
                             <div class="w-100"></div>
-                            <div class="col-md-2 case-prov">CASE PROVISION</div>
-                            <div class="col-md-5 box-2nd">{{ $case->current_status }}</div>
+                            <div class="col-2 case-prov">CASE PROVISION</div>
+                            <div class="col-5 box-2nd">{{ $case->current_status }}</div>
                         </div>
                     </div>
                 </div>
@@ -581,7 +100,7 @@
                 </div>
 
 
-                <div class="col-md-12 information-box">
+                <div class="col-12 information-box">
                     <div class="row">
                         <div class="debt-collection col-md-3">
                             <h6>2.1 DEBT COLLECTION FEES</h6>
@@ -590,7 +109,7 @@
 
                     <div class="amount-informetion col-md-11 mx-auto">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-3">
                                 <ul class="pl-3 fees-ul">
                                     <li>Administrative Fee:</li>
                                     <li>Enforcement Fee:</li>
@@ -601,12 +120,14 @@
                                     <li>Number of Visits:</li>
                                 </ul>
                             </div>
-                            <div class="col-md-2 amount-data pl-0 ml-0">
+                            <div class="col-2 amount-data pl-0 ml-0">
                                 <ul class="pl-1 amount-ul">
-                                    <li><i class="fa fa-usd" aria-hidden="true"></i><span class="fee">{{ $case->administrative_fee }}</span></li>
+                                    <li><i class="fa fa-usd" aria-hidden="true"></i><span
+                                            class="fee">{{ $case->administrative_fee }}</span></li>
                                     <li><i class="fa fa-usd" aria-hidden="true"></i><span
                                             class="fee">{{ $case->enforcement_fee }}</span></li>
-                                    <li><i class="fa fa-usd" aria-hidden="true"></i> <span class="fee">{{ $case->professional_fee }}</span></li>
+                                    <li><i class="fa fa-usd" aria-hidden="true"></i> <span
+                                            class="fee">{{ $case->professional_fee }}</span></li>
                                     <li>
                                         <h6>{{ $case->annual_fee }}</h6>
                                     </li>
@@ -621,7 +142,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-7">
                                 <ul class="pl-0 another-ul">
                                     <li>(one-time, non-refundable)</li>
                                     <li>(for field engagement, in teams of 2-3 agents / <span class="cost">cost per
@@ -635,18 +156,20 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="new-informetion col-md-11 mx-auto">
+                        <div class="new-informetion col-11 mx-auto">
                             <ul class="d-flex align-items-center pl-0">
                                 <li class="collection-li">Collection Comm.:</li>
-                                <li class="percenteg-li">{{ $case->collection_commission }} %</li>
-                                <li class="total-li">Total Fees Payable:<i class="fa fa-usd" aria-hidden="true"></i><span class="fee-total">1000</span>
+                                <li class="percenteg-li">{{ $case->collection_commission }} <span
+                                        class="collection_comm_per">%</span></li>
+                                <li class="total-li">Total Fees Payable:<i class="fa fa-usd"
+                                        aria-hidden="true"></i><span class="fee-total">1000</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="new-text col-md-12 px-4">
+                        <div class="new-text col-12 px-4">
                             <p>
                                 * The above-mentioned fees are on an upfront payable fee structure for case enforcement,
                                 only executable upon clearance of payment.<br><span class="further">
@@ -675,8 +198,9 @@
                                 </ul>
                             </li>
                             <h6>Collection Commission</h6>
-                            <li>4. <span class="pl-3">In addition to the above-mentioned fee, the respective <a
-                                        href="#">Collection Commission</a> as per the debt amount recovered is
+                            <li>4. <span class="pl-3">In addition to the above-mentioned fee, the respective <span
+                                        class="collection-commission-bold">Collection Commission</span> as per the debt
+                                    amount recovered is
                                     payable to us, whether the debt is <span class="right-padd">recovered in full or in
                                         part, or upon termination or expiry of this Agreement, as whatever the case may
                                         be.</span> </span></li>
@@ -689,6 +213,9 @@
                                         automatically expire and the relevant case file in </span> <span
                                         class="right-padd">our records shall be closed in the following
                                         circumstances;</span></span>
+
+                                        <p class="location">Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098
+                                            Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net</p>
 
                                 <ul class="after-ul">
                                     <li>5.1 <span class="pl-3">If after 90 days from the date of this Agreement, we
@@ -707,7 +234,8 @@
                             <li>6. <span class="pl-3">In a situation described at paragraph 5.1 above, any and all
                                     unutilized fees and/or enforcement procedures, shall be forfeited upon expiration of
                                     the <span class="right-padd"> Agreement.</span></span></li>
-                            <li>7. <span class="pl-3">You acknowledge and agree that all the information and documents
+                            <li>7. <span class="pl-3">You acknowledge and agree that all the information and
+                                    documents
                                     provided to us in respect of each and every case is true and accurate to the best of
                                     your <span class="right-padd"> knowledge and information.</span></span></li>
                             <li>8. <span class="pl-3">In the event that the information on the debtor (e.g. the
@@ -732,14 +260,15 @@
                 </div>
 
 
-                <div class="col-md-12">
+                <div class="col-12">
                     <div class="row another-row">
-                        <div class="col-md-6 sincere py-4">
+                        <div class="col-6 sincere py-4">
                             <span class="sincerely">Sincerely,</span>
                             <h4>Securre Collection Pte Ltd</h4>
                             <span class="director">Name: <span class="ravin">Ravin Raj G.(Ops
                                     Director)</span></span><br>
-                            <span class="director">Date: <span class="ravin-date">{{ $client_details->date_of_agreement }}</span></span>
+                            <span class="director">Date: <span
+                                    class="ravin-date">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d - F - Y') }}</span></span>
                             <p class="enclosed">* Enclosed herein: Warrant to Act, herewith: T&C.</p>
                         </div>
                         {{-- <div class="col-md-6 second-box py-4">
@@ -751,21 +280,27 @@
                             <span class="designation">Designation:</span><br><br>
                             <span class="stamp">Signature/Stamp:</span><br>
                         </div> --}}
-                        <div class="col-md-6 second-box py-4">
-                            <p>I have read, and hereby confirm acceptance of all terms and <br>conditions set-out herein <span class="dated">dated: </span> <span class="january-4">{{ $client_details->date_of_agreement }}</span></p><br>
-                            <span class="company">Company/UEN: </span> <span class="company_uen">{{ $client_details->company_uen }}</span><br>
-                            <span class="uen">Company/UEN: </span> <span class="company_uen">{{ $client_details->company_uen }}</span><br><br>
-                            <span class="nric">Name/NRIC: </span>  <span class="company_uen_2">{{ $client_details->company_uen }}</span><br>
-                            <span class="designation">Designation:</span><span class="company_uen_2">{{ $client_details->company_uen }}</span><br><br>
+                        <div class="col-6 second-box py-4">
+                            <p>I have read, and hereby confirm acceptance of all terms and <br>conditions set-out herein
+                                <span class="dated">dated: </span> <span
+                                    class="january-4">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d - F - Y') }}</span>
+                            </p><br>
+                            <span class="company">Company/UEN: </span> <span
+                                class="company_uen">{{ $client_details->company_uen }}</span><br>
+                            <span class="uen">Company/UEN: </span> <span
+                                class="company_uen">{{ $client_details->company_uen }}</span><br><br>
+                            <span class="nric">Name/NRIC: </span> <span
+                                class="company_uen_2">{{ $client_details->company_uen }}</span><br>
+                            <span class="designation">Designation:</span><span class="company_uen_2"></span><br><br>
                             <span class="stamp">Signature/Stamp:</span><br>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-12 take-note">
-                    <div class="col-md-3 bg-dark text-white py-2 my-4 d-flex justify-content-center"><span
+                <div class="col-12 take-note">
+                    <div class="col-3 bg-dark text-white py-2 my-4 d-flex justify-content-center"><span
                             class="">PLEASE TAKE NOTE:</span></div>
-                    <div class="col-md-12">
+                    <div class="col-12">
                         <ol class="serve">
                             <li class="pl-4">All payments shall be made via CASH/CHEQUE or PAYNOW and this contract
                                 will serve as an official receipt.
@@ -775,12 +310,13 @@
                                 (Upon receiving full payment your case file will be allocated accordingly and an
                                 official receipts will be issued via email/letter accordingly.
                             </li>
-                            <li class="pl-4 pt-2">All case updates communications should be via email <a
-                                    href="#">hello@securre.net</a> or via our App/Website. Login details will be
+                            <li class="pl-4 pt-2">All case updates communications should be via email <span
+                                    class="hello_securre_mail">hello@securre.net</span> or via our App/Website. Login
+                                details will be
                                 issued to you within 14 working days upon full payment of registration fees.
                             </li>
-                            <li class="pl-4 pt-2">All communications on payments should be via email to <a
-                                    href="#">dcms@securre.net</a> (cc: hello@securre.net).
+                            <li class="pl-4 pt-2">All communications on payments should be via email to <span
+                                    class="hello_securre_web">dcms@securre.net</span> (cc: hello@securre.net).
                             </li>
                             <li class="pl-4 pt-2">1st case update will be within 10-14 working days, subsequently,
                                 fortnightly. Any and all updates will be made available in your login 24hrs/day,
@@ -789,7 +325,12 @@
                         </ol>
                     </div>
                 </div>
-
+               <div class="row">
+                <div class="col-12">
+                    <p class="location-for-second-page">Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098
+                        Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net</p>
+                </div>
+               </div>
             </div>
         </div>
         </div>
