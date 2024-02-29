@@ -4,6 +4,10 @@
     font-weight: 600;
 }
 
+.hide-print-button{
+    display: none;
+}
+
 .logo {
     width: 380px;
     margin-right: 10px;

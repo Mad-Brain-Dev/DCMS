@@ -30,6 +30,11 @@
     <section>
         <div class="">
             <div class="container first-agreement-container">
+                <div class="row hide-print-button">
+                        <div class="col-12 d-flex justify-content-end mt-3">
+                            <div class="btn btn-dark" id="document_print" onclick="printDocument()">Print Document</div>
+                        </div>
+                </div>
                 <div class="row first-row mt-5 justify-content-center">
                     <div class=" align-items-start d-flex">
                         <img class="logo" src="{{ asset('images/logo.jpg') }}" alt=""><span
@@ -372,6 +377,11 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script>
+        function printDocument(){
+            window.print();
+        }
     </script>
 </body>
 
