@@ -36,7 +36,7 @@
                             <div class="btn btn-dark" id="document_print" onclick="printDocument()">Print Document</div>
                         </div>
                 </div>
-                <div class="row first-row mt-5 justify-content-center">
+                <div class="row first-row justify-content-center">
                     <div class=" align-items-start d-flex">
                         <img class="logo" src="{{ asset('images/logo.jpg') }}" alt=""><span
                             class="debt-text">DEBT COLLECTION AGREEMENT</span>
@@ -45,7 +45,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-6">
-                        <span class="text-to">To: </span><span class="to-margin">{{ $case_number->name }}</span>
+                        <span class="text-to">To: </span><span class="to-margin">{{ $case_number->client->name }}</span>
                     </div>
                     <div class="col-6">
                         <div class="col-10 d-flex pt-2 pb-3">

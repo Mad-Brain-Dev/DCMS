@@ -64,13 +64,13 @@ hr {
 }
 .date_of_agreement_top{
     position: absolute;
-    right: -15px;
+    right: -17px;
     top: 7px;
 }
 .date_of_expiry {
     position: absolute;
     right: -15px;
-    top: 13px;
+    top: 16px;
 }
 .date_of_agreement_top{
     margin-left: 10px;
@@ -154,7 +154,7 @@ hr {
     border-right: 3px solid #000;
     border-bottom: 1px solid #000;
     border-left: 1px solid #000;
-    padding-top: 0px;
+    padding-top: 6px;
 }
 
 .box-2nd {
@@ -189,7 +189,7 @@ hr {
 
 /* provisions start */
 .new-ul-start .provisions li {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     list-style: none;
 }
 
