@@ -54,11 +54,8 @@ class CaseController extends Controller
      */
     public function store(CaseRequest $request)
     {
-
         $data = $request->validated();
-
         try {
-
             $count = Cases::count();
             if ($count <= 0) {
                 $case =  $this->caseService->storeOrUpdate($data, null);
@@ -90,7 +87,7 @@ class CaseController extends Controller
         } catch (\Exception $e) {
         }
 
-            $client_details = Client::where('client_id', $case_number->client_id)->first();
+        $client_details = Client::where('client_id', $case_number->client_id)->first();
         return view('admin.agreement.agreement', compact('case_number', 'client_details'));
         record_created_flash();
     }

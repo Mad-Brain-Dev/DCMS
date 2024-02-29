@@ -48,11 +48,11 @@
                         <span class="text-to">To: </span><span class="to-margin">{{ $case_number->name }}</span>
                     </div>
                     <div class="col-6">
-                        <div class="col-10 justify-content-end d-flex pt-2 pb-3">
+                        <div class="col-10 d-flex pt-2 pb-3">
                             <span class="d-f-agreement">Date of
                                 Agreement:</span><span class="date_of_agreement_top">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d - F - Y') }}</span>
                         </div>
-                        <div class="col-10 justify-content-end d-flex pt-3 pb-2 expiry">
+                        <div class="col-10 d-flex pt-3 pb-2 expiry">
                             <span class="d-f-expiry">Date of Expiry:</span> <span
                                 class="date_of_expiry">{{ \Carbon\Carbon::parse($client_details->date_of_expiry)->format('d - F - Y') }}</span>
                         </div>

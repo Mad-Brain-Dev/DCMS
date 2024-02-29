@@ -53,8 +53,13 @@ hr {
 }
 
 .d-f-agreement {
-    padding-right: 25px;
+    margin-left: 160px;
     position: relative;
+}
+.date_of_agreement_top{
+    position: absolute;
+    right: 2px;
+    top: 7px;
 }
 
 .d-f-agreement::after {
@@ -62,21 +67,24 @@ hr {
     position: absolute;
     background: #000;
     height: 1px;
-    width: 190px;
+    width: 162px;
     bottom: -5px;
     left: 140px;
 }
 
 .expiry {
-    padding-right: 30px;
-}
-
-.d-f-expiry {
-    margin-right: 15px;
+    padding-right: 21px;
     position: relative;
 }
 .date_of_expiry{
-    /* padding-left: 100px; */
+    position: absolute;
+    right: 4px;
+    top: 13px;
+}
+
+.d-f-expiry {
+    margin-left: 194px;
+    position: relative;
 }
 
 .d-f-expiry::after {
@@ -84,7 +92,7 @@ hr {
     position: absolute;
     background: #000;
     height: 1px;
-    width: 190px;
+    width: 164px;
     bottom: -5px;
     left: 108px;
 }
