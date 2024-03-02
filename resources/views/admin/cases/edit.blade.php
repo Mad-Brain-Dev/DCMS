@@ -12,6 +12,15 @@
                                 <div class="row">
 
                                     <div class="mb-3 col-md-3">
+                                        <label class="form-label">Case Number</label>
+                                        <input type="text" name="case_number" class="form-control"
+                                            value="{{ $case->case_number }}">
+                                        @error('case_number')
+                                            <p class="error">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3 col-md-3">
                                         <label class="form-label">Date of Warrant</label>
                                         <input type="date" name="date_of_warrant" class="form-control"
                                             value="{{ date('Y-m-d', strtotime($case->date_of_expiry)) }}">

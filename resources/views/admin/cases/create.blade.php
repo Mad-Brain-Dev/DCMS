@@ -24,7 +24,7 @@
                                         <option value="{{ $client->client_id }}">{{ $client->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('current_status')
+                                @error('client_id')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>

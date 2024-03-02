@@ -24,7 +24,7 @@ class CaseRequest extends FormRequest
     public function rules()
     {
         $rules =  [
-            'case_number'        => ['required'],
+            'case_number'        => ['nullable'],
             'case_summary'        => ['nullable'],
             'current_status'      => ['nullable'],
             'client_id'    => ['nullable'],

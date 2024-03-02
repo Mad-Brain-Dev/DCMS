@@ -54,47 +54,43 @@ class CaseController extends Controller
      */
     public function store(CaseRequest $request)
     {
-
-        // $client =  Client::where('client_id',  $request->client_id)->first();
-        // $case_number = $request->case_number;
-
         $data = $request->validated();
-        $count = Cases::count();
-        if ($count <= 0) {
-            $case =  $this->caseService->storeOrUpdate($data, null);
-            $case_id = $case->id;
-            if ($case) {
-                $case = Cases::where('id', $case_id)->first();
-                $case->case_sku = "1";
-                $case->save();
-                if ($case) {
-                    $case_number = Cases::where('id', $case_id)->first();
-                    $case_number->case_number = $case_number->case_number . '000' . $case_number->case_sku;
-                    $case_number->save();
-                }
-            }
-        } else {
-            $case =  $this->caseService->storeOrUpdate($data, null);
-            $case_id = $case->id;
-            if ($case) {
-                $case = Cases::where('id', $case_id)->first();
-                $case->save();
-                if ($case) {
-                    $case_number = Cases::where('id', $case_id)->first();
-                    $case_number->case_number = $case_number->case_number . '000' . $case_number->case_sku + $case->id;
-                    $case_number->save();
-                }
-            }
-        }
-        record_created_flash();
         try {
+            $count = Cases::count();
+            if ($count <= 0) {
+                $case =  $this->caseService->storeOrUpdate($data, null);
+                $case_id = $case->id;
+                if ($case) {
+                    $case = Cases::where('id', $case_id)->first();
+                    $case->case_sku = "1";
+                    $case->save();
+                    if ($case) {
+                        $case_number = Cases::where('id', $case_id)->first();
+                        $case_number->case_number = $case_number->case_number . '000' . $case_number->case_sku;
+                        $case_number->save();
+                    }
+                }
+            } else {
+                $case =  $this->caseService->storeOrUpdate($data, null);
+                $case_id = $case->id;
+                if ($case) {
+                    $case = Cases::where('id', $case_id)->first();
+                    $case->save();
+                    if ($case) {
+                        $case_number = Cases::where('id', $case_id)->first();
+                        $case_number->case_number = $case_number->case_number . '000' . $case_number->case_sku + $case->id;
+                        $case_number->save();
+                    }
+                }
+            }
+
         } catch (\Exception $e) {
         }
-        // return redirect()->route('printable.case.agreement');
-        $client_details = Client::where('client_id', $case->client_id)->first();
-        return view('admin.agreement.agreement', compact('case','client_details'));
-    }
 
+        $client_details = Client::where('client_id', $case_number->client_id)->first();
+        return view('admin.agreement.agreement', compact('case_number', 'client_details'));
+        record_created_flash();
+    }
     /**
      * Display the specified resource.
      */
