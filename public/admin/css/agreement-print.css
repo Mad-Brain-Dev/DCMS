@@ -1,3 +1,4 @@
+
 .first-agreement-container {
     font-family: "Open Sans", sans-serif;
     font-size: 14px;
@@ -582,6 +583,7 @@ hr {
 }
 .new-case{
     margin-top: 20px;
+    margin-left: 100px;
 }
 .case-ref{
     font-family: "Open Sans", sans-serif;
@@ -624,7 +626,7 @@ hr {
     content: '';
     position: absolute;
     height: 1.5px;
-    width: 800px;
+    width:745px;
     background: #000;
     bottom: -4px;
     left: 105%;
@@ -639,7 +641,7 @@ hr {
     content: '';
     position: absolute;
     height: 1.5px;
-    width: 800px;
+    width: 745px;
     background: #000;
     bottom: -4px;
     left: 105%;
@@ -653,7 +655,7 @@ hr {
     content: '';
     position: absolute;
     height: 1.5px;
-    width: 800px;
+    width: 745px;
     background: #000;
     bottom: -4px;
     left: 105%;
@@ -667,7 +669,7 @@ hr {
     content: '';
     position: absolute;
     height: 1.5px;
-    width: 800px;
+    width: 745px;
     background: #000;
     bottom: -4px;
     left: 105%;
@@ -681,7 +683,7 @@ hr {
     content: '';
     position: absolute;
     height: 1.5px;
-    width: 800px;
+    width: 745px;
     background: #000;
     bottom: -4px;
     left: 105%;
@@ -694,7 +696,7 @@ hr {
     content: '';
     position: absolute;
     height: 1.5px;
-    width: 800px;
+    width: 745px;
     background: #000;
     bottom: -4px;
     left: 105%;
@@ -703,7 +705,7 @@ hr {
     content: '';
     position: absolute;
     height: 1.5px;
-    width: 800px;
+    width: 745px;
     background: #000;
     bottom: -34px;
     left: 105%;
@@ -716,7 +718,7 @@ hr {
     content: '';
     position: absolute;
     height: 1.5px;
-    width: 800px;
+    width: 745px;
     background: #000;
     bottom: -4px;
     left: 105%;
@@ -725,7 +727,7 @@ hr {
     content: '';
     position: absolute;
     height: 1.5px;
-    width: 800px;
+    width: 745px;
     background: #000;
     bottom: -34px;
     left: 105%;
@@ -741,7 +743,7 @@ hr {
     content: '';
     position: absolute;
     height: 1.5px;
-    width: 800px;
+    width: 745px;
     background: #000;
     bottom: -4px;
     left: 105%;
@@ -761,7 +763,7 @@ hr {
     padding-left: 12px;
 }
 .new-usd{
-    padding-left: 60px;
+    /* padding-left: 60px; */
     padding-top: 18px;
 }
 .new-usd-after{
@@ -851,5 +853,15 @@ hr {
 
 .new-underline{
     text-decoration: underline;
+}
+footer {
+    position: fixed;
+    bottom: -10px;
+    left: 100px;
+    right: 0;
+    height: 50px;
+}
+.first_agreement{
+    margin-bottom: 405px;
 }
 /* second section end */

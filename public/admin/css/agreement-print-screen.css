@@ -847,4 +847,7 @@ hr {
 .new-underline{
     text-decoration: underline;
 }
+footer{
+    display: none;
+}
 /* second section end */

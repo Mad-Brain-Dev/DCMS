@@ -27,7 +27,7 @@
 
 <body>
     <!--first agreement section start-->
-    <section>
+    <section class="first_agreement">
         <div class="">
             <div class="container first-agreement-container">
                 <div class="row hide-print-button">
@@ -337,14 +337,14 @@
             </div>
             <hr class="new-hr">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-5">
                     <p><span class="to-securre">TO:</span> Securre Collection Pte Ltd</p>
                     <span class="client-information">CLIENT INFORMATION</span>
                 </div>
-                <div class="col-md-7">
-                    <div class="row justify-content-center d-flex new-case">
-                        <div class="col-md-2 case-ref">CASE REF. #:</div>
-                        <div class="col-md-5 data-for-case"></div>
+                <div class="col-7">
+                    <div class="d-flex new-case">
+                        <div class="col-3 case-ref">CASE REF. #:</div>
+                        <div class="col-9 data-for-case"></div>
                     </div>
                 </div>
             </div>
@@ -376,11 +376,11 @@
                 </div>
             </div>
             <div class="row debt-amount-row">
-                <div class="col-md-9">
+                <div class="col-9">
                     <span class="total-debt">Total Debt Amount in</span><br>
                     <span class="singapore-dollars"> Singapore Dollars:</span>
                 </div>
-                <div class="col-md-3 new-usd">
+                <div class="col-3 new-usd">
                     ( <span class="new-usd-after">SG<i class="fa fa-usd" aria-hidden="true"></i>:</span> <span class="right-usd-data">500000</span> )
                </div>
             </div>
@@ -415,7 +415,12 @@
         </div>
       </div>
     </div>
+
 </section>
+<footer style="font-weight: 700; font-style:italic">
+    Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098
+    Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net
+</footer>
 <!--second section end-->
 
 
