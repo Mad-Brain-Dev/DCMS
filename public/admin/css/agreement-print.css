@@ -95,7 +95,7 @@ hr {
     font-weight: 700;
 }
 .location-for-second-page{
-    padding-top: 150px;
+    /* padding-top: 300px; */
     font-weight: 700;
     display: block;
 }
@@ -548,9 +548,308 @@ hr {
     text-decoration: underline;
 }
 
-/*  */
-.warrant-act h1 {
-    font-size: 110px;
-    font-weight: 400;
-    font-family: "Playfair Display", serif;
+/* second section start */
+.second-section{
+    font-weight: 600;
+    font-size: 16px;
 }
+.warrant-act h1{
+    font-size: 90px;
+    font-weight: 400;
+    font-family: "Judson", serif;
+}
+.warrant-act p{
+    padding-bottom: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+}
+.new-hr{
+    background: #000;
+    padding-top: 2px;
+    transform: translateY(-15px);
+}
+.to-securre{
+    padding-left: 10px;
+    padding-right: 60px;
+}
+.client-information{
+    padding: 4px 50px;
+    background: #000;
+    color: #ffff;
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+.new-case{
+    margin-top: 20px;
+}
+.case-ref{
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    text-align: center;
+    color: #ffff;
+    background: #000;
+    font-weight: 600;
+    padding-left: 0;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-right: 0;
+}
+.data-for-case{
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
+    border-left: 2px solid #000;
+}
+.debtor-information{
+    padding: 4px 50px;
+    background: #000;
+    color: #ffff;
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+.take-information ul {
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+.take-information ul li{
+    margin-top: 8px;
+}
+.full-name{
+    position: relative;
+    padding-left: 90px;
+}
+.full-name::after{
+    content: '';
+    position: absolute;
+    height: 1.5px;
+    width: 800px;
+    background: #000;
+    bottom: -4px;
+    left: 105%;
+}
+
+
+.company-name{
+    position: relative;
+    padding-left: 47px;
+}
+.company-name::after{
+    content: '';
+    position: absolute;
+    height: 1.5px;
+    width: 800px;
+    background: #000;
+    bottom: -4px;
+    left: 105%;
+}
+
+.nric-no{
+    position: relative;
+    padding-left: 58px;
+}
+.nric-no::after{
+    content: '';
+    position: absolute;
+    height: 1.5px;
+    width: 800px;
+    background: #000;
+    bottom: -4px;
+    left: 105%;
+}
+
+.contact-no{
+    position: relative;
+    padding-left: 76px;
+}
+.contact-no::after{
+    content: '';
+    position: absolute;
+    height: 1.5px;
+    width: 800px;
+    background: #000;
+    bottom: -4px;
+    left: 105%;
+}
+
+.email-add{
+    position: relative;
+    padding-left: 84px;
+}
+.email-add::after{
+    content: '';
+    position: absolute;
+    height: 1.5px;
+    width: 800px;
+    background: #000;
+    bottom: -4px;
+    left: 105%;
+}
+.address{
+    position: relative;
+    padding-left: 102px;
+}
+.address::after{
+    content: '';
+    position: absolute;
+    height: 1.5px;
+    width: 800px;
+    background: #000;
+    bottom: -4px;
+    left: 105%;
+}
+.address::before{
+    content: '';
+    position: absolute;
+    height: 1.5px;
+    width: 800px;
+    background: #000;
+    bottom: -34px;
+    left: 105%;
+}
+.address-2{
+    position: relative;
+    padding-left: 102px;
+}
+.address-2::after{
+    content: '';
+    position: absolute;
+    height: 1.5px;
+    width: 800px;
+    background: #000;
+    bottom: -4px;
+    left: 105%;
+}
+.address-2::before{
+    content: '';
+    position: absolute;
+    height: 1.5px;
+    width: 800px;
+    background: #000;
+    bottom: -34px;
+    left: 105%;
+}
+.remarks-li{
+    padding-top: 30px;
+}
+.remarks{
+    position: relative;
+    padding-left: 98px;
+}
+.remarks::after{
+    content: '';
+    position: absolute;
+    height: 1.5px;
+    width: 800px;
+    background: #000;
+    bottom: -4px;
+    left: 105%;
+}
+.padding-for-new-data{
+    padding-left: 100px;
+}
+
+
+.debt-amount-row{
+    border: 2px solid #000;
+    padding-top: 20px;
+    padding-bottom: 17px;
+    margin-bottom: 10px;
+}
+.singapore-dollars{
+    padding-left: 12px;
+}
+.new-usd{
+    padding-left: 60px;
+    padding-top: 18px;
+}
+.new-usd-after{
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+}
+
+.new-usd-after::after{
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 1.3px;
+    background: #000;
+    bottom: 0;
+    right: 100;
+}
+.right-usd-data{
+    padding-right: 50px;
+    padding-left: 45px;
+}
+.another-information-row ol{
+    padding-left: 60px;
+    padding-right: 40px;
+}
+.another-information-row ol li{
+    padding-left: 50px;
+    padding-top: 17px;
+}
+.me-us-after{
+    position: relative;
+}
+.me-us-after::after{
+    content: '';
+    position: absolute;
+    height: 1.4px;
+    width: 500px;
+    background: #000;
+    bottom: 0;
+    left: 57px;
+}
+.lorem-1st{
+    padding-right: 170px;
+    padding-left: 150px;
+}
+.nric-no-uen-after{
+    position: relative;
+}
+.nric-no-uen-after::after{
+    content: '';
+    position: absolute;
+    height: 1.4px;
+    width: 500px;
+    background: #000;
+    bottom: 0;
+    left: 113px;
+}
+
+.person{
+    position: relative;
+}
+.person::after{
+    content: '';
+    position: absolute;
+    height: 1.5px;
+    width: 410px;
+    background: #000;
+    bottom: 0;
+    left: 58px;
+}
+.contact{
+    position: relative;
+}
+.contact::after{
+    content: '';
+    position: absolute;
+    height: 1.5px;
+    width: 410px;
+    background: #000;
+    bottom: 0;
+    left: 68px;
+}
+.lorem-2{
+    padding-left: 50px;
+}
+
+
+.new-underline{
+    text-decoration: underline;
+}
+/* second section end */

@@ -212,8 +212,8 @@
                                         class="right-padd">our records shall be closed in the following
                                         circumstances;</span></span>
 
-                                        <p class="location">Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098
-                                            Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net</p>
+                                        {{-- <p class="location">Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098
+                                            Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net</p> --}}
 
                                 <ul class="after-ul">
                                     <li>5.1 <span class="pl-3">If after 90 days from the date of this Agreement, we
@@ -314,12 +314,12 @@
                         </ol>
                     </div>
                 </div>
-               <div class="row">
+               {{-- <div class="row">
                 <div class="col-12">
                     <p class="location-for-second-page">Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098
                         Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net</p>
                 </div>
-               </div>
+               </div> --}}
             </div>
         </div>
         </div>
@@ -327,26 +327,96 @@
     <!--first agreement section end-->
 
 
-    <!--second section start-->
-    {{-- <section>
-    <div class="">
+ <!--second section start-->
+<section>
+    <div class="second-section">
         <div class="container mb-5">
             <div class="col-md-12 mx-auto text-center warrant-act">
                 <h1>WARRANT TO ACT</h1>
                 <p>SUBJECT TO CHAPTER 53B (ORIGINAL ENACTMENT: ACT 39 of 2001) REVISED EDITION 2002, SECTION 2.1</p>
             </div>
-            <hr>
-
+            <hr class="new-hr">
             <div class="row">
-                <div class="col-md-5 bg-info">
-                    <p>TO: Securre Collection Pte Ltd</p>
+                <div class="col-md-5">
+                    <p><span class="to-securre">TO:</span> Securre Collection Pte Ltd</p>
+                    <span class="client-information">CLIENT INFORMATION</span>
                 </div>
-                <div class="col-md-7 bg-danger"></div>
+                <div class="col-md-7">
+                    <div class="row justify-content-center d-flex new-case">
+                        <div class="col-md-2 case-ref">CASE REF. #:</div>
+                        <div class="col-md-5 data-for-case"></div>
+                    </div>
+                </div>
             </div>
+            <div class="row">
+                <div class="col-md-11 mx-auto take-information">
+                    <ul>
+                        <li><span class="full-name">Full Name:</span> <span class="padding-for-new-data"> {{ $client_details->name }}</span></li>
+                        <li><span class="company-name">Company Name:</span> <span class="padding-for-new-data"> {{ $client_details->company_name }}</span> </li>
+                        <li><span class="nric-no">NRIC No./UEN:</span> <span class="padding-for-new-data">{{ $client_details->nric }}</span>  </li>
+                        <li><span class="contact-no">Contact No.:</span> <span class="padding-for-new-data">{{ $client_details->phone }}</span>  </li>
+                        <li><span class="email-add">Email Add.:</span>
+                        <span class="padding-for-new-data"> {{ $client_details->email }}</span> </li>
+                        <li><span class="address">Address:</span> <span class="padding-for-new-data"> {{ $client_details->address }} </span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <span class="debtor-information">DEBTOR INFORMATION</span>
+                <div class="col-md-11 mx-auto take-information">
+                    <ul>
+                        <li><span class="full-name">Full Name:</span> <span class="padding-for-new-data">{{ $case_number->name }}</span> </li>
+                        <li><span class="company-name">Company Name:</span> <span class="padding-for-new-data">{{ $case_number->company_name }}</span> </li>
+                        <li><span class="nric-no">NRIC No./UEN:</span> <span class="padding-for-new-data">{{ $case_number->company_uen }}</span> </li>
+                        <li><span class="contact-no">Contact No.:</span> <span class="padding-for-new-data">{{ $case_number->phone }}</span> </li>
+                        <li><span class="email-add">Email Add.:</span> <span class="padding-for-new-data">{{ $case_number->email }}</span> </li>
+                        <li><span class="address-2">Address:</span> <span class="padding-for-new-data">{{ $case_number->adderss }}</span> </li>
+                        <li class="remarks-li"><span class="remarks">Remarks:</span><span class="padding-for-new-data">xxxxxxx</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row debt-amount-row">
+                <div class="col-md-9">
+                    <span class="total-debt">Total Debt Amount in</span><br>
+                    <span class="singapore-dollars"> Singapore Dollars:</span>
+                </div>
+                <div class="col-md-3 new-usd">
+                    ( <span class="new-usd-after">SG<i class="fa fa-usd" aria-hidden="true"></i>:</span> <span class="right-usd-data">500000</span> )
+               </div>
+            </div>
+          <div class="row another-information-row">
+            <ol class="">
+                <li class="first-child"><span class="">*I/We, the undersigned, hereby appoint you to act for <span class="me-us-after">*me/us</span><span class="lorem-1st">Lorem ipsum dolor sit amet</span>,<br>
+                    ( <span class="nric-no-uen-after">NRIC No./UEN: </span><span class="lorem-1st">Lorem ipsum dolor sit amet</span>), in connection with the above matter until it
+                    is completed, settled, resolved or the contractual agreement between us and you is terminated for whatsoever reason.
+                    All cheques shall be made payable to Securre Collection Pte Ltd, and online payments made via PayNow to<span class="new-underline"> 85055484.</span></span></li>
+                <li class=""><span class="">Our engagement of your services are subjected to the terms and conditions as set out in the Debt Collection Agreement
+                    as stated above on Page 1 and Page 2.</span></li>
+                <li class=""><span class="">*I/We authorise you to receive payment from the debtor directly in your favour (on our behalf) and to do everything you
+                    consider necessary in your conduct of the above matter. This Warrant to Act serves as a formal Warrant to Act which may
+                    be produced to third parties as evidence of your engagement to act on our behalf in connection with the above matter.</span></li>
+                <li class=""><span class="">*I/We authorise you to take instructions in respect of this matter from:</span></li>
+            </ol>
+         <div class="col-md-10 mx-auto mb-2">
+          <div class="row">
+            <div class="col-6"><span class="person">Person:</span> <span class="lorem-2">Lorem ipsum dolor sit amet consectetur.</span></div>
+            <div class="col-6"><span class="contact">Contact:</span> <span class="lorem-2">Lorem ipsum dolor sit amet consectetur.</span></div>
+          </div>
+         </div>
+         </div>
+         <div class="pt-4">
+            <ul>
+                <li>Full Name:</li>
+                <li>Company Name:</li>
+                <li>NRIC No./UEN:</li>
+                <li>Contact No.:</li>
+                <li>Signature/Stamp:</li>
+            </ul>
         </div>
+      </div>
     </div>
-</section> --}}
-    <!--second section end-->
+</section>
+<!--second section end-->
 
 
 
