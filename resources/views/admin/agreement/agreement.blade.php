@@ -350,7 +350,7 @@
             </div>
             <div class="row">
                 <div class="col-md-11 mx-auto take-information">
-                    <ul>
+                    <ul class="list-unstyled">
                         <li><span class="full-name">Full Name:</span> <span class="padding-for-new-data"> {{ $client_details->name }}</span></li>
                         <li><span class="company-name">Company Name:</span> <span class="padding-for-new-data"> {{ $client_details->company_name }}</span> </li>
                         <li><span class="nric-no">NRIC No./UEN:</span> <span class="padding-for-new-data">{{ $client_details->nric }}</span>  </li>
@@ -364,7 +364,7 @@
             <div class="row mt-4">
                 <span class="debtor-information">DEBTOR INFORMATION</span>
                 <div class="col-md-11 mx-auto take-information">
-                    <ul>
+                    <ul class="list-unstyled">
                         <li><span class="full-name">Full Name:</span> <span class="padding-for-new-data">{{ $case_number->name }}</span> </li>
                         <li><span class="company-name">Company Name:</span> <span class="padding-for-new-data">{{ $case_number->company_name }}</span> </li>
                         <li><span class="nric-no">NRIC No./UEN:</span> <span class="padding-for-new-data">{{ $case_number->company_uen }}</span> </li>
@@ -376,19 +376,19 @@
                 </div>
             </div>
             <div class="row debt-amount-row">
-                <div class="col-9">
+                <div class="col-8">
                     <span class="total-debt">Total Debt Amount in</span><br>
                     <span class="singapore-dollars"> Singapore Dollars:
                          {{ ucwords((new NumberFormatter('en_IN', NumberFormatter::SPELLOUT))->format($case_number->debt_amount)) }} </span>
                 </div>
-                <div class="col-3 new-usd">
-                    ( <span class="new-usd-after">SG<i class="fa fa-usd" aria-hidden="true"></i>:</span> <span class="right-usd-data">{{ $case_number->debt_amount }}</span> )
+                <div class="col-4 new-usd">
+                     <span class="new-usd-after">(SG<i class="fa fa-usd" aria-hidden="true"></i>:</span> <span class="right-usd-data">{{ $case_number->debt_amount }}</span><span class="bracket_end">)</span>
                </div>
             </div>
           <div class="row another-information-row">
             <ol class="">
-                <li class="first-child"><span class="">*I/We, the undersigned, hereby appoint you to act for <span class="me-us-after">*me/us</span><span class="lorem-1st">{{ $client_details->name }}</span>,<br>
-                    ( <span class="nric-no-uen-after">NRIC No./UEN: </span><span class="lorem-1st">{{ $client_details->nric }}</span>), in connection with the above matter until it
+                <li class="first-child"><span class="">*I/We, the undersigned, hereby appoint you to act for <span class="me-us-after">*me/us <span class="lorem-1st">{{ $client_details->name }}</span></span>,<br>
+                    ( <span class="nric-no-uen-after">NRIC No./UEN: </span><span class="lorem-1st">{{ $client_details->nric }}</span>), <br>in connection with the above matter until it
                     is completed, settled, resolved or the contractual agreement between us and you is terminated for whatsoever reason.
                     All cheques shall be made payable to Securre Collection Pte Ltd, and online payments made via PayNow to<span class="new-underline"> 85055484.</span></span></li>
                 <li class=""><span class="">Our engagement of your services are subjected to the terms and conditions as set out in the Debt Collection Agreement

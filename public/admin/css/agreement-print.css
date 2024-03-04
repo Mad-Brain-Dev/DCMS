@@ -739,6 +739,8 @@ hr {
     position: relative;
     padding-left: 98px;
 }
+
+
 .remarks::after{
     content: '';
     position: absolute;
@@ -765,6 +767,8 @@ hr {
 .new-usd{
     /* padding-left: 60px; */
     padding-top: 18px;
+    position: relative;
+    padding-left: 90px;
 }
 .new-usd-after{
     font-size: 16px;
@@ -782,8 +786,13 @@ hr {
     right: 100;
 }
 .right-usd-data{
-    padding-right: 50px;
-    padding-left: 45px;
+    position: absolute;
+    top: 18px;
+    left: 150px;
+}
+.bracket_end {
+    position: absolute;
+    right: 35px;
 }
 .another-information-row ol{
     padding-left: 60px;
@@ -796,18 +805,19 @@ hr {
 .me-us-after{
     position: relative;
 }
+.lorem-1st{
+    position: absolute;
+    left: 200px;
+    top: 0;
+}
 .me-us-after::after{
     content: '';
     position: absolute;
     height: 1.4px;
-    width: 500px;
+    width: 400px;
     background: #000;
     bottom: 0;
     left: 57px;
-}
-.lorem-1st{
-    padding-right: 170px;
-    padding-left: 150px;
 }
 .nric-no-uen-after{
     position: relative;
@@ -816,7 +826,7 @@ hr {
     content: '';
     position: absolute;
     height: 1.4px;
-    width: 500px;
+    width: 280px;
     background: #000;
     bottom: 0;
     left: 113px;
