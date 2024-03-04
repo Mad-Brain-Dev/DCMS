@@ -36,16 +36,16 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Company Name</span></label>
-                                <input type="text" name="company_name" class="form-control" placeholder="Enter CL Company Name"
-                                    value="{{ old('company_name') }}">
+                                <input type="text" name="company_name" class="form-control"
+                                    placeholder="Enter CL Company Name" value="{{ old('company_name') }}">
                                 @error('company_name')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Company UEN</span></label>
-                                <input type="text" name="company_uen" class="form-control" placeholder="Enter CL Company Uen"
-                                    value="{{ old('company_uen') }}">
+                                <input type="text" name="company_uen" class="form-control"
+                                    placeholder="Enter CL Company Uen" value="{{ old('company_uen') }}">
                                 @error('company_uen')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -58,16 +58,16 @@
                         <div class="row">
                             <div class="mb-3 col-md-4">
                                 <label class="form-label">Email</label>
-                                <input type="email" name="email" class="form-control" placeholder="Enter CL Email Address"
-                                    value="{{ old('email') }}">
+                                <input type="email" name="email" class="form-control"
+                                    placeholder="Enter CL Email Address" value="{{ old('email') }}">
                                 @error('email')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-4">
                                 <label class="form-label">Phone</label>
-                                <input type="text" name="phone" class="form-control" placeholder="Enter CL Phone Number"
-                                    value="{{ old('phone') }}">
+                                <input type="text" name="phone" class="form-control"
+                                    placeholder="Enter CL Phone Number" value="{{ old('phone') }}">
                                 @error('phone')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -106,8 +106,8 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Admin Fee</label>
-                                <input type="number" name="admin_fee" class="form-control" placeholder="Enter Admin Fee"
-                                    value="{{ old('admin_fee') }}">
+                                <input type="text" name="admin_fee" class="form-control" id="num1"
+                                    placeholder="Enter Admin Fee">
                                 @error('admin_fee')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -115,16 +115,16 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Admin Fee Paid</label>
-                                <input type="number" name="admin_fee_paid" class="form-control"
-                                    placeholder="Enter Admin Fee Paid Amount" value="{{ old('admin_fee_paid') }}">
+                                <input type="text" name="admin_fee_paid" class="form-control" id="num2"
+                                    placeholder="Enter Admin Fee Paid Amount">
                                 @error('admin_fee_paid')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Admin Fee Balance</label>
-                                <input type="number" name="admin_fee_balance" class="form-control"
-                                    placeholder="Enter Admin Fee Balance Amount" value="{{ old('admin_fee_balance') }}">
+                                <input type="text" name="admin_fee_balance" class="form-control" readonly
+                                    id="subt">
                                 @error('admin_fee_balance')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -172,4 +172,12 @@
 
 @push('script')
     <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
+    <script>
+$(function() {
+    $("#num1, #num2").on("keydown keyup", sum);
+	function sum() {
+	$("#subt").val(Number($("#num1").val()) - Number($("#num2").val()));
+	}
+});
+    </script>
 @endpush

@@ -89,6 +89,7 @@ class CaseController extends Controller
 
         $client_details = Client::where('client_id', $case_number->client_id)->first();
         return view('admin.agreement.agreement', compact('case_number', 'client_details'));
+        // return response()->view('admin.agreement.agreement', ['client_details' => 'client_details', 'case_number' => 'case_number']);
         record_created_flash();
     }
     /**
