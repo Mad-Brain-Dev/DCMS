@@ -25,6 +25,7 @@ class CaseRequest extends FormRequest
     {
         $rules =  [
             'case_number'        => ['nullable'],
+            'remarks'        => ['nullable'],
             'case_summary'        => ['nullable'],
             'current_status'      => ['nullable'],
             'client_id'    => ['nullable'],

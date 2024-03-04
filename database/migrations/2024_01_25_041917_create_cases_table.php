@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('cases', function (Blueprint $table) {
             $table->id();
             $table->string('case_number')->nullable();
+            $table->string('remarks')->nullable();
             $table->string('case_sku')->nullable();
             $table->string('current_status')->nullable();
             $table->string('case_summary')->nullable();

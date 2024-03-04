@@ -344,7 +344,7 @@
                 <div class="col-7">
                     <div class="d-flex new-case">
                         <div class="col-3 case-ref">CASE REF. #:</div>
-                        <div class="col-9 data-for-case"></div>
+                    <div class="col-9 data-for-case"><span class="case_ref">{{ $case_number->case_number }}</span></div>
                     </div>
                 </div>
             </div>
@@ -371,23 +371,24 @@
                         <li><span class="contact-no">Contact No.:</span> <span class="padding-for-new-data">{{ $case_number->phone }}</span> </li>
                         <li><span class="email-add">Email Add.:</span> <span class="padding-for-new-data">{{ $case_number->email }}</span> </li>
                         <li><span class="address-2">Address:</span> <span class="padding-for-new-data">{{ $case_number->adderss }}</span> </li>
-                        <li class="remarks-li"><span class="remarks">Remarks:</span><span class="padding-for-new-data">xxxxxxx</span></li>
+                        <li class="remarks-li"><span class="remarks">Remarks:</span><span class="padding-for-new-data">{{ $case_number->remarks }}</span></li>
                     </ul>
                 </div>
             </div>
             <div class="row debt-amount-row">
                 <div class="col-9">
                     <span class="total-debt">Total Debt Amount in</span><br>
-                    <span class="singapore-dollars"> Singapore Dollars:</span>
+                    <span class="singapore-dollars"> Singapore Dollars:
+                         {{ ucwords((new NumberFormatter('en_IN', NumberFormatter::SPELLOUT))->format($case_number->debt_amount)) }} </span>
                 </div>
                 <div class="col-3 new-usd">
-                    ( <span class="new-usd-after">SG<i class="fa fa-usd" aria-hidden="true"></i>:</span> <span class="right-usd-data">500000</span> )
+                    ( <span class="new-usd-after">SG<i class="fa fa-usd" aria-hidden="true"></i>:</span> <span class="right-usd-data">{{ $case_number->debt_amount }}</span> )
                </div>
             </div>
           <div class="row another-information-row">
             <ol class="">
-                <li class="first-child"><span class="">*I/We, the undersigned, hereby appoint you to act for <span class="me-us-after">*me/us</span><span class="lorem-1st">Lorem ipsum dolor sit amet</span>,<br>
-                    ( <span class="nric-no-uen-after">NRIC No./UEN: </span><span class="lorem-1st">Lorem ipsum dolor sit amet</span>), in connection with the above matter until it
+                <li class="first-child"><span class="">*I/We, the undersigned, hereby appoint you to act for <span class="me-us-after">*me/us</span><span class="lorem-1st">{{ $client_details->name }}</span>,<br>
+                    ( <span class="nric-no-uen-after">NRIC No./UEN: </span><span class="lorem-1st">{{ $client_details->nric }}</span>), in connection with the above matter until it
                     is completed, settled, resolved or the contractual agreement between us and you is terminated for whatsoever reason.
                     All cheques shall be made payable to Securre Collection Pte Ltd, and online payments made via PayNow to<span class="new-underline"> 85055484.</span></span></li>
                 <li class=""><span class="">Our engagement of your services are subjected to the terms and conditions as set out in the Debt Collection Agreement
@@ -399,8 +400,8 @@
             </ol>
          <div class="col-md-10 mx-auto mb-2">
           <div class="row">
-            <div class="col-6"><span class="person">Person:</span> <span class="lorem-2">Lorem ipsum dolor sit amet consectetur.</span></div>
-            <div class="col-6"><span class="contact">Contact:</span> <span class="lorem-2">Lorem ipsum dolor sit amet consectetur.</span></div>
+            <div class="col-6"><span class="person pb-1">Person:</span> <span class="lorem-2">{{ $client_details->name }}</span></div>
+            <div class="col-6"><span class="contact pb-1">Contact:</span> <span class="lorem-2">{{ $client_details->phone }}</span></div>
           </div>
          </div>
          </div>
@@ -436,11 +437,6 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
-    <script>
-        function printDocument(){
-            window.print();
-        }
     </script>
 </body>
 

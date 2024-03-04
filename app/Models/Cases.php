@@ -21,6 +21,7 @@ class Cases extends Model
     public const CASE_PRIORITY_LOW   = 'Low';
     protected $fillable = [
         'case_number',
+        'remarks',
         'case_sku',
         'case_summary',
         'current_status',

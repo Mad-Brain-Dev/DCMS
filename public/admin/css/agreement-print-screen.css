@@ -595,7 +595,14 @@ hr {
     border-right: 2px solid #000;
     border-bottom: 2px solid #000;
     border-left: 2px solid #000;
+    position: relative;
 }
+.case_ref{
+    position: absolute;
+    top: 5px;
+    left: 10px;
+}
+
 .debtor-information{
     padding: 4px 50px;
     background: #000;
