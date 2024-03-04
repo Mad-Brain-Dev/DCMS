@@ -805,11 +805,6 @@ hr {
 .me-us-after{
     position: relative;
 }
-.lorem-1st{
-    position: absolute;
-    left: 200px;
-    top: 0;
-}
 .me-us-after::after{
     content: '';
     position: absolute;
@@ -818,6 +813,10 @@ hr {
     background: #000;
     bottom: 0;
     left: 57px;
+}
+
+.lorem-1st{
+padding-left: 50px;
 }
 .nric-no-uen-after{
     position: relative;
