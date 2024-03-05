@@ -356,7 +356,6 @@ hr {
     padding-left: 60px;
 }
 
-
 .dated {
     position: relative;
 }
@@ -806,7 +805,13 @@ hr {
     bottom: 0;
     left: 57px;
 }
-.first-child{
+.me-us-after::before {
+    content: ",";
+    position: absolute;
+    left: 539px;
+    top: 0;
+}
+.first-child {
     position: relative;
 }
 .agreement_name {
@@ -814,7 +819,7 @@ hr {
     right: 250px;
     top: 15px;
 }
-.agreement_nric{
+.agreement_nric {
     position: absolute;
     left: 300px;
     top: 38px;
