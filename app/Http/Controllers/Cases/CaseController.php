@@ -36,7 +36,7 @@ class CaseController extends Controller
      */
     public function index(CaseDataTable $dataTable)
     {
-        set_page_meta('Case');
+        set_page_meta('Cases');
         return $dataTable->render('admin.cases.index');
     }
 
