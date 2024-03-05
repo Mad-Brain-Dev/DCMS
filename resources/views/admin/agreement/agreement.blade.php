@@ -219,7 +219,7 @@
                                     <li>5.1 <span class="pl-3">If after 90 days from the date of this Agreement, we
                                             are unable to obtain any repayment of the debt from the debtor;o
                                         </span></li>
-                                    <li>5.2 <span class="pl-3">In the case of a payment of the debt by instalments /
+                                    <li class="five-point-two">5.2 <span class="pl-3">In the case of a payment of the debt by instalments /
                                             partial-payment, a period of 120 days has lapsed since payment of the last
                                             instalment or <span class="another-padd">part-payment by the debtor(s) and
                                                 no further instalment / part-payment has been received from the
@@ -387,10 +387,10 @@
             </div>
           <div class="row another-information-row">
             <ol class="">
-                <li class="first-child"><span class="">*I/We, the undersigned, hereby appoint you to act for <span class="me-us-after">*me/us <span class="lorem-1st">{{ $client_details->name }}</span></span>,<br>
-                    ( <span class="nric-no-uen-after">NRIC No./UEN: </span><span class="lorem-1st">{{ $client_details->nric }}</span>), <br>in connection with the above matter until it
+                <li class="first-child">*I/We, the undersigned, hereby appoint you to act for <span class="me-us-after">*me/us </span> <span class="agreement_name">{{ $client_details->name }}</span><br>
+                    <span class="nric-no-uen-after">NRIC No./UEN: </span><span class="agreement_nric">{{ $client_details->nric }}</span> <br>in connection with the above matter until it
                     is completed, settled, resolved or the contractual agreement between us and you is terminated for whatsoever reason.
-                    All cheques shall be made payable to Securre Collection Pte Ltd, and online payments made via PayNow to<span class="new-underline"> 85055484.</span></span></li>
+                    All cheques shall be made payable to Securre Collection Pte Ltd, and online payments made via PayNow to<span class="new-underline"> 85055484.</span></li>
                 <li class=""><span class="">Our engagement of your services are subjected to the terms and conditions as set out in the Debt Collection Agreement
                     as stated above on Page 1 and Page 2.</span></li>
                 <li class=""><span class="">*I/We authorise you to receive payment from the debtor directly in your favour (on our behalf) and to do everything you
@@ -405,13 +405,14 @@
           </div>
          </div>
          </div>
-         <div class="pt-4">
-            <ul>
-                <li>Full Name:</li>
-                <li>Company Name:</li>
-                <li>NRIC No./UEN:</li>
-                <li>Contact No.:</li>
+         <div class="pt-2">
+            <ul class="list-unstyled">
+                <li>Full Name: {{ $client_details->name }}</li>
+                <li>Company Name: {{ $client_details->company_name }}</li>
+                <li>NRIC No./UEN: {{ $client_details->company_name }} </li>
+                <li>Contact No.: {{ $client_details->phone }}</li>
                 <li>Signature/Stamp:</li>
+                <li class="font-italic">*Strike out where necessary.</li>
             </ul>
         </div>
       </div>

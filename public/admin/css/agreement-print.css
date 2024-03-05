@@ -371,8 +371,11 @@ hr {
 }
 
 .after-ul {
-    margin-top: 15px;
+    /* margin-top: 15px; */
     padding-left: 60px;
+}
+.five-point-two{
+    margin-top: 150px;
 }
 
 .dated {
@@ -390,7 +393,7 @@ hr {
 }
 
 .january-4 {
-    padding-left: 34px;
+    padding-left: 50px;
     font-weight: 700;
 }
 
@@ -403,8 +406,8 @@ hr {
 }
 
 .another-row {
-    margin-top: 20px;
-    margin-block: 40px;
+    /* margin-top: 20px; */
+    margin-block: 0;
 }
 
 .another-row .second-box {
@@ -593,9 +596,14 @@ hr {
     background: #000;
     font-weight: 600;
     padding-left: 0;
-    padding-top: 7px;
+    padding-top: 10px;
     padding-bottom: 7px;
     padding-right: 0;
+}
+.case_ref {
+    position: absolute;
+    top: 5px;
+    left: 10px;
 }
 .data-for-case{
     border-top: 2px solid #000;
@@ -761,9 +769,6 @@ hr {
     padding-bottom: 17px;
     margin-bottom: 10px;
 }
-.singapore-dollars{
-    padding-left: 12px;
-}
 .new-usd{
     /* padding-left: 60px; */
     padding-top: 18px;
@@ -787,8 +792,8 @@ hr {
 }
 .right-usd-data{
     position: absolute;
-    top: 18px;
-    left: 150px;
+    top: 16px;
+    left: 60%;
 }
 .bracket_end {
     position: absolute;
@@ -800,7 +805,7 @@ hr {
 }
 .another-information-row ol li{
     padding-left: 50px;
-    padding-top: 17px;
+    padding-top: 12px;
 }
 .me-us-after{
     position: relative;
@@ -815,9 +820,20 @@ hr {
     left: 57px;
 }
 
-.lorem-1st{
-padding-left: 50px;
+.first-child{
+    position: relative;
 }
+.agreement_name {
+    position: absolute;
+    right: 150px;
+    top: 10px;
+}
+.agreement_nric{
+    position: absolute;
+    left: 230px;
+    top: 35px;
+}
+
 .nric-no-uen-after{
     position: relative;
 }
@@ -827,7 +843,7 @@ padding-left: 50px;
     height: 1.4px;
     width: 280px;
     background: #000;
-    bottom: 0;
+    bottom: 0px;
     left: 113px;
 }
 
@@ -856,7 +872,7 @@ padding-left: 50px;
     left: 68px;
 }
 .lorem-2{
-    padding-left: 50px;
+    padding-left: 132px;
 }
 
 
@@ -865,8 +881,8 @@ padding-left: 50px;
 }
 footer {
     position: fixed;
-    bottom: -10px;
-    left: 100px;
+    bottom: -5px;
+    left: 50px;
     right: 0;
     height: 50px;
 }
