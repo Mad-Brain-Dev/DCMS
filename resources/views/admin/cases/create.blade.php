@@ -9,10 +9,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                                {{-- <label class="form-label">Case Number</label> --}}
-                                <input type="hidden" name="case_number" class="form-control"
-                                    placeholder="Enter Case Number" id="case_number" value="">
-                                {{-- @error('case_number')
+                            {{-- <label class="form-label">Case Number</label> --}}
+                            <input type="hidden" name="case_number" class="form-control" placeholder="Enter Case Number"
+                                id="case_number" value="">
+                            {{-- @error('case_number')
                                     <p class="error">{{ $message }}</p>
                                 @enderror --}}
                             <div class="mb-3 col-md-3">
@@ -92,7 +92,7 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Case Summary</label>
-                                    <textarea name="case_summary" cols="30" rows="2" class="form-control">Enter Case Summary Here</textarea>
+                                <textarea name="case_summary" cols="30" rows="2" class="form-control">Enter Case Summary Here</textarea>
                                 @error('case_summary')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -105,20 +105,22 @@
                         <div class="row">
                             <div class="mb-3 col-md-4">
                                 <label class="form-label">Collection Commission</label>
-                                <input type="text" name="collection_commission" id="collection_commission" class="form-control"
-                                    placeholder="Enter Collection Commission" value="">
+                                <input type="text" name="collection_commission" id="collection_commission"
+                                    class="form-control" placeholder="Enter Collection Commission" value="">
                                 @error('collection_commission')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-4">
                                 <label class="form-label">Field Visits</label>
-                                <input type="text" name="field_visit" placeholder="Enter Field Visit Number Here" class="form-control" id="field_visit"  value="">
+                                <input type="text" name="field_visit" placeholder="Enter Field Visit Number Here"
+                                    class="form-control" id="field_visit" value="">
                                 @error('field_visit')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-                                <input type="hidden" name="bal_field_visit" placeholder="Enter Field Visit Number Here" class="form-control" id="bal_field_visit"  value="">
+                            <input type="hidden" name="bal_field_visit" placeholder="Enter Field Visit Number Here"
+                                class="form-control" id="bal_field_visit" value="">
 
 
                             {{-- <div class="mb-3 col-md-4">
@@ -137,8 +139,8 @@
                         <div class="row">
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">DB Name <span class="error">*</span></label>
-                                <input type="text" name="name" class="form-control"
-                                    placeholder="Enter DB Name" value="{{ old('name') }}">
+                                <input type="text" name="name" class="form-control" placeholder="Enter DB Name"
+                                    value="{{ old('name') }}">
                                 @error('name')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -146,8 +148,8 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">DB NRIC</label>
-                                <input type="text" name="nric" class="form-control"
-                                    placeholder="Enter DB NRIC" value="{{ old('nric') }}">
+                                <input type="text" name="nric" class="form-control" placeholder="Enter DB NRIC"
+                                    value="{{ old('nric') }}">
                                 @error('nric')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -173,24 +175,24 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">DB Email</label>
-                                <input type="email" name="email" class="form-control"
-                                    placeholder="Enter DB Email" value="{{ old('email') }}">
+                                <input type="email" name="email" class="form-control" placeholder="Enter DB Email"
+                                    value="{{ old('email') }}">
                                 @error('email')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">DB Phone</label>
-                                <input type="text" name="phone" class="form-control"
-                                    placeholder="Enter DB Phone" value="{{ old('phone') }}">
+                                <input type="text" name="phone" class="form-control" placeholder="Enter DB Phone"
+                                    value="{{ old('phone') }}">
                                 @error('phone')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">DB Address</label>
-                                <input type="text" name="adderss" class="form-control"
-                                    placeholder="Enter DB Address" value="{{ old('adderss') }}">
+                                <input type="text" name="adderss" class="form-control" placeholder="Enter DB Address"
+                                    value="{{ old('adderss') }}">
                                 @error('adderss')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -247,16 +249,16 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Interest Start Date</label>
-                                <input type="date" name="interest_start_date" class="form-control"
-                                    placeholder="Enter Interest Start Date" value="{{ old('interest_start_date') }}">
+                                <input type="date" name="interest_start_date" class="form-control" id="start_date"
+                                    placeholder="Enter Interest Start Date">
                                 @error('interest_start_date')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Interest End Date</label>
-                                <input type="date" name="interest_end_date" class="form-control"
-                                    placeholder="Enter Interest End Date" value="{{ old('interest_end_date') }}">
+                                <input type="date" name="interest_end_date" id="end_date"
+                                    class="form-control" placeholder="Enter Interest End Date">
                                 @error('interest_end_date')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -388,7 +390,8 @@
                     success: function(response) {
                         console.log(response);
                         var dateOfAgreement = response.dateofagreement.date_of_agreement;
-                        $('#date_of_agreement').val(dayjs(dateOfAgreement).format('YYYY-MM-DD'));
+                        $('#date_of_agreement').val(dayjs(dateOfAgreement).format(
+                            'YYYY-MM-DD'));
 
                         var dateOfExpiry = response.dateofagreement.date_of_expiry
                         $('#date_of_expiry').val(dayjs(dateOfExpiry).format('YYYY-MM-DD'));
@@ -399,19 +402,37 @@
                         var balFieldVisit = response.dateofagreement.field_visit_per_case
                         $('#bal_field_visit').val(balFieldVisit);
 
-                        var collection_commission = response.dateofagreement.collection_commission
+                        var collection_commission = response.dateofagreement
+                            .collection_commission
                         $('#collection_commission').val(collection_commission);
 
                         var clNameAbbr = response.dateofagreement.abbr
                         var getDate = response.dateofagreement.created_at
                         var formatedDate = dayjs(getDate).format('YYYY')
-                        $('#case_number').val(formatedDate + '/' + clNameAbbr + '/' );
+                        $('#case_number').val(formatedDate + '/' + clNameAbbr + '/');
 
                     }
 
                 })
 
             });
+
+
+
+        });
+
+        $(function() {
+            $("#end_date").on("change", sub);
+
+            function sub() {
+                var start = $('#start_date').val();
+                var end = $('#end_date').val();
+                // end - start returns difference in milliseconds
+                diff = new Date(Date.parse(end) - Date.parse(start));
+                // get days
+                var days = diff / 1000 / 60 / 60 / 24;
+                console.log(days);
+            }
 
         });
     </script>
