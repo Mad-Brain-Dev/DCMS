@@ -14,13 +14,10 @@
             </div>
         </div>
     </div>
-
 @endsection
-
 @push('style')
     @include('includes.styles.datatable')
 @endpush
-
 @push('script')
     @include('includes.scripts.datatable')
 @endpush

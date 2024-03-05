@@ -410,20 +410,11 @@
                         var getDate = response.dateofagreement.created_at
                         var formatedDate = dayjs(getDate).format('YYYY')
                         $('#case_number').val(formatedDate + '/' + clNameAbbr + '/');
-
                     }
-
                 })
-
             });
-
-
-
-        });
-
-        $(function() {
+            $(function() {
             $("#end_date").on("change", sub);
-
             function sub() {
                 var start = $('#start_date').val();
                 var end = $('#end_date').val();
@@ -433,7 +424,7 @@
                 var days = diff / 1000 / 60 / 60 / 24;
                 console.log(days);
             }
-
+        });
         });
     </script>
 @endpush
