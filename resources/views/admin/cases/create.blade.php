@@ -103,7 +103,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="mb-3 col-md-4">
-                                <label class="form-label">Collection Commission</label>
+                                <label class="form-label">Collection Commission (%)</label>
                                 <input type="text" name="collection_commission" id="collection_commission"
                                     class="form-control" placeholder="Enter Collection Commission" value="">
                                 @error('collection_commission')
@@ -340,7 +340,7 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Remarks</label>
-                                <textarea name="remarks" class="form-control" id="" cols="30" rows="1"></textarea>
+                                <textarea name="remarks" class="form-control" id="" cols="30" rows="1">Enter Remarks Here</textarea>
                                 @error('remarks')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -423,7 +423,7 @@
                 var days = diff / 1000 / 60 / 60 / 24;
                 var debt_amount_annum = $('#debt_amount_annum').val();
                 var total_interest = debt_amount_annum / 365 * days;
-                $('#total_interest').val(total_interest);
+                $('#total_interest').val(parseFloat(total_interest).toFixed(2));
 
 
                 var debt_amount = $('#debt_amount').val();

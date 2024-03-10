@@ -131,7 +131,7 @@
                             </div>
 
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">Collection Commission</label>
+                                <label class="form-label">Collection Commission (%)</label>
                                 <input type="text" name="collection_commission" class="form-control"
                                     placeholder="Enter Collection Commission (%)" value="{{ old('collection_commission') }}">
                                 @error('collection_commission')
