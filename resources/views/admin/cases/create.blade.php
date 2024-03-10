@@ -240,7 +240,7 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Debt Interest/Annum</label>
-                                <input type="number" name="debt_interest" class="form-control"
+                                <input type="text" name="debt_interest" class="form-control"
                                     placeholder="Enter Debt Interest/Annum" id="debt_amount_annum">
                                 @error('debt_interest')
                                     <p class="error">{{ $message }}</p>
@@ -272,7 +272,7 @@
                             </div> --}}
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Total Amount Balance</label>
-                                <input type="Number" name="total_amount_balance" readonly id="total_amount_balance" class="form-control"
+                                <input type="text" name="total_amount_balance" readonly id="total_amount_balance" class="form-control"
                                     placeholder="Total Amount Balance will Auto Update">
                                 @error('total_amount_balance')
                                     <p class="error">{{ $message }}</p>
@@ -288,7 +288,7 @@
                         <div class="row">
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Administrative Fee</label>
-                                <input type="number" name="administrative_fee" class="form-control"
+                                <input type="text" name="administrative_fee" class="form-control"
                                     placeholder="Enter Administrative Fee" value="{{ old('administrative_fee') }}">
                                 @error('administrative_fee')
                                     <p class="error">{{ $message }}</p>
@@ -297,7 +297,7 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Enforcement Fee</label>
-                                <input type="number" name="enforcement_fee" class="form-control"
+                                <input type="text" name="enforcement_fee" class="form-control"
                                     placeholder="Enter Enforcement Fee" value="{{ old('enforcement_fee') }}">
                                 @error('enforcement_fee')
                                     <p class="error">{{ $message }}</p>
@@ -306,7 +306,7 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Professional Fee</label>
-                                <input type="number" name="professional_fee" class="form-control"
+                                <input type="text" name="professional_fee" class="form-control"
                                     placeholder="Enter Professional Fee" value="{{ old('professional_fee') }}">
                                 @error('professional_fee')
                                     <p class="error">{{ $message }}</p>
@@ -315,7 +315,7 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Annual Fee</label>
-                                <input type="number" name="annual_fee" class="form-control"
+                                <input type="text" name="annual_fee" class="form-control"
                                     placeholder="Enter Annual Fee" value="{{ old('annual_fee') }}">
                                 @error('annual_fee')
                                     <p class="error">{{ $message }}</p>
@@ -324,7 +324,7 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Skip-Tracing Fee</label>
-                                <input type="number" name="skip_tracing_fee" class="form-control"
+                                <input type="text" name="skip_tracing_fee" class="form-control"
                                     placeholder="Enter Skip Tracing Fee" value="{{ old('skip_tracing_fee') }}">
                                 @error('skip_tracing_fee')
                                     <p class="error">{{ $message }}</p>
