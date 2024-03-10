@@ -239,7 +239,7 @@
                             </div>
 
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">Debt Interest/Annum</label>
+                                <label class="form-label">Debt Interest/Annum (%)</label>
                                 <input type="text" name="debt_interest" class="form-control"
                                     placeholder="Enter Debt Interest/Annum" id="debt_amount_annum">
                                 @error('debt_interest')
@@ -256,8 +256,8 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Interest End Date</label>
-                                <input type="date" name="interest_end_date" id="end_date"
-                                    class="form-control" placeholder="Enter Interest End Date">
+                                <input type="date" name="interest_end_date" id="end_date" class="form-control"
+                                    placeholder="Enter Interest End Date">
                                 @error('interest_end_date')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -272,8 +272,8 @@
                             </div> --}}
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Total Amount Balance</label>
-                                <input type="text" name="total_amount_balance" readonly id="total_amount_balance" class="form-control"
-                                    placeholder="Total Amount Balance will Auto Update">
+                                <input type="text" name="total_amount_balance" readonly id="total_amount_balance"
+                                    class="form-control" placeholder="Total Amount Balance will Auto Update">
                                 @error('total_amount_balance')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -413,30 +413,32 @@
                 })
             });
             $(function() {
-            $("#end_date").on("change", sub);
-            function sub() {
-                var start = $('#start_date').val();
-                var end = $('#end_date').val();
-                // end - start returns difference in milliseconds
-                diff = new Date(Date.parse(end) - Date.parse(start));
-                // get days
-                var days = diff / 1000 / 60 / 60 / 24;
-                var debt_amount_annum = $('#debt_amount_annum').val();
-                var total_interest = debt_amount_annum / 365 * days;
-                $('#total_interest').val(parseFloat(total_interest).toFixed(2));
+                $("#end_date").on("change", sub);
 
+                function sub() {
+                    var start = $('#start_date').val();
+                    var end = $('#end_date').val();
+                    // end - start returns difference in milliseconds
+                    diff = new Date(Date.parse(end) - Date.parse(start));
+                    // get days
+                    var days = diff / 1000 / 60 / 60 / 24;
+                    var debt_amount = $('#debt_amount').val();
+                    var debt_amount_annum = $('#debt_amount_annum').val();
+                    var yearlyInterest = (debt_amount * debt_amount_annum * 1) / 100;
+                    var dailyInterest = yearlyInterest / 365
+                    var legal_cost = $('#legal_cost').val();
 
-                var debt_amount = $('#debt_amount').val();
-                var legal_cost = $('#legal_cost').val();
+                    var total_interest = dailyInterest * days;
+                    $('#total_interest').val(parseFloat(total_interest).toFixed(2));
 
+                    var total_amount_owed = parseFloat(debt_amount) + parseFloat(legal_cost) + parseFloat(
+                        total_interest);
 
-                var total_amount_owed = parseFloat(debt_amount) + parseFloat(legal_cost) + parseFloat(total_interest);
+                    $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
+                    $('#total_amount_balance').val(parseFloat(total_amount_owed).toFixed(2));
 
-                $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
-                $('#total_amount_balance').val(parseFloat(total_amount_owed).toFixed(2));
-
-            }
-        });
+                }
+            });
         });
     </script>
 @endpush
