@@ -213,7 +213,7 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Legal Cost</label>
-                                <input type="number" name="legal_cost" class="form-control"
+                                <input type="text" name="legal_cost" class="form-control"
                                     placeholder="Enter Legal Cost" id="legal_cost" value="{{ old('legal_cost') }}">
                                 @error('legal_cost')
                                     <p class="error">{{ $message }}</p>
@@ -222,7 +222,7 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Total Interest</label>
-                                <input type="number" name="total_interest" class="form-control"
+                                <input type="text" name="total_interest" class="form-control"
                                     placeholder="Total Interest will Auto Update" readonly id="total_interest">
                                 @error('total_interest')
                                     <p class="error">{{ $message }}</p>
@@ -231,7 +231,7 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Total Amount Owed</label>
-                                <input type="number" name="total_amount_owed" class="form-control"
+                                <input type="text" name="total_amount_owed" class="form-control"
                                     placeholder="Total Amount Owed will Auto Update" readonly id="total_amount_owed">
                                 @error('total_amount_owed')
                                     <p class="error">{{ $message }}</p>
