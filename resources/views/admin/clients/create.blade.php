@@ -123,7 +123,7 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Admin Fee Balance</label>
-                                <input type="text" name="admin_fee_balance" class="form-control" readonly
+                                <input type="text" name="admin_fee_balance" placeholder="Admin Fee Balance will Auto Calculate" class="form-control" readonly
                                     id="subt">
                                 @error('admin_fee_balance')
                                     <p class="error">{{ $message }}</p>
@@ -132,15 +132,15 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Collection Commission</label>
-                                <input type="number" name="collection_commission" class="form-control"
-                                    placeholder="Enter Collection Commission" value="{{ old('collection_commission') }}">
+                                <input type="text" name="collection_commission" class="form-control"
+                                    placeholder="Enter Collection Commission (%)" value="{{ old('collection_commission') }}">
                                 @error('collection_commission')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Field Visit Per Case</label>
-                                <input type="number" name="field_visit_per_case" class="form-control"
+                                <input type="text" name="field_visit_per_case" class="form-control"
                                     placeholder="Field Visit Per Case" value="{{ old('field_visit_per_case') }}">
                                 @error('field_visit_per_case')
                                     <p class="error">{{ $message }}</p>
@@ -173,11 +173,13 @@
 @push('script')
     <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
     <script>
-$(function() {
-    $("#num1, #num2").on("keydown keyup", sum);
+$( document ).ready(function() {
+    $(function() {
+    $("#num2").on("keydown keyup", sum);
 	function sum() {
 	$("#subt").val(Number($("#num1").val()) - Number($("#num2").val()));
 	}
+});
 });
     </script>
 @endpush
