@@ -837,6 +837,12 @@ hr {
     bottom: 0;
     left: 113px;
 }
+.nric-no-uen-after::before{
+    content: "),";
+    position: absolute;
+    top: 0;
+    right: -460px;
+}
 
 .person {
     position: relative;
