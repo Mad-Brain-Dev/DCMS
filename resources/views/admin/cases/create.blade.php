@@ -204,7 +204,7 @@
                         <div class="row">
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Debt Amount</label>
-                                <input type="number" name="debt_amount" class="form-control"
+                                <input type="text" name="debt_amount" class="form-control"
                                     placeholder="Enter Debt Amount" id="debt_amount" value="{{ old('debt_amount') }}">
                                 @error('debt_amount')
                                     <p class="error">{{ $message }}</p>
@@ -243,6 +243,23 @@
                                 <input type="text" name="debt_interest" class="form-control"
                                     placeholder="Enter Debt Interest/Annum" id="debt_amount_annum">
                                 @error('debt_interest')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Installment Number</label>
+                                <input type="text" name="installment_number" id="installment_number" class="form-control"
+                                    placeholder="Enter Installment Number" id="installment_number">
+                                @error('installment_number')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Per Installment Amount</label>
+                                <input type="text" name="per_installment_amount" readonly id="per_installment_amount" class="form-control"
+                                    placeholder="Per Installment will Auto Calculate" id="per_installment_amount">
+                                @error('per_installment_amount')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -424,6 +441,7 @@
                     var days = diff / 1000 / 60 / 60 / 24;
                     var debt_amount = $('#debt_amount').val();
                     var debt_amount_annum = $('#debt_amount_annum').val();
+
                     var yearlyInterest = (debt_amount * debt_amount_annum * 1) / 100;
                     var dailyInterest = yearlyInterest / 365
                     var legal_cost = $('#legal_cost').val();
@@ -433,8 +451,13 @@
 
                     var total_amount_owed = parseFloat(debt_amount) + parseFloat(legal_cost) + parseFloat(
                         total_interest);
+                    var installment_number = $('#installment_number').val();
+                     var per_installment_amount = parseFloat(total_amount_owed / installment_number).toFixed(2);
+                     $('#per_installment_amount').val(per_installment_amount);
+
 
                     $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
+
                     $('#total_amount_balance').val(parseFloat(total_amount_owed).toFixed(2));
 
                 }
