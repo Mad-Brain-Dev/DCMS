@@ -205,7 +205,7 @@
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Debt Amount</label>
                                 <input type="number" name="debt_amount" class="form-control"
-                                    placeholder="Enter Debt Amount" value="{{ old('debt_amount') }}">
+                                    placeholder="Enter Debt Amount" id="debt_amount" value="{{ old('debt_amount') }}">
                                 @error('debt_amount')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -214,7 +214,7 @@
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Legal Cost</label>
                                 <input type="number" name="legal_cost" class="form-control"
-                                    placeholder="Enter Legal Cost" value="{{ old('legal_cost') }}">
+                                    placeholder="Enter Legal Cost" id="legal_cost" value="{{ old('legal_cost') }}">
                                 @error('legal_cost')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -223,7 +223,7 @@
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Total Interest</label>
                                 <input type="number" name="total_interest" class="form-control"
-                                    placeholder="Total Interest" value="{{ old('total_interest') }}">
+                                    placeholder="Total Interest will Auto Update" readonly id="total_interest">
                                 @error('total_interest')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -232,7 +232,7 @@
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Total Amount Owed</label>
                                 <input type="number" name="total_amount_owed" class="form-control"
-                                    placeholder="Total Amount Owed" value="{{ old('total_amount_owed') }}">
+                                    placeholder="Total Amount Owed will Auto Update" readonly id="total_amount_owed">
                                 @error('total_amount_owed')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -241,7 +241,7 @@
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Debt Interest/Annum</label>
                                 <input type="number" name="debt_interest" class="form-control"
-                                    placeholder="Enter Debt Interest/Annum" value="{{ old('debt_interest') }}">
+                                    placeholder="Enter Debt Interest/Annum" id="debt_amount_annum">
                                 @error('debt_interest')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -272,8 +272,8 @@
                             </div> --}}
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Total Amount Balance</label>
-                                <input type="Number" name="total_amount_balance" class="form-control"
-                                    placeholder="Enter Total Amount Balance" value="{{ old('total_amount_balance') }}">
+                                <input type="Number" name="total_amount_balance" readonly id="total_amount_balance" class="form-control"
+                                    placeholder="Total Amount Balance will Auto Update">
                                 @error('total_amount_balance')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -421,7 +421,20 @@
                 diff = new Date(Date.parse(end) - Date.parse(start));
                 // get days
                 var days = diff / 1000 / 60 / 60 / 24;
-                console.log(days);
+                var debt_amount_annum = $('#debt_amount_annum').val();
+                var total_interest = debt_amount_annum / 365 * days;
+                $('#total_interest').val(total_interest);
+
+
+                var debt_amount = $('#debt_amount').val();
+                var legal_cost = $('#legal_cost').val();
+
+
+                var total_amount_owed = parseFloat(debt_amount) + parseFloat(legal_cost) + parseFloat(total_interest);
+
+                $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
+                $('#total_amount_balance').val(parseFloat(total_amount_owed).toFixed(2));
+
             }
         });
         });
