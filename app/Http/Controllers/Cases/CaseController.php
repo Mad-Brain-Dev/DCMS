@@ -95,7 +95,7 @@ class CaseController extends Controller
         // Calculate percentage
         $percentage = ($portion * $total_amount_owed) / 100;
 
-        $total_fees = $client_details->administrative_fee + $client_details->enforcement_fee + $client_details->professional_fee + $client_details->annual_fee + $client_details->skip_tracing_fee + $client_details->overseas_allowance + $percentage;
+        $total_fees = ($client_details->administrative_fee ? $client_details->administrative_fee : 0) + ($client_details->enforcement_fee ? $client_details->enforcement_fee : 0) + ($client_details->professional_fee ? $client_details->professional_fee : 0) + ($client_details->annual_fee ? $client_details->annual_fee : 0) + ($client_details->skip_tracing_fee ? $client_details->skip_tracing_fee : 0) + ($client_details->overseas_allowance ? $client_details->overseas_allowance : 0) + $percentage;
 
         return view('admin.agreement.agreement', compact('case_number', 'client_details', 'total_fees'));
         // return redirect()->route('printable.case.agreement', ['case_number' => $case_number, 'client_details' => $client_details]);
