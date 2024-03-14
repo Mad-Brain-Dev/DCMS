@@ -53,12 +53,6 @@ class CaseRequest extends FormRequest
             'total_amount_balance'    => ['nullable'],
             'per_installment_amount'    => ['nullable'],
             'installment_number'    => ['nullable'],
-            // 'administrative_fee'    => ['nullable'],
-            'enforcement_fee'    => ['nullable'],
-            'professional_fee'    => ['nullable'],
-            'annual_fee'    => ['nullable'],
-            'skip_tracing_fee'    => ['nullable'],
-            'overseas_allowance'    => ['nullable'],
         ];
 
 

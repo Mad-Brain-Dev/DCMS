@@ -123,17 +123,17 @@
                                     <li><i class="fa fa-usd" aria-hidden="true"></i><span
                                             class="fee">{{ $client_details->administrative_fee }}</span></li>
                                     <li><i class="fa fa-usd" aria-hidden="true"></i><span
-                                            class="fee">{{ $case_number->enforcement_fee }}</span></li>
+                                            class="fee">{{ $client_details->enforcement_fee }}</span></li>
                                     <li><i class="fa fa-usd" aria-hidden="true"></i> <span
-                                            class="fee">{{ $case_number->professional_fee }}</span></li>
+                                            class="fee">{{ $client_details->professional_fee }}</span></li>
                                     <li>
-                                        <h6>{{ $case_number->annual_fee }}</h6>
+                                        <h6>{{ $client_details->annual_fee }}</h6>
                                     </li>
                                     <li>
-                                        <h6>{{ $case_number->skip_tracing_fee }}</h6>
+                                        <h6>{{ $client_details->skip_tracing_fee }}</h6>
                                     </li>
                                     <li>
-                                        <h6>{{ $case_number->overseas_allowance }}</h6>
+                                        <h6>{{ $client_details->overseas_allowance }}</h6>
                                     </li>
                                     <li>
                                         <h6>{{ $case_number->field_visit }}</h6>
@@ -217,7 +217,7 @@
 
                                 <ul class="after-ul">
                                     <li>5.1 <span class="pl-3">If after 90 days from the date of this Agreement, we
-                                            are unable to obtain any repayment of the debt from the debtor;o
+                                            are unable to obtain any repayment of the debt from the debtor;
                                         </span></li>
                                     <li class="five-point-two">5.2 <span class="pl-3">In the case of a payment of the debt by instalments /
                                             partial-payment, a period of 120 days has lapsed since payment of the last
@@ -379,10 +379,10 @@
                 <div class="col-8">
                     <span class="total-debt">Total Debt Amount in</span><br>
                     <span class="singapore-dollars"> Singapore Dollars:
-                         {{ ucwords((new NumberFormatter('en_IN', NumberFormatter::SPELLOUT))->format($case_number->debt_amount)) }} </span>
+                         {{ ucwords((new NumberFormatter('en_IN', NumberFormatter::SPELLOUT))->format($case_number->total_amount_owed)) }} </span>
                 </div>
                 <div class="col-4 new-usd">
-                     <span class="new-usd-after">(SG<i class="fa fa-usd" aria-hidden="true"></i>:</span> <span class="right-usd-data">{{ $case_number->debt_amount }}</span><span class="bracket_end">)</span>
+                     <span class="new-usd-after">(SG<i class="fa fa-usd" aria-hidden="true"></i>:</span> <span class="right-usd-data">{{ $case_number->total_amount_owed }}</span><span class="bracket_end">)</span>
                </div>
             </div>
           <div class="row another-information-row">

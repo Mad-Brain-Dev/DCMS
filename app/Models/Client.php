@@ -28,6 +28,11 @@ class Client extends Model
         'admin_fee_paid',
         'admin_fee_balance',
         'administrative_fee',
+        'enforcement_fee',
+        'professional_fee',
+        'annual_fee',
+        'skip_tracing_fee',
+        'overseas_allowance',
         'collection_commission',
         'field_visit_per_case',
     ];

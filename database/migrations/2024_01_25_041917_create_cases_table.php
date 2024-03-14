@@ -47,12 +47,6 @@ return new class extends Migration
             $table->string('per_installment_amount')->nullable();
             $table->string('total_amount_balance')->nullable();
             $table->string('gn_update')->nullable();
-            // $table->string('administrative_fee')->nullable();
-            $table->string('enforcement_fee')->nullable();
-            $table->string('professional_fee')->nullable();
-            $table->string('annual_fee')->nullable();
-            $table->string('skip_tracing_fee')->nullable();
-            $table->string('overseas_allowance')->nullable();
             $table->timestamps();
         });
     }
