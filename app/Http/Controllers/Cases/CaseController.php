@@ -83,13 +83,12 @@ class CaseController extends Controller
                     }
                 }
             }
-
         } catch (\Exception $e) {
         }
 
         $client_details = Client::where('client_id', $case_number->client_id)->first();
         return view('admin.agreement.agreement', compact('case_number', 'client_details'));
-        // return response()->view('admin.agreement.agreement', ['client_details' => 'client_details', 'case_number' => 'case_number']);
+        // return redirect()->route('printable.case.agreement', ['case_number' => $case_number, 'client_details' => $client_details]);
         record_created_flash();
     }
     /**
@@ -278,6 +277,19 @@ class CaseController extends Controller
             record_updated_flash();
         }
         return back();
+    }
+
+
+    public function updateAdminFee(Request $request, $id)
+    {
+        $request->validate([
+            'admin_fee' => 'nullable',
+            'admin_fee_paid' => 'nullable',
+            'admin_fee_balance' => 'nullable',
+        ]);
+        $fee = Client::find($id);
+        $fee->update($request->all());
+        return redirect()->route('admin.clients.show', $id);
     }
 
 

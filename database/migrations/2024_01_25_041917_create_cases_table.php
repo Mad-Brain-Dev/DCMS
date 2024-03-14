@@ -21,8 +21,8 @@ return new class extends Migration
             $table->dateTime('date_of_warrant')->nullable();
             //for client name
             $table->foreignId('client_id')->nullable();
-             //for client details
-            $table->foreignId('user_id')->nullable();
+            //for client details
+            // $table->foreignId('user_id')->nullable();
             $table->string('collection_commission')->nullable();
             $table->string('field_visit')->nullable();
             $table->string('bal_field_visit')->nullable();
@@ -47,7 +47,7 @@ return new class extends Migration
             $table->string('per_installment_amount')->nullable();
             $table->string('total_amount_balance')->nullable();
             $table->string('gn_update')->nullable();
-            $table->string('administrative_fee')->nullable();
+            // $table->string('administrative_fee')->nullable();
             $table->string('enforcement_fee')->nullable();
             $table->string('professional_fee')->nullable();
             $table->string('annual_fee')->nullable();

@@ -27,6 +27,7 @@ class Client extends Model
         'admin_fee',
         'admin_fee_paid',
         'admin_fee_balance',
+        'administrative_fee',
         'collection_commission',
         'field_visit_per_case',
     ];

@@ -101,6 +101,10 @@
                                 <th scope="row">Total Amount Balance</th>
                                 <td>{{ $case->total_amount_balance }}</td>
                             </tr>
+                            <tr>
+                                <th scope="row">Per Installment Amount</th>
+                                <td>{{ $case->per_installment_amount }} (Total Installment: {{ $case->installment_number }} )</td>
+                            </tr>
 
 
                         </tbody>

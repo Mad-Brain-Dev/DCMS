@@ -121,7 +121,7 @@
                             <div class="col-2 amount-data pl-0 ml-0">
                                 <ul class="pl-1 amount-ul">
                                     <li><i class="fa fa-usd" aria-hidden="true"></i><span
-                                            class="fee">{{ $case_number->administrative_fee }}</span></li>
+                                            class="fee">{{ $client_details->administrative_fee }}</span></li>
                                     <li><i class="fa fa-usd" aria-hidden="true"></i><span
                                             class="fee">{{ $case_number->enforcement_fee }}</span></li>
                                     <li><i class="fa fa-usd" aria-hidden="true"></i> <span
@@ -438,6 +438,11 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+     <script>
+        function printDocument(){
+            window.print();
+        }
     </script>
 </body>
 

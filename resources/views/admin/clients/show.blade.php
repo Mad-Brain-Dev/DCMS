@@ -2,9 +2,16 @@
 
 @section('content')
     <div class="row">
+        <div class="col-md-12 text-end">
+            {{-- <button class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Update Admin Fee</button> --}}
+            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+                Update Admin Fee
+            </button>
+        </div>
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12">
+
                     <div class="row">
                         <div class="col-md-4">
                             <table class="table">
@@ -52,6 +59,14 @@
                                         <td>{{ date('d-m-Y', strtotime($client->date_of_expiry)) }}</td>
                                     </tr>
                                     <tr>
+                                        <th scope="row">Collection Commission</th>
+                                        <td>{{ $client->collection_commission }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Field Visit Per Case</th>
+                                        <td>{{ $client->field_visit_per_case }}</td>
+                                    </tr>
+                                    <tr>
                                         <th scope="row">Admin Fee</th>
                                         <td>{{ $client->admin_fee }}</td>
                                     </tr>
@@ -61,15 +76,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Admin Fee Balance</th>
-                                        <td>{{ $client->admin_fee_balance}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Collection Commission</th>
-                                        <td>{{ $client->collection_commission }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Field Visit Per Case</th>
-                                        <td>{{ $client->field_visit_per_case }}</td>
+                                        <td>{{ $client->admin_fee_balance }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -102,16 +109,20 @@
                                         <td>{{ $case->current_status }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Date of Agreement</th>
-                                        <td>{{ $case->date_of_agreement }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Date of Expiry</th>
-                                        <td>{{ $case->date_of_expiry }}</td>
-                                    </tr>
-                                    <tr>
                                         <th scope="row">Client Name</th>
                                         <td>{{ $case->client->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Date of Warrant</th>
+                                        <td>{{date('d-m-Y', strtotime($case->date_of_warrant))}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Manager IC</th>
+                                        <td>{{ $case->manager_ic }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Collector IC</th>
+                                        <td>{{ $case->collector_ic }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Collection Commission</th>
@@ -124,14 +135,6 @@
                                     <tr>
                                         <th scope="row">Bal Field Visit</th>
                                         <td>{{ $case->bal_field_visit }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Manager IC</th>
-                                        <td>{{ $case->manager_ic }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Collector IC</th>
-                                        <td>{{ $case->collector_ic }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Debtor Name</th>
@@ -175,11 +178,11 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Interest Start Date</th>
-                                        <td>{{ $case->interest_start_date }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($case->interest_start_date))}}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Interest End Date</th>
-                                        <td>{{ $case->interest_start_date }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($case->interest_start_date))}}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Total Interest</th>
@@ -190,12 +193,28 @@
                                         <td>{{ $case->total_amount_owed }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Total Amount Paid</th>
-                                        <td>{{ $case->total_amount_paid }}</td>
-                                    </tr>
-                                    <tr>
                                         <th scope="row">Total Amount Balance</th>
                                         <td>{{ $case->total_amount_balance }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Enforcement Fee</th>
+                                        <td>{{ $case->enforcement_fee }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Professional Fee</th>
+                                        <td>{{ $case->professional_fee }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Annual Fee</th>
+                                        <td>{{ $case->annual_fee }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Skip Tracing Fee</th>
+                                        <td>{{ $case->skip_tracing_fee }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Overseas allowance</th>
+                                        <td>{{ $case->overseas_allowance }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -205,8 +224,56 @@
             @endforeach
         </div>
     </div>
-    @endsection
 
-    @push('script')
-        <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
-    @endpush
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Admin Fee</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('admin.fee.update', $client->id) }}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group">
+                          <label for="num1">Admin Fee</label>
+                          <input type="number" class="form-control" name="admin_fee" id="num1" aria-describedby="emailHelp" value="{{ $client->admin_fee }}">
+                        </div>
+                        <div class="form-group mt-2">
+                          <label for="num2">Admin Fee Paid</label>
+                          <input type="number" class="form-control" name="admin_fee_paid" id="num2" value="{{ $client->admin_fee_paid }}">
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="subt">Admin Fee Balance</label>
+                            <input type="number" class="form-control" name="admin_fee_balance" id="subt" value="{{ $client->admin_fee_balance }}">
+                          </div>
+                        <button type="submit" class="btn btn-success mt-2">Submit</button>
+                      </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@push('script')
+    <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+<script>
+$( document ).ready(function() {
+    $(function() {
+    $("#num2").on("keydown keyup", sum);
+	function sum() {
+	$("#subt").val(Number($("#num1").val()) - Number($("#num2").val()));
+	}
+});
+});
+</script>
+@endpush
