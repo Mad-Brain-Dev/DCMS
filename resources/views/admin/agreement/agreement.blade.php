@@ -160,7 +160,7 @@
                                 <li class="percenteg-li">{{ $case_number->collection_commission }} <span
                                         class="collection_comm_per">%</span></li>
                                 <li class="total-li">Total Fees Payable:<i class="fa fa-usd"
-                                        aria-hidden="true"></i><span class="fee-total">{{ $total_fees }}</span>
+                                        aria-hidden="true"></i><span class="fee-total">{{  number_format((float)$total_fees, 2, '.', '') }}</span>
                                 </li>
                             </ul>
                         </div>
