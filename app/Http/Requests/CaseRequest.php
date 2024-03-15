@@ -25,6 +25,7 @@ class CaseRequest extends FormRequest
     {
         $rules =  [
             'case_number'        => ['nullable'],
+            'remarks'        => ['nullable'],
             'case_summary'        => ['nullable'],
             'current_status'      => ['nullable'],
             'client_id'    => ['nullable'],
@@ -50,12 +51,8 @@ class CaseRequest extends FormRequest
             'total_interest'    => ['nullable'],
             'total_amount_owed'    => ['nullable'],
             'total_amount_balance'    => ['nullable'],
-            'administrative_fee'    => ['nullable'],
-            'enforcement_fee'    => ['nullable'],
-            'professional_fee'    => ['nullable'],
-            'annual_fee'    => ['nullable'],
-            'skip_tracing_fee'    => ['nullable'],
-            'overseas_allowance'    => ['nullable'],
+            'per_installment_amount'    => ['nullable'],
+            'installment_number'    => ['nullable'],
         ];
 
 

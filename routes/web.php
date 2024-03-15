@@ -36,7 +36,7 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //show printable case agreement with details
-Route::get('/printable/case/agreement/show', [CaseController::class, 'printableCaseAgreement'])->name('printable.case.agreement');
+Route::get('/printable/case/agreement/show/', [CaseController::class, 'printableCaseAgreement'])->name('printable.case.agreement');
 //single case show to client
 Route::get('/case/show/to/client', [CaseController::class, 'casesShowtoClient'])->name('case.show.client');
 //case show to client in datatable
@@ -77,6 +77,9 @@ Route::get('/show/general/case/update/{id}', [CaseController::class, 'viewGenera
 Route::get('/show/correspondence/case/update/{id}', [CaseController::class, 'viewCorrespondenceUpdate'])->name('view.correspondence.update');
 // view ms case update
 Route::get('/show/miscellaneous/case/update/{id}', [CaseController::class, 'viewMiscellaneousUpdate'])->name('view.miscellaneous.update');
+
+// update admin fee
+Route::put('client/admin/fee/update/{id}', [CaseController::class, 'updateAdminFee'])->name('admin.fee.update');
 
 
 //all routes for admin

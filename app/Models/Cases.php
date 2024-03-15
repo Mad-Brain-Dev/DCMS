@@ -21,6 +21,7 @@ class Cases extends Model
     public const CASE_PRIORITY_LOW   = 'Low';
     protected $fillable = [
         'case_number',
+        'remarks',
         'case_sku',
         'case_summary',
         'current_status',
@@ -46,15 +47,11 @@ class Cases extends Model
         'interest_end_date',
         'total_interest',
         'total_amount_owed',
+        'installment_number',
+        'per_installment_amount',
         'total_amount_paid',
         'total_amount_balance',
         'gn_update',
-        'administrative_fee',
-        'enforcement_fee',
-        'professional_fee',
-        'annual_fee',
-        'skip_tracing_fee',
-        'overseas_allowance',
     ];
 
     public function client()

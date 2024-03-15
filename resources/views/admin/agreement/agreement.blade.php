@@ -27,7 +27,7 @@
 
 <body>
     <!--first agreement section start-->
-    <section>
+    <section class="first_agreement">
         <div class="">
             <div class="container first-agreement-container">
                 <div class="row hide-print-button">
@@ -121,19 +121,19 @@
                             <div class="col-2 amount-data pl-0 ml-0">
                                 <ul class="pl-1 amount-ul">
                                     <li><i class="fa fa-usd" aria-hidden="true"></i><span
-                                            class="fee">{{ $case_number->administrative_fee }}</span></li>
+                                            class="fee">{{ $client_details->administrative_fee }}</span></li>
                                     <li><i class="fa fa-usd" aria-hidden="true"></i><span
-                                            class="fee">{{ $case_number->enforcement_fee }}</span></li>
+                                            class="fee">{{ $client_details->enforcement_fee }}</span></li>
                                     <li><i class="fa fa-usd" aria-hidden="true"></i> <span
-                                            class="fee">{{ $case_number->professional_fee }}</span></li>
+                                            class="fee">{{ $client_details->professional_fee }}</span></li>
                                     <li>
-                                        <h6>{{ $case_number->annual_fee }}</h6>
+                                        <h6>{{ $client_details->annual_fee }}</h6>
                                     </li>
                                     <li>
-                                        <h6>{{ $case_number->skip_tracing_fee }}</h6>
+                                        <h6>{{ $client_details->skip_tracing_fee }}</h6>
                                     </li>
                                     <li>
-                                        <h6>{{ $case_number->overseas_allowance }}</h6>
+                                        <h6>{{ $client_details->overseas_allowance }}</h6>
                                     </li>
                                     <li>
                                         <h6>{{ $case_number->field_visit }}</h6>
@@ -160,7 +160,7 @@
                                 <li class="percenteg-li">{{ $case_number->collection_commission }} <span
                                         class="collection_comm_per">%</span></li>
                                 <li class="total-li">Total Fees Payable:<i class="fa fa-usd"
-                                        aria-hidden="true"></i><span class="fee-total">1000</span>
+                                        aria-hidden="true"></i><span class="fee-total">{{  number_format((float)$total_fees, 2, '.', '') }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -217,9 +217,9 @@
 
                                 <ul class="after-ul">
                                     <li>5.1 <span class="pl-3">If after 90 days from the date of this Agreement, we
-                                            are unable to obtain any repayment of the debt from the debtor;o
+                                            are unable to obtain any repayment of the debt from the debtor;
                                         </span></li>
-                                    <li>5.2 <span class="pl-3">In the case of a payment of the debt by instalments /
+                                    <li class="five-point-two">5.2 <span class="pl-3">In the case of a payment of the debt by instalments /
                                             partial-payment, a period of 120 days has lapsed since payment of the last
                                             instalment or <span class="another-padd">part-payment by the debtor(s) and
                                                 no further instalment / part-payment has been received from the
@@ -337,20 +337,20 @@
             </div>
             <hr class="new-hr">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-5">
                     <p><span class="to-securre">TO:</span> Securre Collection Pte Ltd</p>
                     <span class="client-information">CLIENT INFORMATION</span>
                 </div>
-                <div class="col-md-7">
-                    <div class="row justify-content-center d-flex new-case">
-                        <div class="col-md-2 case-ref">CASE REF. #:</div>
-                        <div class="col-md-5 data-for-case"></div>
+                <div class="col-7">
+                    <div class="d-flex new-case">
+                        <div class="col-3 case-ref">CASE REF. #:</div>
+                    <div class="col-9 data-for-case"><span class="case_ref">{{ $case_number->case_number }}</span></div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-11 mx-auto take-information">
-                    <ul>
+                    <ul class="list-unstyled">
                         <li><span class="full-name">Full Name:</span> <span class="padding-for-new-data"> {{ $client_details->name }}</span></li>
                         <li><span class="company-name">Company Name:</span> <span class="padding-for-new-data"> {{ $client_details->company_name }}</span> </li>
                         <li><span class="nric-no">NRIC No./UEN:</span> <span class="padding-for-new-data">{{ $client_details->nric }}</span>  </li>
@@ -364,32 +364,33 @@
             <div class="row mt-4">
                 <span class="debtor-information">DEBTOR INFORMATION</span>
                 <div class="col-md-11 mx-auto take-information">
-                    <ul>
+                    <ul class="list-unstyled">
                         <li><span class="full-name">Full Name:</span> <span class="padding-for-new-data">{{ $case_number->name }}</span> </li>
                         <li><span class="company-name">Company Name:</span> <span class="padding-for-new-data">{{ $case_number->company_name }}</span> </li>
                         <li><span class="nric-no">NRIC No./UEN:</span> <span class="padding-for-new-data">{{ $case_number->company_uen }}</span> </li>
                         <li><span class="contact-no">Contact No.:</span> <span class="padding-for-new-data">{{ $case_number->phone }}</span> </li>
                         <li><span class="email-add">Email Add.:</span> <span class="padding-for-new-data">{{ $case_number->email }}</span> </li>
                         <li><span class="address-2">Address:</span> <span class="padding-for-new-data">{{ $case_number->adderss }}</span> </li>
-                        <li class="remarks-li"><span class="remarks">Remarks:</span><span class="padding-for-new-data">xxxxxxx</span></li>
+                        <li class="remarks-li"><span class="remarks">Remarks:</span><span class="padding-for-new-data">{{ $case_number->remarks }}</span></li>
                     </ul>
                 </div>
             </div>
             <div class="row debt-amount-row">
-                <div class="col-md-9">
+                <div class="col-8">
                     <span class="total-debt">Total Debt Amount in</span><br>
-                    <span class="singapore-dollars"> Singapore Dollars:</span>
+                    <span class="singapore-dollars"> Singapore Dollars:
+                         {{ ucwords((new NumberFormatter('en_IN', NumberFormatter::SPELLOUT))->format($case_number->total_amount_owed)) }} </span>
                 </div>
-                <div class="col-md-3 new-usd">
-                    ( <span class="new-usd-after">SG<i class="fa fa-usd" aria-hidden="true"></i>:</span> <span class="right-usd-data">500000</span> )
+                <div class="col-4 new-usd">
+                     <span class="new-usd-after">(SG<i class="fa fa-usd" aria-hidden="true"></i>:</span> <span class="right-usd-data">{{ $case_number->total_amount_owed }}</span><span class="bracket_end">)</span>
                </div>
             </div>
           <div class="row another-information-row">
             <ol class="">
-                <li class="first-child"><span class="">*I/We, the undersigned, hereby appoint you to act for <span class="me-us-after">*me/us</span><span class="lorem-1st">Lorem ipsum dolor sit amet</span>,<br>
-                    ( <span class="nric-no-uen-after">NRIC No./UEN: </span><span class="lorem-1st">Lorem ipsum dolor sit amet</span>), in connection with the above matter until it
+                <li class="first-child">*I/We, the undersigned, hereby appoint you to act for <span class="me-us-after">*me/us </span> <span class="agreement_name">{{ $client_details->name }}</span><br>
+                    <span class="nric-no-uen-after">(NRIC No./UEN: </span><span class="agreement_nric">{{ $client_details->nric }}</span> <br>in connection with the above matter until it
                     is completed, settled, resolved or the contractual agreement between us and you is terminated for whatsoever reason.
-                    All cheques shall be made payable to Securre Collection Pte Ltd, and online payments made via PayNow to<span class="new-underline"> 85055484.</span></span></li>
+                    All cheques shall be made payable to Securre Collection Pte Ltd, and online payments made via PayNow to<span class="new-underline"> 85055484.</span></li>
                 <li class=""><span class="">Our engagement of your services are subjected to the terms and conditions as set out in the Debt Collection Agreement
                     as stated above on Page 1 and Page 2.</span></li>
                 <li class=""><span class="">*I/We authorise you to receive payment from the debtor directly in your favour (on our behalf) and to do everything you
@@ -399,23 +400,29 @@
             </ol>
          <div class="col-md-10 mx-auto mb-2">
           <div class="row">
-            <div class="col-6"><span class="person">Person:</span> <span class="lorem-2">Lorem ipsum dolor sit amet consectetur.</span></div>
-            <div class="col-6"><span class="contact">Contact:</span> <span class="lorem-2">Lorem ipsum dolor sit amet consectetur.</span></div>
+            <div class="col-6"><span class="person pb-1">Person:</span> <span class="lorem-2">{{ $client_details->name }}</span></div>
+            <div class="col-6"><span class="contact pb-1">Contact:</span> <span class="lorem-2">{{ $client_details->phone }}</span></div>
           </div>
          </div>
          </div>
-         <div class="pt-4">
-            <ul>
-                <li>Full Name:</li>
-                <li>Company Name:</li>
-                <li>NRIC No./UEN:</li>
-                <li>Contact No.:</li>
+         <div class="pt-2">
+            <ul class="list-unstyled">
+                <li>Full Name: {{ $client_details->name }}</li>
+                <li>Company Name: {{ $client_details->company_name }}</li>
+                <li>NRIC No./UEN: {{ $client_details->company_name }} </li>
+                <li>Contact No.: {{ $client_details->phone }}</li>
                 <li>Signature/Stamp:</li>
+                <li class="font-italic">*Strike out where necessary.</li>
             </ul>
         </div>
       </div>
     </div>
+
 </section>
+<footer style="font-weight: 700; font-style:italic">
+    Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098
+    Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net
+</footer>
 <!--second section end-->
 
 
@@ -432,7 +439,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
-    <script>
+     <script>
         function printDocument(){
             window.print();
         }

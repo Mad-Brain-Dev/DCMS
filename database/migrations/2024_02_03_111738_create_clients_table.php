@@ -27,6 +27,12 @@ return new class extends Migration
             $table->string('admin_fee')->nullable();
             $table->string('admin_fee_paid')->nullable();
             $table->string('admin_fee_balance')->nullable();
+            $table->string('administrative_fee')->nullable();
+            $table->string('enforcement_fee')->nullable();
+            $table->string('professional_fee')->nullable();
+            $table->string('annual_fee')->nullable();
+            $table->string('skip_tracing_fee')->nullable();
+            $table->string('overseas_allowance')->nullable();
             $table->string('collection_commission')->nullable();
             $table->string('field_visit_per_case')->nullable();
             $table->timestamps();

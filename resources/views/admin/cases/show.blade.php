@@ -63,19 +63,19 @@
                         <tbody>
                             <tr>
                                 <th scope="row">Collection Commission</th>
-                                <td>{{ $case->collection_commission }}</td>
+                                <td>{{ $case->collection_commission }} %</td>
                             </tr>
                             <tr>
                                 <th scope="row">Debt Amount</th>
-                                <td>{{ $case->debt_amount }}</td>
+                                <td>{{ $case->debt_amount }} $</td>
                             </tr>
                             <tr>
                                 <th scope="row">Legal Cost</th>
-                                <td>{{ $case->legal_cost }}</td>
+                                <td>{{ $case->legal_cost }} $</td>
                             </tr>
                             <tr>
-                                <th scope="row">Debt Interest</th>
-                                <td>{{ $case->debt_interest }}</td>
+                                <th scope="row">Debt Interest/Annum</th>
+                                <td>{{ $case->debt_interest }} %</td>
                             </tr>
                             <tr>
                                 <th scope="row">Interest Start Date</th>
@@ -87,11 +87,11 @@
                             </tr>
                             <tr>
                                 <th scope="row">Total Interest</th>
-                                <td>{{ $case->total_interest }}</td>
+                                <td>{{ $case->total_interest }} $</td>
                             </tr>
                             <tr>
                                 <th scope="row">Total Amount Owed</th>
-                                <td>{{ $case->total_amount_owed }}</td>
+                                <td>{{ $case->total_amount_owed }} $</td>
                             </tr>
                             {{-- <tr>
                                 <th scope="row">Total Amount Paid</th>
@@ -99,7 +99,11 @@
                             </tr> --}}
                             <tr>
                                 <th scope="row">Total Amount Balance</th>
-                                <td>{{ $case->total_amount_balance }}</td>
+                                <td>{{ $case->total_amount_balance }} $</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Per Installment Amount</th>
+                                <td>{{ $case->per_installment_amount }} $ (Total Installment: {{ $case->installment_number }} )</td>
                             </tr>
 
 

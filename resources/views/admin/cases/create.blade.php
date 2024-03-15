@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -9,10 +8,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                                {{-- <label class="form-label">Case Number</label> --}}
-                                <input type="hidden" name="case_number" class="form-control"
-                                    placeholder="Enter Case Number" id="case_number" value="">
-                                {{-- @error('case_number')
+                            {{-- <label class="form-label">Case Number</label> --}}
+                            <input type="hidden" name="case_number" class="form-control" placeholder="Enter Case Number"
+                                id="case_number" value="">
+                            {{-- @error('case_number')
                                     <p class="error">{{ $message }}</p>
                                 @enderror --}}
                             <div class="mb-3 col-md-3">
@@ -92,7 +91,7 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Case Summary</label>
-                                    <textarea name="case_summary" cols="30" rows="2" class="form-control">Enter Case Summary Here</textarea>
+                                <textarea name="case_summary" cols="30" rows="2" class="form-control">Enter Case Summary Here</textarea>
                                 @error('case_summary')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -104,21 +103,23 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="mb-3 col-md-4">
-                                <label class="form-label">Collection Commission</label>
-                                <input type="text" name="collection_commission" id="collection_commission" class="form-control"
-                                    placeholder="Enter Collection Commission" value="">
+                                <label class="form-label">Collection Commission (%)</label>
+                                <input type="number" name="collection_commission" id="collection_commission"
+                                    class="form-control" placeholder="Enter Collection Commission" value="">
                                 @error('collection_commission')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-4">
                                 <label class="form-label">Field Visits</label>
-                                <input type="text" name="field_visit" placeholder="Enter Field Visit Number Here" class="form-control" id="field_visit"  value="">
+                                <input type="number" name="field_visit" placeholder="Enter Field Visit Number Here"
+                                    class="form-control" id="field_visit" value="">
                                 @error('field_visit')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-                                <input type="hidden" name="bal_field_visit" placeholder="Enter Field Visit Number Here" class="form-control" id="bal_field_visit"  value="">
+                            <input type="hidden" name="bal_field_visit" placeholder="Enter Field Visit Number Here"
+                                class="form-control" id="bal_field_visit" value="">
 
 
                             {{-- <div class="mb-3 col-md-4">
@@ -137,8 +138,8 @@
                         <div class="row">
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">DB Name <span class="error">*</span></label>
-                                <input type="text" name="name" class="form-control"
-                                    placeholder="Enter DB Name" value="{{ old('name') }}">
+                                <input type="text" name="name" class="form-control" placeholder="Enter DB Name"
+                                    value="{{ old('name') }}">
                                 @error('name')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -146,8 +147,8 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">DB NRIC</label>
-                                <input type="text" name="nric" class="form-control"
-                                    placeholder="Enter DB NRIC" value="{{ old('nric') }}">
+                                <input type="text" name="nric" class="form-control" placeholder="Enter DB NRIC"
+                                    value="{{ old('nric') }}">
                                 @error('nric')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -173,24 +174,24 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">DB Email</label>
-                                <input type="email" name="email" class="form-control"
-                                    placeholder="Enter DB Email" value="{{ old('email') }}">
+                                <input type="email" name="email" class="form-control" placeholder="Enter DB Email"
+                                    value="{{ old('email') }}">
                                 @error('email')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">DB Phone</label>
-                                <input type="text" name="phone" class="form-control"
-                                    placeholder="Enter DB Phone" value="{{ old('phone') }}">
+                                <input type="text" name="phone" class="form-control" placeholder="Enter DB Phone"
+                                    value="{{ old('phone') }}">
                                 @error('phone')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">DB Address</label>
-                                <input type="text" name="adderss" class="form-control"
-                                    placeholder="Enter DB Address" value="{{ old('adderss') }}">
+                                <input type="text" name="adderss" class="form-control" placeholder="Enter DB Address"
+                                    value="{{ old('adderss') }}">
                                 @error('adderss')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -204,7 +205,7 @@
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Debt Amount</label>
                                 <input type="number" name="debt_amount" class="form-control"
-                                    placeholder="Enter Debt Amount" value="{{ old('debt_amount') }}">
+                                    placeholder="Enter Debt Amount" id="debt_amount" value="{{ old('debt_amount') }}">
                                 @error('debt_amount')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -213,7 +214,7 @@
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Legal Cost</label>
                                 <input type="number" name="legal_cost" class="form-control"
-                                    placeholder="Enter Legal Cost" value="{{ old('legal_cost') }}">
+                                    placeholder="Enter Legal Cost" id="legal_cost" value="{{ old('legal_cost') }}">
                                 @error('legal_cost')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -222,7 +223,7 @@
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Total Interest</label>
                                 <input type="number" name="total_interest" class="form-control"
-                                    placeholder="Total Interest" value="{{ old('total_interest') }}">
+                                    placeholder="Total Interest will Auto Update" readonly id="total_interest">
                                 @error('total_interest')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -231,32 +232,49 @@
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Total Amount Owed</label>
                                 <input type="number" name="total_amount_owed" class="form-control"
-                                    placeholder="Total Amount Owed" value="{{ old('total_amount_owed') }}">
+                                    placeholder="Total Amount Owed will Auto Update" readonly id="total_amount_owed">
                                 @error('total_amount_owed')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
 
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">Debt Interest/Annum</label>
+                                <label class="form-label">Debt Interest/Annum (%)</label>
                                 <input type="number" name="debt_interest" class="form-control"
-                                    placeholder="Enter Debt Interest/Annum" value="{{ old('debt_interest') }}">
+                                    placeholder="Enter Debt Interest/Annum" id="debt_amount_annum">
                                 @error('debt_interest')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Installment Number</label>
+                                <input type="number" name="installment_number" id="installment_number" class="form-control"
+                                    placeholder="Enter Installment Number" id="installment_number">
+                                @error('installment_number')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Per Installment Amount</label>
+                                <input type="number" name="per_installment_amount" readonly id="per_installment_amount" class="form-control"
+                                    placeholder="Per Installment will Auto Calculate" id="per_installment_amount">
+                                @error('per_installment_amount')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Interest Start Date</label>
-                                <input type="date" name="interest_start_date" class="form-control"
-                                    placeholder="Enter Interest Start Date" value="{{ old('interest_start_date') }}">
+                                <input type="date" name="interest_start_date" class="form-control" id="start_date"
+                                    placeholder="Enter Interest Start Date">
                                 @error('interest_start_date')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Interest End Date</label>
-                                <input type="date" name="interest_end_date" class="form-control"
-                                    placeholder="Enter Interest End Date" value="{{ old('interest_end_date') }}">
+                                <input type="date" name="interest_end_date" id="end_date" class="form-control"
+                                    placeholder="Enter Interest End Date">
                                 @error('interest_end_date')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -271,8 +289,8 @@
                             </div> --}}
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Total Amount Balance</label>
-                                <input type="Number" name="total_amount_balance" class="form-control"
-                                    placeholder="Enter Total Amount Balance" value="{{ old('total_amount_balance') }}">
+                                <input type="number" name="total_amount_balance" readonly id="total_amount_balance"
+                                    class="form-control" placeholder="Total Amount Balance will Auto Update">
                                 @error('total_amount_balance')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -285,55 +303,18 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="mb-3 col-md-3">
+                            {{-- <div class="mb-3 col-md-3">
                                 <label class="form-label">Administrative Fee</label>
                                 <input type="number" name="administrative_fee" class="form-control"
                                     placeholder="Enter Administrative Fee" value="{{ old('administrative_fee') }}">
                                 @error('administrative_fee')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
-                            </div>
-
+                            </div> --}}
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">Enforcement Fee</label>
-                                <input type="number" name="enforcement_fee" class="form-control"
-                                    placeholder="Enter Enforcement Fee" value="{{ old('enforcement_fee') }}">
-                                @error('enforcement_fee')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Professional Fee</label>
-                                <input type="number" name="professional_fee" class="form-control"
-                                    placeholder="Enter Professional Fee" value="{{ old('professional_fee') }}">
-                                @error('professional_fee')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Annual Fee</label>
-                                <input type="number" name="annual_fee" class="form-control"
-                                    placeholder="Enter Annual Fee" value="{{ old('annual_fee') }}">
-                                @error('annual_fee')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Skip-Tracing Fee</label>
-                                <input type="number" name="skip_tracing_fee" class="form-control"
-                                    placeholder="Enter Skip Tracing Fee" value="{{ old('skip_tracing_fee') }}">
-                                @error('skip_tracing_fee')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Overseas Allowance</label>
-                                <input type="number" name="overseas_allowance" class="form-control"
-                                    placeholder="Enter Overseas Allowance" value="{{ old('overseas_allowance') }}">
-                                @error('overseas_allowance')
+                                <label class="form-label">Remarks</label>
+                                <textarea name="remarks" class="form-control" id="" cols="30" rows="1">Enter Remarks Here</textarea>
+                                @error('remarks')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -381,7 +362,8 @@
                     success: function(response) {
                         console.log(response);
                         var dateOfAgreement = response.dateofagreement.date_of_agreement;
-                        $('#date_of_agreement').val(dayjs(dateOfAgreement).format('YYYY-MM-DD'));
+                        $('#date_of_agreement').val(dayjs(dateOfAgreement).format(
+                            'YYYY-MM-DD'));
 
                         var dateOfExpiry = response.dateofagreement.date_of_expiry
                         $('#date_of_expiry').val(dayjs(dateOfExpiry).format('YYYY-MM-DD'));
@@ -392,20 +374,50 @@
                         var balFieldVisit = response.dateofagreement.field_visit_per_case
                         $('#bal_field_visit').val(balFieldVisit);
 
-                        var collection_commission = response.dateofagreement.collection_commission
+                        var collection_commission = response.dateofagreement
+                            .collection_commission
                         $('#collection_commission').val(collection_commission);
 
                         var clNameAbbr = response.dateofagreement.abbr
                         var getDate = response.dateofagreement.created_at
                         var formatedDate = dayjs(getDate).format('YYYY')
-                        $('#case_number').val(formatedDate + '/' + clNameAbbr + '/' );
-
+                        $('#case_number').val(formatedDate + '/' + clNameAbbr + '/');
                     }
-
                 })
-
             });
+            $(function() {
+                $("#end_date").on("change", sub);
 
+                function sub() {
+                    var start = $('#start_date').val();
+                    var end = $('#end_date').val();
+                    // end - start returns difference in milliseconds
+                    diff = new Date(Date.parse(end) - Date.parse(start));
+                    // get days
+                    var days = diff / 1000 / 60 / 60 / 24;
+                    var debt_amount = $('#debt_amount').val();
+                    var debt_amount_annum = $('#debt_amount_annum').val();
+
+                    var yearlyInterest = (debt_amount * debt_amount_annum * 1) / 100;
+                    var dailyInterest = yearlyInterest / 365
+                    var legal_cost = $('#legal_cost').val();
+
+                    var total_interest = dailyInterest * days;
+                    $('#total_interest').val(parseFloat(total_interest).toFixed(2));
+
+                    var total_amount_owed = parseFloat(debt_amount) + parseFloat(legal_cost) + parseFloat(
+                        total_interest);
+                    var installment_number = $('#installment_number').val();
+                     var per_installment_amount = parseFloat(total_amount_owed / installment_number).toFixed(2);
+                     $('#per_installment_amount').val(per_installment_amount);
+
+
+                    $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
+
+                    $('#total_amount_balance').val(parseFloat(total_amount_owed).toFixed(2));
+
+                }
+            });
         });
     </script>
 @endpush

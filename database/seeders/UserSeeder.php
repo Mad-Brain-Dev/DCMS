@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             [
                 'first_name'        => 'Supper',
                 'last_name'         => 'Admin',
+                'name'         => 'Super Admin',
                 'email'             => 'admin@app.com',
                 'email_verified_at' => now(),
                 'password'          => Hash::make("12345678"),   // 12345678
@@ -31,6 +32,7 @@ class UserSeeder extends Seeder
             [
                 'first_name'        => 'Client',
                 'last_name'         => 'Last',
+                'Name'         => 'Client Lase',
                 'email'             => 'client@app.com',
                 'email_verified_at' => now(),
                 'password'          => Hash::make("12345678"),   // 12345678

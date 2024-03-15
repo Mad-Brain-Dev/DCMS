@@ -38,6 +38,12 @@ class ClientRequest extends FormRequest
             'admin_fee' => ['nullable'],
             'admin_fee_paid' => ['nullable'],
             'admin_fee_balance' => ['nullable'],
+            'administrative_fee' => ['nullable'],
+            'enforcement_fee' => ['nullable'],
+            'professional_fee' => ['nullable'],
+            'annual_fee' => ['nullable'],
+            'skip_tracing_fee' => ['nullable'],
+            'overseas_allowance' => ['nullable'],
             'collection_commission' => ['nullable'],
             'field_visit_per_case' => ['nullable'],
         ];
