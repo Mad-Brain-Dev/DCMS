@@ -98,7 +98,7 @@ class CaseController extends Controller
         $total_fees = ($client_details->administrative_fee ? $client_details->administrative_fee : 0) + ($client_details->enforcement_fee ? $client_details->enforcement_fee : 0) + ($client_details->professional_fee ? $client_details->professional_fee : 0) + ($client_details->annual_fee ? $client_details->annual_fee : 0) + ($client_details->skip_tracing_fee ? $client_details->skip_tracing_fee : 0) + ($client_details->overseas_allowance ? $client_details->overseas_allowance : 0) + $percentage;
 
         return view('admin.agreement.agreement', compact('case_number', 'client_details', 'total_fees'));
-        // return redirect()->route('printable.case.agreement', ['case_number' => $case_number, 'client_details' => $client_details]);
+        //  return redirect()->route('printable.case.agreement', $case_number->id);
         record_created_flash();
     }
     /**
@@ -397,7 +397,7 @@ class CaseController extends Controller
         return view('admin.cases.show-ms-case-update', compact('ms_updates', 'case'));
     }
 
-    public function printableCaseAgreement()
+    public function printableCaseAgreement($id)
     {
         return view('admin.agreement.agreement');
     }
