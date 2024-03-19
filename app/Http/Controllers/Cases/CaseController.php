@@ -99,6 +99,8 @@ class CaseController extends Controller
 
         return view('admin.agreement.agreement', compact('case_number', 'client_details', 'total_fees'));
         // return redirect()->route('printable.case.agreement', ['case_number' => $case_number, 'client_details' => $client_details]);
+        // $id = $case_number->id;
+        // return redirect()->route('printable.case.agreement', ['id' => $id]);
         record_created_flash();
     }
     /**
