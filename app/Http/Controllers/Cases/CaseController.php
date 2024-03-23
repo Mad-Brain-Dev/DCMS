@@ -211,7 +211,7 @@ class CaseController extends Controller
                     GeneralCaseUpdate::create([
                         'case_id' => $request->case_id,
                         'fv_date' => $request->fv_date,
-                        'cr_summary' => $request->cr_summary,
+                        'gn_summary' => $request->gn_summary,
                         'gn_update' => $imageName,
                     ]);
                 }
