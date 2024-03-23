@@ -96,7 +96,7 @@
                         </tr>
                         <tr>
                             <th scope="row">Total Amount Owed</th>
-                            <td>{{ $case->total_amount_owed }} $</td>
+                            <td>{{ number_format($case->total_amount_owed, 2, '.', ',') }} $</td>
                         </tr>
                         {{-- <tr>
                                 <th scope="row">Total Amount Paid</th>
