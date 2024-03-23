@@ -80,6 +80,8 @@ Route::get('/show/miscellaneous/case/update/{id}', [CaseController::class, 'view
 
 // update admin fee
 Route::put('client/admin/fee/update/{id}', [CaseController::class, 'updateAdminFee'])->name('admin.fee.update');
+//update total amount balance
+Route::put('update/total/amount/balance/{id}', [CaseController::class, 'updateTotalAmountBalance'])->name('update.total.amount.balance');
 
 
 //all routes for admin

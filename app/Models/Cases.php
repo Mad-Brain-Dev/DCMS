@@ -50,6 +50,7 @@ class Cases extends Model
         'installment_number',
         'per_installment_amount',
         'total_amount_paid',
+        'amount_unpaid',
         'total_amount_balance',
         'gn_update',
     ];

@@ -110,7 +110,7 @@
                             </div>
                         </div>
 
-                            <div class="card">
+                            {{-- <div class="card">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="mb-3 col-md-4">
@@ -132,7 +132,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="card">
                                 <div class="card-body">
@@ -196,7 +196,7 @@
                                 </div>
                             </div>
 
-                            <div class="card">
+                            {{-- <div class="card">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="mb-3 col-md-3">
@@ -257,14 +257,14 @@
                                                 <p class="error">{{ $message }}</p>
                                             @enderror
                                         </div>
-                                        {{-- <div class="mb-3 col-md-3">
+                                        <div class="mb-3 col-md-3">
                                             <label class="form-label">Total Amount Paid</label>
                                             <input type="Number" name="total_amount_paid" class="form-control"
                                                 value="{{ $case->total_amount_paid }}">
                                             @error('total_amount_paid')
                                                 <p class="error">{{ $message }}</p>
                                             @enderror
-                                        </div> --}}
+                                        </div>
                                         <div class="mb-3 col-md-3">
                                             <label class="form-label">Total Amount Balance</label>
                                             <input type="Number" name="total_amount_balance" class="form-control"
@@ -275,8 +275,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card">
+                            </div> --}}
+                            {{-- <div class="card">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="mb-3 col-md-3">
@@ -333,7 +333,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="row">
                                 <div class="mb-3 offset-md-6 col-md-6">
                                     <div class="text-end">

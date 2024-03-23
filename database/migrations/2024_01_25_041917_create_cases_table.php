@@ -37,6 +37,7 @@ return new class extends Migration
             $table->string('adderss')->nullable();
             $table->string('debt_amount')->nullable();
             $table->string('legal_cost')->nullable();
+            $table->string('amount_unpaid')->nullable();
             $table->string('debt_interest')->nullable();
             $table->dateTime('interest_start_date')->nullable();
             $table->dateTime('interest_end_date')->nullable();

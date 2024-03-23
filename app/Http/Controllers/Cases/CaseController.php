@@ -401,4 +401,15 @@ class CaseController extends Controller
     {
         return view('admin.agreement.agreement');
     }
+
+    public function updateTotalAmountBalance(Request $request, $id){
+        $request->validate([
+            'total_amount_balance' => 'nullable',
+            // 'admin_fee_paid' => 'nullable',
+            // 'amount_unpaid' => 'nullable',
+        ]);
+        $fee = Cases::find($id);
+        $fee->update($request->all());
+        return redirect()->route('admin.cases.show', $id);
+    }
 }
