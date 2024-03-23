@@ -572,7 +572,8 @@
                 $("#num2").on("keydown keyup", sum);
 
                 function sum() {
-                    $("#subt").val(Number($("#num1").val()) - Number($("#num2").val()));
+                 var result = Number($("#num1").val()) - Number($("#num2").val())
+                    $("#subt").val(result.toFixed(2));
                 }
             });
         });
