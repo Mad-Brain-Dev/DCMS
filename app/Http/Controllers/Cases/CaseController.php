@@ -405,7 +405,7 @@ class CaseController extends Controller
     public function updateTotalAmountBalance(Request $request, $id){
         $request->validate([
             'total_amount_balance' => 'nullable',
-            // 'admin_fee_paid' => 'nullable',
+            'total_amount_paid' => 'nullable',
             // 'amount_unpaid' => 'nullable',
         ]);
         $fee = Cases::find($id);

@@ -544,7 +544,7 @@
                         </div>
                         <div class="form-group mt-2">
                             <label for="num2">Amount Paid</label>
-                            <input type="number" class="form-control" name="" id="num2" value="">
+                            <input type="number" class="form-control" name="total_amount_paid" id="num2" value="">
                         </div>
                         <div class="form-group mt-2">
                             <label for="subt">Unpaid Amount Balance</label>
