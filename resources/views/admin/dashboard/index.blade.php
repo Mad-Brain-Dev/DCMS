@@ -16,12 +16,11 @@
             </div>
         </div>
     </div>
-
     <div class="col-xl-3 col-md-6">
         <div class="card mini-stat bg-primary text-white">
             <div class="card-body">
                 <div class="">
-                    <div class="float-start wallet">
+                    <div class="float-start bill">
                         <i class="fas fa-money-check-alt"></i>
                     </div>
                     <h5 class="font-size-16 text-uppercase text-white-50">Total Amount Owed</h5>
@@ -30,6 +29,7 @@
             </div>
         </div>
     </div>
+
     <div class="col-xl-3 col-md-6">
         <div class="card mini-stat bg-primary text-white">
             <div class="card-body">
@@ -37,7 +37,7 @@
                     <div class="float-start bill">
                         <i class="fas fa-money-check"></i>
                     </div>
-                    <h5 class="font-size-16 text-uppercase text-white-50">Total Amount Paid</h5>
+                    <h5 class="font-size-16 text-uppercase text-white-50">Paid Amount</h5>
                     <h4 class="fw-medium font-size-24"> {{$total_amount_paid}} $</h4>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                     <div class="float-start bill">
                         <i class="fas fa-money-bill"></i>
                     </div>
-                    <h5 class="font-size-16 text-uppercase text-white-50">Total Amount Bal</h5>
+                    <h5 class="font-size-16 text-uppercase text-white-50">Bal Amount</h5>
                     <h4 class="fw-medium font-size-24"> {{$total_amount_balance}} $</h4>
                 </div>
             </div>
@@ -153,7 +153,7 @@
 
 @push('style')
 <style>
-    .fa-layer-group, .fa-money-bill, .wallet, .fa-money-check{
+    .fa-layer-group, .fa-money-bill, .wallet, .fa-money-check, .fa-money-check-alt{
         font-size: 30px;
     }
     .total_case, .bill, .wallet{

@@ -28,9 +28,9 @@ class HomeController extends Controller
     {
         if (Auth::user()->user_type == User::USER_TYPE_ADMIN){
             $case_number = Cases::count();
-            $total_amount_owed = Cases::select('total_amount_owed')->get()->sum('total_amount_owed');
-            $total_amount_paid = Cases::select('total_amount_paid')->get()->sum('total_amount_paid');
-            $total_amount_balance = Cases::select('total_amount_balance')->get()->sum('total_amount_balance');
+            $total_amount_owed = number_format(Cases::select('total_amount_owed')->get()->sum('total_amount_owed'), 2);
+            $total_amount_paid = number_format(Cases::select('total_amount_paid')->get()->sum('total_amount_paid'), 2);
+            $total_amount_balance = number_format(Cases::select('total_amount_balance')->get()->sum('total_amount_balance'), 2);
             $pdg_case_status = Cases::where('current_status', 'PDG')->get()->count('current_status');
             $opn_case_status = Cases::where('current_status', 'OPN')->get()->count('current_status');
             $fld_case_status = Cases::where('current_status', 'FLD')->get()->count('current_status');
