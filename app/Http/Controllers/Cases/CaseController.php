@@ -402,7 +402,8 @@ class CaseController extends Controller
         return view('admin.agreement.agreement');
     }
 
-    public function updateTotalAmountBalance(Request $request, $id){
+    public function updateTotalAmountBalance(Request $request, $id)
+    {
         $request->validate([
             'total_amount_balance' => 'nullable',
             'total_amount_paid' => 'nullable',
@@ -411,5 +412,10 @@ class CaseController extends Controller
         $fee = Cases::find($id);
         $fee->update($request->all());
         return redirect()->route('admin.cases.show', $id);
+    }
+
+    public function search(Request $request)
+    {
+
     }
 }

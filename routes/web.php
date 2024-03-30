@@ -62,6 +62,8 @@ Route::get('/show/correspondence/case/update/', [CaseController::class, 'showCor
 
 // show miscellaneous case update in modal
 Route::get('/show/miscellaneous/case/update/', [CaseController::class, 'showMiscellaneousUpdate'])->name('single.miscellaneous.case.update');
+//search client
+Route::get('admin/clinet/search/', [CaseController::class, 'search'])->name('search');
 
 
 
@@ -82,7 +84,6 @@ Route::get('/show/miscellaneous/case/update/{id}', [CaseController::class, 'view
 Route::put('client/admin/fee/update/{id}', [CaseController::class, 'updateAdminFee'])->name('admin.fee.update');
 //update total amount balance
 Route::put('update/total/amount/balance/{id}', [CaseController::class, 'updateTotalAmountBalance'])->name('update.total.amount.balance');
-
 
 //all routes for admin
 Route::prefix('admin')->as('admin.')->group(function () {
