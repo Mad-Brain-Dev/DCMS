@@ -93,7 +93,7 @@
                         <td>NGD</td>
                         <td class="text-end">{{ $ngd_case_status }}</td>
                     </tr>
-                    <tr class="table-dark">
+                    <tr class="table-primary">
                         <td>INS</td>
                         <td class="text-end">{{ $ins_case_status }}</td>
                     </tr>
@@ -141,7 +141,7 @@
                     </tr>
                     <tr class="table-dark">
                         <td>ULT</td>
-                        <td class="text-end">{{ $ult_case_status }}</td>
+                        <td class="table-primary">{{ $ult_case_status }}</td>
                     </tr>
                 </tbody>
             </table>
