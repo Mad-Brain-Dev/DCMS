@@ -17,6 +17,7 @@
 
 <!-- Bootstrap Css -->
 <link href="{{ asset('admin/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <!-- Icons Css -->
 <link href="{{ asset('admin/css/icons.min.css') }}" rel="stylesheet" type="text/css">
 <!-- App Css-->

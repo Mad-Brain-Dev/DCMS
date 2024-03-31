@@ -3,10 +3,31 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-8">
-            <input type="text" name="searchForm" id="searchForm" class="form-control" placeholder="Search...">
-            <div id="searchResults">
-            </div>
+        <div class="col-md-4">
+            {{-- @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif --}}
+            <form action="{{ route('search.for.client') }}" method="POST">
+                @csrf
+                <div class="input-group">
+                    <input type="search" id="search_client" required name="client_search" class="form-control"
+                        placeholder="Enter Client Name" aria-describedby="basic-addon1">
+                    <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <form action="{{ route('search.for.case') }}" method="POST">
+                @csrf
+                <div class="input-group">
+                    <input type="search" id="search_case" required name="case_search" class="form-control"
+                        placeholder="Enter Case Number">
+                    <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+
         </div>
         <div class="col-md-4 mb-3 text-end">
             <a class="btn btn-primary" href="{{ route('admin.clients.create') }}">Create Client</a>
@@ -157,28 +178,48 @@
     </div>
 @endsection
 @push('script')
-<script>
-    // resources/js/search.js
-$(document).ready(function() {
-    $('#searchForm').on('keyup', function() {
-        var query = $(this).val();
-
+    <script>
+        var availableTags = [];
         $.ajax({
-            url: 'admin/clinet/search/',
-            type: 'GET',
-            data: {query: query},
+            url: '/admin/client/search/',
+            method: 'GET',
             success: function(response) {
                 // Handle successful response
-                $('#searchResults').html(response);
+                console.log(response);
+                startAutoComplete(response)
             },
             error: function(xhr) {
                 // Handle error
                 console.log(xhr.responseText);
             }
         });
-    });
-});
-</script>
+        function startAutoComplete(availableTags) {
+            $("#search_client").autocomplete({
+                source: availableTags
+            });
+        }
+
+        $.ajax({
+            url: '/admin/case/search/',
+            method: 'GET',
+            success: function(response) {
+                // Handle successful response
+                console.log(response);
+                startAutoCompleteTwo(response)
+            },
+            error: function(xhr) {
+                // Handle error
+                console.log(xhr.responseText);
+            }
+        });
+        function startAutoCompleteTwo(availableTags) {
+            $("#search_case").autocomplete({
+                source: availableTags
+            });
+        }
+
+
+    </script>
 @endpush
 
 @push('style')

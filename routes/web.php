@@ -63,7 +63,15 @@ Route::get('/show/correspondence/case/update/', [CaseController::class, 'showCor
 // show miscellaneous case update in modal
 Route::get('/show/miscellaneous/case/update/', [CaseController::class, 'showMiscellaneousUpdate'])->name('single.miscellaneous.case.update');
 //search client
-Route::get('admin/clinet/search/', [CaseController::class, 'search'])->name('search');
+Route::get('admin/client/search/', [CaseController::class, 'clientSearch'])->name('client.search');
+//search case
+Route::get('admin/case/search/', [CaseController::class, 'caseSearch'])->name('case.search');
+
+//get the perticular client after search
+Route::post('search/for/client/', [CaseController::class, 'searchForClient'])->name('search.for.client');
+
+//get the perticular case after search
+Route::post('search/for/case/', [CaseController::class, 'searchForCase'])->name('search.for.case');
 
 
 

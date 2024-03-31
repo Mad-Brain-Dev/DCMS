@@ -414,8 +414,66 @@ class CaseController extends Controller
         return redirect()->route('admin.cases.show', $id);
     }
 
-    public function search(Request $request)
+    public function clientSearch()
     {
+        $clients = Client::select('name')->get();
+        $data = [];
+        foreach ($clients as $client) {
+            $data[] = $client['name'];
+        }
+        return $data;
+    }
 
+    public function caseSearch()
+    {
+        $cases = Cases::select('case_number')->get();
+        $data = [];
+        foreach ($cases as $case) {
+            $data[] = $case['case_number'];
+        }
+        return $data;
+    }
+
+
+    public function searchForClient(Request $request)
+    {
+        $searched_client = $request->client_search;
+        if($searched_client != ""){
+            $client = Client::where("name","LIKE","%$searched_client%")->first();
+             if($client){
+                return redirect('admin/clients/'.$client->id);
+            }
+            // if ($case) {
+            //     return redirect('admin/cases/'.$case->id);
+            // }
+            else{
+                session()->flash('status', 'No client matched your search');
+                return redirect()->back();
+            }
+        }
+        else{
+            return redirect()->back();
+        }
+    }
+
+    public function searchForCase(Request $request)
+    {
+        $searched_case = $request->case_search;
+        if($searched_case != ""){
+            $case = Cases::where("case_number","LIKE","%$searched_case%")->first();
+             if($case){
+                return redirect('admin/cases/'.$case->id);
+            }
+            // if ($case) {
+            //     return redirect('admin/cases/'.$case->id);
+            // }
+            else{
+                session()->flash('status', 'No client matched your search');
+                return redirect()->back();
+            }
+        }
+        else{
+            return redirect()->back();
+        }
     }
 }
