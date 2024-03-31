@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12 text-end">
             {{-- <button class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Update Admin Fee</button> --}}
-            <button type="button" class="btn btn-dark mb-3" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
                 Update Admin Fee
             </button>
         </div>

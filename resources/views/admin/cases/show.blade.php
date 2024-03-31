@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12 text-end pb-3">
-            <div><button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal0">
+            <div><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal0">
                     Update Total Balance
                 </button></div>
         </div>

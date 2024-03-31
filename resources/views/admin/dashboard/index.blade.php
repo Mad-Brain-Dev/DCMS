@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 mb-2">
             {{-- @if (session('status'))
                 <div class="alert alert-success">
                     {{ session('status') }}
@@ -18,7 +18,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4  mb-2">
             <form action="{{ route('search.for.case') }}" method="POST">
                 @csrf
                 <div class="input-group">
