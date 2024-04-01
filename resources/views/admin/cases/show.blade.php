@@ -23,7 +23,7 @@
                                    <div class="col-md-3">
                                     <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br>
                                     <span>Total Amount Owed : {{ number_format($case->total_amount_owed, 2, '.', ',') }} $</span> <br>
-                                    <span>Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br>
+                                    <span>Last Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br>
                                     <span>Amount Balance : {{ number_format($case->total_amount_balance, 2, '.', ',') }} $</span> <br>
                                    </div>
                                    <div class="col-md-3">
