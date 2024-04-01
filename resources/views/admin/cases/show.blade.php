@@ -2,9 +2,46 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12 text-end pb-3">
+        <div class="col-md-12 parent-fixed">
+            <div class="fixed-content">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                               <div class="row">
+                                <div class="col-md-3">
+                                    <span>Case Number : {{ $case->case_number }}</span> <br>
+                                    <span>Current Status : {{ $case->current_status }}</span> <br>
+                                    <span>Field Visits :  {{ $case->field_visit }}</span> <br>
+                                    <span>Bal Field Visits : {{ $case->bal_field_visit }}</span> <br>
+                                   </div>
+                                   <div class="col-md-3">
+                                    <span>Debt Interest/Annum : {{ $case->debt_interest }} %</span> <br>
+                                    <span>Total Interest : {{ number_format($case->total_interest, 2, '.', ',') }} $</span> <br>
+                                    <span>Total Installment : {{ $case->installment_number }}</span> <br>
+                                    <span>Per Installment Amount : {{ number_format($case->per_installment_amount, 2, '.', ',') }} $</span> <br>
+
+                                   </div>
+                                   <div class="col-md-3">
+                                    <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br>
+                                    <span>Total Amount Owed : {{ number_format($case->total_amount_owed, 2, '.', ',') }} $</span> <br>
+                                    <span>Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br>
+                                    <span>Amount Balance : {{ number_format($case->total_amount_balance, 2, '.', ',') }} $</span> <br>
+                                   </div>
+                                   <div class="col-md-3">
+                                    <span>Client Name : {{ $case->client->name }} </span> <br>
+                                    <span>Debtor Name : {{ $case->name }} </span> <br>
+                                    <span>Debtor Phone : {{ $case->phone }} </span> <br>
+                                    <span>Debtor Email : {{ $case->email }} </span> <br>
+                                   </div>
+                               </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-end pb-4 balance-btn">
             <div><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal0">
-                    Update Total Balance
+                    Update Balance
                 </button></div>
         </div>
         {{-- <div class="div text-end pb-3">
@@ -13,7 +50,7 @@
             <a href="{{ URL('/show/correspondence/case/update/' . $case->id) }}" class="btn btn-primary">CR Update</a>
             <a href="{{ URL('/show/miscellaneous/case/update/' . $case->id) }}" class="btn btn-primary">MS Update</a>
         </div> --}}
-        <div class="col-md-4">
+        {{-- <div class="col-md-4">
             <div class="card">
                 <table class="table">
                     <tbody>
@@ -61,8 +98,8 @@
                 </table>
 
             </div>
-        </div>
-        <div class="col-md-4">
+        </div> --}}
+        {{-- <div class="col-md-4">
             <div class="card">
                 <table class="table">
                     <tbody>
@@ -98,13 +135,13 @@
                             <th scope="row">Total Amount Owed</th>
                             <td>{{ number_format($case->total_amount_owed, 2, '.', ',') }} $</td>
                         </tr>
-                        {{-- <tr>
+                        <tr>
                                 <th scope="row">Total Amount Paid</th>
                                 <td>{{ $case->total_amount_paid }}</td>
-                            </tr> --}}
+                            </tr>
                         <tr>
                             <th scope="row">Total Amount Balance</th>
-                            <td>{{ number_format($case->total_amount_balance, 2, '.', ',')}} $</td>
+                            <td>{{ number_format($case->total_amount_balance, 2, '.', ',') }} $</td>
                         </tr>
                         <tr>
                             <th scope="row">Per Installment Amount</th>
@@ -116,8 +153,8 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-        <div class="col-md-4">
+        </div> --}}
+        {{-- <div class="col-md-4">
             <div class="card">
                 <table class="table">
                     <tbody>
@@ -151,40 +188,10 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div> --}}
 
 
     </div>
-    {{-- <div class="row">
-        <div class="col-sm-6 col-md-4 col-xl-3">
-            <div class="pb-2">
-                <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#fullscreenModal">All Updates</button>
-            </div>
-
-            <!-- sample modal content -->
-            <div id="fullscreenModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel1" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-fullscreen">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel1">All Updates
-                            </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary waves-effect waves-light">Save
-                                changes</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!-- /.modal -->
-        </div>
-    </div> --}}
 
     <div class="row">
         <div class="col-md-4">
@@ -544,7 +551,8 @@
                         </div>
                         <div class="form-group mt-2">
                             <label for="num2">Amount Paid</label>
-                            <input type="number" class="form-control" name="total_amount_paid" id="num2" value="">
+                            <input type="number" class="form-control" name="total_amount_paid" id="num2"
+                                value="">
                         </div>
                         <div class="form-group mt-2">
                             <label for="subt">Unpaid Amount Balance</label>
@@ -572,7 +580,7 @@
                 $("#num2").on("keydown keyup", sum);
 
                 function sum() {
-                 var result = Number($("#num1").val()) - Number($("#num2").val())
+                    var result = Number($("#num1").val()) - Number($("#num2").val())
                     $("#subt").val(result.toFixed(2));
                 }
             });
@@ -728,5 +736,14 @@
             left: 0;
             right: -55.8px;
         }
+
+        /* .fixed-content{
+            position: fixed;
+            z-index: 9999;
+            width: 70%;
+        } */
+        /* .balance-btn{
+            padding-top: 100px;
+        } */
     </style>
 @endpush

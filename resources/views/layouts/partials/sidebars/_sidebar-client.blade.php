@@ -15,12 +15,12 @@
                     </a>
                 </li>
 
-               <li class="{{ request()->is('/case/show/to/perticular/client') ? 'mm-active' : '' }}">
+               {{-- <li class="{{ request()->is('/case/show/to/perticular/client') ? 'mm-active' : '' }}">
                     <a href="{{ route('case.show.perticual.client') }}"
                         class="{{ request()->routeIs('case.show.perticual.client') ? 'active' : '' }}">
                         <span class="mdi mdi-briefcase-edit-outline pe-2"></span><span> Cases </span>
                     </a>
-                </li>
+                </li> --}}
 
                 {{-- <li class="{{ request()->is('case/show/client') ? 'mm-active' : '' }}">
                     <a href="{{ route('case.show.client') }}"

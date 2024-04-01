@@ -51,7 +51,7 @@
                             <th scope="row">Date of Agreement</th>
                             <td class="text-end">{{ date('d-m-Y', strtotime($client->date_of_agreement)) }}</td>
                         </tr>
-                        <tr class="table-dark">
+                        <tr class="table-danger">
                             <th scope="row">Date of Expiry</th>
                             <td class="text-end">{{ date('d-m-Y', strtotime($client->date_of_expiry)) }}</td>
                         </tr>
@@ -99,7 +99,7 @@
                             <th scope="row">Admin Fee Paid</th>
                             <td class="text-end">{{ number_format($client->admin_fee_paid, 2, '.', ',') }} $</td>
                         </tr>
-                        <tr class="table-dark">
+                        <tr class="table-danger">
                             <th scope="row">Admin Fee Balance</th>
                             <td class="text-end">{{ number_format($client->admin_fee_balance, 2, '.', ',') }} $</td>
                         </tr>
@@ -220,9 +220,6 @@
                 </div>
             @endforeach
         </div>
-
-
-
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
