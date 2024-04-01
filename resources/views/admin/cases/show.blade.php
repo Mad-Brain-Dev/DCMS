@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12 parent-fixed">
             <div class="fixed-content">
-                <div class="card bg-success text-white">
+                <div class="card bg-dark text-white">
                     <div class="card-body">
                                <div class="row">
                                 <div class="col-md-3">
