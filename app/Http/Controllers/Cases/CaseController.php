@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cases;
 
 use App\DataTables\CaseDataTable;
+use App\DataTables\CaseDataTableByStatus;
 use App\DataTables\CasesforPerticularClientDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CaseEditRequest;
@@ -475,5 +476,13 @@ class CaseController extends Controller
         else{
             return redirect()->back();
         }
+    }
+
+    //get case by status
+
+    public function getCasebyStatus(CaseDataTableByStatus $dataTable, $status){
+        set_page_meta('Cases by Status');
+        $query_status = $status == "" ? null : $status;
+        return $dataTable->with('status', $query_status)->render('admin.cases.index');
     }
 }

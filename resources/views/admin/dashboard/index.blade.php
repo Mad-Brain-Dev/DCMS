@@ -99,32 +99,34 @@
                     </tr>
                 </thead> --}}
                     <tbody>
-                        <tr class="table-primary">
-                            <td>PDG</td>
+
+                        <tr class="table-primary" id="pdg">
+                            <td>Pending (PDG)</td>
                             <td class="text-end">{{ $pdg_case_status }}</td>
                         </tr>
-                        <tr class="table-success">
-                            <td>OPN</td>
+
+                        <tr class="table-success" id="opn">
+                            <td>OPN (Open)</td>
                             <td class="text-end">{{ $opn_case_status }}</td>
                         </tr>
-                        <tr class="table-info">
-                            <td>FLD</td>
+                        <tr class="table-info" id="fld">
+                            <td>Filed (FLD)</td>
                             <td class="text-end">{{ $fld_case_status }}</td>
                         </tr>
-                        <tr class="table-warning">
-                            <td>DSP</td>
+                        <tr class="table-warning" id="dsp">
+                            <td>Despatched (DSP)</td>
                             <td class="text-end">{{ $fld_case_status }}</td>
                         </tr>
-                        <tr class="table-danger">
-                            <td>INV</td>
+                        <tr class="table-danger" id="inv">
+                            <td>Investigation Needed (INV)</td>
                             <td class="text-end">{{ $inv_case_status }}</td>
                         </tr>
-                        <tr class="table-light">
-                            <td>NGD</td>
+                        <tr class="table-light" id="ngd">
+                            <td>Negotiating with DB (NGD)</td>
                             <td class="text-end">{{ $ngd_case_status }}</td>
                         </tr>
-                        <tr class="table-primary">
-                            <td>INS</td>
+                        <tr class="table-primary" id="ins">
+                            <td>Under Instalment (INS)</td>
                             <td class="text-end">{{ $ins_case_status }}</td>
                         </tr>
                     </tbody>
@@ -143,32 +145,32 @@
                     </tr>
                 </thead> --}}
                     <tbody>
-                        <tr class="table-primary">
-                            <td>FST</td>
+                        <tr class="table-primary" id="fst">
+                            <td>Fully Settled (FST)</td>
                             <td class="text-end">{{ $fst_case_status }}</td>
                         </tr>
-                        <tr class="table-success">
-                            <td>PST</td>
+                        <tr class="table-success" id="pst">
+                            <td>Partially Settled (PST)</td>
                             <td class="text-end">{{ $pst_case_status }}</td>
                         </tr>
-                        <tr class="table-info">
-                            <td>OHC</td>
+                        <tr class="table-info" id="ohc">
+                            <td>Case on Hold by Client (OHC)</td>
                             <td class="text-end">{{ $ohc_case_status }}</td>
                         </tr>
-                        <tr class="table-warning">
-                            <td>OHM</td>
+                        <tr class="table-warning" id="ohm">
+                            <td>Case on Hold by Management (OHM)</td>
                             <td class="text-end">{{ $ohm_case_status }}</td>
                         </tr>
-                        <tr class="table-danger">
-                            <td>CST</td>
+                        <tr class="table-danger" id="cst">
+                            <td>Closed without Payment (CST)</td>
                             <td class="text-end">{{ $cst_case_status }}</td>
                         </tr>
-                        <tr class="table-light">
-                            <td>AFC</td>
+                        <tr class="table-light" id="afc">
+                            <td>Awaiting update fr Client (AFC)</td>
                             <td class="text-end">{{ $afc_case_status }}</td>
                         </tr>
-                        <tr class="table-primary">
-                            <td>ULT</td>
+                        <tr class="table-primary" id="ult">
+                            <td>Under Litigation (ULT)</td>
                             <td class="text-end">{{ $ult_case_status }}</td>
                         </tr>
                     </tbody>
@@ -193,6 +195,7 @@
                 console.log(xhr.responseText);
             }
         });
+
         function startAutoComplete(availableTags) {
             $("#search_client").autocomplete({
                 source: availableTags
@@ -212,13 +215,55 @@
                 console.log(xhr.responseText);
             }
         });
+
         function startAutoCompleteTwo(availableTags) {
             $("#search_case").autocomplete({
                 source: availableTags
             });
         }
 
-
+        document.getElementById("pdg").onclick = function() {
+                window.location.href = "{{ route('get.case.status', 'pdg') }}";
+        }
+        document.getElementById("opn").onclick = function() {
+                window.location.href = "{{ route('get.case.status', 'opn') }}";
+        }
+        document.getElementById("fld").onclick = function() {
+                window.location.href = "{{ route('get.case.status', 'fld') }}";
+        }
+        document.getElementById("dsp").onclick = function() {
+                window.location.href = "{{ route('get.case.status', 'dsp') }}";
+        }
+        document.getElementById("inv").onclick = function() {
+                window.location.href = "{{ route('get.case.status', 'inv') }}";
+        }
+        document.getElementById("ngd").onclick = function() {
+                window.location.href = "{{ route('get.case.status', 'ngd') }}";
+        }
+        document.getElementById("ins").onclick = function() {
+                window.location.href = "{{ route('get.case.status', 'ins') }}";
+        }
+        document.getElementById("fst").onclick = function() {
+                window.location.href = "{{ route('get.case.status', 'fst') }}";
+        }
+        document.getElementById("pst").onclick = function() {
+                window.location.href = "{{ route('get.case.status', 'pst') }}";
+        }
+        document.getElementById("ohc").onclick = function() {
+                window.location.href = "{{ route('get.case.status', 'ohc') }}";
+        }
+        document.getElementById("ohm").onclick = function() {
+                window.location.href = "{{ route('get.case.status', 'ohm') }}";
+        }
+        document.getElementById("cst").onclick = function() {
+                window.location.href = "{{ route('get.case.status', 'cst') }}";
+        }
+        document.getElementById("afc").onclick = function() {
+                window.location.href = "{{ route('get.case.status', 'afc') }}";
+        }
+        document.getElementById("ult").onclick = function() {
+                window.location.href = "{{ route('get.case.status', 'ult') }}";
+        }
     </script>
 @endpush
 
@@ -236,6 +281,9 @@
         .bill,
         .wallet {
             margin-right: 15px;
+        }
+        #pdg, #opn, #fld, #dsp, #inv, #ngd, #ins, #fst, #pst, #ohc, #ohm, #cst, #afc, #ult{
+            cursor: pointer;
         }
     </style>
 @endpush

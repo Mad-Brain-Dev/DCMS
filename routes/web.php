@@ -43,9 +43,11 @@ Route::get('/case/show/to/client', [CaseController::class, 'casesShowtoClient'])
 Route::get('/case/show/to/perticular/client', [CaseController::class, 'casesForPerticularClient'])->name('case.show.perticual.client');
 // Date of agreement depend on client
 Route::get('/date/of/agreement/for/case', [CaseController::class, 'dateOfAgreementForCase'])->name('date.of.agreement');
-
 // create updates for case
 Route::post('/generel/update/create/for/case', [CaseController::class, 'generalCaseCreate'])->name('general.case.create');
+
+//case finding by status route
+Route::get('/get/cases/status/{status}', [CaseController::class, 'getCasebyStatus'])->name('get.case.status');
 
 
 
