@@ -55,6 +55,19 @@
                         <div class="float-start bill">
                             <i class="fas fa-money-check-alt"></i>
                         </div>
+                        <h5 class="font-size-16 text-uppercase text-white-50">Total Admin Fee</h5>
+                        <h4 class="fw-medium font-size-24"> {{ $total_admin_fee }} $</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card mini-stat bg-primary text-white">
+                <div class="card-body">
+                    <div class="">
+                        <div class="float-start bill">
+                            <i class="fas fa-money-check-alt"></i>
+                        </div>
                         <h5 class="font-size-16 text-uppercase text-white-50">Total Amount Owed</h5>
                         <h4 class="fw-medium font-size-24"> {{ $total_amount_owed }} $</h4>
                     </div>
@@ -87,6 +100,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-6">
             <div class="">
                 <table class="table">

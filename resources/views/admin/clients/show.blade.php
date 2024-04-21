@@ -10,7 +10,7 @@
         </div>
     </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <table class="table">
                     <tbody>
                         <tr class="table-primary">
@@ -55,53 +55,14 @@
                             <th scope="row">Date of Expiry</th>
                             <td class="text-end">{{ date('d-m-Y', strtotime($client->date_of_expiry)) }}</td>
                         </tr>
-
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-6">
-                <table class="table">
-                    <tbody>
-
                         <tr class="table-primary">
                             <th scope="row">Collection Commission</th>
                             <td class="text-end">{{ $client->collection_commission }} %</td>
                         </tr>
-                        <tr class="table-success">
-                            <th scope="row">Administrative Fee</th>
-                            <td class="text-end">{{number_format($client->administrative_fee  ? $client->administrative_fee : 0, 2, '.', ',') }} $</td>
-                        </tr>
-                        <tr class="table-info">
-                            <th scope="row">Enforcement Fee</th>
-                            <td class="text-end">{{number_format($client->enforcement_fee ? $client->enforcement_fee : 0, 2, '.', ',') }} $</td>
-                        </tr>
-                        <tr class="table-warning">
-                            <th scope="row">Professional Fee</th>
-                            <td class="text-end">{{number_format($client->professional_fee ? $client->professional_fee : 0, 2, '.', ',') }} $</td>
-                        </tr>
-                        <tr class="table-danger">
-                            <th scope="row">Annual Fee</th>
-                            <td class="text-end">{{ number_format($client->annual_fee ? $client->annual_fee : 0, 2, '.', ',') }} $</td>
-                        </tr>
-                        <tr class="table-light">
-                            <th scope="row">Skip Tracing Fee</th>
-                            <td class="text-end"> {{ number_format($client->skip_tracing_fee ? $client->skip_tracing_fee : 0, 2, '.', ',') }} $</td>
-                        </tr>
-                        <tr class="table-primary">
-                            <th scope="row">Overseas Allowance</th>
-                            <td class="text-end">{{ number_format($client->overseas_allowance ? $client->overseas_allowance : 0, 2, '.', ',') }} $</td>
-                        </tr>
+
                         <tr class="table-success">
                             <th scope="row">Admin Fee</th>
                             <td class="text-end">{{ number_format($client->admin_fee, 2, '.', ',') }} $</td>
-                        </tr>
-                        <tr class="table-info">
-                            <th scope="row">Admin Fee Paid</th>
-                            <td class="text-end">{{ number_format($client->admin_fee_paid, 2, '.', ',') }} $</td>
-                        </tr>
-                        <tr class="table-danger">
-                            <th scope="row">Admin Fee Balance</th>
-                            <td class="text-end">{{ number_format($client->admin_fee_balance, 2, '.', ',') }} $</td>
                         </tr>
                     </tbody>
                 </table>

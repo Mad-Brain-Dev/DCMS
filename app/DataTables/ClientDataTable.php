@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Models\Cases;
 use App\Models\Client;
 use App\Models\User;
 use App\Utils\GlobalConstant;
@@ -53,8 +54,12 @@ class ClientDataTable extends DataTable
             })->filterColumn('first_name', function ($query, $keyword) {
                 $sql = "CONCAT(users.first_name,'-',users.last_name)  like ?";
                 $query->whereRaw($sql, ["%{$keyword}%"]);
+            })->editColumn('client_id',function ($item){
+                return Cases::where('client_id','=',$item->client_id)->count();
+            })->editColumn('current_status',function ($item){
+                return Cases::where('current_status','=','pdg')->where('client_id','=',$item->client_id)->count();
             })
-            ->rawColumns(['action', 'avatar', 'status','user_type'])
+            ->rawColumns(['action', 'avatar', 'status','user_type', 'client_id'])
             ->setRowId('id');
     }
 
@@ -100,8 +105,9 @@ class ClientDataTable extends DataTable
 //            Column::computed('DT_RowIndex', 'SL#'),
             // Column::make('avatar', 'avatar')->title('Avatar'),
             Column::make('name', 'name')->title('Name'),
-            Column::make('email', 'email')->title('Email'),
-            Column::make('phone', 'phone')->title('Phone'),
+            Column::make('client_id', 'client_id')->title('Total Case'),
+            Column::make('current_status', 'current_status')->title('Pending Case'),
+
         ];
     }
 

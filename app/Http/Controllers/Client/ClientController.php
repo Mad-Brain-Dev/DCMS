@@ -46,6 +46,8 @@ class ClientController extends Controller
      */
     public function store(ClientRequest $request)
     {
+
+
         $data = $request->validated();
         try {
 

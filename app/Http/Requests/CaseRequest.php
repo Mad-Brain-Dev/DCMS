@@ -28,7 +28,7 @@ class CaseRequest extends FormRequest
             'remarks'        => ['nullable'],
             'case_summary'        => ['nullable'],
             'current_status'      => ['nullable'],
-            'client_id'    => ['nullable'],
+            'client_id'    => ['required'],
             'user_id'    => ['nullable'],
             'date_of_warrant'      => ['nullable'],
             'collection_commission'    => ['nullable'],
