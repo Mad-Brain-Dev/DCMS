@@ -199,7 +199,7 @@
         <div class="col-md-4">
             <div id="success" class="text-success"></div>
             <div class="card">
-                <div class="card-header text-center">Gn Update</div>
+                <div class="card-header text-center">General Update</div>
                 <div class="card-body">
                     <form enctype="multipart/form-data" action="{{ route('general.case.create') }}" method="POST">
                         @csrf
@@ -277,7 +277,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <h5>GN Updates</h5>
+                    <h5>General updates</h5>
                     <div id="content">
                         <ul class="timeline">
                             @foreach ($gn_updates as $gn_update)
@@ -761,12 +761,12 @@
         }
 
         /* .fixed-content{
-                position: fixed;
-                z-index: 9999;
-                width: 70%;
-            } */
+                        position: fixed;
+                        z-index: 9999;
+                        width: 70%;
+                    } */
         /* .balance-btn{
-                padding-top: 100px;
-            } */
+                        padding-top: 100px;
+                    } */
     </style>
 @endpush
