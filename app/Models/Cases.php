@@ -47,12 +47,12 @@ class Cases extends Model
         'interest_end_date',
         'total_interest',
         'total_amount_owed',
-        'installment_number',
-        'per_installment_amount',
         'total_amount_paid',
         'amount_unpaid',
         'total_amount_balance',
-        'gn_update',
+        'payment_method',
+        'payment_date',
+
     ];
 
     public function client()

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('gn_update')->nullable();
             $table->dateTime('fv_date')->nullable();
             $table->string('gn_summary')->nullable();
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

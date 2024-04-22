@@ -44,10 +44,9 @@ return new class extends Migration
             $table->string('total_interest')->nullable();
             $table->string('total_amount_owed')->nullable();
             $table->string('total_amount_paid')->nullable();
-            $table->string('installment_number')->nullable();
-            $table->string('per_installment_amount')->nullable();
             $table->string('total_amount_balance')->nullable();
-            $table->string('gn_update')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->dateTime('payment_date')->nullable();
             $table->timestamps();
         });
     }

@@ -6,33 +6,35 @@
             <div class="fixed-content">
                 <div class="card bg-primary text-white">
                     <div class="card-body">
-                               <div class="row">
-                                <div class="col-md-3">
-                                    <span>Case Number : {{ $case->case_number }}</span> <br>
-                                    <span>Current Status : {{ $case->current_status }}</span> <br>
-                                    <span>Field Visits :  {{ $case->field_visit }}</span> <br>
-                                    <span>Bal Field Visits : {{ $case->bal_field_visit }}</span> <br>
-                                   </div>
-                                   <div class="col-md-3">
-                                    <span>Debt Interest/Annum : {{ $case->debt_interest }} %</span> <br>
-                                    <span>Total Interest : {{ number_format($case->total_interest, 2, '.', ',') }} $</span> <br>
-                                    <span>Total Installment : {{ $case->installment_number }}</span> <br>
-                                    <span>Per Installment Amount : {{ number_format($case->per_installment_amount, 2, '.', ',') }} $</span> <br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <span>Case Number : {{ $case->case_number }}</span> <br>
+                                <span>Current Status : {{ $case->current_status }}</span> <br>
+                                {{-- <span>Field Visits :  {{ $case->field_visit }}</span> <br>
+                                    <span>Bal Field Visits : {{ $case->bal_field_visit }}</span> <br> --}}
+                            </div>
+                            <div class="col-md-3">
+                                <span>Debt Interest/Annum : {{ $case->debt_interest }} %</span> <br>
+                                <span>Total Interest : {{ number_format($case->total_interest, 2, '.', ',') }} $</span> <br>
+                                {{-- <span>Total Installment : {{ $case->installment_number }}</span> <br>
+                                    <span>Per Installment Amount : {{ number_format($case->per_installment_amount, 2, '.', ',') }} $</span> <br> --}}
 
-                                   </div>
-                                   <div class="col-md-3">
-                                    <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br>
-                                    <span>Total Amount Owed : {{ number_format($case->total_amount_owed, 2, '.', ',') }} $</span> <br>
-                                    <span>Last Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br>
-                                    <span>Amount Balance : {{ number_format($case->total_amount_balance, 2, '.', ',') }} $</span> <br>
-                                   </div>
-                                   <div class="col-md-3">
-                                    <span>Client Name : {{ $case->client->name }} </span> <br>
-                                    <span>Debtor Name : {{ $case->name }} </span> <br>
-                                    <span>Debtor Phone : {{ $case->phone }} </span> <br>
-                                    <span>Debtor Email : {{ $case->email }} </span> <br>
-                                   </div>
-                               </div>
+                            </div>
+                            <div class="col-md-3">
+                                {{-- <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br> --}}
+                                <span>Total Amount Owed : {{ number_format($case->total_amount_owed, 2, '.', ',') }}
+                                    $</span> <br>
+                                {{-- <span>Last Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br> --}}
+                                <span>Amount Balance : {{ number_format($case->total_amount_balance, 2, '.', ',') }}
+                                    $</span> <br>
+                            </div>
+                            <div class="col-md-3">
+                                <span>Client Name : {{ $case->client->name }} </span> <br>
+                                <span>Debtor Name : {{ $case->name }} </span> <br>
+                                {{-- <span>Debtor Phone : {{ $case->phone }} </span> <br> --}}
+                                {{-- <span>Debtor Email : {{ $case->email }} </span> <br> --}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -202,10 +204,38 @@
                     <form enctype="multipart/form-data" action="{{ route('general.case.create') }}" method="POST">
                         @csrf
                         <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
+
                         <div class="mb-3">
                             <label class="form-label">Gn Case Update</label>
                             <input type="file" name="gn_updates[]" multiple class="form-control">
                             @error('gn_updates')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Amount Paid</label>
+                            <input type="number" name="amount_paid" placeholder="Enter Paid Amount Here"
+                                class="form-control">
+                            @error('paid_amount')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Payment Method</label>
+                            <select class="form-select" aria-label="Default select example" name="payment_method">
+                                <option selected>Select One Payment Method</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Check">Check</option>
+                                <option value="Online">Online</option>
+                            </select>
+                            @error('paid_amount')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date of Payment</label>
+                            <input type="date" name="payment_date" class="form-control">
+                            @error('payment_date')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
@@ -220,6 +250,13 @@
                             <label class="form-label">Gn Summary</label>
                             <textarea name="gn_summary" class="form-control" id="" rows="2"></textarea>
                             @error('gn_summary')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Remarks</label>
+                            <input type="text" name="remarks" class="form-control" placeholder="Enter Remarks Here">
+                            @error('remarks')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
@@ -246,8 +283,8 @@
                             @foreach ($gn_updates as $gn_update)
                                 <li class="event"
                                     data-date="{{ date('d-m-Y', strtotime($gn_update->created_at)) }}, {{ date('h:i a', strtotime($gn_update->created_at)) }} ">
-                                    <iframe src="{{ asset('/documents/' . $gn_update->gn_update) }}" width="400"
-                                        height="400"></iframe>
+                                    <iframe src="{{ asset('/documents/' . $gn_update->gn_update) }}" width="100"
+                                        height="100"></iframe>
                                     <h6 class="mt-2">Field Visited at:
                                         {{ date('d-m-Y', strtotime($gn_update->fv_date)) }}</h6>
                                     <span class="d-block">{{ $gn_update->gn_summary }}</span>
@@ -367,7 +404,7 @@
         </div>
     </div>
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header text-center">CR Case Update</div>
@@ -425,13 +462,6 @@
                                     <h6 class="mt-2">Field Visited at:
                                         {{ date('d-m-Y', strtotime($cr_update->fv_date)) }}</h6>
                                     <span class="d-block">{{ $cr_update->cr_summary }}</span>
-                                    {{-- <div>
-                                        <a href="#" class="btn  btn-primary mt-2 viewFVUpdate" data-toggle="modal"
-                                        data-target="#exampleModal">
-                                        <span class="cr_id d-none">{{ $cr_update->id }}</span>
-                                        <i class="far fa-eye"></i> View
-                                    </a>
-                                    </div> --}}
                                 </li>
                             @endforeach
                         </ul>
@@ -458,9 +488,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header text-center">MS Update</div>
@@ -518,13 +548,6 @@
                                     <h6 class="mt-2">Field Visited at:
                                         {{ date('d-m-Y', strtotime($ms_update->fv_date)) }}</h6>
                                     <span class="d-block">{{ $ms_update->ms_summary }}</span>
-                                    {{-- <div>
-                                        <a href="#" class="btn  btn-primary mt-2 viewMsUpdate" data-toggle="modal"
-                                        data-target="#exampleModal">
-                                        <span class="ms_id d-none">{{ $ms_update->id }}</span>
-                                        <i class="far fa-eye"></i> View
-                                    </a>
-                                    </div> --}}
                                 </li>
                             @endforeach
                         </ul>
@@ -532,7 +555,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="modal fade" id="exampleModal0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -738,12 +761,12 @@
         }
 
         /* .fixed-content{
-            position: fixed;
-            z-index: 9999;
-            width: 70%;
-        } */
+                position: fixed;
+                z-index: 9999;
+                width: 70%;
+            } */
         /* .balance-btn{
-            padding-top: 100px;
-        } */
+                padding-top: 100px;
+            } */
     </style>
 @endpush

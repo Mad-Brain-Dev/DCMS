@@ -190,14 +190,27 @@ class CaseController extends Controller
         $request->validate([
             'gn_updates.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_date' => 'required',
+            'amount_paid' => 'nullable',
+            'payment_date' => 'nullable',
             'gn_summary' => 'nullable',
+            'payment_method' => 'nullable',
             'cr_updates.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'cr_summary' => 'nullable',
             'fv_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_summary' => 'nullable',
             'ms_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'ms_summary' => 'nullable',
+            'remarks' => 'nullable',
         ]);
+        $paid_amount = Cases::findOrFail($request->case_id);
+        $paid_amount->total_amount_paid = $request->amount_paid;
+        $paid_amount->payment_date = $request->payment_date;
+        $paid_amount->payment_method = $request->payment_method;
+        $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
+
+        // Update the record with validated data
+        $paid_amount->save();
+        record_updated_flash();
 
         if ($request->gn_updates) {
 
@@ -209,8 +222,9 @@ class CaseController extends Controller
 
                     //  $gn_updates[]['gn_update'] = $imageName;
 
-                    GeneralCaseUpdate::create([
+                  $gn_update =   GeneralCaseUpdate::create([
                         'case_id' => $request->case_id,
+                        'remarks' => $request->remarks,
                         'fv_date' => $request->fv_date,
                         'gn_summary' => $request->gn_summary,
                         'gn_update' => $imageName,
