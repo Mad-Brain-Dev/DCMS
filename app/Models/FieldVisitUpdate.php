@@ -13,6 +13,7 @@ class FieldVisitUpdate extends Model
         'fv_update',
         'case_id',
         'fv_summary',
-        'fv_date'
+        'fv_date',
+        'remarks'
     ];
 }

@@ -40,6 +40,7 @@ return new class extends Migration
             $table->string('amount_unpaid')->nullable();
             $table->string('debt_interest')->nullable();
             $table->dateTime('interest_start_date')->nullable();
+            $table->dateTime('fv_date')->nullable();
             $table->dateTime('interest_end_date')->nullable();
             $table->string('total_interest')->nullable();
             $table->string('total_amount_owed')->nullable();

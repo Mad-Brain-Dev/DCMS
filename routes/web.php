@@ -46,6 +46,8 @@ Route::get('/date/of/agreement/for/case', [CaseController::class, 'dateOfAgreeme
 // create updates for case
 Route::post('/generel/update/create/for/case', [CaseController::class, 'generalCaseCreate'])->name('general.case.create');
 
+Route::post('/field/visit/create/for/case', [CaseController::class, 'fieldVisitCaseCreate'])->name('field.visit.create');
+
 //case finding by status route
 Route::get('/get/cases/status/{status}', [CaseController::class, 'getCasebyStatus'])->name('get.case.status');
 

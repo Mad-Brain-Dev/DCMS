@@ -89,7 +89,7 @@
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Admin Fee</label>
                                 <input type="number" name="admin_fee" class="form-control" id="num1"
-                                    placeholder="Enter Admin Fee">
+                                    placeholder="Enter Admin Fee" value="{{ old('admin_fee') }}">
                                 @error('admin_fee')
                                     <p class="error">{{ $message }}</p>
                                 @enderror

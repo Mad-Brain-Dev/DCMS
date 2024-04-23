@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('case_id')->nullable();
             $table->string('gn_update')->nullable();
-            $table->dateTime('fv_date')->nullable();
             $table->text('gn_summary')->nullable();
             $table->string('remarks')->nullable();
             $table->timestamps();

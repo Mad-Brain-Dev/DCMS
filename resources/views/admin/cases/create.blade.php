@@ -295,9 +295,9 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="mb-3 col-md-3">
+                            {{-- <div class="mb-3 col-md-3">
                               <button class="btn btn-primary" type="button" id="calculate">Calculate</button>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -389,7 +389,7 @@
                 })
             });
             $(function() {
-                $("#calculate").on("click", sub);
+                $("#start_date").on("change", sub);
 
                 function sub() {
                     var start = $('#start_date').val();
