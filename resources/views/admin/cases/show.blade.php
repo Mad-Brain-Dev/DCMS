@@ -442,10 +442,10 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Gn Update</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Feild Visit Update</h5>
                     </div>
                     <div class="modal-body">
-                        <iframe id="gn_update" src="" class="mt-2" width="100%" height="400">
+                        <iframe id="fv_update" src="" class="mt-2" width="100%" height="400">
                         </iframe>
                     </div>
                     <div class="modal-footer">
@@ -682,23 +682,18 @@
             });
         });
 
-
-
-
-
         $('.viewFVUpdate2').click(function(e) {
             var fv_update_id = $(this).find('.fv_id').text();
             $.ajax({
                 type: 'get',
-                url: '{{ route('single.fv.case.update') }}',
+                url: '{{ route('single.field.vist.update') }}',
                 data: {
                     id: fv_update_id
                 },
                 success: (response) => {
-                    console.log(response);
                     let href = "{{ asset('/documents/') }}" + "/" + response.data
-                        .gn_update
-                    let gn_update = $('#gn_update').attr('src', href);
+                        .fv_update
+                    let fv_update = $('#fv_update').attr('src', href);
                 },
                 error: function(response) {
                     $('#error').text(response.responseJSON.message);
