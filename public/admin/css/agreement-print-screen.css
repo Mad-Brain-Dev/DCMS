@@ -25,31 +25,40 @@ hr {
 
 .text-to {
     position: relative;
-    padding-left: 38px;
 }
 
 .to-margin {
-    margin-left: 260px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .text-to::after {
     content: "";
     position: absolute;
     background: #000;
-    height: 1px;
-    width: 595px;
-    bottom: -7px;
-    left: 78px;
+    height: 1.5px;
+    width: 150px;
+    bottom: -3px;
+    left: 45px;
 }
 
-.text-to::before {
+.text-and{
+    position: relative;
+}
+
+.text-and::after {
     content: "";
     position: absolute;
     background: #000;
     height: 1px;
-    width: 595px;
-    bottom: -57px;
-    left: 78px;
+    width: 290px;
+    bottom: -5px;
+    left: 30px;
+}
+
+.and-margin{
+    margin-left: 70px;
+    margin-right: 70px;
 }
 
 .d-f-agreement {
@@ -109,10 +118,7 @@ hr {
     padding-bottom: 7px;
     padding-right: 0;
     border-bottom: none;
-    border-top: 3px solid #000;
-    border-right: 1px solid #000;
-    border-bottom: 1px solid #000;
-    border-left: 3px solid #000;
+    border: 1px solid black;
 }
 
 .case-prov {
@@ -126,49 +132,133 @@ hr {
     padding-right: 0;
     padding-top: 7px;
     padding-bottom: 7px;
-    border-top: 1px solid #000;
-    border-right: 1px solid #000;
-    border-bottom: 3px solid #000;
-    border-left: 3px solid #000;
+    border: 1px solid black;
+}
+
+.for-p{
+    padding-left: 58px;
+    box-sizing: border-box;
+}
+
+.for-p2{
+    padding-left: 60px;
+    box-sizing: border-box;
 }
 
 .box-1st {
-    border-top: 3px solid #000;
-    border-right: 3px solid #000;
-    border-bottom: 1px solid #000;
-    border-left: 1px solid #000;
+    border: 2px solid black;
     padding-top: 7px;
 }
 
 .box-2nd {
-    border-top: 1px solid #000;
-    border-right: 3px solid #000;
-    border-bottom: 3px solid #000;
-    border-left: 1px solid #000;
+    border: 2px solid black;
     padding-top: 7px;
 }
 
-.dear-sir h5 {
+
+/*  */
+
+.bd-highlight {
+    margin-left: -15px;
+}
+
+.col-md-3{
+    max-width: 20%;
+}
+
+.s-dollar-sign{
+    position: relative;
+}
+
+.s-dollar-sign::after{
+    content: "";
+    position: absolute;
+    background: #000;
+    width: 150px;
+    height: 2px;
+    left: 15px;
+    bottom: -3px;
+}
+
+.dollar-margin{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.text-be{
+    position: relative;
+}
+
+.text-be::after{
+    content: "";
+    position: absolute;
+    background: #000;
+    width: 60px;
+    height: 2px;
+    left: 17px;
+    bottom: -3px;
+}
+
+.be-margin{
+    margin-left: 15px;
+    margin-right: 15px;
+ }
+
+
+ .text-of{
+    position: relative;
+ }
+
+ .text-of::after{
+    content: "";
+    position: absolute;
+    background: #000;
+    width: 40px;
+    height: 2px;
+    left: 17px;
+    bottom: -3px;
+}
+
+.of-margin{
+    margin-left: 10px;
+    margin-right: 10px;
+ }
+
+
+ /*  */
+
+ .four-ul{
+    list-style: none;
+    padding: 0;
+    margin-left: -14px;
+ }
+
+
+/* .dear-sir h5 {
     padding-top: 17px;
     padding-left: 15px;
     font-size: 15px;
     font-weight: 700;
     font-family: "Open Sans", sans-serif;
-}
+} */
 
-.ol-start .first-ol {
+.ol-start .first-ol{
     padding-right: 50px;
     font-size: 14px;
     font-weight: 600;
     font-family: "Open Sans", sans-serif;
 }
 
-.ol-start .first-ol h5 {
-    padding-top: 30px;
-    font-size: 18px;
-    font-weight: 700;
-    font-family: "Open Sans", sans-serif;
+.ol-start .first-ol li{
+    margin-top: 16px;
+    padding-left: 15px;
+    line-height: 25px;
 }
+
+
+
+
+
 
 /* provisions start */
 .new-ul-start .provisions li {
@@ -176,151 +266,6 @@ hr {
     list-style: none;
 }
 
-.new-ul-start .provisions h6 {
-    padding-left: 30px;
-    font-size: 18px;
-    font-weight: 700;
-    font-family: "Open Sans", sans-serif;
-}
-
-/* provisions ends */
-.information-box {
-    border: 3px solid #000;
-}
-
-.debt-collection {
-    padding-top: 5px;
-    text-align: center;
-    border-bottom: 2px solid #000;
-    border-right: 2px solid #000;
-}
-
-.debt-collection h6 {
-    font-size: 17px;
-    font-weight: 700;
-    font-family: "Open Sans", sans-serif;
-}
-
-.fees-ul {
-    font-size: 15px;
-}
-
-.fees-ul li {
-    font-size: 14px;
-    font-weight: 600;
-    font-family: "Open Sans", sans-serif;
-}
-
-.amount-ul li i {
-    font-size: 18px;
-    font-weight: 600;
-    font-family: "Open Sans", sans-serif;
-    font-style: italic;
-}
-
-.fee {
-    margin-left: 57px;
-}
-
-.fee-total {
-    margin-left: 70px;
-}
-
-.amount-ul li h6 {
-    font-size: 15px;
-    font-weight: 600;
-    font-family: "Open Sans", sans-serif;
-    font-style: italic;
-}
-
-.another-ul {
-    font-size: 13px;
-    font-weight: 500;
-    font-family: "Open Sans", sans-serif;
-    font-style: italic;
-}
-
-.another-ul .cost {
-    font-size: 13px;
-    font-weight: 700;
-    font-family: "Open Sans", sans-serif;
-    font-style: italic;
-    border-bottom: 1.5px solid #000;
-}
-
-.amount-informetion {
-    margin-top: 30px;
-}
-
-.amount-informetion ul li {
-    list-style: none;
-    margin-top: 15px;
-}
-
-.amount-data ul {
-    font-size: 15px;
-}
-
-.amount-data ul li h6 {
-    text-align: center;
-}
-
-.amount-data ul li i {
-    position: relative;
-}
-
-.amount-data ul li i::after {
-    content: "";
-    position: absolute;
-    background: #000;
-    width: 130px;
-    height: 1px;
-    bottom: -3px;
-    left: 100%;
-}
-
-.new-informetion {
-}
-
-.new-informetion ul li {
-    list-style: none;
-    font-size: 14px;
-    font-weight: 600;
-    font-family: "Open Sans", sans-serif;
-}
-
-.collection-li {
-    padding-left: 28px;
-}
-
-.collection-commission-bold {
-    font-weight: 800;
-    text-decoration: underline;
-}
-
-.percenteg-li {
-    padding-left: 154px;
-}
-
-.total-li {
-    padding-left: 90px;
-}
-
-.total-li i {
-    position: relative;
-    padding-left: 30px;
-    font-style: italic;
-}
-
-.total-li i::after {
-    content: "";
-    position: absolute;
-    background: #000;
-    width: 180px;
-    height: 1.5px;
-    bottom: -3px;
-    left: 100%;
-}
 
 .new-text p {
     font-size: 13px;
@@ -379,25 +324,69 @@ hr {
     padding-left: 85px;
 }
 
+.date_uen{
+    padding-left: 130px;
+}
+
 .company_uen_2 {
     padding-left: 105px;
 }
 
 .another-row {
-    margin-top: 20px;
+    
     margin-block: 40px;
 }
 
 .another-row .second-box {
-    border: 2px solid #000;
-    padding-top: 30px;
+    position: relative;
+    margin-top: -20px;
     padding-bottom: 30px;
 }
 
-.sincere .director {
+.another-row .second-box::after{
+    content: '';
+    position: absolute;
+    width: 1.5px;
+    height: 270px;
+    background: #000;
+    top: 0;
+    left: -35px;
+}
+
+.another-row .second-box::before{
+    content: '';
+    position: absolute;
+    width: 1.5px;
+    height: 270px;
+    background: #000;
+    top: 0;
+    left: -31px;
+}
+
+.sincere h4 {
+    margin-bottom: 80px;
+    margin-top: -20px;
+}
+
+.director {
     font-size: 14px;
     font-weight: 600;
     font-family: "Open Sans", sans-serif;
+    
+}
+
+.for-after{
+    position: relative;
+}
+
+.for-after::after{
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 1.5px;
+    background: #000;
+    top: -20px;
+    left: -10px;
 }
 
 .ravin {
@@ -408,29 +397,12 @@ hr {
     padding-left: 86px;
 }
 
-.sincere h4 {
-    padding-left: 35px;
-    position: relative;
-    margin-top: 75px;
-    margin-bottom: 40px;
-}
-
-.sincere h4::after {
-    content: "";
-    position: absolute;
-    width: 340px;
-    height: 1.6px;
-    background: #000;
-    top: -15px;
-    left: 10px;
-}
-
 .sincere .enclosed {
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 600;
     font-family: "Open Sans", sans-serif;
     font-style: italic;
-    padding-top: 20px;
+    padding-top: 70px;
 }
 
 .company {
@@ -444,21 +416,21 @@ hr {
     height: 1.5px;
     background: #000;
     bottom: -1px;
-    right: -305px;
+   left: 132px;
 }
 
-.uen {
+.Date {
     position: relative;
 }
 
-.uen::after {
+.Date::after {
     content: "";
     position: absolute;
     width: 290px;
     height: 1.5px;
     background: #000;
     bottom: -1px;
-    right: -305px;
+    left: 132px;
 }
 
 .location {
@@ -468,18 +440,18 @@ hr {
     display: none;
 }
 
-.nric {
+.Client {
     position: relative;
 }
 
-.nric::after {
+.Client::after {
     content: "";
     position: absolute;
     width: 290px;
     height: 1.5px;
     background: #000;
     bottom: -1px;
-    right: -325px;
+    left: 132px;
 }
 
 .designation {
@@ -493,7 +465,7 @@ hr {
     height: 1.5px;
     background: #000;
     bottom: -1px;
-    right: -326px;
+    left: 132px;
 }
 
 .stamp {
@@ -508,12 +480,9 @@ hr {
     height: 1.5px;
     border: 1px dotted #000000;
     bottom: -6px;
-    right: -302px;
+    left: 132px;
 }
 
-.collection_comm_per {
-    padding-left: 41px;
-}
 
 .collection-li {
     position: relative;
@@ -529,19 +498,24 @@ hr {
     bottom: 0;
 }
 
+.serve{
+    margin-left: -30px;
+}
+
 .hello_securre_mail,
 .hello_securre_web {
     text-decoration: underline;
 }
 
-/*  */
+/* first page end */
+
+/* second section start */
 .warrant-act h1 {
     font-size: 110px;
     font-weight: 400;
     font-family: "Playfair Display", serif;
 }
 
-/* second section start */
 .second-section {
     font-weight: 600;
     font-size: 16px;
@@ -561,20 +535,24 @@ hr {
     padding-top: 2px;
     transform: translateY(-15px);
 }
+
+
+/*  */
 .to-securre {
     padding-left: 10px;
-    padding-right: 60px;
+    padding-right: 12px;
 }
 .client-information {
-    padding: 4px 50px;
+    padding: 4px 15px;
     background: #000;
     color: #ffff;
     font-size: 16px;
     font-weight: 600;
     margin-left: 10px;
 }
+
 .new-case {
-    margin-top: 20px;
+    margin-left: 195px;
 }
 .case-ref {
     font-family: "Open Sans", sans-serif;
@@ -602,23 +580,28 @@ hr {
 }
 
 .debtor-information {
-    padding: 4px 50px;
+    padding: 4px 15px;
     background: #000;
     color: #ffff;
     font-size: 16px;
     font-weight: 600;
-    margin-left: 10px;
+    margin-left: 25px;
 }
 .take-information ul {
     margin-top: 15px;
     margin-bottom: 30px;
 }
+
+.list-unstyled{
+    margin-left: -30px;
+}
+
 .take-information ul li {
     margin-top: 8px;
 }
 .full-name {
     position: relative;
-    padding-left: 90px;
+   
 }
 .full-name::after {
     content: "";
@@ -627,12 +610,11 @@ hr {
     width: 800px;
     background: #000;
     bottom: -4px;
-    left: 105%;
+    left: 220%;
 }
 
 .company-name {
     position: relative;
-    padding-left: 47px;
 }
 .company-name::after {
     content: "";
@@ -641,12 +623,11 @@ hr {
     width: 800px;
     background: #000;
     bottom: -4px;
-    left: 105%;
+    left: 140%;
 }
 
 .nric-no {
     position: relative;
-    padding-left: 58px;
 }
 .nric-no::after {
     content: "";
@@ -655,12 +636,11 @@ hr {
     width: 800px;
     background: #000;
     bottom: -4px;
-    left: 105%;
+    left: 155%;
 }
 
 .contact-no {
     position: relative;
-    padding-left: 76px;
 }
 .contact-no::after {
     content: "";
@@ -669,12 +649,11 @@ hr {
     width: 800px;
     background: #000;
     bottom: -4px;
-    left: 105%;
+    left: 188%;
 }
 
 .email-add {
     position: relative;
-    padding-left: 84px;
 }
 .email-add::after {
     content: "";
@@ -683,11 +662,10 @@ hr {
     width: 800px;
     background: #000;
     bottom: -4px;
-    left: 105%;
+    left: 208%;
 }
 .address {
     position: relative;
-    padding-left: 102px;
 }
 .address::after {
     content: "";
@@ -696,7 +674,7 @@ hr {
     width: 800px;
     background: #000;
     bottom: -4px;
-    left: 105%;
+    left: 273%;
 }
 .address::before {
     content: "";
@@ -705,11 +683,10 @@ hr {
     width: 800px;
     background: #000;
     bottom: -34px;
-    left: 105%;
+    left: 273%;
 }
 .address-2 {
     position: relative;
-    padding-left: 102px;
 }
 .address-2::after {
     content: "";
@@ -718,7 +695,7 @@ hr {
     width: 800px;
     background: #000;
     bottom: -4px;
-    left: 105%;
+    left: 270%;
 }
 .address-2::before {
     content: "";
@@ -727,14 +704,13 @@ hr {
     width: 800px;
     background: #000;
     bottom: -34px;
-    left: 105%;
+    left: 270%;
 }
 .remarks-li {
     padding-top: 30px;
 }
 .remarks {
     position: relative;
-    padding-left: 98px;
 }
 .remarks::after {
     content: "";
@@ -743,23 +719,50 @@ hr {
     width: 800px;
     background: #000;
     bottom: -4px;
-    left: 105%;
+    left: 256%;
 }
-.padding-for-new-data {
-    padding-left: 100px;
+
+/*  */
+
+.padding-for-new-data1 {
+    padding-left: 305px;
 }
+
+.padding-for-new-data2 {
+    padding-left: 262px;
+}
+
+.padding-for-new-data3 {
+    padding-left: 273px;
+}
+
+.padding-for-new-data4 {
+    padding-left: 291px;
+}
+
+.padding-for-new-data5 {
+    padding-left: 304px;
+}
+
+.padding-for-new-data6 {
+    padding-left: 323px;
+}
+
+.padding-for-new-data7 {
+    padding-left: 323px;
+}
+
+
+
+/*  */
 
 .debt-amount-row {
     border: 2px solid #000;
     padding-top: 20px;
     padding-bottom: 17px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
-.new-usd {
-    padding-left: 60px;
-    padding-top: 18px;
-    position: relative;
-}
+
 .right-usd-data {
     position: absolute;
     top: 18px;
@@ -769,14 +772,37 @@ hr {
     position: absolute;
     right: 20px;
 }
-.new-usd-after {
-    font-size: 16px;
-    font-weight: 500;
-    padding-left: 100px;
+
+.total-debt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.new-usd{
     position: relative;
 }
 
-.new-usd-after::after {
+.new-usd-after {
+    position: absolute;
+    top: -4px;
+    right: -2px;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px 25px 10px 10px;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    /* padding-left: 100px; */
+    /* position: relative; */
+}
+
+.new-usd-after span{
+    margin-left: 25px;
+}
+
+/* .new-usd-after::after {
     content: "";
     position: absolute;
     width: 150px;
@@ -784,7 +810,7 @@ hr {
     background: #000;
     bottom: 0;
     right: 100;
-}
+} */
 .another-information-row ol {
     padding-left: 60px;
     padding-right: 40px;
@@ -844,17 +870,17 @@ hr {
     right: -460px;
 }
 
-.person {
+.from {
     position: relative;
 }
-.person::after {
+.from::after {
     content: "";
     position: absolute;
     height: 1.5px;
-    width: 410px;
+    width: 170px;
     background: #000;
     bottom: 0;
-    left: 58px;
+    left: 55px;
 }
 .contact {
     position: relative;
@@ -863,14 +889,124 @@ hr {
     content: "";
     position: absolute;
     height: 1.5px;
-    width: 399px;
+    width: 170px;
     background: #000;
     bottom: 0;
     left: 68px;
 }
 .lorem-2 {
-    padding-left: 132px;
+    padding-left: 30px;
+    padding-right: 30px
 }
+
+.lorem-3 {
+    padding-left: 30px;
+}
+
+
+
+/*  */
+
+.last-ul li{
+    list-style: none;
+    margin-left: -20px;
+    margin-top: 20px;
+}
+
+.last-ul :nth-of-type(5){
+    margin-top: 50px;
+}
+ 
+.last-ul-li-name{
+    position: relative;
+}
+
+.last-ul-li-name::after {
+    content: "";
+    position: absolute;
+    height: 1.5px;
+    width: 300px;
+    background: #000;
+    bottom: -5px;
+    left: 131px;
+}
+
+.last-ul-li-company{
+    position: relative;
+}
+
+.last-ul-li-company::after {
+    content: "";
+    position: absolute;
+    height: 1.5px;
+    width: 300px;
+    background: #000;
+    bottom: -5px;
+    left: 129px;
+}
+
+.last-ul-li-nric{
+    position: relative;
+}
+
+.last-ul-li-nric::after {
+    content: "";
+    position: absolute;
+    height: 1.5px;
+    width: 300px;
+    background: #000;
+    bottom: -5px;
+    left: 128px;
+}
+
+.last-ul-li-contact{
+    position: relative;
+}
+
+.last-ul-li-contact::after {
+    content: "";
+    position: absolute;
+    height: 1.5px;
+    width: 300px;
+    background: #000;
+    bottom: -5px;
+    left: 125px;
+}
+
+.last-ul-li-stamp{
+    position: relative;
+}
+
+.last-ul-li-stamp::after {
+    content: "";
+    position: absolute;
+    height: 1.5px;
+    width: 300px;
+    background: #000;
+    bottom: -5px;
+    left: 131px;
+}
+
+.data-mr1{
+    margin-left: 80px;
+}
+
+.data-mr2{
+    margin-left: 40px;
+}
+
+.data-mr3{
+    margin-left: 40px;
+}
+
+.data-mr4{
+    margin-left: 70px;
+}
+
+.data-mr5{
+    margin-left: 80px;
+}
+
 
 .new-underline {
     text-decoration: underline;
