@@ -87,7 +87,7 @@ hr {
 }
 .date_of_expiry {
     position: absolute;
-    right: 4px;
+    right: -0px;
     top: 16px;
 }
 

@@ -29,6 +29,7 @@ class HomeController extends Controller
     {
         if (Auth::user()->user_type == User::USER_TYPE_ADMIN) {
             $case_number = Cases::count();
+            $total_admin_fee = number_format(Client::select('admin_fee')->get()->sum('admin_fee'), 2);
             $total_amount_owed = number_format(Cases::select('total_amount_owed')->get()->sum('total_amount_owed'), 2);
             $total_amount_paid = number_format(Cases::select('total_amount_paid')->get()->sum('total_amount_paid'), 2);
             $total_amount_balance = number_format(Cases::select('total_amount_balance')->get()->sum('total_amount_balance'), 2);
@@ -46,7 +47,7 @@ class HomeController extends Controller
             $cst_case_status = Cases::where('current_status', 'CST')->get()->count('current_status');
             $afc_case_status = Cases::where('current_status', 'AFC')->get()->count('current_status');
             $ult_case_status = Cases::where('current_status', 'ULT')->get()->count('current_status');
-            return view('admin.dashboard.index', compact('case_number', 'total_amount_owed', 'total_amount_balance', 'total_amount_paid', 'pdg_case_status', 'opn_case_status', 'fld_case_status', 'dsp_case_status', 'inv_case_status', 'ngd_case_status', 'ins_case_status', 'fst_case_status', 'pst_case_status', 'ohc_case_status', 'ohm_case_status', 'cst_case_status', 'afc_case_status', 'ult_case_status'));
+            return view('admin.dashboard.index', compact('case_number', 'total_amount_owed', 'total_admin_fee', 'total_amount_balance', 'total_amount_paid', 'pdg_case_status', 'opn_case_status', 'fld_case_status', 'dsp_case_status', 'inv_case_status', 'ngd_case_status', 'ins_case_status', 'fst_case_status', 'pst_case_status', 'ohc_case_status', 'ohm_case_status', 'cst_case_status', 'afc_case_status', 'ult_case_status'));
         } else {
             $client = Client::where('client_id',Auth::id())->first();
             $cases = Cases::where('client_id',Auth::id())->get();

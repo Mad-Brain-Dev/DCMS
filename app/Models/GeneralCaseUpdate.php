@@ -13,6 +13,8 @@ class GeneralCaseUpdate extends Model
         'gn_update',
         'fv_date',
         'gn_summary',
+        'amount_paid',
         'case_id',
+        'remarks',
     ];
 }

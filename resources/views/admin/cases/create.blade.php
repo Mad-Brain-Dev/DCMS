@@ -24,7 +24,7 @@
                                     @endforeach
                                 </select>
                                 @error('client_id')
-                                    <p class="error">{{ $message }}</p>
+                                    <p class="error">The client name field is required</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
@@ -247,7 +247,7 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3 col-md-3">
+                            {{-- <div class="mb-3 col-md-3">
                                 <label class="form-label">Installment Number</label>
                                 <input type="number" name="installment_number" id="installment_number" class="form-control"
                                     placeholder="Enter Installment Number" id="installment_number">
@@ -262,7 +262,7 @@
                                 @error('per_installment_amount')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
-                            </div>
+                            </div> --}}
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Interest Start Date</label>
                                 <input type="date" name="interest_start_date" class="form-control" id="start_date"
@@ -274,7 +274,7 @@
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Interest End Date</label>
                                 <input type="date" name="interest_end_date" id="end_date" class="form-control"
-                                    placeholder="Enter Interest End Date">
+                                    placeholder="Enter Interest End Date" value="{{ date('Y-m-d') }}">
                                 @error('interest_end_date')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -295,6 +295,9 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
+                            {{-- <div class="mb-3 col-md-3">
+                              <button class="btn btn-primary" type="button" id="calculate">Calculate</button>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -381,12 +384,12 @@
                         var clNameAbbr = response.dateofagreement.abbr
                         var getDate = response.dateofagreement.created_at
                         var formatedDate = dayjs(getDate).format('YYYY')
-                        $('#case_number').val(formatedDate + '/' + clNameAbbr + '/');
+                        $('#case_number').val( clNameAbbr + '/' + formatedDate + '/');
                     }
                 })
             });
             $(function() {
-                $("#end_date").on("change", sub);
+                $("#start_date").on("change", sub);
 
                 function sub() {
                     var start = $('#start_date').val();

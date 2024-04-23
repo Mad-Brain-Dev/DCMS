@@ -6,33 +6,35 @@
             <div class="fixed-content">
                 <div class="card bg-primary text-white">
                     <div class="card-body">
-                               <div class="row">
-                                <div class="col-md-3">
-                                    <span>Case Number : {{ $case->case_number }}</span> <br>
-                                    <span>Current Status : {{ $case->current_status }}</span> <br>
-                                    <span>Field Visits :  {{ $case->field_visit }}</span> <br>
-                                    <span>Bal Field Visits : {{ $case->bal_field_visit }}</span> <br>
-                                   </div>
-                                   <div class="col-md-3">
-                                    <span>Debt Interest/Annum : {{ $case->debt_interest }} %</span> <br>
-                                    <span>Total Interest : {{ number_format($case->total_interest, 2, '.', ',') }} $</span> <br>
-                                    <span>Total Installment : {{ $case->installment_number }}</span> <br>
-                                    <span>Per Installment Amount : {{ number_format($case->per_installment_amount, 2, '.', ',') }} $</span> <br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <span>Case Number : {{ $case->case_number }}</span> <br>
+                                <span>Current Status : {{ $case->current_status }}</span> <br>
+                                {{-- <span>Field Visits :  {{ $case->field_visit }}</span> <br>
+                                    <span>Bal Field Visits : {{ $case->bal_field_visit }}</span> <br> --}}
+                            </div>
+                            <div class="col-md-3">
+                                <span>Debt Interest/Annum : {{ $case->debt_interest }} %</span> <br>
+                                <span>Total Interest : {{ number_format($case->total_interest, 2, '.', ',') }} $</span> <br>
+                                {{-- <span>Total Installment : {{ $case->installment_number }}</span> <br>
+                                    <span>Per Installment Amount : {{ number_format($case->per_installment_amount, 2, '.', ',') }} $</span> <br> --}}
 
-                                   </div>
-                                   <div class="col-md-3">
-                                    <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br>
-                                    <span>Total Amount Owed : {{ number_format($case->total_amount_owed, 2, '.', ',') }} $</span> <br>
-                                    <span>Last Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br>
-                                    <span>Amount Balance : {{ number_format($case->total_amount_balance, 2, '.', ',') }} $</span> <br>
-                                   </div>
-                                   <div class="col-md-3">
-                                    <span>Client Name : {{ $case->client->name }} </span> <br>
-                                    <span>Debtor Name : {{ $case->name }} </span> <br>
-                                    <span>Debtor Phone : {{ $case->phone }} </span> <br>
-                                    <span>Debtor Email : {{ $case->email }} </span> <br>
-                                   </div>
-                               </div>
+                            </div>
+                            <div class="col-md-3">
+                                {{-- <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br> --}}
+                                <span>Total Amount Owed : {{ number_format($case->total_amount_owed, 2, '.', ',') }}
+                                    $</span> <br>
+                                {{-- <span>Last Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br> --}}
+                                <span>Amount Balance : {{ number_format($case->total_amount_balance, 2, '.', ',') }}
+                                    $</span> <br>
+                            </div>
+                            <div class="col-md-3">
+                                <span>Client Name : {{ $case->client->name }} </span> <br>
+                                <span>Debtor Name : {{ $case->name }} </span> <br>
+                                {{-- <span>Debtor Phone : {{ $case->phone }} </span> <br> --}}
+                                {{-- <span>Debtor Email : {{ $case->email }} </span> <br> --}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -197,15 +199,43 @@
         <div class="col-md-4">
             <div id="success" class="text-success"></div>
             <div class="card">
-                <div class="card-header text-center">Gn Update</div>
+                <div class="card-header text-center">General Update</div>
                 <div class="card-body">
                     <form enctype="multipart/form-data" action="{{ route('general.case.create') }}" method="POST">
                         @csrf
                         <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
+
                         <div class="mb-3">
                             <label class="form-label">Gn Case Update</label>
                             <input type="file" name="gn_updates[]" multiple class="form-control">
                             @error('gn_updates')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Amount Paid</label>
+                            <input type="number" name="amount_paid" placeholder="Enter Paid Amount Here"
+                                class="form-control">
+                            @error('paid_amount')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Payment Method</label>
+                            <select class="form-select" aria-label="Default select example" name="payment_method">
+                                <option selected>Select One Payment Method</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Check">Check</option>
+                                <option value="Online">Online</option>
+                            </select>
+                            @error('paid_amount')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date of Payment</label>
+                            <input type="date" name="payment_date" class="form-control">
+                            @error('payment_date')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
@@ -218,8 +248,15 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Gn Summary</label>
-                            <textarea name="gn_summary" class="form-control" id="" rows="2"></textarea>
+                            <textarea name="gn_summary" class="form-control" id="" rows="2">Enter Summary Here</textarea>
                             @error('gn_summary')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Remarks</label>
+                            <input type="text" name="remarks" class="form-control" placeholder="Enter Remarks Here">
+                            @error('remarks')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
@@ -240,24 +277,24 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <h5>GN Updates</h5>
+                    <h5>General updates</h5>
                     <div id="content">
                         <ul class="timeline">
                             @foreach ($gn_updates as $gn_update)
                                 <li class="event"
                                     data-date="{{ date('d-m-Y', strtotime($gn_update->created_at)) }}, {{ date('h:i a', strtotime($gn_update->created_at)) }} ">
-                                    <iframe src="{{ asset('/documents/' . $gn_update->gn_update) }}" width="400"
-                                        height="400"></iframe>
+                                    <iframe src="{{ asset('/documents/' . $gn_update->gn_update) }}" width="100"
+                                        height="100"></iframe>
                                     <h6 class="mt-2">Field Visited at:
-                                        {{ date('d-m-Y', strtotime($gn_update->fv_date)) }}</h6>
+                                        {{ date('d-m-Y', strtotime($case->fv_date)) }}</h6>
                                     <span class="d-block">{{ $gn_update->gn_summary }}</span>
-                                    {{-- <div>
+                                    <div>
                                         <a href="#" class="btn  btn-primary mt-2 viewFVUpdate" data-toggle="modal"
                                         data-target="#exampleModal">
                                         <span class="gn_id d-none">{{ $gn_update->id }}</span>
                                         <i class="far fa-eye"></i> View
                                     </a>
-                                    </div> --}}
+                                    </div>
                                 </li>
                             @endforeach
                         </ul>
@@ -288,15 +325,42 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header text-center">FV Update</div>
+                <div class="card-header text-center">Field Visit Update</div>
                 <div class="card-body">
-                    <form enctype="multipart/form-data" action="{{ route('general.case.create') }}" method="POST">
+                    <form enctype="multipart/form-data" action="{{ route('field.visit.create') }}" method="POST">
                         @csrf
                         <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
                         <div class="mb-3">
                             <label class="form-label">FV Update</label>
                             <input type="file" name="fv_updates[]" class="form-control" multiple>
                             @error('fv_updates')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Amount Paid</label>
+                            <input type="number" name="amount_paid" placeholder="Enter Paid Amount Here"
+                                class="form-control">
+                            @error('paid_amount')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Payment Method</label>
+                            <select class="form-select" aria-label="Default select example" name="payment_method">
+                                <option selected>Select One Payment Method</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Check">Check</option>
+                                <option value="Online">Online</option>
+                            </select>
+                            @error('paid_amount')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date of Payment</label>
+                            <input type="date" name="payment_date" class="form-control">
+                            @error('payment_date')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
@@ -309,8 +373,15 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">FV Summary</label>
-                            <textarea name="fv_summary" class="form-control" id="" rows="2"></textarea>
+                            <textarea name="fv_summary" class="form-control" id="" rows="2">Enter FV Summary Here</textarea>
                             @error('fv_summary')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Remarks</label>
+                            <input type="text" name="remarks" class="form-control" placeholder="Enter Remarks Here">
+                            @error('remarks')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
@@ -339,25 +410,25 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <h5>FV Updates</h5>
+                    <h5>Field Visit Updates</h5>
                     <div id="content">
                         <ul class="timeline">
                             @foreach ($fv_updates as $fv_update)
                                 <li class="event"
                                     data-date="{{ date('d-m-Y', strtotime($fv_update->created_at)) }}, {{ date('h:i a', strtotime($fv_update->created_at)) }} ">
-                                    <iframe src="{{ asset('/documents/' . $fv_update->fv_update) }}" width="400"
-                                        height="400"></iframe>
+                                    <iframe src="{{ asset('/documents/' . $fv_update->fv_update) }}" width="100"
+                                        height="100"></iframe>
 
                                     <h6 class="mt-2">Field Visited at:
-                                        {{ date('d-m-Y', strtotime($fv_update->fv_date)) }}</h6>
+                                        {{ date('d-m-Y', strtotime($case->fv_date)) }}</h6>
                                     <span class="d-block">{{ $fv_update->fv_summary }}</span>
-                                    {{-- <div>
-                                        <a href="#" class="btn  btn-primary mt-2 viewFVUpdate" data-toggle="modal"
-                                            data-target="#exampleModal">
+                                    <div>
+                                        <a href="#" class="btn  btn-primary mt-2 viewFVUpdate2" data-toggle="modal"
+                                            data-target="#exampleModal2">
                                             <span class="fv_id d-none">{{ $fv_update->id }}</span>
                                             <i class="far fa-eye"></i> View
                                         </a>
-                                    </div> --}}
+                                    </div>
                                 </li>
                             @endforeach
                         </ul>
@@ -365,9 +436,27 @@
                 </div>
             </div>
         </div>
+        <!-- Modal for FV Update -->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Gn Update</h5>
+                    </div>
+                    <div class="modal-body">
+                        <iframe id="gn_update" src="" class="mt-2" width="100%" height="400">
+                        </iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header text-center">CR Case Update</div>
@@ -425,13 +514,6 @@
                                     <h6 class="mt-2">Field Visited at:
                                         {{ date('d-m-Y', strtotime($cr_update->fv_date)) }}</h6>
                                     <span class="d-block">{{ $cr_update->cr_summary }}</span>
-                                    {{-- <div>
-                                        <a href="#" class="btn  btn-primary mt-2 viewFVUpdate" data-toggle="modal"
-                                        data-target="#exampleModal">
-                                        <span class="cr_id d-none">{{ $cr_update->id }}</span>
-                                        <i class="far fa-eye"></i> View
-                                    </a>
-                                    </div> --}}
                                 </li>
                             @endforeach
                         </ul>
@@ -458,9 +540,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header text-center">MS Update</div>
@@ -518,13 +600,6 @@
                                     <h6 class="mt-2">Field Visited at:
                                         {{ date('d-m-Y', strtotime($ms_update->fv_date)) }}</h6>
                                     <span class="d-block">{{ $ms_update->ms_summary }}</span>
-                                    {{-- <div>
-                                        <a href="#" class="btn  btn-primary mt-2 viewMsUpdate" data-toggle="modal"
-                                        data-target="#exampleModal">
-                                        <span class="ms_id d-none">{{ $ms_update->id }}</span>
-                                        <i class="far fa-eye"></i> View
-                                    </a>
-                                    </div> --}}
                                 </li>
                             @endforeach
                         </ul>
@@ -532,8 +607,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal fade" id="exampleModal0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    </div> --}}
+    {{-- <div class="modal fade" id="exampleModal0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -567,7 +642,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 @push('script')
     <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
@@ -585,28 +660,53 @@
                 }
             });
         });
-        // $(document).ready(function() {
-        // $('.viewFVUpdate').click(function(e) {
-        //     var gn_update_id = $(this).find('.gn_id').text();
-        //     $.ajax({
-        //         type: 'get',
-        //         url: '{{ route('single.general.case.update') }}',
-        //         data: {
-        //             id: gn_update_id
-        //         },
-        //         success: (response) => {
-        //             console.log(response);
-        //             let href = "{{ asset('/documents/') }}" + "/" + response.data
-        //                 .gn_update
-        //             let gn_update = $('#gn_update').attr('src', href);
-        //         },
-        //         error: function(response) {
-        //             $('#error').text(response.responseJSON.message);
-        //         }
+        $(document).ready(function() {
+        $('.viewFVUpdate').click(function(e) {
+            var gn_update_id = $(this).find('.gn_id').text();
+            $.ajax({
+                type: 'get',
+                url: '{{ route('single.general.case.update') }}',
+                data: {
+                    id: gn_update_id
+                },
+                success: (response) => {
+                    console.log(response);
+                    let href = "{{ asset('/documents/') }}" + "/" + response.data
+                        .gn_update
+                    let gn_update = $('#gn_update').attr('src', href);
+                },
+                error: function(response) {
+                    $('#error').text(response.responseJSON.message);
+                }
 
-        //     });
-        // });
-        // });
+            });
+        });
+
+
+
+
+
+        $('.viewFVUpdate2').click(function(e) {
+            var fv_update_id = $(this).find('.fv_id').text();
+            $.ajax({
+                type: 'get',
+                url: '{{ route('single.fv.case.update') }}',
+                data: {
+                    id: fv_update_id
+                },
+                success: (response) => {
+                    console.log(response);
+                    let href = "{{ asset('/documents/') }}" + "/" + response.data
+                        .gn_update
+                    let gn_update = $('#gn_update').attr('src', href);
+                },
+                error: function(response) {
+                    $('#error').text(response.responseJSON.message);
+                }
+
+            });
+        });
+        });
     </script>
 @endpush
 @push('style')
@@ -623,7 +723,7 @@
             padding: 50px;
             list-style: none;
             text-align: left;
-            max-width: 40%;
+            max-width: 60%;
         }
 
         .btn-color {
@@ -738,12 +838,12 @@
         }
 
         /* .fixed-content{
-            position: fixed;
-            z-index: 9999;
-            width: 70%;
-        } */
+                        position: fixed;
+                        z-index: 9999;
+                        width: 70%;
+                    } */
         /* .balance-btn{
-            padding-top: 100px;
-        } */
+                        padding-top: 100px;
+                    } */
     </style>
 @endpush

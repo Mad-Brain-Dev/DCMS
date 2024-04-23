@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cases;
 
 use App\DataTables\CaseDataTable;
+use App\DataTables\CaseDataTableByStatus;
 use App\DataTables\CasesforPerticularClientDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CaseEditRequest;
@@ -110,10 +111,8 @@ class CaseController extends Controller
         $case = Cases::find($id);
         $client_details = Client::where('client_id', $case->client_id)->first();
         $gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
-        $cr_updates = CorrespondenceUpdate::where('case_id', $id)->latest()->get();
         $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
-        $ms_updates = MiscellaneousUpdate::where('case_id', $id)->latest()->get();
-        return view('admin.cases.show', compact('case', 'gn_updates', 'cr_updates', 'fv_updates', 'ms_updates', 'client_details'));
+        return view('admin.cases.show', compact('case', 'gn_updates', 'fv_updates', 'client_details'));
     }
 
     /**
@@ -188,104 +187,114 @@ class CaseController extends Controller
 
         $request->validate([
             'gn_updates.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
-            'fv_date' => 'required',
+            'fv_date' => 'nullable',
+            'amount_paid' => 'nullable',
+            'payment_date' => 'nullable',
             'gn_summary' => 'nullable',
-            'cr_updates.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
-            'cr_summary' => 'nullable',
+            'payment_method' => 'nullable',
             'fv_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_summary' => 'nullable',
-            'ms_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
-            'ms_summary' => 'nullable',
+            'remarks' => 'nullable',
         ]);
+        $paid_amount = Cases::findOrFail($request->case_id);
+        $paid_amount->total_amount_paid = $request->amount_paid;
+        $paid_amount->payment_date = $request->payment_date;
+        $paid_amount->payment_method = $request->payment_method;
+        $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
+
+        // Update the record with validated data
+        $paid_amount->save();
+        $gn_updates = [];
+
 
         if ($request->gn_updates) {
+            foreach ($request->gn_updates as $key => $gn_update) {
+                $imageName = time() . rand(1000, 10000) . '.' . $gn_update->extension();
+                $gn_update->move(public_path('documents'), $imageName);
 
-            $gn_updates = [];
-            if ($request->gn_updates) {
-                foreach ($request->gn_updates as $key => $gn_update) {
-                    $imageName = time() . rand(1000, 10000) . '.' . $gn_update->extension();
-                    $gn_update->move(public_path('documents'), $imageName);
+                //  $gn_updates[]['gn_update'] = $imageName;
 
-                    //  $gn_updates[]['gn_update'] = $imageName;
-
-                    GeneralCaseUpdate::create([
-                        'case_id' => $request->case_id,
-                        'fv_date' => $request->fv_date,
-                        'gn_summary' => $request->gn_summary,
-                        'gn_update' => $imageName,
-                    ]);
-                }
+                $gn_update =   GeneralCaseUpdate::create([
+                    'case_id' => $request->case_id,
+                    'remarks' => $request->remarks,
+                    'gn_summary' => $request->gn_summary,
+                    'gn_update' => $imageName,
+                ]);
             }
-
             record_updated_flash();
-        }
+            return back();
+        } else {
+            $gn_update =   GeneralCaseUpdate::create([
+                'case_id' => $request->case_id,
+                'remarks' => $request->remarks,
+                'gn_summary' => $request->gn_summary,
+                // 'gn_update' => null,
 
-        if ($request->cr_updates) {
-            $cr_updates = [];
-            if ($request->cr_updates) {
-                foreach ($request->cr_updates as $key => $cr_update) {
-                    $imageName = time() . rand(1000, 10000) . '.' . $cr_update->extension();
-                    $cr_update->move(public_path('documents'), $imageName);
-
-                    //  $gn_updates[]['gn_update'] = $imageName;
-
-                    CorrespondenceUpdate::create([
-                        'case_id' => $request->case_id,
-                        'fv_date' => $request->fv_date,
-                        'cr_summary' => $request->cr_summary,
-                        'cr_update' => $imageName,
-                    ]);
-                }
-            }
-
+            ]);
             record_updated_flash();
+            return back();
         }
+    }
+
+    public function fieldVisitCaseCreate(Request $request)
+    {
+        $request->validate([
+            'fv_updates.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
+            'fv_date' => 'nullable',
+            'amount_paid' => 'nullable',
+            'payment_date' => 'nullable',
+            'payment_method' => 'nullable',
+            'fv_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
+            'fv_summary' => 'nullable',
+            'remarks' => 'nullable',
+        ]);
+        $paid_amount = Cases::findOrFail($request->case_id);
+        $paid_amount->total_amount_paid = $request->amount_paid;
+        $paid_amount->fv_date = $request->fv_date;
+        $paid_amount->payment_date = $request->payment_date;
+        $paid_amount->payment_method = $request->payment_method;
+        $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
+
+        // Update the record with validated data
+        $paid_amount->save();
+
+        $field_visit_number = Cases::where('id', '=', $request->case_id)->first();
+       // $remaining = $field_visit_number->bal_field_visit - 1;
+        $field_visit_number->bal_field_visit == $field_visit_number->bal_field_visit-- ;
+        $field_visit_number->save();
+
+
+
+
+
+        $fv_updates = [];
+
 
         if ($request->fv_updates) {
-            $fv_updates = [];
-            if ($request->fv_updates) {
-                foreach ($request->fv_updates as $key => $fv_update) {
-                    $imageName = time() . rand(1000, 10000) . '.' . $fv_update->extension();
-                    $fv_update->move(public_path('documents'), $imageName);
+            foreach ($request->fv_updates as $key => $fv_update) {
+                $imageName = time() . rand(1000, 10000) . '.' . $fv_update->extension();
+                $fv_update->move(public_path('documents'), $imageName);
 
-                    //  $gn_updates[]['gn_update'] = $imageName;
+                //  $gn_updates[]['gn_update'] = $imageName;
 
-                    FieldVisitUpdate::create([
-                        'case_id' => $request->case_id,
-                        'fv_date' => $request->fv_date,
-                        'fv_summary' => $request->fv_summary,
-                        'fv_update' => $imageName,
-                    ]);
-                }
+                $fv_update =   FieldVisitUpdate::create([
+                    'case_id' => $request->case_id,
+                    'remarks' => $request->remarks,
+                    'fv_summary' => $request->fv_summary,
+                    'fv_update' => $imageName,
+                ]);
             }
-            $field_visit_number = Cases::where('id', '=', $request->case_id)->first();
-            $remaining = $field_visit_number->field_visit - 1;
-            $field_visit_number->bal_field_visit = $remaining;
-            $field_visit_number->save();
+        } else {
+            $fv_update =   FieldVisitUpdate::create([
+                'case_id' => $request->case_id,
+                'remarks' => $request->remarks,
+                'fv_summary' => $request->gn_summary,
+                // 'gn_update' => null,
 
-            record_updated_flash();
+            ]);
+
         }
-
-        if ($request->ms_updates) {
-            $ms_updates = [];
-            if ($request->ms_updates) {
-                foreach ($request->ms_updates as $key => $ms_update) {
-                    $imageName = time() . rand(1000, 10000) . '.' . $ms_update->extension();
-                    $ms_update->move(public_path('documents'), $imageName);
-
-                    //  $gn_updates[]['gn_update'] = $imageName;
-
-                    MiscellaneousUpdate::create([
-                        'case_id' => $request->case_id,
-                        'fv_date' => $request->fv_date,
-                        'cr_summary' => $request->ms_summary,
-                        'ms_update' => $imageName,
-                    ]);
-                }
-            }
-
-            record_updated_flash();
-        }
+        record_updated_flash();
         return back();
     }
 
@@ -438,20 +447,19 @@ class CaseController extends Controller
     public function searchForClient(Request $request)
     {
         $searched_client = $request->client_search;
-        if($searched_client != ""){
-            $client = Client::where("name","LIKE","%$searched_client%")->first();
-             if($client){
-                return redirect('admin/clients/'.$client->id);
+        if ($searched_client != "") {
+            $client = Client::where("name", "LIKE", "%$searched_client%")->first();
+            if ($client) {
+                return redirect('admin/clients/' . $client->id);
             }
             // if ($case) {
             //     return redirect('admin/cases/'.$case->id);
             // }
-            else{
+            else {
                 session()->flash('status', 'No client matched your search');
                 return redirect()->back();
             }
-        }
-        else{
+        } else {
             return redirect()->back();
         }
     }
@@ -459,21 +467,29 @@ class CaseController extends Controller
     public function searchForCase(Request $request)
     {
         $searched_case = $request->case_search;
-        if($searched_case != ""){
-            $case = Cases::where("case_number","LIKE","%$searched_case%")->first();
-             if($case){
-                return redirect('admin/cases/'.$case->id);
+        if ($searched_case != "") {
+            $case = Cases::where("case_number", "LIKE", "%$searched_case%")->first();
+            if ($case) {
+                return redirect('admin/cases/' . $case->id);
             }
             // if ($case) {
             //     return redirect('admin/cases/'.$case->id);
             // }
-            else{
+            else {
                 session()->flash('status', 'No client matched your search');
                 return redirect()->back();
             }
-        }
-        else{
+        } else {
             return redirect()->back();
         }
+    }
+
+    //get case by status
+
+    public function getCasebyStatus(CaseDataTableByStatus $dataTable, $status)
+    {
+        set_page_meta('Cases by Status');
+        $query_status = $status == "" ? null : $status;
+        return $dataTable->with('status', $query_status)->render('admin.cases.index');
     }
 }

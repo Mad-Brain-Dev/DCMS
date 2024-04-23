@@ -40,14 +40,14 @@ return new class extends Migration
             $table->string('amount_unpaid')->nullable();
             $table->string('debt_interest')->nullable();
             $table->dateTime('interest_start_date')->nullable();
+            $table->dateTime('fv_date')->nullable();
             $table->dateTime('interest_end_date')->nullable();
             $table->string('total_interest')->nullable();
             $table->string('total_amount_owed')->nullable();
             $table->string('total_amount_paid')->nullable();
-            $table->string('installment_number')->nullable();
-            $table->string('per_installment_amount')->nullable();
             $table->string('total_amount_balance')->nullable();
-            $table->string('gn_update')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->dateTime('payment_date')->nullable();
             $table->timestamps();
         });
     }
