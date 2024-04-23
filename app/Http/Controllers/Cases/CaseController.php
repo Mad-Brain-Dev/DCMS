@@ -20,6 +20,7 @@ use App\Services\Utils\FileUploadService;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class CaseController extends Controller
 {
@@ -259,8 +260,8 @@ class CaseController extends Controller
         $paid_amount->save();
 
         $field_visit_number = Cases::where('id', '=', $request->case_id)->first();
-       // $remaining = $field_visit_number->bal_field_visit - 1;
-        $field_visit_number->bal_field_visit == $field_visit_number->bal_field_visit-- ;
+        // $remaining = $field_visit_number->bal_field_visit - 1;
+        $field_visit_number->bal_field_visit == $field_visit_number->bal_field_visit--;
         $field_visit_number->save();
 
 
@@ -292,7 +293,6 @@ class CaseController extends Controller
                 // 'gn_update' => null,
 
             ]);
-
         }
         record_updated_flash();
         return back();
@@ -408,7 +408,8 @@ class CaseController extends Controller
 
     public function printableCaseAgreement($id)
     {
-        return view('admin.agreement.agreement');
+        return $id;
+        // return view('admin.agreement.agreement');
     }
 
     public function updateTotalAmountBalance(Request $request, $id)
@@ -482,6 +483,30 @@ class CaseController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+
+    //case create through ajax
+    public function createCase(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 'name' => 'required' ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()
+            ]);
+        }
+
+        if (Cases::count() < 1) {
+            $result = Cases::create($request->all());
+            $result->case_sku = 1;
+            $result->save();
+        } else {
+            $result = Cases::create($request->all());
+            $imidiate_first_case =
+        }
+
+
+        return response()->json(['success' => 'Form submitted successfully.']);
     }
 
     //get case by status

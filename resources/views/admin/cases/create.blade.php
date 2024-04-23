@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12">
             <h4 class="card-title mb-3">{{ get_page_meta('title', true) }}</h4>
-            <form action="{{ route('admin.cases.store') }}" method="post">
+            <form id="frmAppl" method="post">
                 @csrf
                 <div class="card">
                     <div class="card-body">
@@ -15,18 +15,19 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror --}}
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">CL Name</label>
-                                <select class="form-select select2 form-control" id="client_id" name="client_id"
-                                    aria-label="Default select example">
+                                <label class="form-label">CL Name</label><br>
+                                <select class="form-select select2 form-control" id="client_id" name="client_id">
                                     <option selected disabled>Select CL Name</option>
                                     @foreach ($clients as $client)
                                         <option value="{{ $client->client_id }}">{{ $client->name }}</option>
                                     @endforeach
+                                    {{-- @error('client_id')
+                                        <p class="error"></p>
+                                    @enderror --}}
                                 </select>
-                                @error('client_id')
-                                    <p class="error">The client name field is required</p>
-                                @enderror
+
                             </div>
+
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Date of Warrant</label>
                                 <input type="date" name="date_of_warrant" id="date_of_warrant" class="form-control"
@@ -35,6 +36,7 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
+
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Manager IC</label>
                                 <input type="text" name="manager_ic" class="form-control"
@@ -140,9 +142,6 @@
                                 <label class="form-label">DB Name <span class="error">*</span></label>
                                 <input type="text" name="name" class="form-control" placeholder="Enter DB Name"
                                     value="{{ old('name') }}">
-                                @error('name')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
                             </div>
 
                             <div class="mb-3 col-md-3">
@@ -327,7 +326,8 @@
                 <div class="row">
                     <div class="mb-3 offset-md-6 col-md-6">
                         <div class="text-end">
-                            <button class="btn btn-primary waves-effect waves-lightml-2 me-2" type="submit">
+                            <button class="btn btn-primary waves-effect waves-lightml-2 me-2" type="submit"
+                                id="submitBtn">
                                 <i class="fa fa-save"></i> Save
                             </button>
                             <a class="btn btn-secondary waves-effect" href="{{ route('admin.cases.index') }}">
@@ -338,6 +338,21 @@
                 </div>
 
             </form>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="showMsg">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="text-align: center;">
+                    <h4 class="pb-3">Do you want to print this document?</h4>
+                    <a class="btn btn-success" href="{{ route('printable.case.agreement', 40) }}">Click Here</a>
+                </div>
+                <div class="modal-footer" style="border: none;">
+
+                    <a href="{{ route('admin.cases.index') }}" class="btn btn-danger" class="btn btn-secondary" >Close</a>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
@@ -384,7 +399,7 @@
                         var clNameAbbr = response.dateofagreement.abbr
                         var getDate = response.dateofagreement.created_at
                         var formatedDate = dayjs(getDate).format('YYYY')
-                        $('#case_number').val( clNameAbbr + '/' + formatedDate + '/');
+                        $('#case_number').val(clNameAbbr + '/' + formatedDate + '/');
                     }
                 })
             });
@@ -411,8 +426,9 @@
                     var total_amount_owed = parseFloat(debt_amount) + parseFloat(legal_cost) + parseFloat(
                         total_interest);
                     var installment_number = $('#installment_number').val();
-                     var per_installment_amount = parseFloat(total_amount_owed / installment_number).toFixed(2);
-                     $('#per_installment_amount').val(per_installment_amount);
+                    var per_installment_amount = parseFloat(total_amount_owed / installment_number).toFixed(
+                        2);
+                    $('#per_installment_amount').val(per_installment_amount);
 
 
                     $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
@@ -422,7 +438,63 @@
                 }
             });
         });
+
+
+        $("#frmAppl").on("submit", function(event) {
+            event.preventDefault();
+            var error_ele = document.getElementsByClassName('err-msg');
+            if (error_ele.length > 0) {
+                for (var i = error_ele.length - 1; i >= 0; i--) {
+                    error_ele[i].remove();
+                }
+            }
+
+            // $.ajaxSetup({
+            //     headers: {
+            //         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            //     }
+            // });
+
+            $.ajax({
+                url: "{{ route('create.case') }}",
+                type: "POST",
+                data: new FormData(this),
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                cache: false,
+                beforeSend: function() {
+                    $("#submitBtn").prop('disabled', true);
+                },
+                success: function(data) {
+                    if (data.success) {
+                        $("#frmAppl")[0].reset();
+                        $("#showMsg").modal('show');
+
+                     }
+                     else {
+                        $.each(data.error, function(key, value) {
+                            var el = $(document).find('[name="' + key + '"]');
+                            el.after($('<span class= "err-msg">' + value[0] + '</span>'));
+
+                        });
+                    }
+                    $("#submitBtn").prop('disabled', false);
+                },
+                error: function(err) {
+                    $("#message").html("Some Error Occurred!")
+                }
+            });
+        });
     </script>
 @endpush
+
 @push('style')
+<style>
+.err-msg{
+    color: #ec4561;
+    font-size: 12px;
+}
+</style>
+
 @endpush
