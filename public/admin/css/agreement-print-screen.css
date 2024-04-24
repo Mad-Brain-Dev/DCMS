@@ -333,7 +333,7 @@ hr {
 }
 
 .another-row {
-    
+
     margin-block: 40px;
 }
 
@@ -372,7 +372,7 @@ hr {
     font-size: 14px;
     font-weight: 600;
     font-family: "Open Sans", sans-serif;
-    
+
 }
 
 .for-after{
@@ -601,7 +601,7 @@ hr {
 }
 .full-name {
     position: relative;
-   
+
 }
 .full-name::after {
     content: "";
@@ -637,6 +637,15 @@ hr {
     background: #000;
     bottom: -4px;
     left: 155%;
+}
+.contact{
+    position: relative;
+}
+.lorem3{
+    position: absolute;
+    left: 0;
+    top: 0;
+
 }
 
 .contact-no {
@@ -853,6 +862,7 @@ hr {
 
 .nric-no-uen-after {
     position: relative;
+    margin-right: 462px;
 }
 .nric-no-uen-after::after {
     content: "";
@@ -872,6 +882,7 @@ hr {
 
 .from {
     position: relative;
+    margin-right: 165px;
 }
 .from::after {
     content: "";
@@ -884,6 +895,7 @@ hr {
 }
 .contact {
     position: relative;
+    padding-left: 33px;
 }
 .contact::after {
     content: "";
@@ -892,11 +904,16 @@ hr {
     width: 170px;
     background: #000;
     bottom: 0;
-    left: 68px;
+    left: 91px;
+}
+.contact::before {
+    content: ",";
+    position: absolute;
+    left: 22px;
 }
 .lorem-2 {
-    padding-left: 30px;
-    padding-right: 30px
+    position: absolute;
+    left: 120px;
 }
 
 .lorem-3 {
@@ -916,7 +933,7 @@ hr {
 .last-ul :nth-of-type(5){
     margin-top: 50px;
 }
- 
+
 .last-ul-li-name{
     position: relative;
 }
@@ -992,15 +1009,15 @@ hr {
 }
 
 .data-mr2{
-    margin-left: 40px;
+    margin-left: 36px;
 }
 
 .data-mr3{
-    margin-left: 40px;
+    margin-left: 48px;
 }
 
 .data-mr4{
-    margin-left: 70px;
+    margin-left: 68px;
 }
 
 .data-mr5{

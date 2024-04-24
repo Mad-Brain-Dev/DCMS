@@ -50,7 +50,10 @@ Route::post('/field/visit/create/for/case', [CaseController::class, 'fieldVisitC
 
 //case finding by status route
 Route::get('/get/cases/status/{status}', [CaseController::class, 'getCasebyStatus'])->name('get.case.status');
+//case create
 Route::post('/create/case/for/client', [CaseController::class, 'createCase'])->name('create.case');
+//client create
+Route::post('/create/client/for/case', [ClientController::class, 'createClient'])->name('create.client');
 
 
 

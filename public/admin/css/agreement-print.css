@@ -1,12 +1,10 @@
-
+.buttons{
+    display: none;
+}
 .first-agreement-container {
     font-family: "Open Sans", sans-serif;
     font-size: 14px;
     font-weight: 600;
-}
-
-.hide-print-button{
-    display: none;
 }
 
 .logo {
@@ -16,10 +14,10 @@
 
 .debt-text {
     margin-left: 20px;
+    padding-top: 24px;
     font-size: 45px;
     font-weight: 500;
     font-family: "Barlow", sans-serif;
-    margin-top: -10px;
 }
 
 hr {
@@ -30,87 +28,83 @@ hr {
 
 .text-to {
     position: relative;
-    padding-left: 38px;
 }
 
 .to-margin {
-    margin-left: 180px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .text-to::after {
-    content: '';
+    content: "";
     position: absolute;
     background: #000;
-    height: 1px;
-    width: 400px;
-    bottom: -7px;
-    left: 78px;
+    height: 1.5px;
+    width: 150px;
+    bottom: -3px;
+    left: 45px;
 }
 
-.text-to::before {
-    content: '';
+.text-and{
+    position: relative;
+}
+
+.text-and::after {
+    content: "";
     position: absolute;
     background: #000;
     height: 1px;
-    width: 400px;
-    bottom: -57px;
-    left: 78px;
+    width: 290px;
+    bottom: -5px;
+    left: 30px;
 }
-.logo{
-    width: 200px;
+
+.and-margin{
+    margin-left: 70px;
+    margin-right: 70px;
 }
+
 .d-f-agreement {
-    margin-left: 115px;
+    margin-left: 160px;
     position: relative;
 }
-.date_of_agreement_top{
+.date_of_agreement_top {
     position: absolute;
-    right: -17px;
+    right: 2px;
     top: 7px;
-}
-.date_of_expiry {
-    position: absolute;
-    right: -0px;
-    top: 16px;
-}
-.date_of_agreement_top{
-    margin-left: 10px;
 }
 
 .d-f-agreement::after {
-    content: '';
+    content: "";
     position: absolute;
     background: #000;
     height: 1px;
-    width: 150px;
+    width: 162px;
     bottom: -5px;
     left: 140px;
 }
 
 .expiry {
     padding-right: 21px;
+    position: relative;
 }
-.location{
-    display: block;
-    margin-top: 10px;
-    font-weight: 700;
+.date_of_expiry {
+    position: absolute;
+    right: -0px;
+    top: 16px;
 }
-.location-for-second-page{
-    /* padding-top: 300px; */
-    font-weight: 700;
-    display: block;
-}
+
 .d-f-expiry {
-    margin-left: 148px;
+    margin-left: 194px;
     position: relative;
 }
 
 .d-f-expiry::after {
-    content: '';
+    content: "";
     position: absolute;
     background: #000;
     height: 1px;
-    width: 150px;
+    width: 164px;
     bottom: -5px;
     left: 108px;
 }
@@ -127,10 +121,7 @@ hr {
     padding-bottom: 7px;
     padding-right: 0;
     border-bottom: none;
-    border-top: 3px solid #000;
-    border-right: 1px solid #000;
-    border-bottom: 1px solid #000;
-    border-left: 3px solid #000;
+    border: 1px solid black;
 }
 
 .case-prov {
@@ -144,49 +135,133 @@ hr {
     padding-right: 0;
     padding-top: 7px;
     padding-bottom: 7px;
-    border-top: 1px solid #000;
-    border-right: 1px solid #000;
-    border-bottom: 3px solid #000;
-    border-left: 3px solid #000;
+    border: 1px solid black;
+}
+
+.for-p{
+    padding-left: 58px;
+    box-sizing: border-box;
+}
+
+.for-p2{
+    padding-left: 60px;
+    box-sizing: border-box;
 }
 
 .box-1st {
-    border-top: 3px solid #000;
-    border-right: 3px solid #000;
-    border-bottom: 1px solid #000;
-    border-left: 1px solid #000;
-    padding-top: 6px;
+    border: 2px solid black;
+    padding-top: 7px;
 }
 
 .box-2nd {
-    border-top: 1px solid #000;
-    border-right: 3px solid #000;
-    border-bottom: 3px solid #000;
-    border-left: 1px solid #000;
-    padding-top: 16px;
+    border: 2px solid black;
+    padding-top: 7px;
 }
 
-.dear-sir h5 {
+
+/*  */
+
+.bd-highlight {
+    margin-left: -15px;
+}
+
+.col-md-3{
+    max-width: 20%;
+}
+
+.s-dollar-sign{
+    position: relative;
+}
+
+.s-dollar-sign::after{
+    content: "";
+    position: absolute;
+    background: #000;
+    width: 150px;
+    height: 2px;
+    left: 15px;
+    bottom: -3px;
+}
+
+.dollar-margin{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.text-be{
+    position: relative;
+}
+
+.text-be::after{
+    content: "";
+    position: absolute;
+    background: #000;
+    width: 60px;
+    height: 2px;
+    left: 17px;
+    bottom: -3px;
+}
+
+.be-margin{
+    margin-left: 15px;
+    margin-right: 15px;
+ }
+
+
+ .text-of{
+    position: relative;
+ }
+
+ .text-of::after{
+    content: "";
+    position: absolute;
+    background: #000;
+    width: 40px;
+    height: 2px;
+    left: 17px;
+    bottom: -3px;
+}
+
+.of-margin{
+    margin-left: 10px;
+    margin-right: 10px;
+ }
+
+
+ /*  */
+
+ .four-ul{
+    list-style: none;
+    padding: 0;
+    margin-left: -14px;
+ }
+
+
+/* .dear-sir h5 {
     padding-top: 17px;
     padding-left: 15px;
     font-size: 15px;
     font-weight: 700;
     font-family: "Open Sans", sans-serif;
-}
+} */
 
-.ol-start .first-ol {
+.ol-start .first-ol{
     padding-right: 50px;
     font-size: 14px;
     font-weight: 600;
     font-family: "Open Sans", sans-serif;
 }
 
-.ol-start .first-ol h5 {
-    padding-top: 30px;
-    font-size: 18px;
-    font-weight: 700;
-    font-family: "Open Sans", sans-serif;
+.ol-start .first-ol li{
+    margin-top: 16px;
+    padding-left: 15px;
+    line-height: 25px;
 }
+
+
+
+
+
 
 /* provisions start */
 .new-ul-start .provisions li {
@@ -194,152 +269,6 @@ hr {
     list-style: none;
 }
 
-.new-ul-start .provisions h6 {
-    padding-left: 30px;
-    font-size: 18px;
-    font-weight: 700;
-    font-family: "Open Sans", sans-serif;
-}
-
-/* provisions ends */
-.information-box {
-    border: 3px solid #000;
-}
-
-.debt-collection {
-    padding-top: 5px;
-    text-align: center;
-    border-bottom: 2px solid #000;
-    border-right: 2px solid #000;
-}
-
-.debt-collection h6 {
-    font-size: 17px;
-    font-weight: 700;
-    font-family: "Open Sans", sans-serif;
-}
-
-.fees-ul {
-    font-size: 15px;
-}
-
-.fees-ul li {
-    font-size: 14px;
-    font-weight: 600;
-    font-family: "Open Sans", sans-serif;
-}
-
-.amount-ul li i {
-    font-size: 18px;
-    font-weight: 600;
-    font-family: "Open Sans", sans-serif;
-    font-style: italic;
-}
-
-.fee {
-    margin-left: 57px;
-}
-
-.fee-total {
-    margin-left: 70px
-}
-
-.amount-ul li h6 {
-    font-size: 15px;
-    font-weight: 600;
-    font-family: "Open Sans", sans-serif;
-    font-style: italic;
-}
-
-.another-ul {
-    font-size: 13px;
-    font-weight: 500;
-    font-family: "Open Sans", sans-serif;
-    font-style: italic;
-}
-
-.another-ul .cost {
-    font-size: 13px;
-    font-weight: 700;
-    font-family: "Open Sans", sans-serif;
-    font-style: italic;
-    border-bottom: 1.5px solid #000;
-}
-
-.amount-informetion {
-    margin-top: 30px;
-}
-
-.amount-informetion ul li {
-    list-style: none;
-    margin-top: 15px;
-}
-
-.amount-data ul {
-    font-size: 15px;
-}
-
-.amount-data ul li h6 {
-    text-align: center;
-}
-
-.amount-data ul li i {
-    position: relative;
-}
-
-.amount-data ul li i::after {
-    content: '';
-    position: absolute;
-    background: #000;
-    width: 130px;
-    height: 1.5px;
-    bottom: -3px;
-    left: 100%;
-}
-
-.new-informetion {}
-
-
-.new-informetion ul li {
-    list-style: none;
-    font-size: 14px;
-    font-weight: 600;
-    font-family: "Open Sans", sans-serif;
-}
-
-.collection-li {
-    padding-left: 28px;
-}
-
-.collection-commission-bold {
-    font-weight: 800;
-    text-decoration: underline;
-
-}
-
-.percenteg-li {
-    padding-left: 154px;
-}
-
-.total-li {
-    padding-left: 90px;
-}
-
-.total-li i {
-    position: relative;
-    padding-left: 30px;
-    font-style: italic;
-}
-
-.total-li i::after {
-    content: '';
-    position: absolute;
-    background: #000;
-    width: 180px;
-    height: 1.5px;
-    bottom: -3px;
-    left: 100%;
-}
 
 .new-text p {
     font-size: 13px;
@@ -371,11 +300,8 @@ hr {
 }
 
 .after-ul {
-    /* margin-top: 15px; */
+    margin-top: 15px;
     padding-left: 60px;
-}
-.five-point-two{
-    margin-top: 150px;
 }
 
 .dated {
@@ -383,12 +309,12 @@ hr {
 }
 
 .dated::after {
-    content: '';
+    content: "";
     position: absolute;
     background: #000;
     width: 170px;
     height: 2px;
-    bottom: -8px;
+    bottom: -5px;
     right: -410%;
 }
 
@@ -401,25 +327,69 @@ hr {
     padding-left: 85px;
 }
 
+.date_uen{
+    padding-left: 130px;
+}
+
 .company_uen_2 {
     padding-left: 105px;
 }
 
 .another-row {
-    /* margin-top: 20px; */
-    margin-block: 0;
+
+    margin-block: 40px;
 }
 
 .another-row .second-box {
-    border: 2px solid #000;
-    padding-top: 30px;
+    position: relative;
+    margin-top: -20px;
     padding-bottom: 30px;
 }
 
-.sincere .director {
+.another-row .second-box::after{
+    content: '';
+    position: absolute;
+    width: 1.5px;
+    height: 270px;
+    background: #000;
+    top: 0;
+    left: -35px;
+}
+
+.another-row .second-box::before{
+    content: '';
+    position: absolute;
+    width: 1.5px;
+    height: 270px;
+    background: #000;
+    top: 0;
+    left: -31px;
+}
+
+.sincere h4 {
+    margin-bottom: 80px;
+    margin-top: -20px;
+}
+
+.director {
     font-size: 14px;
     font-weight: 600;
     font-family: "Open Sans", sans-serif;
+
+}
+
+.for-after{
+    position: relative;
+}
+
+.for-after::after{
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 1.5px;
+    background: #000;
+    top: -20px;
+    left: -10px;
 }
 
 .ravin {
@@ -430,29 +400,12 @@ hr {
     padding-left: 86px;
 }
 
-.sincere h4 {
-    padding-left: 35px;
-    position: relative;
-    margin-top: 75px;
-    margin-bottom: 40px;
-}
-
-.sincere h4::after {
-    content: '';
-    position: absolute;
-    width: 340px;
-    height: 1.6px;
-    background: #000;
-    top: -15px;
-    left: 10px;
-}
-
 .sincere .enclosed {
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 600;
     font-family: "Open Sans", sans-serif;
     font-style: italic;
-    padding-top: 20px;
+    padding-top: 70px;
 }
 
 .company {
@@ -460,41 +413,48 @@ hr {
 }
 
 .company::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 290px;
     height: 1.5px;
     background: #000;
     bottom: -1px;
-    right: -305px;
+   left: 132px;
 }
 
-.uen {
+.Date {
     position: relative;
 }
 
-.uen::after {
-    content: '';
+.Date::after {
+    content: "";
     position: absolute;
     width: 290px;
     height: 1.5px;
     background: #000;
     bottom: -1px;
-    right: -305px;
+    left: 132px;
 }
 
-.nric {
+.location {
+    display: none;
+}
+.location-for-second-page {
+    display: none;
+}
+
+.Client {
     position: relative;
 }
 
-.nric::after {
-    content: '';
+.Client::after {
+    content: "";
     position: absolute;
     width: 290px;
     height: 1.5px;
     background: #000;
     bottom: -1px;
-    right: -325px;
+    left: 132px;
 }
 
 .designation {
@@ -502,13 +462,13 @@ hr {
 }
 
 .designation::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 290px;
     height: 1.5px;
     background: #000;
     bottom: -1px;
-    right: -326px;
+    left: 132px;
 }
 
 .stamp {
@@ -517,34 +477,32 @@ hr {
 }
 
 .stamp:after {
-    content: '';
+    content: "";
     position: absolute;
     width: 290px;
     height: 1.5px;
     border: 1px dotted #000000;
     bottom: -6px;
-    right: -302px;
+    left: 132px;
 }
 
-.collection_comm_per {
-    padding-left: 41px;
-}
 
 .collection-li {
     position: relative;
-    padding-left: 0px;
-    margin-left: -10px;
 }
 
 .collection-li::after {
     position: absolute;
-    content: '';
+    content: "";
     height: 1px;
     width: 100px;
     background: #000000;
     right: -210px;
     bottom: 0;
+}
 
+.serve{
+    margin-left: -30px;
 }
 
 .hello_securre_mail,
@@ -552,43 +510,49 @@ hr {
     text-decoration: underline;
 }
 
+/* first page end */
+
 /* second section start */
-.second-section{
+.warrant-act h1 {
+    font-size: 100px;
+    font-weight: 400;
+    font-family: "Playfair Display", serif;
+}
+
+.second-section {
     font-weight: 600;
     font-size: 16px;
 }
-.warrant-act h1{
-    font-size: 90px;
-    font-weight: 400;
-    font-family: "Judson", serif;
-}
-.warrant-act p{
+.warrant-act p {
     padding-bottom: 15px;
     font-family: "Open Sans", sans-serif;
     font-size: 15px;
 }
-.new-hr{
+.new-hr {
     background: #000;
     padding-top: 2px;
     transform: translateY(-15px);
 }
-.to-securre{
+
+
+/*  */
+.to-securre {
     padding-left: 10px;
-    padding-right: 60px;
+    padding-right: 12px;
 }
-.client-information{
-    padding: 4px 50px;
+.client-information {
+    padding: 4px 15px;
     background: #000;
     color: #ffff;
     font-size: 16px;
     font-weight: 600;
     margin-left: 10px;
 }
-.new-case{
-    margin-top: 20px;
-    margin-left: 100px;
+
+.new-case {
+    margin-left: 195px;
 }
-.case-ref{
+.case-ref {
     font-family: "Open Sans", sans-serif;
     font-size: 16px;
     text-align: center;
@@ -596,310 +560,459 @@ hr {
     background: #000;
     font-weight: 600;
     padding-left: 0;
-    padding-top: 10px;
+    padding-top: 7px;
     padding-bottom: 7px;
     padding-right: 0;
+}
+.data-for-case {
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
+    border-left: 2px solid #000;
+    position: relative;
 }
 .case_ref {
     position: absolute;
     top: 5px;
     left: 10px;
 }
-.data-for-case{
-    border-top: 2px solid #000;
-    border-right: 2px solid #000;
-    border-bottom: 2px solid #000;
-    border-left: 2px solid #000;
-}
-.debtor-information{
-    padding: 4px 50px;
+
+.debtor-information {
+    padding: 4px 15px;
     background: #000;
     color: #ffff;
     font-size: 16px;
     font-weight: 600;
-    margin-left: 10px;
+    margin-left: 25px;
 }
 .take-information ul {
     margin-top: 15px;
     margin-bottom: 30px;
 }
-.take-information ul li{
+
+.list-unstyled{
+    margin-left: -30px;
+}
+
+.take-information ul li {
     margin-top: 8px;
 }
-.full-name{
+.full-name {
     position: relative;
-    padding-left: 90px;
+
 }
-.full-name::after{
-    content: '';
+.full-name::after {
+    content: "";
     position: absolute;
     height: 1.5px;
-    width:745px;
+    width: 800px;
     background: #000;
     bottom: -4px;
-    left: 105%;
+    left: 220%;
 }
 
-
-.company-name{
+.company-name {
     position: relative;
-    padding-left: 47px;
 }
-.company-name::after{
-    content: '';
+.company-name::after {
+    content: "";
     position: absolute;
     height: 1.5px;
-    width: 745px;
+    width: 800px;
     background: #000;
     bottom: -4px;
-    left: 105%;
+    left: 140%;
 }
 
-.nric-no{
+.nric-no {
     position: relative;
-    padding-left: 58px;
 }
-.nric-no::after{
-    content: '';
+.nric-no::after {
+    content: "";
     position: absolute;
     height: 1.5px;
-    width: 745px;
+    width: 800px;
     background: #000;
     bottom: -4px;
-    left: 105%;
+    left: 155%;
 }
 
-.contact-no{
+.contact-no {
     position: relative;
-    padding-left: 76px;
 }
-.contact-no::after{
-    content: '';
+.contact-no::after {
+    content: "";
     position: absolute;
     height: 1.5px;
-    width: 745px;
+    width: 800px;
     background: #000;
     bottom: -4px;
-    left: 105%;
+    left: 188%;
 }
 
-.email-add{
+.email-add {
     position: relative;
-    padding-left: 84px;
 }
-.email-add::after{
-    content: '';
+.email-add::after {
+    content: "";
     position: absolute;
     height: 1.5px;
-    width: 745px;
+    width: 800px;
     background: #000;
     bottom: -4px;
-    left: 105%;
+    left: 208%;
 }
-.address{
+.address {
     position: relative;
-    padding-left: 102px;
 }
-.address::after{
-    content: '';
+.address::after {
+    content: "";
     position: absolute;
     height: 1.5px;
-    width: 745px;
+    width: 800px;
     background: #000;
     bottom: -4px;
-    left: 105%;
+    left: 273%;
 }
-.address::before{
-    content: '';
+.address::before {
+    content: "";
     position: absolute;
     height: 1.5px;
-    width: 745px;
+    width: 800px;
     background: #000;
     bottom: -34px;
-    left: 105%;
+    left: 273%;
 }
-.address-2{
+.address-2 {
     position: relative;
-    padding-left: 102px;
 }
-.address-2::after{
-    content: '';
+.address-2::after {
+    content: "";
     position: absolute;
     height: 1.5px;
-    width: 745px;
+    width: 800px;
     background: #000;
     bottom: -4px;
-    left: 105%;
+    left: 270%;
 }
-.address-2::before{
-    content: '';
+.address-2::before {
+    content: "";
     position: absolute;
     height: 1.5px;
-    width: 745px;
+    width: 800px;
     background: #000;
     bottom: -34px;
-    left: 105%;
+    left: 270%;
 }
-.remarks-li{
+.remarks-li {
     padding-top: 30px;
 }
-.remarks{
+.remarks {
     position: relative;
-    padding-left: 98px;
 }
-
-
-.remarks::after{
-    content: '';
+.remarks::after {
+    content: "";
     position: absolute;
     height: 1.5px;
-    width: 745px;
+    width: 800px;
     background: #000;
     bottom: -4px;
-    left: 105%;
+    left: 256%;
 }
-.padding-for-new-data{
-    padding-left: 100px;
+
+/*  */
+
+.padding-for-new-data1 {
+    padding-left: 305px;
+}
+
+.padding-for-new-data2 {
+    padding-left: 262px;
+}
+
+.padding-for-new-data3 {
+    padding-left: 273px;
+}
+
+.padding-for-new-data4 {
+    padding-left: 291px;
+}
+
+.padding-for-new-data5 {
+    padding-left: 304px;
+}
+
+.padding-for-new-data6 {
+    padding-left: 323px;
+}
+
+.padding-for-new-data7 {
+    padding-left: 323px;
 }
 
 
-.debt-amount-row{
+
+/*  */
+
+.debt-amount-row {
     border: 2px solid #000;
     padding-top: 20px;
     padding-bottom: 17px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
+
+.right-usd-data {
+    position: absolute;
+    top: 18px;
+    left: 65%;
+}
+.bracket_end {
+    position: absolute;
+    right: 20px;
+}
+
+.total-debt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .new-usd{
-    /* padding-left: 60px; */
-    padding-top: 18px;
-    position: relative;
-    padding-left: 90px;
-}
-.new-usd-after{
-    font-size: 16px;
-    font-weight: 500;
     position: relative;
 }
 
-.new-usd-after::after{
-    content: '';
+.new-usd-after {
+    position: absolute;
+    top: -4px;
+    right: -2px;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px 25px 10px 10px;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    /* padding-left: 100px; */
+    /* position: relative; */
+}
+
+.new-usd-after span{
+    margin-left: 25px;
+}
+
+/* .new-usd-after::after {
+    content: "";
     position: absolute;
     width: 150px;
     height: 1.3px;
     background: #000;
     bottom: 0;
     right: 100;
-}
-.right-usd-data{
-    position: absolute;
-    top: 16px;
-    left: 55%;
-}
-.bracket_end {
-    position: absolute;
-    right: 35px;
-}
-.another-information-row ol{
+} */
+.another-information-row ol {
     padding-left: 60px;
     padding-right: 40px;
 }
-.another-information-row ol li{
+.another-information-row ol li {
     padding-left: 50px;
-    padding-top: 12px;
+    padding-top: 17px;
 }
-.me-us-after{
+.me-us-after {
     position: relative;
 }
-.me-us-after::after{
-    content: '';
+.me-us-after::after {
+    content: "";
     position: absolute;
     height: 1.4px;
-    width: 400px;
+    width: 477px;
     background: #000;
     bottom: 0;
     left: 57px;
 }
-
 .me-us-after::before {
     content: ",";
     position: absolute;
-    left: 460px;
+    left: 539px;
     top: 0;
 }
-
-.first-child{
+.first-child {
     position: relative;
 }
 .agreement_name {
     position: absolute;
-    right: 150px;
-    top: 10px;
+    right: 250px;
+    top: 15px;
 }
-.agreement_nric{
+.agreement_nric {
     position: absolute;
-    left: 230px;
-    top: 35px;
+    left: 300px;
+    top: 38px;
 }
 
-.nric-no-uen-after{
+.nric-no-uen-after {
     position: relative;
+    margin-right: 462px;
 }
-.nric-no-uen-after::after{
-    content: '';
+.nric-no-uen-after::after {
+    content: "";
     position: absolute;
     height: 1.4px;
-    width: 280px;
+    width: 448px;
     background: #000;
-    bottom: 0px;
+    bottom: 0;
     left: 113px;
 }
 .nric-no-uen-after::before{
     content: "),";
     position: absolute;
     top: 0;
-    right: -297px;
+    right: -460px;
 }
 
-.person{
+.from {
     position: relative;
+    margin-right: 180px;
 }
-.person::after{
-    content: '';
+.from::after {
+    content: "";
     position: absolute;
     height: 1.5px;
-    width: 410px;
+    width: 160px;
     background: #000;
     bottom: 0;
-    left: 58px;
+    left: 55px;
 }
-.contact{
+.contact {
     position: relative;
 }
-.contact::after{
-    content: '';
+.contact::after {
+    content: "";
     position: absolute;
     height: 1.5px;
-    width: 410px;
+    width: 100px;
     background: #000;
     bottom: 0;
-    left: 68px;
+    left: 60px;
 }
-.lorem-2{
-    padding-left: 132px;
+.contact::before {
+    content: ",";
+    position: absolute;
+    left: 22px;
+}
+.lorem-2 {
+    position: absolute;
+    left: 120px;
 }
 
 
-.new-underline{
+
+/*  */
+
+.last-ul li{
+    list-style: none;
+    margin-left: -20px;
+    margin-top: 20px;
+}
+
+.last-ul :nth-of-type(5){
+    margin-top: 50px;
+}
+
+.last-ul-li-name{
+    position: relative;
+}
+
+.last-ul-li-name::after {
+    content: "";
+    position: absolute;
+    height: 1.5px;
+    width: 300px;
+    background: #000;
+    bottom: -5px;
+    left: 131px;
+}
+
+.last-ul-li-company{
+    position: relative;
+}
+
+.last-ul-li-company::after {
+    content: "";
+    position: absolute;
+    height: 1.5px;
+    width: 300px;
+    background: #000;
+    bottom: -5px;
+    left: 129px;
+}
+
+.last-ul-li-nric{
+    position: relative;
+}
+
+.last-ul-li-nric::after {
+    content: "";
+    position: absolute;
+    height: 1.5px;
+    width: 300px;
+    background: #000;
+    bottom: -5px;
+    left: 128px;
+}
+
+.last-ul-li-contact{
+    position: relative;
+}
+
+.last-ul-li-contact::after {
+    content: "";
+    position: absolute;
+    height: 1.5px;
+    width: 300px;
+    background: #000;
+    bottom: -5px;
+    left: 125px;
+}
+
+.last-ul-li-stamp{
+    position: relative;
+}
+
+.last-ul-li-stamp::after {
+    content: "";
+    position: absolute;
+    height: 1.5px;
+    width: 300px;
+    background: #000;
+    bottom: -5px;
+    left: 131px;
+}
+
+.data-mr1{
+    margin-left: 80px;
+}
+
+.data-mr2{
+    margin-left: 36px;
+}
+
+.data-mr3{
+    margin-left: 48px;
+}
+
+.data-mr4{
+    margin-left: 68px;
+}
+
+.data-mr5{
+    margin-left: 80px;
+}
+
+
+.new-underline {
     text-decoration: underline;
 }
 footer {
-    position: fixed;
-    bottom: -5px;
-    left: 50px;
-    right: 0;
-    height: 50px;
-}
-.first_agreement{
-    margin-bottom: 405px;
+    display: none;
 }
 /* second section end */

@@ -32,6 +32,15 @@
 <section>
     <div class="second-section">
         <div class="container mb-5">
+            <div class="row">
+                <div class="col-md-12 buttons">
+                    <div class="d-flex justify-content-end pt-3">
+                        <a href="{{ route('admin.cases.index') }}" class="btn btn-danger mr-2">Back</a>
+                        <button class="btn btn-success" onclick="printDocument()">Print</button>
+                    </div>
+
+                </div>
+            </div>
             <div class="col-md-12 mx-auto text-center warrant-act">
                 <h1>WARRANT TO ACT</h1>
                 <p>SUBJECT TO CHAPTER 53B (ORIGINAL ENACTMENT: ACT 39 of 2001) REVISED EDITION 2002, SECTION 2.1</p>
@@ -88,7 +97,7 @@
                 </div>
                 <div class="col-2 p-0 new-usd">
                      <span class="new-usd-after"><i class="fa fa-usd"
-                        aria-hidden="true"></i><span> 25,212.50</span> </span>
+                        aria-hidden="true"></i><span> {{ $case_number->total_amount_owed }}</span> </span>
 
                         {{-- <span class="right-usd-data">{{ $case_number->total_amount_owed }}</span><span class="bracket_end">) --}}
 
@@ -98,7 +107,7 @@
           <div class="row another-information-row">
             <ol class="">
                 <li class="first-child">*I/We, the undersigned, hereby appoint you to act for <span class="me-us-after">*me/us </span> <span class="agreement_name">{{ $client_details->name }}</span><br>
-                    <span class="nric-no-uen-after">(NRIC No./UEN: </span><span class="agreement_nric">{{ $client_details->nric }}</span> <br>in connection with the above matter until it
+                    <span class="nric-no-uen-after">(NRIC No./UEN: </span><span class="agreement_nric">{{ $client_details->nric }}</span> in connection with the above matter until it
                     is completed, settled, resolved or the contractual agreement between us and you is terminated for whatsoever reason.
                     All cheques shall be made payable to Securre Collection Pte Ltd, and online payments made via PayNow to<span class="new-underline"> 85055484.</span></li>
                 <li class=""><span class="">Our engagement of your services are subjected to the terms and conditions as set out in the Debt Collection Agreement
@@ -106,7 +115,7 @@
                 <li class=""><span class="">*I/We authorise you to receive payment from the debtor directly in your favour (on our behalf) and to do everything you
                     consider necessary in your conduct of the above matter. This Warrant to Act serves as a formal Warrant to Act which may
                     be produced to third parties as evidence of your engagement to act on our behalf in connection with the above matter.</span></li>
-                <li class="">*I/We authorise you to take instructions in respect of this matter <span class="from pb-1"> from;</span> <span class="lorem-2">{{ $client_details->name }}</span>, <span class="contact pb-1">Contact;</span> <span class="lorem-3">{{ $client_details->phone }}</span></li>
+                <li class="">*I/We authorise you to take instructions in respect of this matter <span class="from pb-1"> from:<span class="lorem-2">rk</span></span>  <span class="contact pb-1">Contact: </span><span class="lorem-3">{{ $client_details->phone }}</span></li>
             </ol>
          <div class="col-md-10 mx-auto mb-2">
           <div class="row">
@@ -125,7 +134,7 @@
 
                 <li> <span class="last-ul-li-contact"> Contact No.: </span> <span class="data-mr4"> {{ $client_details->phone }} </span></li>
 
-                <li><span class="last-ul-li-stamp"> Signature/Stamp: </span> <span class="data-mr5"> Data stamp </span></li>
+                <li><span class="last-ul-li-stamp"> Signature/Stamp: </span> <span class="data-mr5"> </span></li>
                     <br>
                 <li class="font-italic" style="font-weight: 400; margin-top: -5px; margin-left: -8px;"> * Strike out where necessary.</li>
             </ul>

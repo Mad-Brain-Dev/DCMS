@@ -345,8 +345,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body" style="text-align: center;">
-                    <h4 class="pb-3">Do you want to print this document?</h4>
-                    <a class="btn btn-success" href="{{ route('printable.case.agreement', 40) }}">Click Here</a>
+                    <h4 class="pb-3">Do you want to print this warrant?</h4>
+                    <a class="btn btn-success" id="agreement" href="">Click Here</a>
                 </div>
                 <div class="modal-footer" style="border: none;">
 
@@ -470,6 +470,10 @@
                     if (data.success) {
                         $("#frmAppl")[0].reset();
                         $("#showMsg").modal('show');
+                        console.log(data.result.id)
+                        var url = "/printable/case/agreement/" + data.result.id
+
+                        $('#agreement').attr('href', url);
 
                      }
                      else {

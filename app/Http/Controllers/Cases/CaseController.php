@@ -408,8 +408,10 @@ class CaseController extends Controller
 
     public function printableCaseAgreement($id)
     {
-        return $id;
-        // return view('admin.agreement.agreement');
+
+        $case_number = Cases::find($id)->first();
+        $client_details = Client::where('client_id', $case_number->client_id)->first();
+        return view('admin.agreement.agreement', compact('case_number','client_details'));
     }
 
     public function updateTotalAmountBalance(Request $request, $id)
@@ -496,18 +498,25 @@ class CaseController extends Controller
             ]);
         }
 
-        if (Cases::count() < 1) {
-            $result = Cases::create($request->all());
-            $result->case_sku = 1;
-            $result->save();
-        } else {
-            $result = Cases::create($request->all());
-            $imidiate_first_case =
-        }
+        // if (Cases::count() < 1) {
+        //     $result = Cases::create($request->all());
+        //     $result->case_sku = 1;
+        //     $result->save();
+        // } else {
+        //     $result = Cases::create($request->all());
 
+        // }
 
-        return response()->json(['success' => 'Form submitted successfully.']);
+        $result = Cases::create($request->all());
+        $data = [
+            'status' => 200,
+            'success' => 'Data Fetched Successfully',
+            'result' =>  $result,
+        ];
+        return response()->json($data);
     }
+
+
 
     //get case by status
 

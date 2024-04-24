@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <h4 class="card-title mb-3">{{ get_page_meta('title', true) }}</h4>
-            <form action="{{ route('admin.clients.store') }}" method="post">
+            <form method="post" id="frmAppl">
                 @csrf
                 <div class="card">
                     <div class="card-body">
@@ -97,7 +97,8 @@
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Collection Commission (%)</label>
                                 <input type="number" name="collection_commission" class="form-control"
-                                    placeholder="Enter Collection Commission (%)" value="{{ old('collection_commission') }}">
+                                    placeholder="Enter Collection Commission (%)"
+                                    value="{{ old('collection_commission') }}">
                                 @error('collection_commission')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -149,7 +150,8 @@
                 <div class="row">
                     <div class="mb-3 offset-md-6 col-md-6">
                         <div class="text-end">
-                            <button class="btn btn-primary waves-effect waves-lightml-2 me-2" type="submit">
+                            <button class="btn btn-primary waves-effect waves-lightml-2 me-2" id="submitBtn"
+                                type="submit">
                                 <i class="fa fa-save"></i> Save
                             </button>
 
@@ -165,18 +167,95 @@
         </div>
     </div>
     </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="showMsg">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="text-align: center;">
+                    <h4 class="pb-3">Do you want to print this warrant?</h4>
+                    <a class="btn btn-success" id="agreement" href="">Click Here</a>
+                </div>
+                <div class="modal-footer" style="border: none;">
+
+                    <a href="{{ route('admin.clients.index') }}" class="btn btn-danger"
+                        class="btn btn-secondary">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('script')
     <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
     <script>
-$( document ).ready(function() {
-    $(function() {
-    $("#num2").on("keydown keyup", sum);
-	function sum() {
-	$("#subt").val(Number($("#num1").val()) - Number($("#num2").val()));
-	}
-});
-});
+        $(document).ready(function() {
+            $(function() {
+                $("#num2").on("keydown keyup", sum);
+
+                function sum() {
+                    $("#subt").val(Number($("#num1").val()) - Number($("#num2").val()));
+                }
+            });
+
+
+            $("#frmAppl").on("submit", function(event) {
+                event.preventDefault();
+                var error_ele = document.getElementsByClassName('err-msg');
+                if (error_ele.length > 0) {
+                    for (var i = error_ele.length - 1; i >= 0; i--) {
+                        error_ele[i].remove();
+                    }
+                }
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    url: "{{ route('create.client') }}",
+                    type: "POST",
+                    data: new FormData(this),
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    beforeSend: function() {
+                        $("#submitBtn").prop('disabled', true);
+                    },
+                    success: function(data) {
+                        if (data.success) {
+                            $("#frmAppl")[0].reset();
+                            $("#showMsg").modal('show');
+                            console.log(data.result.id)
+                            var url = "/printable/case/agreement/" + data.result.id
+
+                            $('#agreement').attr('href', url);
+
+                        } else {
+                            $.each(data.error, function(key, value) {
+                                var el = $(document).find('[name="' + key + '"]');
+                                el.after($('<span class= "err-msg">' + value[0] +
+                                    '</span>'));
+
+                            });
+                        }
+                        $("#submitBtn").prop('disabled', false);
+                    },
+                    error: function(err) {
+                        $("#message").html("Some Error Occurred!")
+                    }
+                });
+            });
+
+        });
     </script>
+@endpush
+@push('style')
+    <style>
+        .err-msg {
+            color: #ec4561;
+            font-size: 12px;
+        }
+    </style>
 @endpush

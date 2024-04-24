@@ -13,6 +13,8 @@ use App\Models\User;
 use App\Services\ClientService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+
 
 class ClientController extends Controller
 {
@@ -121,5 +123,33 @@ class ClientController extends Controller
         } catch (\Exception $e) {
             return back();
         }
+    }
+
+    public function createClient(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 'name' => 'required', 'abbr' => 'required' ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()
+            ]);
+        }
+        $client = Client::create($request->all());
+        if($client){
+            $user= new User();
+            $user->name= $request['name'];
+            $user->email= $request['email'];
+            $user->password=  Hash::make("12345678");   // 12345678;
+            $user->save();
+            $client->client_id = $user->id;
+            $client->save();
+        }
+
+        $data = [
+            'status' => 200,
+            'success' => 'Data Fetched Successfully',
+            'result' =>  $client,
+        ];
+        return response()->json($data);
     }
 }
