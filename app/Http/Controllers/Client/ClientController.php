@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\DataTables\ClientDataTable;
+use App\Events\NewClientCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientEditRequest;
 use App\Http\Requests\ClientRequest;
@@ -55,22 +56,19 @@ class ClientController extends Controller
 
             $client = $this->clientService->storeOrUpdate($data, null);
 
-        if($client){
-            $user= new User();
-            $user->name= $request['name'];
-            $user->email= $request['email'];
-            $user->password=  Hash::make("12345678");   // 12345678;
-            $user->save();
-            $client->client_id = $user->id;
-            $client->save();
-        }
-        record_created_flash();
-
-
+            if ($client) {
+                $user = new User();
+                $user->name = $request['name'];
+                $user->email = $request['email'];
+                $user->password =  Hash::make("12345678");   // 12345678;
+                $user->save();
+                $client->client_id = $user->id;
+                $client->save();
+            }
+            record_created_flash();
         } catch (\Exception $e) {
         }
         return redirect()->route('admin.clients.index');
-
     }
 
     /**
@@ -103,12 +101,9 @@ class ClientController extends Controller
         try {
             $this->clientService->storeOrUpdate($data, $id);
             record_updated_flash();
-
         } catch (\Exception $e) {
         }
         return redirect()->route('admin.clients.index');
-
-
     }
 
     /**
@@ -127,7 +122,7 @@ class ClientController extends Controller
 
     public function createClient(Request $request)
     {
-        $validator = Validator::make($request->all(), [ 'name' => 'required', 'abbr' => 'required' ]);
+        $validator = Validator::make($request->all(), ['name' => 'required', 'abbr' => 'required']);
 
         if ($validator->fails()) {
             return response()->json([
@@ -135,24 +130,29 @@ class ClientController extends Controller
             ]);
         }
         $client = Client::create($request->all());
-        if($client){
-            $user= new User();
-            $user->name= $request['name'];
-            $user->email= $request['email'];
-            $user->password=  Hash::make("12345678");   // 12345678;
+        if ($client) {
+            $user = new User();
+            $user->name = $request['name'];
+            $user->email = $request['email'];
+            $user->password =  Hash::make("12345678");   // 12345678;
             $user->save();
             $client->client_id = $user->id;
             $client->save();
+
+
+            $data = [
+                'status' => 200,
+                'success' => 'Data Fetched Successfully',
+                'result' =>  $client,
+            ];
+            event(new NewClientCreated($client));
+            return response()->json($data);
+
         }
 
-        $data = [
-            'status' => 200,
-            'success' => 'Data Fetched Successfully',
-            'result' =>  $client,
-        ];
-        return response()->json($data);
     }
-    public function printableClientAgreement($id){
+    public function printableClientAgreement($id)
+    {
         $client_details = Client::find($id)->first();
         return view('admin.agreement.client-agreement', compact('client_details'));
     }
