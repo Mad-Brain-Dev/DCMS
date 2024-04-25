@@ -227,8 +227,7 @@
                         if (data.success) {
                             $("#frmAppl")[0].reset();
                             $("#showMsg").modal('show');
-                            console.log(data.result.id)
-                            var url = "/printable/case/agreement/" + data.result.id
+                            var url = "/printable/client/agreement/" + data.result.id
 
                             $('#agreement').attr('href', url);
 

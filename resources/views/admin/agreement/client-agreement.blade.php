@@ -33,8 +33,8 @@
         <div class="container first-agreement-container">
             <div class="row hide-print-button">
                     <div class="col-12 d-flex justify-content-end mt-3">
-                        <a href="{{ route('admin.cases.index') }}" class="btn btn-dark mr-2">Back</a>
-                        <div class="btn btn-dark" id="document_print" onclick="printDocument()">Print Document</div>
+                        <a href="{{ route('admin.clients.index') }}" class="btn btn-danger mr-2">Back</a>
+                        <div class="btn btn-success" id="document_print" onclick="printDocument()">Print Document</div>
                     </div>
             </div>
             <div class="row first-row justify-content-center">
@@ -48,7 +48,7 @@
                  <div class="col-7 ">
                     <div class="row for-p">
                        <div class="col-3 case-num">CASE NUMBER</div>
-                       <div class="col-6 box-1st">{{ $case_number->case_number }}</div>
+                       <div class="col-6 box-1st">Test Case Number</div>
                      </div>
                 </div>
 
@@ -57,7 +57,7 @@
                         {{-- <span class="d-f-agreement">Date of
                             Agreement:</span><span class="date_of_agreement_top">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d - F - Y') }}</span> --}}
                             <div class="col-4 case-prov">DATE OF EXPIRY</div>
-                            <div class="col-5 box-2nd">{{ $case_number->current_status }}</div>
+                            <div class="col-5 box-2nd">{{ \Carbon\Carbon::parse($client_details->date_of_expiry)->format('d  F  Y') }}</div>
 
                     </div>
                     {{-- <div class="col-10 d-flex pt-3 pb-2 expiry">
@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="ol-start mt-3">
                     <ol class="first-ol">
-                        <li class="f-ol-li1"> This Agreement, entered into as of  <span class="text-to">today </span>, <span class="to-margin"> 20 April 2024</span> , by and between us, <b>Securre Collection Pte. Ltd.</b> (hereon referred to as "SC") <br/> <span class="text-and"> and </span><span class="and-margin">Nadarajan s/o Ganesan</span>  (hereon referred to as the "Client").
+                        <li class="f-ol-li1"> This Agreement, entered into as of  <span class="text-to">today, </span> <span class="to-margin">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d  F  Y') }}</span> , by and between us, <b>Securre Collection Pte. Ltd.</b> (hereon referred to as "SC")  <span class="text-and"> and  </span><span class="and-margin">{{ $client_details->name }}</span> (hereon referred to as the "Client").
                         </li>
 
                         <li>
@@ -102,7 +102,7 @@
                                 </div>
 
                                 <div class=" col-md-9 pt-2 flex-fill bd-highlight">
-                                    The Client/s has agreed to pay an upfront fee of <span class="s-dollar-sign"> S$ </span><span class="dollar-margin"><b>588.00</b></span> , for filing, administrative,
+                                    The Client/s has agreed to pay an upfront fee of <span class="s-dollar-sign"> S$ <span class="dollar-margin"><b>{{ $client_details->admin_fee }}</b></span> </span>, for filing, administrative,
                                     and registration costs to SC for the engagement of this service. It is also understood that this payment
                                     is non-refundable and payable in full upon the endorsement of this Agreement.
                                 </div>
@@ -114,7 +114,7 @@
                                 </div>
 
                                 <div class=" col-md-9 pt-2 flex-fill bd-highlight">
-                                    The commission payout on the successfully collected debt/s and interest (if any)  will <span class="text-be"> be </span><span class="be-margin"><b> 30%</b> </span>. SC reserves the right to review the commission structure subject to seven (07) days written notice to the Client.
+                                    The commission payout on the successfully collected debt/s and interest (if any)  will <span class="text-be"> be <span class="be-margin"><b> {{ $client_details->collection_commission }}</b> </span></span>. SC reserves the right to review the commission structure subject to seven (07) days written notice to the Client.
                                 </div>
                             </div>
 
@@ -157,7 +157,7 @@
                                 </div>
 
                                 <div class=" col-md-9 pt-2 flex-fill bd-highlight">
-                                    SC undertakes a committment to the Client<span class="text-of"> of </span> <span class="of-margin"> <b> 05</b> </span> visits per case assigned to SC during the validity
+                                    SC undertakes a committment to the Client<span class="text-of"> of <span class="of-margin"> <b> {{ $client_details->field_visit_per_case }}</b> </span> </span> visits per case assigned to SC during the validity
                                     of this agreement.
                                 </div>
                             </div>
@@ -231,7 +231,7 @@
                                 Director)</span></span><br><br>
                                 <span class="director">Designation:</span><br><br>
                         <span class="director">Date: <span
-                                class="ravin-date">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d - F - Y') }}</span></span>
+                                class="ravin-date">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d  F  Y') }}</span></span>
                         <p class="enclosed"> * Enclosed herein: Warrant to Act, herewith: T&C.</p>
                     </div>
 
@@ -239,17 +239,17 @@
                         <p>For the Client/s; </p>
 
                         <span class="Client">Client Name/s: </span> <span
-                            class="company_uen_2">{{ $client_details->nric }}</span><br><br>
+                            class="company_uen_2">{{ $client_details->name }}</span><br><br>
 
                         <span class="company">Company Name: </span> <span
-                            class="company_uen">{{ $client_details->company_uen }}</span><br><br>
+                            class="company_name">{{ $client_details->company_name }}</span><br><br>
 
                         <span class="designation">Designation:</span>
                         <span
                             class="company_uen">{{ $client_details->company_uen }}</span><br><br>
 
                         <span class="Date">Date: </span> <span
-                            class="date_uen">{{ $client_details->company_uen }}</span><br><br><br>
+                            class="date_uen">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d  F  Y') }}</span><br><br><br>
 
                         <span class="stamp">Signature/Stamp:</span>
                     </div>

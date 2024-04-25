@@ -25,11 +25,14 @@ hr {
 
 .text-to {
     position: relative;
+    margin-right: 155px;
 }
-
+.f-ol-li1{
+    position: relative;
+}
 .to-margin {
-    margin-left: 30px;
-    margin-right: 30px;
+    position: absolute;
+    left: 328px;
 }
 
 .text-to::after {
@@ -42,8 +45,9 @@ hr {
     left: 45px;
 }
 
-.text-and{
+.text-and {
     position: relative;
+    margin-right: 290px;
 }
 
 .text-and::after {
@@ -53,12 +57,12 @@ hr {
     height: 1px;
     width: 290px;
     bottom: -5px;
-    left: 30px;
+    left: -968px;
 }
 
-.and-margin{
-    margin-left: 70px;
-    margin-right: 70px;
+.and-margin {
+    position: absolute;
+    left: 120px;
 }
 
 .d-f-agreement {
@@ -135,12 +139,12 @@ hr {
     border: 1px solid black;
 }
 
-.for-p{
+.for-p {
     padding-left: 58px;
     box-sizing: border-box;
 }
 
-.for-p2{
+.for-p2 {
     padding-left: 60px;
     box-sizing: border-box;
 }
@@ -155,22 +159,22 @@ hr {
     padding-top: 7px;
 }
 
-
 /*  */
 
 .bd-highlight {
     margin-left: -15px;
 }
 
-.col-md-3{
+.col-md-3 {
     max-width: 20%;
 }
 
-.s-dollar-sign{
+.s-dollar-sign {
     position: relative;
+    margin-right: 146px;
 }
 
-.s-dollar-sign::after{
+.s-dollar-sign::after {
     content: "";
     position: absolute;
     background: #000;
@@ -180,16 +184,17 @@ hr {
     bottom: -3px;
 }
 
-.dollar-margin{
-    margin-left: 50px;
-    margin-right: 50px;
+.dollar-margin {
+position: absolute;
+left: 80px;
 }
 
-.text-be{
+.text-be {
     position: relative;
+    margin-right: 55px;
 }
 
-.text-be::after{
+.text-be::after {
     content: "";
     position: absolute;
     background: #000;
@@ -199,17 +204,17 @@ hr {
     bottom: -3px;
 }
 
-.be-margin{
-    margin-left: 15px;
-    margin-right: 15px;
- }
+.be-margin {
+position: absolute;
+left: 40px;
+}
 
-
- .text-of{
+.text-of {
     position: relative;
- }
+    margin-right: 38px;
+}
 
- .text-of::after{
+.text-of::after {
     content: "";
     position: absolute;
     background: #000;
@@ -219,20 +224,18 @@ hr {
     bottom: -3px;
 }
 
-.of-margin{
-    margin-left: 10px;
-    margin-right: 10px;
- }
+.of-margin {
+    position: absolute;
+    left: 25px;
+}
 
+/*  */
 
- /*  */
-
- .four-ul{
+.four-ul {
     list-style: none;
     padding: 0;
     margin-left: -14px;
- }
-
+}
 
 /* .dear-sir h5 {
     padding-top: 17px;
@@ -242,30 +245,24 @@ hr {
     font-family: "Open Sans", sans-serif;
 } */
 
-.ol-start .first-ol{
+.ol-start .first-ol {
     padding-right: 50px;
     font-size: 14px;
     font-weight: 600;
     font-family: "Open Sans", sans-serif;
 }
 
-.ol-start .first-ol li{
+.ol-start .first-ol li {
     margin-top: 16px;
     padding-left: 15px;
     line-height: 25px;
 }
-
-
-
-
-
 
 /* provisions start */
 .new-ul-start .provisions li {
     padding-bottom: 20px;
     list-style: none;
 }
-
 
 .new-text p {
     font-size: 13px;
@@ -321,19 +318,20 @@ hr {
 }
 
 .company_uen {
-    padding-left: 85px;
+    padding-left: 80px;
 }
-
-.date_uen{
+.company_name{
+    padding-left: 53px;
+}
+.date_uen {
     padding-left: 130px;
 }
 
 .company_uen_2 {
-    padding-left: 105px;
+    padding-left: 68px;
 }
 
 .another-row {
-
     margin-block: 40px;
 }
 
@@ -343,8 +341,8 @@ hr {
     padding-bottom: 30px;
 }
 
-.another-row .second-box::after{
-    content: '';
+.another-row .second-box::after {
+    content: "";
     position: absolute;
     width: 1.5px;
     height: 270px;
@@ -353,8 +351,8 @@ hr {
     left: -35px;
 }
 
-.another-row .second-box::before{
-    content: '';
+.another-row .second-box::before {
+    content: "";
     position: absolute;
     width: 1.5px;
     height: 270px;
@@ -372,14 +370,13 @@ hr {
     font-size: 14px;
     font-weight: 600;
     font-family: "Open Sans", sans-serif;
-
 }
 
-.for-after{
+.for-after {
     position: relative;
 }
 
-.for-after::after{
+.for-after::after {
     content: "";
     position: absolute;
     width: 360px;
@@ -416,7 +413,7 @@ hr {
     height: 1.5px;
     background: #000;
     bottom: -1px;
-   left: 132px;
+    left: 132px;
 }
 
 .Date {
@@ -483,7 +480,6 @@ hr {
     left: 132px;
 }
 
-
 .collection-li {
     position: relative;
 }
@@ -498,7 +494,7 @@ hr {
     bottom: 0;
 }
 
-.serve{
+.serve {
     margin-left: -30px;
 }
 
@@ -535,7 +531,6 @@ hr {
     padding-top: 2px;
     transform: translateY(-15px);
 }
-
 
 /*  */
 .to-securre {
@@ -592,7 +587,7 @@ hr {
     margin-bottom: 30px;
 }
 
-.list-unstyled{
+.list-unstyled {
     margin-left: -30px;
 }
 
@@ -601,7 +596,6 @@ hr {
 }
 .full-name {
     position: relative;
-
 }
 .full-name::after {
     content: "";
@@ -638,14 +632,13 @@ hr {
     bottom: -4px;
     left: 155%;
 }
-.contact{
+.contact {
     position: relative;
 }
-.lorem3{
+.lorem3 {
     position: absolute;
     left: 0;
     top: 0;
-
 }
 
 .contact-no {
@@ -761,8 +754,6 @@ hr {
     padding-left: 323px;
 }
 
-
-
 /*  */
 
 .debt-amount-row {
@@ -782,14 +773,14 @@ hr {
     right: 20px;
 }
 
-.total-debt{
+.total-debt {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.new-usd{
+.new-usd {
     position: relative;
 }
 
@@ -807,7 +798,7 @@ hr {
     /* position: relative; */
 }
 
-.new-usd-after span{
+.new-usd-after span {
     margin-left: 25px;
 }
 
@@ -873,7 +864,7 @@ hr {
     bottom: 0;
     left: 113px;
 }
-.nric-no-uen-after::before{
+.nric-no-uen-after::before {
     content: "),";
     position: absolute;
     top: 0;
@@ -920,21 +911,19 @@ hr {
     padding-left: 30px;
 }
 
-
-
 /*  */
 
-.last-ul li{
+.last-ul li {
     list-style: none;
     margin-left: -20px;
     margin-top: 20px;
 }
 
-.last-ul :nth-of-type(5){
+.last-ul :nth-of-type(5) {
     margin-top: 50px;
 }
 
-.last-ul-li-name{
+.last-ul-li-name {
     position: relative;
 }
 
@@ -948,7 +937,7 @@ hr {
     left: 131px;
 }
 
-.last-ul-li-company{
+.last-ul-li-company {
     position: relative;
 }
 
@@ -962,7 +951,7 @@ hr {
     left: 129px;
 }
 
-.last-ul-li-nric{
+.last-ul-li-nric {
     position: relative;
 }
 
@@ -976,7 +965,7 @@ hr {
     left: 128px;
 }
 
-.last-ul-li-contact{
+.last-ul-li-contact {
     position: relative;
 }
 
@@ -990,7 +979,7 @@ hr {
     left: 125px;
 }
 
-.last-ul-li-stamp{
+.last-ul-li-stamp {
     position: relative;
 }
 
@@ -1004,26 +993,25 @@ hr {
     left: 131px;
 }
 
-.data-mr1{
+.data-mr1 {
     margin-left: 80px;
 }
 
-.data-mr2{
+.data-mr2 {
     margin-left: 36px;
 }
 
-.data-mr3{
+.data-mr3 {
     margin-left: 48px;
 }
 
-.data-mr4{
+.data-mr4 {
     margin-left: 68px;
 }
 
-.data-mr5{
+.data-mr5 {
     margin-left: 80px;
 }
-
 
 .new-underline {
     text-decoration: underline;

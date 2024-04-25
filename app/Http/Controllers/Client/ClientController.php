@@ -152,4 +152,8 @@ class ClientController extends Controller
         ];
         return response()->json($data);
     }
+    public function printableClientAgreement($id){
+        $client_details = Client::find($id)->first();
+        return view('admin.agreement.client-agreement', compact('client_details'));
+    }
 }
