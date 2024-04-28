@@ -56,6 +56,12 @@
                         <span class="mdi mdi-briefcase-edit-outline pe-2"></span><span> Cases </span>
                     </a>
                 </li>
+                <li class="{{ request()->is('admin/reports*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.reports.index') }}"
+                        class="{{ request()->routeIs('admin.reports.index') ? 'active' : '' }}">
+                        <span class="mdi mdi-briefcase-edit-outline pe-2"></span><span> Reports </span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

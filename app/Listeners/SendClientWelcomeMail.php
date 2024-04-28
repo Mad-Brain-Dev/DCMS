@@ -22,9 +22,9 @@ class SendClientWelcomeMail
     /**
      * Handle the event.
      */
-    public function handle(NewClientCreated $event): void
+    public function handle(NewClientCreated $event)
     {
         $client = Client::first();
-        Mail::to($client->email)->send(new ClientMail($event->client));
+        Mail::to($event->client->email)->send(new ClientMail($event->client->name));
     }
 }

@@ -25,8 +25,8 @@ return new class extends Migration
             $table->dateTime('date_of_agreement')->nullable();
             $table->dateTime('date_of_expiry')->nullable();
             $table->string('admin_fee')->nullable();
-            // $table->string('admin_fee_paid')->nullable();
-            // $table->string('admin_fee_balance')->nullable();
+            $table->string('admin_fee_paid')->nullable();
+            $table->string('admin_fee_balance')->nullable();
             // $table->string('administrative_fee')->nullable();
             // $table->string('enforcement_fee')->nullable();
             // $table->string('professional_fee')->nullable();

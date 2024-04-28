@@ -26,6 +26,8 @@ class Client extends Model
         'date_of_agreement',
         'date_of_expiry',
         'admin_fee',
+        'admin_fee_paid',
+        'admin_fee_balance',
         'field_visit_per_case',
     ];
 

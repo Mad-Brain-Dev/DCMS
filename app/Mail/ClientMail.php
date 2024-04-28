@@ -12,14 +12,13 @@ use Illuminate\Queue\SerializesModels;
 class ClientMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $client;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($client)
+    public function __construct()
     {
-        $this->client = $client;
+        //
     }
 
     /**
@@ -38,7 +37,7 @@ class ClientMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'email.clientmail',
+            markdown: 'emails.clientmail',
         );
     }
 

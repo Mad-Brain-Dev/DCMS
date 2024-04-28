@@ -30,7 +30,6 @@ class NewClientCreated
      */
     public function broadcastOn(): array
     {
-        dd('Test');
         return [
             new PrivateChannel('channel-name'),
         ];

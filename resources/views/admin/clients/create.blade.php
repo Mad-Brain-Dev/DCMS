@@ -95,6 +95,22 @@
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
+                                <label class="form-label">Admin Fee Paid</label>
+                                <input type="number" name="admin_fee_paid" class="form-control" id="num2"
+                                    placeholder="Enter Admin Fee Paid Amount">
+                                @error('admin_fee_paid')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Admin Fee Balance</label>
+                                <input type="number" name="admin_fee_balance" placeholder="Admin Fee Balance will Auto Calculate" class="form-control" readonly
+                                    id="subt">
+                                @error('admin_fee_balance')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-3">
                                 <label class="form-label">Collection Commission (%)</label>
                                 <input type="number" name="collection_commission" class="form-control"
                                     placeholder="Enter Collection Commission (%)"
@@ -120,22 +136,7 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-                            {{-- <div class="mb-3 col-md-3">
-                                <label class="form-label">Admin Fee Paid</label>
-                                <input type="number" name="admin_fee_paid" class="form-control" id="num2"
-                                    placeholder="Enter Admin Fee Paid Amount">
-                                @error('admin_fee_paid')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Admin Fee Balance</label>
-                                <input type="number" name="admin_fee_balance" placeholder="Admin Fee Balance will Auto Calculate" class="form-control" readonly
-                                    id="subt">
-                                @error('admin_fee_balance')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div> --}}
+
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Field Visit Per Case</label>
                                 <input type="number" name="field_visit_per_case" class="form-control"
@@ -171,11 +172,11 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body" style="text-align: center;">
-                    <h4 class="pb-3">Do you want to print this warrant?</h4>
+                    <h4 class="pb-3">Do you want to print this agreement?</h4>
                     <a class="btn btn-success" id="agreement" href="">Click Here</a>
                 </div>
-                <div class="modal-footer" style="border: none;">
-
+                <div class="modal-footer d-flex justify-content-between" style="border: none;">
+                    <a class="btn btn-success" id="agreement" href="">Yes, Print It</a>
                     <a href="{{ route('admin.clients.index') }}" class="btn btn-danger"
                         class="btn btn-secondary">Close</a>
                 </div>

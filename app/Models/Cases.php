@@ -51,6 +51,8 @@ class Cases extends Model
         'total_amount_paid',
         'total_amount_balance',
         'payment_method',
+        'next_payment_date',
+        'next_payment_amount',
         'payment_date',
 
     ];

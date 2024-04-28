@@ -245,6 +245,22 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Next Payment Date</label>
+                                <input type="date" name="next_payment_date" class="form-control" placeholder="Enter Interest Start Date">
+                                @error('next_payment_date')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Next Payment Amount</label>
+                                <input type="number" name="debt_interest" class="form-control"
+                                    placeholder="Enter Debt Interest/Annum" id="next_payment_amount">
+                                @error('next_payment_amount')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
 
                             {{-- <div class="mb-3 col-md-3">
                                 <label class="form-label">Installment Number</label>
@@ -346,11 +362,11 @@
             <div class="modal-content">
                 <div class="modal-body" style="text-align: center;">
                     <h4 class="pb-3">Do you want to print this warrant?</h4>
-                    <a class="btn btn-success" id="agreement" href="">Click Here</a>
                 </div>
-                <div class="modal-footer" style="border: none;">
+                <div class="modal-footer d-flex justify-content-between" style="border: none;" >
 
                     <a href="{{ route('admin.cases.index') }}" class="btn btn-danger" class="btn btn-secondary" >Close</a>
+                    <a class="btn btn-success" id="agreement" href="">Yes, Print it</a>
                 </div>
             </div>
         </div>

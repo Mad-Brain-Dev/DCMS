@@ -10,6 +10,8 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\ClientMail;
+use App\Models\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,8 +115,10 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::resource('debtors', DebtorController::class);
     //Role
     Route::resource('roles', RoleController::class);
-    //Role
+    //cases
     Route::resource('cases', CaseController::class);
+    //Reports
+    Route::get('reports/index', [ClientController::class, 'reports'])->name('reports.index');
     //Download Case Pdf
     Route::get('download/case/pdf/file/{id}', [CaseController::class, 'downloadCasePdf'])->name('download.case.pdf');
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile.info');
