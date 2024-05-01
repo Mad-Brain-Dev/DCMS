@@ -193,6 +193,8 @@ class CaseController extends Controller
             'payment_date' => 'nullable',
             'gn_summary' => 'nullable',
             'payment_method' => 'nullable',
+            'next_payment_date' => 'nullable',
+            'next_payment_amount' => 'nullable',
             'fv_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_summary' => 'nullable',
             'remarks' => 'nullable',
@@ -200,6 +202,8 @@ class CaseController extends Controller
         $paid_amount = Cases::findOrFail($request->case_id);
         $paid_amount->total_amount_paid = $request->amount_paid;
         $paid_amount->payment_date = $request->payment_date;
+        $paid_amount->next_payment_date = $request->next_payment_date;
+        $paid_amount->next_payment_amount = $request->next_payment_amount;
         $paid_amount->payment_method = $request->payment_method;
         $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
 
@@ -244,6 +248,8 @@ class CaseController extends Controller
             'fv_date' => 'nullable',
             'amount_paid' => 'nullable',
             'payment_date' => 'nullable',
+            'next_payment_date' => 'nullable',
+            'next_payment_amount' => 'nullable',
             'payment_method' => 'nullable',
             'fv_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_summary' => 'nullable',
@@ -252,6 +258,8 @@ class CaseController extends Controller
         $paid_amount = Cases::findOrFail($request->case_id);
         $paid_amount->total_amount_paid = $request->amount_paid;
         $paid_amount->fv_date = $request->fv_date;
+        $paid_amount->next_payment_date = $request->next_payment_date;
+        $paid_amount->next_payment_amount = $request->next_payment_amount;
         $paid_amount->payment_date = $request->payment_date;
         $paid_amount->payment_method = $request->payment_method;
         $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;

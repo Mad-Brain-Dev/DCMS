@@ -15,6 +15,7 @@ use App\Services\ClientService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 
 class ClientController extends Controller
@@ -158,6 +159,9 @@ class ClientController extends Controller
     public function reports()
     {
         set_page_meta('Reports');
-       return view('admin.reports.report');
+        $data = Client::select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as month"), DB::raw("COUNT(admin_fee_paid) as count"))
+        ->groupBy('month')
+        ->get();
+        return view('admin.reports.report', compact('data'));
     }
 }

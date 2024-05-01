@@ -245,22 +245,7 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Next Payment Date</label>
-                                <input type="date" name="next_payment_date" class="form-control" placeholder="Enter Interest Start Date">
-                                @error('next_payment_date')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
 
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Next Payment Amount</label>
-                                <input type="number" name="debt_interest" class="form-control"
-                                    placeholder="Enter Debt Interest/Annum" id="next_payment_amount">
-                                @error('next_payment_amount')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
 
                             {{-- <div class="mb-3 col-md-3">
                                 <label class="form-label">Installment Number</label>

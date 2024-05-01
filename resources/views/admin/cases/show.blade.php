@@ -4,12 +4,13 @@
     <div class="row">
         <div class="col-md-12 parent-fixed">
             <div class="fixed-content">
-                <div class="card bg-primary text-white">
-                    <div class="card-body">
+                <div class="card bg-primary text-white" id="fixedDiv">
+                    <div class="card-body card-padding-start">
                         <div class="row">
                             <div class="col-md-3">
-                                <span>Case Number : {{ $case->case_number }}</span> <br>
+                                <span>Case No. : {{ $case->case_number }}</span> <br>
                                 <span>Current Status : {{ $case->current_status }}</span> <br>
+                                <span>Debtor Name : {{ $case->name }} </span> <br>
                                 {{-- <span>Field Visits :  {{ $case->field_visit }}</span> <br>
                                     <span>Bal Field Visits : {{ $case->bal_field_visit }}</span> <br> --}}
                             </div>
@@ -18,6 +19,8 @@
                                 <span>Total Interest : {{ number_format($case->total_interest, 2, '.', ',') }} $</span> <br>
                                 {{-- <span>Total Installment : {{ $case->installment_number }}</span> <br>
                                     <span>Per Installment Amount : {{ number_format($case->per_installment_amount, 2, '.', ',') }} $</span> <br> --}}
+                                <span>Client Name : {{ $case->client->name }} </span> <br>
+
 
                             </div>
                             <div class="col-md-3">
@@ -29,11 +32,14 @@
                                     $</span> <br>
                             </div>
                             <div class="col-md-3">
-                                <span>Client Name : {{ $case->client->name }} </span> <br>
-                                <span>Debtor Name : {{ $case->name }} </span> <br>
-                                {{-- <span>Debtor Phone : {{ $case->phone }} </span> <br> --}}
-                                {{-- <span>Debtor Email : {{ $case->email }} </span> <br> --}}
+                                {{-- <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br> --}}
+                                <span>Next Payment Amount : {{ number_format($case->next_payment_amount, 2, '.', ',') }}
+                                    $</span> <br>
+                                {{-- <span>Last Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br> --}}
+                                <span>Next Payment Date : {{ date('j F, Y', strtotime($case->next_payment_date)) }}</span>
+                                <br>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -41,11 +47,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 text-end pb-4 balance-btn">
+        {{-- <div class="col-md-12 text-end pb-4 balance-btn">
             <div><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal0">
                     Update Balance
                 </button></div>
-        </div>
+        </div> --}}
         {{-- <div class="div text-end pb-3">
             <a href="{{ URL('/show/general/case/update/' . $case->id) }}" class="btn btn-primary">GN Update</a>
             <a href="{{ URL('/show/field/visit/update/' . $case->id) }}" class="btn btn-primary">FV Update</a>
@@ -240,6 +246,22 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Next Payment Amount</label>
+                            <input type="number" name="next_payment_amount" class="form-control"
+                                placeholder="Enter Debt Interest/Annum" id="next_payment_amount">
+                            @error('next_payment_amount')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Next Payment Date</label>
+                            <input type="date" name="next_payment_date" class="form-control"
+                                placeholder="Enter Interest Start Date">
+                            @error('next_payment_date')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Field Visit Date</label>
                             <input type="date" name="fv_date" class="form-control">
                             @error('fv_date')
@@ -290,10 +312,10 @@
                                     <span class="d-block">{{ $gn_update->gn_summary }}</span>
                                     <div>
                                         <a href="#" class="btn  btn-primary mt-2 viewFVUpdate" data-toggle="modal"
-                                        data-target="#exampleModal">
-                                        <span class="gn_id d-none">{{ $gn_update->id }}</span>
-                                        <i class="far fa-eye"></i> View
-                                    </a>
+                                            data-target="#exampleModal">
+                                            <span class="gn_id d-none">{{ $gn_update->id }}</span>
+                                            <i class="far fa-eye"></i> View
+                                        </a>
                                     </div>
                                 </li>
                             @endforeach
@@ -361,6 +383,22 @@
                             <label class="form-label">Date of Payment</label>
                             <input type="date" name="payment_date" class="form-control">
                             @error('payment_date')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Next Payment Amount</label>
+                            <input type="number" name="next_payment_amount" class="form-control"
+                                placeholder="Enter Debt Interest/Annum" id="next_payment_amount">
+                            @error('next_payment_amount')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Next Payment Date</label>
+                            <input type="date" name="next_payment_date" class="form-control"
+                                placeholder="Enter Interest Start Date">
+                            @error('next_payment_date')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
@@ -661,51 +699,88 @@
             });
         });
         $(document).ready(function() {
-        $('.viewFVUpdate').click(function(e) {
-            var gn_update_id = $(this).find('.gn_id').text();
-            $.ajax({
-                type: 'get',
-                url: '{{ route('single.general.case.update') }}',
-                data: {
-                    id: gn_update_id
-                },
-                success: (response) => {
-                    console.log(response);
-                    let href = "{{ asset('/documents/') }}" + "/" + response.data
-                        .gn_update
-                    let gn_update = $('#gn_update').attr('src', href);
-                },
-                error: function(response) {
-                    $('#error').text(response.responseJSON.message);
-                }
+            $('.viewFVUpdate').click(function(e) {
+                var gn_update_id = $(this).find('.gn_id').text();
+                $.ajax({
+                    type: 'get',
+                    url: '{{ route('single.general.case.update') }}',
+                    data: {
+                        id: gn_update_id
+                    },
+                    success: (response) => {
+                        console.log(response);
+                        let href = "{{ asset('/documents/') }}" + "/" + response.data
+                            .gn_update
+                        let gn_update = $('#gn_update').attr('src', href);
+                    },
+                    error: function(response) {
+                        $('#error').text(response.responseJSON.message);
+                    }
 
+                });
+            });
+
+            $('.viewFVUpdate2').click(function(e) {
+                var fv_update_id = $(this).find('.fv_id').text();
+                $.ajax({
+                    type: 'get',
+                    url: '{{ route('single.field.vist.update') }}',
+                    data: {
+                        id: fv_update_id
+                    },
+                    success: (response) => {
+                        let href = "{{ asset('/documents/') }}" + "/" + response.data
+                            .fv_update
+                        let fv_update = $('#fv_update').attr('src', href);
+                    },
+                    error: function(response) {
+                        $('#error').text(response.responseJSON.message);
+                    }
+
+                });
             });
         });
+    </script>
+    <script>
+        window.addEventListener('scroll', function() {
+            var fixedDiv = document.getElementById('fixedDiv');
+            var scrollPosition = window.scrollY;
 
-        $('.viewFVUpdate2').click(function(e) {
-            var fv_update_id = $(this).find('.fv_id').text();
-            $.ajax({
-                type: 'get',
-                url: '{{ route('single.field.vist.update') }}',
-                data: {
-                    id: fv_update_id
-                },
-                success: (response) => {
-                    let href = "{{ asset('/documents/') }}" + "/" + response.data
-                        .fv_update
-                    let fv_update = $('#fv_update').attr('src', href);
-                },
-                error: function(response) {
-                    $('#error').text(response.responseJSON.message);
-                }
+            // Adjust the threshold as needed
+            var threshold = 200; // Pixels from the top to fix the div
 
-            });
-        });
+            if (scrollPosition > threshold) {
+                // Add a class to the div to make it fixed
+                fixedDiv.classList.add('fixed-top');
+            } else {
+                // Remove the class if scroll position is less than threshold
+                fixedDiv.classList.remove('fixed-top');
+            }
         });
     </script>
 @endpush
 @push('style')
     <style>
+        .card-padding-start{
+            padding-left: 70px;
+        }
+        .fixed {
+            position: absolute;
+            width: 100%;
+            background-color: #f1f1f1;
+            padding: 10px 0;
+            transition: top 0.3s;
+            z-index: 9999;
+            /* For smooth transition */
+        }
+
+        /* Style for the fixed div when it's fixed */
+        .fixed.fixed-top {
+            position: fixed;
+            top: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
         .timeline {
             border-left: 3px solid #858AB6;
             border-bottom-right-radius: 4px;
@@ -833,12 +908,12 @@
         }
 
         /* .fixed-content{
-                        position: fixed;
-                        z-index: 9999;
-                        width: 70%;
-                    } */
+                                position: fixed;
+                                z-index: 9999;
+                                width: 70%;
+                            } */
         /* .balance-btn{
-                        padding-top: 100px;
-                    } */
+                                padding-top: 100px;
+                            } */
     </style>
 @endpush
