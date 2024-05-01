@@ -202,6 +202,7 @@ class CaseController extends Controller
         $paid_amount = Cases::findOrFail($request->case_id);
         $paid_amount->total_amount_paid = $request->amount_paid;
         $paid_amount->payment_date = $request->payment_date;
+        $paid_amount->fv_date = $request->fv_date;
         $paid_amount->next_payment_date = $request->next_payment_date;
         $paid_amount->next_payment_amount = $request->next_payment_amount;
         $paid_amount->payment_method = $request->payment_method;
@@ -419,7 +420,7 @@ class CaseController extends Controller
 
         $case_number = Cases::find($id)->first();
         $client_details = Client::where('client_id', $case_number->client_id)->first();
-        return view('admin.agreement.agreement', compact('case_number','client_details'));
+        return view('admin.agreement.agreement', compact('case_number', 'client_details'));
     }
 
     public function updateTotalAmountBalance(Request $request, $id)
@@ -446,10 +447,10 @@ class CaseController extends Controller
 
     public function caseSearch()
     {
-        $cases = Cases::select('case_number')->get();
+        $cases = Cases::select('case_sku')->get();
         $data = [];
         foreach ($cases as $case) {
-            $data[] = $case['case_number'];
+            $data[] = $case['case_sku'];
         }
         return $data;
     }
@@ -479,7 +480,7 @@ class CaseController extends Controller
     {
         $searched_case = $request->case_search;
         if ($searched_case != "") {
-            $case = Cases::where("case_number", "LIKE", "%$searched_case%")->first();
+            $case = Cases::where("case_sku", "LIKE", "%$searched_case%")->first();
             if ($case) {
                 return redirect('admin/cases/' . $case->id);
             }
@@ -498,7 +499,7 @@ class CaseController extends Controller
     //case create through ajax
     public function createCase(Request $request)
     {
-        $validator = Validator::make($request->all(), [ 'name' => 'required' ]);
+        $validator = Validator::make($request->all(), ['name' => 'required']);
 
         if ($validator->fails()) {
             return response()->json([
@@ -514,8 +515,37 @@ class CaseController extends Controller
         //     $result = Cases::create($request->all());
 
         // }
-
-        $result = Cases::create($request->all());
+        $case_number = $request->case_number;
+        $data = [
+            "case_number" => $case_number,
+            "case_sku" => $this->caseSkuId($case_number),
+            "client_id" => $request->client_id,
+            "date_of_warrant" => $request->date_of_warrant,
+            "manager_ic" => $request->manager_ic,
+            "collector_ic" => $request->collector_ic,
+            "current_status" => $request->current_status,
+            "case_summary" => $request->case_summary,
+            "collection_commission" => $request->collection_commission,
+            "field_visit" => $request->field_visit,
+            "bal_field_visit" => $request->bal_field_visit,
+            "name" => $request->name,
+            "nric" => $request->nric,
+            "company_name" => $request->company_name,
+            "company_uen" => $request->company_uen,
+            "email" => $request->email,
+            "phone" => $request->phone,
+            "adderss" => $request->adderss,
+            "debt_amount" => $request->debt_amount,
+            "legal_cost" => $request->legal_cost,
+            "total_interest" => $request->total_interest,
+            "total_amount_owed" => $request->total_amount_owed,
+            "debt_interest" => $request->debt_interest,
+            "interest_start_date" => $request->interest_start_date,
+            "interest_end_date" => $request->interest_end_date,
+            "total_amount_balance" => $request->total_amount_balance,
+            "remarks" => $request->remarks,
+        ];
+        $result = Cases::create($data);
         $data = [
             'status' => 200,
             'success' => 'Data Fetched Successfully',
@@ -533,5 +563,30 @@ class CaseController extends Controller
         set_page_meta('Cases by Status');
         $query_status = $status == "" ? null : $status;
         return $dataTable->with('status', $query_status)->render('admin.cases.index');
+    }
+
+    //case id create
+    public function caseSkuId($case_number)
+    {
+        $cases = Cases::all();
+        if ($cases->count() > 0) {
+
+            $lastSKUId = Cases::orderBy('id', 'DESC')->first()->case_sku;
+            $splitedLastSKUId = str_split($lastSKUId, 8);
+            // $madedSKU = $splitedLastSKUId[1] . $splitedLastSKUId[2];
+            $madedSKU  = $splitedLastSKUId[1];
+            $madedSKU = (int)$madedSKU;
+            $settingPlusOne = $madedSKU + 1;
+            // dd($settingPlusOne);
+            $newSKUId = $case_number . $settingPlusOne;
+            return $newSKUId;
+        } else {
+            //            $setting = config('settings.admin_order_sku');
+            $setting = 10000;
+            $settingPlusOne = $setting + 1;
+            $newSKUId = $case_number . $settingPlusOne;
+
+            return $newSKUId;
+        }
     }
 }

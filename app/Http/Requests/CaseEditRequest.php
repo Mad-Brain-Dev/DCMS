@@ -25,7 +25,7 @@ class CaseEditRequest extends FormRequest
     {
         $rules =  [
             'current_status'      => ['nullable'],
-            'case_number'      => ['nullable'],
+            'case_sku'      => ['nullable'],
             'date_of_warrant'      => ['nullable'],
             'collection_commission'    => ['nullable'],
             'field_visit'    => ['nullable'],

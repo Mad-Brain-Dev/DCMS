@@ -8,7 +8,7 @@
                     <div class="card-body card-padding-start">
                         <div class="row">
                             <div class="col-md-3">
-                                <span>Case No. : {{ $case->case_number }}</span> <br>
+                                <span>Case No. : {{ $case->case_sku }}</span> <br>
                                 <span>Current Status : {{ $case->current_status }}</span> <br>
                                 <span>Debtor Name : {{ $case->name }} </span> <br>
                                 {{-- <span>Field Visits :  {{ $case->field_visit }}</span> <br>
@@ -36,7 +36,7 @@
                                 <span>Next Payment Amount : {{ number_format($case->next_payment_amount, 2, '.', ',') }}
                                     $</span> <br>
                                 {{-- <span>Last Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br> --}}
-                                <span>Next Payment Date : {{ date('j F, Y', strtotime($case->next_payment_date)) }}</span>
+                                <span>Next Payment Date : {{ date('d-m-Y', strtotime($case->next_payment_date)) }}</span>
                                 <br>
                             </div>
 

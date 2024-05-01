@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('case_number')->nullable();
             $table->string('remarks')->nullable();
-            $table->string('case_sku')->nullable();
+            $table->text('case_sku')->nullable();
             $table->string('current_status')->nullable();
             $table->string('case_summary')->nullable();
             $table->dateTime('date_of_warrant')->nullable();

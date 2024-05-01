@@ -13,9 +13,9 @@
 
                                     <div class="mb-3 col-md-3">
                                         <label class="form-label">Case Number</label>
-                                        <input type="text" name="case_number" class="form-control"
-                                            value="{{ $case->case_number }}">
-                                        @error('case_number')
+                                        <input type="text" name="case_sku" class="form-control"
+                                            value="{{ $case->case_sku }}">
+                                        @error('case_sku')
                                             <p class="error">{{ $message }}</p>
                                         @enderror
                                     </div>

@@ -101,7 +101,7 @@ class CaseDataTable extends DataTable
 
         return [
 //            Column::computed('DT_RowIndex', 'SL#'),
-            Column::make('case_number', 'case_number')->title('Case Number'),
+            Column::make('case_sku', 'case_sku')->title('Case Number'),
             Column::make('client_id', 'client_id')->title('Client'),
             Column::make('name', 'name')->title('Debtor'),
         ];

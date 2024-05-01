@@ -51,7 +51,11 @@ class HomeController extends Controller
         } else {
             $client = Client::where('client_id',Auth::id())->first();
             $cases = Cases::where('client_id',Auth::id())->get();
-            return view('client.dashboard.index', compact('client','cases'));
+            $total_cases = Cases::where('client_id', Auth::id())->get()->count();
+            $open_cases = Cases::where('client_id', Auth::id())->where('current_status', 'OPN')->get()->count();
+            $pending_cases = Cases::where('client_id', Auth::id())->where('current_status', 'PDG')->get()->count();
+            $close_cases = Cases::where('client_id', Auth::id())->where('current_status', 'CLS')->get()->count();
+            return view('client.dashboard.index', compact('client','cases','total_cases','open_cases','pending_cases','close_cases'));
         }
     }
 }

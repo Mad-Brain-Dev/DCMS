@@ -123,7 +123,7 @@ class ClientController extends Controller
 
     public function createClient(Request $request)
     {
-        $validator = Validator::make($request->all(), ['name' => 'required', 'abbr' => 'required']);
+        $validator = Validator::make($request->all(), ['name' => 'required', 'abbr' => 'required|max:2']);
 
         if ($validator->fails()) {
             return response()->json([
