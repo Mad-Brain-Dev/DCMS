@@ -119,6 +119,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::resource('cases', CaseController::class);
     //Reports
     Route::get('reports/index', [ClientController::class, 'reports'])->name('reports.index');
+
     //Download Case Pdf
     Route::get('download/case/pdf/file/{id}', [CaseController::class, 'downloadCasePdf'])->name('download.case.pdf');
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile.info');
