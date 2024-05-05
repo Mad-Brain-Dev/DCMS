@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('installments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('case_id')->nullable();
+            $table->string('amount_paid')->nullable();
+            $table->string('next_payment_amount')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->dateTime('date_of_payment')->nullable();
+            $table->dateTime('next_payment_date')->nullable();
             $table->timestamps();
         });
     }

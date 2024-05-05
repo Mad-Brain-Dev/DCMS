@@ -33,10 +33,10 @@
                             </div>
                             <div class="col-md-3">
                                 {{-- <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br> --}}
-                                <span>Next Payment Amount : {{ number_format($case->next_payment_amount, 2, '.', ',') }}
+                                <span>Next Payment Amount : {{ number_format($installment->next_payment_amount, 2, '.', ',') }}
                                     $</span> <br>
                                 {{-- <span>Last Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br> --}}
-                                <span>Next Payment Date : {{ date('d-m-Y', strtotime($case->next_payment_date)) }}</span>
+                                <span>Next Payment Date : {{ date('d-m-Y', strtotime($installment->next_payment_date)) }}</span>
                                 <br>
                             </div>
 
