@@ -33,10 +33,25 @@
                             </div>
                             <div class="col-md-3">
                                 {{-- <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br> --}}
-                                <span>Next Payment Amount : {{ number_format($installment->next_payment_amount, 2, '.', ',') }}
-                                    $</span> <br>
-                                {{-- <span>Last Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br> --}}
-                                <span>Next Payment Date : {{ date('d-m-Y', strtotime($installment->next_payment_date)) }}</span>
+                                <span>Next Payment Amount :
+
+                                    @if (empty($installment->next_payment_amount))
+                                        <span>N/A</span>
+                                    @else
+                                    {{ number_format($installment->next_payment_amount, 2, '.', ',') }}
+                                    @endif
+                                    $
+                                </span> <br>
+                                <span>Next Payment Date :
+                                    @if (empty($installment->next_payment_date))
+                                        <span>N/A</span>
+                                    @else
+                                    {{ date('d-m-Y', strtotime($installment->next_payment_date)) }}
+                                    @endif
+                                </span>
+
+                                {{-- date('d-m-Y', strtotime($installment->next_payment_date)) --}}
+
                                 <br>
                             </div>
 
@@ -308,7 +323,7 @@
                                     <iframe src="{{ asset('/documents/' . $gn_update->gn_update) }}" width="100"
                                         height="100"></iframe>
                                     <h6 class="mt-2">Field Visited at:
-                                        {{ date('d-m-Y', strtotime($case->fv_date)) }}</h6>
+                                        {{ $case->fv_date == null ? 'N/A' : date('d-m-Y', strtotime($case->fv_date)) }}</h6>
                                     <span class="d-block">{{ $gn_update->gn_summary }}</span>
                                     <div>
                                         <a href="#" class="btn  btn-primary mt-2 viewFVUpdate" data-toggle="modal"
@@ -458,7 +473,7 @@
                                         height="100"></iframe>
 
                                     <h6 class="mt-2">Field Visited at:
-                                        {{ date('d-m-Y', strtotime($case->fv_date)) }}</h6>
+                                        {{ $case->fv_date == null ? 'N/A' : date('d-m-Y', strtotime($case->fv_date)) }}</h6>
                                     <span class="d-block">{{ $fv_update->fv_summary }}</span>
                                     <div>
                                         <a href="#" class="btn  btn-primary mt-2 viewFVUpdate2" data-toggle="modal"
@@ -761,9 +776,10 @@
 @endpush
 @push('style')
     <style>
-        .card-padding-start{
+        .card-padding-start {
             padding-left: 70px;
         }
+
         .fixed {
             position: absolute;
             width: 100%;
@@ -908,12 +924,12 @@
         }
 
         /* .fixed-content{
-                                position: fixed;
-                                z-index: 9999;
-                                width: 70%;
-                            } */
+                                    position: fixed;
+                                    z-index: 9999;
+                                    width: 70%;
+                                } */
         /* .balance-btn{
-                                padding-top: 100px;
-                            } */
+                                    padding-top: 100px;
+                                } */
     </style>
 @endpush
