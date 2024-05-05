@@ -7,6 +7,7 @@ use App\Events\NewClientCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientEditRequest;
 use App\Http\Requests\ClientRequest;
+use App\Models\AdminFee;
 use App\Models\Cases;
 use App\Models\Client;
 use App\Models\Role;
@@ -163,5 +164,27 @@ class ClientController extends Controller
         ->groupBy('month')
         ->get();
         return view('admin.reports.report', compact('data'));
+    }
+
+    public function updateAdminFee(Request $request, $id)
+    {
+        $request->validate([
+            'admin_fee_paid' => 'nullable',
+            'client_id' => 'nullable',
+            'collection_date' => 'nullable'
+        ]);
+        $fee = AdminFee::create(
+            [
+                'admin_fee_amount' =>$request->admin_fee_paid,
+                'collection_date' =>$request->collection_date,
+                'client_id' =>$request->client_id,
+            ]
+        );
+        if($fee){
+         $client = Client::where('client_id', $request->client_id)->first();
+         $client->admin_fee_balance = $client->admin_fee_balance - $request->admin_fee_paid;
+         $client->save();
+        }
+        return redirect()->route('admin.clients.show', $id);
     }
 }

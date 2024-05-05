@@ -101,7 +101,7 @@ Route::get('/show/correspondence/case/update/{id}', [CaseController::class, 'vie
 Route::get('/show/miscellaneous/case/update/{id}', [CaseController::class, 'viewMiscellaneousUpdate'])->name('view.miscellaneous.update');
 
 // update admin fee
-Route::put('client/admin/fee/update/{id}', [CaseController::class, 'updateAdminFee'])->name('admin.fee.update');
+Route::put('client/admin/fee/update/{id}', [ClientController::class, 'updateAdminFee'])->name('admin.fee.update');
 //update total amount balance
 Route::put('update/total/amount/balance/{id}', [CaseController::class, 'updateTotalAmountBalance'])->name('update.total.amount.balance');
 

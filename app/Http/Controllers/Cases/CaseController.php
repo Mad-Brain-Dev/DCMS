@@ -308,18 +308,6 @@ class CaseController extends Controller
     }
 
 
-    public function updateAdminFee(Request $request, $id)
-    {
-        $request->validate([
-            'admin_fee' => 'nullable',
-            'admin_fee_paid' => 'nullable',
-            'admin_fee_balance' => 'nullable',
-        ]);
-        $fee = Client::find($id);
-        $fee->update($request->all());
-        return redirect()->route('admin.clients.show', $id);
-    }
-
 
 
     public function showSingleFieldVisitUpdate(Request $request)
