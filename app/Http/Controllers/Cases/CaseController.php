@@ -13,6 +13,7 @@ use App\Models\Client;
 use App\Models\CorrespondenceUpdate;
 use App\Models\FieldVisitUpdate;
 use App\Models\GeneralCaseUpdate;
+use App\Models\Installment;
 use App\Models\MiscellaneousUpdate;
 use App\Models\User;
 use App\Services\CaseService;
@@ -113,7 +114,8 @@ class CaseController extends Controller
         $client_details = Client::where('client_id', $case->client_id)->first();
         $gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
         $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
-        return view('admin.cases.show', compact('case', 'gn_updates', 'fv_updates', 'client_details'));
+        $installment = Installment::where('case_id', $id)->latest()->first();
+        return view('admin.cases.show', compact('case', 'gn_updates', 'fv_updates', 'client_details','installment'));
     }
 
     /**
@@ -193,23 +195,27 @@ class CaseController extends Controller
             'payment_date' => 'nullable',
             'gn_summary' => 'nullable',
             'payment_method' => 'nullable',
-            'next_payment_date' => 'nullable',
-            'next_payment_amount' => 'nullable',
+            'next_payment_date' => 'required',
+            'next_payment_amount' => 'required',
             'fv_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_summary' => 'nullable',
             'remarks' => 'nullable',
         ]);
         $paid_amount = Cases::findOrFail($request->case_id);
-        $paid_amount->total_amount_paid = $request->amount_paid;
-        $paid_amount->payment_date = $request->payment_date;
-        $paid_amount->fv_date = $request->fv_date;
-        $paid_amount->next_payment_date = $request->next_payment_date;
-        $paid_amount->next_payment_amount = $request->next_payment_amount;
-        $paid_amount->payment_method = $request->payment_method;
-        $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
+        $installment = Installment::create([
+            'case_id' => $request->case_id,
+            'amount_paid' =>$request->amount_paid,
+            'next_payment_amount' => $request->next_payment_amount,
+            'next_payment_date' => $request->next_payment_date,
+            'payment_method' => $request->payment_method,
+            'date_of_payment' => $request->payment_date,
 
-        // Update the record with validated data
-        $paid_amount->save();
+        ]);
+        if($installment){
+            $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
+            $paid_amount->save();
+        }
+
         $gn_updates = [];
 
 
@@ -223,6 +229,7 @@ class CaseController extends Controller
                 $gn_update =   GeneralCaseUpdate::create([
                     'case_id' => $request->case_id,
                     'remarks' => $request->remarks,
+                    'fv_date' => $request->fv_date,
                     'gn_summary' => $request->gn_summary,
                     'gn_update' => $imageName,
                 ]);
@@ -233,6 +240,7 @@ class CaseController extends Controller
             $gn_update =   GeneralCaseUpdate::create([
                 'case_id' => $request->case_id,
                 'remarks' => $request->remarks,
+                'fv_date' => $request->fv_date,
                 'gn_summary' => $request->gn_summary,
                 // 'gn_update' => null,
 
@@ -257,16 +265,19 @@ class CaseController extends Controller
             'remarks' => 'nullable',
         ]);
         $paid_amount = Cases::findOrFail($request->case_id);
-        $paid_amount->total_amount_paid = $request->amount_paid;
-        $paid_amount->fv_date = $request->fv_date;
-        $paid_amount->next_payment_date = $request->next_payment_date;
-        $paid_amount->next_payment_amount = $request->next_payment_amount;
-        $paid_amount->payment_date = $request->payment_date;
-        $paid_amount->payment_method = $request->payment_method;
-        $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
+        $installment = Installment::create([
+            'case_id' => $request->case_id,
+            'amount_paid' =>$request->amount_paid,
+            'next_payment_amount' => $request->next_payment_amount,
+            'next_payment_date' => $request->next_payment_date,
+            'payment_method' => $request->payment_method,
+            'date_of_payment' => $request->payment_date,
 
-        // Update the record with validated data
-        $paid_amount->save();
+        ]);
+        if($installment){
+            $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
+            $paid_amount->save();
+        };
 
         $field_visit_number = Cases::where('id', '=', $request->case_id)->first();
         // $remaining = $field_visit_number->bal_field_visit - 1;
@@ -291,6 +302,7 @@ class CaseController extends Controller
                     'case_id' => $request->case_id,
                     'remarks' => $request->remarks,
                     'fv_summary' => $request->fv_summary,
+                    'fv_date' => $request->fv_date,
                     'fv_update' => $imageName,
                 ]);
             }
@@ -298,6 +310,7 @@ class CaseController extends Controller
             $fv_update =   FieldVisitUpdate::create([
                 'case_id' => $request->case_id,
                 'remarks' => $request->remarks,
+                'fv_date' => $request->fv_date,
                 'fv_summary' => $request->gn_summary,
                 // 'gn_update' => null,
 
@@ -307,18 +320,6 @@ class CaseController extends Controller
         return back();
     }
 
-
-    public function updateAdminFee(Request $request, $id)
-    {
-        $request->validate([
-            'admin_fee' => 'nullable',
-            'admin_fee_paid' => 'nullable',
-            'admin_fee_balance' => 'nullable',
-        ]);
-        $fee = Client::find($id);
-        $fee->update($request->all());
-        return redirect()->route('admin.clients.show', $id);
-    }
 
 
 

@@ -101,7 +101,7 @@ Route::get('/show/correspondence/case/update/{id}', [CaseController::class, 'vie
 Route::get('/show/miscellaneous/case/update/{id}', [CaseController::class, 'viewMiscellaneousUpdate'])->name('view.miscellaneous.update');
 
 // update admin fee
-Route::put('client/admin/fee/update/{id}', [CaseController::class, 'updateAdminFee'])->name('admin.fee.update');
+Route::put('client/admin/fee/update/{id}', [ClientController::class, 'updateAdminFee'])->name('admin.fee.update');
 //update total amount balance
 Route::put('update/total/amount/balance/{id}', [CaseController::class, 'updateTotalAmountBalance'])->name('update.total.amount.balance');
 
@@ -119,6 +119,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::resource('cases', CaseController::class);
     //Reports
     Route::get('reports/index', [ClientController::class, 'reports'])->name('reports.index');
+
     //Download Case Pdf
     Route::get('download/case/pdf/file/{id}', [CaseController::class, 'downloadCasePdf'])->name('download.case.pdf');
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile.info');

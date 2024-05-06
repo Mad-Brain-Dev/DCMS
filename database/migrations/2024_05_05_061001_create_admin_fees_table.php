@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('general_case_updates', function (Blueprint $table) {
+        Schema::create('admin_fees', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('case_id')->nullable();
-            $table->string('gn_update')->nullable();
-            $table->text('gn_summary')->nullable();
-            $table->dateTime('fv_date')->nullable();
-            $table->string('remarks')->nullable();
+            $table->foreignId('client_id');
+            $table->string('admin_fee_amount')->nullable();
+            $table->dateTime('collection_date')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('general_case_updates');
+        Schema::dropIfExists('admin_fees');
     }
 };

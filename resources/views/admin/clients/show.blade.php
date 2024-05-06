@@ -64,6 +64,11 @@
                             <th scope="row">Admin Fee</th>
                             <td class="text-end">{{ number_format($client->admin_fee, 2, '.', ',') }} $</td>
                         </tr>
+
+                        <tr class="table-success">
+                            <th scope="row">Admin Fee Balance</th>
+                            <td class="text-end">{{ $client->admin_fee_balance }} $</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -195,18 +200,28 @@
                         @method('PUT')
                         <div class="form-group">
                             <label for="num1">Admin Fee</label>
-                            <input type="number" class="form-control" name="admin_fee" id="num1"
+                            <input type="number" class="form-control" name="admin_fee" readonly id="num1"
                                 aria-describedby="emailHelp" value="{{ $client->admin_fee }}">
+
+
+                                <input type="hidden" class="form-control" name="admin_fee_bal" readonly id="num3"
+                                aria-describedby="emailHelp" value="{{ $client->admin_fee_balance }}">
+
                         </div>
                         <div class="form-group mt-2">
-                            <label for="num2">Admin Fee Paid</label>
-                            <input type="number" class="form-control" name="admin_fee_paid" id="num2"
-                                value="{{ $client->admin_fee_paid }}">
+                            <label for="num2">Admin Fee Amount</label>
+                            <input type="number" class="form-control" name="admin_fee_paid" id="num2" placeholder="Enter Admin Fee Amount"
+                                value="">
+                                <input type="hidden" value="{{ $client->client_id }}" name="client_id">
                         </div>
                         <div class="form-group mt-2">
                             <label for="subt">Admin Fee Balance</label>
-                            <input type="number" class="form-control" name="admin_fee_balance" id="subt"
+                            <input type="number" class="form-control" name="admin_fee_balance" readonly id="subt"
                                 value="{{ $client->admin_fee_balance }}">
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="subt">Collection Date</label>
+                            <input type="date" class="form-control" name="collection_date">
                         </div>
                         <button type="submit" class="btn btn-success mt-2">Submit</button>
                     </form>
@@ -230,7 +245,7 @@
                 $("#num2").on("keydown keyup", sum);
 
                 function sum() {
-                    $("#subt").val(Number($("#num1").val()) - Number($("#num2").val()));
+                    $("#subt").val(Number($("#num3").val()) - Number($("#num2").val()));
                 }
             });
         });

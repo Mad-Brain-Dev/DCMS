@@ -173,7 +173,6 @@
             <div class="modal-content">
                 <div class="modal-body" style="text-align: center;">
                     <h4 class="pb-3">Do you want to print this agreement?</h4>
-                    <a class="btn btn-success" id="agreement" href="">Click Here</a>
                 </div>
                 <div class="modal-footer d-flex justify-content-between" style="border: none;">
                     <a class="btn btn-success" id="agreement" href="">Yes, Print It</a>
