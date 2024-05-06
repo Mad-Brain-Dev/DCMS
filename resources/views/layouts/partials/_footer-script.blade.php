@@ -1,9 +1,13 @@
 <script src="{{ asset('admin/js/admin-app.js') }}"></script>
 <script src="{{ asset('admin/libs/jquery/jquery.min.js') }}"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
 <script src="{{ asset('admin/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
 <script src="{{ asset('admin/libs/metismenu/metisMenu.min.js') }}"></script>
+
 <script src="{{ asset('admin/libs/simplebar/simplebar.min.js') }}"></script>
+
 {{-- <script src="{{ asset('admin/libs/node-waves/waves.min.js') }}"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 
@@ -17,6 +21,8 @@
 <script src="{{ asset('admin/toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('admin/sweetalert/sweetalert.min.js') }}"></script>
 <script src="{{ asset('admin/js/custom-dev.js') }}"></script>
+
+
 
 
 <script>

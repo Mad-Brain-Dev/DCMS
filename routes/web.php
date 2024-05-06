@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Profile\UserProfileController;
+use App\Http\Controllers\Admin\Report\ReportController;
 use App\Http\Controllers\Admin\Role\RoleController;
 use App\Http\Controllers\Admin\User\UsersController;
 use App\Http\Controllers\Cases\CaseController;
@@ -118,7 +119,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
     //cases
     Route::resource('cases', CaseController::class);
     //Reports
-    Route::get('reports/index', [ClientController::class, 'reports'])->name('reports.index');
+//    Route::get('reports/index', [ClientController::class, 'reports'])->name('reports.index');
 
     //Download Case Pdf
     Route::get('download/case/pdf/file/{id}', [CaseController::class, 'downloadCasePdf'])->name('download.case.pdf');
@@ -126,6 +127,10 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::post('/avatar/update', [UserProfileController::class, 'avatarUpdate'])->name('avatar.update');
     Route::put('/profile/update/{id}', [UserProfileController::class, 'updateProfile'])->name('profile.update');
     Route::post('/pass/update/', [UserProfileController::class, 'updatePassword'])->name('update.password');
+
+    Route::get('reports/index', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('reports/status/case-doughnut-data', [ReportController::class, 'saleDoughnutChartData'])->name('reports.saleDoughnutChartData');
+    Route::get('reports/chart/admin-fee-line-chart', [ReportController::class, 'AdminFeeLineChartData'])->name('reports.AdminFeeLineChartData');
 
 });
 
