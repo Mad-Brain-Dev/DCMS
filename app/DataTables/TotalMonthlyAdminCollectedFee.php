@@ -25,12 +25,12 @@ class TotalMonthlyAdminCollectedFee extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($item) {
                 $buttons = '';
-                    $buttons .= '<a class="dropdown-item" href="' . route('admin.cases.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
+                $buttons .= '<a class="dropdown-item" href="' . route('admin.cases.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
 
-                    $buttons .= '<a class="dropdown-item" href="' . route('admin.cases.show', $item->id) . '" title="Show"><i class="fa fa-eye" aria-hidden="true"></i> Show </a>';
+                $buttons .= '<a class="dropdown-item" href="' . route('admin.cases.show', $item->id) . '" title="Show"><i class="fa fa-eye" aria-hidden="true"></i> Show </a>';
 
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
-                        $buttons .= '<form action="' . route('admin.cases.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
+                $buttons .= '<form action="' . route('admin.cases.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
                         <input type="hidden" name="_token" value="' . csrf_token() . '">
                         <input type="hidden" name="_method" value="DELETE">
                         <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Delete</button></form>
@@ -42,12 +42,18 @@ class TotalMonthlyAdminCollectedFee extends DataTable
                 ' . $buttons . '
                 </div>
                 </div>';
-            // })->editColumn('avatar', function ($item) {
-            //     return '<img class="ic-img-32" src="' . $item->avatar_url . '" alt="' . $item->last_name . '" />';
-            })->editColumn('client_id', function ($item) {
-                $name = $item->client->name;
-                return $name;
-             })
+                // })->editColumn('avatar', function ($item) {
+                //     return '<img class="ic-img-32" src="' . $item->avatar_url . '" alt="' . $item->last_name . '" />';
+            })->editColumn('case_sku', function ($item) {
+                $installments = $item->installments->last();
+                return $installments->amount_paid;
+
+                // $amount = 0;
+                // foreach ($installments as $installment) {
+                //     $amount +=  $installment->amount_paid;
+                // }
+                // return $installments;
+            })
             //->editColumn('status',function ($item){
             //     $badge = $item->status == GlobalConstant::STATUS_ACTIVE ? "bg-success" : "bg-danger";
             //     return '<span class="badge ' . $badge . '">' . Str::upper($item->status) . '</span>';
@@ -57,9 +63,8 @@ class TotalMonthlyAdminCollectedFee extends DataTable
             //     $sql = "CONCAT(users.first_name,'-',users.last_name)  like ?";
             //     $query->whereRaw($sql, ["%{$keyword}%"]);
             // })
-            ->rawColumns(['action', 'avatar', 'status','debtor_id'])
+            ->rawColumns(['action', 'avatar', 'case_sku', 'debtor_id'])
             ->setRowId('id');
-
     }
 
     /**
@@ -67,7 +72,7 @@ class TotalMonthlyAdminCollectedFee extends DataTable
      */
     public function query(Cases $model): QueryBuilder
     {
-        return $model->newQuery()->where('current_status', $this->status)->orderBy('id', 'DESC')->select('cases.*');
+        return $model->newQuery()->orderBy('id', 'DESC')->select('cases.*');
     }
 
     /**
@@ -76,21 +81,21 @@ class TotalMonthlyAdminCollectedFee extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('case-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->addAction(['width' => '55px', 'class' => 'text-center', 'printable' => false, 'exportable' => false, 'title' => 'Action']);
-//             ->buttons([
-//                        Button::make('excel'),
-//                        Button::make('csv'),
-//                        Button::make('pdf'),
-//                        Button::make('print'),
-//                        Button::make('reset'),
-//                        Button::make('reload')
-//                    ]);
+            ->setTableId('case-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->addAction(['width' => '55px', 'class' => 'text-center', 'printable' => false, 'exportable' => false, 'title' => 'Action']);
+        //             ->buttons([
+        //                        Button::make('excel'),
+        //                        Button::make('csv'),
+        //                        Button::make('pdf'),
+        //                        Button::make('print'),
+        //                        Button::make('reset'),
+        //                        Button::make('reload')
+        //                    ]);
 
     }
 
@@ -101,10 +106,14 @@ class TotalMonthlyAdminCollectedFee extends DataTable
     {
 
         return [
-//            Column::computed('DT_RowIndex', 'SL#'),
-            Column::make('case_number', 'case_number')->title('Case Number'),
-            Column::make('client_id', 'client_id')->title('Client'),
-            Column::make('name', 'name')->title('Debtor'),
+            //            Column::computed('DT_RowIndex', 'SL#'),
+            Column::make('name', 'name')->title('DB Name'),
+            Column::make('case_sku', 'case_sku')->title('Last Payment Date'),
+            Column::make('name', 'name')->title('Last Payment Amount'),
+            Column::make('name', 'name')->title('Next Payment Date'),
+            Column::make('name', 'name')->title('Next Payment Amount'),
+            Column::make('name', 'name')->title('Total Paid'),
+            Column::make('name', 'name')->title('Balance'),
         ];
     }
 

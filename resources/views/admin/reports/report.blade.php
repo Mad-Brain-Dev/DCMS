@@ -1,35 +1,32 @@
 @extends('layouts.master')
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
                     <table class="table">
                         <thead>
-                            <tr>
-                                <th scope="col">DB name</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Next Payment Date</th>
-                                <th scope="col">Next Payment Amount</th>
-                                <th scope="col">Balance</th>
-                            </tr>
+                          <tr>
+                            <th scope="col">DB Name</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Next Payment Date</th>
+                            <th scope="col">Next Payment Amount</th>
+                            <th scope="col">Balance</th>
+                          </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>DB Name</td>
-                                <td>Date</td>
-                                <td>Amount</td>
-                                <td>Next Payment Date</td>
-                                <td>Next Payment Amount</td>
-                                <td>Balance</td>
-                            </tr>
+                            @foreach ($cases as $case)
+                          <tr>
+                            <td>{{ $case->name }}</td>
+                          </tr>
+                          @endforeach
                         </tbody>
-                    </table>
+                      </table>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
@@ -40,7 +37,8 @@
 @endsection
 @push('script')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
+
+    {{-- <script>
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
@@ -62,5 +60,9 @@
                 }
             }
         });
-    </script>
+    </script> --}}
+@endpush
+
+@push('style')
+
 @endpush

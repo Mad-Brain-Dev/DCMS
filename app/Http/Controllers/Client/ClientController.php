@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\DataTables\ClientDataTable;
+use App\DataTables\TotalMonthlyAdminCollectedFee;
 use App\Events\NewClientCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientEditRequest;
@@ -10,6 +11,7 @@ use App\Http\Requests\ClientRequest;
 use App\Models\AdminFee;
 use App\Models\Cases;
 use App\Models\Client;
+use App\Models\Installment;
 use App\Models\Role;
 use App\Models\User;
 use App\Services\ClientService;
@@ -157,13 +159,44 @@ class ClientController extends Controller
         return view('admin.agreement.client-agreement', compact('client_details'));
     }
 
-    public function reports()
+    public function reports(TotalMonthlyAdminCollectedFee $dataTable)
     {
-        set_page_meta('Reports');
-        $data = Client::select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as month"), DB::raw("COUNT(admin_fee_paid) as count"))
-        ->groupBy('month')
-        ->get();
-        return view('admin.reports.report', compact('data'));
+        // set_page_meta('Reports');
+        // $data = Client::select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as month"), DB::raw("COUNT(admin_fee_paid) as count"))
+        // ->groupBy('month')
+        // ->get();
+        // $data = Cases::first();
+        // $installments = $first_case->installments;
+        // $amount = 0;
+        // foreach ($installments as $installment) {
+        //      $amount +=  $installment->amount_paid;
+        // }
+        // return $amount;
+        // $installments = $first_case->installments->last();
+        // return $installments->date_of_payment;
+        // $admincollectedfees = AdminFee::select(
+        //     DB::raw("(COUNT(*)) as count "),
+        //     DB::raw("MONTHNAME(collection_date)  as month_name"),
+        //     DB::raw('SUM(admin_fee_amount) as total'),
+        // )->whereYear('created_at', date('Y'))
+        // ->groupBy('month_name')
+        // ->orderBy('month_name')
+        // ->get();
+
+        // $totalmonthlyinstallments = Installment::select(
+        //     DB::raw("(COUNT(*)) as count "),
+        //     DB::raw("MONTHNAME(date_of_payment)  as month_name"),
+        //     DB::raw('SUM(amount_paid) as total'),
+        // )->whereYear('created_at', date('Y'))
+        // ->groupBy('month_name')
+        // ->orderBy('month_name')
+        // ->get();
+
+
+        $cases = Cases::all();
+        $installment_details = Cases::with('installments')->orderBy('id', 'DESC')->first();
+
+        return view('admin.reports.report')->with('cases', $cases)->with('installment_details',$installment_details);
     }
 
     public function updateAdminFee(Request $request, $id)

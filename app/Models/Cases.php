@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Installment;
 use Symfony\Component\Translation\Test\ProviderFactoryTestCase;
 
 class Cases extends Model
@@ -69,6 +70,10 @@ class Cases extends Model
     public function getUser()
     {
         return $this->hasOneThrough(User::class, Client::class);
+    }
+    public function installments()
+    {
+        return $this->hasMany(Installment::class, 'case_id');
     }
 
 }
