@@ -131,19 +131,3 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
 
 
-//all routes for manager
-Route::prefix('manager')->as('manager.')->group(function () {
-
-});
-
-//all routes for HR
-Route::prefix('hr')->as('hr.')->group(function () {
-
-});
-
-//all routes for Employee
-Route::prefix('employee')->as('employee.')->group(function () {
-
-});
-
-
