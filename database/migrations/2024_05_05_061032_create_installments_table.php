@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('amount_paid')->nullable();
             $table->string('next_payment_amount')->nullable();
             $table->string('payment_method')->nullable();
-            $table->dateTime('date_of_payment')->nullable();
+            $table->timestamp('date_of_payment')->nullable();
             $table->dateTime('next_payment_date')->nullable();
             $table->timestamps();
         });
