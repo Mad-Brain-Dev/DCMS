@@ -95,9 +95,9 @@ export default {
                 datasets: [
                     {
                         label: "Monthly Admin Fee Collection",
-                        backgroundColor: "#ff583d",
-                        data: [40, 39, 10, 40, 39, 80, 40],
-                        // data: [],
+                        backgroundColor: "#0400d0",
+                        // data: [40, 39, 10, 40, 39, 80, 40],
+                        data: [],
                     },
                 ],
             },

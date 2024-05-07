@@ -45,15 +45,13 @@ class ReportController extends Controller
 
     }
 
-    public function saleGraphChartData()
+    public function AdminFeeLineChartData()
     {
-        $dataArray = AdminFee::selectRaw('year(created_at) year, monthname(created_at) month, count(*) orders')
-            ->where("created_at", ">", \Illuminate\Support\Carbon::now()->subMonths(13))
+        $dataArray = AdminFee::selectRaw('year(collection_date) year, monthname(collection_date) month, sum(admin_fee_amount) admin_fees')
+            ->where("collection_date", ">", \Illuminate\Support\Carbon::now()->subMonths(13))
             ->groupBy('year', 'month')
-            ->orderBy('created_at', 'ASC')
+            ->orderBy('collection_date', 'ASC')
             ->get();
-
-
         $month_name_array = array();
         $monthly_order_count_array = array();
         if ($dataArray->count() != 0) {
@@ -70,6 +68,7 @@ class ReportController extends Controller
             'months' => $month_name_array,
             'orders' => $monthly_order_count_array,
         );
+
         //return $monthly_order_data_array;
         return response()->json(['status'=>200,'data'=>$monthly_order_data_array]);
     }

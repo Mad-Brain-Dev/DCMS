@@ -66,12 +66,11 @@ chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(chart_js__WEBPACK_IMPORTED_
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         datasets: [{
           label: "Monthly Admin Fee Collection",
-          backgroundColor: "#ff583d",
-          data: [40, 39, 10, 40, 39, 80, 40]
-          // data: [],
+          backgroundColor: "#0400d0",
+          // data: [40, 39, 10, 40, 39, 80, 40],
+          data: []
         }]
       },
-
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false
