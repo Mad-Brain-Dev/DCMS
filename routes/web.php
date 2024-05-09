@@ -130,7 +130,9 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
     Route::get('reports/index', [ReportController::class, 'index'])->name('reports.index');
     Route::get('reports/status/case-doughnut-data', [ReportController::class, 'saleDoughnutChartData'])->name('reports.saleDoughnutChartData');
-    Route::get('reports/chart/admin-fee-line-chart', [ReportController::class, 'AdminFeeLineChartData'])->name('reports.AdminFeeLineChartData');
+    Route::get('reports/chart/admin-fee-line-chart', [ReportController::class, 'adminFeeLineChartData'])->name('reports.adminFeeLineChartData');
+    Route::get('reports/chart/installment-bar-chart', [ReportController::class, 'installmentBarChartData'])->name('reports.installmentBarChartData');
+    Route::get('reports/table/debtor-balance-data', [ReportController::class, 'debtorBalanceTableData'])->name('reports.debtorBalanceTableData');
 
 });
 

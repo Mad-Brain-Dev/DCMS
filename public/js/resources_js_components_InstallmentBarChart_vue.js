@@ -1,10 +1,10 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_components_AdminFeeLineChart_vue"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_components_InstallmentBarChart_vue"],{
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminFeeLineChart.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminFeeLineChart.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InstallmentBarChart.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InstallmentBarChart.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -19,20 +19,20 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_0__.Title, chart_js__WEBPACK_IMPORTED_MODULE_0__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_0__.Legend, chart_js__WEBPACK_IMPORTED_MODULE_0__.LineElement, chart_js__WEBPACK_IMPORTED_MODULE_0__.LinearScale, chart_js__WEBPACK_IMPORTED_MODULE_0__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_0__.PointElement);
+chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_0__.Title, chart_js__WEBPACK_IMPORTED_MODULE_0__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_0__.Legend, chart_js__WEBPACK_IMPORTED_MODULE_0__.BarElement, chart_js__WEBPACK_IMPORTED_MODULE_0__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_0__.LinearScale);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "AdminFeeLineChart",
+  name: "InstallmentBarChart",
   components: {
-    LineChartGenerator: vue_chartjs_legacy__WEBPACK_IMPORTED_MODULE_1__.Line
+    Bar: vue_chartjs_legacy__WEBPACK_IMPORTED_MODULE_1__.Bar
   },
   props: {
     chartId: {
       type: String,
-      "default": "line-chart"
+      "default": 'bar-chart'
     },
     datasetIdKey: {
       type: String,
-      "default": "label"
+      "default": 'label'
     },
     width: {
       type: Number,
@@ -43,7 +43,7 @@ chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(chart_js__WEBPACK_IMPORTED_
       "default": 400
     },
     cssClasses: {
-      "default": "",
+      "default": '',
       type: String
     },
     styles: {
@@ -78,9 +78,9 @@ chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(chart_js__WEBPACK_IMPORTED_
           // 'December'
         ],
         datasets: [{
-          label: "Monthly Admin Fee Collection",
-          backgroundColor: "#0400d0",
-          // data: [40, 39, 10, 40, 39, 80, 40],
+          label: 'Monthly Installment',
+          backgroundColor: '#ff4c70',
+          // data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11],
           data: []
         }]
       },
@@ -91,17 +91,17 @@ chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(chart_js__WEBPACK_IMPORTED_
     };
   },
   created: function created() {
-    this.getGraphLineChartData();
+    this.getBarChartData();
   },
   methods: {
-    getGraphLineChartData: function getGraphLineChartData() {
+    getBarChartData: function getBarChartData() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axios.get("/admin/reports/chart/admin-fee-line-chart").then(function (response) {
+              return axios.get("/admin/reports/chart/installment-bar-chart").then(function (response) {
                 if (response.data.status != 200) {
                   _this.message = response.data.message;
                   _this.error = true;
@@ -127,10 +127,10 @@ chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(chart_js__WEBPACK_IMPORTED_
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminFeeLineChart.vue?vue&type=template&id=64b87ff8&scoped=true&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminFeeLineChart.vue?vue&type=template&id=64b87ff8&scoped=true& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InstallmentBarChart.vue?vue&type=template&id=918d07ee&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InstallmentBarChart.vue?vue&type=template&id=918d07ee&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -141,7 +141,7 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("LineChartGenerator", {
+  return _c("Bar", {
     attrs: {
       "chart-options": _vm.chartOptions,
       "chart-data": _vm.chartData,
@@ -454,18 +454,18 @@ function generateChart(chartId, chartType, chartController) {
 
 /***/ }),
 
-/***/ "./resources/js/components/AdminFeeLineChart.vue":
-/*!*******************************************************!*\
-  !*** ./resources/js/components/AdminFeeLineChart.vue ***!
-  \*******************************************************/
+/***/ "./resources/js/components/InstallmentBarChart.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/InstallmentBarChart.vue ***!
+  \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _AdminFeeLineChart_vue_vue_type_template_id_64b87ff8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdminFeeLineChart.vue?vue&type=template&id=64b87ff8&scoped=true& */ "./resources/js/components/AdminFeeLineChart.vue?vue&type=template&id=64b87ff8&scoped=true&");
-/* harmony import */ var _AdminFeeLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdminFeeLineChart.vue?vue&type=script&lang=js& */ "./resources/js/components/AdminFeeLineChart.vue?vue&type=script&lang=js&");
+/* harmony import */ var _InstallmentBarChart_vue_vue_type_template_id_918d07ee_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InstallmentBarChart.vue?vue&type=template&id=918d07ee&scoped=true& */ "./resources/js/components/InstallmentBarChart.vue?vue&type=template&id=918d07ee&scoped=true&");
+/* harmony import */ var _InstallmentBarChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InstallmentBarChart.vue?vue&type=script&lang=js& */ "./resources/js/components/InstallmentBarChart.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -475,50 +475,50 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _AdminFeeLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _AdminFeeLineChart_vue_vue_type_template_id_64b87ff8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
-  _AdminFeeLineChart_vue_vue_type_template_id_64b87ff8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _InstallmentBarChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _InstallmentBarChart_vue_vue_type_template_id_918d07ee_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _InstallmentBarChart_vue_vue_type_template_id_918d07ee_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  "64b87ff8",
+  "918d07ee",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/AdminFeeLineChart.vue"
+component.options.__file = "resources/js/components/InstallmentBarChart.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/AdminFeeLineChart.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/AdminFeeLineChart.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
+/***/ "./resources/js/components/InstallmentBarChart.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/InstallmentBarChart.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminFeeLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminFeeLineChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminFeeLineChart.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminFeeLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InstallmentBarChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InstallmentBarChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InstallmentBarChart.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InstallmentBarChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/AdminFeeLineChart.vue?vue&type=template&id=64b87ff8&scoped=true&":
-/*!**************************************************************************************************!*\
-  !*** ./resources/js/components/AdminFeeLineChart.vue?vue&type=template&id=64b87ff8&scoped=true& ***!
-  \**************************************************************************************************/
+/***/ "./resources/js/components/InstallmentBarChart.vue?vue&type=template&id=918d07ee&scoped=true&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/InstallmentBarChart.vue?vue&type=template&id=918d07ee&scoped=true& ***!
+  \****************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminFeeLineChart_vue_vue_type_template_id_64b87ff8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminFeeLineChart_vue_vue_type_template_id_64b87ff8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InstallmentBarChart_vue_vue_type_template_id_918d07ee_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InstallmentBarChart_vue_vue_type_template_id_918d07ee_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminFeeLineChart_vue_vue_type_template_id_64b87ff8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminFeeLineChart.vue?vue&type=template&id=64b87ff8&scoped=true& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdminFeeLineChart.vue?vue&type=template&id=64b87ff8&scoped=true&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InstallmentBarChart_vue_vue_type_template_id_918d07ee_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InstallmentBarChart.vue?vue&type=template&id=918d07ee&scoped=true& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InstallmentBarChart.vue?vue&type=template&id=918d07ee&scoped=true&");
 
 
 /***/ }),

@@ -1,5 +1,5 @@
 <template>
-    <LineChartGenerator
+    <Bar
         :chart-options="chartOptions"
         :chart-data="chartData"
         :chart-id="chartId"
@@ -13,64 +13,53 @@
 </template>
 
 <script>
-import { Line as LineChartGenerator } from "vue-chartjs/legacy";
+import { Bar } from 'vue-chartjs/legacy'
 
 import {
     Chart as ChartJS,
     Title,
     Tooltip,
     Legend,
-    LineElement,
-    LinearScale,
+    BarElement,
     CategoryScale,
-    PointElement,
-} from "chart.js";
+    LinearScale
+} from 'chart.js'
 
-ChartJS.register(
-    Title,
-    Tooltip,
-    Legend,
-    LineElement,
-    LinearScale,
-    CategoryScale,
-    PointElement
-);
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 export default {
-    name: "AdminFeeLineChart",
+    name: "InstallmentBarChart",
     components: {
-        LineChartGenerator,
+        Bar
     },
     props: {
         chartId: {
             type: String,
-            default: "line-chart",
+            default: 'bar-chart'
         },
         datasetIdKey: {
             type: String,
-            default: "label",
+            default: 'label'
         },
         width: {
             type: Number,
-            default: 400,
+            default: 400
         },
         height: {
             type: Number,
-            default: 400,
+            default: 400
         },
         cssClasses: {
-            default: "",
-            type: String,
+            default: '',
+            type: String
         },
         styles: {
             type: Object,
-            default: () => {
-
-            },
+            default: () => {}
         },
         plugins: {
             type: Array,
-            default: () => [],
-        },
+            default: () => []
+        }
     },
     data() {
         return {
@@ -94,25 +83,25 @@ export default {
                 ],
                 datasets: [
                     {
-                        label: "Monthly Admin Fee Collection",
-                        backgroundColor: "#0400d0",
-                        // data: [40, 39, 10, 40, 39, 80, 40],
-                        data: [],
-                    },
-                ],
+                        label: 'Monthly Installment',
+                        backgroundColor: '#ff4c70',
+                        // data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11],
+                        data: []
+                    }
+                ]
             },
             chartOptions: {
                 responsive: true,
-                maintainAspectRatio: false,
-            },
-        };
+                maintainAspectRatio: false
+            }
+        }
     },
     created() {
-        this.getGraphLineChartData();
+        this.getBarChartData();
     },
     methods:{
-        async getGraphLineChartData(){
-            await axios.get(`/admin/reports/chart/admin-fee-line-chart`)
+        async getBarChartData(){
+            await axios.get(`/admin/reports/chart/installment-bar-chart`)
                 .then((response)=>{
                     if (response.data.status != 200){
                         this.message = response.data.message;
@@ -131,6 +120,8 @@ export default {
                 })
         },
     },
+
+
 }
 </script>
 

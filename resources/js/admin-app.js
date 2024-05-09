@@ -12,6 +12,14 @@ Vue.component("case-status-doughnut-chart", () =>
 Vue.component("admin-fee-line-chart", () =>
     import("./components/AdminFeeLineChart.vue")
 );
+
+Vue.component("installment-bar-chart", () =>
+    import("./components/InstallmentBarChart.vue")
+);
+
+Vue.component("debtor-balance-table", () =>
+    import("./components/DebtorBalanceTable.vue")
+);
 // Global mixin
 Vue.mixin({
     methods: {

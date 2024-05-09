@@ -479,3 +479,4 @@ if (!function_exists('is_published_course')) {
         return Course::where('id', $course_id)->whereStatus('pending')->first();
     }
 }
+
