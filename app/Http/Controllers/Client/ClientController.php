@@ -135,15 +135,22 @@ class ClientController extends Controller
         }
         $client = Client::create($request->all());
         if ($client) {
+
             $user = new User();
             $user->name = $request['name'];
             $user->email = $request['email'];
             $user->password =  Hash::make("12345678");   // 12345678;
             $user->save();
+
+           if($user){
+            $admin_fee_paid = new AdminFee();
+            $admin_fee_paid->admin_fee_amount = $request->admin_fee_paid;
+            $admin_fee_paid->client_id = $client->id;
+            $admin_fee_paid->save();
             $client->client_id = $user->id;
             $client->save();
-
-
+           }
+           if($client){
             $data = [
                 'status' => 200,
                 'success' => 'Data Fetched Successfully',
@@ -151,6 +158,14 @@ class ClientController extends Controller
             ];
             event(new NewClientCreated($client));
             return response()->json($data);
+           }
+           else{
+            $data = [
+                'status' => 500,
+                'success' => 'Something Went Wrong',
+                'result' =>  [],
+            ];
+           }
         }
     }
     public function printableClientAgreement($id)
@@ -158,7 +173,6 @@ class ClientController extends Controller
         $client_details = Client::find($id)->first();
         return view('admin.agreement.client-agreement', compact('client_details'));
     }
-
     public function updateAdminFee(Request $request, $id)
     {
         $request->validate([
