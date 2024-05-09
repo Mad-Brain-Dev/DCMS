@@ -123,50 +123,45 @@ class ClientController extends Controller
             return back();
         }
     }
-
     public function createClient(Request $request)
     {
         $validator = Validator::make($request->all(), ['name' => 'required', 'abbr' => 'required|max:2']);
-
         if ($validator->fails()) {
             return response()->json([
                 'error' => $validator->errors()
             ]);
         }
         $client = Client::create($request->all());
-        if ($client) {
-
+        if ($client){
             $user = new User();
             $user->name = $request['name'];
             $user->email = $request['email'];
             $user->password =  Hash::make("12345678");   // 12345678;
             $user->save();
-
-           if($user){
-            $admin_fee_paid = new AdminFee();
-            $admin_fee_paid->admin_fee_amount = $request->admin_fee_paid;
-            $admin_fee_paid->collection_date = date('Y-m-d');
-            $admin_fee_paid->client_id = $client->id;
-            $admin_fee_paid->save();
-            $client->client_id = $user->id;
-            $client->save();
-           }
-           if($client){
-            $data = [
-                'status' => 200,
-                'success' => 'Data Fetched Successfully',
-                'result' =>  $client,
-            ];
-            event(new NewClientCreated($client));
-            return response()->json($data);
-           }
-           else{
-            $data = [
-                'status' => 500,
-                'success' => 'Something Went Wrong',
-                'result' =>  [],
-            ];
-           }
+            if ($user) {
+                $admin_fee_paid = new AdminFee();
+                $admin_fee_paid->admin_fee_amount = $request->admin_fee_paid;
+                $admin_fee_paid->collection_date = date('Y-m-d');
+                $admin_fee_paid->client_id = $client->id;
+                $admin_fee_paid->save();
+                $client->client_id = $user->id;
+                $client->save();
+            }
+            if ($client) {
+                $data = [
+                    'status' => 200,
+                    'success' => 'Data Fetched Successfully',
+                    'result' =>  $client,
+                ];
+                event(new NewClientCreated($client));
+                return response()->json($data);
+            } else {
+                $data = [
+                    'status' => 500,
+                    'success' => 'Something Went Wrong',
+                    'result' =>  [],
+                ];
+            }
         }
     }
     public function printableClientAgreement($id)
@@ -183,15 +178,15 @@ class ClientController extends Controller
         ]);
         $fee = AdminFee::create(
             [
-                'admin_fee_amount' =>$request->admin_fee_paid,
-                'collection_date' =>$request->collection_date,
-                'client_id' =>$request->client_id,
+                'admin_fee_amount' => $request->admin_fee_paid,
+                'collection_date' => $request->collection_date,
+                'client_id' => $request->client_id,
             ]
         );
-        if($fee){
-         $client = Client::where('client_id', $request->client_id)->first();
-         $client->admin_fee_balance = $client->admin_fee_balance - $request->admin_fee_paid;
-         $client->save();
+        if ($fee) {
+            $client = Client::where('client_id', $request->client_id)->first();
+            $client->admin_fee_balance = $client->admin_fee_balance - $request->admin_fee_paid;
+            $client->save();
         }
         return redirect()->route('admin.clients.show', $id);
     }
