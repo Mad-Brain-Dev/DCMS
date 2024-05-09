@@ -135,15 +135,22 @@ class ClientController extends Controller
         }
         $client = Client::create($request->all());
         if ($client) {
+
             $user = new User();
             $user->name = $request['name'];
             $user->email = $request['email'];
             $user->password =  Hash::make("12345678");   // 12345678;
             $user->save();
+
+           if($user){
+            $admin_fee_paid = new AdminFee();
+            $admin_fee_paid->admin_fee_amount = $request->admin_fee_paid;
+            $admin_fee_paid->client_id = $client->id;
+            $admin_fee_paid->save();
             $client->client_id = $user->id;
             $client->save();
-
-
+           }
+           if($client){
             $data = [
                 'status' => 200,
                 'success' => 'Data Fetched Successfully',
@@ -151,6 +158,14 @@ class ClientController extends Controller
             ];
             event(new NewClientCreated($client));
             return response()->json($data);
+           }
+           else{
+            $data = [
+                'status' => 500,
+                'success' => 'Something Went Wrong',
+                'result' =>  [],
+            ];
+           }
         }
     }
     public function printableClientAgreement($id)
@@ -158,47 +173,6 @@ class ClientController extends Controller
         $client_details = Client::find($id)->first();
         return view('admin.agreement.client-agreement', compact('client_details'));
     }
-
-    public function reports(TotalMonthlyAdminCollectedFee $dataTable)
-    {
-        // set_page_meta('Reports');
-        // $data = Client::select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as month"), DB::raw("COUNT(admin_fee_paid) as count"))
-        // ->groupBy('month')
-        // ->get();
-        // $data = Cases::first();
-        // $installments = $first_case->installments;
-        // $amount = 0;
-        // foreach ($installments as $installment) {
-        //      $amount +=  $installment->amount_paid;
-        // }
-        // return $amount;
-        // $installments = $first_case->installments->last();
-        // return $installments->date_of_payment;
-        // $admincollectedfees = AdminFee::select(
-        //     DB::raw("(COUNT(*)) as count "),
-        //     DB::raw("MONTHNAME(collection_date)  as month_name"),
-        //     DB::raw('SUM(admin_fee_amount) as total'),
-        // )->whereYear('created_at', date('Y'))
-        // ->groupBy('month_name')
-        // ->orderBy('month_name')
-        // ->get();
-
-        // $totalmonthlyinstallments = Installment::select(
-        //     DB::raw("(COUNT(*)) as count "),
-        //     DB::raw("MONTHNAME(date_of_payment)  as month_name"),
-        //     DB::raw('SUM(amount_paid) as total'),
-        // )->whereYear('created_at', date('Y'))
-        // ->groupBy('month_name')
-        // ->orderBy('month_name')
-        // ->get();
-
-
-        $cases = Cases::all();
-        $installment_details = Cases::with('installments')->orderBy('id', 'DESC')->first();
-
-        return view('admin.reports.report')->with('cases', $cases)->with('installment_details',$installment_details);
-    }
-
     public function updateAdminFee(Request $request, $id)
     {
         $request->validate([
