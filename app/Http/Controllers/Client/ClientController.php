@@ -145,6 +145,7 @@ class ClientController extends Controller
            if($user){
             $admin_fee_paid = new AdminFee();
             $admin_fee_paid->admin_fee_amount = $request->admin_fee_paid;
+            $admin_fee_paid->collection_date = date('Y-m-d');
             $admin_fee_paid->client_id = $client->id;
             $admin_fee_paid->save();
             $client->client_id = $user->id;
