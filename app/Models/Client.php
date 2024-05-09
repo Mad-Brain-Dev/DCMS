@@ -35,4 +35,9 @@ class Client extends Model
     {
         return $this->hasMany(Cases::class);
     }
+
+    public function adminFee()
+    {
+        return $this->hasMany(AdminFee::class,'client_id');
+    }
 }

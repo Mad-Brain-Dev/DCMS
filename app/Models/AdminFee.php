@@ -13,4 +13,9 @@ class AdminFee extends Model
         'admin_fee_amount',
         'collection_date'
     ];
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class,'client_id');
+    }
 }

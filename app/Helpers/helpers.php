@@ -480,3 +480,15 @@ if (!function_exists('is_published_course')) {
     }
 }
 
+if (!function_exists('is_admin_fee_collected')) {
+
+    function is_admin_fee_collected($items)
+    {
+        $total = 0;
+        foreach ($items as $item){
+            $total += $item->admin_fee_amount;
+        }
+        return $total;
+    }
+}
+
