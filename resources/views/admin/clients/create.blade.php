@@ -2,6 +2,10 @@
 
 @section('content')
     <div class="row">
+        <div id="loading">
+            <div id="loading-content">
+            </div>
+        </div>
         <div class="col-md-12">
             <h4 class="card-title mb-3">{{ get_page_meta('title', true) }}</h4>
             <form method="post" id="frmAppl">
@@ -104,7 +108,8 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Admin Fee Balance</label>
-                                <input type="number" name="admin_fee_balance" placeholder="Admin Fee Balance will Auto Calculate" class="form-control" readonly
+                                <input type="number" name="admin_fee_balance"
+                                    placeholder="Admin Fee Balance will Auto Calculate" class="form-control" readonly
                                     id="subt">
                                 @error('admin_fee_balance')
                                     <p class="error">{{ $message }}</p>
@@ -121,8 +126,8 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Date of Agreement</label>
-                                <input type="date" name="date_of_agreement" class="form-control" placeholder="Address"
-                                    value="{{ old('date_of_agreement') }}">
+                                <input type="date" name="date_of_agreement" class="form-control"
+                                    placeholder="Address" value="{{ old('date_of_agreement') }}">
                                 @error('date_of_agreement')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -187,6 +192,14 @@
 @push('script')
     <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
     <script>
+        $(document).ajaxStart(function() {
+            $('#loading').addClass('loading');
+            $('#loading-content').addClass('loading-content');
+        });
+        $(document).ajaxStop(function() {
+            $('#loading').removeClass('loading');
+            $('#loading-content').removeClass('loading-content');
+        });
         $(document).ready(function() {
             $(function() {
                 $("#num2").on("keydown keyup", sum);
@@ -255,6 +268,32 @@
         .err-msg {
             color: #ec4561;
             font-size: 12px;
+        }
+
+        .loading {
+            z-index: 20;
+            position: absolute;
+            top: 0;
+            left: -5px;
+            width: 100%;
+            height: 100%;
+            /* background-color: rgba(0, 0, 0, 0.4); */
+        }
+
+        .loading-content {
+            position: absolute;
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            top: 40%;
+            left: 50%;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin{
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
         }
     </style>
 @endpush
