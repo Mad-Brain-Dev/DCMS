@@ -16,7 +16,7 @@
                             </div>
                             <div class="col-md-3">
                                 <span>Debt Interest/Annum : {{ $case->debt_interest }} %</span> <br>
-                                <span>Total Interest : {{ number_format($case->total_interest, 2, '.', ',') }} $</span> <br>
+                                <span>Total Interest : $ {{ number_format($case->total_interest, 2, '.', ',') }} </span> <br>
                                 {{-- <span>Total Installment : {{ $case->installment_number }}</span> <br>
                                     <span>Per Installment Amount : {{ number_format($case->per_installment_amount, 2, '.', ',') }} $</span> <br> --}}
                                 <span>Client Name : {{ $case->client->name }} </span> <br>
@@ -25,11 +25,11 @@
                             </div>
                             <div class="col-md-3">
                                 {{-- <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br> --}}
-                                <span>Total Amount Owed : {{ number_format($case->total_amount_owed, 2, '.', ',') }}
-                                    $</span> <br>
+                                <span>Total Amount Owed : $ {{ number_format($case->total_amount_owed, 2, '.', ',') }}
+                                    </span> <br>
                                 {{-- <span>Last Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br> --}}
-                                <span>Amount Balance : {{ number_format($case->total_amount_balance, 2, '.', ',') }}
-                                    $</span> <br>
+                                <span>Amount Balance : $ {{ number_format($case->total_amount_balance, 2, '.', ',') }}
+                                    </span> <br>
                             </div>
                             <div class="col-md-3">
                                 {{-- <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br> --}}
@@ -38,9 +38,9 @@
                                     @if (empty($installment->next_payment_amount))
                                         <span>N/A</span>
                                     @else
-                                    {{ number_format($installment->next_payment_amount, 2, '.', ',') }}
+                                    $ {{ number_format($installment->next_payment_amount, 2, '.', ',') }}
                                     @endif
-                                    $
+
                                 </span> <br>
                                 <span>Next Payment Date :
                                     @if (empty($installment->next_payment_date))

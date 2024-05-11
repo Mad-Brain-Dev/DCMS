@@ -146,6 +146,7 @@ class ClientController extends Controller
             $admin_fee_paid = new AdminFee();
             $admin_fee_paid->admin_fee_amount = $request->admin_fee_paid;
             $admin_fee_paid->client_id = $client->id;
+            $admin_fee_paid->collection_date = date('Y-m-d H:i:s');
             $admin_fee_paid->save();
             $client->client_id = $user->id;
             $client->save();
@@ -176,9 +177,9 @@ class ClientController extends Controller
     public function updateAdminFee(Request $request, $id)
     {
         $request->validate([
-            'admin_fee_paid' => 'nullable',
-            'client_id' => 'nullable',
-            'collection_date' => 'nullable'
+            'admin_fee_paid' => 'required',
+            'client_id' => 'required',
+            'collection_date' => 'required'
         ]);
         $fee = AdminFee::create(
             [
@@ -190,8 +191,10 @@ class ClientController extends Controller
         if($fee){
          $client = Client::where('client_id', $request->client_id)->first();
          $client->admin_fee_balance = $client->admin_fee_balance - $request->admin_fee_paid;
+         $client->admin_fee_paid = $client->admin_fee_paid + $request->admin_fee_paid;
          $client->save();
         }
+        record_created_flash();
         return redirect()->route('admin.clients.show', $id);
     }
 }
