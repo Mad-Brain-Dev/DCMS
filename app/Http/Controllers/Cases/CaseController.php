@@ -191,7 +191,7 @@ class CaseController extends Controller
         $request->validate([
             'gn_updates.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_date' => 'nullable',
-            'amount_paid' => 'nullable',
+            'amount_paid' => 'required',
             'payment_date' => 'required',
             'gn_summary' => 'nullable',
             'payment_method' => 'nullable',
@@ -255,7 +255,7 @@ class CaseController extends Controller
         $request->validate([
             'fv_updates.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_date' => 'nullable',
-            'amount_paid' => 'nullable',
+            'amount_paid' => 'required',
             'payment_date' => 'required',
             'next_payment_date' => 'required',
             'next_payment_amount' => 'required',

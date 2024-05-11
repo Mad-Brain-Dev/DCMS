@@ -237,7 +237,7 @@
                             <label class="form-label">Amount Paid</label>
                             <input type="number" name="amount_paid" placeholder="Enter Paid Amount Here"
                                 class="form-control">
-                            @error('paid_amount')
+                            @error('amount_paid')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
@@ -378,7 +378,7 @@
                             <label class="form-label">Amount Paid</label>
                             <input type="number" name="amount_paid" placeholder="Enter Paid Amount Here"
                                 class="form-control">
-                            @error('paid_amount')
+                            @error('amount_paid')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
