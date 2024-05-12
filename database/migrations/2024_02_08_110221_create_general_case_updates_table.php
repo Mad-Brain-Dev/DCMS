@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('general_case_updates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('case_id')->nullable();
+            $table->foreignId('case_id')->nullable()->references('id')->on('cases')
+            ->onDelete('cascade');
             $table->string('gn_update')->nullable();
             $table->text('gn_summary')->nullable();
             $table->dateTime('fv_date')->nullable();

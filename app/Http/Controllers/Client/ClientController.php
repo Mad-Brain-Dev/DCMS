@@ -116,6 +116,9 @@ class ClientController extends Controller
     public function destroy(string $id)
     {
         try {
+            $client = Client::find($id);
+            $case = Cases::where('client_id', $client->client_id);
+            $case->delete();
             $this->clientService->delete($id);
             record_deleted_flash();
             return back();

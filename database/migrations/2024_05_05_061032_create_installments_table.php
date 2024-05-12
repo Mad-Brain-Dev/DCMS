@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('installments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('case_id')->nullable();
+            $table->foreignId('case_id')->nullable()->references('id')->on('cases')
+            ->onDelete('cascade');
             $table->string('amount_paid')->nullable();
             $table->string('next_payment_amount')->nullable();
             $table->string('payment_method')->nullable();

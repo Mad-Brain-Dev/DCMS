@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('case_summary')->nullable();
             $table->dateTime('date_of_warrant')->nullable();
             //for client name
-            $table->foreignId('client_id')->nullable();
+            $table->foreignId('client_id')->nullable()->references('id')->on('users')
+            ->onDelete('cascade');
             //for client details
             // $table->foreignId('user_id')->nullable();
             $table->string('collection_commission')->nullable();
