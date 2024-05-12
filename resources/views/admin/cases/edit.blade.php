@@ -101,6 +101,9 @@
 
                                             <option value="{{ \App\Utils\GlobalConstant::CASE_UNDER_LITIGATION }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_UNDER_LITIGATION ? 'selected' : ''}}>
                                                 {{ \App\Utils\GlobalConstant::CASE_UNDER_LITIGATION }}</option>
+
+                                                <option value="{{ \App\Utils\GlobalConstant::CASE_CLOSED }}">
+                                                    {{ \App\Utils\GlobalConstant::CASE_CLOSED }}</option>
                                         </select>
                                         @error('current_status')
                                             <p class="error">{{ $message }}</p>

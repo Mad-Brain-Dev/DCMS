@@ -120,39 +120,39 @@
                 </tr>
                 <tr class="table-success">
                     <th scope="row">Administrative Fee</th>
-                    <td class="text-end">{{number_format($client->administrative_fee  ? $client->administrative_fee : 0, 2, '.', ',') }} $</td>
+                    <td class="text-end">$ {{number_format($client->administrative_fee  ? $client->administrative_fee : 0, 2, '.', ',') }} </td>
                 </tr>
                 <tr class="table-info">
                     <th scope="row">Enforcement Fee</th>
-                    <td class="text-end">{{number_format($client->enforcement_fee ? $client->enforcement_fee : 0, 2, '.', ',') }} $</td>
+                    <td class="text-end">$ {{number_format($client->enforcement_fee ? $client->enforcement_fee : 0, 2, '.', ',') }} </td>
                 </tr>
                 <tr class="table-warning">
                     <th scope="row">Professional Fee</th>
-                    <td class="text-end">{{number_format($client->professional_fee ? $client->professional_fee : 0, 2, '.', ',') }} $</td>
+                    <td class="text-end">$ {{number_format($client->professional_fee ? $client->professional_fee : 0, 2, '.', ',') }} </td>
                 </tr>
                 <tr class="table-danger">
                     <th scope="row">Annual Fee</th>
-                    <td class="text-end">{{ number_format($client->annual_fee ? $client->annual_fee : 0, 2, '.', ',') }} $</td>
+                    <td class="text-end">$ {{ number_format($client->annual_fee ? $client->annual_fee : 0, 2, '.', ',') }} </td>
                 </tr>
                 <tr class="table-light">
                     <th scope="row">Skip Tracing Fee</th>
-                    <td class="text-end"> {{ number_format($client->skip_tracing_fee ? $client->skip_tracing_fee : 0, 2, '.', ',') }} $</td>
+                    <td class="text-end">$ {{ number_format($client->skip_tracing_fee ? $client->skip_tracing_fee : 0, 2, '.', ',') }} </td>
                 </tr>
                 <tr class="table-primary">
                     <th scope="row">Overseas Allowance</th>
-                    <td class="text-end">{{ number_format($client->overseas_allowance ? $client->overseas_allowance : 0, 2, '.', ',') }} $</td>
+                    <td class="text-end">$ {{ number_format($client->overseas_allowance ? $client->overseas_allowance : 0, 2, '.', ',') }} </td>
                 </tr>
                 <tr class="table-success">
                     <th scope="row">Admin Fee</th>
-                    <td class="text-end">{{ number_format($client->admin_fee, 2, '.', ',') }} $</td>
+                    <td class="text-end">$ {{ number_format($client->admin_fee, 2, '.', ',') }} </td>
                 </tr>
                 <tr class="table-info">
                     <th scope="row">Admin Fee Paid</th>
-                    <td class="text-end">{{ number_format($client->admin_fee_paid, 2, '.', ',') }} $</td>
+                    <td class="text-end">$ {{ number_format($client->admin_fee_paid, 2, '.', ',') }} </td>
                 </tr>
                 <tr class="table-danger">
                     <th scope="row">Admin Fee Balance</th>
-                    <td class="text-end">{{ number_format($client->admin_fee_balance, 2, '.', ',') }} $</td>
+                    <td class="text-end">$ {{ number_format($client->admin_fee_balance, 2, '.', ',') }} </td>
                 </tr>
             </tbody>
         </table>
@@ -234,11 +234,11 @@
                             </tr>
                             <tr>
                                 <th scope="row">Debt Amount</th>
-                                <td class="text-end">{{ number_format($case->debt_amount, 2, '.', ',') }} $</td>
+                                <td class="text-end">$ {{ number_format($case->debt_amount, 2, '.', ',') }} </td>
                             </tr>
                             <tr>
                                 <th scope="row">Legal Cost</th>
-                                <td class="text-end"> {{ number_format($case->legal_cost, 2, '.', ',') }} $</td>
+                                <td class="text-end">$ {{ number_format($case->legal_cost, 2, '.', ',') }} </td>
                             </tr>
                             <tr>
                                 <th scope="row">Debt Interest</th>
@@ -254,15 +254,15 @@
                             </tr>
                             <tr>
                                 <th scope="row">Total Interest</th>
-                                <td class="text-end">{{ number_format($case->total_interest, 2, '.', ',') }} $</td>
+                                <td class="text-end">$ {{ number_format($case->total_interest, 2, '.', ',') }} </td>
                             </tr>
                             <tr>
                                 <th scope="row">Total Amount Owed</th>
-                                <td class="text-end">{{ number_format($case->total_amount_owed, 2, '.', ',') }} $</td>
+                                <td class="text-end">$ {{ number_format($case->total_amount_owed, 2, '.', ',') }} </td>
                             </tr>
                             <tr>
                                 <th scope="row">Total Amount Balance</th>
-                                <td class="text-end">{{ number_format($case->total_amount_balance, 2, '.', ',') }} $</td>
+                                <td class="text-end">$ {{ number_format($case->total_amount_balance, 2, '.', ',') }} </td>
                             </tr>
                         </tbody>
                     </table>

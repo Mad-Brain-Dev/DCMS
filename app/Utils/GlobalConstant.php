@@ -34,6 +34,7 @@ class GlobalConstant
     public const CASE_CLOSED_WITHOUT_PAYMENT = 'CST';
     public const CASE_AWAITING_UPDATE_FR_CLIENT = 'AFC';
     public const CASE_UNDER_LITIGATION = 'ULT';
+    public const CASE_CLOSED = 'CLS';
 
     // Default
     public const DEFAULT_PER_PAGE     = 12;
