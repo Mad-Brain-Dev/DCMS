@@ -24,7 +24,7 @@ hr {
 }
 
 .text-to {
-    position: relative;
+    position: relative; 
     margin-right: 155px;
 }
 .f-ol-li1{
@@ -607,6 +607,7 @@ left: 40px;
 }
 
 .company-name {
+    padding-left: 100px;
     position: relative;
 }
 .company-name::after {

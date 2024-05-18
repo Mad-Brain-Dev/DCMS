@@ -79,7 +79,7 @@
                         <li><span class="company-name">Company Name:</span> <span class="padding-for-new-data2">{{ $case_number->company_name }}</span> </li>
                         <li><span class="nric-no">NRIC No./UEN:</span> <span class="padding-for-new-data3">{{ $case_number->company_uen }}</span> </li>
                         <li><span class="contact-no">Contact No.:</span> <span class="padding-for-new-data4">{{ $case_number->phone }}</span> </li>
-                        <li><span class="email-add">Email Add.:</span> <span class="padding-for-new-data5">{{ $case_number->email }}</span> </li>
+                        <li><span class="email-id">Email ID.:</span> <span class="padding-for-new-data5">{{ $case_number->email }}</span> </li>
                         <li><span class="address-2">Address:</span> <span class="padding-for-new-data6">{{ $case_number->adderss }}</span> </li>
                         <li class="remarks-li"><span class="remarks">Remarks:</span><span class="padding-for-new-data7">{{ $case_number->remarks }}</span></li>
                     </ul>
@@ -87,21 +87,19 @@
             </div>
             <div class="row debt-amount-row">
                 <div class="col-2 total-debt p-0">
-                    <span class=""> Debt </span>
-                    <span class=""> Amount:</span>
+                    <span class="">Total Debt Amount </span>
+                    <span class=""> in Singapore Dollars:</span>
                 </div>
-                <div class="col-8 align-items-center d-flex">
+                <div class="col-7 align-items-center d-flex">
                     <span class="singapore-dollars">
-                      Singapore Dollars  {{ ucwords((new NumberFormatter('en_IN', NumberFormatter::SPELLOUT))->format($case_number->total_amount_owed)) }}
+                      {{ ucwords((new NumberFormatter('en_IN', NumberFormatter::SPELLOUT))->format($case_number->total_amount_owed)) }}
                      </span>
                 </div>
-                <div class="col-2 p-0 new-usd">
-                     <span class="new-usd-after"><i class="fa fa-usd"
-                        aria-hidden="true"></i><span> {{ $case_number->total_amount_owed }}</span> </span>
+                <div class="col-3 p-3  new-usd d-flex align-items-center justify-content-end">
+                     ( <span class="new-usd-after">SG </span> <span class="digit-amount"><i class="fa fa-usd"
+                        aria-hidden="true"></i>{{ $case_number->total_amount_owed }}</span> <span class="some-symble"> /+%</span> )
 
                         {{-- <span class="right-usd-data">{{ $case_number->total_amount_owed }}</span><span class="bracket_end">) --}}
-
-                     </span>
                </div>
             </div>
           <div class="row another-information-row">
@@ -115,7 +113,8 @@
                 <li class=""><span class="">*I/We authorise you to receive payment from the debtor directly in your favour (on our behalf) and to do everything you
                     consider necessary in your conduct of the above matter. This Warrant to Act serves as a formal Warrant to Act which may
                     be produced to third parties as evidence of your engagement to act on our behalf in connection with the above matter.</span></li>
-                <li class="">*I/We authorise you to take instructions in respect of this matter <span class="from pb-1"> from:<span class="lorem-2">rk</span></span>  <span class="contact pb-1">Contact: </span><span class="lorem-3">{{ $client_details->phone }}</span></li>
+                <li class="">*I/We authorise you to take instructions in respect of this matter from:<br/><br/> 
+                    <span class="person pb-1"> Person:<span class="lorem-2">rk</span></span>  <span class="contact pb-1">Contact: </span><span class="lorem-3">{{ $client_details->phone }}</span></li>
             </ol>
          <div class="col-md-10 mx-auto mb-2">
           <div class="row">
