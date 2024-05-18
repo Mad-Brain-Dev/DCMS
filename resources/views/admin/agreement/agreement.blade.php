@@ -53,8 +53,8 @@
                 </div>
                 <div class="col-8">
                     <div class="d-flex col-12 new-case ">
-                        <div class="col-3 case-ref">CASE REF. #:</div>
-                         <div class="col-5 data-for-case"><span class="case_ref">{{ $case_number->case_number }}</span></div>
+                        <div class="col-2 case-ref">CASE REF. #:</div>
+                         <div class="col-4 data-for-case"><span class="case_ref">{{ $case_number->case_number }}</span></div>
                     </div>
                 </div>
             </div>

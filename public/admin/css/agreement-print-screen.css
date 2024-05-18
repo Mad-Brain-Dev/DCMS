@@ -543,21 +543,23 @@ left: 40px;
 }
 
 .new-case {
-    margin-left: 195px;
+    margin-top: 25px;
+    margin-left: 220px;
 }
 .case-ref {
     font-family: "Open Sans", sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
     color: #ffff;
     background: #000;
-    font-weight: 600;
+    font-weight: 500;
     padding-left: 0;
     padding-top: 7px;
     padding-bottom: 7px;
     padding-right: 0;
 }
 .data-for-case {
+    text-align: center;
     border-top: 2px solid #000;
     border-right: 2px solid #000;
     border-bottom: 2px solid #000;
@@ -566,7 +568,7 @@ left: 40px;
 }
 .case_ref {
     position: absolute;
-    top: 5px;
+    top: 0;
     left: 10px;
 }
 
