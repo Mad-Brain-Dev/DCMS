@@ -10,16 +10,17 @@
                             <div class="col-md-3">
                                 <span>Case No. : {{ $case->case_sku }}</span> <br>
                                 <span>Current Status : {{ $case->current_status }}</span> <br>
-                                <span>Debtor Name : {{ $case->name }} </span> <br>
+                                <span>Bal Field Visit : {{ $case->bal_field_visit }}</span> <br>
                                 {{-- <span>Field Visits :  {{ $case->field_visit }}</span> <br>
                                     <span>Bal Field Visits : {{ $case->bal_field_visit }}</span> <br> --}}
                             </div>
                             <div class="col-md-3">
-                                <span>Debt Interest/Annum : {{ $case->debt_interest }} %</span> <br>
-                                <span>Total Interest : $ {{ number_format($case->total_interest, 2, '.', ',') }} </span> <br>
+                                {{-- <span>Debt Interest/Annum : {{ $case->debt_interest }} %</span> <br>
+                                <span>Total Interest : $ {{ number_format($case->total_interest, 2, '.', ',') }} </span> <br> --}}
                                 {{-- <span>Total Installment : {{ $case->installment_number }}</span> <br>
                                     <span>Per Installment Amount : {{ number_format($case->per_installment_amount, 2, '.', ',') }} $</span> <br> --}}
                                 <span>Client Name : {{ $case->client->name }} </span> <br>
+                                <span>Debtor Name : {{ $case->name }} </span> <br>
 
 
                             </div>
@@ -443,9 +444,6 @@
                         <div class="row">
                             <div class="mb-3">
                                 <div class="d-flex justify-content-between">
-
-                                    <span class="bg-success d-inline px-3 py-2 rounded-1 text-white">Bal FV :
-                                        {{ $case->bal_field_visit }}</span>
                                     <div class="div">
                                         <a href="{{ route('admin.cases.show', $case->id) }}"
                                             class="btn btn-light">Cancel</a>

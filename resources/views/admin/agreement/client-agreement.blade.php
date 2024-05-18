@@ -46,10 +46,10 @@
             <hr>
             <div class="row">
                  <div class="col-7 ">
-                    <div class="row for-p">
+                    {{-- <div class="row for-p">
                        <div class="col-3 case-num">CASE NUMBER</div>
                        <div class="col-6 box-1st">Test Case Number</div>
-                     </div>
+                     </div> --}}
                 </div>
 
                 <div class="col-5">
