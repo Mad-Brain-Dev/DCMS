@@ -36,7 +36,7 @@
                 <div class="col-md-12 buttons">
                     <div class="d-flex justify-content-end pt-3">
                         <a href="{{ route('admin.cases.index') }}" class="btn btn-danger mr-2">Back</a>
-                        <button class="btn btn-success" onclick="printDocument()">Print</button>
+                        <button class="btn btn-primary" onclick="printDocument()">Print</button>
                     </div>
 
                 </div>
@@ -54,7 +54,7 @@
                 <div class="col-8">
                     <div class="d-flex col-12 new-case ">
                         <div class="col-2 case-ref">CASE REF. #:</div>
-                         <div class="col-4 data-for-case"><span class="case_ref">{{ $case_number->case_number }}</span></div>
+                         <div class="col-4 data-for-case"><span class="case_ref">{{ $case_number->case_sku }}</span></div>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="col-7 align-items-center d-flex">
                     <span class="singapore-dollars">
-                      {{ ucwords((new NumberFormatter('en_IN', NumberFormatter::SPELLOUT))->format($case_number->total_amount_owed)) }}
+                      {{ ucwords((new NumberFormatter('en_IN', NumberFormatter::SPELLOUT))->format($case_number->total_amount_owed)) }} Plus Interests
                      </span>
                 </div>
                 <div class="col-3 p-3  new-usd d-flex align-items-center justify-content-end">
@@ -105,7 +105,7 @@
           <div class="row another-information-row">
             <ol class="">
                 <li class="first-child">*I/We, the undersigned, hereby appoint you to act for <span class="me-us-after">*me/us </span> <span class="agreement_name">{{ $client_details->name }}</span><br>
-                    <span class="nric-no-uen-after">(NRIC No./UEN: </span><span class="agreement_nric">{{ $client_details->nric }}</span> in connection with the above matter until it
+                    <span class="nric-no-uen-after">(NRIC No./UEN: <span class="agreement_nric">{{ $client_details->nric }}</span></span> in connection with the above matter until it
                     is completed, settled, resolved or the contractual agreement between us and you is terminated for whatsoever reason.
                     All cheques shall be made payable to Securre Collection Pte Ltd, and online payments made via PayNow to<span class="new-underline"> 85055484.</span></li>
                 <li class=""><span class="">Our engagement of your services are subjected to the terms and conditions as set out in the Debt Collection Agreement
@@ -113,7 +113,7 @@
                 <li class=""><span class="">*I/We authorise you to receive payment from the debtor directly in your favour (on our behalf) and to do everything you
                     consider necessary in your conduct of the above matter. This Warrant to Act serves as a formal Warrant to Act which may
                     be produced to third parties as evidence of your engagement to act on our behalf in connection with the above matter.</span></li>
-                <li class="">*I/We authorise you to take instructions in respect of this matter from:<br/><br/> 
+                <li class="">*I/We authorise you to take instructions in respect of this matter from:<br/><br/>
                     <span class="person pb-1"> Person:<span class="lorem-2">rk</span></span>  <span class="contact pb-1">Contact: </span><span class="lorem-3">{{ $client_details->phone }}</span></li>
             </ol>
          <div class="col-md-10 mx-auto mb-2">
@@ -142,8 +142,8 @@
     </div>
 
 </section>
-<footer style="font-weight: 700; font-style:italic">
-    Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098
+<footer>
+    Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098 <br>
     Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net
 </footer>
 <!--second section end-->

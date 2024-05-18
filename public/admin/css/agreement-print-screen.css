@@ -1,3 +1,4 @@
+
 .first-agreement-container {
     font-family: "Open Sans", sans-serif;
     font-size: 14px;
@@ -864,18 +865,12 @@ left: 40px;
     left: 539px;
     top: 0;
 }
-.first-child {
-    position: relative;
-}
+
 .agreement_name {
-    position: absolute;
-    right: 423px;
-    top: 15px;
+   margin-left: 10px;
 }
 .agreement_nric {
-    position: absolute;
-    left: 175px;
-    top: 38px;
+    margin-left: 10px;
 }
 
 .nric-no-uen-after {

@@ -1,3 +1,6 @@
+.buttons{
+    display: none;
+}
 .first-agreement-container {
     font-family: "Open Sans", sans-serif;
     font-size: 14px;
@@ -24,7 +27,7 @@ hr {
 }
 
 .text-to {
-    position: relative; 
+    position: relative;
     margin-right: 155px;
 }
 .f-ol-li1{
@@ -57,11 +60,12 @@ hr {
     height: 1px;
     width: 290px;
     bottom: -5px;
+    left: -968px;
 }
 
 .and-margin {
     position: absolute;
-    left: 260px;
+    left: 120px;
 }
 
 .d-f-agreement {
@@ -347,7 +351,7 @@ left: 40px;
     height: 270px;
     background: #000;
     top: 0;
-    left: -20px;
+    left: -35px;
 }
 
 .another-row .second-box::before {
@@ -357,7 +361,7 @@ left: 40px;
     height: 270px;
     background: #000;
     top: 0;
-    left: -10px;
+    left: -31px;
 }
 
 .sincere h4 {
@@ -505,25 +509,21 @@ left: 40px;
 /* first page end */
 
 /* second section start */
-.warrant-act h1 {
-    font-size: 110px;
-    font-weight: 400;
-    font-family: "Playfair Display", serif;
-}
+
 
 .second-section {
     font-weight: 600;
     font-size: 16px;
 }
 .warrant-act h1 {
-    font-size: 120px;
+    font-size: 100px;
     font-weight: 400;
     font-family: "Judson", serif;
 }
 .warrant-act p {
     padding-bottom: 15px;
     font-family: "Open Sans", sans-serif;
-    font-size: 15px;
+    font-size: 14px;
 }
 .new-hr {
     background: #000;
@@ -546,21 +546,23 @@ left: 40px;
 }
 
 .new-case {
-    margin-left: 195px;
+    margin-top: 25px;
+    margin-left: 220px;
 }
 .case-ref {
     font-family: "Open Sans", sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
     color: #ffff;
     background: #000;
-    font-weight: 600;
+    font-weight: 500;
     padding-left: 0;
     padding-top: 7px;
     padding-bottom: 7px;
     padding-right: 0;
 }
 .data-for-case {
+    text-align: center;
     border-top: 2px solid #000;
     border-right: 2px solid #000;
     border-bottom: 2px solid #000;
@@ -569,7 +571,7 @@ left: 40px;
 }
 .case_ref {
     position: absolute;
-    top: 5px;
+    top: 0;
     left: 10px;
 }
 
@@ -594,6 +596,7 @@ left: 40px;
     margin-top: 8px;
 }
 .full-name {
+    padding-left: 63px;
     position: relative;
 }
 .full-name::after {
@@ -603,11 +606,11 @@ left: 40px;
     width: 800px;
     background: #000;
     bottom: -4px;
-    left: 220%;
+    left: 105%;
 }
 
 .company-name {
-    padding-left: 100px;
+    padding-left: 20px;
     position: relative;
 }
 .company-name::after {
@@ -617,10 +620,11 @@ left: 40px;
     width: 800px;
     background: #000;
     bottom: -4px;
-    left: 140%;
+    left: 105%;
 }
 
 .nric-no {
+    padding-left: 31px;
     position: relative;
 }
 .nric-no::after {
@@ -630,7 +634,7 @@ left: 40px;
     width: 800px;
     background: #000;
     bottom: -4px;
-    left: 155%;
+    left: 105%;
 }
 .contact {
     position: relative;
@@ -642,6 +646,7 @@ left: 40px;
 }
 
 .contact-no {
+    padding-left: 49px;
     position: relative;
 }
 .contact-no::after {
@@ -651,10 +656,11 @@ left: 40px;
     width: 800px;
     background: #000;
     bottom: -4px;
-    left: 188%;
+    left: 105%;
 }
 
 .email-add {
+    padding-left: 58px;
     position: relative;
 }
 .email-add::after {
@@ -664,9 +670,25 @@ left: 40px;
     width: 800px;
     background: #000;
     bottom: -4px;
-    left: 208%;
+    left: 105%;
+}
+
+
+.email-id {
+    padding-left: 72px;
+    position: relative;
+}
+.email-id::after {
+    content: "";
+    position: absolute;
+    height: 1.5px;
+    width: 800px;
+    background: #000;
+    bottom: -4px;
+    left: 105%;
 }
 .address {
+    padding-left: 77px;
     position: relative;
 }
 .address::after {
@@ -676,7 +698,7 @@ left: 40px;
     width: 800px;
     background: #000;
     bottom: -4px;
-    left: 273%;
+    left: 105%;
 }
 .address::before {
     content: "";
@@ -685,9 +707,10 @@ left: 40px;
     width: 800px;
     background: #000;
     bottom: -34px;
-    left: 273%;
+    left: 105%;
 }
 .address-2 {
+    padding-left: 77px;
     position: relative;
 }
 .address-2::after {
@@ -697,23 +720,18 @@ left: 40px;
     width: 800px;
     background: #000;
     bottom: -4px;
-    left: 270%;
+    left: 105%;
 }
-.address-2::before {
-    content: "";
-    position: absolute;
-    height: 1.5px;
-    width: 800px;
-    background: #000;
-    bottom: -34px;
-    left: 270%;
-}
+
 .remarks-li {
-    padding-top: 30px;
+    padding-bottom: 50px;
 }
+
 .remarks {
+    padding-left: 72px;
     position: relative;
 }
+
 .remarks::after {
     content: "";
     position: absolute;
@@ -721,37 +739,47 @@ left: 40px;
     width: 800px;
     background: #000;
     bottom: -4px;
-    left: 256%;
+    left: 105%;
+}
+
+.remarks::before {
+    content: "";
+    position: absolute;
+    height: 1.5px;
+    width: 800px;
+    background: #000;
+    bottom: -34px;
+    left: 105%;
 }
 
 /*  */
 
 .padding-for-new-data1 {
-    padding-left: 305px;
+    padding-left: 6px;
 }
 
 .padding-for-new-data2 {
-    padding-left: 262px;
+    padding-left: 6px;
 }
 
 .padding-for-new-data3 {
-    padding-left: 273px;
+    padding-left: 6px;
 }
 
 .padding-for-new-data4 {
-    padding-left: 291px;
+    padding-left: 6px;
 }
 
 .padding-for-new-data5 {
-    padding-left: 304px;
+    padding-left: 6px;
 }
 
 .padding-for-new-data6 {
-    padding-left: 323px;
+    padding-left: 6px;
 }
 
 .padding-for-new-data7 {
-    padding-left: 323px;
+    padding-left: 10px;
 }
 
 /*  */
@@ -780,28 +808,30 @@ left: 40px;
     flex-direction: column;
 }
 
-.new-usd {
-    position: relative;
+.new-usd{
+    font-size: 20px;
 }
-
 .new-usd-after {
-    position: absolute;
-    top: -4px;
-    right: -2px;
     font-size: 20px;
     font-weight: 500;
-    padding: 10px 25px 10px 10px;
-    border-bottom: 2px solid black;
-    border-left: 2px solid black;
-    border-top: 2px solid black;
-    /* padding-left: 100px; */
-    /* position: relative; */
+    padding-right: 20px;
+    padding-left: 7px;
 }
-
 .new-usd-after span {
-    margin-left: 25px;
+    margin-left: 0px;
 }
 
+.digit-amount{
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.some-symble{
+    font-size: 20px;
+    font-weight: 500;
+    padding-left: 12px;
+    padding-right: 7px;
+}
 /* .new-usd-after::after {
     content: "";
     position: absolute;
@@ -837,18 +867,13 @@ left: 40px;
     left: 539px;
     top: 0;
 }
-.first-child {
-    position: relative;
-}
+
+
 .agreement_name {
-    position: absolute;
-    right: 250px;
-    top: 15px;
+    margin-left: 10px;
 }
 .agreement_nric {
-    position: absolute;
-    left: 300px;
-    top: 38px;
+    margin-left: 10px;
 }
 
 .nric-no-uen-after {
@@ -871,28 +896,28 @@ left: 40px;
     right: -460px;
 }
 
-.from {
+.person {
     position: relative;
-    margin-right: 165px;
+    margin-right: 320px;
 }
-.from::after {
+.person::after {
     content: "";
     position: absolute;
     height: 1.5px;
-    width: 170px;
+    width: 320px;
     background: #000;
     bottom: 0;
     left: 55px;
 }
 .contact {
     position: relative;
-    padding-left: 33px;
+    padding-left: 30px;
 }
 .contact::after {
     content: "";
     position: absolute;
     height: 1.5px;
-    width: 170px;
+    width: 200px;
     background: #000;
     bottom: 0;
     left: 91px;
@@ -904,94 +929,28 @@ left: 40px;
 }
 .lorem-2 {
     position: absolute;
-    left: 120px;
+    left: 75px;
 }
 
 .lorem-3 {
-    padding-left: 30px;
+    padding-left: 15px;
 }
 
 /*  */
 
+.last-ul{
+    margin-top: 20px;
+}
 .last-ul li {
     list-style: none;
     margin-left: -20px;
-    margin-top: 20px;
+    margin-top: 5px;
 }
 
 .last-ul :nth-of-type(5) {
-    margin-top: 50px;
+    margin-top: 25px;
 }
 
-.last-ul-li-name {
-    position: relative;
-}
-
-.last-ul-li-name::after {
-    content: "";
-    position: absolute;
-    height: 1.5px;
-    width: 300px;
-    background: #000;
-    bottom: -5px;
-    left: 131px;
-}
-
-.last-ul-li-company {
-    position: relative;
-}
-
-.last-ul-li-company::after {
-    content: "";
-    position: absolute;
-    height: 1.5px;
-    width: 300px;
-    background: #000;
-    bottom: -5px;
-    left: 129px;
-}
-
-.last-ul-li-nric {
-    position: relative;
-}
-
-.last-ul-li-nric::after {
-    content: "";
-    position: absolute;
-    height: 1.5px;
-    width: 300px;
-    background: #000;
-    bottom: -5px;
-    left: 128px;
-}
-
-.last-ul-li-contact {
-    position: relative;
-}
-
-.last-ul-li-contact::after {
-    content: "";
-    position: absolute;
-    height: 1.5px;
-    width: 300px;
-    background: #000;
-    bottom: -5px;
-    left: 125px;
-}
-
-.last-ul-li-stamp {
-    position: relative;
-}
-
-.last-ul-li-stamp::after {
-    content: "";
-    position: absolute;
-    height: 1.5px;
-    width: 300px;
-    background: #000;
-    bottom: -5px;
-    left: 131px;
-}
 
 .data-mr1 {
     margin-left: 80px;
@@ -1017,6 +976,6 @@ left: 40px;
     text-decoration: underline;
 }
 footer {
-    display: none;
+    margin-left: 200px;
 }
 /* second section end */
