@@ -34,7 +34,7 @@
             <div class="row hide-print-button">
                     <div class="col-12 d-flex justify-content-end mt-3">
                         <a href="{{ route('admin.clients.index') }}" class="btn btn-danger mr-2">Back</a>
-                        <div class="btn btn-success" id="document_print" onclick="printDocument()">Print Document</div>
+                        <div class="btn btn-primary" id="document_print" onclick="printDocument()">Print Document</div>
                     </div>
             </div>
             <div class="row first-row justify-content-center">
@@ -46,10 +46,10 @@
             <hr>
             <div class="row">
                  <div class="col-7 ">
-                    <div class="row for-p">
+                    {{-- <div class="row for-p">
                        <div class="col-3 case-num">CASE NUMBER</div>
                        <div class="col-6 box-1st">Test Case Number</div>
-                     </div>
+                     </div> --}}
                 </div>
 
                 <div class="col-5">
