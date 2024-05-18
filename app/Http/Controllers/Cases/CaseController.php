@@ -419,7 +419,7 @@ class CaseController extends Controller
     public function printableCaseAgreement($id)
     {
 
-        $case_number = Cases::find($id)->first();
+        $case_number = Cases::find($id);
         $client_details = Client::where('client_id', $case_number->client_id)->first();
         return view('admin.agreement.agreement', compact('case_number', 'client_details'));
     }
