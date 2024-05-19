@@ -23,26 +23,6 @@ class ClientMail extends Mailable
         $this->data = $data;
     }
 
-    /**
-     * Get the message envelope.
-     */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: 'Client Mail',
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
-    {
-        return new Content(
-            markdown: 'emails.clientmail',
-        );
-    }
-
 
     public function build(){
         return $this->markdown('emails.clientmail')
