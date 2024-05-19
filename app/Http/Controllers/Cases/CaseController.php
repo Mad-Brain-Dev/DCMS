@@ -573,19 +573,19 @@ class CaseController extends Controller
         if ($cases->count() > 0) {
 
             $lastSKUId = Cases::orderBy('id', 'DESC')->first()->case_sku;
-            $splitedLastSKUId = str_split($lastSKUId, 8);
+            $splitedLastSKUId = str_split($lastSKUId, 12);
             // $madedSKU = $splitedLastSKUId[1] . $splitedLastSKUId[2];
             $madedSKU  = $splitedLastSKUId[1];
             $madedSKU = (int)$madedSKU;
             $settingPlusOne = $madedSKU + 1;
             // dd($settingPlusOne);
-            $newSKUId = $case_number . $settingPlusOne;
+            $newSKUId = $case_number .' '. $settingPlusOne;
             return $newSKUId;
         } else {
             //            $setting = config('settings.admin_order_sku');
             $setting = 10000;
             $settingPlusOne = $setting + 1;
-            $newSKUId = $case_number . $settingPlusOne;
+            $newSKUId = $case_number . ' ' . $settingPlusOne;
 
             return $newSKUId;
         }

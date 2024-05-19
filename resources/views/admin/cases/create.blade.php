@@ -400,7 +400,7 @@
                         var clNameAbbr = response.dateofagreement.abbr
                         var getDate = response.dateofagreement.created_at
                         var formatedDate = dayjs(getDate).format('YYYY')
-                        $('#case_number').val(clNameAbbr + '/' + formatedDate + '/');
+                        $('#case_number').val(clNameAbbr+ ' ' + '/' + ' ' +formatedDate + ' ' + '/'+ ' ');
                     }
                 })
             });

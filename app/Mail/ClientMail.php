@@ -13,6 +13,7 @@ class ClientMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+<<<<<<< HEAD
     public $data;
 
     /**
@@ -31,11 +32,29 @@ class ClientMail extends Mailable
 
     /**
      * Get the attachments for the message.
+=======
+    public $client;
+
+    /**
+     * Create a new message instance.
+>>>>>>> rk_12_5
      *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     * @param array $client
+     * @return void
      */
-    public function attachments(): array
+    public function __construct($client)
     {
-        return [];
+        $this->client = $client;
+    }
+
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        return $this->markdown('emails.clientmail')
+                    ->with('client', $this->client);
     }
 }
