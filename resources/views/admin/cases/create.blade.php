@@ -345,13 +345,15 @@
     <div class="modal fade" tabindex="-1" role="dialog" id="showMsg">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-body" style="text-align: center;">
+                {{-- <div class="modal-body" style="text-align: center;">
                     <h4 class="pb-3">Do you want to print this warrant?</h4>
-                </div>
+                </div> --}}
                 <div class="modal-footer d-flex justify-content-between" style="border: none;" >
 
                     <a href="{{ route('admin.cases.index') }}" class="btn btn-danger" class="btn btn-secondary" >Close</a>
-                    <a class="btn btn-success" id="agreement" href="">Yes, Print it</a>
+                    <a class="btn btn-primary" id="letter" href="">Print Letter</a>
+                    <a class="btn btn-success" id="agreement" href="">Print Warrant</a>
+
                 </div>
             </div>
         </div>
@@ -473,8 +475,10 @@
                         $("#showMsg").modal('show');
                         console.log(data.result.id)
                         var url = "/printable/case/agreement/" + data.result.id
+                        var letterUrl = "/printable/letter/" + data.result.id
 
                         $('#agreement').attr('href', url);
+                        $('#letter').attr('href', letterUrl);
 
                      }
                      else {

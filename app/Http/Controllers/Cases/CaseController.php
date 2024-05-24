@@ -424,6 +424,12 @@ class CaseController extends Controller
         return view('admin.agreement.agreement', compact('case_number', 'client_details'));
     }
 
+    public function printableLetter($id){
+        $case_number = Cases::find($id);
+        $client_details = Client::where('client_id', $case_number->client_id)->first();
+        return view('admin.agreement.letter', compact('case_number', 'client_details'));
+    }
+
     public function updateTotalAmountBalance(Request $request, $id)
     {
         $request->validate([

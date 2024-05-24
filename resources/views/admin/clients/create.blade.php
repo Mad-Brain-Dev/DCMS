@@ -271,13 +271,13 @@
         }
 
         .loading {
-            z-index: 20;
+            z-index: 2000;
             position: absolute;
             top: 0;
             left: -5px;
             width: 100%;
             height: 100%;
-            /* background-color: rgba(0, 0, 0, 0.4); */
+            background-color: rgba(0, 0, 0, 0.4);
         }
 
         .loading-content {

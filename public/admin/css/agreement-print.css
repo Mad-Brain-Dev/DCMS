@@ -1,3 +1,21 @@
+/* body * {
+    visibility: hidden;
+  } */
+  /* .address {
+    visibility: visible;
+  } */
+  .address {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 10px;
+  }
+
+
+
+
 .buttons{
     display: none;
 }
@@ -978,3 +996,5 @@ left: 40px;
 footer {
     margin-left: 200px;
 }
+
+

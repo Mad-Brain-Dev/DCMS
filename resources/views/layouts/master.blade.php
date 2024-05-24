@@ -6,7 +6,6 @@
 </head>
 
 <body data-sidebar="dark">
-
 <div id="app">
     <!-- Begin page -->
     <div id="layout-wrapper">

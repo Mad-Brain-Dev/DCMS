@@ -1,0 +1,235 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    list-style: none;
+}
+
+body {
+    background-color: white;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.debtor-part {
+    margin-top: 160px;
+}
+
+/* common css end */
+
+.container-padding {
+    padding-bottom: 1rem;
+    padding-right: 2rem;
+    padding-left: 32px;
+}
+
+.logo-size {
+    height: 70px;
+    padding-left: 15px;
+}
+
+.square-div {
+    height: 70px;
+    width: 55px;
+    background: #9797ba;
+}
+.header_p_tag p {
+    font-size: 18px;
+    color: #8090b0;
+    padding-top: 25px;
+}
+
+.header_p_tag {
+    padding-left: 10px;
+    height: 70px;
+    position: relative;
+}
+
+.header_p_tag::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    height: 15px;
+    width: 120%;
+    background: #9797ba;
+}
+
+/* debtor div start */
+
+.dear_sir {
+    padding-top: 20px;
+    padding-left: 6px;
+    font-weight: 500;
+}
+
+.by_hand_only {
+    margin-left: -30px;
+    text-decoration: underline;
+    color: #948a54;
+    font-size: 20px;
+}
+
+/* dear sir div end */
+
+.order_list ol {
+    padding-left: 30px;
+    margin-top: -10px;
+}
+
+.order_list ol li {
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+.chile_order_list {
+    padding-top: 20px;
+}
+
+.chile_order_list li {
+    margin-top: -20px;
+}
+
+.time_after {
+    position: relative;
+    font-weight: 700;
+}
+
+.time_after::after {
+    content: "";
+    position: absolute;
+    bottom: 1px;
+    left: -6px;
+    background: #000;
+    width: 107%;
+    height: 1.1px;
+}
+
+/* 1st section end */
+
+/* 2nd section start */
+
+.first_col {
+    height: 70px;
+    width: 70px;
+    background: #9797ba;
+}
+
+.logo-size-2nd {
+    height: 70px;
+}
+
+.third_col {
+    position: relative;
+}
+
+.third_col::after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 40px;
+    background: #9797ba;
+    height: 15px;
+    width: 100%;
+}
+
+.third_col p {
+    padding-top: 35px;
+    font-size: 15px;
+    padding-left: 40px;
+    color: #8090b0;
+}
+
+.ul-class {
+    padding-left: 50px;
+    margin-top: -16px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.anothe-col-3 ul {
+    padding-top: 27px;
+    padding-left: 30px;
+    font-size: 18px;
+}
+
+.anothe-col-3 ul li:nth-child(2) {
+    padding-top: 20px;
+}
+
+.total {
+    color: #ff0000;
+    font-size: 20px;
+    text-decoration: underline;
+}
+.total-debt-div {
+    position: relative;
+    color: #000;
+    padding-right: 30px;
+}
+.total-debt-div::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    height: 1.2px;
+    width: 112%;
+    background: #000;
+}
+
+.column_div {
+    display: flex;
+    flex-direction: column;
+}
+
+.ravin_self_div {
+    padding-top: 120px;
+}
+.ravin_self_div h5 {
+    font-style: italic;
+    padding-bottom: 50px;
+    font-weight: 400;
+}
+
+.ravin_raj h2 {
+    color: #002060;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.ravin_raj span {
+    line-height: 20px;
+}
+
+.new-logo-div {
+    position: relative;
+}
+
+.new-logo-div::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    right: -23px;
+    height: 100%;
+    width: 2px;
+    background: #002060;
+}
+
+@media print {
+    .header {
+        position: fixed;
+        top: 0;
+    }
+    .address {
+        position: fixed;
+        bottom: 0;
+    }
+    #point-eight {
+        padding-top: 170px;
+    }
+    .footer-text{
+        font-size: 12px !important;
+    }
+}
