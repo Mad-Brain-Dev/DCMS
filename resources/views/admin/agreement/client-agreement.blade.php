@@ -29,23 +29,21 @@
             <div class="container first-agreement-container">
                 <div class="row hide-print-button">
                     <div class="col-12 d-flex justify-content-end mt-3">
+
                         <a href="{{ route('admin.clients.index') }}" class="btn btn-danger mr-2">Back</a>
-                        <div class="btn btn-success" id="document_print" onclick="printDocument()">Print Document</div>
+                        <div class="btn btn-primary" id="document_print" onclick="printDocument()">Print Document</div>
                     </div>
                 </div>
-                <div class="row first-row justify-content-center">
-                    <div class=" align-items-start d-flex">
+                <div class="row first-row justify-content-center client-agreement-header">
+                    <div class=" align-items-start d-flex for-bottom-border">
                         <img class="logo" src="{{ asset('images/logo.jpg') }}" alt=""><span
                             class="debt-text">DEBT COLLECTION AGREEMENT</span>
                     </div>
                 </div>
-                <hr>
+<hr>
                 <div class="row">
                     <div class="col-7 ">
-                        <div class="row for-p">
-                            <div class="col-3 case-num">CASE NUMBER</div>
-                            <div class="col-6 box-1st">Test Case Number</div>
-                        </div>
+
                     </div>
 
                     <div class="col-5">
@@ -214,7 +212,7 @@
                             </li>
 
 
-                            <li>
+                            <li class="point-five">
                                 In addition to the above-mentioned fees, the respective Debt Commission as per the debt
                                 amount recovered is payable to us, whether the debt is recovered in full or in part, or
                                 upon termination or expiry of this Agreement, as whatever the case may be.
@@ -241,7 +239,8 @@
                                             debtor(s) and no further instalment / part-payment has been received from
                                             the </span> <br> <span style="padding-left: 24px;">debtor(s) (e.g. the
                                             debtor is undergoing bankruptcy / winding up proceedings or has
-                                            absconded).</span></li>
+                                            absconded).</span>
+                                    </li>
                                 </ul>
                             </li>
 

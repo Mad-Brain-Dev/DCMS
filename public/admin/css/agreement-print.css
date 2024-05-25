@@ -4,6 +4,29 @@
   /* .address {
     visibility: visible;
   } */
+
+  .hide-print-button{
+    display: none;
+  }
+  .client-agreement-header{
+    position: fixed;
+    top: 30px;
+    left: 20px;
+  }
+  .for-bottom-border{
+    position: relative;
+  }
+  .client-agreement-header::after{
+    position: absolute;
+    content: '';
+    height: 2px;
+    width: 100%;
+    background-color: #000;
+    bottom: -10px;
+  }
+  hr{
+    display: none;
+  }
   .address {
     position: fixed;
     bottom: 0;
@@ -38,12 +61,6 @@
     font-family: "Barlow", sans-serif;
 }
 
-hr {
-    background: #000;
-    padding-top: 2px;
-    transform: translateY(-21px);
-}
-
 .text-to {
     position: relative;
     margin-right: 155px;
@@ -53,7 +70,7 @@ hr {
 }
 .to-margin {
     position: absolute;
-    left: 328px;
+    left: 310px;
 }
 
 .text-to::after {
@@ -78,12 +95,12 @@ hr {
     height: 1px;
     width: 290px;
     bottom: -5px;
-    left: -968px;
+    left: 30px;
 }
 
 .and-margin {
     position: absolute;
-    left: 120px;
+    left: 280px;
 }
 
 .d-f-agreement {
@@ -168,6 +185,10 @@ hr {
 .for-p2 {
     padding-left: 60px;
     box-sizing: border-box;
+    padding-top: 150px;
+}
+.point-five{
+    padding-top: 150px;
 }
 
 .box-1st {
@@ -370,6 +391,7 @@ left: 40px;
     background: #000;
     top: 0;
     left: -35px;
+    display: none;
 }
 
 .another-row .second-box::before {
@@ -380,6 +402,7 @@ left: 40px;
     background: #000;
     top: 0;
     left: -31px;
+    display: none;
 }
 
 .sincere h4 {
@@ -517,6 +540,7 @@ left: 40px;
 
 .serve {
     margin-left: -30px;
+    padding-top: 70px;
 }
 
 .hello_securre_mail,
@@ -539,7 +563,7 @@ left: 40px;
     font-family: "Judson", serif;
 }
 .warrant-act p {
-    padding-bottom: 15px;
+    padding-bottom: 0px;
     font-family: "Open Sans", sans-serif;
     font-size: 14px;
 }
@@ -804,8 +828,8 @@ left: 40px;
 
 .debt-amount-row {
     border: 2px solid #000;
-    padding-top: 20px;
-    padding-bottom: 17px;
+    padding-top: 7px;
+    padding-bottom: 5px;
     margin-bottom: 30px;
 }
 
@@ -865,7 +889,7 @@ left: 40px;
 }
 .another-information-row ol li {
     padding-left: 50px;
-    padding-top: 17px;
+    padding-top: 5px;
 }
 .me-us-after {
     position: relative;

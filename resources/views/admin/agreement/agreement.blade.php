@@ -76,7 +76,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="row mt-4">
+                <div class="row mt-1">
                     <span class="debtor-information">DEBTOR INFORMATION</span>
                     <div class="col-md-11 mx-auto take-information">
                         <ul class="list-unstyled">
