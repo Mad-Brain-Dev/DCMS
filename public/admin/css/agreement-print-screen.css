@@ -590,6 +590,7 @@ left: 40px;
     font-size: 16px;
     font-weight: 600;
     margin-left: 25px;
+    margin-top: 20px;
 }
 .take-information ul {
     margin-top: 15px;
@@ -699,7 +700,7 @@ left: 40px;
     padding-left: 77px;
     position: relative;
 }
-/* .address::after {
+.address::after {
     content: "";
     position: absolute;
     height: 1.5px;
@@ -707,8 +708,8 @@ left: 40px;
     background: #000;
     bottom: -4px;
     left: 105%;
-} */
-/* .address::before {
+}
+.address::before {
     content: "";
     position: absolute;
     height: 1.5px;
@@ -716,7 +717,7 @@ left: 40px;
     background: #000;
     bottom: -34px;
     left: 105%;
-} */
+}
 .address-2 {
     padding-left: 77px;
     position: relative;

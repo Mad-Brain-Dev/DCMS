@@ -1,9 +1,3 @@
-/* body * {
-    visibility: hidden;
-  } */
-  /* .address {
-    visibility: visible;
-  } */
 
   .hide-print-button{
     display: none;
@@ -27,17 +21,6 @@
   hr{
     display: none;
   }
-  .address {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f0f0f0;
-    padding: 10px;
-  }
-
-
-
 
 .buttons{
     display: none;
@@ -624,6 +607,7 @@ left: 40px;
     font-size: 16px;
     font-weight: 600;
     margin-left: 25px;
+    margin-top: 10px;
 }
 .take-information ul {
     margin-top: 15px;
@@ -830,7 +814,7 @@ left: 40px;
     border: 2px solid #000;
     padding-top: 7px;
     padding-bottom: 5px;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
 }
 
 .right-usd-data {
@@ -898,7 +882,7 @@ left: 40px;
     content: "";
     position: absolute;
     height: 1.4px;
-    width: 477px;
+    width: 430px;
     background: #000;
     bottom: 0;
     left: 57px;
@@ -926,7 +910,7 @@ left: 40px;
     content: "";
     position: absolute;
     height: 1.4px;
-    width: 448px;
+    width: 600px;
     background: #000;
     bottom: 0;
     left: 113px;
@@ -981,7 +965,6 @@ left: 40px;
 /*  */
 
 .last-ul{
-    margin-top: 20px;
 }
 .last-ul li {
     list-style: none;
@@ -990,7 +973,7 @@ left: 40px;
 }
 
 .last-ul :nth-of-type(5) {
-    margin-top: 25px;
+    margin-top: 5px;
 }
 
 
@@ -1019,6 +1002,11 @@ left: 40px;
 }
 footer {
     margin-left: 200px;
+}
+.warrant-footer{
+    position: fixed;
+    bottom: 30px;
+
 }
 
 

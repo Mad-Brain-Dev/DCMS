@@ -24,9 +24,10 @@
 
 <body>
     <!--first agreement section start-->
-    <section class="first_agreement">
+
+    <div class="container">
         <div class="">
-            <div class="container first-agreement-container">
+            <div class=" first-agreement-container">
                 <div class="row hide-print-button">
                     <div class="col-12 d-flex justify-content-end mt-3">
 
@@ -36,11 +37,11 @@
                 </div>
                 <div class="row first-row justify-content-center client-agreement-header">
                     <div class=" align-items-start d-flex for-bottom-border">
-                        <img class="logo" src="{{ asset('images/logo.jpg') }}" alt=""><span
-                            class="debt-text">DEBT COLLECTION AGREEMENT</span>
+                        <img class="logo" src="{{ asset('images/logo.jpg') }}" alt=""><span class="debt-text">DEBT
+                            COLLECTION AGREEMENT</span>
                     </div>
                 </div>
-<hr>
+                <hr>
                 <div class="row">
                     <div class="col-7 ">
 
@@ -49,16 +50,16 @@
                     <div class="col-5">
                         <div class="row for-p2">
                             {{-- <span class="d-f-agreement">Date of
-                            Agreement:</span><span class="date_of_agreement_top">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d - F - Y') }}</span> --}}
+                                Agreement:</span><span class="date_of_agreement_top">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d - F - Y') }}</span> --}}
                             <div class="col-4 case-prov">DATE OF EXPIRY</div>
                             <div class="col-5 box-2nd">
                                 {{ \Carbon\Carbon::parse($client_details->date_of_expiry)->format('d  F  Y') }}</div>
 
                         </div>
                         {{-- <div class="col-10 d-flex pt-3 pb-2 expiry">
-                        <span class="d-f-expiry">Date of Expiry:</span> <span
-                            class="date_of_expiry">{{ \Carbon\Carbon::parse($client_details->date_of_expiry)->format('d - F - Y') }}</span>
-                    </div> --}}
+                            <span class="d-f-expiry">Date of Expiry:</span> <span
+                                class="date_of_expiry">{{ \Carbon\Carbon::parse($client_details->date_of_expiry)->format('d - F - Y') }}</span>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -82,8 +83,8 @@
                                         debt-factoring; and,</span></span><br />
 
                                 (b) Whereas, SC has represented to the Client that it is fully capable of performing the
-                                services described in this Agreement, and the Client<br><span
-                                    style="padding-left: 20px;"> has relied on such representation to select SC to
+                                services described in this Agreement, and the Client<br><span style="padding-left: 20px;">
+                                    has relied on such representation to select SC to
                                     provide the services; and, </span> <br />
 
                                 (c) Whereas, the Client now desire to enter into an agreement setting forth their rights
@@ -112,9 +113,8 @@
                                         </div>
 
                                         <div class=" col-md-9 pt-2 flex-fill bd-highlight">
-                                            The Client/s has agreed to pay an upfront fee of <span
-                                                class="s-dollar-sign"> S$ <span
-                                                    class="dollar-margin"><b>{{ $client_details->admin_fee }}</b></span>
+                                            The Client/s has agreed to pay an upfront fee of <span class="s-dollar-sign"> S$
+                                                <span class="dollar-margin"><b>{{ $client_details->admin_fee }}</b></span>
                                             </span>, for filing, administrative,
                                             and registration costs to SC for the engagement of this service. It is also
                                             understood that this payment
@@ -324,8 +324,8 @@
                                 receipt will be issued.
                             </li>
                             <li class="pl-4 pt-2">Cheques should be made to Securre Collection Pte Ltd. Internet
-                                banking should be via PayNow to <span
-                                    style="text-decoration: underline;">"87428158"</span></li>
+                                banking should be via PayNow to <span style="text-decoration: underline;">"87428158"</span>
+                            </li>
                             <li class="pl-4 pt-2">Bank transfer receipts should be submitted to us for bank transfers.
                                 (Upon receiving full payment your case file will be allocated accordingly and an
                                 official receipts will be issued via email/letter accordingly.
@@ -348,9 +348,7 @@
 
             </div>
         </div>
-        </div>
-    </section>
-    <!--first agreement section end-->
+    </div>
 
 
 
