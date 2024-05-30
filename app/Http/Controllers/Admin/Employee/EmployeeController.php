@@ -4,18 +4,21 @@ namespace App\Http\Controllers\Admin\Employee;
 
 use App\DataTables\EmployeeDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EmployeeEditRequest;
 use App\Http\Requests\EmployeeRequest;
 use App\Models\User;
+use App\Services\EmployeeEditService;
 use App\Services\EmployeeService;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
-    protected $employeeService;
+    protected $employeeService, $employeeEditService;
 
-    public function __construct(EmployeeService $employeeService)
+    public function __construct(EmployeeService $employeeService, EmployeeEditService $employeeEditService)
     {
         $this->employeeService = $employeeService;
+        $this->employeeEditService = $employeeEditService;
     }
     /**
      * Display a listing of the resource.
@@ -71,15 +74,33 @@ class EmployeeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        try {
+            set_page_meta('Edit Employee');
+            $employee = $this->employeeService->get($id);
+           // $userRole = $user->roles->pluck('name')->toArray();
+           // $roles = Role::latest()->get();
+            return view('admin.employees.edit', compact('employee'));
+        } catch (\Exception $e) {
+            log_error($e);
+        }
+        return back();
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(EmployeeEditRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        try {
+          $employee = $this->employeeEditService->storeOrUpdate($data, $id);
+        //  $user->syncRoles([$request->input('role')]);
+          record_updated_flash();
+        } catch (\Exception $e) {
+            return back();
+        }
+        return redirect()->route('admin.employees.index');
     }
 
     /**

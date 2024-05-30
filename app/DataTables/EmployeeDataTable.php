@@ -2,8 +2,6 @@
 
 namespace App\DataTables;
 
-use App\Models\Cases;
-use App\Models\Client;
 use App\Models\Installment;
 use App\Models\User;
 use App\Utils\GlobalConstant;
@@ -43,22 +41,20 @@ class EmployeeDataTable extends DataTable
                 ' . $buttons . '
                 </div>
                 </div>';
-            })->editColumn('collected_by_id', function ($item) {
-                return $item->user->name;
             })->editColumn('avatar', function ($item) {
                 return '<img class="ic-img-32" src="' . $item->avatar_url . '" alt="' . $item->last_name . '" />';
             })
-            ->rawColumns(['action', 'avatar','amount_paid'])
+            ->rawColumns(['action', 'avatar'])
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(Installment $model): QueryBuilder
+    public function query(User $model): QueryBuilder
 
     {
-        return $model->newQuery()->orderBy('id', 'DESC')->select('installments.*');
+        return $model->newQuery()->where('user_type', '=' , USER::USER_TYPE_EMPLOYEE)->orderBy('id', 'DESC')->select('users.*');
     }
 
     /**
@@ -67,7 +63,7 @@ class EmployeeDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('installment-table')
+            ->setTableId('user-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -94,8 +90,8 @@ class EmployeeDataTable extends DataTable
         return [
             //            Column::computed('DT_RowIndex', 'SL#'),
             // Column::make('avatar', 'avatar')->title('Avatar'),
-            Column::make('collected_by_id', 'collected_by_id')->title('Name'),
-            Column::make('amount_paid', 'amount_paid')->title('Amount Collected'),
+            Column::make('name', 'name')->title('Name'),
+            // Column::make('amount_paid', 'amount_paid')->title('Amount Collected'),
 
         ];
     }
