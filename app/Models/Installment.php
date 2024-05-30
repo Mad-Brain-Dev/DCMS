@@ -21,4 +21,10 @@ class Installment extends Model
     {
         return $this->belongsTo(Cases::class,'case_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'collected_by_id');
+    }
+
 }

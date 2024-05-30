@@ -18,6 +18,7 @@ class User extends Authenticatable
     public const USER_TYPE_ADMIN    = 'admin';
     public const USER_TYPE_DEBTOR    = 'debtor';
     public const USER_TYPE_CLIENT    = 'client';
+    public const USER_TYPE_EMPLOYEE   = 'employee';
 
     protected $appends = ['full_name', 'avatar_url'];
 

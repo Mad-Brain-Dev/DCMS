@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->user_type == User::USER_TYPE_ADMIN) {
+        if (Auth::user()->user_type == User::USER_TYPE_ADMIN || Auth::user()->user_type == User::USER_TYPE_EMPLOYEE) {
             $case_number = Cases::count();
             $total_admin_fee = number_format(Client::select('admin_fee')->get()->sum('admin_fee'), 2);
             $total_amount_owed = number_format(Cases::select('total_amount_owed')->get()->sum('total_amount_owed'), 2);

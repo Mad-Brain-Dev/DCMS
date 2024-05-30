@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Profile\UserProfileController;
 use App\Http\Controllers\Admin\Report\ReportController;
 use App\Http\Controllers\Admin\Role\RoleController;
@@ -113,6 +114,8 @@ Route::put('update/total/amount/balance/{id}', [CaseController::class, 'updateTo
 Route::prefix('admin')->as('admin.')->group(function () {
     // User
     Route::resource('users', UsersController::class);
+    // Employee
+    Route::resource('employees', EmployeeController::class);
     //Client
     Route::resource('clients', ClientController::class);
     //Debtor

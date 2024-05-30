@@ -115,7 +115,7 @@ class CaseController extends Controller
         $gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
         $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
         $installment = Installment::where('case_id', $id)->latest()->first();
-        return view('admin.cases.show', compact('case', 'gn_updates', 'fv_updates', 'client_details','installment'));
+        return view('admin.cases.show', compact('case', 'gn_updates', 'fv_updates', 'client_details', 'installment'));
     }
 
     /**
@@ -202,16 +202,20 @@ class CaseController extends Controller
             'remarks' => 'nullable',
         ]);
         $paid_amount = Cases::findOrFail($request->case_id);
+
         $installment = Installment::create([
             'case_id' => $request->case_id,
-            'amount_paid' =>$request->amount_paid,
+            'amount_paid' => $request->amount_paid,
             'next_payment_amount' => $request->next_payment_amount,
             'next_payment_date' => $request->next_payment_date,
             'payment_method' => $request->payment_method,
             'date_of_payment' => $request->payment_date,
 
         ]);
-        if($installment){
+        if ($installment) {
+            $installment->collected_by_id = auth()->user()->id;
+            $installment->save_by_user_type = auth()->user()->user_type;
+            $installment->save();
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             $paid_amount->save();
         }
@@ -267,14 +271,17 @@ class CaseController extends Controller
         $paid_amount = Cases::findOrFail($request->case_id);
         $installment = Installment::create([
             'case_id' => $request->case_id,
-            'amount_paid' =>$request->amount_paid,
+            'amount_paid' => $request->amount_paid,
             'next_payment_amount' => $request->next_payment_amount,
             'next_payment_date' => $request->next_payment_date,
             'payment_method' => $request->payment_method,
             'date_of_payment' => $request->payment_date,
 
         ]);
-        if($installment){
+        if ($installment) {
+            $installment->collected_by_id = auth()->user()->id;
+            $installment->save_by_user_type = auth()->user()->user_type;
+            $installment->save();
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             $paid_amount->save();
         };
@@ -424,7 +431,8 @@ class CaseController extends Controller
         return view('admin.agreement.agreement', compact('case_number', 'client_details'));
     }
 
-    public function printableLetter($id){
+    public function printableLetter($id)
+    {
         $case_number = Cases::find($id);
         $client_details = Client::where('client_id', $case_number->client_id)->first();
         return view('admin.agreement.letter', compact('case_number', 'client_details'));
@@ -506,11 +514,12 @@ class CaseController extends Controller
     //case create through ajax
     public function createCase(Request $request)
     {
-        $validator = Validator::make($request->all(), ['name' => 'required']);
+        $validator = Validator::make($request->all(), ['name' => 'required', 'client_id' => 'required']);
 
         if ($validator->fails()) {
             return response()->json([
                 'error' => $validator->errors()
+
             ]);
         }
 
@@ -585,7 +594,7 @@ class CaseController extends Controller
             $madedSKU = (int)$madedSKU;
             $settingPlusOne = $madedSKU + 1;
             // dd($settingPlusOne);
-            $newSKUId = $case_number .' '. $settingPlusOne;
+            $newSKUId = $case_number . ' ' . $settingPlusOne;
             return $newSKUId;
         } else {
             //            $setting = config('settings.admin_order_sku');

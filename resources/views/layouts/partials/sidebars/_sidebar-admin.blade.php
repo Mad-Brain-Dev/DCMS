@@ -30,6 +30,12 @@
                                 Users
                             </a>
                         </li>
+                        <li class="{{ request()->is('admin/employees*') ? 'mm-active' : '' }}">
+                            <a href="{{ route('admin.employees.index') }}"
+                                class="{{ request()->routeIs('admin.employees.index') ? 'active' : '' }}">
+                                Employees
+                            </a>
+                        </li>
                         <li class="{{ request()->is('admin/roles*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.roles.index') }}"
                                 class="{{ request()->routeIs('admin.roles.index') ? 'active' : '' }}">

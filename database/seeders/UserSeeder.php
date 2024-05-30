@@ -31,12 +31,24 @@ class UserSeeder extends Seeder
             ],
             [
                 'first_name'        => 'Client',
-                'last_name'         => 'Last',
-                'Name'         => 'Client Lase',
+                'last_name'         => 'One',
+                'Name'         => 'Client One',
                 'email'             => 'client@app.com',
                 'email_verified_at' => now(),
                 'password'          => Hash::make("12345678"),   // 12345678
                 'user_type'         => User::USER_TYPE_CLIENT,
+                'status'            => GlobalConstant::STATUS_ACTIVE,
+                'remember_token'    => Str::random(60),
+                'phone'             => '012345678910',
+            ],
+            [
+                'first_name'        => 'Employee',
+                'last_name'         => 'One',
+                'Name'         => 'Employee One',
+                'email'             => 'employee@app.com',
+                'email_verified_at' => now(),
+                'password'          => Hash::make("12345678"),   // 12345678
+                'user_type'         => User::USER_TYPE_EMPLOYEE,
                 'status'            => GlobalConstant::STATUS_ACTIVE,
                 'remember_token'    => Str::random(60),
                 'phone'             => '012345678910',
