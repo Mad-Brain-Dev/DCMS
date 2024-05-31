@@ -50,7 +50,7 @@
                                 <div class="table-wrapper">
                                     <table class="table table-earnings table-earnings__challenge">
                                         <thead>
-                                        <tr class="text-center text-capitalize">
+                                        <tr class="text-capitalize">
                                             <th>Debtor Name</th>
                                             <th>Last Payment Date</th>
                                             <th>Last Payment Amount</th>
@@ -63,11 +63,11 @@
                                         @foreach($dbBalanceData as $item)
                                             <tr>
                                                 <td>{{$item->name}}</td>
-                                                <td class="text-center">{{date('d-m-Y', strtotime($item->installments->last()?->date_of_payment))}}</td>
-                                                <td class="text-right">{{$item->installments->last()?->date_of_payment != null ? number_format($item->installments->last()?->amount_paid, 2, '.', ',').'$': 'N/A'}}</td>
-                                                <td class="text-center">{{date('d-m-Y', strtotime($item->installments->last()?->next_payment_date))}}</td>
-                                                <td class="text-right">{{$item->installments->last()?->next_payment_amount !=null ? number_format($item->installments->last()?->next_payment_amount, 2, '.', ',').'$':'N/A'}}</td>
-                                                <td class="text-right">{{$item->total_amount_balance}}</td>
+                                                <td>{{date('d-m-Y', strtotime($item->installments->last()?->date_of_payment))}}</td>
+                                                <td>{{$item->installments->last()?->date_of_payment != null ? number_format($item->installments->last()?->amount_paid, 2, '.', ',').'$': 'N/A'}}</td>
+                                                <td>{{date('d-m-Y', strtotime($item->installments->last()?->next_payment_date))}}</td>
+                                                <td>{{$item->installments->last()?->next_payment_amount !=null ? number_format($item->installments->last()?->next_payment_amount, 2, '.', ',').'$':'N/A'}}</td>
+                                                <td>{{$item->total_amount_balance}}</td>
                                             </tr>
                                         @endforeach
 
@@ -93,7 +93,7 @@
                                 <div class="table-wrapper">
                                     <table class="table table-earnings table-earnings__challenge">
                                         <thead>
-                                        <tr class="text-center text-capitalize">
+                                        <tr class="text-capitalize">
                                             <th>Client Name</th>
                                             <th>Total Admin Fee</th>
                                             <th>Total Paid</th>
@@ -104,12 +104,48 @@
                                         @foreach($adminFee as $item)
                                             <tr>
                                                 <td>{{$item->name}}</td>
-                                                <td class="text-right">{{$item->admin_fee !=null ? number_format($item->admin_fee, 2, '.', ',').'$':'N/A'}}</td>
-                                                <td class="text-right">{{$item->admin_fee_paid !=null ? number_format($item->admin_fee_paid, 2, '.', ',').'$':'N/A'}}</td>
-                                                <td class="text-right">{{$item->admin_fee_balance !=null ? number_format($item->admin_fee_balance, 2, '.', ',').'$':'N/A'}}</td>
+                                                <td>{{$item->admin_fee !=null ? number_format($item->admin_fee, 2, '.', ',').'$':'N/A'}}</td>
+                                                <td>{{$item->admin_fee_paid !=null ? number_format($item->admin_fee_paid, 2, '.', ',').'$':'N/A'}}</td>
+                                                <td>{{$item->admin_fee_balance !=null ? number_format($item->admin_fee_balance, 2, '.', ',').'$':'N/A'}}</td>
                                             </tr>
                                         @endforeach
 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between" style="padding-left: 30px;padding-right: 30px;">
+                        <h4 class="card-title mb-3">Collection By Employee</h4>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-wrapper">
+                                    <table class="table table-earnings table-earnings__challenge">
+                                        <thead>
+                                        <tr class="text-capitalize">
+                                            <th>SL</th>
+                                            <th>Employee Name</th>
+                                            <th>Amount Collected</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="table-body">
+                                        @foreach($installmentByEmployees as $installmentByEmployee)
+                                            <tr>
+                                                <td>{{$loop->iteration}}</td>
+                                                <td>{{$installmentByEmployee->user->name}}</td>
+                                                <td>{{$installmentByEmployee->total_amounts !=null ? number_format($installmentByEmployee->total_amounts, 2, '.', ',').'$':'N/A'}}</td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>

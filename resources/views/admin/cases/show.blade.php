@@ -63,160 +63,33 @@
         </div>
     </div>
     <div class="row">
-        {{-- <div class="col-md-12 text-end pb-4 balance-btn">
-            <div><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal0">
-                    Update Balance
-                </button></div>
-        </div> --}}
-        {{-- <div class="div text-end pb-3">
-            <a href="{{ URL('/show/general/case/update/' . $case->id) }}" class="btn btn-primary">GN Update</a>
-            <a href="{{ URL('/show/field/visit/update/' . $case->id) }}" class="btn btn-primary">FV Update</a>
-            <a href="{{ URL('/show/correspondence/case/update/' . $case->id) }}" class="btn btn-primary">CR Update</a>
-            <a href="{{ URL('/show/miscellaneous/case/update/' . $case->id) }}" class="btn btn-primary">MS Update</a>
-        </div> --}}
-        {{-- <div class="col-md-4">
-            <div class="card">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th scope="row">Case Number</th>
-                            <td>{{ $case->case_number }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Current Status</th>
-                            <td>{{ $case->current_status }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">CL Name</th>
-                            <td>{{ $case->client->name }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">CL Company</th>
-                            <td>{{ $client_details->company_name }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date Of Warrant</th>
-                            <td>{{ date('d-m-Y', strtotime($client_details->date_of_warrant)) }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date of Expiry</th>
-                            <td>{{ date('d-m-Y', strtotime($client_details->date_of_expiry)) }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Field Visits</th>
-                            <td>{{ $case->field_visit }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Bal Field Visits</th>
-                            <td>{{ $case->bal_field_visit }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Manager IC</th>
-                            <td>{{ $case->manager_ic }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Collector IC</th>
-                            <td>{{ $case->collector_ic }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+       <div class="col-md-12">
+       <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">SL</th>
+                    <th scope="col">Employee Name</th>
+                    <th scope="col">Total Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 @foreach ($installmentByEmployees as $installmentByEmployee )
+                 <tr>
+                    <th scope="row">{{  $loop->iteration }}</th>
+                    <td> {{ $installmentByEmployee->user->name}}</td>
+                    <td>{{$installmentByEmployee->total_amounts !=null ? number_format($installmentByEmployee->total_amounts, 2, '.', ',').' '.'$':'N/A'}}</td>
+                  </tr>
+                 @endforeach
 
-            </div>
-        </div> --}}
-        {{-- <div class="col-md-4">
-            <div class="card">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th scope="row">Collection Commission</th>
-                            <td>{{ $case->collection_commission }} %</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Debt Amount</th>
-                            <td>{{ $case->debt_amount }} $</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Legal Cost</th>
-                            <td>{{ $case->legal_cost }} $</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Debt Interest/Annum</th>
-                            <td>{{ $case->debt_interest }} %</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Interest Start Date</th>
-                            <td>{{ date('d-m-Y', strtotime($case->interest_start_date)) }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Interest End Date</th>
-                            <td>{{ date('d-m-Y', strtotime($case->interest_end_date)) }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Total Interest</th>
-                            <td>{{ $case->total_interest }} $</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Total Amount Owed</th>
-                            <td>{{ number_format($case->total_amount_owed, 2, '.', ',') }} $</td>
-                        </tr>
-                        <tr>
-                                <th scope="row">Total Amount Paid</th>
-                                <td>{{ $case->total_amount_paid }}</td>
-                            </tr>
-                        <tr>
-                            <th scope="row">Total Amount Balance</th>
-                            <td>{{ number_format($case->total_amount_balance, 2, '.', ',') }} $</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Per Installment Amount</th>
-                            <td>{{ $case->per_installment_amount }} $ (Total Installment: {{ $case->installment_number }}
-                                )</td>
-                        </tr>
-
-
-                    </tbody>
-                </table>
-            </div>
-        </div> --}}
-        {{-- <div class="col-md-4">
-            <div class="card">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th scope="row">Debtor Name</th>
-                            <td>{{ $case->name }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Debtor NRIC</th>
-                            <td>{{ $case->nric }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Debtor Company Name</th>
-                            <td>{{ $case->company_name }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Debtor Company UEN</th>
-                            <td>{{ $case->company_uen }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Debtor Phone</th>
-                            <td>{{ $case->phone }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Debtor Email</th>
-                            <td>{{ $case->email }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Debtor Address</th>
-                            <td>{{ $case->adderss }}</td>
-                    </tbody>
-                </table>
-            </div>
-        </div> --}}
-
-
+                </tbody>
+              </table>
+              {{-- {{ $installmentByEmployees->links() }} --}}
+           </div>
+        </div>
+       </div>
     </div>
-
     <div class="row">
         <div class="col-md-4">
             <div id="success" class="text-success"></div>

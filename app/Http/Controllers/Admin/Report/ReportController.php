@@ -93,7 +93,14 @@ class ReportController extends Controller
             'statuses'=>$statuses,
             'colors'=>$colors,
         ];
-        return view('admin.reports.report',compact('dbBalanceData','adminFee','monthly_order_data_array','monthly_admin_fee_data_array','dataPie'));
+
+        $installmentByEmployees = Installment::select('collected_by_id', \DB::raw('SUM(amount_paid) as total_amounts'))
+        ->groupBy('collected_by_id')
+        ->orderBy('total_amounts', 'desc')
+        ->get();
+
+
+        return view('admin.reports.report',compact('dbBalanceData','adminFee','monthly_order_data_array','monthly_admin_fee_data_array','dataPie','installmentByEmployees'));
     }
 }
 

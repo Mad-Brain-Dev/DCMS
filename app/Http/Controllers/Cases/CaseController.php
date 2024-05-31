@@ -115,7 +115,11 @@ class CaseController extends Controller
         $gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
         $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
         $installment = Installment::where('case_id', $id)->latest()->first();
-        return view('admin.cases.show', compact('case', 'gn_updates', 'fv_updates', 'client_details', 'installment'));
+        $installmentByEmployees = Installment::where('case_id', $id)->select('collected_by_id', \DB::raw('SUM(amount_paid) as total_amounts'))
+        ->groupBy('collected_by_id')
+        ->orderBy('total_amounts', 'desc')
+        ->get();
+        return view('admin.cases.show', compact('case', 'gn_updates', 'fv_updates', 'client_details', 'installment','installmentByEmployees'));
     }
 
     /**
