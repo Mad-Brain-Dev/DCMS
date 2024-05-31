@@ -15,7 +15,7 @@
                         <div class="card-box shadow-none p-4">
                             <div class="p-2">
                                 <div class="text-center mt-4">
-                                    <a href="index.html"><img src="admin/images/logo-sm.png" height="50"
+                                    <a href="{{ route('home') }}"><img src="admin/images/logo-sm.png" height="50"
                                             alt="logo"></a>
                                 </div>
 
@@ -110,3 +110,23 @@
         </div>
     </div>
 @endsection
+
+@push('style')
+
+<style>
+
+@media (max-width: 991px) {
+
+    .accountbg{
+        display: none;
+    }
+    .account-page-full{
+        width: 100%
+    }
+
+ }
+
+
+</style>
+
+@endpush
