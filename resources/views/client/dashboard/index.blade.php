@@ -64,23 +64,23 @@
     <div class="col-md-6">
         <table class="table">
             <tbody>
-                <tr class="table-primary">
+                <tr class="table-light">
                     <th scope="row">Name</th>
                     <td class="text-end">{{ $client->name }}</td>
                 </tr>
-                <tr class="table-success">
+                <tr class="table-light">
                     <th scope="row">NRIC</th>
                     <td class="text-end">{{ $client->nric }}</td>
                 </tr>
-                <tr class="table-info">
+                <tr class="table-light">
                     <th scope="row">Company Name</th>
                     <td class="text-end">{{ $client->company_name }}</td>
                 </tr>
-                <tr class="table-warning">
+                <tr class="table-light">
                     <th scope="row">Company Uen</th>
                     <td class="text-end">{{ $client->company_uen }}</td>
                 </tr>
-                <tr class="table-danger">
+                <tr class="table-light">
                     <th scope="row">Phone</th>
                     <td class="text-end">{{ $client->phone }}</td>
                 </tr>
@@ -88,69 +88,42 @@
                     <th scope="row">Email</th>
                     <td class="text-end">{{ $client->email }}</td>
                 </tr>
-                <tr class="table-primary">
+                <tr class="table-light">
                     <th scope="row">Address</th>
                     <td class="text-end">{{ $client->address }}</td>
                 </tr>
-
-                <tr class="table-success">
-                    <th scope="row">Field Visit Per Case</th>
-                    <td class="text-end">{{ $client->field_visit_per_case }}</td>
-                </tr>
-
-                <tr class="table-info">
-                    <th scope="row">Date of Agreement</th>
-                    <td class="text-end">{{ date('d-m-Y', strtotime($client->date_of_agreement)) }}</td>
-                </tr>
-                <tr class="table-danger">
-                    <th scope="row">Date of Expiry</th>
-                    <td class="text-end">{{ date('d-m-Y', strtotime($client->date_of_expiry)) }}</td>
-                </tr>
-
             </tbody>
         </table>
     </div>
     <div class="col-md-6">
         <table class="table">
             <tbody>
+                <tr class="table-light">
+                    <th scope="row">Total Field Visit</th>
+                    <td class="text-end">{{ $client->field_visit_per_case }}</td>
+                </tr>
+                <tr class="table-light">
+                    <th scope="row">Date of Agreement</th>
+                    <td class="text-end">{{ date('d-m-Y', strtotime($client->date_of_agreement)) }}</td>
+                </tr>
+                <tr class="table-light">
+                    <th scope="row">Date of Expiry</th>
+                    <td class="text-end">{{ date('d-m-Y', strtotime($client->date_of_expiry)) }}</td>
+                </tr>
 
-                <tr class="table-primary">
+                <tr class="table-light">
                     <th scope="row">Collection Commission</th>
                     <td class="text-end">{{ $client->collection_commission }} %</td>
                 </tr>
-                <tr class="table-success">
-                    <th scope="row">Administrative Fee</th>
-                    <td class="text-end">$ {{number_format($client->administrative_fee  ? $client->administrative_fee : 0, 2, '.', ',') }} </td>
-                </tr>
-                <tr class="table-info">
-                    <th scope="row">Enforcement Fee</th>
-                    <td class="text-end">$ {{number_format($client->enforcement_fee ? $client->enforcement_fee : 0, 2, '.', ',') }} </td>
-                </tr>
-                <tr class="table-warning">
-                    <th scope="row">Professional Fee</th>
-                    <td class="text-end">$ {{number_format($client->professional_fee ? $client->professional_fee : 0, 2, '.', ',') }} </td>
-                </tr>
-                <tr class="table-danger">
-                    <th scope="row">Annual Fee</th>
-                    <td class="text-end">$ {{ number_format($client->annual_fee ? $client->annual_fee : 0, 2, '.', ',') }} </td>
-                </tr>
                 <tr class="table-light">
-                    <th scope="row">Skip Tracing Fee</th>
-                    <td class="text-end">$ {{ number_format($client->skip_tracing_fee ? $client->skip_tracing_fee : 0, 2, '.', ',') }} </td>
-                </tr>
-                <tr class="table-primary">
-                    <th scope="row">Overseas Allowance</th>
-                    <td class="text-end">$ {{ number_format($client->overseas_allowance ? $client->overseas_allowance : 0, 2, '.', ',') }} </td>
-                </tr>
-                <tr class="table-success">
                     <th scope="row">Admin Fee</th>
                     <td class="text-end">$ {{ number_format($client->admin_fee, 2, '.', ',') }} </td>
                 </tr>
-                <tr class="table-info">
+                <tr class="table-light">
                     <th scope="row">Admin Fee Paid</th>
                     <td class="text-end">$ {{ number_format($client->admin_fee_paid, 2, '.', ',') }} </td>
                 </tr>
-                <tr class="table-danger">
+                <tr class="table-light">
                     <th scope="row">Admin Fee Balance</th>
                     <td class="text-end">$ {{ number_format($client->admin_fee_balance, 2, '.', ',') }} </td>
                 </tr>
