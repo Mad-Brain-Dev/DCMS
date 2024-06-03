@@ -45,6 +45,8 @@ class Cases extends Model
         'debt_amount',
         'legal_cost',
         'debt_interest',
+        'guarantor_name',
+        'guarantor_address',
         'interest_start_date',
         'interest_end_date',
         'total_interest',

@@ -53,10 +53,10 @@
                         <li>[<span style="color: #ff0000">{{ $case_number->adderss }}</span>]</li>
 
                         <li>
-                            <b>[<span style="color: #ff0000">GUARANTOR NAME</span>]</b>
+                            <b>[<span style="color: #ff0000">{{ $case_number->guarantor_name }}</span>]</b>
                         </li>
 
-                        <li>[<span style="color: #ff0000">GUARANTOR ADDRESS</span>]</li>
+                        <li>[<span style="color: #ff0000">{{ $case_number->guarantor_address }}</span>]</li>
                     </ul>
                 </div>
 
@@ -95,7 +95,7 @@
 
                 <div class="col-md-5 d-flex justify-content-end">
                     <p style="font-weight: 600; font-size: 18px">
-                        [<span style="font-weight: 700; color: #ff0000">DATE OF LETTER</span>]
+                        [<span style="font-weight: 700; color: #ff0000">{{ date('d-m-Y', strtotime($case_number->created_at)) }}</span>]
                     </p>
                 </div>
             </div>

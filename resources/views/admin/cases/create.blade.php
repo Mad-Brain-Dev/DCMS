@@ -195,6 +195,19 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Guarantor Name</label>
+                                <input type="text" name="guarantor_name" class="form-control" placeholder="Guarantor name"
+                                    value="{{ old('guarantor_name') }}">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Guarantor Address</label>
+                                <input type="text" name="guarantor_address" class="form-control" placeholder="Enter guarantor Address"
+                                    value="{{ old('guarantor_address') }}">
+                                @error('guarantor_address')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -381,7 +394,6 @@
                         client_id: client_id
                     },
                     success: function(response) {
-                        console.log(response);
                         var dateOfAgreement = response.dateofagreement.date_of_agreement;
                         $('#date_of_agreement').val(dayjs(dateOfAgreement).format(
                             'YYYY-MM-DD'));

@@ -555,6 +555,8 @@ class CaseController extends Controller
             "email" => $request->email,
             "phone" => $request->phone,
             "adderss" => $request->adderss,
+            "guarantor_name" => $request->guarantor_name,
+            "guarantor_address" => $request->guarantor_address,
             "debt_amount" => $request->debt_amount,
             "legal_cost" => $request->legal_cost,
             "total_interest" => $request->total_interest,
@@ -605,7 +607,6 @@ class CaseController extends Controller
             $setting = 10000;
             $settingPlusOne = $setting + 1;
             $newSKUId = $case_number . ' ' . $settingPlusOne;
-
             return $newSKUId;
         }
     }
