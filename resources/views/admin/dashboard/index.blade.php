@@ -30,11 +30,16 @@
 
         </div>
         <div class="col-md-4 mb-3 text-end">
-            <a class="btn btn-primary" href="{{ route('admin.clients.create') }}">Create Client</a>
+            @can('Button Create Client')
+                <a class="btn btn-primary" href="{{ route('admin.clients.create') }}">Create Client</a>
+            @endcan
+            @can('Button Create Case')
             <a class="btn btn-primary" href="{{ route('admin.cases.create') }}">Create Case</a>
+            @endcan
         </div>
     </div>
     <div class="row">
+        @can('Card Total Cases')
         <div class="col-xl-3 col-md-6">
             <div class="card mini-stat bg-primary text-white">
                 <div class="card-body">
@@ -48,6 +53,9 @@
                 </div>
             </div>
         </div>
+        @endcan
+
+        @can('Card Total Admin Fee')
         <div class="col-xl-3 col-md-6">
             <div class="card mini-stat bg-primary text-white">
                 <div class="card-body">
@@ -61,19 +69,23 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6">
-            <div class="card mini-stat bg-primary text-white">
-                <div class="card-body">
-                    <div class="">
-                        <div class="float-start bill">
-                            <i class="fas fa-money-check-alt"></i>
-                        </div>
-                        <h5 class="font-size-16 text-uppercase text-white-50">Total Amount Owed</h5>
-                        <h4 class="fw-medium font-size-24"> {{ $total_amount_owed }} $</h4>
+        @endcan
+       @can('Card Total Amount Owed')
+       <div class="col-xl-3 col-md-6">
+        <div class="card mini-stat bg-primary text-white">
+            <div class="card-body">
+                <div class="">
+                    <div class="float-start bill">
+                        <i class="fas fa-money-check-alt"></i>
                     </div>
+                    <h5 class="font-size-16 text-uppercase text-white-50">Total Amount Owed</h5>
+                    <h4 class="fw-medium font-size-24"> {{ $total_amount_owed }} $</h4>
                 </div>
             </div>
         </div>
+    </div>
+       @endcan
+        @can('Card Amount Paid')
         <div class="col-xl-3 col-md-6">
             <div class="card mini-stat bg-primary text-white">
                 <div class="card-body">
@@ -87,6 +99,8 @@
                 </div>
             </div>
         </div>
+        @endcan
+        @can('Card Bal Amount')
         <div class="col-xl-3 col-md-6">
             <div class="card mini-stat bg-primary text-white">
                 <div class="card-body">
@@ -100,6 +114,7 @@
                 </div>
             </div>
         </div>
+        @endcan
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -238,46 +253,46 @@
         }
 
         document.getElementById("pdg").onclick = function() {
-                window.location.href = "{{ route('get.case.status', 'pdg') }}";
+            window.location.href = "{{ route('get.case.status', 'pdg') }}";
         }
         document.getElementById("opn").onclick = function() {
-                window.location.href = "{{ route('get.case.status', 'opn') }}";
+            window.location.href = "{{ route('get.case.status', 'opn') }}";
         }
         document.getElementById("fld").onclick = function() {
-                window.location.href = "{{ route('get.case.status', 'fld') }}";
+            window.location.href = "{{ route('get.case.status', 'fld') }}";
         }
         document.getElementById("dsp").onclick = function() {
-                window.location.href = "{{ route('get.case.status', 'dsp') }}";
+            window.location.href = "{{ route('get.case.status', 'dsp') }}";
         }
         document.getElementById("inv").onclick = function() {
-                window.location.href = "{{ route('get.case.status', 'inv') }}";
+            window.location.href = "{{ route('get.case.status', 'inv') }}";
         }
         document.getElementById("ngd").onclick = function() {
-                window.location.href = "{{ route('get.case.status', 'ngd') }}";
+            window.location.href = "{{ route('get.case.status', 'ngd') }}";
         }
         document.getElementById("ins").onclick = function() {
-                window.location.href = "{{ route('get.case.status', 'ins') }}";
+            window.location.href = "{{ route('get.case.status', 'ins') }}";
         }
         document.getElementById("fst").onclick = function() {
-                window.location.href = "{{ route('get.case.status', 'fst') }}";
+            window.location.href = "{{ route('get.case.status', 'fst') }}";
         }
         document.getElementById("pst").onclick = function() {
-                window.location.href = "{{ route('get.case.status', 'pst') }}";
+            window.location.href = "{{ route('get.case.status', 'pst') }}";
         }
         document.getElementById("ohc").onclick = function() {
-                window.location.href = "{{ route('get.case.status', 'ohc') }}";
+            window.location.href = "{{ route('get.case.status', 'ohc') }}";
         }
         document.getElementById("ohm").onclick = function() {
-                window.location.href = "{{ route('get.case.status', 'ohm') }}";
+            window.location.href = "{{ route('get.case.status', 'ohm') }}";
         }
         document.getElementById("cst").onclick = function() {
-                window.location.href = "{{ route('get.case.status', 'cst') }}";
+            window.location.href = "{{ route('get.case.status', 'cst') }}";
         }
         document.getElementById("afc").onclick = function() {
-                window.location.href = "{{ route('get.case.status', 'afc') }}";
+            window.location.href = "{{ route('get.case.status', 'afc') }}";
         }
         document.getElementById("ult").onclick = function() {
-                window.location.href = "{{ route('get.case.status', 'ult') }}";
+            window.location.href = "{{ route('get.case.status', 'ult') }}";
         }
     </script>
 @endpush
@@ -297,7 +312,21 @@
         .wallet {
             margin-right: 15px;
         }
-        #pdg, #opn, #fld, #dsp, #inv, #ngd, #ins, #fst, #pst, #ohc, #ohm, #cst, #afc, #ult{
+
+        #pdg,
+        #opn,
+        #fld,
+        #dsp,
+        #inv,
+        #ngd,
+        #ins,
+        #fst,
+        #pst,
+        #ohc,
+        #ohm,
+        #cst,
+        #afc,
+        #ult {
             cursor: pointer;
         }
     </style>

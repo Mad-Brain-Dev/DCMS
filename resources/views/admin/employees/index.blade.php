@@ -7,7 +7,9 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h4 class="card-title mb-3">Employees</h4>
+                        @can('Employee Create')
                         <a href="{{ route('admin.employees.create') }}" class="btn btn-sm btn-primary text-capitalize" style="padding-top: 8px;">Create Employee</a>
+                        @endcan
                     </div>
                     {!! $dataTable->table(['class'=>'table-responsive']) !!}
                 </div>

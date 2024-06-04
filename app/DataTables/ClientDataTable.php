@@ -25,16 +25,28 @@ class ClientDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($item) {
                 $buttons = '';
-                    $buttons .= '<a class="dropdown-item" href="' . route('admin.clients.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
 
+
+                if (auth()->user()->can('Edit Clinet')) {
+                    $buttons .= '<a class="dropdown-item" href="' . route('admin.clients.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
+                }
+
+                if (auth()->user()->can('Client View')) {
                     $buttons .= '<a class="dropdown-item" href="' . route('admin.clients.show', $item->id) . '" title="Edit"><i class="fa fa-eye" aria-hidden="true"></i> View </a>';
 
+                }
+
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
-                        $buttons .= '<form action="' . route('admin.clients.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
-                        <input type="hidden" name="_token" value="' . csrf_token() . '">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Delete</button></form>
-                        ';
+
+                if (auth()->user()->can('Delete Client')) {
+
+                    $buttons .= '<form action="' . route('admin.clients.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
+                    <input type="hidden" name="_token" value="' . csrf_token() . '">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Delete</button></form>
+                    ';
+
+                }
 
                 return '<div class="btn-group dropleft">
                 <a href="#" onclick="return false;" class="btn btn-sm btn-dark text-white dropdown-toggle dropdown" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>

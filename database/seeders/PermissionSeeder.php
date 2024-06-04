@@ -26,18 +26,19 @@ class PermissionSeeder extends Seeder
             'Case Status'
         ],
         'Administration' => [
-            'Users',
-            'Button User Create',
-            'Button User Edit',
-            'Button User Delete',
-            'Employees',
-            'Button Employee Create',
-            'Button Employee Edit',
-            'Button Employee Delete',
-            'Roles',
-            'Button Role Create',
-            'Button Role Edit',
-            'Button Role Delete'
+            'Show Administration',
+            'Show Users',
+            'User Create',
+            'User Edit',
+            'User Delete',
+            'Show Employees',
+            'Employee Create',
+            'Employee Edit',
+            'Employee Delete',
+            'Show Roles',
+            'Role Create',
+            'Role Edit',
+            'Role Delete'
         ],
         'Clients' => [
             'Client View',
