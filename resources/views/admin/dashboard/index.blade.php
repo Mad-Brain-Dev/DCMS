@@ -34,86 +34,86 @@
                 <a class="btn btn-primary" href="{{ route('admin.clients.create') }}">Create Client</a>
             @endcan
             @can('Button Create Case')
-            <a class="btn btn-primary" href="{{ route('admin.cases.create') }}">Create Case</a>
+                <a class="btn btn-primary" href="{{ route('admin.cases.create') }}">Create Case</a>
             @endcan
         </div>
     </div>
     <div class="row">
         @can('Card Total Cases')
-        <div class="col-xl-3 col-md-6">
-            <div class="card mini-stat bg-primary text-white">
-                <div class="card-body">
-                    <div class="">
-                        <div class="float-start mini-stat-img total_case">
-                            <i class="fas fa-layer-group"></i>
+            <div class="col-xl-3 col-md-6">
+                <div class="card mini-stat bg-primary text-white">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="float-start mini-stat-img total_case">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <h5 class="font-size-16 text-uppercase text-white-50">Total Cases</h5>
+                            <h4 class="fw-medium font-size-24">{{ $case_number }}</h4>
                         </div>
-                        <h5 class="font-size-16 text-uppercase text-white-50">Total Cases</h5>
-                        <h4 class="fw-medium font-size-24">{{ $case_number }}</h4>
                     </div>
                 </div>
             </div>
-        </div>
         @endcan
 
         @can('Card Total Admin Fee')
-        <div class="col-xl-3 col-md-6">
-            <div class="card mini-stat bg-primary text-white">
-                <div class="card-body">
-                    <div class="">
-                        <div class="float-start bill">
-                            <i class="fas fa-money-check-alt"></i>
+            <div class="col-xl-3 col-md-6">
+                <div class="card mini-stat bg-primary text-white">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="float-start bill">
+                                <i class="fas fa-money-check-alt"></i>
+                            </div>
+                            <h5 class="font-size-16 text-uppercase text-white-50">Total Admin Fee</h5>
+                            <h4 class="fw-medium font-size-24"> {{ $total_admin_fee }} $</h4>
                         </div>
-                        <h5 class="font-size-16 text-uppercase text-white-50">Total Admin Fee</h5>
-                        <h4 class="fw-medium font-size-24"> {{ $total_admin_fee }} $</h4>
                     </div>
                 </div>
             </div>
-        </div>
         @endcan
-       @can('Card Total Amount Owed')
-       <div class="col-xl-3 col-md-6">
-        <div class="card mini-stat bg-primary text-white">
-            <div class="card-body">
-                <div class="">
-                    <div class="float-start bill">
-                        <i class="fas fa-money-check-alt"></i>
-                    </div>
-                    <h5 class="font-size-16 text-uppercase text-white-50">Total Amount Owed</h5>
-                    <h4 class="fw-medium font-size-24"> {{ $total_amount_owed }} $</h4>
-                </div>
-            </div>
-        </div>
-    </div>
-       @endcan
-        @can('Card Amount Paid')
-        <div class="col-xl-3 col-md-6">
-            <div class="card mini-stat bg-primary text-white">
-                <div class="card-body">
-                    <div class="">
-                        <div class="float-start bill">
-                            <i class="fas fa-money-check"></i>
+        @can('Card Total Amount Owed')
+            <div class="col-xl-3 col-md-6">
+                <div class="card mini-stat bg-primary text-white">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="float-start bill">
+                                <i class="fas fa-money-check-alt"></i>
+                            </div>
+                            <h5 class="font-size-16 text-uppercase text-white-50">Total Amount Owed</h5>
+                            <h4 class="fw-medium font-size-24"> {{ $total_amount_owed }} $</h4>
                         </div>
-                        <h5 class="font-size-16 text-uppercase text-white-50">Paid Amount</h5>
-                        <h4 class="fw-medium font-size-24"> {{ $total_amount_paid }} $</h4>
                     </div>
                 </div>
             </div>
-        </div>
+        @endcan
+        @can('Card Amount Paid')
+            <div class="col-xl-3 col-md-6">
+                <div class="card mini-stat bg-primary text-white">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="float-start bill">
+                                <i class="fas fa-money-check"></i>
+                            </div>
+                            <h5 class="font-size-16 text-uppercase text-white-50">Paid Amount</h5>
+                            <h4 class="fw-medium font-size-24"> {{ $total_amount_paid }} $</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
         @endcan
         @can('Card Bal Amount')
-        <div class="col-xl-3 col-md-6">
-            <div class="card mini-stat bg-primary text-white">
-                <div class="card-body">
-                    <div class="">
-                        <div class="float-start bill">
-                            <i class="fas fa-money-bill"></i>
+            <div class="col-xl-3 col-md-6">
+                <div class="card mini-stat bg-primary text-white">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="float-start bill">
+                                <i class="fas fa-money-bill"></i>
+                            </div>
+                            <h5 class="font-size-16 text-uppercase text-white-50">Bal Amount</h5>
+                            <h4 class="fw-medium font-size-24"> {{ $total_amount_balance }} $</h4>
                         </div>
-                        <h5 class="font-size-16 text-uppercase text-white-50">Bal Amount</h5>
-                        <h4 class="fw-medium font-size-24"> {{ $total_amount_balance }} $</h4>
                     </div>
                 </div>
             </div>
-        </div>
         @endcan
     </div>
     <div class="row">
