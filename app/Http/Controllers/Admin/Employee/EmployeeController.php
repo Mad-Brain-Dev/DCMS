@@ -94,7 +94,11 @@ class EmployeeController extends Controller
     {
         $data = $request->validated();
         try {
-          $employee = $this->employeeEditService->storeOrUpdate($data, $id);
+         $employee = $this->employeeEditService->storeOrUpdate($data, $id);
+         $edited_employee = User::find($id);
+         $edited_employee->name =  $edited_employee->first_name .' '. $edited_employee->last_name;
+         $edited_employee->save();
+
         //  $user->syncRoles([$request->input('role')]);
           record_updated_flash();
         } catch (\Exception $e) {
