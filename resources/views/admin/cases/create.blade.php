@@ -122,16 +122,6 @@
                             </div>
                             <input type="hidden" name="bal_field_visit" placeholder="Enter Field Visit Number Here"
                                 class="form-control" id="bal_field_visit" value="">
-
-
-                            {{-- <div class="mb-3 col-md-4">
-                                <label class="form-label">Bal Field Visits</label>
-                                <input type="text" name="bal_field_visit" class="form-control"
-                                    placeholder="Enter Bal Field Visits" value="">
-                                @error('bal_field_visit')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -258,24 +248,6 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-
-
-                            {{-- <div class="mb-3 col-md-3">
-                                <label class="form-label">Installment Number</label>
-                                <input type="number" name="installment_number" id="installment_number" class="form-control"
-                                    placeholder="Enter Installment Number" id="installment_number">
-                                @error('installment_number')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Per Installment Amount</label>
-                                <input type="number" name="per_installment_amount" readonly id="per_installment_amount" class="form-control"
-                                    placeholder="Per Installment will Auto Calculate" id="per_installment_amount">
-                                @error('per_installment_amount')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div> --}}
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Interest Start Date</label>
                                 <input type="date" name="interest_start_date" class="form-control" id="start_date"
@@ -292,14 +264,6 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-                            {{-- <div class="mb-3 col-md-3">
-                                <label class="form-label">Total Amount Paid</label>
-                                <input type="Number" name="total_amount_paid" class="form-control"
-                                    placeholder="Enter Total Amount Paid" value="{{ old('total_amount_paid') }}">
-                                @error('total_amount_paid')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div> --}}
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Total Amount Balance</label>
                                 <input type="number" name="total_amount_balance" readonly id="total_amount_balance"
@@ -308,9 +272,6 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-                            {{-- <div class="mb-3 col-md-3">
-                              <button class="btn btn-primary" type="button" id="calculate">Calculate</button>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -319,14 +280,6 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            {{-- <div class="mb-3 col-md-3">
-                                <label class="form-label">Administrative Fee</label>
-                                <input type="number" name="administrative_fee" class="form-control"
-                                    placeholder="Enter Administrative Fee" value="{{ old('administrative_fee') }}">
-                                @error('administrative_fee')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div> --}}
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Remarks</label>
                                 <textarea name="remarks" class="form-control" id="" cols="30" rows="1">Enter Remarks Here</textarea>
@@ -358,9 +311,6 @@
     <div class="modal fade" tabindex="-1" role="dialog" id="showMsg">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                {{-- <div class="modal-body" style="text-align: center;">
-                    <h4 class="pb-3">Do you want to print this warrant?</h4>
-                </div> --}}
                 <div class="modal-footer d-flex justify-content-between" style="border: none;" >
 
                     <a href="{{ route('admin.cases.index') }}" class="btn btn-danger" class="btn btn-secondary" >Close</a>
@@ -471,7 +421,7 @@
             // });
 
             $.ajax({
-                url: "{{ route('create.case') }}",
+                url: "{{ route('admin.cases.store') }}",
                 type: "POST",
                 data: new FormData(this),
                 dataType: 'json',

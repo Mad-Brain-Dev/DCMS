@@ -51,28 +51,51 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ClientRequest $request)
+    public function store(Request $request)
     {
 
+        $validator = Validator::make($request->all(), ['name' => 'required', 'abbr' => 'required|max:3']);
 
-        $data = $request->validated();
-        try {
-
-            $client = $this->clientService->storeOrUpdate($data, null);
-
-            if ($client) {
-                $user = new User();
-                $user->name = $request['name'];
-                $user->email = $request['email'];
-                $user->password =  Hash::make("12345678");   // 12345678;
-                $user->save();
-                $client->client_id = $user->id;
-                $client->save();
-            }
-            record_created_flash();
-        } catch (\Exception $e) {
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()
+            ]);
         }
-        return redirect()->route('admin.clients.index');
+        $client = Client::create($request->all());
+        if ($client) {
+
+            $user = new User();
+            $user->name = $request['name'];
+            $user->email = $request['email'];
+            $user->password =  Hash::make("12345678");   // 12345678;
+            $user->save();
+
+           if($user){
+            $admin_fee_paid = new AdminFee();
+            $admin_fee_paid->admin_fee_amount = $request->admin_fee_paid;
+            $admin_fee_paid->client_id = $client->id;
+            $admin_fee_paid->collection_date = date('Y-m-d H:i:s');
+            $admin_fee_paid->save();
+            $client->client_id = $user->id;
+            $client->save();
+           }
+           if($client){
+            $data = [
+                'status' => 200,
+                'success' => 'Data Fetched Successfully',
+                'result' =>  $client,
+            ];
+            event(new NewClientCreated($client));
+            return response()->json($data);
+           }
+           else{
+            $data = [
+                'status' => 500,
+                'success' => 'Something Went Wrong',
+                'result' =>  [],
+            ];
+           }
+        }
     }
 
     /**
@@ -124,52 +147,6 @@ class ClientController extends Controller
             return back();
         } catch (\Exception $e) {
             return back();
-        }
-    }
-
-    public function createClient(Request $request)
-    {
-        $validator = Validator::make($request->all(), ['name' => 'required', 'abbr' => 'required|max:3']);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'error' => $validator->errors()
-            ]);
-        }
-        $client = Client::create($request->all());
-        if ($client) {
-
-            $user = new User();
-            $user->name = $request['name'];
-            $user->email = $request['email'];
-            $user->password =  Hash::make("12345678");   // 12345678;
-            $user->save();
-
-           if($user){
-            $admin_fee_paid = new AdminFee();
-            $admin_fee_paid->admin_fee_amount = $request->admin_fee_paid;
-            $admin_fee_paid->client_id = $client->id;
-            $admin_fee_paid->collection_date = date('Y-m-d H:i:s');
-            $admin_fee_paid->save();
-            $client->client_id = $user->id;
-            $client->save();
-           }
-           if($client){
-            $data = [
-                'status' => 200,
-                'success' => 'Data Fetched Successfully',
-                'result' =>  $client,
-            ];
-            event(new NewClientCreated($client));
-            return response()->json($data);
-           }
-           else{
-            $data = [
-                'status' => 500,
-                'success' => 'Something Went Wrong',
-                'result' =>  [],
-            ];
-           }
         }
     }
     public function printableClientAgreement($id)

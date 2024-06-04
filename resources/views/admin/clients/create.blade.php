@@ -226,7 +226,7 @@
                 });
 
                 $.ajax({
-                    url: "{{ route('create.client') }}",
+                    url: "{{ route('admin.clients.store') }}",
                     type: "POST",
                     data: new FormData(this),
                     dataType: 'json',

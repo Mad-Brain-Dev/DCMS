@@ -55,54 +55,55 @@ class CaseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CaseRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->validated();
-        try {
-            $count = Cases::count();
-            if ($count <= 0) {
-                $case =  $this->caseService->storeOrUpdate($data, null);
-                $case_id = $case->id;
-                if ($case) {
-                    $case = Cases::where('id', $case_id)->first();
-                    $case->case_sku = "1";
-                    $case->save();
-                    if ($case) {
-                        $case_number = Cases::where('id', $case_id)->first();
-                        $case_number->case_number = $case_number->case_number . '000' . $case_number->case_sku;
-                        $case_number->save();
-                    }
-                }
-            } else {
-                $case =  $this->caseService->storeOrUpdate($data, null);
-                $case_id = $case->id;
-                if ($case) {
-                    $case = Cases::where('id', $case_id)->first();
-                    $case->save();
-                    if ($case) {
-                        $case_number = Cases::where('id', $case_id)->first();
-                        $case_number->case_number = $case_number->case_number . '000' . $case_number->case_sku + $case->id;
-                        $case_number->save();
-                    }
-                }
-            }
-        } catch (\Exception $e) {
+        $validator = Validator::make($request->all(), ['name' => 'required', 'client_id' => 'required']);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()
+
+            ]);
         }
-
-
-
-        $client_details = Client::where('client_id', $case_number->client_id)->first();
-        $total_amount_owed = $case_number->total_amount_owed; // Total value
-        $portion = $client_details->collection_commission; // Portion of the total value
-
-        // Calculate percentage
-        $percentage = ($portion * $total_amount_owed) / 100;
-
-        $total_fees = ($client_details->administrative_fee ? $client_details->administrative_fee : 0) + ($client_details->enforcement_fee ? $client_details->enforcement_fee : 0) + ($client_details->professional_fee ? $client_details->professional_fee : 0) + ($client_details->annual_fee ? $client_details->annual_fee : 0) + ($client_details->skip_tracing_fee ? $client_details->skip_tracing_fee : 0) + ($client_details->overseas_allowance ? $client_details->overseas_allowance : 0) + $percentage;
-
-        return view('admin.agreement.agreement', compact('case_number', 'client_details', 'total_fees'));
-        //  return redirect()->route('printable.case.agreement', $case_number->id);
-        record_created_flash();
+        $case_number = $request->case_number;
+        $data = [
+            "case_number" => $case_number,
+            "case_sku" => $this->caseSkuId($case_number),
+            "client_id" => $request->client_id,
+            "date_of_warrant" => $request->date_of_warrant,
+            "manager_ic" => $request->manager_ic,
+            "collector_ic" => $request->collector_ic,
+            "current_status" => $request->current_status,
+            "case_summary" => $request->case_summary,
+            "collection_commission" => $request->collection_commission,
+            "field_visit" => $request->field_visit,
+            "bal_field_visit" => $request->bal_field_visit,
+            "name" => $request->name,
+            "nric" => $request->nric,
+            "company_name" => $request->company_name,
+            "company_uen" => $request->company_uen,
+            "email" => $request->email,
+            "phone" => $request->phone,
+            "adderss" => $request->adderss,
+            "guarantor_name" => $request->guarantor_name,
+            "guarantor_address" => $request->guarantor_address,
+            "debt_amount" => $request->debt_amount,
+            "legal_cost" => $request->legal_cost,
+            "total_interest" => $request->total_interest,
+            "total_amount_owed" => $request->total_amount_owed,
+            "debt_interest" => $request->debt_interest,
+            "interest_start_date" => $request->interest_start_date,
+            "interest_end_date" => $request->interest_end_date,
+            "total_amount_balance" => $request->total_amount_balance,
+            "remarks" => $request->remarks,
+        ];
+        $result = Cases::create($data);
+        $data = [
+            'status' => 200,
+            'success' => 'Data Fetched Successfully',
+            'result' =>  $result,
+        ];
+        return response()->json($data);
     }
     /**
      * Display the specified resource.
@@ -514,68 +515,6 @@ class CaseController extends Controller
             return redirect()->back();
         }
     }
-
-    //case create through ajax
-    public function createCase(Request $request)
-    {
-        $validator = Validator::make($request->all(), ['name' => 'required', 'client_id' => 'required']);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'error' => $validator->errors()
-
-            ]);
-        }
-
-        // if (Cases::count() < 1) {
-        //     $result = Cases::create($request->all());
-        //     $result->case_sku = 1;
-        //     $result->save();
-        // } else {
-        //     $result = Cases::create($request->all());
-
-        // }
-        $case_number = $request->case_number;
-        $data = [
-            "case_number" => $case_number,
-            "case_sku" => $this->caseSkuId($case_number),
-            "client_id" => $request->client_id,
-            "date_of_warrant" => $request->date_of_warrant,
-            "manager_ic" => $request->manager_ic,
-            "collector_ic" => $request->collector_ic,
-            "current_status" => $request->current_status,
-            "case_summary" => $request->case_summary,
-            "collection_commission" => $request->collection_commission,
-            "field_visit" => $request->field_visit,
-            "bal_field_visit" => $request->bal_field_visit,
-            "name" => $request->name,
-            "nric" => $request->nric,
-            "company_name" => $request->company_name,
-            "company_uen" => $request->company_uen,
-            "email" => $request->email,
-            "phone" => $request->phone,
-            "adderss" => $request->adderss,
-            "guarantor_name" => $request->guarantor_name,
-            "guarantor_address" => $request->guarantor_address,
-            "debt_amount" => $request->debt_amount,
-            "legal_cost" => $request->legal_cost,
-            "total_interest" => $request->total_interest,
-            "total_amount_owed" => $request->total_amount_owed,
-            "debt_interest" => $request->debt_interest,
-            "interest_start_date" => $request->interest_start_date,
-            "interest_end_date" => $request->interest_end_date,
-            "total_amount_balance" => $request->total_amount_balance,
-            "remarks" => $request->remarks,
-        ];
-        $result = Cases::create($data);
-        $data = [
-            'status' => 200,
-            'success' => 'Data Fetched Successfully',
-            'result' =>  $result,
-        ];
-        return response()->json($data);
-    }
-
 
 
     //get case by status
