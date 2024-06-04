@@ -13,61 +13,48 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-       $permissions = [
-           'Dashboard' => [
-               'Dashboard Cards',
-               'Dashboard Charts',
-               'Dashboard Pie Charts',
-           ],
-           'User' => [
-               'All Users',
-               'Create User',
-               'Edit User',
-               'Delete User',
-           ],
-           'Debtor' => [
-               'All Debtor',
-               'Create Debtor',
-               'Edit Debtor',
-               'Delete Debtor',
-           ],
-           'Grading' => [
-               'All Gradings',
-               'Create Grading',
-               'Edit Grading',
-               'Delete Grading',
-           ],
-           'Receiving' => [
-               'All Receiving',
-               'Create Receiving',
-               'Edit Receiving',
-               'Delete Receiving',
-           ],
-           'Labels' => [
-               'All Labels',
-               'Create Labels',
-               'Edit Labels',
-               'Delete Labels',
-           ],
-           'Completion' => [
-               'All Completion',
-               'Create Completion',
-               'Edit Completion',
-               'Delete Completion',
-           ],
-           'Shipping' => [
-               'All Shipping',
-               'Create Shipping',
-               'Edit Shipping',
-               'Delete Shipping',
-           ],
-           'View' => [
-               'All Views',
-               'Create View',
-               'Edit View',
-               'Delete View',
-           ],
-       ];
+        $permissions = [
+            'Dashboard' => [
+                'Show Dashborad',
+                'Card Total Cases',
+                'Card Total Admin Fee',
+                'Card Total Amount Owed',
+                'Card Amount Paid',
+                'Card Bal Amount',
+                'Button Create Client',
+                'Button Create Case',
+                'Case Status'
+            ],
+            'Administration' => [
+                'Users',
+                'Button User Create',
+                'Button User Edit',
+                'Button User Delete',
+                'Employees',
+                'Button Employee Create',
+                'Button Employee Edit',
+                'Button Employee Delete',
+                'Roles',
+                'Button Role Create',
+                'Button Role Edit',
+                'Button Role Delete'
+            ],
+            'Clients' => [
+                'Clients',
+                'Create Client',
+                'Edit Clinet',
+                'Delete Clinet'
+            ],
+            'Cases' => [
+                'Cases',
+                'Create Case',
+                'Edit Case',
+                'Delete Case',
+            ],
+            'Reports' => [
+                'Show Report',
+            ],
+        ];
 
         foreach ($permissions as $parent => $childs) {
             $id = Permission::create(['name' => $parent])->id;
