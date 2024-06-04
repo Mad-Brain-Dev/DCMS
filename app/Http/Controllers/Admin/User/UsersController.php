@@ -8,6 +8,7 @@ use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\Cases;
 use App\Models\User;
+use App\Services\UserEditService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -15,11 +16,12 @@ use Spatie\Permission\Models\Role;
 class UsersController extends Controller
 {
 
-    protected $userService;
+    protected $userService, $userEditService;
 
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, UserEditService $userEditService)
     {
         $this->userService = $userService;
+        $this->userEditService = $userEditService;
     }
 
     public function index(UserDataTable $dataTable)
@@ -41,6 +43,8 @@ class UsersController extends Controller
 
         try {
             $user = $this->userService->storeOrUpdate($data, null);
+            $user->name = $user->first_name.' '.$user->last_name;
+            $user->save();
             $user->assignRole([$request->input('role')]);
             record_created_flash();
         } catch (\Exception $e) {
@@ -66,9 +70,11 @@ class UsersController extends Controller
     public function update(UserEditRequest $request, $id)
     {
          $data = $request->validated();
+         $user = $this->userEditService->storeOrUpdate($data, $id);
+         $user = User::find($id);
+         $user->syncRoles([$request->input('role')]);
         try {
-          $user = $this->userService->storeOrUpdate($data, $id);
-          $user->syncRoles([$request->input('role')]);
+
           record_updated_flash();
         } catch (\Exception $e) {
             return back();

@@ -42,7 +42,6 @@
                                 <div class="mb-3">
                                     <label class="form-label">Select Role <span class="error">*</span></label>
                                     <select class="form-control select2" name="role[]" required multiple="multiple">
-                                        <option selected disabled>Select One</option>
                                         @forelse ($roles as $role)
                                             <option value="{{ $role->name }}" {{ $user->id ? (in_array($role->name, $userRole) ? 'selected' : '' ) : ''}}>{{ Str::ucfirst($role->name) }}</option>
                                         @empty
