@@ -21,6 +21,18 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
+                'first_name'        => 'Mad',
+                'last_name'         => 'Brain',
+                'name'         => 'Mad Brain',
+                'email'             => 'info@madbrain.dev',
+                'email_verified_at' => now(),
+                'password'          => Hash::make("12345678"),   // 12345678
+                'user_type'         => User::USER_TYPE_ADMIN,
+                'status'            => GlobalConstant::STATUS_ACTIVE,
+                'remember_token'    => Str::random(60),
+                'phone'             => '012345678910',
+            ],
+            [
                 'first_name'        => 'Supper',
                 'last_name'         => 'Admin',
                 'name'         => 'Admin',

