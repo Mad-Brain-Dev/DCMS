@@ -27,7 +27,7 @@
 
     <div class="container">
         <div class="">
-            <div class=" first-agreement-container">
+            <div class="first-agreement-container">
                 <div class="row hide-print-button">
                     <div class="col-12 d-flex justify-content-end mt-3">
 
@@ -36,9 +36,11 @@
                     </div>
                 </div>
                 <div class="row first-row justify-content-center client-agreement-header">
-                    <div class=" align-items-start d-flex for-bottom-border">
-                        <img class="logo" src="{{ asset('images/logo.jpg') }}" alt=""><span class="debt-text">DEBT
-                            COLLECTION AGREEMENT</span>
+                    <div class="col-md-12">
+                        <div class="align-items-start d-flex for-bottom-border for-margin-of-logo">
+                            <img class="logo" src="{{ asset('images/logo.jpg') }}" alt=""><span class="debt-text">DEBT
+                                COLLECTION AGREEMENT</span>
+                        </div>
                     </div>
                 </div>
                 <hr>
@@ -212,7 +214,7 @@
                             </li>
 
 
-                            <li class="point-five">
+                            <li>
                                 In addition to the above-mentioned fees, the respective Debt Commission as per the debt
                                 amount recovered is payable to us, whether the debt is recovered in full or in part, or
                                 upon termination or expiry of this Agreement, as whatever the case may be.
@@ -233,7 +235,7 @@
                                     <li style="margin-top: 8px;">7.1 If after 90 days from the date of this Agreement,
                                         we are unable to obtain any repayment of the debt from the debtor; or</li>
 
-                                    <li style="margin-top: 8px;">7.2 In the case of a payment of the debt by instalments
+                                    <li class="point-five" style="margin-top: 8px;">7.2 In the case of a payment of the debt by instalments
                                         / partial-payment, a period of 120 days has lapsed since payment of the <br>
                                         <span style="padding-left: 24px;"> last instalment or part-payment by the
                                             debtor(s) and no further instalment / part-payment has been received from

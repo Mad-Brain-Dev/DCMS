@@ -15,7 +15,7 @@
 
 <body>
    <div class="container">
-    <div class="col-md-12">
+    <div class="col-md-12 print-button">
         <div class=" d-flex justify-content-end mt-2">
             <a href="{{ route('admin.cases.index') }}" class="btn btn-danger mr-1">Back</a>
             <button class="btn btn-primary" id="letter_print" onclick="printLetter()">Print</button>
@@ -25,7 +25,7 @@
     <section style="margin-bottom: 4rem;">
         <!-- logo div end -->
         <div class="container-padding">
-            <div class="row mb-5 header" style="margin-top: 4rem;">
+            <div class="row mb-3 header" style="margin-top: 4rem;">
                 <div class="col-1">
                     <div class="first_col"></div>
                 </div>
@@ -175,7 +175,7 @@
                     </li>
 
                 </ol>
-                <div id="point-eight">
+                <div>
                     <ul>
                         <li style="padding-bottom: 20px;">
                             8. In the meantime, our client and we hereby reserve our rights
@@ -232,7 +232,7 @@
 
 
             <div class="col-md-11" style="padding-left: 50px;">
-                <h5>Sincerely ,</h5>
+                <h5 id="point-eight">Sincerely ,</h5>
                 <div class="d-flex">
                     <div class="new-logo-div">
                         <img src="{{ asset('admin/images/new_logo.png') }}" alt="logo" />

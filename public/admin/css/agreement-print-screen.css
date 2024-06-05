@@ -32,7 +32,20 @@ hr {
     background: #000;
     padding-top: 2px;
     transform: translateY(-21px);
+    display: none;
 }
+.client-agreement-header{
+    position: relative;
+}
+
+.client-agreement-header::after{
+    position: absolute;
+    content: '';
+    height: 2px;
+    width: 100%;
+    background-color: #000;
+    bottom: 0px;
+  }
 
 .text-to {
     position: relative;
@@ -158,6 +171,7 @@ hr {
 .for-p2 {
     padding-left: 60px;
     box-sizing: border-box;
+    margin-top: 20px;
 }
 
 .box-1st {

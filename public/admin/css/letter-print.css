@@ -14,11 +14,10 @@ body {
 }
 
 .debtor-part {
-    margin-top: 160px;
+    margin-top: 140px;
 }
 
 /* common css end */
-
 .container-padding {
     padding-bottom: 1rem;
     padding-right: 2rem;
@@ -218,6 +217,9 @@ body {
 }
 
 @media print {
+    .print-button{
+        display: none;
+    }
     .header {
         position: fixed;
         top: 0;
@@ -227,7 +229,7 @@ body {
         bottom: 0;
     }
     #point-eight {
-        padding-top: 170px;
+        padding-top: 150px;
     }
     .footer-text{
         font-size: 12px !important;

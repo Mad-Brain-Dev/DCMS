@@ -15,7 +15,9 @@ body{
 
 /* common css end */
 
-
+.print-button{
+    margin-top: 30px;
+}
 .container-padding{
     padding-bottom: 1rem;
     padding-right: 2rem;
