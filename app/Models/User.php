@@ -15,7 +15,6 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable,HasRoles;
 
     public const FILE_STORE_PATH = 'users_avatar';
-    public const USER_TYPE_SUPER_ADMIN = 'Super Admin';
     public const USER_TYPE_ADMIN    = 'admin';
     public const USER_TYPE_DEBTOR    = 'debtor';
     public const USER_TYPE_CLIENT    = 'client';

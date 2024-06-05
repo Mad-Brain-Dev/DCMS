@@ -38,7 +38,7 @@ class ClientDataTable extends DataTable
 
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
 
-                if (auth()->user()->can('Delete Client')) {
+                if (auth()->user()->can('Delete Clinet')) {
 
                     $buttons .= '<form action="' . route('admin.clients.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
                     <input type="hidden" name="_token" value="' . csrf_token() . '">
