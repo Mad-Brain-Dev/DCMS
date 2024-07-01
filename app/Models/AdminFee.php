@@ -11,7 +11,8 @@ class AdminFee extends Model
     protected $fillable = [
         'client_id',
         'admin_fee_amount',
-        'collection_date'
+        'collection_date',
+        'collected_by'
     ];
 
     public function client()

@@ -125,6 +125,20 @@
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
+                                <label class="form-label">Collected By</label>
+                                <select class="form-select select2" id="current_status" name="collected_by"
+                                    aria-label="Default select example">
+                                    <option selected disabled>Select Employee</option>
+                                    @foreach ($employees as $employee )
+                                    <option value="{{ $employee->name }}">{{ $employee->name }}</option>
+                                    @endforeach
+
+                                </select>
+                                @error('collected_by')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-3">
                                 <label class="form-label">Date of Agreement</label>
                                 <input type="date" name="date_of_agreement" class="form-control"
                                     placeholder="Address" value="{{ old('date_of_agreement') }}">

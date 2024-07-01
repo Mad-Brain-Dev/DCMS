@@ -45,7 +45,8 @@ class ClientController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('admin.clients.create', compact('roles'));
+        $employees = User::where('user_type', 'employee')->get();
+        return view('admin.clients.create', compact('roles', 'employees'));
     }
 
     /**
@@ -75,6 +76,7 @@ class ClientController extends Controller
             $admin_fee_paid->admin_fee_amount = $request->admin_fee_paid;
             $admin_fee_paid->client_id = $client->id;
             $admin_fee_paid->collection_date = date('Y-m-d H:i:s');
+            $admin_fee_paid->collected_by = $request->collected_by;
             $admin_fee_paid->save();
             $client->client_id = $user->id;
             $client->save();

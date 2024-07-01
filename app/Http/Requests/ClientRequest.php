@@ -37,6 +37,7 @@ class ClientRequest extends FormRequest
             'date_of_agreement' => ['nullable'],
             'date_of_expiry' => ['nullable'],
             'collection_commission' => ['nullable'],
+            'collected_by' => ['nullable'],
             'field_visit_per_case' => ['nullable'],
         ];
         return $rules;

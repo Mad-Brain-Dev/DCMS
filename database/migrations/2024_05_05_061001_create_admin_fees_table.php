@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('client_id');
             $table->string('admin_fee_amount')->nullable();
             $table->timestamp('collection_date')->nullable();
+            $table->string('collected_by')->nullable();
             $table->timestamps();
         });
     }

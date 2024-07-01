@@ -187,7 +187,7 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Guarantor Name</label>
-                                <input type="text" name="guarantor_name" class="form-control" placeholder="Guarantor name"
+                                <input type="text" name="guarantor_name" class="form-control" placeholder="Enter guarantor name"
                                     value="{{ old('guarantor_name') }}">
                             </div>
                             <div class="mb-3 col-md-3">
@@ -195,6 +195,32 @@
                                 <input type="text" name="guarantor_address" class="form-control" placeholder="Enter guarantor Address"
                                     value="{{ old('guarantor_address') }}">
                                 @error('guarantor_address')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Guarantor Name 2</label>
+                                <input type="text" name="guarantor_name2" class="form-control" placeholder="Enter guarantor name 2"
+                                    value="{{ old('guarantor_name2') }}">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Guarantor Address 2</label>
+                                <input type="text" name="guarantor_address2" class="form-control" placeholder="Enter guarantor Address 2"
+                                    value="{{ old('guarantor_address2') }}">
+                                @error('guarantor_address2')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Guarantor Name 3</label>
+                                <input type="text" name="guarantor_name3" class="form-control" placeholder="Enter guarantor name 3"
+                                    value="{{ old('guarantor_name3') }}">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Guarantor Address 3</label>
+                                <input type="text" name="guarantor_address3" class="form-control" placeholder="Enter guarantor Address 3"
+                                    value="{{ old('guarantor_address3') }}">
+                                @error('guarantor_address3')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>

@@ -38,6 +38,10 @@ return new class extends Migration
             $table->string('adderss')->nullable();
             $table->string('guarantor_name')->nullable();
             $table->string('guarantor_address')->nullable();
+            $table->string('guarantor_name2')->nullable();
+            $table->string('guarantor_address2')->nullable();
+            $table->string('guarantor_name3')->nullable();
+            $table->string('guarantor_address3')->nullable();
             $table->string('debt_amount')->nullable();
             $table->string('legal_cost')->nullable();
             $table->string('amount_unpaid')->nullable();
