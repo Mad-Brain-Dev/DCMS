@@ -44,7 +44,8 @@ class PermissionSeeder extends Seeder
             'Client View',
             'Create Client',
             'Edit Clinet',
-            'Delete Clinet'
+            'Delete Clinet',
+            'Client Agreement View'
         ],
         'Cases' => [
             'Case View',

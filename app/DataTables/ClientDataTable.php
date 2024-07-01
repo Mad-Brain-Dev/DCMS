@@ -35,6 +35,10 @@ class ClientDataTable extends DataTable
                     $buttons .= '<a class="dropdown-item" href="' . route('admin.clients.show', $item->id) . '" title="Edit"><i class="fa fa-eye" aria-hidden="true"></i> View </a>';
 
                 }
+                if (auth()->user()->can('Client Agreement View')) {
+                    $buttons .= '<a class="dropdown-item" href="' . route('printable.client.agreement', $item->id) . '" title="Edit"><i class="fa fa-eye" aria-hidden="true"></i> Agreement </a>';
+
+                }
 
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
 

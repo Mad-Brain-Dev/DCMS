@@ -103,14 +103,20 @@
                         <span class=""> in Singapore Dollars:</span>
                     </div>
                     <div class="col-7 align-items-center d-flex">
+                        @php
+                            $amountInWords = numberToWords($case_number->total_amount_owed);
+                        @endphp
                         <span class="singapore-dollars">
-                            {{ ucwords((new NumberFormatter('en_IN', NumberFormatter::SPELLOUT))->format($case_number->total_amount_owed)) }}
-                            Plus Interests
+                            {{ $amountInWords }}
+                            plus interests
                         </span>
                     </div>
                     <div class="col-3 p-3  new-usd d-flex align-items-center justify-content-end">
+                        @php
+                             $formattedAmount = number_format($case_number->total_amount_owed, 2, '.', ',');
+                        @endphp
                         ( <span class="new-usd-after">SG </span> <span class="digit-amount"><i class="fa fa-usd"
-                                aria-hidden="true"></i>{{ $case_number->total_amount_owed }}</span> <span
+                                aria-hidden="true"></i>{{ $formattedAmount }}</span> <span
                             class="some-symble"> /+%</span> )
 
                         {{-- <span class="right-usd-data">{{ $case_number->total_amount_owed }}</span><span class="bracket_end">) --}}

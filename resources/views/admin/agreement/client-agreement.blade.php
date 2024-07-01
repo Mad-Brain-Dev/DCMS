@@ -55,7 +55,7 @@
                                 Agreement:</span><span class="date_of_agreement_top">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d - F - Y') }}</span> --}}
                             <div class="col-4 case-prov">DATE OF EXPIRY</div>
                             <div class="col-5 box-2nd">
-                                {{ \Carbon\Carbon::parse($client_details->date_of_expiry)->format('d  F  Y') }}</div>
+                                {{date('m-d-Y', strtotime($client_details->date_of_expiry))}}</div>
 
                         </div>
                         {{-- <div class="col-10 d-flex pt-3 pb-2 expiry">
@@ -71,7 +71,7 @@
                         <ol class="first-ol">
                             <li class="f-ol-li1"> This Agreement, entered into as of <span class="text-to">today,
                                 </span> <span
-                                    class="to-margin">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d  F  Y') }}</span>
+                                    class="to-margin">{{date('m-d-Y', strtotime($client_details->date_of_agreement))}}</span>
                                 , by and between us, <b>Securre Collection Pte. Ltd.</b> (hereon referred to as "SC")
                                 <span class="text-and"> and </span><span
                                     class="and-margin">{{ $client_details->name }}</span> (hereon referred to as the
@@ -292,7 +292,7 @@
                                     Director)</span></span><br><br>
                             <span class="director">Designation:</span><br><br>
                             <span class="director">Date: <span
-                                    class="ravin-date">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d  F  Y') }}</span></span>
+                                    class="ravin-date">{{date('m-d-Y', strtotime($client_details->date_of_agreement))}}</span></span>
                             <p class="enclosed"> * Enclosed herein: Warrant to Act, herewith: T&C.</p>
                         </div>
 
@@ -309,8 +309,7 @@
                             <span class="company_uen">{{ $client_details->company_uen }}</span><br><br>
 
                             <span class="Date">Date: </span> <span
-                                class="date_uen">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d  F  Y') }}</span><br><br><br>
-
+                                class="date_uen">{{date('m-d-Y', strtotime($client_details->date_of_agreement))}}</span><br><br><br>
                             <span class="stamp">Signature/Stamp:</span>
                         </div>
                     </div>
