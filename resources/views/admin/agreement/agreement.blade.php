@@ -104,7 +104,7 @@
                     </div>
                     <div class="col-7 align-items-center d-flex">
                         @php
-                            $amountInWords = numberToWords($case_number->total_amount_owed);
+                            $amountInWords = ucfirst(numberToWords($case_number->total_amount_owed));
                         @endphp
                         <span class="singapore-dollars">
                             {{ $amountInWords }}
