@@ -130,11 +130,19 @@
                                     aria-label="Default select example">
                                     <option selected disabled>Select Employee</option>
                                     @foreach ($employees as $employee )
-                                    <option value="{{ $employee->name }}">{{ $employee->name }}</option>
+                                    <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                                     @endforeach
 
                                 </select>
                                 @error('collected_by')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Collection Date</label>
+                                <input type="date" name="collection_date" class="form-control"
+                                    placeholder="Collection Date" value="{{ old('collection_date') }}">
+                                @error('collection_date')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>

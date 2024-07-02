@@ -104,6 +104,19 @@
                         @enderror
                     </div>
                     <div class="form-group mt-2">
+                        <label class="form-label">Collected By</label>
+                        <select class="form-select select2" id="current_status" name="collected_by"
+                            aria-label="Default select example">
+                            <option selected disabled>Select Employee</option>
+                            @foreach ($employees as $employee )
+                            <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('collected_by')
+                            <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mt-2">
                         <label for="subt">Admin Fee Balance</label>
                         <input type="number" class="form-control" name="admin_fee_balance" readonly id="subt"
                             value="{{ $client->admin_fee_balance }}">

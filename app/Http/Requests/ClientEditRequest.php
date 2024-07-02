@@ -31,13 +31,6 @@ class ClientEditRequest extends FormRequest
             'company_uen' => ['nullable'],
             'phone'      => ['nullable'],
             'address' => ['nullable'],
-            'date_of_agreement' => ['nullable'],
-            'date_of_expiry' => ['nullable'],
-            'admin_fee' => ['nullable'],
-            'admin_fee_paid' => ['nullable'],
-            'admin_fee_balance' => ['nullable'],
-            'collection_commission' => ['nullable'],
-            'field_visit_per_case' => ['nullable'],
         ];
         return $rules;
     }

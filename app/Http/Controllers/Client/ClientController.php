@@ -107,8 +107,9 @@ class ClientController extends Controller
     {
         set_page_meta('Client Details');
         $client = Client::find($id);
+        $employees = User::where('user_type', 'employee')->get();
         $cases = Cases::where('client_id', $client->client_id)->get();
-        return view('admin.clients.show', compact('client', 'cases'));
+        return view('admin.clients.show', compact('client', 'cases', 'employees'));
     }
 
     /**
@@ -117,7 +118,8 @@ class ClientController extends Controller
     public function edit(string $id)
     {
         $client = Client::find($id);
-        return view('admin.clients.edit', compact('client'));
+        $employees = User::where('user_type', 'employee')->get();
+        return view('admin.clients.edit', compact('client','employees'));
     }
 
     /**
@@ -161,13 +163,15 @@ class ClientController extends Controller
         $request->validate([
             'admin_fee_paid' => 'required',
             'client_id' => 'required',
-            'collection_date' => 'required'
+            'collection_date' => 'required',
+            'collected_by' => 'required'
         ]);
         $fee = AdminFee::create(
             [
                 'admin_fee_amount' =>$request->admin_fee_paid,
                 'collection_date' =>$request->collection_date,
                 'client_id' =>$request->client_id,
+                'collected_by' =>$request->collected_by,
             ]
         );
         if($fee){
