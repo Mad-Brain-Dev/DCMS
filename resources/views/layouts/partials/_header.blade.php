@@ -12,6 +12,7 @@
                         <img src="https://duckbd.com/talentable-frontend/assets/admin/images/logo/logo.png" alt="">
                     </span>
                 </a> --}}
+                <img src="{{ asset('admin/images/logo-sm.png') }}" class="img-fluid" width="100px">
 
                 <a href="#" class="logo">
                     <span class="logo-sm">
