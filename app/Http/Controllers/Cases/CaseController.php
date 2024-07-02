@@ -116,6 +116,7 @@ class CaseController extends Controller
     {
         set_page_meta('Details');
         $case = Cases::find($id);
+        $employees = User::where('user_type', 'employee')->get();
         $client_details = Client::where('client_id', $case->client_id)->first();
         $gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
         $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
@@ -124,7 +125,7 @@ class CaseController extends Controller
         ->groupBy('collected_by_id')
         ->orderBy('total_amounts', 'desc')
         ->get();
-        return view('admin.cases.show', compact('case', 'gn_updates', 'fv_updates', 'client_details', 'installment','installmentByEmployees'));
+        return view('admin.cases.show', compact('case', 'gn_updates', 'fv_updates', 'client_details', 'installment','installmentByEmployees','employees'));
     }
 
     /**
@@ -202,6 +203,7 @@ class CaseController extends Controller
             'fv_date' => 'nullable',
             'amount_paid' => 'required',
             'payment_date' => 'required',
+            'collected_by' => 'required',
             'gn_summary' => 'nullable',
             'payment_method' => 'nullable',
             'next_payment_date' => 'required',
@@ -216,6 +218,7 @@ class CaseController extends Controller
             'case_id' => $request->case_id,
             'amount_paid' => $request->amount_paid,
             'next_payment_amount' => $request->next_payment_amount,
+            'collected_by' => $request->collected_by,
             'next_payment_date' => $request->next_payment_date,
             'payment_method' => $request->payment_method,
             'date_of_payment' => $request->payment_date,
@@ -272,6 +275,7 @@ class CaseController extends Controller
             'payment_date' => 'required',
             'next_payment_date' => 'required',
             'next_payment_amount' => 'required',
+            'collected_by' => 'required',
             'payment_method' => 'nullable',
             'fv_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_summary' => 'nullable',
@@ -284,6 +288,7 @@ class CaseController extends Controller
             'next_payment_amount' => $request->next_payment_amount,
             'next_payment_date' => $request->next_payment_date,
             'payment_method' => $request->payment_method,
+            'collected_by' => $request->collected_by,
             'date_of_payment' => $request->payment_date,
 
         ]);
