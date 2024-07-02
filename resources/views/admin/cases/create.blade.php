@@ -396,7 +396,6 @@
             });
             $(function() {
                 $("#start_date").on("change", sub);
-
                 function sub() {
                     var start = $('#start_date').val();
                     var end = $('#end_date').val();
@@ -425,6 +424,38 @@
                     $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
 
                     $('#total_amount_balance').val(parseFloat(total_amount_owed).toFixed(2));
+
+
+                    if(start){
+                        $("#debt_amount, #legal_cost, #debt_amount_annum").on("keyup", function(){
+
+                            diff = new Date(Date.parse(end) - Date.parse(start));
+                    // get days
+                    var days = diff / 1000 / 60 / 60 / 24;
+                    var debt_amount = $('#debt_amount').val();
+                    var debt_amount_annum = $('#debt_amount_annum').val();
+
+                    var yearlyInterest = (debt_amount * debt_amount_annum * 1) / 100;
+                    var dailyInterest = yearlyInterest / 365
+                    var legal_cost = $('#legal_cost').val();
+
+                    var total_interest = dailyInterest * days;
+                    $('#total_interest').val(parseFloat(total_interest).toFixed(2));
+
+                    var total_amount_owed = parseFloat(debt_amount) + parseFloat(legal_cost) + parseFloat(
+                        total_interest);
+                    var installment_number = $('#installment_number').val();
+                    var per_installment_amount = parseFloat(total_amount_owed / installment_number).toFixed(
+                        2);
+                    $('#per_installment_amount').val(per_installment_amount);
+
+
+                    $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
+
+                    $('#total_amount_balance').val(parseFloat(total_amount_owed).toFixed(2));
+
+                        })
+                    }
 
                 }
             });

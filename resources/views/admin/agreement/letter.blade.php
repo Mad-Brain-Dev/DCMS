@@ -10,7 +10,6 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('admin/css/letter-screen.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('admin/css/letter-print.css') }}" media="print">
-
 </head>
 
 <body>
@@ -177,12 +176,12 @@
                 </ol>
                 <div>
                     <ul>
-                        <li style="padding-bottom: 20px;">
+                        <li style="padding-bottom: 20px;" class="">
                             8. In the meantime, our client and we hereby reserve our rights
                             against you to exercise any and all legal<br />
                             <span style="padding-left: 17px;">countermeasure made available to us.</span>
                         </li>
-                        <li>
+                        <li class="thank-you-part">
                             9. Thank you for your time and we expect to hear from you within
                             seven (07) days.
                         </li>
@@ -191,8 +190,6 @@
 
             </div>
         </div>
-
-
         <div class="row p-0">
             <div class="col-2"></div>
             <div class="col-6 anothe-col-2">
@@ -255,10 +252,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
         <div class="address row d-flex justify-content-center align-items-center">
             <div class="col-9">
                 <p class="text-center footer-text" style="font-size: 13px; color: #9e9c9c;">

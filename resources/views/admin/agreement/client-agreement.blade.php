@@ -11,7 +11,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
         rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -208,7 +207,7 @@
                                         additional Enforcement Fees for further field visits to secure
                                         repayment<br><span style="padding-left: 24px; ">from the debtor; irregardless,
                                             or,</span> </li>
-                                    <li style="margin-top: 8px;">4.2 Terminate the Agreement without any liability at no
+                                    <li class="" style="margin-top: 8px;">4.2 Terminate the Agreement without any liability at no
                                         cost to SC whatsoever.</li>
                                 </ul>
                             </li>
@@ -220,7 +219,7 @@
                                 upon termination or expiry of this Agreement, as whatever the case may be.
                             </li>
 
-                            <li>
+                            <li class="point-five">
                                 For the avoidance of doubt, the criteria for expiration of this Agreement applies
                                 severally to individual case/s referred to SC
                                 by the Client.
@@ -235,7 +234,7 @@
                                     <li style="margin-top: 8px;">7.1 If after 90 days from the date of this Agreement,
                                         we are unable to obtain any repayment of the debt from the debtor; or</li>
 
-                                    <li class="point-five" style="margin-top: 8px;">7.2 In the case of a payment of the debt by instalments
+                                    <li class="" style="margin-top: 8px;">7.2 In the case of a payment of the debt by instalments
                                         / partial-payment, a period of 120 days has lapsed since payment of the <br>
                                         <span style="padding-left: 24px;"> last instalment or part-payment by the
                                             debtor(s) and no further instalment / part-payment has been received from
@@ -282,8 +281,6 @@
                         </ol>
                     </div>
                 </div>
-
-
                 <div class="col-12">
                     <div class="row another-row">
                         <div class="col-5 sincere py-4">
@@ -314,11 +311,10 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-12 take-note" style="margin-bottom: 100px;">
-                    <div class="col-2 bg-dark text-white py-2 my-4 d-flex justify-content-center"><span
+                    <span class="bg-dark text-white px-1 py-1"><span
                             style="font-size: 15px; font-weight: 600;">PLEASE TAKE NOTE:</span>
-                    </div>
+                    </span>
                     <div class="col-12">
                         <ol class="serve">
                             <li class="pl-4">All payments shall be made via CASH/CHEQUE or PAYNOW and an official

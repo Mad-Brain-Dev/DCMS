@@ -215,7 +215,9 @@ body {
     width: 2px;
     background: #002060;
 }
-
+.thank-you-part{
+    padding-top: 210px;
+}
 @media print {
     .print-button{
         display: none;
