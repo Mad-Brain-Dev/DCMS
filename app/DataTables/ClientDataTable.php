@@ -12,7 +12,6 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
-
 class ClientDataTable extends DataTable
 {
     /**
@@ -36,7 +35,7 @@ class ClientDataTable extends DataTable
 
                 }
                 if (auth()->user()->can('Client Agreement View')) {
-                    $buttons .= '<a class="dropdown-item" href="' . route('printable.client.agreement', $item->id) . '" title="Edit"><i class="fa fa-eye" aria-hidden="true"></i> Agreement </a>';
+                    $buttons .= '<a class="dropdown-item" href="' . route('printable.client.agreement', $item->id) . '" title="Edit"><i class="fas fa-handshake"></i> Agreement </a>';
 
                 }
 
