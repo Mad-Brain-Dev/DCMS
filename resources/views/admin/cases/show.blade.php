@@ -128,6 +128,19 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Collected By</label>
+                            <select class="form-select select2" id="collected_by" name="collected_by"
+                                aria-label="Default select example">
+                                <option selected disabled>Select Employee</option>
+                                @foreach ($employees as $employee )
+                                <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('collected_by')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Date of Payment</label>
                             <input type="date" name="payment_date" class="form-control">
                             @error('payment_date')
@@ -265,6 +278,19 @@
                                 <option value="Online">Online</option>
                             </select>
                             @error('paid_amount')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Collected By</label>
+                            <select class="form-select select2" id="collected_by_2" name="collected_by"
+                                aria-label="Default select example">
+                                <option selected disabled>Select Employee</option>
+                                @foreach ($employees as $employee )
+                                <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('collected_by')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
@@ -575,6 +601,9 @@
     </script>
     <script>
         $(document).ready(function() {
+
+            $('#collected_by, #collected_by_2').select2();
+
             $(function() {
                 $("#num2").on("keydown keyup", sum);
 
