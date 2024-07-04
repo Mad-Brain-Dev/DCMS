@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between" style="padding-left: 30px;padding-right: 30px;">
-                        <h4 class="card-title mb-3 text-capitalize">{{user_fullname($employee)}}'s Monthly Installment collection data</h4>
+                        <h4 class="card-title mb-3 text-capitalize">{{user_fullname($employee)}}'s Monthly Installment & Admin Fee collection data</h4>
                     </div>
 
                     <canvas id="monthlyCollectionBarChat" style="max-height: 400px;"></canvas>
@@ -43,7 +43,7 @@
                         },
                         {
                             label: 'Admin Fee',
-                            data: admin,
+                            data: admins,
                             backgroundColor: 'rgba(255, 99, 132, 0.6)',
                             borderColor: 'rgba(255, 99, 132, 1)',
                             borderWidth: 1
