@@ -124,7 +124,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between" style="padding-left: 30px;padding-right: 30px;">
-                        <h4 class="card-title mb-3">Collection By Employee</h4>
+                        <h4 class="card-title mb-3">Installment & Admin Fee Collection By Employee</h4>
                     </div>
                     <div class="container">
                         <div class="row">
@@ -135,15 +135,35 @@
                                         <tr class="text-capitalize">
                                             <th>SL</th>
                                             <th>Employee Name</th>
-                                            <th>Amount Collected</th>
+                                            <th>Total Installment Collected</th>
+                                            <th>Total Admin Fee Collected</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody class="table-body">
-                                        @foreach($installmentByEmployees as $installmentByEmployee)
+                                        @foreach($merged as $employee)
                                             <tr>
                                                 <td>{{$loop->iteration}}</td>
-                                                <td>{{$installmentByEmployee->user->name}}</td>
-                                                <td>{{$installmentByEmployee->total_amounts !=null ? number_format($installmentByEmployee->total_amounts, 2, '.', ',').'$':'N/A'}}</td>
+                                                <td>{{$employee['user']['first_name'].' '.$employee['user']['last_name'] }}</td>
+                                                <td>
+                                                    @if(isset($employee['installment_total_amounts']))
+                                                        {{ $employee['installment_total_amounts']!=null ? number_format($employee['installment_total_amounts'], 2, '.', ',').'$':'0'}}
+                                                    @else
+                                                        0
+                                                    @endif
+
+                                                </td>
+                                                <td>
+                                                    @if(isset($employee['admin_total_amounts']))
+                                                        {{ $employee['admin_total_amounts']!=null ? number_format($employee['admin_total_amounts'], 2, '.', ',').'$':'0'}}
+                                                    @else
+                                                        0
+                                                    @endif
+
+                                                </td>
+                                                <td>
+                                                    <a href="{{route('admin.reports.monthlyInstallmentByID',$employee['collected_by_id'])}}" class="btn btn-primary waves-effect waves-light btn-sm">See Monthly Collection</a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>

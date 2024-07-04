@@ -359,14 +359,10 @@ if (!function_exists('user_fullname')) {
 
     function user_fullname($user)
     {
-        if ($user->user_type == User::USER_TYPE_COMPANY) {
-            return $user->company_name;
+        if ($user->middle_name) {
+            return $user->first_name . ' ' . $user->middle_name . ' ' . $user->last_name;
         } else {
-            if ($user->middle_name) {
-                return $user->first_name . ' ' . $user->middle_name . ' ' . $user->last_name;
-            } else {
-                return $user->first_name . ' ' . $user->last_name;
-            }
+            return $user->first_name . ' ' . $user->last_name;
         }
     }
 }

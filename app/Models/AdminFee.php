@@ -19,4 +19,9 @@ class AdminFee extends Model
     {
         return $this->belongsTo(Client::class,'client_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'collected_by_id');
+    }
 }
