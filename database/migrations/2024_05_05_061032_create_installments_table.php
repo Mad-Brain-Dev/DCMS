@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('case_id')->nullable()->references('id')->on('cases')
             ->onDelete('cascade');
             $table->string('amount_paid')->nullable();
-            $table->foreignId('collected_by_id')->nullable()->references('id')->on('users')
+            $table->foreignId('collected_by_id')->default(2)->references('id')->on('users')
             ->onDelete('cascade');
             // $table->string('save_by_user_type')->nullable();
             $table->string('next_payment_amount')->nullable();

@@ -218,16 +218,16 @@ class CaseController extends Controller
             'case_id' => $request->case_id,
             'amount_paid' => $request->amount_paid,
             'next_payment_amount' => $request->next_payment_amount,
-            'collected_by_id' => $request->collected_by_id == "null" ? 2 : $request->collected_by_id,
+            'collected_by_id' => $request->collected_by_id == null ? 2 : $request->collected_by_id,
             'next_payment_date' => $request->next_payment_date,
             'payment_method' => $request->payment_method,
             'date_of_payment' => $request->payment_date,
 
         ]);
         if ($installment) {
-            $installment->collected_by_id = $request->collected_by_id;
+            //$installment->collected_by_id = $request->collected_by_id;
             // $installment->save_by_user_type = auth()->user()->user_type;
-            $installment->save();
+            //$installment->save();
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             $paid_amount->save();
         }
@@ -286,19 +286,19 @@ class CaseController extends Controller
             'case_id' => $request->case_id,
             'amount_paid' => $request->amount_paid,
             'next_payment_amount' => $request->next_payment_amount,
+            'collected_by_id' => $request->collected_by_id == null ? 2 : $request->collected_by_id,
             'next_payment_date' => $request->next_payment_date,
             'payment_method' => $request->payment_method,
-            'collected_by_id' => $request->collected_by_id == "null" ? 2 : $request->collected_by_id,
             'date_of_payment' => $request->payment_date,
 
         ]);
         if ($installment) {
-            $installment->collected_by_id =$request->collected_by_id;
-          //  $installment->save_by_user_type = $installment->user->user_type;
-            $installment->save();
+            //$installment->collected_by_id = $request->collected_by_id;
+            // $installment->save_by_user_type = auth()->user()->user_type;
+            //$installment->save();
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             $paid_amount->save();
-        };
+        }
 
         $field_visit_number = Cases::where('id', '=', $request->case_id)->first();
         // $remaining = $field_visit_number->bal_field_visit - 1;
