@@ -226,7 +226,7 @@ class CaseController extends Controller
         ]);
         if ($installment) {
             $installment->collected_by_id = $request->collected_by_id;
-            $installment->save_by_user_type = auth()->user()->user_type;
+            // $installment->save_by_user_type = auth()->user()->user_type;
             $installment->save();
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             $paid_amount->save();
@@ -294,7 +294,7 @@ class CaseController extends Controller
         ]);
         if ($installment) {
             $installment->collected_by_id =$request->collected_by_id;
-            $installment->save_by_user_type = $installment->user->user_type;
+          //  $installment->save_by_user_type = $installment->user->user_type;
             $installment->save();
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             $paid_amount->save();

@@ -172,7 +172,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Gn Summary</label>
-                            <textarea name="gn_summary" class="form-control" id="" rows="2">Enter Summary Here</textarea>
+                            <textarea name="gn_summary" class="form-control" id="" rows="2"></textarea>
                             @error('gn_summary')
                                 <p class="error">{{ $message }}</p>
                             @enderror
@@ -326,7 +326,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">FV Summary</label>
-                            <textarea name="fv_summary" class="form-control" id="" rows="2">Enter FV Summary Here</textarea>
+                            <textarea name="fv_summary" class="form-control" id="" rows="2"></textarea>
                             @error('fv_summary')
                                 <p class="error">{{ $message }}</p>
                             @enderror

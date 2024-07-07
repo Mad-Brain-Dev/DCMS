@@ -308,7 +308,7 @@
                         <div class="row">
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Remarks</label>
-                                <textarea name="remarks" class="form-control" id="" cols="30" rows="1">Enter Remarks Here</textarea>
+                                <textarea name="remarks" class="form-control" id="" cols="30" rows="1"></textarea>
                                 @error('remarks')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
