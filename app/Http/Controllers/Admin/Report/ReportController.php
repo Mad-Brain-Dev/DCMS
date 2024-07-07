@@ -64,7 +64,7 @@ class ReportController extends Controller
             }
         }
 
-        $monthly_admin_fee_data_array = array(
+       $monthly_admin_fee_data_array = array(
             'months' => $month_name_array,
             'orders' => $monthly_order_count_array,
         );
@@ -130,7 +130,7 @@ class ReportController extends Controller
         $dataArray = Installment::where('collected_by_id',$id)->selectRaw('year(date_of_payment) year, monthname(date_of_payment) month, sum(amount_paid) installments')
             ->where("date_of_payment", ">", \Illuminate\Support\Carbon::now()->subMonths(13))
             ->groupBy('year', 'month')
-            ->orderBy('date_of_payment', 'ASC')
+            ->orderBy('date_of_payment', 'DESC')
             ->get();
         $month_name_array = array();
         $monthly_order_count_array = array();
@@ -154,7 +154,7 @@ class ReportController extends Controller
         $dataAdminArray = AdminFee::where('collected_by_id',$id)->selectRaw('year(collection_date) year, monthname(collection_date) month, sum(admin_fee_amount) fees')
             ->where("collection_date", ">", \Illuminate\Support\Carbon::now()->subMonths(13))
             ->groupBy('year', 'month')
-            ->orderBy('collection_date', 'ASC')
+            ->orderBy('collection_date', 'DESC')
             ->get();
 
 //        return $dataAdminArray;

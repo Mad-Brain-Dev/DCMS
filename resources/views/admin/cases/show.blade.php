@@ -27,10 +27,10 @@
                             <div class="col-md-3">
                                 {{-- <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br> --}}
                                 <span>Total Amount Owed : $ {{ number_format($case->total_amount_owed, 2, '.', ',') }}
-                                    </span> <br>
+                                </span> <br>
                                 {{-- <span>Last Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br> --}}
                                 <span>Amount Balance : $ {{ number_format($case->total_amount_balance, 2, '.', ',') }}
-                                    </span> <br>
+                                </span> <br>
                             </div>
                             <div class="col-md-3">
                                 {{-- <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br> --}}
@@ -39,7 +39,7 @@
                                     @if (empty($installment->next_payment_amount))
                                         <span>N/A</span>
                                     @else
-                                    $ {{ number_format($installment->next_payment_amount, 2, '.', ',') }}
+                                        $ {{ number_format($installment->next_payment_amount, 2, '.', ',') }}
                                     @endif
 
                                 </span> <br>
@@ -47,7 +47,7 @@
                                     @if (empty($installment->next_payment_date))
                                         <span>N/A</span>
                                     @else
-                                    {{ date('d-m-Y', strtotime($installment->next_payment_date)) }}
+                                        {{ date('d-m-Y', strtotime($installment->next_payment_date)) }}
                                     @endif
                                 </span>
 
@@ -63,32 +63,33 @@
         </div>
     </div>
     <div class="row">
-       <div class="col-md-12">
-       <div class="card">
-        <div class="card-body">
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">SL</th>
-                    <th scope="col">Employee Name</th>
-                    <th scope="col">Total Amount</th>
-                  </tr>
-                </thead>
-                <tbody>
-                 @foreach ($installmentByEmployees as $installmentByEmployee )
-                 <tr>
-                    <th scope="row">{{  $loop->iteration }}</th>
-                    <td> {{ $installmentByEmployee->user->name}}</td>
-                    <td>{{$installmentByEmployee->total_amounts !=null ? number_format($installmentByEmployee->total_amounts, 2, '.', ',').' '.'$':'N/A'}}</td>
-                  </tr>
-                 @endforeach
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">SL</th>
+                                <th scope="col">Employee Name</th>
+                                <th scope="col">Total Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($installmentByEmployees as $installmentByEmployee)
+                                <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td> {{ $installmentByEmployee->user->name }}</td>
+                                    <td>{{ $installmentByEmployee->total_amounts != null ? number_format($installmentByEmployee->total_amounts, 2, '.', ',') . ' ' . '$' : 'N/A' }}
+                                    </td>
+                                </tr>
+                            @endforeach
 
-                </tbody>
-              </table>
-              {{-- {{ $installmentByEmployees->links() }} --}}
-           </div>
+                        </tbody>
+                    </table>
+                    {{-- {{ $installmentByEmployees->links() }} --}}
+                </div>
+            </div>
         </div>
-       </div>
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -132,8 +133,8 @@
                             <select class="form-select select2" id="collected_by_id" name="collected_by_id"
                                 aria-label="Default select example">
                                 <option selected disabled>Select Employee</option>
-                                @foreach ($employees as $employee )
-                                <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                @foreach ($employees as $employee)
+                                    <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                                 @endforeach
                             </select>
                             @error('collected_by_id')
@@ -207,10 +208,23 @@
                             @foreach ($gn_updates as $gn_update)
                                 <li class="event"
                                     data-date="{{ date('d-m-Y', strtotime($gn_update->created_at)) }}, {{ date('h:i a', strtotime($gn_update->created_at)) }} ">
-                                    <iframe src="{{ asset('/documents/' . $gn_update->gn_update) }}" width="100"
-                                        height="100"></iframe>
+                                    <div>
+                                        @php
+                                            $extension = substr($gn_update->gn_update, -3);
+                                        @endphp
+                                        @if ($extension == 'pdf')
+                                            <iframe style="overflow: hidden"
+                                                src="{{ asset('/documents/' . $gn_update->gn_update) }}" width="100"
+                                                height="100"></iframe>
+                                        @else
+                                            <img src="{{ asset('/documents/' . $gn_update->gn_update) }}" width="100"
+                                                height="100"/>
+                                        @endif
+
+                                    </div>
                                     <h6 class="mt-2">Field Visited at:
-                                        {{ $case->fv_date == null ? 'N/A' : date('d-m-Y', strtotime($case->fv_date)) }}</h6>
+                                        {{ $case->fv_date == null ? 'N/A' : date('d-m-Y', strtotime($case->fv_date)) }}
+                                    </h6>
                                     <span class="d-block">{{ $gn_update->gn_summary }}</span>
                                     <div>
                                         <a href="#" class="btn  btn-primary mt-2 viewFVUpdate" data-toggle="modal"
@@ -286,8 +300,8 @@
                             <select class="form-select select2" id="collected_by_2" name="collected_by_id"
                                 aria-label="Default select example">
                                 <option selected disabled>Select Employee</option>
-                                @foreach ($employees as $employee )
-                                <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                @foreach ($employees as $employee)
+                                    <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                                 @endforeach
                             </select>
                             @error('collected_by_id')
@@ -366,11 +380,21 @@
                             @foreach ($fv_updates as $fv_update)
                                 <li class="event"
                                     data-date="{{ date('d-m-Y', strtotime($fv_update->created_at)) }}, {{ date('h:i a', strtotime($fv_update->created_at)) }} ">
-                                    <iframe src="{{ asset('/documents/' . $fv_update->fv_update) }}" width="100"
-                                        height="100"></iframe>
 
+
+                                    @php
+                                    $extension = substr($fv_update->fv_update, -3);
+                                @endphp
+                                @if ($extension == 'pdf')
+                                <iframe style="overflow: hidden" src="{{ asset('/documents/' . $fv_update->fv_update) }}" width="100"
+                                    height="100"></iframe>
+                                @else
+                                    <img src="{{ asset('/documents/' . $fv_update->fv_update) }}" width="100"
+                                        height="100"/>
+                                @endif
                                     <h6 class="mt-2">Field Visited at:
-                                        {{ $case->fv_date == null ? 'N/A' : date('d-m-Y', strtotime($case->fv_date)) }}</h6>
+                                        {{ $case->fv_date == null ? 'N/A' : date('d-m-Y', strtotime($case->fv_date)) }}
+                                    </h6>
                                     <span class="d-block">{{ $fv_update->fv_summary }}</span>
                                     <div>
                                         <a href="#" class="btn  btn-primary mt-2 viewFVUpdate2" data-toggle="modal"
@@ -824,12 +848,12 @@
         }
 
         /* .fixed-content{
-                                    position: fixed;
-                                    z-index: 9999;
-                                    width: 70%;
-                                } */
+                                        position: fixed;
+                                        z-index: 9999;
+                                        width: 70%;
+                                    } */
         /* .balance-btn{
-                                    padding-top: 100px;
-                                } */
+                                        padding-top: 100px;
+                                    } */
     </style>
 @endpush
