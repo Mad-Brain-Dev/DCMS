@@ -164,7 +164,7 @@ class ClientController extends Controller
             'admin_fee_paid' => 'required',
             'client_id' => 'required',
             'collection_date' => 'required',
-            'collected_by_id' => 'null'
+            'collected_by_id' => 'nullable'
         ]);
         $fee = AdminFee::create(
             [
