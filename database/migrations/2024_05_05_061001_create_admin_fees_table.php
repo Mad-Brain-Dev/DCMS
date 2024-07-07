@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('admin_fees', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_id');
-            $table->foreignId('collected_by_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('collected_by_id')->default(2)->references('id')->on('users')->onDelete('cascade');
             $table->string('admin_fee_amount')->nullable();
             $table->timestamp('collection_date')->nullable();
             $table->timestamps();

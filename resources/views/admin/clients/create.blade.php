@@ -162,6 +162,7 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
+
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Total Field Visit</label>
                                 <input type="number" name="field_visit_per_case" class="form-control"
