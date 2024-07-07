@@ -203,7 +203,7 @@ class CaseController extends Controller
             'fv_date' => 'nullable',
             'amount_paid' => 'required',
             'payment_date' => 'required',
-            'collected_by' => 'required',
+            'collected_by_id' => 'nullable',
             'gn_summary' => 'nullable',
             'payment_method' => 'nullable',
             'next_payment_date' => 'required',
@@ -218,14 +218,14 @@ class CaseController extends Controller
             'case_id' => $request->case_id,
             'amount_paid' => $request->amount_paid,
             'next_payment_amount' => $request->next_payment_amount,
-            'collected_by' => $request->collected_by,
+            'collected_by_id' => $request->collected_by_id == "null" ? 2 : $request->collected_by_id,
             'next_payment_date' => $request->next_payment_date,
             'payment_method' => $request->payment_method,
             'date_of_payment' => $request->payment_date,
 
         ]);
         if ($installment) {
-            $installment->collected_by_id = auth()->user()->id;
+            $installment->collected_by_id = $request->collected_by_id;
             $installment->save_by_user_type = auth()->user()->user_type;
             $installment->save();
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
@@ -275,7 +275,7 @@ class CaseController extends Controller
             'payment_date' => 'required',
             'next_payment_date' => 'required',
             'next_payment_amount' => 'required',
-            'collected_by' => 'required',
+            'collected_by_id' => 'nullable',
             'payment_method' => 'nullable',
             'fv_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_summary' => 'nullable',
@@ -288,13 +288,13 @@ class CaseController extends Controller
             'next_payment_amount' => $request->next_payment_amount,
             'next_payment_date' => $request->next_payment_date,
             'payment_method' => $request->payment_method,
-            'collected_by' => $request->collected_by,
+            'collected_by_id' => $request->collected_by_id == "null" ? 2 : $request->collected_by_id,
             'date_of_payment' => $request->payment_date,
 
         ]);
         if ($installment) {
-            $installment->collected_by_id = auth()->user()->id;
-            $installment->save_by_user_type = auth()->user()->user_type;
+            $installment->collected_by_id =$request->collected_by_id;
+            $installment->save_by_user_type = $installment->user->user_type;
             $installment->save();
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             $paid_amount->save();

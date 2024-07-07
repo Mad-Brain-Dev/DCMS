@@ -129,14 +129,14 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Collected By</label>
-                            <select class="form-select select2" id="collected_by" name="collected_by"
+                            <select class="form-select select2" id="collected_by_id" name="collected_by_id"
                                 aria-label="Default select example">
                                 <option selected disabled>Select Employee</option>
                                 @foreach ($employees as $employee )
                                 <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                                 @endforeach
                             </select>
-                            @error('collected_by')
+                            @error('collected_by_id')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
@@ -283,14 +283,14 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Collected By</label>
-                            <select class="form-select select2" id="collected_by_2" name="collected_by"
+                            <select class="form-select select2" id="collected_by_2" name="collected_by_id"
                                 aria-label="Default select example">
                                 <option selected disabled>Select Employee</option>
                                 @foreach ($employees as $employee )
                                 <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                                 @endforeach
                             </select>
-                            @error('collected_by')
+                            @error('collected_by_id')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>

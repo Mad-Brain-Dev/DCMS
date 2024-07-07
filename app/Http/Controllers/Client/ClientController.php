@@ -76,7 +76,7 @@ class ClientController extends Controller
             $admin_fee_paid->admin_fee_amount = $request->admin_fee_paid;
             $admin_fee_paid->client_id = $client->id;
             $admin_fee_paid->collection_date = date('Y-m-d H:i:s');
-            $admin_fee_paid->collected_by = $request->collected_by;
+            $admin_fee_paid->collected_by_id = $request->collected_by_id;
             $admin_fee_paid->save();
             $client->client_id = $user->id;
             $client->save();
@@ -164,14 +164,14 @@ class ClientController extends Controller
             'admin_fee_paid' => 'required',
             'client_id' => 'required',
             'collection_date' => 'required',
-            'collected_by' => 'required'
+            'collected_by_id' => 'required'
         ]);
         $fee = AdminFee::create(
             [
                 'admin_fee_amount' =>$request->admin_fee_paid,
                 'collection_date' =>$request->collection_date,
                 'client_id' =>$request->client_id,
-                'collected_by' =>$request->collected_by,
+                'collected_by_id' =>$request->collected_by_id,
             ]
         );
         if($fee){

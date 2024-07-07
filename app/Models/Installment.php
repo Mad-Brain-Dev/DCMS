@@ -16,7 +16,7 @@ class Installment extends Model
         'next_payment_date',
         'payment_method',
         'date_of_payment',
-        'collected_by',
+        'collected_by_id',
         'collection_date'
     ];
     public function case()

@@ -12,7 +12,7 @@ class AdminFee extends Model
         'client_id',
         'admin_fee_amount',
         'collection_date',
-        'collected_by'
+        'collected_by_id'
     ];
 
     public function client()

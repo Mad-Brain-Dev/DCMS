@@ -105,7 +105,7 @@
                     </div>
                     <div class="form-group mt-2">
                         <label class="form-label">Collected By</label>
-                        <select class="form-select select2" id="current_status" name="collected_by"
+                        <select class="form-select select2" id="current_status" name="collected_by_id"
                             aria-label="Default select example">
                             <option selected disabled>Select Employee</option>
                             @foreach ($employees as $employee )
