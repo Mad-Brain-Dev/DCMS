@@ -489,114 +489,161 @@ if (!function_exists('is_admin_fee_collected')) {
 }
 
 
-function numberToWords($number) {
-    $hyphen      = '-';
-    $conjunction = ' and ';
-    $separator   = ', ';
-    $negative    = 'negative ';
-    $decimal     = ' point ';
-    $dictionary  = [
-        0                   => 'zero',
-        1                   => 'one',
-        2                   => 'two',
-        3                   => 'three',
-        4                   => 'four',
-        5                   => 'five',
-        6                   => 'six',
-        7                   => 'seven',
-        8                   => 'eight',
-        9                   => 'nine',
-        10                  => 'ten',
-        11                  => 'eleven',
-        12                  => 'twelve',
-        13                  => 'thirteen',
-        14                  => 'fourteen',
-        15                  => 'fifteen',
-        16                  => 'sixteen',
-        17                  => 'seventeen',
-        18                  => 'eighteen',
-        19                  => 'nineteen',
-        20                  => 'twenty',
-        30                  => 'thirty',
-        40                  => 'forty',
-        50                  => 'fifty',
-        60                  => 'sixty',
-        70                  => 'seventy',
-        80                  => 'eighty',
-        90                  => 'ninety',
-        100                 => 'hundred',
-        1000                => 'thousand',
-        1000000             => 'million',
-        1000000000          => 'billion',
-        1000000000000       => 'trillion',
-        1000000000000000    => 'quadrillion',
-        1000000000000000000 => 'quintillion'
-    ];
+// function numberToWords($number) {
+//     $hyphen      = '-';
+//     $conjunction = ' and ';
+//     $separator   = ', ';
+//     $negative    = 'negative ';
+//     $decimal     = ' and Cents ';
+//     $dictionary  = [
+//         0                   => 'zero',
+//         1                   => 'one',
+//         2                   => 'two',
+//         3                   => 'three',
+//         4                   => 'four',
+//         5                   => 'five',
+//         6                   => 'six',
+//         7                   => 'seven',
+//         8                   => 'eight',
+//         9                   => 'nine',
+//         10                  => 'ten',
+//         11                  => 'eleven',
+//         12                  => 'twelve',
+//         13                  => 'thirteen',
+//         14                  => 'fourteen',
+//         15                  => 'fifteen',
+//         16                  => 'sixteen',
+//         17                  => 'seventeen',
+//         18                  => 'eighteen',
+//         19                  => 'nineteen',
+//         20                  => 'twenty',
+//         30                  => 'thirty',
+//         40                  => 'forty',
+//         50                  => 'fifty',
+//         60                  => 'sixty',
+//         70                  => 'seventy',
+//         80                  => 'eighty',
+//         90                  => 'ninety',
+//         100                 => 'hundred',
+//         1000                => 'thousand',
+//         1000000             => 'million',
+//         1000000000          => 'billion',
+//         1000000000000       => 'trillion',
+//         1000000000000000    => 'quadrillion',
+//         1000000000000000000 => 'quintillion'
+//     ];
 
-    if (!is_numeric($number)) {
-        return false;
-    }
+//     if (!is_numeric($number)) {
+//         return false;
+//     }
 
-    if (($number >= 0 && (int) $number < 0) || (int) $number < 0 - PHP_INT_MAX) {
-        // overflow
-        trigger_error(
-            'numberToWords only accepts numbers between -' . PHP_INT_MAX . ' and ' . PHP_INT_MAX,
-            E_USER_WARNING
-        );
-        return false;
-    }
+//     if (($number >= 0 && (int) $number < 0) || (int) $number < 0 - PHP_INT_MAX) {
+//         // overflow
+//         trigger_error(
+//             'numberToWords only accepts numbers between -' . PHP_INT_MAX . ' and ' . PHP_INT_MAX,
+//             E_USER_WARNING
+//         );
+//         return false;
+//     }
 
-    if ($number < 0) {
-        return $negative . numberToWords(abs($number));
-    }
+//     if ($number < 0) {
+//         return $negative . numberToWords(abs($number));
+//     }
 
-    $string = $fraction = null;
+//     $string = $fraction = null;
 
-    if (strpos($number, '.') !== false) {
-        list($number, $fraction) = explode('.', $number);
-    }
+//     if (strpos($number, '.') !== false) {
+//         list($number, $fraction) = explode('.', $number);
+//     }
 
-    switch (true) {
-        case $number < 21:
-            $string = $dictionary[$number];
-            break;
-        case $number < 100:
-            $tens   = ((int) ($number / 10)) * 10;
-            $units  = $number % 10;
-            $string = $dictionary[$tens];
-            if ($units) {
-                $string .= $hyphen . $dictionary[$units];
+//     switch (true) {
+//         case $number < 21:
+//             $string = $dictionary[$number];
+//             break;
+//         case $number < 100:
+//             $tens   = ((int) ($number / 10)) * 10;
+//             $units  = $number % 10;
+//             $string = $dictionary[$tens];
+//             if ($units) {
+//                 $string .= $hyphen . $dictionary[$units];
+//             }
+//             break;
+//         case $number < 1000:
+//             $hundreds  = $number / 100;
+//             $remainder = $number % 100;
+//             $string = $dictionary[$hundreds] . ' ' . $dictionary[100];
+//             if ($remainder) {
+//                 $string .= $conjunction . numberToWords($remainder);
+//             }
+//             break;
+//         default:
+//             $baseUnit = pow(1000, floor(log($number, 1000)));
+//             $numBaseUnits = (int) ($number / $baseUnit);
+//             $remainder = $number % $baseUnit;
+//             $string = numberToWords($numBaseUnits) . ' ' . $dictionary[$baseUnit];
+//             if ($remainder) {
+//                 $string .= $remainder < 100 ? $conjunction : $separator;
+//                 $string .= numberToWords($remainder);
+//             }
+//             break;
+//     }
+
+//     if (null !== $fraction && is_numeric($fraction)) {
+//         $string .= $decimal;
+//         $words = [];
+//         foreach (str_split((string) $fraction) as $number) {
+//             $words[] = $dictionary[$number];
+//         }
+//         $string .= implode(' ', $words);
+//     }
+
+//     return $string;
+// }
+
+// Function to convert number to words
+function numberToWords($num) {
+    $ones = array(
+        0 => "Zero", 1 => "One", 2 => "Two", 3 => "Three", 4 => "Four",
+        5 => "Five", 6 => "Six", 7 => "Seven", 8 => "Eight", 9 => "Nine",
+        10 => "Ten", 11 => "Eleven", 12 => "Twelve", 13 => "Thirteen", 14 => "Fourteen",
+        15 => "Fifteen", 16 => "Sixteen", 17 => "Seventeen", 18 => "Eighteen", 19 => "Nineteen"
+    );
+
+    $tens = array(
+        0 => "", 1 => "Ten", 2 => "Twenty", 3 => "Thirty", 4 => "Forty",
+        5 => "Fifty", 6 => "Sixty", 7 => "Seventy", 8 => "Eighty", 9 => "Ninety"
+    );
+
+    $hundreds = array(
+        "Hundred", "Thousand,", "Million,", "Billion,", "Trillion,", "Quadrillion,"
+    );
+
+    if ($num < 20) {
+        return $ones[$num];
+    } elseif ($num < 100) {
+        return $tens[floor($num / 10)] . ($num % 10 ? "-" . $ones[$num % 10] : "");
+    } elseif ($num < 1000) {
+        return $ones[floor($num / 100)] . " " . $hundreds[0] . ($num % 100 ? " and " . numberToWords($num % 100) : "");
+    } else {
+        for ($i = 1, $unit = 1000; $unit <= pow(1000, count($hundreds)); $i++, $unit *= 1000) {
+            if ($num < $unit * 1000) {
+                return numberToWords(floor($num / $unit)) . " " . $hundreds[$i] . ($num % $unit ? " " . numberToWords($num % $unit) : "");
             }
-            break;
-        case $number < 1000:
-            $hundreds  = $number / 100;
-            $remainder = $number % 100;
-            $string = $dictionary[$hundreds] . ' ' . $dictionary[100];
-            if ($remainder) {
-                $string .= $conjunction . numberToWords($remainder);
-            }
-            break;
-        default:
-            $baseUnit = pow(1000, floor(log($number, 1000)));
-            $numBaseUnits = (int) ($number / $baseUnit);
-            $remainder = $number % $baseUnit;
-            $string = numberToWords($numBaseUnits) . ' ' . $dictionary[$baseUnit];
-            if ($remainder) {
-                $string .= $remainder < 100 ? $conjunction : $separator;
-                $string .= numberToWords($remainder);
-            }
-            break;
-    }
-
-    if (null !== $fraction && is_numeric($fraction)) {
-        $string .= $decimal;
-        $words = [];
-        foreach (str_split((string) $fraction) as $number) {
-            $words[] = $dictionary[$number];
         }
-        $string .= implode(' ', $words);
     }
-
-    return $string;
 }
+
+// Function to convert decimal number to words
+function decimalToWords($num) {
+    $num_parts = explode(".", $num);
+
+    $integer_part = $num_parts[0];
+    $fractional_part = isset($num_parts[1]) ? $num_parts[1] : 0;
+
+    $integer_words = numberToWords($integer_part);
+    $fractional_words = $fractional_part ? numberToWords($fractional_part) : "Zero";
+
+    return $integer_words . " and Cents " . $fractional_words;
+}
+
 

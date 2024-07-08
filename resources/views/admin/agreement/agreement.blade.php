@@ -101,20 +101,24 @@
                         <span class="">Total Debt Amount </span>
                         <span class=""> in Singapore Dollars:</span>
                     </div>
-                    <div class="col-7 align-items-center d-flex">
+                    <div class="col-6 align-items-center d-flex">
                         @php
                             $amountInWords = ucfirst(numberToWords($case_number->total_amount_owed));
                         @endphp
                         <span class="singapore-dollars">
-                            {{ $amountInWords }}
+                            Dollars {{ decimalToWords($case_number->total_amount_owed) }}
                             plus interests
                         </span>
                     </div>
-                    <div class="col-3 p-3  new-usd d-flex align-items-center justify-content-end">
+                    <div class="col-4 p-3  new-usd d-flex align-items-center justify-content-end">
                         @php
                              $formattedAmount = number_format($case_number->total_amount_owed, 2, '.', ',');
                         @endphp
-                        ( <span class="new-usd-after">SG </span> <span class="digit-amount"><i class="fa fa-usd"
+                        {{-- ( <span class="new-usd-after">SG </span> <span class="digit-amount"><i class="fa fa-usd"
+                                aria-hidden="true"></i>{{ $formattedAmount }}</span> <span
+                            class="some-symble"> /+%</span> ) --}}
+
+                            ( <span class="new-usd-after">SG </span> <span class="digit-amount"><i class="fa fa-usd"
                                 aria-hidden="true"></i>{{ $formattedAmount }}</span> <span
                             class="some-symble"> /+%</span> )
 
