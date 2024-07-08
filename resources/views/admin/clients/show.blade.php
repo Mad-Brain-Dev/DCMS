@@ -141,7 +141,7 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Case Number</th>
-                                    <td class="text-end">{{ $case->case_number }}</td>
+                                    <td class="text-end">{{ $case->case_sku }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Current Status</th>
@@ -205,11 +205,11 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Debt Amount</th>
-                                    <td class="text-end">{{ number_format($case->debt_amount, 2, '.', ',') }} $</td>
+                                    <td class="text-end">$ {{ number_format($case->debt_amount, 2, '.', ',') }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Legal Cost</th>
-                                    <td class="text-end"> {{ number_format($case->legal_cost, 2, '.', ',') }} $</td>
+                                    <td class="text-end">$ {{ number_format($case->legal_cost, 2, '.', ',') }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Debt Interest</th>
@@ -225,15 +225,15 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Total Interest</th>
-                                    <td class="text-end">{{ number_format($case->total_interest, 2, '.', ',') }} $</td>
+                                    <td class="text-end">$ {{ number_format($case->total_interest, 2, '.', ',') }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Total Amount Owed</th>
-                                    <td class="text-end">{{ number_format($case->total_amount_owed, 2, '.', ',') }} $</td>
+                                    <td class="text-end">$ {{ number_format($case->total_amount_owed, 2, '.', ',') }} </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Total Amount Balance</th>
-                                    <td class="text-end">{{ number_format($case->total_amount_balance, 2, '.', ',') }} $
+                                    <td class="text-end">$ {{ number_format($case->total_amount_balance, 2, '.', ',') }}
                                     </td>
                                 </tr>
                             </tbody>

@@ -525,8 +525,8 @@ left: 40px;
     bottom: 0;
 }
 .take-note{
-    margin-top: 150px !important;
-    display: inline-block;
+    /* margin-top: 150px !important; */
+    /* display: inline-block; */
 }
 .serve {
     margin-left: -30px;
@@ -1008,12 +1008,19 @@ left: 40px;
 .new-underline {
     text-decoration: underline;
 }
-footer {
-    margin-left: 200px;
-}
+
 .warrant-footer{
     position: fixed;
     bottom: 30px;
+    font-size: 20px;
+    left: 150px;
+
+}
+.agreement-footer{
+    position: fixed;
+    bottom: 30px;
+    font-size: 20px;
+    left: 50px;
 
 }
 

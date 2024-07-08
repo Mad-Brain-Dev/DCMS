@@ -35,6 +35,13 @@ class CaseDataTable extends DataTable
                     $buttons .= '<a class="dropdown-item" href="' . route('admin.cases.show', $item->id) . '" title="Show"><i class="fa fa-eye" aria-hidden="true"></i> Show </a>';
                 }
 
+                if (auth()->user()->can('Print Warrant')) {
+                    $buttons .= '<a class="dropdown-item" href="' . route('printable.case.agreement', $item->id) . '" title="Show"><i class="fas fa-print"></i> Print Warrant </a>';
+                }
+                if (auth()->user()->can('Print Letter')) {
+                    $buttons .= '<a class="dropdown-item" href="' . route('printable.case.letter', $item->id) . '" title="Show"><i class="fas fa-paste"></i> Print Letter </a>';
+                }
+
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
 
                 if (auth()->user()->can('Delete Case')) {

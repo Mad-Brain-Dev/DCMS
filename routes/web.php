@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Profile\UserProfileController;
 use App\Http\Controllers\Admin\Report\ReportController;
@@ -45,7 +44,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //show printable case agreement with details
 Route::get('/printable/case/agreement/{id}', [CaseController::class, 'printableCaseAgreement'])->name('printable.case.agreement');
-
 //show printable case letter with details
 Route::get('/printable/letter/{id}', [CaseController::class, 'printableLetter'])->name('printable.case.letter');
 //show printable client agreement with details

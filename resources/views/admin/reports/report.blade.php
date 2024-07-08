@@ -64,10 +64,10 @@
                                             <tr>
                                                 <td>{{$item->name}}</td>
                                                 <td>{{date('d-m-Y', strtotime($item->installments->last()?->date_of_payment))}}</td>
-                                                <td>{{$item->installments->last()?->date_of_payment != null ? number_format($item->installments->last()?->amount_paid, 2, '.', ',').'$': 'N/A'}}</td>
+                                                <td>$ {{$item->installments->last()?->date_of_payment != null ? number_format($item->installments->last()?->amount_paid, 2, '.', ','): 'N/A'}}</td>
                                                 <td>{{date('d-m-Y', strtotime($item->installments->last()?->next_payment_date))}}</td>
-                                                <td>{{$item->installments->last()?->next_payment_amount !=null ? number_format($item->installments->last()?->next_payment_amount, 2, '.', ',').'$':'N/A'}}</td>
-                                                <td>{{$item->total_amount_balance}}</td>
+                                                <td>$ {{$item->installments->last()?->next_payment_amount !=null ? number_format($item->installments->last()?->next_payment_amount, 2, '.', ','):'N/A'}}</td>
+                                                <td>$ {{$item->total_amount_balance}}</td>
                                             </tr>
                                         @endforeach
 
@@ -104,9 +104,9 @@
                                         @foreach($adminFee as $item)
                                             <tr>
                                                 <td>{{$item->name}}</td>
-                                                <td>{{$item->admin_fee !=null ? number_format($item->admin_fee, 2, '.', ',').'$':'N/A'}}</td>
-                                                <td>{{$item->admin_fee_paid !=null ? number_format($item->admin_fee_paid, 2, '.', ',').'$':'N/A'}}</td>
-                                                <td>{{$item->admin_fee_balance !=null ? number_format($item->admin_fee_balance, 2, '.', ',').'$':'N/A'}}</td>
+                                                <td>$ {{$item->admin_fee !=null ? number_format($item->admin_fee, 2, '.', ','):'N/A'}}</td>
+                                                <td>$ {{$item->admin_fee_paid !=null ? number_format($item->admin_fee_paid, 2, '.', ','):'N/A'}}</td>
+                                                <td>$ {{$item->admin_fee_balance !=null ? number_format($item->admin_fee_balance, 2, '.', ','):'N/A'}}</td>
                                             </tr>
                                         @endforeach
 
@@ -147,15 +147,14 @@
                                                 <td>{{$employee['user']['first_name'].' '.$employee['user']['last_name'] }}</td>
                                                 <td>
                                                     @if(isset($employee['installment_total_amounts']))
-                                                        {{ $employee['installment_total_amounts']!=null ? number_format($employee['installment_total_amounts'], 2, '.', ',').'$':'0'}}
+                                                       $ {{ $employee['installment_total_amounts']!=null ? number_format($employee['installment_total_amounts'], 2, '.', ','):'0'}}
                                                     @else
                                                         0
                                                     @endif
-
                                                 </td>
                                                 <td>
                                                     @if(isset($employee['admin_total_amounts']))
-                                                        {{ $employee['admin_total_amounts']!=null ? number_format($employee['admin_total_amounts'], 2, '.', ',').'$':'0'}}
+                                                       $ {{ $employee['admin_total_amounts']!=null ? number_format($employee['admin_total_amounts'], 2, '.', ','):'0'}}
                                                     @else
                                                         0
                                                     @endif

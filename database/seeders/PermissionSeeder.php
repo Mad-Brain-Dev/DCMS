@@ -51,6 +51,8 @@ class PermissionSeeder extends Seeder
             'Case View',
             'Create Case',
             'Edit Case',
+            'Print Warrant',
+            'Print Letter',
             'Delete Case',
         ],
         'Reports' => [
