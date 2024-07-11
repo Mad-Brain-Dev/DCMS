@@ -131,7 +131,7 @@
                                 class="me-us-after">*me/us </span> <span
                                 class="agreement_name">{{ $client_details->name }}</span><br>
                             <span class="nric-no-uen-after">(NRIC No./UEN: <span
-                                    class="agreement_nric">{{ $client_details->nric }}</span></span> in connection with
+                                    class="agreement_nric">{{ $client_details->nric }} / {{ $client_details->company_uen }}</span></span> in connection with
                             the above matter until it
                             is completed, settled, resolved or the contractual agreement between us and you is
                             terminated for whatsoever reason.
