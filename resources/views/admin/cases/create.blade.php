@@ -107,7 +107,7 @@
                             <div class="mb-3 col-md-4">
                                 <label class="form-label">Collection Commission (%)</label>
                                 <input type="number" name="collection_commission" id="collection_commission"
-                                    class="form-control" placeholder="Enter Collection Commission" value="">
+                                    class="form-control" step="0.01" min="0" max="10000000000000" placeholder="Enter Collection Commission" value="">
                                 @error('collection_commission')
                                     <p class="error">{{ $message }}</p>
                                 @enderror

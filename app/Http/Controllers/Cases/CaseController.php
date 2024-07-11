@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Cases;
-
 use App\DataTables\CaseDataTable;
 use App\DataTables\CaseDataTableByStatus;
 use App\DataTables\CasesforPerticularClientDataTable;
