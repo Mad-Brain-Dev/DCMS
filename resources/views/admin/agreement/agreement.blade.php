@@ -131,7 +131,7 @@
                                 class="me-us-after">*me/us </span> <span
                                 class="agreement_name">{{ $client_details->name }}</span><br>
                             <span class="nric-no-uen-after">(NRIC No./UEN: <span
-                                    class="agreement_nric">{{ $client_details->nric }} / {{ $client_details->company_uen }}</span></span> in connection with
+                                    class="agreement_nric">{{ $client_details->nric }}/{{$client_details->company_uen}}</span></span> in connection with
                             the above matter until it
                             is completed, settled, resolved or the contractual agreement between us and you is
                             terminated for whatsoever reason.
@@ -149,9 +149,9 @@
                                 connection with the above matter.</span></li>
                         <li class="">*I/We authorise you to take instructions in respect of this matter
                             from:<br /><br />
-                            <span class="person pb-1"> Person:<span class="lorem-2">rk</span></span> <span
+                            <span class="person pb-1"> Person:<span class="lorem-2"></span></span> <span
                                 class="contact pb-1">Contact: </span><span
-                                class="lorem-3">{{ $client_details->phone }}</span>
+                                class="lorem-3"></span>
                         </li>
                     </ol>
                     <div class="col-md-10 mx-auto mb-2">
