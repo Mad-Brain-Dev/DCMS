@@ -268,7 +268,7 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Debt Interest/Annum (%)</label>
-                                <input type="number" name="debt_interest" class="form-control"
+                                <input type="number" step="0.01" min="0" max="1000000000000" name="debt_interest" class="form-control"
                                     placeholder="Enter Debt Interest/Annum" id="debt_amount_annum">
                                 @error('debt_interest')
                                     <p class="error">{{ $message }}</p>
