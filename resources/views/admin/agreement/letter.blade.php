@@ -104,7 +104,7 @@
                     <div class="col-md-5 d-flex justify-content-end">
                         <p style="font-weight: 700; font-size: 18px">
                             <span
-                                style="font-weight: 700;">{{ date('d-m-Y', strtotime($case_number->created_at)) }}</span>
+                                style="font-weight: 700;">{{ $case_number->created_at->format('jS \\of F Y') }}</span>
                         </p>
                     </div>
                 </div>
@@ -159,19 +159,26 @@
                         </li>
 
                         <li>
-                            If the total amount due is not paid to our office by the <span class="date_time_after">21st
-                                of May 2024 at 15:00 hours</span>, our next course of action will be enforced against
+                            If the total amount due is not paid to our office by the <span class="date_time_after">
+                                @php
+                                    use Carbon\Carbon;
+                                    $newDate = Carbon::parse($case_number->created_at)->addDays(7)->format('jS \\of F Y');
+                                @endphp
+                                {{ $newDate }} 15:00 hours</span>, our next course of action will be enforced against
                             you without further notice and you will be liable for any and all costs arising thereof.
                         </li>
 
                         <li>
-                           This is a serious matter which requires your immediate attention. As such, we’d advise you to expedite payment arrangements as soon as possible.
+                            This is a serious matter which requires your immediate attention. As such, we’d advise you
+                            to expedite payment arrangements as soon as possible.
                         </li>
 
                         <li>
-                            For more information on debt settlement, debt financing and loan assistance (on a case-to-case basis) via Securre Network, please visit our website at 
-                            <span style="color: #1f497d;  font-weight: 600; cursor: pointer;"> www.securre.net/dcms</span> or you may contact us via WhatsApp at +65 8505 5484.
-                            
+                            For more information on debt settlement, debt financing and loan assistance (on a
+                            case-to-case basis) via Securre Network, please visit our website at
+                            <span style="color: #1f497d;  font-weight: 600; cursor: pointer;">
+                                www.securre.net/dcms</span> or you may contact us via WhatsApp at +65 8505 5484.
+
                         </li>
 
                     </ol>
@@ -257,11 +264,14 @@
                                 <span style="font-style: italic; padding-top: 10px;">Operations Director |
                                     Partner</span>
                                 <span style="font-weight: 800; color: #002060;">Securre Collection Pte Ltd</span>
-                                <span> <span style="color: #0c5897;">t: </span><span style="padding-left: 12px;">+65 8505 5484</span></span>
-                                <span><span style="color: #0c5897;">a: </span><span style="padding-left: 10px;">Peninsula Plaza, 111 North Bridge
+                                <span> <span style="color: #0c5897;">t: </span><span style="padding-left: 12px;">+65
+                                        8505 5484</span></span>
+                                <span><span style="color: #0c5897;">a: </span><span
+                                        style="padding-left: 10px;">Peninsula Plaza, 111 North Bridge
                                         Rd,</span><br> <span style="padding-left: 24px;">#21-01, Singapore
                                         179098.</span></span>
-                                <span><span style="color: #0c5897;">w: </span><span style="padding-left: 5px;"><span style="font-weight:700;">www.</span>securre.net e:
+                                <span><span style="color: #0c5897;">w: </span><span style="padding-left: 5px;"><span
+                                            style="font-weight:700;">www.</span>securre.net e:
                                         hello@securre.net</span></span>
                             </div>
                         </div>
