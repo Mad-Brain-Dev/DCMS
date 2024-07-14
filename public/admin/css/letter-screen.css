@@ -13,6 +13,10 @@ body{
     font-size: 16px;
 }
 
+.debtor-part{
+    padding-left: 62px;
+    margin-top: 30px;
+}
 /* common css end */
 
 .print-button{
@@ -74,9 +78,11 @@ body{
 
 /* debtor div start */
 
+.sir_or_byHand{
+    padding-left: 62px;
+}
 .dear_sir{
     padding-top: 40px;
-    padding-left: 6px;
     font-weight: 500;
 }
 
@@ -98,6 +104,14 @@ body{
 }
 
 /* dear sir div end */
+
+.re_debts_owend{
+    padding-left: 62px;
+}
+
+.order_list{
+    padding-left: 102px;
+}
 
 .order_list ol{
     padding-left: 30px;
@@ -212,6 +226,7 @@ body{
 
 .ravin_self_div{
     padding-top: 120px;
+    padding-bottom: 200px;
 }
 .ravin_self_div h5{
     font-style: italic;

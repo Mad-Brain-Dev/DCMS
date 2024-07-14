@@ -48,7 +48,7 @@
                 </div>
                 {{-- logo div end --}}
 
-                <div class="d-flex justify-contant-center align-items-start debtor-part" style="padding-left: 6px">
+                <div class="d-flex justify-contant-center align-items-start debtor-part">
                     <div class="col-md-6">
                         <ul>
                             <li>
@@ -94,14 +94,14 @@
                 </div>
                 <!--  dear sir div end -->
 
-                <div class="d-flex justify-content-center align-items-start ">
+                <div class="d-flex align-items-start re_debts_owend">
                     <div class="col-md-6">
-                        <p style="font-weight: 700; font-size: 18px; padding-left: 6px;">
+                        <p style="font-weight: 700; font-size: 18px;">
                             RE: DEBTS OWED TO <span style="">{{ $client_details->name }}</span>
                         </p>
                     </div>
 
-                    <div class="col-md-6 d-flex justify-content-end">
+                    <div class="col-md-5 d-flex justify-content-end">
                         <p style="font-weight: 700; font-size: 18px">
                             <span
                                 style="font-weight: 700;">{{ date('d-m-Y', strtotime($case_number->created_at)) }}</span>
@@ -111,7 +111,7 @@
 
                 <!-- debts owed end -->
 
-                <div class="row order_list" style="padding-left: 40px; padding-right: 40px">
+                <div class="row order_list" style="padding-right: 40px">
                     <ol type="1">
                         <li>
                             Our firm represents Messrs. <span
@@ -244,7 +244,7 @@
 
             <div class="ravin_self_div">
 
-                <div class="col-md-11" style="padding-left: 50px;">
+                <div class="col-md-11" style="padding-left: 80px;">
                     <h5 id="point-eight">Sincerely ,</h5>
                     <div class="d-flex" style="padding-left: 60px;">
                         <div class="new-logo-div">
@@ -256,12 +256,12 @@
                             <div class="column_div">
                                 <span style="font-style: italic; padding-top: 10px;">Operations Director |
                                     Partner</span>
-                                <span style="font-weight: 700; color: #002060;">Securre Collection Pte Ltd</span>
-                                <span>t: <span style="padding-left: 12px;">+65 8505 5484</span></span>
-                                <span>a: <span style="padding-left: 10px;">Peninsula Plaza, 111 North Bridge
+                                <span style="font-weight: 800; color: #002060;">Securre Collection Pte Ltd</span>
+                                <span> <span style="color: #0c5897;">t: </span><span style="padding-left: 12px;">+65 8505 5484</span></span>
+                                <span><span style="color: #0c5897;">a: </span><span style="padding-left: 10px;">Peninsula Plaza, 111 North Bridge
                                         Rd,</span><br> <span style="padding-left: 24px;">#21-01, Singapore
                                         179098.</span></span>
-                                <span>w: <span style="padding-left: 5px;">www.securre.net e:
+                                <span><span style="color: #0c5897;">w: </span><span style="padding-left: 5px;"><span style="font-weight:700;">www.</span>securre.net e:
                                         hello@securre.net</span></span>
                             </div>
                         </div>
