@@ -14,7 +14,7 @@ body {
 }
 
 .debtor-part {
-    margin-top: 140px;
+    margin-top: 170px;
 }
 
 /* common css end */
@@ -59,16 +59,26 @@ body {
 /* debtor div start */
 
 .dear_sir {
-    padding-top: 20px;
+    padding-top: 50px;
     padding-left: 6px;
     font-weight: 500;
 }
 
 .by_hand_only {
+    position: relative;
     margin-left: -30px;
-    text-decoration: underline;
     color: #948a54;
     font-size: 20px;
+}
+
+.by_hand_only::after {
+    position: absolute;
+    content: "";
+    bottom: 3px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #948a54;
 }
 
 /* dear sir div end */
@@ -133,6 +143,7 @@ body {
     height: 15px;
     width: 100%;
 }
+
 
 .third_col p {
     padding-top: 35px;
@@ -216,8 +227,43 @@ body {
     background: #002060;
 }
 .thank-you-part{
-    padding-top: 210px;
+    padding-top: 300px;
 }
+
+.amount_after{
+    font-weight: 700;
+    position: relative;
+}
+
+.amount_after::after{
+    position: absolute;
+    content: '';
+    width: 98%;
+    height: 1.4px;
+    background-color: #000;
+    bottom: -2px;
+    left: 0;
+}
+
+.date_time_after{
+    font-weight: 700;
+    position: relative;
+}
+
+.date_time_after::after{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 1.4px;
+    background-color: #000;
+    bottom: -1px;
+    left: 0;
+}
+
+
+
+
+
 @media print {
     .print-button{
         display: none;
@@ -236,4 +282,5 @@ body {
     .footer-text{
         font-size: 12px !important;
     }
+
 }
