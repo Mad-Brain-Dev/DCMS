@@ -93,14 +93,12 @@
                     </div>
                 </div>
                 <!--  dear sir div end -->
-
                 <div class="d-flex align-items-start re_debts_owend">
                     <div class="col-md-6">
                         <p style="font-weight: 700; font-size: 18px;">
-                            RE: DEBTS OWED TO <span style="">{{ $client_details->name }}</span>
+                            RE: DEBTS OWED TO <span style="">{{ strtoupper($client_details->name) }}</span>
                         </p>
                     </div>
-
                     <div class="col-md-5 d-flex justify-content-end">
                         <p style="font-weight: 700; font-size: 18px">
                             <span
@@ -112,6 +110,9 @@
                 <!-- debts owed end -->
 
                 <div class="row order_list" style="padding-right: 40px">
+                    @php
+                        $formattedAmount = number_format($case_number->total_amount_owed, 2, '.', ',');
+                    @endphp
                     <ol type="1">
                         <li>
                             Our firm represents Messrs. <span
@@ -119,7 +120,7 @@
                             . We have
                             been retained by them to collect your account which is
                             seriously delinquent in the amounts of <span class="amount_after">
-                                S${{ $case_number->total_amount_owed }}
+                                S${{ $formattedAmount }}
                             </span> .
                         </li>
 
@@ -162,9 +163,12 @@
                             If the total amount due is not paid to our office by the <span class="date_time_after">
                                 @php
                                     use Carbon\Carbon;
-                                    $newDate = Carbon::parse($case_number->created_at)->addDays(7)->format('jS \\of F Y');
+                                    $newDate = Carbon::parse($case_number->created_at)
+                                        ->addDays(7)
+                                        ->format('jS \\of F Y');
                                 @endphp
-                                {{ $newDate }} 15:00 hours</span>, our next course of action will be enforced against
+                                {{ $newDate }} 15:00 hours</span>, our next course of action will be enforced
+                            against
                             you without further notice and you will be liable for any and all costs arising thereof.
                         </li>
 

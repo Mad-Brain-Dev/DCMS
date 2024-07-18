@@ -115,12 +115,11 @@ class CaseDataTable extends DataTable
      */
     public function getColumns(): array
     {
-
         return [
 //            Column::computed('DT_RowIndex', 'SL#'),
             Column::make('case_sku', 'case_sku')->title('Case Number'),
-            Column::make('client_id', 'client_id')->title('Client'),
-            Column::make('name', 'name')->title('Debtor'),
+            Column::make('name', 'name')->title('Debtor Name'),
+            Column::make('name', 'name')->title('Debtor Name'),
         ];
     }
 
