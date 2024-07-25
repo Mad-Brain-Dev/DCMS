@@ -119,7 +119,8 @@ class CaseDataTable extends DataTable
 //            Column::computed('DT_RowIndex', 'SL#'),
             Column::make('case_sku', 'case_sku')->title('Case Number'),
             Column::make('name', 'name')->title('Debtor Name'),
-            Column::make('name', 'name')->title('Debtor Name'),
+            Column::make('total_amount_owed', 'total_amount_owed')->title('Debt Amount'),
+            Column::make('total_amount_balance', 'total_amount_balance')->title('Debt Balance'),
         ];
     }
 
