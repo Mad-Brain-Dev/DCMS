@@ -143,7 +143,7 @@
                         <tbody>
                             <tr>
                                 <th scope="row">Case Number</th>
-                                <td class="text-end">{{ $case->case_number }}</td>
+                                <td class="text-end">{{ $case->case_sku }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Current Status</th>
