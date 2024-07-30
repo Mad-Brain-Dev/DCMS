@@ -646,4 +646,13 @@ function decimalToWords($num) {
     return $integer_words . " and Cents " . $fractional_words;
 }
 
+//daily compound interest
+if (!function_exists('calculateDailyCompoundInterest')) {
 
+    function calculateDailyCompoundInterest($principal, $annualRate)
+    {
+        $dailyRate = $annualRate / 365;
+        $amount = $principal * pow((1 + $dailyRate), 1);
+        return $amount - $principal; // This gives the interest earned in one day
+    }
+}
