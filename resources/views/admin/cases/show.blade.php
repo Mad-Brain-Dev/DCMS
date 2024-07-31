@@ -116,6 +116,17 @@
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
+                        @if ($case->legal_cost != 0){
+                            <div class="mb-3">
+                                <label class="form-label">Legal Cost</label>
+                                <input type="number" name="legal_cost" value="{{ $case->legal_cost }}"
+                                    class="form-control">
+                                @error('legal_cost')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        }
+                        @endif
                         <div class="mb-3">
                             <label class="form-label">Payment Method</label>
                             <select class="form-select" aria-label="Default select example" name="payment_method">
