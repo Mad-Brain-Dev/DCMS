@@ -49,11 +49,11 @@ return new class extends Migration
             $table->dateTime('interest_start_date')->nullable();
             $table->dateTime('next_payment_date')->nullable();
             $table->dateTime('interest_end_date')->nullable();
-            $table->string('total_interest')->nullable();
-            $table->string('total_amount_owed')->nullable();
-            $table->string('total_amount_paid')->nullable();
-            $table->string('next_payment_amount')->nullable();
-            $table->string('total_amount_balance')->nullable();
+            $table->float('total_interest')->nullable();
+            $table->float('total_amount_owed')->nullable();
+            $table->float('total_amount_paid')->nullable();
+            $table->float('next_payment_amount')->nullable();
+            $table->float('total_amount_balance')->nullable();
             $table->string('payment_method')->nullable();
             $table->dateTime('payment_date')->nullable();
             $table->timestamps();

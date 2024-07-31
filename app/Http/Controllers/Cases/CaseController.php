@@ -201,6 +201,7 @@ class CaseController extends Controller
             'gn_updates.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_date' => 'nullable',
             'amount_paid' => 'required',
+            'legal_cost' => 'nullable',
             'payment_date' => 'required',
             'collected_by_id' => 'nullable',
             'gn_summary' => 'nullable',
@@ -215,7 +216,7 @@ class CaseController extends Controller
 
         $installment = Installment::create([
             'case_id' => $request->case_id,
-            'amount_paid' => $request->amount_paid,
+            'amount_paid' => $request->amount_paid + $request->legal_cost,
             'next_payment_amount' => $request->next_payment_amount,
             'collected_by_id' => $request->collected_by_id == null ? 2 : $request->collected_by_id,
             'next_payment_date' => $request->next_payment_date,
@@ -227,6 +228,7 @@ class CaseController extends Controller
             //$installment->collected_by_id = $request->collected_by_id;
             // $installment->save_by_user_type = auth()->user()->user_type;
             //$installment->save();
+            $paid_amount->legal_cost = $paid_amount->legal_cost -$request->legal_cost;
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             $paid_amount->save();
         }
@@ -271,6 +273,7 @@ class CaseController extends Controller
             'fv_updates.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_date' => 'nullable',
             'amount_paid' => 'required',
+            'legal_cost' => 'nullable',
             'payment_date' => 'required',
             'next_payment_date' => 'required',
             'next_payment_amount' => 'required',
@@ -283,7 +286,7 @@ class CaseController extends Controller
         $paid_amount = Cases::findOrFail($request->case_id);
         $installment = Installment::create([
             'case_id' => $request->case_id,
-            'amount_paid' => $request->amount_paid,
+            'amount_paid' => $request->amount_paid + $request->legal_cost,
             'next_payment_amount' => $request->next_payment_amount,
             'collected_by_id' => $request->collected_by_id == null ? 2 : $request->collected_by_id,
             'next_payment_date' => $request->next_payment_date,
@@ -295,6 +298,7 @@ class CaseController extends Controller
             //$installment->collected_by_id = $request->collected_by_id;
             // $installment->save_by_user_type = auth()->user()->user_type;
             //$installment->save();
+            $paid_amount->legal_cost = $paid_amount->legal_cost -$request->legal_cost;
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             $paid_amount->save();
         }

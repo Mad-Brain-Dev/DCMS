@@ -107,7 +107,8 @@
                             <div class="mb-3 col-md-4">
                                 <label class="form-label">Collection Commission (%)</label>
                                 <input type="number" name="collection_commission" id="collection_commission"
-                                    class="form-control" step="0.01" min="0" max="10000000000000" placeholder="Enter Collection Commission" value="">
+                                    class="form-control" step="0.01" min="0" max="10000000000000"
+                                    placeholder="Enter Collection Commission" value="">
                                 @error('collection_commission')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -187,39 +188,39 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Guarantor Name</label>
-                                <input type="text" name="guarantor_name" class="form-control" placeholder="Enter guarantor name"
-                                    value="{{ old('guarantor_name') }}">
+                                <input type="text" name="guarantor_name" class="form-control"
+                                    placeholder="Enter guarantor name" value="{{ old('guarantor_name') }}">
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Guarantor Address</label>
-                                <input type="text" name="guarantor_address" class="form-control" placeholder="Enter guarantor Address"
-                                    value="{{ old('guarantor_address') }}">
+                                <input type="text" name="guarantor_address" class="form-control"
+                                    placeholder="Enter guarantor Address" value="{{ old('guarantor_address') }}">
                                 @error('guarantor_address')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Guarantor Name 2</label>
-                                <input type="text" name="guarantor_name2" class="form-control" placeholder="Enter guarantor name 2"
-                                    value="{{ old('guarantor_name2') }}">
+                                <input type="text" name="guarantor_name2" class="form-control"
+                                    placeholder="Enter guarantor name 2" value="{{ old('guarantor_name2') }}">
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Guarantor Address 2</label>
-                                <input type="text" name="guarantor_address2" class="form-control" placeholder="Enter guarantor Address 2"
-                                    value="{{ old('guarantor_address2') }}">
+                                <input type="text" name="guarantor_address2" class="form-control"
+                                    placeholder="Enter guarantor Address 2" value="{{ old('guarantor_address2') }}">
                                 @error('guarantor_address2')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Guarantor Name 3</label>
-                                <input type="text" name="guarantor_name3" class="form-control" placeholder="Enter guarantor name 3"
-                                    value="{{ old('guarantor_name3') }}">
+                                <input type="text" name="guarantor_name3" class="form-control"
+                                    placeholder="Enter guarantor name 3" value="{{ old('guarantor_name3') }}">
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Guarantor Address 3</label>
-                                <input type="text" name="guarantor_address3" class="form-control" placeholder="Enter guarantor Address 3"
-                                    value="{{ old('guarantor_address3') }}">
+                                <input type="text" name="guarantor_address3" class="form-control"
+                                    placeholder="Enter guarantor Address 3" value="{{ old('guarantor_address3') }}">
                                 @error('guarantor_address3')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -268,8 +269,9 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Debt Interest/Annum (%)</label>
-                                <input type="number" step="0.01" min="0" max="10000000000000" name="debt_interest" class="form-control"
-                                    placeholder="Enter Debt Interest/Annum" id="debt_amount_annum">
+                                <input type="number" step="0.01" min="0" max="10000000000000"
+                                    name="debt_interest" class="form-control" placeholder="Enter Debt Interest/Annum"
+                                    id="debt_amount_annum">
                                 @error('debt_interest')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -337,9 +339,10 @@
     <div class="modal fade" tabindex="-1" role="dialog" id="showMsg">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-footer d-flex justify-content-between" style="border: none;" >
+                <div class="modal-footer d-flex justify-content-between" style="border: none;">
 
-                    <a href="{{ route('admin.cases.index') }}" class="btn btn-danger" class="btn btn-secondary" >Close</a>
+                    <a href="{{ route('admin.cases.index') }}" class="btn btn-danger"
+                        class="btn btn-secondary">Close</a>
                     <a class="btn btn-primary" id="letter" href="">Print Letter</a>
                     <a class="btn btn-success" id="agreement" href="">Print Warrant</a>
 
@@ -390,12 +393,15 @@
                         var clNameAbbr = response.dateofagreement.abbr
                         var getDate = response.dateofagreement.created_at
                         var formatedDate = dayjs(getDate).format('YYYY')
-                        $('#case_number').val(clNameAbbr+ ' ' + '/' + ' ' +formatedDate + ' ' + '/'+ ' ');
+                        $('#case_number').val(clNameAbbr + ' ' + '/' + ' ' + formatedDate +
+                            ' ' + '/' + ' ');
                     }
                 })
             });
+
             $(function() {
                 $("#start_date").on("change", sub);
+
                 function sub() {
                     var start = $('#start_date').val();
                     var end = $('#end_date').val();
@@ -405,54 +411,107 @@
                     var days = diff / 1000 / 60 / 60 / 24;
                     var debt_amount = $('#debt_amount').val();
                     var debt_amount_annum = $('#debt_amount_annum').val();
-
-                    var yearlyInterest = (debt_amount * debt_amount_annum * 1) / 100;
-                    var dailyInterest = yearlyInterest / 365
                     var legal_cost = $('#legal_cost').val();
 
-                    var total_interest = dailyInterest * days;
-                    $('#total_interest').val(parseFloat(total_interest).toFixed(2));
+                    // var yearlyInterest = (debt_amount * debt_amount_annum * 1) / 100;
+                    // var dailyInterest = yearlyInterest / 365
 
-                    var total_amount_owed = parseFloat(debt_amount) + parseFloat(legal_cost) + parseFloat(
-                        total_interest);
+                    //Compound Capital Interest
+                    const interest = calculateCompoundInterest(debt_amount, debt_amount_annum, days);
+                    const total_amount_owed = calculateCompoundPrincipalInterest(debt_amount,
+                        debt_amount_annum, days);
+                    // $('#result').text('The compound interest for ' + days + ' days is: ' + interest.toFixed(
+                    //     2));
+
+
+
+                    function calculateCompoundInterest(debt_amount, debt_amount_annum, days) {
+                        const dailyRate = debt_amount_annum / 365;
+                        const t = days / 365;
+                        const amount = debt_amount * Math.pow((1 + dailyRate), t);
+                        return total_interest = amount -
+                        debt_amount; // This gives the interest earned over the specified number of days
+                    }
+
+                    function calculateCompoundPrincipalInterest(debt_amount, debt_amount_annum, days) {
+                        const dailyRate = debt_amount_annum / 365;
+                        const t = days / 365;
+                        const amount = debt_amount * Math.pow((1 + dailyRate), t);
+                        return amount;
+                    }
+
+
+                    // var total_interest = dailyInterest * days;
+                    $('#total_interest').val(parseFloat(interest).toFixed(2));
+
+                    $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
                     var installment_number = $('#installment_number').val();
                     var per_installment_amount = parseFloat(total_amount_owed / installment_number).toFixed(
                         2);
                     $('#per_installment_amount').val(per_installment_amount);
 
 
-                    $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
+                    $('#total_amount_owed').val(parseFloat(total_amount_owed + legal_cost).toFixed(2));
 
                     $('#total_amount_balance').val(parseFloat(total_amount_owed).toFixed(2));
 
 
-                    if(start){
-                        $("#debt_amount, #legal_cost, #debt_amount_annum").on("keyup", function(){
-
-                            diff = new Date(Date.parse(end) - Date.parse(start));
-                    // get days
-                    var days = diff / 1000 / 60 / 60 / 24;
-                    var debt_amount = $('#debt_amount').val();
-                    var debt_amount_annum = $('#debt_amount_annum').val();
-
-                    var yearlyInterest = (debt_amount * debt_amount_annum * 1) / 100;
-                    var dailyInterest = yearlyInterest / 365
-                    var legal_cost = $('#legal_cost').val();
-
-                    var total_interest = dailyInterest * days;
-                    $('#total_interest').val(parseFloat(total_interest).toFixed(2));
-
-                    var total_amount_owed = parseFloat(debt_amount) + parseFloat(legal_cost) + parseFloat(
-                        total_interest);
-                    var installment_number = $('#installment_number').val();
-                    var per_installment_amount = parseFloat(total_amount_owed / installment_number).toFixed(
-                        2);
-                    $('#per_installment_amount').val(per_installment_amount);
 
 
-                    $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
 
-                    $('#total_amount_balance').val(parseFloat(total_amount_owed).toFixed(2));
+                    if (start) {
+                        $("#debt_amount, #legal_cost, #debt_amount_annum").on("keyup", function() {
+                            var days = diff / 1000 / 60 / 60 / 24;
+                            var debt_amount = $('#debt_amount').val();
+                            var debt_amount_annum = $('#debt_amount_annum').val();
+                            var legal_cost = $('#legal_cost').val();
+
+                            // var yearlyInterest = (debt_amount * debt_amount_annum * 1) / 100;
+                            // var dailyInterest = yearlyInterest / 365
+
+                            //Compound Capital Interest
+                            const interest = calculateCompoundInterest(debt_amount,
+                                debt_amount_annum, days);
+                            const total_amount_owed = calculateCompoundPrincipalInterest(
+                                debt_amount, debt_amount_annum, days);
+                            // $('#result').text('The compound interest for ' + days + ' days is: ' + interest.toFixed(
+                            //     2));
+
+
+
+                            function calculateCompoundInterest(debt_amount, debt_amount_annum,
+                            days) {
+                                const dailyRate = debt_amount_annum / 365;
+                                const t = days / 365;
+                                const amount = debt_amount * Math.pow((1 + dailyRate), t);
+                                return total_interest = amount -
+                                debt_amount; // This gives the interest earned over the specified number of days
+                            }
+
+                            function calculateCompoundPrincipalInterest(debt_amount,
+                                debt_amount_annum, days) {
+                                const dailyRate = debt_amount_annum / 365;
+                                const t = days / 365;
+                                const amount = debt_amount * Math.pow((1 + dailyRate), t);
+                                return amount;
+                            }
+
+
+                            // var total_interest = dailyInterest * days;
+                            $('#total_interest').val(parseFloat(interest).toFixed(2));
+
+                            $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
+                            var installment_number = $('#installment_number').val();
+                            var per_installment_amount = parseFloat(total_amount_owed /
+                                installment_number).toFixed(
+                                2);
+                            $('#per_installment_amount').val(per_installment_amount);
+
+
+                            $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
+
+                            $('#total_amount_balance').val(parseFloat(total_amount_owed).toFixed(
+                            2));
 
                         })
                     }
@@ -499,8 +558,7 @@
                         $('#agreement').attr('href', url);
                         $('#letter').attr('href', letterUrl);
 
-                     }
-                     else {
+                    } else {
                         $.each(data.error, function(key, value) {
                             var el = $(document).find('[name="' + key + '"]');
                             el.after($('<span class= "err-msg">' + value[0] + '</span>'));
@@ -518,20 +576,22 @@
 @endpush
 
 @push('style')
-<style>
-.err-msg{
-    color: #ec4561;
-    font-size: 12px;
-}
-.select2-container .select2-selection--single{
-    height: 33px !important;
-}
-.select2-container--default .select2-selection--single .select2-selection__rendered{
-    line-height: 33px !important;
-}
-.select2-container--default .select2-selection--single .select2-selection__arrow{
-    top: 4px !important;
-}
-</style>
+    <style>
+        .err-msg {
+            color: #ec4561;
+            font-size: 12px;
+        }
 
+        .select2-container .select2-selection--single {
+            height: 33px !important;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 33px !important;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            top: 4px !important;
+        }
+    </style>
 @endpush

@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('case_id')->nullable()->references('id')->on('cases')
             ->onDelete('cascade');
-            $table->string('amount_paid')->nullable();
+            $table->float('amount_paid')->nullable();
             $table->foreignId('collected_by_id')->default(2)->references('id')->on('users')
             ->onDelete('cascade');
             // $table->string('save_by_user_type')->nullable();
-            $table->string('next_payment_amount')->nullable();
+            $table->float('next_payment_amount')->nullable();
             $table->string('payment_method')->nullable();
             $table->timestamp('date_of_payment')->nullable();
             $table->dateTime('next_payment_date')->nullable();
