@@ -30,15 +30,20 @@ class CalculateDailyInterest extends Command
         try {
             $accounts = Cases::where('current_status','!=',GlobalConstant::CASE_CLOSED)->get();
 
-            foreach ($accounts as $account) {
-                $interest = calculateDailyCompoundInterest($account->total_amount_owed, $account->debt_interest);
+            if ($accounts->count() > 0){
+                foreach ($accounts as $account) {
+                    $interest = calculateDailyCompoundInterest($account->total_amount_owed, $account->debt_interest);
 
-                // Update the account balance
-                $account->total_amount_owed += $interest;
-                $account->save();
+                    // Update the account balance
+                    $account->total_amount_owed += $interest;
+                    $account->save();
+                }
+
+                \Log::info('Daily compound interest calculated and stored successfully.'.now());
+            }else{
+                \Log::info('No accounts to calculate'.'.now());
             }
 
-            \Log::info('Daily compound interest calculated and stored successfully.'.now());
         }catch (\Exception $exception){
             \Log::info('Daily compound interest calculated and storing unsuccessfully.'.now());
         }
