@@ -451,7 +451,7 @@
                     $('#per_installment_amount').val(per_installment_amount);
 
 
-                    $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
+                    $('#total_amount_owed').val(parseFloat(total_amount_owed + legal_cost).toFixed(2));
 
                     $('#total_amount_balance').val(parseFloat(total_amount_owed).toFixed(2));
 
