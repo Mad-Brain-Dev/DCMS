@@ -41,7 +41,7 @@ class CalculateDailyInterest extends Command
 
                 \Log::info('Daily compound interest calculated and stored successfully.'.now());
             }else{
-                \Log::info('No accounts to calculate'.'.now());
+                \Log::info('No accounts to calculate.'.now());
             }
 
         }catch (\Exception $exception){
