@@ -64,39 +64,36 @@ class ClientController extends Controller
         }
         $client = Client::create($request->all());
         if ($client) {
-
             $user = new User();
             $user->name = $request['name'];
             $user->email = $request['email'];
             $user->password =  Hash::make("12345678");   // 12345678;
             $user->save();
-
-           if($user){
-            $admin_fee_paid = new AdminFee();
-            $admin_fee_paid->admin_fee_amount = $request->admin_fee_paid;
-            $admin_fee_paid->client_id = $client->id;
-            $admin_fee_paid->collection_date = date('Y-m-d H:i:s');
-            $admin_fee_paid->collected_by_id = $request->collected_by_id == null ? 2 : $request->collected_by_id;
-            $admin_fee_paid->save();
-            $client->client_id = $user->id;
-            $client->save();
-           }
-           if($client){
-            $data = [
-                'status' => 200,
-                'success' => 'Data Fetched Successfully',
-                'result' =>  $client,
-            ];
-            event(new NewClientCreated($client));
-            return response()->json($data);
-           }
-           else{
-            $data = [
-                'status' => 500,
-                'success' => 'Something Went Wrong',
-                'result' =>  [],
-            ];
-           }
+            if ($user) {
+                $admin_fee_paid = new AdminFee();
+                $admin_fee_paid->admin_fee_amount = $request->admin_fee_paid;
+                $admin_fee_paid->client_id = $client->id;
+                $admin_fee_paid->collection_date = date('Y-m-d H:i:s');
+                $admin_fee_paid->collected_by_id = $request->collected_by_id == null ? 2 : $request->collected_by_id;
+                $admin_fee_paid->save();
+                $client->client_id = $user->id;
+                $client->save();
+            }
+            if ($client) {
+                $data = [
+                    'status' => 200,
+                    'success' => 'Data Fetched Successfully',
+                    'result' =>  $client,
+                ];
+                event(new NewClientCreated($client));
+                return response()->json($data);
+            } else {
+                $data = [
+                    'status' => 500,
+                    'success' => 'Something Went Wrong',
+                    'result' =>  [],
+                ];
+            }
         }
     }
 
@@ -119,7 +116,7 @@ class ClientController extends Controller
     {
         $client = Client::find($id);
         $employees = User::where('user_type', 'employee')->get();
-        return view('admin.clients.edit', compact('client','employees'));
+        return view('admin.clients.edit', compact('client', 'employees'));
     }
 
     /**
@@ -168,17 +165,17 @@ class ClientController extends Controller
         ]);
         $fee = AdminFee::create(
             [
-                'admin_fee_amount' =>$request->admin_fee_paid,
-                'collection_date' =>$request->collection_date,
-                'client_id' =>$request->client_id,
-                'collected_by_id' =>$request->collected_by_id == null ? 2 : $request->collected_by_id,
+                'admin_fee_amount' => $request->admin_fee_paid,
+                'collection_date' => $request->collection_date,
+                'client_id' => $request->client_id,
+                'collected_by_id' => $request->collected_by_id == null ? 2 : $request->collected_by_id,
             ]
         );
-        if($fee){
-         $client = Client::where('client_id', $request->client_id)->first();
-         $client->admin_fee_balance = $client->admin_fee_balance - $request->admin_fee_paid;
-         $client->admin_fee_paid = $client->admin_fee_paid + $request->admin_fee_paid;
-         $client->save();
+        if ($fee) {
+            $client = Client::where('client_id', $request->client_id)->first();
+            $client->admin_fee_balance = $client->admin_fee_balance - $request->admin_fee_paid;
+            $client->admin_fee_paid = $client->admin_fee_paid + $request->admin_fee_paid;
+            $client->save();
         }
         record_created_flash();
         return redirect()->route('admin.clients.show', $id);

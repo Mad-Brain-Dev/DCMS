@@ -664,6 +664,7 @@ if (!function_exists('calculateCompoundInterestForDays')) {
         $dailyRate = $annualRate / 365;
         $t = $days / 365;
         $amount = $principal * pow((1 + $dailyRate), $t);
-        return $amount - $principal; // This gives the interest earned over the specified number of days
+        return $amount;
+       // return $amount - $principal; This gives the interest earned over the specified number of days
     }
 }

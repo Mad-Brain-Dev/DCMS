@@ -209,7 +209,6 @@
         </div>
     </div>
 @endsection
-
 @push('script')
     <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
     <script>
@@ -229,8 +228,6 @@
                     $("#subt").val(Number($("#num1").val()) - Number($("#num2").val()));
                 }
             });
-
-
             $("#frmAppl").on("submit", function(event) {
                 event.preventDefault();
                 var error_ele = document.getElementsByClassName('err-msg');
@@ -239,7 +236,6 @@
                         error_ele[i].remove();
                     }
                 }
-
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -247,7 +243,7 @@
                 });
 
                 $.ajax({
-                    url: "{{ route('admin.clients.store') }}",
+                    url: "",
                     type: "POST",
                     data: new FormData(this),
                     dataType: 'json',
