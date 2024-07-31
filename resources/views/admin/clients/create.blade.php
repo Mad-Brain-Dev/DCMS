@@ -241,9 +241,8 @@
                         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                     }
                 });
-
                 $.ajax({
-                    url: "",
+                    url: "{{ route('admin.clients.store') }}",
                     type: "POST",
                     data: new FormData(this),
                     dataType: 'json',
