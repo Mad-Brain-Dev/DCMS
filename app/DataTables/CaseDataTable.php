@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Cases;
+use App\Models\Installment;
 use App\Models\User;
 use App\Utils\GlobalConstant;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
@@ -64,6 +65,14 @@ class CaseDataTable extends DataTable
                 $name = $item->client->name;
                 return $name;
              })
+            ->editColumn('total_amount_owed',function ($item){
+
+                return number_format($item->total_amount_owed,2);
+            })
+            ->editColumn('total_amount_balance',function ($item){
+
+                return totalInstallment($item->id);
+            })
             //->editColumn('status',function ($item){
             //     $badge = $item->status == GlobalConstant::STATUS_ACTIVE ? "bg-success" : "bg-danger";
             //     return '<span class="badge ' . $badge . '">' . Str::upper($item->status) . '</span>';
@@ -73,7 +82,7 @@ class CaseDataTable extends DataTable
             //     $sql = "CONCAT(users.first_name,'-',users.last_name)  like ?";
             //     $query->whereRaw($sql, ["%{$keyword}%"]);
             // })
-            ->rawColumns(['action', 'avatar', 'status','debtor_id'])
+            ->rawColumns(['action', 'avatar', 'status','debtor_id','total_amount_owed','total_amount_balance'])
             ->setRowId('id');
 
     }

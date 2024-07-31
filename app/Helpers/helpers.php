@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Cases;
+use App\Models\Installment;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Course;
@@ -665,5 +667,18 @@ if (!function_exists('calculateCompoundInterestForDays')) {
         $t = $days / 365;
         $amount = $principal * pow((1 + $dailyRate), $t);
         return $amount - $principal; // This gives the interest earned over the specified number of days
+    }
+}
+
+if (!function_exists('totalInstallment')) {
+
+    function totalInstallment($case_id)
+    {
+        $installment = Installment::where('case_id',$case_id)->sum('amount_paid');
+        $case = Cases::find($case_id);
+        $total_amount_owed = number_format($case->total_amount_owed,2);
+        $installmentPaid = number_format($installment,2);
+
+        return $balance = number_format($total_amount_owed - $installmentPaid,2);
     }
 }
