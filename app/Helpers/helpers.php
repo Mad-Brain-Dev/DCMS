@@ -671,15 +671,13 @@ if (!function_exists('calculateCompoundInterestForDays')) {
     }
 }
 
-if (!function_exists('totalInstallment')) {
+if (!function_exists('totalBalance')) {
 
-    function totalInstallment($case_id)
+    function totalBalance($case_id)
     {
         $installment = Installment::where('case_id',$case_id)->sum('amount_paid');
         $case = Cases::find($case_id);
-        $total_amount_owed = number_format($case->total_amount_owed,2);
-        $installmentPaid = number_format($installment,2);
 
-        return $balance = number_format($total_amount_owed - $installmentPaid,2);
+        return $balance = number_format($case->total_amount_owed - $installment,2);
     }
 }

@@ -67,11 +67,12 @@ class CaseDataTable extends DataTable
              })
             ->editColumn('total_amount_owed',function ($item){
 
+//                return $item->total_amount_owed;
                 return number_format($item->total_amount_owed,2);
             })
             ->editColumn('total_amount_balance',function ($item){
 
-                return totalInstallment($item->id);
+                return totalBalance($item->id);
             })
             //->editColumn('status',function ($item){
             //     $badge = $item->status == GlobalConstant::STATUS_ACTIVE ? "bg-success" : "bg-danger";
