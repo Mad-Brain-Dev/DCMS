@@ -21,7 +21,7 @@
                                     <span>Per Installment Amount : {{ number_formatCase($case->per_installment_amount, 2, '.', ',') }} $</span> <br> --}}
                                 <span>Client Name : {{ $case->client->name }} </span> <br>
                                 <span>Debtor Name : {{ $case->name }} </span> <br>
-                                <span>Legal Cost Amount :$ {{ number_format($case->legal_cost, 2, '.', ',') }}</span>
+                                {{-- <span>Legal Cost Amount :$ {{ number_format($case->legal_cost, 2, '.', ',') }}</span> --}}
                             </div>
                             <div class="col-md-3">
                                 {{-- <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br> --}}
@@ -29,9 +29,9 @@
                                 </span> <br>
                                 {{-- <span>Last Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br> --}}
                                 <span>Amount Balance : $ {{ totalBalance($case->id) }}</span><br>
-                                <span>Legal Cost Collected Amount : $
+                                {{-- <span>Legal Cost Collected Amount : $
                                     {{ number_format($case->legal_cost_received, 2, '.', ',') }}
-                                </span>
+                                </span> --}}
 
                             </div>
                             <div class="col-md-3">
@@ -52,8 +52,8 @@
                                         {{ date('d-m-Y', strtotime($installment->next_payment_date)) }}
                                     @endif
                                 </span><br>
-                                <span>Legal Cost :
-                                    {{ $case->legal_cost - $case->legal_cost_received == 0 ? 'Paid' : 'Unpaid' }} </span>
+                                {{-- <span>Legal Cost :
+                                    {{ $case->legal_cost - $case->legal_cost_received == 0 ? 'Paid' : 'Unpaid' }} </span> --}}
 
                                 {{-- date('d-m-Y', strtotime($installment->next_payment_date)) --}}
                             </div>
@@ -118,7 +118,7 @@
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
-                        @if ($case->legal_cost - $case->legal_cost_received != 0)
+                        {{-- @if ($case->legal_cost - $case->legal_cost_received != 0)
                             <div class="mb-3">
                                 <label class="form-label">Legal Cost</label>
                                 <input type="number" name="legal_cost" value="{{ $case->legal_cost }}"
@@ -127,7 +127,7 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-                        @endif
+                        @endif --}}
                         <div class="mb-3">
                             <label class="form-label">Payment Method</label>
                             <select class="form-select" aria-label="Default select example" name="payment_method">
@@ -224,18 +224,25 @@
                                         @php
                                             $extension = substr($gn_update->gn_update, -3);
                                         @endphp
-                                        @if ($extension == 'pdf')
-                                            <iframe style="overflow: hidden"
-                                                src="{{ asset('/documents/' . $gn_update->gn_update) }}" width="100"
-                                                height="100"></iframe>
+                                        @if ($gn_update->gn_update != null)
+                                            @if ($extension == 'pdf')
+                                                <iframe style="overflow: hidden"
+                                                    src="{{ asset('/documents/' . $gn_update->gn_update) }}"
+                                                    width="100" height="100"></iframe>
+                                            @else
+                                                <img src="{{ asset('/documents/' . $gn_update->gn_update) }}"
+                                                    width="100" height="100" />
+                                            @endif
                                         @else
-                                            <img src="{{ asset('/documents/' . $gn_update->gn_update) }}" width="100"
-                                                height="100" />
+                                            <div class="d-flex align-items-center justify-content-center"
+                                                style="background: rgb(168, 168, 168); height: 100px; width: 100px; color: #ffffff; border-radius: 4px">
+                                                <small>No file to show</small>
+                                            </div>
                                         @endif
 
                                     </div>
                                     <h6 class="mt-2">Field Visited at:
-                                        {{ $case->fv_date == null ? 'N/A' : date('d-m-Y', strtotime($case->fv_date)) }}
+                                        {{ $gn_update->fv_date == null ? 'N/A' : date('d-m-Y', strtotime($gn_update->fv_date)) }}
                                     </h6>
                                     <span class="d-block">{{ $gn_update->gn_summary }}</span>
                                     <div>
@@ -295,7 +302,7 @@
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
-                        @if ($case->legal_cost != 0)
+                        {{-- @if ($case->legal_cost != 0)
                             <div class="mb-3">
                                 <label class="form-label">Legal Cost</label>
                                 <input type="number" name="legal_cost" value="{{ $case->legal_cost }}"
@@ -304,7 +311,7 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-                        @endif
+                        @endif --}}
                         <div class="mb-3">
                             <label class="form-label">Payment Method</label>
                             <select class="form-select" aria-label="Default select example" name="payment_method">
@@ -407,16 +414,23 @@
                                     @php
                                         $extension = substr($fv_update->fv_update, -3);
                                     @endphp
-                                    @if ($extension == 'pdf')
-                                        <iframe style="overflow: hidden"
-                                            src="{{ asset('/documents/' . $fv_update->fv_update) }}" width="100"
-                                            height="100"></iframe>
+                                    @if ($fv_update->fv_update != null)
+                                        @if ($extension == 'pdf')
+                                            <iframe style="overflow: hidden"
+                                                src="{{ asset('/documents/' . $fv_update->fv_update) }}" width="100"
+                                                height="100"></iframe>
+                                        @else
+                                            <img src="{{ asset('/documents/' . $fv_update->fv_update) }}" width="100"
+                                                height="100" />
+                                        @endif
                                     @else
-                                        <img src="{{ asset('/documents/' . $fv_update->fv_update) }}" width="100"
-                                            height="100" />
+                                        <div class="d-flex align-items-center justify-content-center"
+                                            style="background: rgb(168, 168, 168); height: 100px; width: 100px; color: #ffffff; border-radius: 4px">
+                                            <small>No file to show</small>
+                                        </div>
                                     @endif
                                     <h6 class="mt-2">Field Visited at:
-                                        {{ $case->fv_date == null ? 'N/A' : date('d-m-Y', strtotime($case->fv_date)) }}
+                                        {{ $fv_update->fv_date == null ? 'N/A' : date('d-m-Y', strtotime($fv_update->fv_date)) }}
                                     </h6>
                                     <span class="d-block">{{ $fv_update->fv_summary }}</span>
                                     <div>
@@ -871,12 +885,12 @@
         }
 
         /* .fixed-content{
-                                                position: fixed;
-                                                z-index: 9999;
-                                                width: 70%;
-                                            } */
+                                                        position: fixed;
+                                                        z-index: 9999;
+                                                        width: 70%;
+                                                    } */
         /* .balance-btn{
-                                                padding-top: 100px;
-                                            } */
+                                                        padding-top: 100px;
+                                                    } */
     </style>
 @endpush

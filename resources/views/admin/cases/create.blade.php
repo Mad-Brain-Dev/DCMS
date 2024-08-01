@@ -412,6 +412,8 @@
                     var debt_amount = $('#debt_amount').val();
                     var debt_amount_annum = $('#debt_amount_annum').val() / 100;
                     var legal_cost = $('#legal_cost').val();
+                    var debt_amount = parseInt(debt_amount) + parseInt(legal_cost);
+
 
                     // var yearlyInterest = (debt_amount * debt_amount_annum * 1) / 100;
                     // var dailyInterest = yearlyInterest / 365
@@ -419,10 +421,7 @@
                     //Compound Capital Interest
                     const interest = calculateCompoundInterest(debt_amount, debt_amount_annum, days);
                     const total_amount_owed = calculateCompoundPrincipalInterest(debt_amount,
-                        debt_amount_annum, days) + parseInt(legal_cost);
-
-                        console.log(legal_cost)
-                        console.log(total_amount_owed)
+                        debt_amount_annum, days)
                     // $('#result').text('The compound interest for ' + days + ' days is: ' + interest.toFixed(
                     //     2));
 
@@ -464,6 +463,7 @@
                             var debt_amount = $('#debt_amount').val();
                             var debt_amount_annum = $('#debt_amount_annum').val() / 100;
                             var legal_cost = $('#legal_cost').val();
+                            var debt_amount = parseInt(debt_amount) + parseInt(legal_cost);
 
                             // var yearlyInterest = (debt_amount * debt_amount_annum * 1) / 100;
                             // var dailyInterest = yearlyInterest / 365

@@ -93,7 +93,7 @@ class CaseController extends Controller
             "debt_amount" => $request->debt_amount,
             "legal_cost" => $request->legal_cost,
             "total_interest" => $request->total_interest,
-            "total_amount_owed" => $request->total_amount_owed - $request->legal_cost,
+            "total_amount_owed" => $request->total_amount_owed,
             "debt_interest" => $request->debt_interest,
             "interest_start_date" => $request->interest_start_date,
             "interest_end_date" => $request->interest_end_date,
