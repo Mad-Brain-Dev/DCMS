@@ -653,6 +653,7 @@ if (!function_exists('calculateDailyCompoundInterest')) {
 
     function calculateDailyCompoundInterest($principal, $annualRate)
     {
+        $annualRate = $annualRate/100;
         $dailyRate = $annualRate / 365;
         $amount = $principal * pow((1 + $dailyRate), 1);
         return $amount - $principal; // This gives the interest earned in one day

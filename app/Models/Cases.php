@@ -54,6 +54,8 @@ class Cases extends Model
         'interest_start_date',
         'interest_end_date',
         'total_interest',
+        'legal_cost_received',
+        'legal_cost_collected',
         'total_amount_owed',
         'total_amount_paid',
         'total_amount_balance',

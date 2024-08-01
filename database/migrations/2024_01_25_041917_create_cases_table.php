@@ -44,6 +44,7 @@ return new class extends Migration
             $table->string('guarantor_address3')->nullable();
             $table->string('debt_amount')->nullable();
             $table->string('legal_cost')->nullable();
+            $table->float('legal_cost_received')->nullable();
             $table->string('amount_unpaid')->nullable();
             $table->string('debt_interest')->nullable();
             $table->dateTime('interest_start_date')->nullable();

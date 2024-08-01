@@ -64,7 +64,7 @@
                                 <i class="fas fa-money-check-alt"></i>
                             </div>
                             <h5 class="font-size-16 text-uppercase text-white-50">Total Admin Fee</h5>
-                            <h4 class="fw-medium font-size-24">${{ $total_admin_fee }}</h4>
+                            <h4 class="fw-medium font-size-24">$ {{ $total_admin_fee }}</h4>
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                                 <i class="fas fa-money-check-alt"></i>
                             </div>
                             <h5 class="font-size-16 text-uppercase text-white-50">Total Amount Owed</h5>
-                            <h4 class="fw-medium font-size-24">${{ $total_amount_owed }}</h4>
+                            <h4 class="fw-medium font-size-24">$ {{ $total_amount_owed }}</h4>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                                 <i class="fas fa-money-check"></i>
                             </div>
                             <h5 class="font-size-16 text-uppercase text-white-50">Paid Amount</h5>
-                            <h4 class="fw-medium font-size-24">${{ $total_amount_paid }}</h4>
+                            <h4 class="fw-medium font-size-24">$ {{ $total_amount_paid }}</h4>
                         </div>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                                 <i class="fas fa-money-bill"></i>
                             </div>
                             <h5 class="font-size-16 text-uppercase text-white-50">Bal Amount</h5>
-                            <h4 class="fw-medium font-size-24">${{ $total_amount_balance }}</h4>
+                            <h4 class="fw-medium font-size-24">$ {{ $total_amount_balance }}</h4>
                         </div>
                     </div>
                 </div>

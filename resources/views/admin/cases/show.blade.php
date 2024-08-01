@@ -18,19 +18,21 @@
                                 {{-- <span>Debt Interest/Annum : {{ $case->debt_interest }} %</span> <br>
                                 <span>Total Interest : $ {{ number_format($case->total_interest, 2, '.', ',') }} </span> <br> --}}
                                 {{-- <span>Total Installment : {{ $case->installment_number }}</span> <br>
-                                    <span>Per Installment Amount : {{ number_format($case->per_installment_amount, 2, '.', ',') }} $</span> <br> --}}
+                                    <span>Per Installment Amount : {{ number_formatCase($case->per_installment_amount, 2, '.', ',') }} $</span> <br> --}}
                                 <span>Client Name : {{ $case->client->name }} </span> <br>
                                 <span>Debtor Name : {{ $case->name }} </span> <br>
-
-
+                                <span>Legal Cost Amount :$ {{ number_format($case->legal_cost, 2, '.', ',') }}</span>
                             </div>
                             <div class="col-md-3">
                                 {{-- <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br> --}}
                                 <span>Total Amount Owed : $ {{ number_format($case->total_amount_owed, 2, '.', ',') }}
                                 </span> <br>
                                 {{-- <span>Last Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br> --}}
-                                <span>Amount Balance : $ {{ number_format($case->total_amount_balance, 2, '.', ',') }}
-                                </span> <br>
+                                <span>Amount Balance : $ {{ totalBalance($case->id) }}</span><br>
+                                <span>Legal Cost Collected Amount : $
+                                    {{ number_format($case->legal_cost_received, 2, '.', ',') }}
+                                </span>
+
                             </div>
                             <div class="col-md-3">
                                 {{-- <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br> --}}
@@ -49,11 +51,11 @@
                                     @else
                                         {{ date('d-m-Y', strtotime($installment->next_payment_date)) }}
                                     @endif
-                                </span>
+                                </span><br>
+                                <span>Legal Cost :
+                                    {{ $case->legal_cost - $case->legal_cost_received == 0 ? 'Paid' : 'Unpaid' }} </span>
 
                                 {{-- date('d-m-Y', strtotime($installment->next_payment_date)) --}}
-
-                                <br>
                             </div>
 
                         </div>
@@ -79,7 +81,7 @@
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td> {{ $installmentByEmployee->user->name }}</td>
-                                    <td>{{ $installmentByEmployee->total_amounts != null ? number_format($installmentByEmployee->total_amounts, 2, '.', ',') . ' ' . '$' : 'N/A' }}
+                                    <td>{{ $installmentByEmployee->total_amounts != null ? '$ ' . number_format($installmentByEmployee->total_amounts, 2, '.', ',') : 'N/A' }}
                                     </td>
                                 </tr>
                             @endforeach
@@ -116,7 +118,7 @@
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
-                        @if ($case->legal_cost != 0)
+                        @if ($case->legal_cost - $case->legal_cost_received != 0)
                             <div class="mb-3">
                                 <label class="form-label">Legal Cost</label>
                                 <input type="number" name="legal_cost" value="{{ $case->legal_cost }}"
@@ -228,7 +230,7 @@
                                                 height="100"></iframe>
                                         @else
                                             <img src="{{ asset('/documents/' . $gn_update->gn_update) }}" width="100"
-                                                height="100"/>
+                                                height="100" />
                                         @endif
 
                                     </div>
@@ -403,15 +405,16 @@
 
 
                                     @php
-                                    $extension = substr($fv_update->fv_update, -3);
-                                @endphp
-                                @if ($extension == 'pdf')
-                                <iframe style="overflow: hidden" src="{{ asset('/documents/' . $fv_update->fv_update) }}" width="100"
-                                    height="100"></iframe>
-                                @else
-                                    <img src="{{ asset('/documents/' . $fv_update->fv_update) }}" width="100"
-                                        height="100"/>
-                                @endif
+                                        $extension = substr($fv_update->fv_update, -3);
+                                    @endphp
+                                    @if ($extension == 'pdf')
+                                        <iframe style="overflow: hidden"
+                                            src="{{ asset('/documents/' . $fv_update->fv_update) }}" width="100"
+                                            height="100"></iframe>
+                                    @else
+                                        <img src="{{ asset('/documents/' . $fv_update->fv_update) }}" width="100"
+                                            height="100" />
+                                    @endif
                                     <h6 class="mt-2">Field Visited at:
                                         {{ $case->fv_date == null ? 'N/A' : date('d-m-Y', strtotime($case->fv_date)) }}
                                     </h6>
@@ -868,12 +871,12 @@
         }
 
         /* .fixed-content{
-                                        position: fixed;
-                                        z-index: 9999;
-                                        width: 70%;
-                                    } */
+                                                position: fixed;
+                                                z-index: 9999;
+                                                width: 70%;
+                                            } */
         /* .balance-btn{
-                                        padding-top: 100px;
-                                    } */
+                                                padding-top: 100px;
+                                            } */
     </style>
 @endpush

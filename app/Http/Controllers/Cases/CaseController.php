@@ -93,11 +93,11 @@ class CaseController extends Controller
             "debt_amount" => $request->debt_amount,
             "legal_cost" => $request->legal_cost,
             "total_interest" => $request->total_interest,
-            "total_amount_owed" => $request->total_amount_owed,
+            "total_amount_owed" => $request->total_amount_owed - $request->legal_cost,
             "debt_interest" => $request->debt_interest,
             "interest_start_date" => $request->interest_start_date,
             "interest_end_date" => $request->interest_end_date,
-            "total_amount_balance" => $request->total_amount_balance,
+            // "total_amount_balance" => $request->total_amount_balance,
             "remarks" => $request->remarks,
         ];
         $result = Cases::create($data);
@@ -216,7 +216,7 @@ class CaseController extends Controller
 
         $installment = Installment::create([
             'case_id' => $request->case_id,
-            'amount_paid' => $request->amount_paid + $request->legal_cost,
+            'amount_paid' => $request->amount_paid,
             'next_payment_amount' => $request->next_payment_amount,
             'collected_by_id' => $request->collected_by_id == null ? 2 : $request->collected_by_id,
             'next_payment_date' => $request->next_payment_date,
@@ -224,11 +224,11 @@ class CaseController extends Controller
             'date_of_payment' => $request->payment_date,
 
         ]);
-        if ($installment) {
-            //$installment->collected_by_id = $request->collected_by_id;
-            // $installment->save_by_user_type = auth()->user()->user_type;
-            //$installment->save();
-            $paid_amount->legal_cost = $paid_amount->legal_cost -$request->legal_cost;
+         if ($installment) {
+        //     //$installment->collected_by_id = $request->collected_by_id;
+        //     // $installment->save_by_user_type = auth()->user()->user_type;
+        //     //$installment->save();
+            $paid_amount->legal_cost_received = $paid_amount->legal_cost_received + $request->legal_cost ;
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             $paid_amount->save();
         }
@@ -286,7 +286,7 @@ class CaseController extends Controller
         $paid_amount = Cases::findOrFail($request->case_id);
         $installment = Installment::create([
             'case_id' => $request->case_id,
-            'amount_paid' => $request->amount_paid + $request->legal_cost,
+            'amount_paid' => $request->amount_paid,
             'next_payment_amount' => $request->next_payment_amount,
             'collected_by_id' => $request->collected_by_id == null ? 2 : $request->collected_by_id,
             'next_payment_date' => $request->next_payment_date,
@@ -298,7 +298,7 @@ class CaseController extends Controller
             //$installment->collected_by_id = $request->collected_by_id;
             // $installment->save_by_user_type = auth()->user()->user_type;
             //$installment->save();
-            $paid_amount->legal_cost = $paid_amount->legal_cost -$request->legal_cost;
+            $paid_amount->legal_cost_received = $paid_amount->legal_cost_received + $request->legal_cost ;
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             $paid_amount->save();
         }
