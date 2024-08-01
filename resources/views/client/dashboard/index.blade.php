@@ -221,13 +221,14 @@
                                 <th scope="row">Interest Start Date</th>
                                 <td class="text-end">{{ date('d-m-Y', strtotime($case->interest_start_date)) }}</td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <th scope="row">Interest End Date</th>
                                 <td class="text-end">{{ date('d-m-Y', strtotime($case->interest_start_date)) }}</td>
-                            </tr>
+                            </tr> --}}
                             <tr>
                                 <th scope="row">Total Interest</th>
-                                <td class="text-end">$ {{ number_format($case->total_interest, 2, '.', ',') }} </td>
+
+                                <td class="text-end">$ {{ number_format($case->total_amount_owed - ($case->debt_amount + $case->legal_cost), 2, '.', ',') }} </td>
                             </tr>
                             <tr>
                                 <th scope="row">Total Amount Owed</th>
@@ -235,7 +236,7 @@
                             </tr>
                             <tr>
                                 <th scope="row">Total Amount Balance</th>
-                                <td class="text-end">$ {{ number_format($case->total_amount_balance, 2, '.', ',') }} </td>
+                                <td class="text-end">$ {{ totalBalance($case->id) }} </td>
                             </tr>
                         </tbody>
                     </table>
