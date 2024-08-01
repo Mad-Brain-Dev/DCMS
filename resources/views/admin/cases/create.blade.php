@@ -430,7 +430,7 @@
                         const amount = debt_amount * Math.pow((1 + dailyRate), days);
 
                         return total_interest = amount -
-                        debt_amount; // This gives the interest earned over the specified number of days
+                            debt_amount; // This gives the interest earned over the specified number of days
                     }
 
                     function calculateCompoundPrincipalInterest(debt_amount, debt_amount_annum, days) {
@@ -440,6 +440,9 @@
                     }
                     // var total_interest = dailyInterest * days;
                     $('#total_interest').val(parseFloat(interest).toFixed(2));
+
+                    var total = total_amount_owed + legal_cost;
+                    console.log(total)
 
                     $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
                     var installment_number = $('#installment_number').val();
@@ -474,11 +477,11 @@
 
 
                             function calculateCompoundInterest(debt_amount, debt_amount_annum,
-                            days) {
+                                days) {
                                 const dailyRate = debt_amount_annum / 365;
                                 const amount = debt_amount * Math.pow((1 + dailyRate), days);
                                 return total_interest = amount -
-                                debt_amount; // This gives the interest earned over the specified number of days
+                                    debt_amount; // This gives the interest earned over the specified number of days
                             }
 
                             function calculateCompoundPrincipalInterest(debt_amount,
@@ -503,7 +506,7 @@
                             $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
 
                             $('#total_amount_balance').val(parseFloat(total_amount_owed).toFixed(
-                            2));
+                                2));
 
                         })
                     }
