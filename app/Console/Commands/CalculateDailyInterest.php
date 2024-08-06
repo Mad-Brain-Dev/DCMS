@@ -39,25 +39,24 @@ class CalculateDailyInterest extends Command
                         // Update the account balance
                         $account->total_amount_owed += $interest;
                         $account->save();
+                        \Log::info('Daily compound interest calculated and stored successfully.'.now());
                     }
-                    elseif( $account->interest_type == 'simple' ){
+                    if( $account->interest_type == 'simple' ){
 
-                        $interest = calculateSimpleInterestForDays($account->total_amount_owed, $account->debt_interest);
+                        $interest = calculateDailySimpleInterest($account->total_amount_owed, $account->debt_interest);
 
                         // Update the account balance
                         $account->total_amount_owed += $interest;
                         $account->save();
-
-
+                        \Log::info('Daily simple interest calculated and stored successfully.'.now());
 
                     }
-                    else{
+                    if($account->interest_type == 'no'){
                         \Log::info('No Interest to Calculate.'.now());
                     }
 
                 }
 
-                \Log::info('Daily compound interest calculated and stored successfully.'.now());
             }else{
                 \Log::info('No accounts to calculate.'.now());
             }

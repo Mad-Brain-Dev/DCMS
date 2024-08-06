@@ -660,6 +660,22 @@ if (!function_exists('calculateDailyCompoundInterest')) {
     }
 }
 
+if (!function_exists('calculateDailySimpleInterest')) {
+
+    function calculateDailySimpleInterest($principal, $annualRate)
+    {
+        $dailyRate = $annualRate / 100 / 365;
+        $interest = $principal * $dailyRate * 1;
+        return $interest;
+       // return $amount - $principal; This gives the interest earned over the specified number of days
+    }
+}
+
+
+
+
+
+
 if (!function_exists('calculateCompoundInterestForDays')) {
 
     function calculateCompoundInterestForDays($principal, $annualRate, $days)
@@ -672,17 +688,7 @@ if (!function_exists('calculateCompoundInterestForDays')) {
     }
 }
 
-if (!function_exists('calculateSimpleInterestForDays')) {
 
-    function calculateSimpleInterestForDays($principal, $annualRate, $days)
-    {
-        $interest = $principal * annualRate * days;
-        $
-
-        return $amount;
-       // return $amount - $principal; This gives the interest earned over the specified number of days
-    }
-}
 
 if (!function_exists('totalBalance')) {
 

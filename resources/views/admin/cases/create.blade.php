@@ -488,10 +488,6 @@
                         })
                     }
 
-
-
-
-
                 } else if (selectedValue == 'simple') {
 
                     var start = $('#start_date').val();
