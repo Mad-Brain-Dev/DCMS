@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('case_number')->nullable();
             $table->string('remarks')->nullable();
             $table->text('case_sku')->nullable();
-            $table->string('current_status')->nullable();
+            $table->string('current_status')->nullable()->default('OPN');
             $table->string('case_summary')->nullable();
             $table->dateTime('date_of_warrant')->nullable();
             //for client name
@@ -55,6 +55,7 @@ return new class extends Migration
             $table->float('total_amount_paid')->nullable();
             $table->float('next_payment_amount')->nullable();
             $table->float('total_amount_balance')->nullable();
+            $table->string('interest_type')->nullable();
             $table->string('payment_method')->nullable();
             $table->dateTime('payment_date')->nullable();
             $table->timestamps();

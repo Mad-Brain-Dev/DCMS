@@ -108,7 +108,7 @@
                                 <label class="form-label">Collection Commission (%)</label>
                                 <input type="number" name="collection_commission" id="collection_commission"
                                     class="form-control" step="0.01" min="0" max="10000000000000"
-                                    placeholder="Enter Collection Commission" value="">
+                                    placeholder="Enter Collection Commission" readonly value="">
                                 @error('collection_commission')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -116,7 +116,7 @@
                             <div class="mb-3 col-md-4">
                                 <label class="form-label">Field Visits</label>
                                 <input type="number" name="field_visit" placeholder="Enter Field Visit Number Here"
-                                    class="form-control" id="field_visit" value="">
+                                    class="form-control" readonly id="field_visit" value="">
                                 @error('field_visit')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -235,14 +235,14 @@
                                 <label class="form-label">Select Interest Type</label>
                                 <div class="gap-4 d-flex">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="2" checked
+                                        <input class="form-check-input" type="radio" value="simple" checked
                                             name="principal_interest" id="simpleInterest">
                                         <label class="form-check-label" for="simpleInterest">
                                             Simple Interest
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="3"
+                                        <input class="form-check-input" type="radio" value="compound"
                                             name="principal_interest" id="compoundInterest">
                                         <label class="form-check-label" for="compoundInterest">
                                             Compound Interest
@@ -250,7 +250,7 @@
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="principal_interest"
-                                            id="noInterest" value="1">
+                                            id="noInterest" value="no">
                                         <label class="form-check-label" for="noInterest">
                                             No Interest
                                         </label>
@@ -434,7 +434,7 @@
             function sub() {
                 var selectedValue = $('input[name=principal_interest]:checked').val();
 
-                if (selectedValue == '1') {
+                if (selectedValue == 'no') {
 
                     var start = $('#start_date').val();
                     var end = $('#end_date').val();
@@ -488,11 +488,7 @@
                         })
                     }
 
-
-
-
-
-                } else if (selectedValue == '2') {
+                } else if (selectedValue == 'simple') {
 
                     var start = $('#start_date').val();
                     var end = $('#end_date').val();
