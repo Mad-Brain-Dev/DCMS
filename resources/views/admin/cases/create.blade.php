@@ -231,6 +231,35 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
+                            <div class="mb-3 col-md-12">
+                                <label class="form-label">Select Interest Type</label>
+                                <div class="gap-4 d-flex">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="principal_interest"
+                                            id="noInterest" value="1">
+                                        <label class="form-check-label" for="noInterest">
+                                            No Interest
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="2"
+                                            name="principal_interest" id="simpleInterest">
+                                        <label class="form-check-label" for="simpleInterest">
+                                            Simple Interest
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="3"
+                                            name="principal_interest" id="compoundInterest">
+                                        <label class="form-check-label" for="compoundInterest">
+                                            Compound Interest
+                                        </label>
+                                    </div>
+                                </div>
+                                @error('interest')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Debt Amount</label>
                                 <input type="number" name="debt_amount" class="form-control"
@@ -399,10 +428,14 @@
                 })
             });
 
-            $(function() {
-                $("#start_date").on("change", sub);
 
-                function sub() {
+            $('#start_date, #end_date, input[type=radio][name=principal_interest]').change(sub);
+
+            function sub() {
+                var selectedValue = $('input[name=principal_interest]:checked').val();
+
+                if (selectedValue == '1') {
+
                     var start = $('#start_date').val();
                     var end = $('#end_date').val();
                     // end - start returns difference in milliseconds
@@ -412,11 +445,112 @@
                     var debt_amount = $('#debt_amount').val();
                     var debt_amount_annum = $('#debt_amount_annum').val() / 100;
                     var legal_cost = $('#legal_cost').val();
-                    var debt_amount = parseInt(debt_amount) + parseInt(legal_cost);
+                    var interest = 0;
+                    var total_amount_owed = parseInt(debt_amount) + parseInt(legal_cost) + parseInt(interest);
 
 
-                    // var yearlyInterest = (debt_amount * debt_amount_annum * 1) / 100;
-                    // var dailyInterest = yearlyInterest / 365
+                    $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(
+                        2));
+
+                    $('#total_interest').val(parseFloat(interest).toFixed(2));
+
+                    $('#total_amount_balance').val(parseFloat(total_amount_owed)
+                        .toFixed(
+                            2));
+
+
+                    if (start) {
+
+                        $("#debt_amount, #legal_cost, #debt_amount_annum").on("keyup", function() {
+                            var start = $('#start_date').val();
+                            var end = $('#end_date').val();
+                            // end - start returns difference in milliseconds
+                            diff = new Date(Date.parse(end) - Date.parse(start));
+                            // get days
+                            var days = diff / 1000 / 60 / 60 / 24;
+                            var debt_amount = $('#debt_amount').val();
+                            var debt_amount_annum = $('#debt_amount_annum').val() / 100;
+                            var legal_cost = $('#legal_cost').val();
+                            var interest = 0;
+                            var total_amount_owed = parseInt(debt_amount) + parseInt(legal_cost) + parseInt(
+                                interest);
+
+
+                            $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(
+                                2));
+
+                            $('#total_interest').val(parseFloat(interest).toFixed(2));
+
+                            $('#total_amount_balance').val(parseFloat(total_amount_owed)
+                                .toFixed(
+                                    2));
+
+                        })
+                    }
+
+
+
+
+
+                } else if (selectedValue == '2') {
+
+                    var start = $('#start_date').val();
+                    var end = $('#end_date').val();
+                    // end - start returns difference in milliseconds
+                    diff = new Date(Date.parse(end) - Date.parse(start));
+                    var days = diff / 1000 / 60 / 60 / 24;
+
+
+                    var legal_cost = parseInt($('#legal_cost').val());
+                    var debt_amount = parseInt($('#debt_amount').val()) + legal_cost;
+                    var debt_amount_annum = $('#debt_amount_annum').val() / 100 / 365;
+
+
+                    var interest = debt_amount * debt_amount_annum * days;
+
+
+                    var totalAmount = debt_amount + interest;
+
+                    $('#total_interest').val(parseFloat(interest).toFixed(2));
+                    $('#total_amount_owed').val(parseFloat(totalAmount).toFixed(2));
+                    $('#total_amount_balance').val(parseFloat(totalAmount).toFixed(2));
+
+                    if (start) {
+                        $("#debt_amount, #legal_cost, #debt_amount_annum").on("keyup", function() {
+                            var start = $('#start_date').val();
+                            var end = $('#end_date').val();
+                            // end - start returns difference in milliseconds
+                            diff = new Date(Date.parse(end) - Date.parse(start));
+                            var days = diff / 1000 / 60 / 60 / 24;
+
+
+                            var legal_cost = parseInt($('#legal_cost').val());
+                            var debt_amount = parseInt($('#debt_amount').val()) + legal_cost;
+                            var debt_amount_annum = $('#debt_amount_annum').val() / 100 / 365;
+
+
+                            var interest = debt_amount * debt_amount_annum * days;
+
+
+                            var totalAmount = debt_amount + interest;
+
+                            $('#total_interest').val(parseFloat(interest).toFixed(2));
+                            $('#total_amount_owed').val(parseFloat(totalAmount).toFixed(2));
+                            $('#total_amount_balance').val(parseFloat(totalAmount).toFixed(2));
+                        })
+                    }
+
+                } else {
+                    var start = $('#start_date').val();
+                    var end = $('#end_date').val();
+                    // end - start returns difference in milliseconds
+                    diff = new Date(Date.parse(end) - Date.parse(start));
+                    // get days
+                    var days = parseInt(diff / 1000 / 60 / 60 / 24);
+                    var legal_cost = parseInt($('#legal_cost').val());
+                    var debt_amount = parseInt($('#debt_amount').val()) + legal_cost;
+                    var debt_amount_annum = $('#debt_amount_annum').val() / 100;
+
 
                     //Compound Capital Interest
                     const interest = calculateCompoundInterest(debt_amount, debt_amount_annum, days);
@@ -447,74 +581,75 @@
 
                     $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
                     var installment_number = $('#installment_number').val();
-                    var per_installment_amount = parseFloat(total_amount_owed / installment_number).toFixed(
-                        2);
+                    var per_installment_amount = parseFloat(total_amount_owed / installment_number)
+                        .toFixed(
+                            2);
                     $('#per_installment_amount').val(per_installment_amount);
 
                     $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
 
                     $('#total_amount_balance').val(parseFloat(total_amount_owed).toFixed(2));
 
-
-
                     if (start) {
-                        $("#debt_amount, #legal_cost, #debt_amount_annum").on("keyup", function() {
-                            var days = diff / 1000 / 60 / 60 / 24;
-                            var debt_amount = $('#debt_amount').val();
-                            var debt_amount_annum = $('#debt_amount_annum').val() / 100;
-                            var legal_cost = $('#legal_cost').val();
-                            var debt_amount = parseInt(debt_amount) + parseInt(legal_cost);
 
-                            // var yearlyInterest = (debt_amount * debt_amount_annum * 1) / 100;
-                            // var dailyInterest = yearlyInterest / 365
+                        $("#debt_amount, #legal_cost, #debt_amount_annum").on("keyup", function() {
+
+                            var start = $('#start_date').val();
+                            var end = $('#end_date').val();
+                            // end - start returns difference in milliseconds
+                            diff = new Date(Date.parse(end) - Date.parse(start));
+                            // get days
+                            var days = parseInt(diff / 1000 / 60 / 60 / 24);
+                            var legal_cost = parseInt($('#legal_cost').val());
+                            var debt_amount = parseInt($('#debt_amount').val()) + legal_cost;
+                            var debt_amount_annum = $('#debt_amount_annum').val() / 100;
+
 
                             //Compound Capital Interest
-                            const interest = calculateCompoundInterest(debt_amount,
-                                debt_amount_annum, days);
-                            const total_amount_owed = calculateCompoundPrincipalInterest(
-                                debt_amount, debt_amount_annum, days);
+                            const interest = calculateCompoundInterest(debt_amount, debt_amount_annum,
+                            days);
+                            const total_amount_owed = calculateCompoundPrincipalInterest(debt_amount,
+                                debt_amount_annum, days)
                             // $('#result').text('The compound interest for ' + days + ' days is: ' + interest.toFixed(
                             //     2));
 
 
 
-                            function calculateCompoundInterest(debt_amount, debt_amount_annum,
-                                days) {
+                            function calculateCompoundInterest(debt_amount, debt_amount_annum, days) {
                                 const dailyRate = debt_amount_annum / 365;
                                 const amount = debt_amount * Math.pow((1 + dailyRate), days);
+
                                 return total_interest = amount -
                                     debt_amount; // This gives the interest earned over the specified number of days
                             }
 
-                            function calculateCompoundPrincipalInterest(debt_amount,
-                                debt_amount_annum, days) {
+                            function calculateCompoundPrincipalInterest(debt_amount, debt_amount_annum,
+                                days) {
                                 const dailyRate = debt_amount_annum / 365;
                                 const amount = debt_amount * Math.pow((1 + dailyRate), days);
                                 return amount;
                             }
-
-
                             // var total_interest = dailyInterest * days;
                             $('#total_interest').val(parseFloat(interest).toFixed(2));
 
                             $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
                             var installment_number = $('#installment_number').val();
-                            var per_installment_amount = parseFloat(total_amount_owed /
-                                installment_number).toFixed(
-                                2);
+                            var per_installment_amount = parseFloat(total_amount_owed / installment_number)
+                                .toFixed(
+                                    2);
                             $('#per_installment_amount').val(per_installment_amount);
-
 
                             $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
 
-                            $('#total_amount_balance').val(parseFloat(total_amount_owed).toFixed(
-                                2));
-
+                            $('#total_amount_balance').val(parseFloat(total_amount_owed).toFixed(2));
                         })
+
                     }
 
                 }
-            });
+
+            }
+
         });
 
 
