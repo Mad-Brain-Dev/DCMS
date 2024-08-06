@@ -672,6 +672,18 @@ if (!function_exists('calculateCompoundInterestForDays')) {
     }
 }
 
+if (!function_exists('calculateSimpleInterestForDays')) {
+
+    function calculateSimpleInterestForDays($principal, $annualRate, $days)
+    {
+        $interest = $principal * annualRate * days;
+        $
+
+        return $amount;
+       // return $amount - $principal; This gives the interest earned over the specified number of days
+    }
+}
+
 if (!function_exists('totalBalance')) {
 
     function totalBalance($case_id)

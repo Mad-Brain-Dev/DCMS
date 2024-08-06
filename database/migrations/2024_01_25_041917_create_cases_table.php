@@ -55,6 +55,7 @@ return new class extends Migration
             $table->float('total_amount_paid')->nullable();
             $table->float('next_payment_amount')->nullable();
             $table->float('total_amount_balance')->nullable();
+            $table->string('interest_type')->nullable();
             $table->string('payment_method')->nullable();
             $table->dateTime('payment_date')->nullable();
             $table->timestamps();
