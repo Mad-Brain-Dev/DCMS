@@ -235,14 +235,7 @@
                                 <label class="form-label">Select Interest Type</label>
                                 <div class="gap-4 d-flex">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="principal_interest"
-                                            id="noInterest" value="1">
-                                        <label class="form-check-label" for="noInterest">
-                                            No Interest
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="2"
+                                        <input class="form-check-input" type="radio" value="2" checked
                                             name="principal_interest" id="simpleInterest">
                                         <label class="form-check-label" for="simpleInterest">
                                             Simple Interest
@@ -253,6 +246,13 @@
                                             name="principal_interest" id="compoundInterest">
                                         <label class="form-check-label" for="compoundInterest">
                                             Compound Interest
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="principal_interest"
+                                            id="noInterest" value="1">
+                                        <label class="form-check-label" for="noInterest">
+                                            No Interest
                                         </label>
                                     </div>
                                 </div>
