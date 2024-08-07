@@ -15,7 +15,7 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror --}}
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">CL Name</label><br>
+                                <label class="form-label">CL Name <span class="error">*</span></label><br>
                                 <select class="form-select select2 form-control" id="client_id" name="client_id">
                                     <option selected disabled>Select CL Name</option>
                                     @foreach ($clients as $client)
@@ -57,10 +57,10 @@
                                 <label class="form-label">Case Status</label>
                                 <select class="form-select select2" id="current_status" name="current_status"
                                     aria-label="Default select example">
-                                    <option selected disabled>Select Case Status</option>
+                                    {{-- <option selected disabled>Select Case Status</option> --}}
                                     <option value="{{ \App\Utils\GlobalConstant::CASE_PENDING }}">
                                         {{ \App\Utils\GlobalConstant::CASE_PENDING }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_OPEN }}">
+                                    <option value="{{ \App\Utils\GlobalConstant::CASE_OPEN }}" selected>
                                         {{ \App\Utils\GlobalConstant::CASE_OPEN }}</option>
                                     <option value="{{ \App\Utils\GlobalConstant::CASE_FIELD }}">
                                         {{ \App\Utils\GlobalConstant::CASE_FIELD }}</option>
