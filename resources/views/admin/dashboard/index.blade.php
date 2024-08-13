@@ -109,7 +109,7 @@
                                 <i class="fas fa-money-bill"></i>
                             </div>
                             <h5 class="font-size-16 text-uppercase text-white-50">Bal Amount</h5>
-                            <h4 class="fw-medium font-size-24">$ {{ $total_amount_balance }}</h4>
+                            <h4 class="fw-medium font-size-24">$ {{ totalBalanceSum() }}</h4>
                         </div>
                     </div>
                 </div>

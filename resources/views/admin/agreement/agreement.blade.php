@@ -22,10 +22,6 @@
 </head>
 
 <body>
-
-
-    <!--second section start-->
-    <section>
         <div class="second-section">
             <div class="container mb-5">
                 <div class="row">
@@ -35,15 +31,15 @@
                             <button class="btn btn-primary" onclick="printDocument()">Print</button>
                             <a href="{{ route('printable.case.letter', $case_number->id) }}" class="btn btn-dark ml-1">Print Letter</a>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-md-12 mx-auto text-center warrant-act">
                     <h1>WARRANT TO ACT</h1>
                     <p>SUBJECT TO CHAPTER 53B (ORIGINAL ENACTMENT: ACT 39 of 2001) REVISED EDITION 2002, SECTION 2.1</p>
+                    <div class="divider-top"></div>
                 </div>
                 <hr class="new-hr">
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-4">
                         <p><span class="to-securre">TO:</span> Securre Collection Pte Ltd</p>
                         <span class="client-information">CLIENT INFORMATION</span>
@@ -126,7 +122,7 @@
                     </div>
                 </div>
                 <div class="row another-information-row">
-                    <ol class="">
+                    <ol class="mt-4">
                         <li class="first-child">*I/We, the undersigned, hereby appoint you to act for <span
                                 class="me-us-after">*me/us </span> <span
                                 class="agreement_name">{{ $client_details->name }}</span><br>
@@ -185,7 +181,6 @@
             </div>
         </div>
 
-    </section>
     <footer class="warrant-footer">
         Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098
         Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net

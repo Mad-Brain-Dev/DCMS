@@ -255,6 +255,13 @@
                                             No Interest
                                         </label>
                                     </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="principal_interest"
+                                            id="stopInterest" value="stop">
+                                        <label class="form-check-label" for="stopInterest">
+                                            Stop Interest
+                                        </label>
+                                    </div>
                                 </div>
                                 @error('interest')
                                     <p class="error">{{ $message }}</p>
@@ -536,6 +543,54 @@
                         })
                     }
 
+                } else if (selectedValue == 'stop') {
+
+                    var start = $('#start_date').val();
+                    var end = $('#end_date').val();
+                    // end - start returns difference in milliseconds
+                    diff = new Date(Date.parse(end) - Date.parse(start));
+                    var days = diff / 1000 / 60 / 60 / 24;
+
+
+                    var legal_cost = parseInt($('#legal_cost').val());
+                    var debt_amount = parseInt($('#debt_amount').val()) + legal_cost;
+                    var debt_amount_annum = $('#debt_amount_annum').val() / 100 / 365;
+
+
+                    var interest = debt_amount * debt_amount_annum * days;
+
+
+                    var totalAmount = debt_amount + interest;
+
+                    $('#total_interest').val(parseFloat(interest).toFixed(2));
+                    $('#total_amount_owed').val(parseFloat(totalAmount).toFixed(2));
+                    $('#total_amount_balance').val(parseFloat(totalAmount).toFixed(2));
+
+                    if (start) {
+                        $("#debt_amount, #legal_cost, #debt_amount_annum").on("keyup", function() {
+                            var start = $('#start_date').val();
+                            var end = $('#end_date').val();
+                            // end - start returns difference in milliseconds
+                            diff = new Date(Date.parse(end) - Date.parse(start));
+                            var days = diff / 1000 / 60 / 60 / 24;
+
+
+                            var legal_cost = parseInt($('#legal_cost').val());
+                            var debt_amount = parseInt($('#debt_amount').val()) + legal_cost;
+                            var debt_amount_annum = $('#debt_amount_annum').val() / 100 / 365;
+
+
+                            var interest = debt_amount * debt_amount_annum * days;
+
+
+                            var totalAmount = debt_amount + interest;
+
+                            $('#total_interest').val(parseFloat(interest).toFixed(2));
+                            $('#total_amount_owed').val(parseFloat(totalAmount).toFixed(2));
+                            $('#total_amount_balance').val(parseFloat(totalAmount).toFixed(2));
+                        })
+                    }
+
                 } else {
                     var start = $('#start_date').val();
                     var end = $('#end_date').val();
@@ -555,16 +610,12 @@
                     // $('#result').text('The compound interest for ' + days + ' days is: ' + interest.toFixed(
                     //     2));
 
-
-
                     function calculateCompoundInterest(debt_amount, debt_amount_annum, days) {
                         const dailyRate = debt_amount_annum / 365;
                         const amount = debt_amount * Math.pow((1 + dailyRate), days);
-
                         return total_interest = amount -
                             debt_amount; // This gives the interest earned over the specified number of days
                     }
-
                     function calculateCompoundPrincipalInterest(debt_amount, debt_amount_annum, days) {
                         const dailyRate = debt_amount_annum / 365;
                         const amount = debt_amount * Math.pow((1 + dailyRate), days);
@@ -572,8 +623,6 @@
                     }
                     // var total_interest = dailyInterest * days;
                     $('#total_interest').val(parseFloat(interest).toFixed(2));
-
-
 
                     $('#total_amount_owed').val(parseFloat(total_amount_owed).toFixed(2));
                     var installment_number = $('#installment_number').val();
@@ -603,7 +652,7 @@
 
                             //Compound Capital Interest
                             const interest = calculateCompoundInterest(debt_amount, debt_amount_annum,
-                            days);
+                                days);
                             const total_amount_owed = calculateCompoundPrincipalInterest(debt_amount,
                                 debt_amount_annum, days)
                             // $('#result').text('The compound interest for ' + days + ' days is: ' + interest.toFixed(

@@ -51,6 +51,11 @@ class CalculateDailyInterest extends Command
                         \Log::info('Daily simple interest calculated and stored successfully.'.now());
 
                     }
+
+                    if($account->interest_type == 'stop'){
+                        \Log::info('Interest Stopped.'.now());
+                    }
+
                     if($account->interest_type == 'no'){
                         \Log::info('No Interest to Calculate.'.now());
                     }
