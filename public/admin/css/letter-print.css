@@ -14,7 +14,7 @@ body {
 }
 
 .debtor-part {
-    margin-top: 170px;
+    margin-top: 110px;
     padding-left: 50px;
 }
 
@@ -23,9 +23,8 @@ body {
     padding-bottom: 1rem;
     padding-right: 2rem;
     /* padding-left: 20px; */
-}s
-
-.logo-size {
+}
+s .logo-size {
     height: 70px;
     padding-left: 15px;
 }
@@ -60,7 +59,6 @@ body {
 /* debtor div start */
 
 .dear_sir {
-    padding-top: 50px;
     font-weight: 500;
 }
 
@@ -81,12 +79,12 @@ body {
     background: #948a54;
 }
 
-.sir_or_byHand{
+.sir_or_byHand {
     padding-left: 50px;
 }
 
 /* dear sir div end */
-.order_list{
+.order_list {
     padding-left: 90px;
 }
 
@@ -123,14 +121,14 @@ body {
     height: 1.1px;
 }
 
-.re_debts_owend{
+.re_debts_owend {
     padding-left: 50px;
 }
 /* 1st section end */
 
 /* 2nd section start */
 
-.header{
+.header {
     position: relative;
 }
 .first_col {
@@ -159,7 +157,6 @@ body {
     height: 15px;
     width: 105%;
 }
-
 
 .third_col p {
     padding-top: 35px;
@@ -210,12 +207,8 @@ body {
     flex-direction: column;
 }
 
-.ravin_self_div {
-    padding-top: 120px;
-}
 .ravin_self_div h5 {
     font-style: italic;
-    padding-bottom: 50px;
     font-weight: 400;
 }
 
@@ -246,14 +239,14 @@ body {
     padding-top: 300px;
 } */
 
-.amount_after{
+.amount_after {
     font-weight: 700;
     position: relative;
 }
 
-.amount_after::after{
+.amount_after::after {
     position: absolute;
-    content: '';
+    content: "";
     width: 98%;
     height: 1.4px;
     background-color: #000;
@@ -261,14 +254,14 @@ body {
     left: 0;
 }
 
-.date_time_after{
+.date_time_after {
     font-weight: 700;
     position: relative;
 }
 
-.date_time_after::after{
+.date_time_after::after {
     position: absolute;
-    content: '';
+    content: "";
     width: 100%;
     height: 1.4px;
     background-color: #000;
@@ -276,15 +269,10 @@ body {
     left: 0;
 }
 
-
-
-
-
 @media print {
-    .print-button{
+    .print-button {
         display: none;
     }
-  
     .header {
         position: fixed;
         top: 0;
@@ -294,10 +282,12 @@ body {
         bottom: 0;
     }
     #point-eight {
-        padding-top: 150px;
+        padding-top: 0px;
     }
-    .footer-text{
+    .footer-text {
         font-size: 12px !important;
     }
-
+    .footer-divider {
+        margin-right: 50px !important;
+    }
 }

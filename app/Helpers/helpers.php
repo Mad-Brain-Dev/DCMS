@@ -700,3 +700,13 @@ if (!function_exists('totalBalance')) {
         return $balance = number_format($case->total_amount_owed - $installment,2);
     }
 }
+
+if (!function_exists('totalBalanceSum')) {
+
+    function totalBalanceSum()
+    {
+        $installments = Installment::all()->sum('amount_paid');
+        $total_amount_owed = Cases::all()->sum('total_amount_owed');
+        return $balance = number_format($total_amount_owed - $installments,2);
+    }
+}

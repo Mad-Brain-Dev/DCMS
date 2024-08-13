@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cases;
 use App\Models\Client;
+use App\Models\Installment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,7 @@ class HomeController extends Controller
             $case_number = Cases::count();
             $total_admin_fee = number_format(Client::select('admin_fee')->get()->sum('admin_fee'), 2);
             $total_amount_owed = number_format(Cases::select('total_amount_owed')->get()->sum('total_amount_owed'), 2);
-            $total_amount_paid = number_format(Cases::select('total_amount_paid')->get()->sum('total_amount_paid'), 2);
+            $total_amount_paid = number_format(Installment::select('amount_paid')->get()->sum('amount_paid'), 2);
             $total_amount_balance = number_format(Cases::select('total_amount_balance')->get()->sum('total_amount_balance'), 2);
             $pdg_case_status = Cases::where('current_status', 'PDG')->get()->count('current_status');
             $opn_case_status = Cases::where('current_status', 'OPN')->get()->count('current_status');

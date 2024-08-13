@@ -67,7 +67,7 @@
                                                 <td>$ {{$item->installments->last()?->date_of_payment != null ? number_format($item->installments->last()?->amount_paid, 2, '.', ','): 'N/A'}}</td>
                                                 <td>{{date('d-m-Y', strtotime($item->installments->last()?->next_payment_date))}}</td>
                                                 <td>$ {{$item->installments->last()?->next_payment_amount !=null ? number_format($item->installments->last()?->next_payment_amount, 2, '.', ','):'N/A'}}</td>
-                                                <td>$ {{$item->total_amount_balance}}</td>
+                                                <td>$ {{totalBalance($item->id)}}</td>
                                             </tr>
                                         @endforeach
 

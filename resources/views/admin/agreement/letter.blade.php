@@ -26,7 +26,7 @@
 
         <section style="margin-bottom: 4rem;">
             <div class="container-padding">
-                <div class="row mb-3 header" style="margin-top: 4rem;">
+                <div class="row mb-3 header" style="margin-top: 1rem;">
                     <div class="col-1">
                         <div class="first_col"></div>
                     </div>
@@ -197,7 +197,7 @@
                                 </span>
                             </li>
 
-                            <li style="padding-bottom: 20px; padding-left: 14px;" class="thank-you-part">
+                            <li style="padding-left: 14px;" class="thank-you-part">
 
                                 9.<span style="padding-left: 10px;"> Thank you for your time and we expect to hear from
                                     you within
@@ -209,49 +209,6 @@
 
                 </div>
             </div>
-
-
-            {{-- <div class="row p-0">
-                <div class="col-2"></div>
-                <div class="col-6 anothe-col-2">
-                    <p>
-                        <b>[Annex 1A]</b> The breakdown of your dues are as follows;
-                    </p>
-
-                    <ul class="ul-class">
-                        <li>i. Judgement Amount and/or Contract Sum –</li>
-                        <li>
-                            ii. Compounded Interests at [<span
-                                style="color: #ff0000;">{{ $case_number->debt_interest }} %</span>] per annum from
-                            <br />
-                            [<span
-                                style="color: #ff0000;">{{ date('d-m-Y', strtotime($case_number->interest_start_date)) }}</span>]
-                            to [ <span
-                                style="color: #ff0000;">{{ date('d-m-Y', strtotime($case_number->interest_end_date)) }}</span>],
-                            the date of this letter –
-                        </li>
-                        <li>iii. Claimant/Legal costs –</li>
-                    </ul>
-                </div>
-
-                <div class="col-4 anothe-col-3">
-                    <ul>
-                        <li>S$ [<span style="color: #ff0000">{{ $case_number->debt_amount }}</span>]</li>
-                        <li>S$ [<span style="color: #ff0000">{{ $case_number->total_interest }} </span>]</li>
-                        <li>S$ [<span style="color: #ff0000">{{ $case_number->legal_cost }}</span>]</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-md-11 d-flex justify-content-end align-items-center"
-                style="padding-right: 70px; font-size: 20px">
-                <p>
-                    <span class="total-debt-div">TOTAL:</span> [<span
-                        class="total">{{ $case_number->total_amount_owed }}</span>]
-                </p>
-            </div> --}}
-
-
 
             <div class="ravin_self_div">
 
@@ -286,7 +243,7 @@
 
             <div class="address row d-flex justify-content-center align-items-center">
                 <div class="col-9">
-                    <p class="text-center footer-text" style="font-size: 13px; color: #9e9c9c;">
+                    <p class="text-center footer-text mb-1" style="font-size: 13px; color: #9e9c9c;">
                         Note: This document is strictly private, confidential and personal
                         to the sender and its recipients and should be copied, edited,
                         <br />
@@ -296,9 +253,9 @@
                     </p>
                 </div>
 
-                <div class="col-12 mb-3" style="border: #8090b0 1.3px solid"></div>
+                <div class="col-12 footer-divider mb-1" style="border: #8090b0 1.3px solid"></div>
 
-                <div class="col-9 mb-5">
+                <div class="col-9">
                     <p class="text-center" style="font-size: 13px; color: #9e9c9c;">
                         Operating as Securre Collection Pte Ltd | 2023331790G | DID:
                         <span style="color: #9bb0c9;">dcms@securre.net </span> | Website: <span
