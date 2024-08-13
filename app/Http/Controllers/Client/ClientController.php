@@ -152,7 +152,7 @@ class ClientController extends Controller
     }
     public function printableClientAgreement($id)
     {
-        $client_details = Client::find($id)->first();
+        $client_details = Client::find($id);
         return view('admin.agreement.client-agreement', compact('client_details'));
     }
     public function updateAdminFee(Request $request, $id)

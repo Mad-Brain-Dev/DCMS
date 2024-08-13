@@ -1019,8 +1019,9 @@ left: 40px;
 .agreement-footer{
     position: fixed;
     bottom: 30px;
-    font-size: 20px;
+    font-size: 14px;
     left: 50px;
+    line-height: 1;
 
 }
 
