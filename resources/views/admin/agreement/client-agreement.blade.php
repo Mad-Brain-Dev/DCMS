@@ -305,7 +305,7 @@
                                         class="company_name">{{ $client_details->company_name }}</span><br><br>
 
                                     <span class="designation">Designation:</span>
-                                    <span class="company_uen">{{ $client_details->company_uen }}</span><br><br>
+                                    <span class="company_uen"></span><br><br>
 
                                     <span class="Date">Date: </span> <span
                                         class="date_uen">{{date('m-d-Y', strtotime($client_details->date_of_agreement))}}</span><br><br><br>
