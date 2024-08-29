@@ -346,7 +346,8 @@
                         <div class="row">
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Remarks</label>
-                                <textarea name="remarks" class="form-control" placeholder="Enter Remarks Here" id="" cols="30" rows="1"></textarea>
+                                <textarea name="remarks" class="form-control" placeholder="Enter Remarks Here" id="" cols="30"
+                                    rows="1"></textarea>
                                 @error('remarks')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -616,6 +617,7 @@
                         return total_interest = amount -
                             debt_amount; // This gives the interest earned over the specified number of days
                     }
+
                     function calculateCompoundPrincipalInterest(debt_amount, debt_amount_annum, days) {
                         const dailyRate = debt_amount_annum / 365;
                         const amount = debt_amount * Math.pow((1 + dailyRate), days);
@@ -726,14 +728,15 @@
                 },
                 success: function(data) {
                     if (data.success) {
-                        $("#frmAppl")[0].reset();
-                        $("#showMsg").modal('show');
-                        console.log(data.result.id)
-                        var url = "/printable/case/agreement/" + data.result.id
-                        var letterUrl = "/printable/letter/" + data.result.id
+                        // $("#frmAppl")[0].reset();
+                        // $("#showMsg").modal('show');
+                        // console.log(data.result.id)
+                        // var url = "/printable/case/agreement/" + data.result.id
+                        // var letterUrl = "/printable/letter/" + data.result.id
 
-                        $('#agreement').attr('href', url);
-                        $('#letter').attr('href', letterUrl);
+                        // $('#agreement').attr('href', url);
+                        // $('#letter').attr('href', letterUrl);
+                        window.location.href = "{{ route('admin.cases.index') }}"
 
                     } else {
                         $.each(data.error, function(key, value) {

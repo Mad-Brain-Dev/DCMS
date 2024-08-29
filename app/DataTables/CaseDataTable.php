@@ -36,12 +36,12 @@ class CaseDataTable extends DataTable
                     $buttons .= '<a class="dropdown-item" href="' . route('admin.cases.show', $item->id) . '" title="Show"><i class="fa fa-eye" aria-hidden="true"></i> Show </a>';
                 }
 
-                if (auth()->user()->can('Print Warrant')) {
-                    $buttons .= '<a class="dropdown-item" href="' . route('printable.case.agreement', $item->id) . '" title="Show"><i class="fas fa-print"></i> Print Warrant </a>';
-                }
-                if (auth()->user()->can('Print Letter')) {
-                    $buttons .= '<a class="dropdown-item" href="' . route('printable.case.letter', $item->id) . '" title="Show"><i class="fas fa-paste"></i> Print Letter </a>';
-                }
+                // if (auth()->user()->can('Print Warrant')) {
+                //     $buttons .= '<a class="dropdown-item" href="' . route('printable.case.agreement', $item->id) . '" title="Show"><i class="fas fa-print"></i> Print Warrant </a>';
+                // }
+                // if (auth()->user()->can('Print Letter')) {
+                //     $buttons .= '<a class="dropdown-item" href="' . route('printable.case.letter', $item->id) . '" title="Show"><i class="fas fa-paste"></i> Print Letter </a>';
+                // }
 
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
 
@@ -59,18 +59,18 @@ class CaseDataTable extends DataTable
                 ' . $buttons . '
                 </div>
                 </div>';
-            // })->editColumn('avatar', function ($item) {
-            //     return '<img class="ic-img-32" src="' . $item->avatar_url . '" alt="' . $item->last_name . '" />';
+                // })->editColumn('avatar', function ($item) {
+                //     return '<img class="ic-img-32" src="' . $item->avatar_url . '" alt="' . $item->last_name . '" />';
             })->editColumn('client_id', function ($item) {
                 $name = $item->client->name;
                 return $name;
-             })
-            ->editColumn('total_amount_owed',function ($item){
-
-//                return $item->total_amount_owed;
-                return number_format($item->total_amount_owed,2);
             })
-            ->editColumn('total_amount_balance',function ($item){
+            ->editColumn('total_amount_owed', function ($item) {
+
+                //                return $item->total_amount_owed;
+                return number_format($item->total_amount_owed, 2);
+            })
+            ->editColumn('total_amount_balance', function ($item) {
 
                 return totalBalance($item->id);
             })
@@ -83,9 +83,8 @@ class CaseDataTable extends DataTable
             //     $sql = "CONCAT(users.first_name,'-',users.last_name)  like ?";
             //     $query->whereRaw($sql, ["%{$keyword}%"]);
             // })
-            ->rawColumns(['action', 'avatar', 'status','debtor_id','total_amount_owed','total_amount_balance'])
+            ->rawColumns(['action', 'avatar', 'status', 'debtor_id', 'total_amount_owed', 'total_amount_balance'])
             ->setRowId('id');
-
     }
 
     /**
@@ -102,21 +101,21 @@ class CaseDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('case-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->addAction(['width' => '55px', 'class' => 'text-center', 'printable' => false, 'exportable' => false, 'title' => 'Action']);
-//             ->buttons([
-//                        Button::make('excel'),
-//                        Button::make('csv'),
-//                        Button::make('pdf'),
-//                        Button::make('print'),
-//                        Button::make('reset'),
-//                        Button::make('reload')
-//                    ]);
+            ->setTableId('case-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->addAction(['width' => '55px', 'class' => 'text-center', 'printable' => false, 'exportable' => false, 'title' => 'Action']);
+        //             ->buttons([
+        //                        Button::make('excel'),
+        //                        Button::make('csv'),
+        //                        Button::make('pdf'),
+        //                        Button::make('print'),
+        //                        Button::make('reset'),
+        //                        Button::make('reload')
+        //                    ]);
 
     }
 
@@ -126,7 +125,7 @@ class CaseDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-//            Column::computed('DT_RowIndex', 'SL#'),
+            //            Column::computed('DT_RowIndex', 'SL#'),
             Column::make('case_sku', 'case_sku')->title('Case Number'),
             Column::make('name', 'name')->title('Debtor Name'),
             Column::make('total_amount_owed', 'total_amount_owed')->title('Debt Amount'),
