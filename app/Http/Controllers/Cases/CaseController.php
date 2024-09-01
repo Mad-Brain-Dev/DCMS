@@ -201,39 +201,39 @@ class CaseController extends Controller
 
         $request->validate([
             'gn_updates.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
-            'fv_date' => 'nullable',
-            'amount_paid' => 'required',
-            'legal_cost' => 'nullable',
-            'payment_date' => 'required',
-            'collected_by_id' => 'nullable',
+            'gn_fv_date' => 'required',
+            'gn_amount_paid' => 'required',
+            'gn_payment_date' => 'required',
+            'gn_collected_by_id' => 'nullable',
             'gn_summary' => 'nullable',
-            'payment_method' => 'nullable',
-            'next_payment_date' => 'required',
-            'next_payment_amount' => 'required',
-            'fv_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
-            'fv_summary' => 'nullable',
-            'remarks' => 'nullable',
+            'gn_payment_method' => 'required',
+            'gn_next_payment_date' => 'required',
+            'gn_next_payment_amount' => 'required',
+            'gn_fv_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
+            'gn_fv_summary' => 'nullable',
+            'gn_remarks' => 'nullable',
         ]);
         $paid_amount = Cases::findOrFail($request->case_id);
 
         $installment = Installment::create([
             'case_id' => $request->case_id,
-            'amount_paid' => $request->amount_paid,
-            'next_payment_amount' => $request->next_payment_amount,
-            'collected_by_id' => $request->collected_by_id == null ? 2 : $request->collected_by_id,
-            'next_payment_date' => $request->next_payment_date,
-            'payment_method' => $request->payment_method,
-            'date_of_payment' => $request->payment_date,
+            'amount_paid' => $request->gn_amount_paid,
+            'next_payment_amount' => $request->gn_next_payment_amount,
+            'collected_by_id' => $request->gn_collected_by_id == null ? 2 : $request->gn_collected_by_id,
+            'next_payment_date' => $request->gn_next_payment_date,
+            'payment_method' => $request->gn_payment_method,
+            'date_of_payment' => $request->gn_payment_date,
 
         ]);
         if ($installment) {
-            //     //$installment->collected_by_id = $request->collected_by_id;
-            //     // $installment->save_by_user_type = auth()->user()->user_type;
-            //     //$installment->save();
             $paid_amount->legal_cost_received = $paid_amount->legal_cost_received + $request->legal_cost;
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             $paid_amount->save();
         }
+
+        $field_visit_number = Cases::where('id', '=', $request->case_id)->first();
+        $field_visit_number->bal_field_visit == $field_visit_number->bal_field_visit--;
+        $field_visit_number->save();
 
         $gn_updates = [];
 
@@ -247,8 +247,8 @@ class CaseController extends Controller
 
                 $gn_update =   GeneralCaseUpdate::create([
                     'case_id' => $request->case_id,
-                    'remarks' => $request->remarks,
-                    'fv_date' => $request->fv_date,
+                    'remarks' => $request->gn_remarks,
+                    'fv_date' => $request->gn_fv_date,
                     'gn_summary' => $request->gn_summary,
                     'gn_update' => $imageName,
                 ]);
@@ -258,8 +258,8 @@ class CaseController extends Controller
         } else {
             $gn_update =   GeneralCaseUpdate::create([
                 'case_id' => $request->case_id,
-                'remarks' => $request->remarks,
-                'fv_date' => $request->fv_date,
+                'remarks' => $request->gn_remarks,
+                'fv_date' => $request->gn_fv_date,
                 'gn_summary' => $request->gn_summary,
                 // 'gn_update' => null,
 
@@ -273,14 +273,14 @@ class CaseController extends Controller
     {
         $request->validate([
             'fv_updates.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
-            'fv_date' => 'nullable',
+            'fv_date' => 'required',
             'amount_paid' => 'required',
             'legal_cost' => 'nullable',
             'payment_date' => 'required',
             'next_payment_date' => 'required',
             'next_payment_amount' => 'required',
             'collected_by_id' => 'nullable',
-            'payment_method' => 'nullable',
+            'payment_method' => 'required',
             'fv_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_summary' => 'nullable',
             'remarks' => 'nullable',
@@ -297,16 +297,12 @@ class CaseController extends Controller
 
         ]);
         if ($installment) {
-            //$installment->collected_by_id = $request->collected_by_id;
-            // $installment->save_by_user_type = auth()->user()->user_type;
-            //$installment->save();
             $paid_amount->legal_cost_received = $paid_amount->legal_cost_received + $request->legal_cost;
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             $paid_amount->save();
         }
 
         $field_visit_number = Cases::where('id', '=', $request->case_id)->first();
-        // $remaining = $field_visit_number->bal_field_visit - 1;
         $field_visit_number->bal_field_visit == $field_visit_number->bal_field_visit--;
         $field_visit_number->save();
 
