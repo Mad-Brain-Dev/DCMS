@@ -3,7 +3,8 @@
 @section('content')
     <div class="account-pages">
         <!-- Begin page -->
-        <div class="accountbg" style="background: url('admin/images/bg.jpg');background-size: cover;background-position: center;">
+        <div class="accountbg"
+            style="background: url('admin/images/bg.jpg');background-size: cover;background-position: center;">
         </div>
 
         <div class="wrapper-page account-page-full">
@@ -19,7 +20,7 @@
                                             alt="logo"></a>
                                 </div>
 
-                                <h4 class="font-size-18 mt-5 text-center">Welcome Back !</h4>
+                                <h4 class="font-size-18 mt-5 text-center">Welcome to Securre Network</h4>
                                 <p class="text-muted text-center">Sign in to continue.</p>
 
                                 <form method="POST" action="{{ route('login') }}">
@@ -81,11 +82,12 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 text-center" style="margin-top: 130px">
-                                           <div class="">
-                                            © {{ date('Y') }} DCMS <span class="d-none d-sm-inline-block"> -
-                                                Crafted with <i class="mdi mdi-heart text-danger"></i> by <a
-                                                    href="https://madbrain.dev" target="_blank" class="text-dark">Mad Brain</a>.</span>
-                                           </div>
+                                            <div class="">
+                                                © {{ date('Y') }} DCMS <span class="d-none d-sm-inline-block"> -
+                                                    Crafted with <i class="mdi mdi-heart text-danger"></i> by <a
+                                                        href="https://madbrain.dev" target="_blank" class="text-dark">Mad
+                                                        Brain</a>.</span>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -112,21 +114,17 @@
 @endsection
 
 @push('style')
+    <style>
+        @media (max-width: 991px) {
 
-<style>
+            .accountbg {
+                display: none;
+            }
 
-@media (max-width: 991px) {
+            .account-page-full {
+                width: 100%
+            }
 
-    .accountbg{
-        display: none;
-    }
-    .account-page-full{
-        width: 100%
-    }
-
- }
-
-
-</style>
-
+        }
+    </style>
 @endpush
