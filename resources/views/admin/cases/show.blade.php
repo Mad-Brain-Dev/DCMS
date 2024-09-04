@@ -112,74 +112,64 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Amount Paid</label>
-                            <input type="number" name="amount_paid" placeholder="Enter Paid Amount Here"
-                                class="form-control">
-                            @error('amount_paid')
+                            <input type="number" name="gn_amount_paid" value="{{ old('gn_amount_paid') }}"
+                                placeholder="Enter Paid Amount Here" class="form-control">
+                            @error('gn_amount_paid')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
-                        {{-- @if ($case->legal_cost - $case->legal_cost_received != 0)
-                            <div class="mb-3">
-                                <label class="form-label">Legal Cost</label>
-                                <input type="number" name="legal_cost" value="{{ $case->legal_cost }}"
-                                    class="form-control">
-                                @error('legal_cost')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        @endif --}}
                         <div class="mb-3">
                             <label class="form-label">Payment Method</label>
-                            <select class="form-select" aria-label="Default select example" name="payment_method">
-                                <option selected>Select One Payment Method</option>
+                            <select class="form-select" aria-label="Default select example" name="gn_payment_method">
+                                <option selected disabled>Select One Payment Method</option>
                                 <option value="Cash">Cash</option>
                                 <option value="Check">Check</option>
                                 <option value="Online">Online</option>
                             </select>
-                            @error('paid_amount')
+                            @error('gn_payment_method')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Collected By</label>
-                            <select class="form-select select2" id="collected_by_id" name="collected_by_id"
+                            <select class="form-select select2" id="collected_by_id" name="gn_collected_by_id"
                                 aria-label="Default select example">
                                 <option selected disabled>Select Employee</option>
                                 @foreach ($employees as $employee)
                                     <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                                 @endforeach
                             </select>
-                            @error('collected_by_id')
+                            @error('gn_collected_by_id')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Date of Payment</label>
-                            <input type="date" name="payment_date" class="form-control">
-                            @error('payment_date')
+                            <input type="date" name="gn_payment_date" class="form-control">
+                            @error('gn_payment_date')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Next Payment Amount</label>
-                            <input type="number" name="next_payment_amount" class="form-control"
-                                placeholder="Enter Debt Interest/Annum" id="next_payment_amount">
-                            @error('next_payment_amount')
+                            <input type="number" name="gn_next_payment_amount" value="{{ old('gn_next_payment_amount') }}"
+                                class="form-control" placeholder="Enter Debt Interest/Annum" id="next_payment_amount">
+                            @error('gn_next_payment_amount')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Next Payment Date</label>
-                            <input type="date" name="next_payment_date" class="form-control"
+                            <input type="date" name="gn_next_payment_date" class="form-control"
                                 placeholder="Enter Interest Start Date">
-                            @error('next_payment_date')
+                            @error('gn_next_payment_date')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Field Visit Date</label>
-                            <input type="date" name="fv_date" class="form-control">
-                            @error('fv_date')
+                            <input type="date" name="gn_fv_date" class="form-control">
+                            @error('gn_fv_date')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
@@ -192,7 +182,8 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Remarks</label>
-                            <input type="text" name="remarks" class="form-control" placeholder="Enter Remarks Here">
+                            <input type="text" name="gn_remarks" value="{{ old('gn_remarks') }}"
+                                class="form-control" placeholder="Enter Remarks Here">
                             @error('remarks')
                                 <p class="error">{{ $message }}</p>
                             @enderror
@@ -296,31 +287,21 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Amount Paid</label>
-                            <input type="number" name="amount_paid" placeholder="Enter Paid Amount Here"
-                                class="form-control">
+                            <input type="number" name="amount_paid" value="{{ old('amount_paid') }}"
+                                placeholder="Enter Paid Amount Here" class="form-control">
                             @error('amount_paid')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
-                        {{-- @if ($case->legal_cost != 0)
-                            <div class="mb-3">
-                                <label class="form-label">Legal Cost</label>
-                                <input type="number" name="legal_cost" value="{{ $case->legal_cost }}"
-                                    class="form-control">
-                                @error('legal_cost')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        @endif --}}
                         <div class="mb-3">
                             <label class="form-label">Payment Method</label>
                             <select class="form-select" aria-label="Default select example" name="payment_method">
-                                <option selected>Select One Payment Method</option>
+                                <option selected disabled>Select One Payment Method</option>
                                 <option value="Cash">Cash</option>
                                 <option value="Check">Check</option>
                                 <option value="Online">Online</option>
                             </select>
-                            @error('paid_amount')
+                            @error('payment_method')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
@@ -346,8 +327,8 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Next Payment Amount</label>
-                            <input type="number" name="next_payment_amount" class="form-control"
-                                placeholder="Enter Debt Interest/Annum" id="next_payment_amount">
+                            <input type="number" name="next_payment_amount" value="{{ old('next_payment_amount') }}"
+                                class="form-control" placeholder="Enter Debt Interest/Annum" id="next_payment_amount">
                             @error('next_payment_amount')
                                 <p class="error">{{ $message }}</p>
                             @enderror
@@ -376,7 +357,8 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Remarks</label>
-                            <input type="text" name="remarks" class="form-control" placeholder="Enter Remarks Here">
+                            <input type="text" name="remarks" value="{{ old('remarks') }}" class="form-control"
+                                placeholder="Enter Remarks Here">
                             @error('remarks')
                                 <p class="error">{{ $message }}</p>
                             @enderror
@@ -466,194 +448,6 @@
             </div>
         </div>
     </div>
-
-    {{-- <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header text-center">CR Case Update</div>
-                <div class="card-body">
-                    <form enctype="multipart/form-data" action="{{ route('general.case.create') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
-                        <div class="mb-3">
-                            <label class="form-label">CR Case Update</label>
-                            <input type="file" name="cr_updates[]" class="form-control" multiple>
-                            @error('cr_updates')
-                                <p class="error">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Field Visit Date</label>
-                            <input type="date" name="fv_date" class="form-control">
-                            @error('fv_date')
-                                <p class="error">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">CR Summary</label>
-                            <textarea name="cr_summary" class="form-control" id="" rows="2"></textarea>
-                            @error('cr_summary')
-                                <p class="error">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
-
-                        <div class="row">
-                            <div class="mb-3 text-end">
-                                <a href="{{ route('admin.cases.show', $case->id) }}" class="btn btn-light">Cancel</a>
-                                <button class="btn btn-primary waves-effect waves-lightml-2 " type="submit">
-                                    <i class="fa fa-save"></i> Save
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body">
-                    <h5>CR Updates</h5>
-                    <div id="content">
-                        <ul class="timeline">
-                            @foreach ($cr_updates as $cr_update)
-                                <li class="event"
-                                    data-date="{{ date('d-m-Y', strtotime($cr_update->created_at)) }}, {{ date('h:i a', strtotime($cr_update->created_at)) }} ">
-                                    <iframe src="{{ asset('/documents/' . $cr_update->cr_update) }}" width="400"
-                                        height="400"></iframe>
-
-                                    <h6 class="mt-2">Field Visited at:
-                                        {{ date('d-m-Y', strtotime($cr_update->fv_date)) }}</h6>
-                                    <span class="d-block">{{ $cr_update->cr_summary }}</span>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal for GN Update -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Gn Update</h5>
-                        </div>
-                        <div class="modal-body">
-                            <iframe id="gn_update" src="" class="mt-2" width="100%" height="400">
-                            </iframe>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
-    {{-- <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header text-center">MS Update</div>
-                <div class="card-body">
-                    <form enctype="multipart/form-data" action="{{ route('general.case.create') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
-                        <div class="mb-3">
-                            <label class="form-label">MS Update</label>
-                            <input type="file" name="ms_updates[]" class="form-control" multiple>
-                            @error('ms_update')
-                                <p class="error">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Field Visit Date</label>
-                            <input type="date" name="fv_date" class="form-control">
-                            @error('fv_date')
-                                <p class="error">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">MS Summary</label>
-                            <textarea name="ms_summary" class="form-control" id="" rows="2"></textarea>
-                            @error('ms_summary')
-                                <p class="error">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <input type="hidden" name="case_id" value="{{ $case->id }}" id="case_id">
-
-                        <div class="row">
-                            <div class="mb-3 text-end">
-                                <a href="{{ route('admin.cases.show', $case->id) }}" class="btn btn-light">Cancel</a>
-                                <button class="btn btn-primary waves-effect waves-lightml-2 " type="submit">
-                                    <i class="fa fa-save"></i> Save
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body">
-                    <h5>MS Updates</h5>
-                    <div id="content">
-                        <ul class="timeline">
-                            @foreach ($ms_updates as $ms_update)
-                                <li class="event"
-                                    data-date="{{ date('d-m-Y', strtotime($ms_update->created_at)) }}, {{ date('h:i a', strtotime($ms_update->created_at)) }} ">
-                                    <iframe src="{{ asset('/documents/' . $ms_update->ms_update) }}" width="400"
-                                        height="400"></iframe>
-
-                                    <h6 class="mt-2">Field Visited at:
-                                        {{ date('d-m-Y', strtotime($ms_update->fv_date)) }}</h6>
-                                    <span class="d-block">{{ $ms_update->ms_summary }}</span>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    {{-- <div class="modal fade" id="exampleModal0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Update Total Balance</h5>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('update.total.amount.balance', $case->id) }}" method="post">
-                        @csrf
-                        @method('PUT')
-                        <div class="form-group">
-                            <label for="num1">Total Amount Balance</label>
-                            <input type="number" class="form-control" readonly name="" id="num1"
-                                aria-describedby="emailHelp" value="{{ $case->total_amount_balance }}">
-                        </div>
-                        <div class="form-group mt-2">
-                            <label for="num2">Amount Paid</label>
-                            <input type="number" class="form-control" name="total_amount_paid" id="num2"
-                                value="">
-                        </div>
-                        <div class="form-group mt-2">
-                            <label for="subt">Unpaid Amount Balance</label>
-                            <input type="text" class="form-control" name="total_amount_balance" id="subt"
-                                value="">
-                        </div>
-                        <button type="submit" class="btn btn-success mt-2">Submit</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 @endsection
 @push('script')
     <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
@@ -885,12 +679,12 @@
         }
 
         /* .fixed-content{
-                                                        position: fixed;
-                                                        z-index: 9999;
-                                                        width: 70%;
-                                                    } */
+                                                                                                                                                                                                                                    position: fixed;
+                                                                                                                                                                                                                                    z-index: 9999;
+                                                                                                                                                                                                                                    width: 70%;
+                                                                                                                                                                                                                                } */
         /* .balance-btn{
-                                                        padding-top: 100px;
-                                                    } */
+                                                                                                                                                                                                                                    padding-top: 100px;
+                                                                                                                                                                                                                                } */
     </style>
 @endpush
