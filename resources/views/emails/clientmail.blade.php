@@ -22,7 +22,7 @@
 <body>
     <div class="content">
         <div class="card">
-            Dear sds,<br>
+            Dear {{ $client->name }},<br>
 
             It is our pleasure to inform you we have registered your case details in our system, pending
             action from our executives and field operatives. <br><br>
@@ -34,7 +34,8 @@
             as follows;<br><br>
 
             Login Page: <a href="{{ env('APP_URL') }}">DCMS LOGIN</a> <br>
-            Login ID: afa <br>
+{{--            Login ID: Test email <br>--}}
+            Login ID: {{ $client->email }} <br>
             Password: 12345678 <br><br>
 
             It is an honour to be working on your case/s, and we appreciate your faith in our good service.
