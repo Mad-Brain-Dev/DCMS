@@ -31,23 +31,23 @@
         </div>
         <div class="col-md-4 mb-3 text-end">
             @can('Button Create Client')
-                <a class="btn btn-primary" href="{{ route('admin.clients.create') }}">Create Client</a>
+                <a class="btn btn-danger" href="{{ route('admin.clients.create') }}">Create Client</a>
             @endcan
             @can('Button Create Case')
-                <a class="btn btn-primary" href="{{ route('admin.cases.create') }}">Create Case</a>
+                <a class="btn btn-danger" href="{{ route('admin.cases.create') }}">Create Case</a>
             @endcan
         </div>
     </div>
     <div class="row">
         @can('Card Total Cases')
             <div class="col-xl-3 col-md-6">
-                <div class="card mini-stat bg-primary text-white">
+                <div class="card mini-stat bg-danger text-white">
                     <div class="card-body">
                         <div class="">
                             <div class="float-start mini-stat-img total_case">
                                 <i class="fas fa-layer-group"></i>
                             </div>
-                            <h5 class="font-size-16 text-uppercase text-white-50">Total Cases</h5>
+                            <h5 class="font-size-16 text-uppercase text-white-100">Total Cases</h5>
                             <h4 class="fw-medium font-size-24">{{ $case_number }}</h4>
                         </div>
                     </div>
@@ -57,13 +57,13 @@
 
         @can('Card Total Admin Fee')
             <div class="col-xl-3 col-md-6">
-                <div class="card mini-stat bg-primary text-white">
+                <div class="card mini-stat bg-danger text-white">
                     <div class="card-body">
                         <div class="">
                             <div class="float-start bill">
                                 <i class="fas fa-money-check-alt"></i>
                             </div>
-                            <h5 class="font-size-16 text-uppercase text-white-50">Total Admin Fee</h5>
+                            <h5 class="font-size-16 text-uppercase text-white-100">Total Admin Fee</h5>
                             <h4 class="fw-medium font-size-24">$ {{ $total_admin_fee }}</h4>
                         </div>
                     </div>
@@ -72,13 +72,13 @@
         @endcan
         @can('Card Total Amount Owed')
             <div class="col-xl-3 col-md-6">
-                <div class="card mini-stat bg-primary text-white">
+                <div class="card mini-stat bg-danger text-white">
                     <div class="card-body">
                         <div class="">
                             <div class="float-start bill">
                                 <i class="fas fa-money-check-alt"></i>
                             </div>
-                            <h5 class="font-size-16 text-uppercase text-white-50">Total Amount Owed</h5>
+                            <h5 class="font-size-16 text-uppercase text-white-100">Total Amount Owed</h5>
                             <h4 class="fw-medium font-size-24">$ {{ $total_amount_owed }}</h4>
                         </div>
                     </div>
@@ -87,13 +87,13 @@
         @endcan
         @can('Card Amount Paid')
             <div class="col-xl-3 col-md-6">
-                <div class="card mini-stat bg-primary text-white">
+                <div class="card mini-stat bg-danger text-white">
                     <div class="card-body">
                         <div class="">
                             <div class="float-start bill">
                                 <i class="fas fa-money-check"></i>
                             </div>
-                            <h5 class="font-size-16 text-uppercase text-white-50">Paid Amount</h5>
+                            <h5 class="font-size-16 text-uppercase text-white-100">Paid Amount</h5>
                             <h4 class="fw-medium font-size-24">$ {{ $total_amount_paid }}</h4>
                         </div>
                     </div>
@@ -102,13 +102,13 @@
         @endcan
         @can('Card Bal Amount')
             <div class="col-xl-3 col-md-6">
-                <div class="card mini-stat bg-primary text-white">
+                <div class="card mini-stat bg-danger text-white">
                     <div class="card-body">
                         <div class="">
                             <div class="float-start bill">
                                 <i class="fas fa-money-bill"></i>
                             </div>
-                            <h5 class="font-size-16 text-uppercase text-white-50">Bal Amount</h5>
+                            <h5 class="font-size-16 text-uppercase text-white-100">Bal Amount</h5>
                             <h4 class="fw-medium font-size-24">$ {{ totalBalanceSum() }}</h4>
                         </div>
                     </div>
