@@ -269,8 +269,9 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Debt Amount</label>
-                                <input type="number" name="debt_amount" class="form-control"
-                                    placeholder="Enter Debt Amount" id="debt_amount" value="{{ old('debt_amount') }}">
+                                <input type="number" step="0.01" min="0" max="10000000000000"
+                                    name="debt_amount" class="form-control" placeholder="Enter Debt Amount"
+                                    id="debt_amount" value="{{ old('debt_amount') }}">
                                 @error('debt_amount')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -278,8 +279,9 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Legal Cost</label>
-                                <input type="number" name="legal_cost" class="form-control"
-                                    placeholder="Enter Legal Cost" id="legal_cost" value="{{ old('legal_cost') }}">
+                                <input type="number" step="0.01" min="0" max="10000000000000"
+                                    name="legal_cost" class="form-control" placeholder="Enter Legal Cost"
+                                    id="legal_cost" value="{{ old('legal_cost') }}">
                                 @error('legal_cost')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -287,7 +289,8 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Total Interest</label>
-                                <input type="number" name="total_interest" class="form-control"
+                                <input type="number" step="0.01" min="0" max="10000000000000"
+                                    name="total_interest" class="form-control"
                                     placeholder="Total Interest will Auto Update" readonly id="total_interest">
                                 @error('total_interest')
                                     <p class="error">{{ $message }}</p>
@@ -296,7 +299,8 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Total Amount Owed</label>
-                                <input type="number" name="total_amount_owed" class="form-control"
+                                <input type="number" step="0.01" min="0" max="10000000000000"
+                                    name="total_amount_owed" class="form-control"
                                     placeholder="Total Amount Owed will Auto Update" readonly id="total_amount_owed">
                                 @error('total_amount_owed')
                                     <p class="error">{{ $message }}</p>
@@ -346,7 +350,8 @@
                         <div class="row">
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Remarks</label>
-                                <textarea name="remarks" class="form-control" placeholder="Enter Remarks Here" id="" cols="30" rows="1"></textarea>
+                                <textarea name="remarks" class="form-control" placeholder="Enter Remarks Here" id="" cols="30"
+                                    rows="1"></textarea>
                                 @error('remarks')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -449,9 +454,9 @@
                     diff = new Date(Date.parse(end) - Date.parse(start));
                     // get days
                     var days = diff / 1000 / 60 / 60 / 24;
-                    var debt_amount = $('#debt_amount').val();
+                    var debt_amount = parseFloat(('#debt_amount').val());
                     var debt_amount_annum = $('#debt_amount_annum').val() / 100;
-                    var legal_cost = $('#legal_cost').val();
+                    var legal_cost = parseFloat(('#legal_cost').val());
                     var interest = 0;
                     var total_amount_owed = parseInt(debt_amount) + parseInt(legal_cost) + parseInt(interest);
 
@@ -475,9 +480,9 @@
                             diff = new Date(Date.parse(end) - Date.parse(start));
                             // get days
                             var days = diff / 1000 / 60 / 60 / 24;
-                            var debt_amount = $('#debt_amount').val();
+                            var debt_amount = parseFloat(('#debt_amount').val());
                             var debt_amount_annum = $('#debt_amount_annum').val() / 100;
-                            var legal_cost = $('#legal_cost').val();
+                            var legal_cost = parseFloat(('#legal_cost').val());
                             var interest = 0;
                             var total_amount_owed = parseInt(debt_amount) + parseInt(legal_cost) + parseInt(
                                 interest);
@@ -504,8 +509,10 @@
                     var days = diff / 1000 / 60 / 60 / 24;
 
 
-                    var legal_cost = parseInt($('#legal_cost').val());
-                    var debt_amount = parseInt($('#debt_amount').val()) + legal_cost;
+                    var legal_cost = parseFloat($('#legal_cost').val());
+                    var debt_amount = parseFloat($('#debt_amount').val()) + legal_cost;
+
+
                     var debt_amount_annum = $('#debt_amount_annum').val() / 100 / 365;
 
 
@@ -527,8 +534,8 @@
                             var days = diff / 1000 / 60 / 60 / 24;
 
 
-                            var legal_cost = parseInt($('#legal_cost').val());
-                            var debt_amount = parseInt($('#debt_amount').val()) + legal_cost;
+                            var legal_cost = parseFloat($('#legal_cost').val());
+                            var debt_amount = parseFloat($('#debt_amount').val()) + legal_cost;
                             var debt_amount_annum = $('#debt_amount_annum').val() / 100 / 365;
 
 
@@ -552,8 +559,8 @@
                     var days = diff / 1000 / 60 / 60 / 24;
 
 
-                    var legal_cost = parseInt($('#legal_cost').val());
-                    var debt_amount = parseInt($('#debt_amount').val()) + legal_cost;
+                    var legal_cost = parseFloat($('#legal_cost').val());
+                    var debt_amount = parseFloat($('#debt_amount').val()) + legal_cost;
                     var debt_amount_annum = $('#debt_amount_annum').val() / 100 / 365;
 
 
@@ -575,8 +582,8 @@
                             var days = diff / 1000 / 60 / 60 / 24;
 
 
-                            var legal_cost = parseInt($('#legal_cost').val());
-                            var debt_amount = parseInt($('#debt_amount').val()) + legal_cost;
+                            var legal_cost = parseFloat($('#legal_cost').val());
+                            var debt_amount = parseFloat($('#debt_amount').val()) + legal_cost;
                             var debt_amount_annum = $('#debt_amount_annum').val() / 100 / 365;
 
 
@@ -598,8 +605,8 @@
                     diff = new Date(Date.parse(end) - Date.parse(start));
                     // get days
                     var days = parseInt(diff / 1000 / 60 / 60 / 24);
-                    var legal_cost = parseInt($('#legal_cost').val());
-                    var debt_amount = parseInt($('#debt_amount').val()) + legal_cost;
+                    var legal_cost = parseFloat($('#legal_cost').val());
+                    var debt_amount = parseFloat($('#debt_amount').val()) + legal_cost;
                     var debt_amount_annum = $('#debt_amount_annum').val() / 100;
 
 
@@ -616,6 +623,7 @@
                         return total_interest = amount -
                             debt_amount; // This gives the interest earned over the specified number of days
                     }
+
                     function calculateCompoundPrincipalInterest(debt_amount, debt_amount_annum, days) {
                         const dailyRate = debt_amount_annum / 365;
                         const amount = debt_amount * Math.pow((1 + dailyRate), days);
@@ -645,8 +653,8 @@
                             diff = new Date(Date.parse(end) - Date.parse(start));
                             // get days
                             var days = parseInt(diff / 1000 / 60 / 60 / 24);
-                            var legal_cost = parseInt($('#legal_cost').val());
-                            var debt_amount = parseInt($('#debt_amount').val()) + legal_cost;
+                            var legal_cost = parseFloat($('#legal_cost').val());
+                            var debt_amount = parseFloat($('#debt_amount').val()) + legal_cost;
                             var debt_amount_annum = $('#debt_amount_annum').val() / 100;
 
 
