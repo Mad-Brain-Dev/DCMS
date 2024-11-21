@@ -112,8 +112,8 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Amount Paid</label>
-                            <input type="number" name="amount_paid" placeholder="Enter Paid Amount Here"
-                                class="form-control">
+                            <input type="number" step="0.01" min="0" max="10000000000000" name="amount_paid"
+                                placeholder="Enter Paid Amount Here" class="form-control">
                             @error('amount_paid')
                                 <p class="error">{{ $message }}</p>
                             @enderror
@@ -162,8 +162,9 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Next Payment Amount</label>
-                            <input type="number" name="next_payment_amount" class="form-control"
-                                placeholder="Enter Debt Interest/Annum" id="next_payment_amount">
+                            <input type="number" step="0.01" min="0" max="10000000000000"
+                                name="next_payment_amount" class="form-control" placeholder="Enter Debt Interest/Annum"
+                                id="next_payment_amount">
                             @error('next_payment_amount')
                                 <p class="error">{{ $message }}</p>
                             @enderror
@@ -296,8 +297,8 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Amount Paid</label>
-                            <input type="number" name="amount_paid" placeholder="Enter Paid Amount Here"
-                                class="form-control">
+                            <input type="number" step="0.01" min="0" max="10000000000000" name="amount_paid"
+                                placeholder="Enter Paid Amount Here" class="form-control">
                             @error('amount_paid')
                                 <p class="error">{{ $message }}</p>
                             @enderror
@@ -346,8 +347,9 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Next Payment Amount</label>
-                            <input type="number" name="next_payment_amount" class="form-control"
-                                placeholder="Enter Debt Interest/Annum" id="next_payment_amount">
+                            <input type="number" step="0.01" min="0" max="10000000000000"
+                                name="next_payment_amount" class="form-control" placeholder="Enter Debt Interest/Annum"
+                                id="next_payment_amount">
                             @error('next_payment_amount')
                                 <p class="error">{{ $message }}</p>
                             @enderror
@@ -885,12 +887,12 @@
         }
 
         /* .fixed-content{
-                                                        position: fixed;
-                                                        z-index: 9999;
-                                                        width: 70%;
-                                                    } */
+                                                                                                            position: fixed;
+                                                                                                            z-index: 9999;
+                                                                                                            width: 70%;
+                                                                                                        } */
         /* .balance-btn{
-                                                        padding-top: 100px;
-                                                    } */
+                                                                                                            padding-top: 100px;
+                                                                                                        } */
     </style>
 @endpush
