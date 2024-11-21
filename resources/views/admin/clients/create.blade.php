@@ -92,15 +92,17 @@
                         <div class="row">
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Admin Fee</label>
-                                <input type="number" name="admin_fee" class="form-control" id="num1"
-                                    placeholder="Enter Admin Fee" value="{{ old('admin_fee') }}">
+                                <input type="number" step="0.01" min="0" max="10000000000000" name="admin_fee"
+                                    class="form-control" id="num1" placeholder="Enter Admin Fee"
+                                    value="{{ old('admin_fee') }}">
                                 @error('admin_fee')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Admin Fee Paid</label>
-                                <input type="number" name="admin_fee_paid" class="form-control" id="num2"
+                                <input type="number" step="0.01" min="0" max="10000000000000"
+                                    name="admin_fee_paid" class="form-control" id="num2"
                                     placeholder="Enter Admin Fee Paid Amount">
                                 @error('admin_fee_paid')
                                     <p class="error">{{ $message }}</p>
@@ -108,16 +110,17 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Admin Fee Balance</label>
-                                <input type="number" name="admin_fee_balance"
-                                    placeholder="Admin Fee Balance will Auto Calculate" class="form-control" readonly
-                                    id="subt">
+                                <input type="number" step="0.01" min="0" max="10000000000000"
+                                    name="admin_fee_balance" placeholder="Admin Fee Balance will Auto Calculate"
+                                    class="form-control" readonly id="subt">
                                 @error('admin_fee_balance')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Collection Commission (%)</label>
-                                <input type="number" name="collection_commission" class="form-control"
+                                <input type="number" step="0.01" min="0" max="10000000000000"
+                                    name="collection_commission" class="form-control"
                                     placeholder="Enter Collection Commission (%)"
                                     value="{{ old('collection_commission') }}">
                                 @error('collection_commission')
@@ -129,8 +132,8 @@
                                 <select class="form-select select2" id="current_status" name="collected_by_id"
                                     aria-label="Default select example">
                                     <option selected disabled>Select Employee</option>
-                                    @foreach ($employees as $employee )
-                                    <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                    @foreach ($employees as $employee)
+                                        <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                                     @endforeach
 
                                 </select>
@@ -225,7 +228,7 @@
                 $("#num2").on("keydown keyup", sum);
 
                 function sum() {
-                    $("#subt").val(Number($("#num1").val()) - Number($("#num2").val()));
+                    $("#subt").val((Number($("#num1").val()) - Number($("#num2").val())).toFixed(2));
                 }
             });
             $("#frmAppl").on("submit", function(event) {
@@ -307,9 +310,15 @@
             left: 50%;
             animation: spin 2s linear infinite;
         }
-        @keyframes spin{
-            0% {transform: rotate(0deg);}
-            100% {transform: rotate(360deg);}
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 @endpush

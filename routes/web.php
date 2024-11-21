@@ -8,6 +8,8 @@ use App\Http\Controllers\Cases\CaseController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Debtor\DebtorController;
 use App\Http\Controllers\HomeController;
+use App\Models\Cases;
+use App\Utils\GlobalConstant;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +32,8 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 Route::get('/test-mail',function (){
-   Mail::to('smauhp@gmail.com')->send(new ClientMail([]));
+    $accounts = Cases::where('current_status','!=',GlobalConstant::CASE_CLOSED)->get();
+//   Mail::to('smauhp@gmail.com')->send(new ClientMail([]));
    dd('sent');
 });
 Route::get('/execute-command', function () {
