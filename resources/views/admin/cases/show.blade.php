@@ -554,7 +554,7 @@
             </div>
         </div>
     </div> --}}
-
+    {{-- Test comment --}}
     {{-- <div class="row">
         <div class="col-md-4">
             <div class="card">
@@ -887,12 +887,12 @@
         }
 
         /* .fixed-content{
-                                                                                                            position: fixed;
-                                                                                                            z-index: 9999;
-                                                                                                            width: 70%;
-                                                                                                        } */
+                                                                                                                position: fixed;
+                                                                                                                z-index: 9999;
+                                                                                                                width: 70%;
+                                                                                                            } */
         /* .balance-btn{
-                                                                                                            padding-top: 100px;
-                                                                                                        } */
+                                                                                                                padding-top: 100px;
+                                                                                                            } */
     </style>
 @endpush
