@@ -93,7 +93,7 @@
                         @error('admin_fee_paid')
                             <p class="error">{{ $message }}</p>
                         @enderror
-                        <input type="hidden" value="{{ $client->client_id }}" name="client_id">
+                        <input type="hidden" value="{{ $client->id }}" name="client_id">
 
                     </div>
                     <div class="form-group mt-2">
