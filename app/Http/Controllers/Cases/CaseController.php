@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Cases;
+
 use App\DataTables\CaseDataTable;
 use App\DataTables\CaseDataTableByStatus;
 use App\DataTables\CasesforPerticularClientDataTable;
@@ -117,15 +118,15 @@ class CaseController extends Controller
         set_page_meta('Details');
         $case = Cases::find($id);
         $employees = User::where('user_type', 'employee')->get();
-        $client_details = Client::where('client_id', $case->client_id)->first();
+        $client_details = Client::where('id', $case->client_id)->first();
         $gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
         $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
         $installment = Installment::where('case_id', $id)->latest()->first();
         $installmentByEmployees = Installment::where('case_id', $id)->select('collected_by_id', \DB::raw('SUM(amount_paid) as total_amounts'))
-        ->groupBy('collected_by_id')
-        ->orderBy('total_amounts', 'desc')
-        ->get();
-        return view('admin.cases.show', compact('case', 'gn_updates', 'fv_updates', 'client_details', 'installment','installmentByEmployees','employees'));
+            ->groupBy('collected_by_id')
+            ->orderBy('total_amounts', 'desc')
+            ->get();
+        return view('admin.cases.show', compact('case', 'gn_updates', 'fv_updates', 'client_details', 'installment', 'installmentByEmployees', 'employees'));
     }
 
     /**
@@ -188,7 +189,7 @@ class CaseController extends Controller
     //Show date of agreement from client table when create cases
     public function dateOfAgreementForCase(Request $request)
     {
-        $dateofAgreement = Client::where('client_id', $request->client_id)->first();
+        $dateofAgreement = Client::where('id', $request->client_id)->first();
         return response()->json([
             'status' => 'success',
             'dateofagreement' => $dateofAgreement,
@@ -225,11 +226,11 @@ class CaseController extends Controller
             'date_of_payment' => $request->payment_date,
 
         ]);
-         if ($installment) {
-        //     //$installment->collected_by_id = $request->collected_by_id;
-        //     // $installment->save_by_user_type = auth()->user()->user_type;
-        //     //$installment->save();
-            $paid_amount->legal_cost_received = $paid_amount->legal_cost_received + $request->legal_cost ;
+        if ($installment) {
+            //     //$installment->collected_by_id = $request->collected_by_id;
+            //     // $installment->save_by_user_type = auth()->user()->user_type;
+            //     //$installment->save();
+            $paid_amount->legal_cost_received = $paid_amount->legal_cost_received + $request->legal_cost;
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             $paid_amount->save();
         }
@@ -299,7 +300,7 @@ class CaseController extends Controller
             //$installment->collected_by_id = $request->collected_by_id;
             // $installment->save_by_user_type = auth()->user()->user_type;
             //$installment->save();
-            $paid_amount->legal_cost_received = $paid_amount->legal_cost_received + $request->legal_cost ;
+            $paid_amount->legal_cost_received = $paid_amount->legal_cost_received + $request->legal_cost;
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             $paid_amount->save();
         }

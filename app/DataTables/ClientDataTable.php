@@ -12,6 +12,7 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
+
 class ClientDataTable extends DataTable
 {
     /**
@@ -32,11 +33,9 @@ class ClientDataTable extends DataTable
 
                 if (auth()->user()->can('Client View')) {
                     $buttons .= '<a class="dropdown-item" href="' . route('admin.clients.show', $item->id) . '" title="Edit"><i class="fa fa-eye" aria-hidden="true"></i> View </a>';
-
                 }
                 if (auth()->user()->can('Client Agreement View')) {
                     $buttons .= '<a class="dropdown-item" href="' . route('printable.client.agreement', $item->id) . '" title="Edit"><i class="fas fa-handshake"></i> Agreement </a>';
-
                 }
 
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
@@ -48,7 +47,6 @@ class ClientDataTable extends DataTable
                     <input type="hidden" name="_method" value="DELETE">
                     <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Delete</button></form>
                     ';
-
                 }
 
                 return '<div class="btn-group dropleft">
@@ -61,20 +59,22 @@ class ClientDataTable extends DataTable
                 return '<img class="ic-img-32" src="' . $item->avatar_url . '" alt="' . $item->last_name . '" />';
             })->editColumn('first_name', function ($item) {
                 return $item->full_name;
-            })->editColumn('status',function ($item){
+            })->editColumn('status', function ($item) {
                 $badge = $item->status == GlobalConstant::STATUS_ACTIVE ? "bg-success" : "bg-danger";
                 return '<span class="badge ' . $badge . '">' . Str::upper($item->status) . '</span>';
-            })->editColumn('user_type',function ($item){
-                return '<span class="text-capitalize">' . $item->user_type. '</span>';
+            })->editColumn('user_type', function ($item) {
+                return '<span class="text-capitalize">' . $item->user_type . '</span>';
             })->filterColumn('first_name', function ($query, $keyword) {
                 $sql = "CONCAT(users.first_name,'-',users.last_name)  like ?";
                 $query->whereRaw($sql, ["%{$keyword}%"]);
-            })->editColumn('client_id',function ($item){
-                return Cases::where('client_id','=',$item->client_id)->count();
-            })->editColumn('current_status',function ($item){
-                return Cases::where('current_status','=','pdg')->where('client_id','=',$item->client_id)->count();
             })
-            ->rawColumns(['action', 'avatar', 'status','user_type', 'client_id'])
+            ->editColumn('company_name', function ($item) {
+                return Cases::where('client_id', '=', $item->id)->count();
+            })
+            ->editColumn('current_status', function ($item) {
+                return Cases::where('current_status', '=', 'pdg')->where('client_id', '=', $item->client_id)->count();
+            })
+            ->rawColumns(['action', 'avatar', 'status', 'user_type'])
             ->setRowId('id');
     }
 
@@ -92,21 +92,21 @@ class ClientDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('user-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->addAction(['width' => '55px', 'class' => 'text-center', 'printable' => false, 'exportable' => false, 'title' => 'Action']);
-//             ->buttons([
-//                        Button::make('excel'),
-//                        Button::make('csv'),
-//                        Button::make('pdf'),
-//                        Button::make('print'),
-//                        Button::make('reset'),
-//                        Button::make('reload')
-//                    ]);
+            ->setTableId('user-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->addAction(['width' => '55px', 'class' => 'text-center', 'printable' => false, 'exportable' => false, 'title' => 'Action']);
+        //             ->buttons([
+        //                        Button::make('excel'),
+        //                        Button::make('csv'),
+        //                        Button::make('pdf'),
+        //                        Button::make('print'),
+        //                        Button::make('reset'),
+        //                        Button::make('reload')
+        //                    ]);
 
     }
 
@@ -117,10 +117,10 @@ class ClientDataTable extends DataTable
     {
 
         return [
-//            Column::computed('DT_RowIndex', 'SL#'),
+            //            Column::computed('DT_RowIndex', 'SL#'),
             // Column::make('avatar', 'avatar')->title('Avatar'),
             Column::make('name', 'name')->title('Name'),
-            Column::make('client_id', 'client_id')->title('Total Case'),
+            Column::make('company_name', 'company_name')->title('Total Case'),
             Column::make('current_status', 'current_status')->title('Pending Case'),
 
         ];
