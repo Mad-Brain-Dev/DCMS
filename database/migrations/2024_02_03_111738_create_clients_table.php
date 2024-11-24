@@ -15,9 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('abbr')->nullable();
-            $table->foreignId('client_id')->nullable()->references('id')->on('users');
-            $table->foreignId('collected_by_id')->default(2)->references('id')->on('users')
-            ->onDelete('cascade');
+            $table->foreignId('collected_by_id')->default(2);
             $table->string('nric')->nullable();
             $table->string('company_name')->nullable();
             $table->string('company_uen')->nullable();

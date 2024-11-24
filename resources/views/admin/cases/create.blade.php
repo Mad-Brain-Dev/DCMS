@@ -19,7 +19,7 @@
                                 <select class="form-select select2 form-control" id="client_id" name="client_id">
                                     <option selected disabled>Select CL Name</option>
                                     @foreach ($clients as $client)
-                                        <option value="{{ $client->client_id }}">{{ $client->name }}</option>
+                                        <option value="{{ $client->id }}">{{ $client->name }}</option>
                                     @endforeach
                                     {{-- @error('client_id')
                                         <p class="error"></p>
