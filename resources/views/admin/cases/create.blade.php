@@ -454,9 +454,9 @@
                     diff = new Date(Date.parse(end) - Date.parse(start));
                     // get days
                     var days = diff / 1000 / 60 / 60 / 24;
-                    var debt_amount = parseFloat(('#debt_amount').val());
+                    var debt_amount = parseFloat($('#debt_amount').val());
                     var debt_amount_annum = $('#debt_amount_annum').val() / 100;
-                    var legal_cost = parseFloat(('#legal_cost').val());
+                    var legal_cost = parseFloat($('#legal_cost').val());
                     var interest = 0;
                     var total_amount_owed = parseInt(debt_amount) + parseInt(legal_cost) + parseInt(interest);
 
@@ -480,9 +480,9 @@
                             diff = new Date(Date.parse(end) - Date.parse(start));
                             // get days
                             var days = diff / 1000 / 60 / 60 / 24;
-                            var debt_amount = parseFloat(('#debt_amount').val());
+                            var debt_amount = parseFloat($('#debt_amount').val());
                             var debt_amount_annum = $('#debt_amount_annum').val() / 100;
-                            var legal_cost = parseFloat(('#legal_cost').val());
+                            var legal_cost = parseFloat($('#legal_cost').val());
                             var interest = 0;
                             var total_amount_owed = parseInt(debt_amount) + parseInt(legal_cost) + parseInt(
                                 interest);
