@@ -33,8 +33,7 @@
             WhatsApp @ +65 8505 5484. For updates on your case, you may access it with your registered email
             as follows;<br><br>
 
-            Login Page: <a href="{{ env('APP_URL') }}">DCMS LOGIN</a> <br>
-{{--            Login ID: Test email <br>--}}
+            Login Page: <a href="https://www.securre.net/dcmslogin">DCMS LOGIN</a> <br>
             Login ID: {{ $client->email }} <br>
             Password: 12345678 <br><br>
 
@@ -44,7 +43,7 @@
 
             In the meantime, please feel free to check out our website for more information and here's a
             small introduction on how we were listed on Lianhe Wanbao and Straits Times for our good work!
-            <a href="{{ env('APP_URL') }}">DCMS</a>
+            <a href="http://dcms.test/">DCMS</a>
         </div>
     </div>
 </body>
