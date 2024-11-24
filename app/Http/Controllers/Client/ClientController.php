@@ -172,7 +172,7 @@ class ClientController extends Controller
             ]
         );
         if ($fee) {
-            $client = Client::where('client_id', $request->client_id)->first();
+            $client = Client::where('id', $request->client_id)->first();
             $client->admin_fee_balance = $client->admin_fee_balance - $request->admin_fee_paid;
             $client->admin_fee_paid = $client->admin_fee_paid + $request->admin_fee_paid;
             $client->save();
