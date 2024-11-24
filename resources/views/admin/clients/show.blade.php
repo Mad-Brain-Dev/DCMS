@@ -81,14 +81,14 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="num1">Admin Fee</label>
-                        <input type="number" class="form-control" name="admin_fee" readonly id="num1"
+                        <input type="number" step="0.01" min="0" max="10000000000000"  class="form-control" name="admin_fee" readonly id="num1"
                             aria-describedby="emailHelp" value="{{ $client->admin_fee }}">
                         <input type="hidden" class="form-control" name="admin_fee_bal" readonly id="num3"
                             aria-describedby="emailHelp" value="{{ $client->admin_fee_balance }}">
                     </div>
                     <div class="form-group mt-2">
                         <label for="num2">Admin Fee Amount</label>
-                        <input type="number" class="form-control" name="admin_fee_paid" id="num2"
+                        <input type="number" step="0.01" min="0" max="10000000000000" class="form-control" name="admin_fee_paid" id="num2"
                             placeholder="Enter Admin Fee Amount" value="">
                         @error('admin_fee_paid')
                             <p class="error">{{ $message }}</p>
@@ -118,7 +118,7 @@
                     </div>
                     <div class="form-group mt-2">
                         <label for="subt">Admin Fee Balance</label>
-                        <input type="number" class="form-control" name="admin_fee_balance" readonly id="subt"
+                        <input type="number" step="0.01" min="0" max="10000000000000" class="form-control" name="admin_fee_balance" readonly id="subt"
                             value="{{ $client->admin_fee_balance }}">
                     </div>
                     <div class="col-md-12 d-flex justify-content-end">
