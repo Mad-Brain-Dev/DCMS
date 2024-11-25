@@ -73,60 +73,62 @@
             </table>
         </div>
         <div class="col-md-5">
-           <div class="card">
-            <div class="card-header text-center bg-primary text-white"><h5>Update Admin Fee</h5></div>
-            <div class="card-body">
-                <form action="{{ route('admin.fee.update', $client->id) }}" method="post">
-                    @csrf
-                    @method('PUT')
-                    <div class="form-group">
-                        <label for="num1">Admin Fee</label>
-                        <input type="number" step="0.01" min="0" max="10000000000000"  class="form-control" name="admin_fee" readonly id="num1"
-                            aria-describedby="emailHelp" value="{{ $client->admin_fee }}">
-                        <input type="hidden" class="form-control" name="admin_fee_bal" readonly id="num3"
-                            aria-describedby="emailHelp" value="{{ $client->admin_fee_balance }}">
-                    </div>
-                    <div class="form-group mt-2">
-                        <label for="num2">Admin Fee Amount</label>
-                        <input type="number" step="0.01" min="0" max="10000000000000" class="form-control" name="admin_fee_paid" id="num2"
-                            placeholder="Enter Admin Fee Amount" value="">
-                        @error('admin_fee_paid')
-                            <p class="error">{{ $message }}</p>
-                        @enderror
-                        <input type="hidden" value="{{ $client->id }}" name="client_id">
+            <div class="card">
+                <div class="card-header text-center bg-primary text-white">
+                    <h5>Update Admin Fee</h5>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('admin.fee.update', $client->id) }}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group">
+                            <label for="num1">Admin Fee</label>
+                            <input type="number" class="form-control" name="admin_fee" readonly id="num1"
+                                aria-describedby="emailHelp" value="{{ $client->admin_fee }}">
+                            <input type="hidden" class="form-control" name="admin_fee_bal" readonly id="num3"
+                                aria-describedby="emailHelp" value="{{ $client->admin_fee_balance }}">
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="num2">Admin Fee Amount</label>
+                            <input type="number" class="form-control" name="admin_fee_paid" id="num2"
+                                placeholder="Enter Admin Fee Amount" value="">
+                            @error('admin_fee_paid')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                            <input type="hidden" value="{{ $client->id }}" name="client_id">
 
-                    </div>
-                    <div class="form-group mt-2">
-                        <label for="subt">Collection Date</label>
-                        <input type="date" class="form-control" name="collection_date">
-                        @error('collection_date')
-                            <p class="error">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="form-group mt-2">
-                        <label class="form-label">Collected By</label>
-                        <select class="form-select select2" id="current_status" name="collected_by_id"
-                            aria-label="Default select example">
-                            <option selected disabled>Select Employee</option>
-                            @foreach ($employees as $employee )
-                            <option value="{{ $employee->id }}">{{ $employee->name }}</option>
-                            @endforeach
-                        </select>
-                        @error('collected_by')
-                            <p class="error">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="form-group mt-2">
-                        <label for="subt">Admin Fee Balance</label>
-                        <input type="number" step="0.01" min="0" max="10000000000000" class="form-control" name="admin_fee_balance" readonly id="subt"
-                            value="{{ $client->admin_fee_balance }}">
-                    </div>
-                    <div class="col-md-12 d-flex justify-content-end">
-                        <button type="submit" class="btn btn-success mt-2">Submit</button>
-                    </div>
-                </form>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="subt">Collection Date</label>
+                            <input type="date" class="form-control" name="collection_date">
+                            @error('collection_date')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="form-group mt-2">
+                            <label class="form-label">Collected By</label>
+                            <select class="form-select select2" id="current_status" name="collected_by_id"
+                                aria-label="Default select example">
+                                <option selected disabled>Select Employee</option>
+                                @foreach ($employees as $employee)
+                                    <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('collected_by')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="subt">Admin Fee Balance</label>
+                            <input type="number" class="form-control" name="admin_fee_balance" readonly id="subt"
+                                value="{{ $client->admin_fee_balance }}">
+                        </div>
+                        <div class="col-md-12 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-success mt-2">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-           </div>
         </div>
     </div>
     <div class="row">
@@ -229,7 +231,8 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Total Amount Owed</th>
-                                    <td class="text-end">$ {{ number_format($case->total_amount_owed, 2, '.', ',') }} </td>
+                                    <td class="text-end">$ {{ number_format($case->total_amount_owed, 2, '.', ',') }}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Total Amount Balance</th>

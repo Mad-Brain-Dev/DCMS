@@ -62,13 +62,15 @@ class ClientController extends Controller
                 'error' => $validator->errors()
             ]);
         }
-        $client = Client::create($request->all());
-        if ($client) {
-            $user = new User();
-            $user->name = $request['name'];
-            $user->email = $request['email'];
-            $user->password =  Hash::make("12345678");   // 12345678;
-            $user->save();
+        $user = new User();
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->password =  Hash::make("12345678");   // 12345678;
+        $user->save();
+        if ($user) {
+            $data = $request->all();
+            $data['user_id'] = $user->id;
+            $client = Client::create($data);
             if ($user) {
                 $admin_fee_paid = new AdminFee();
                 $admin_fee_paid->admin_fee_amount = $request->admin_fee_paid;
