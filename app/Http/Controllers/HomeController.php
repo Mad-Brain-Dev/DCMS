@@ -50,7 +50,7 @@ class HomeController extends Controller
             $ult_case_status = Cases::where('current_status', 'ULT')->get()->count('current_status');
             return view('admin.dashboard.index', compact('case_number', 'total_amount_owed', 'total_admin_fee', 'total_amount_balance', 'total_amount_paid', 'pdg_case_status', 'opn_case_status', 'fld_case_status', 'dsp_case_status', 'inv_case_status', 'ngd_case_status', 'ins_case_status', 'fst_case_status', 'pst_case_status', 'ohc_case_status', 'ohm_case_status', 'cst_case_status', 'afc_case_status', 'ult_case_status'));
         } else {
-            $client = Client::where('id', Auth::id())->first();
+            $client = Client::where('user_id', Auth::id())->first();
             $cases = Cases::where('client_id', Auth::id())->get();
             $total_cases = Cases::where('client_id', Auth::id())->get()->count();
             $open_cases = Cases::where('client_id', Auth::id())->where('current_status', 'OPN')->get()->count();
