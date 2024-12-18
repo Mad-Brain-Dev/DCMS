@@ -34,7 +34,6 @@ Route::get('/', function () {
 Route::get('/test-mail',function (){
     $accounts = Cases::where('current_status','!=',GlobalConstant::CASE_CLOSED)->get();
 //   Mail::to('smauhp@gmail.com')->send(new ClientMail([]));
-//   Mail::to('smauhp@gmail.com')->send(new ClientMail([]));
    dd('sent');
 });
 Route::get('/execute-command', function () {
