@@ -37,10 +37,13 @@ return new class extends Migration
             $table->string('adderss')->nullable();
             $table->string('guarantor_name')->nullable();
             $table->string('guarantor_address')->nullable();
+            $table->string('remarks_one')->nullable();
             $table->string('guarantor_name2')->nullable();
             $table->string('guarantor_address2')->nullable();
+            $table->string('remarks_two')->nullable();
             $table->string('guarantor_name3')->nullable();
             $table->string('guarantor_address3')->nullable();
+            $table->string('remarks_three')->nullable();
             $table->string('debt_amount')->nullable();
             $table->string('legal_cost')->nullable();
             $table->float('legal_cost_received')->nullable();

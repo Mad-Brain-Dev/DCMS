@@ -200,6 +200,14 @@
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
+                                <label class="form-label">Remarks</label>
+                                <input type="text" name="remarks_one" class="form-control"
+                                    placeholder="Enter Remarks" value="{{ old('remarks_one') }}">
+                                @error('remarks_one')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-3">
                                 <label class="form-label">Guarantor Name 2</label>
                                 <input type="text" name="guarantor_name2" class="form-control"
                                     placeholder="Enter guarantor name 2" value="{{ old('guarantor_name2') }}">
@@ -213,6 +221,14 @@
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
+                                <label class="form-label">Remarks 2</label>
+                                <input type="text" name="remarks_two" class="form-control"
+                                    placeholder="Enter Remarks 2" value="{{ old('remarks_two') }}">
+                                @error('remarks_two')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-3">
                                 <label class="form-label">Guarantor Name 3</label>
                                 <input type="text" name="guarantor_name3" class="form-control"
                                     placeholder="Enter guarantor name 3" value="{{ old('guarantor_name3') }}">
@@ -222,6 +238,14 @@
                                 <input type="text" name="guarantor_address3" class="form-control"
                                     placeholder="Enter guarantor Address 3" value="{{ old('guarantor_address3') }}">
                                 @error('guarantor_address3')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Remarks 3</label>
+                                <input type="text" name="remarks_three" class="form-control"
+                                    placeholder="Enter Remarks 3" value="{{ old('remarks_three') }}">
+                                @error('remarks_three')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -734,9 +758,9 @@
                 },
                 success: function(data) {
                     if (data.success) {
+                        console.log(data);
                         $("#frmAppl")[0].reset();
                         $("#showMsg").modal('show');
-                        console.log(data.result.id)
                         var url = "/printable/case/agreement/" + data.result.id
                         var letterUrl = "/printable/letter/" + data.result.id
 

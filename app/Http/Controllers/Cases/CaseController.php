@@ -57,6 +57,7 @@ class CaseController extends Controller
      */
     public function store(Request $request)
     {
+
         $validator = Validator::make($request->all(), ['name' => 'required', 'client_id' => 'required']);
 
         if ($validator->fails()) {
@@ -87,10 +88,13 @@ class CaseController extends Controller
             "adderss" => $request->adderss,
             "guarantor_name" => $request->guarantor_name,
             "guarantor_address" => $request->guarantor_address,
+            "remarks_one" => $request->remarks_one,
             "guarantor_name2" => $request->guarantor_name2,
             "guarantor_address2" => $request->guarantor_address2,
+            "remarks_two" => $request->remarks_two,
             "guarantor_name3" => $request->guarantor_name3,
             "guarantor_address3" => $request->guarantor_address3,
+            "remarks_three" => $request->remarks_three,
             "debt_amount" => $request->debt_amount,
             "legal_cost" => $request->legal_cost,
             "total_interest" => $request->total_interest,
@@ -102,6 +106,7 @@ class CaseController extends Controller
             // "total_amount_balance" => $request->total_amount_balance,
             "remarks" => $request->remarks,
         ];
+
         $result = Cases::create($data);
         $data = [
             'status' => 200,
