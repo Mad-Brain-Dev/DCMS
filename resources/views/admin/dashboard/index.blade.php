@@ -23,7 +23,7 @@
                 @csrf
                 <div class="input-group">
                     <input type="search" id="search_case" required name="case_search" class="form-control"
-                        placeholder="Enter Case Number">
+                        placeholder="Search Here">
                     <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
                 </div>
             </form>

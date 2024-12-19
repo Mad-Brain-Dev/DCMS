@@ -514,7 +514,13 @@ class CaseController extends Controller
     {
         $searched_case = $request->case_search;
         if ($searched_case != "") {
-            $case = Cases::where("case_sku", "LIKE", "%$searched_case%")->first();
+           // $case = Cases::where("case_sku", "LIKE", "%$searched_case%")->first();
+           $case = Cases::where("case_sku", "LIKE", "%$searched_case%")
+            ->orWhere("name", "LIKE", "%$searched_case%")
+            ->orWhere("company_name", "LIKE", "%$searched_case%")
+            ->orWhere("phone", "LIKE", "%$searched_case%")
+            ->orWhere("adderss", "LIKE", "%$searched_case%")
+            ->first();
             if ($case) {
                 return redirect('admin/cases/' . $case->id);
             }
