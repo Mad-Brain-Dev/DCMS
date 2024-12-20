@@ -15,6 +15,8 @@ class Installment extends Model
         'next_payment_amount',
         'next_payment_date',
         'payment_method',
+        'assign_type',
+        'fv_date',
         'date_of_payment',
         'collected_by_id',
         'collection_date'

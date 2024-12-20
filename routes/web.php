@@ -8,6 +8,7 @@ use App\Http\Controllers\Cases\CaseController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Debtor\DebtorController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Task;
 use App\Models\Cases;
 use App\Utils\GlobalConstant;
 use Illuminate\Support\Facades\Artisan;
@@ -135,7 +136,10 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::resource('roles', RoleController::class);
     //cases
     Route::resource('cases', CaseController::class);
-    //Reports
+    //tasks
+    Route::resource('tasks', Task::class);
+
+
 
     //Download Case Pdf
     Route::get('download/case/pdf/file/{id}', [CaseController::class, 'downloadCasePdf'])->name('download.case.pdf');

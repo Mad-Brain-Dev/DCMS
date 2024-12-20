@@ -141,6 +141,18 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Whom To Assign</label>
+                            <select class="form-select" aria-label="Default select example" name="assign_type">
+                                <option selected>Select One Payment Method</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Accounts">Accounts</option>
+                                <option value="Noone">Don't assign to anyone</option>
+                            </select>
+                            @error('assign_type')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Collected By</label>
                             <select class="form-select select2" id="collected_by_id" name="collected_by_id"
                                 aria-label="Default select example">
@@ -322,6 +334,18 @@
                                 <option value="Online">Online</option>
                             </select>
                             @error('paid_amount')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Whom To Assign</label>
+                            <select class="form-select" aria-label="Default select example" name="assign_type">
+                                <option selected>Select One Payment Method</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Accounts">Accounts</option>
+                                <option value="Noone">Don't assign to anyone</option>
+                            </select>
+                            @error('assign_type')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>

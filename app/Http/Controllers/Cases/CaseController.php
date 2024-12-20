@@ -15,6 +15,7 @@ use App\Models\FieldVisitUpdate;
 use App\Models\GeneralCaseUpdate;
 use App\Models\Installment;
 use App\Models\MiscellaneousUpdate;
+use App\Models\Task;
 use App\Models\User;
 use App\Services\CaseService;
 use App\Services\Utils\FileUploadService;
@@ -213,6 +214,7 @@ class CaseController extends Controller
             'collected_by_id' => 'nullable',
             'gn_summary' => 'nullable',
             'payment_method' => 'nullable',
+            'assign_type'=> 'required',
             'next_payment_date' => 'required',
             'next_payment_amount' => 'required',
             'fv_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
@@ -228,8 +230,13 @@ class CaseController extends Controller
             'collected_by_id' => $request->collected_by_id == null ? 2 : $request->collected_by_id,
             'next_payment_date' => $request->next_payment_date,
             'payment_method' => $request->payment_method,
+            'assign_type' => $request->assign_type,
+            'fv_date' => $request->fv_date,
             'date_of_payment' => $request->payment_date,
-
+        ]);
+        Task::create([
+            'installment_id' => $installment->id,
+            'assign_type'=> $request->assign_type,
         ]);
         if ($installment) {
             //     //$installment->collected_by_id = $request->collected_by_id;
@@ -286,6 +293,7 @@ class CaseController extends Controller
             'next_payment_amount' => 'required',
             'collected_by_id' => 'nullable',
             'payment_method' => 'nullable',
+            'assign_type'=> 'required',
             'fv_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_summary' => 'nullable',
             'remarks' => 'nullable',
@@ -298,8 +306,14 @@ class CaseController extends Controller
             'collected_by_id' => $request->collected_by_id == null ? 2 : $request->collected_by_id,
             'next_payment_date' => $request->next_payment_date,
             'payment_method' => $request->payment_method,
+            'assign_type'=> $request->assign_type,
+            'fv_date' => $request->fv_date,
             'date_of_payment' => $request->payment_date,
 
+        ]);
+        Task::create([
+            'installment_id' => $installment->id,
+            'assign_type'=> $request->assign_type,
         ]);
         if ($installment) {
             //$installment->collected_by_id = $request->collected_by_id;
