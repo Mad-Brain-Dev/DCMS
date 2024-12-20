@@ -12,6 +12,7 @@ class Task extends Controller
      */
     public function index()
     {
+      set_page_meta(content: 'Tasks');
       $admin_installments = ModelsTask::with('installment')
                             ->where('assign_type','Admin' )
                             ->get();
@@ -43,6 +44,9 @@ class Task extends Controller
      */
     public function show(string $id)
     {
+        set_page_meta(content: 'Tasks');
+        $tasks = ModelsTask::find($id);
+        return view("admin.tasks.show", compact("tasks"));
     }
 
     /**
@@ -65,7 +69,20 @@ class Task extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        //
+{
+    $item = ModelsTask::find($id);
+
+    // Check if the item exists
+    if (!$item) {
+        return back()->with('error', 'Item not found!');
     }
+
+    // Delete the item if found
+    $item->delete();
+
+    // Flash success message
+    record_deleted_flash();
+    return redirect()->route('admin.tasks.index');
+}
+
 }
