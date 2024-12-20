@@ -82,6 +82,8 @@ class Task extends Controller
 
     // Flash success message
     record_deleted_flash();
+
+
     return redirect()->route('admin.tasks.index');
 }
 
