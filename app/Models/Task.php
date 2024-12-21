@@ -11,7 +11,8 @@ class Task extends Model
     use HasFactory;
     protected $fillable = [
         'installment_id',
-        'assign_type'
+        'assign_type',
+        'status'
     ];
     public function installment()
     {

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('payment_method')->nullable();
             $table->string('assign_type')->nullable();
             $table->string('fv_date')->nullable();
+            $table->string('status')->default('not_complete');
             $table->timestamp('date_of_payment')->nullable();
             $table->dateTime('next_payment_date')->nullable();
             $table->timestamps();

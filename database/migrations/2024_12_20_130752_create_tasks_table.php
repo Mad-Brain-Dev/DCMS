@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('installment_id');
             $table->string('assign_type');
+            $table->string('status')->default('not_complete');
             $table->timestamps();
         });
     }

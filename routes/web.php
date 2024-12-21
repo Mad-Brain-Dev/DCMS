@@ -139,7 +139,8 @@ Route::prefix('admin')->as('admin.')->group(function () {
     //tasks
     Route::resource('tasks', Task::class);
 
-
+    //mark as complete
+    Route::get('mark/as/complete/{id}', [Task::class, 'markAsComplete'])->name('tasks.complete');
 
     //Download Case Pdf
     Route::get('download/case/pdf/file/{id}', [CaseController::class, 'downloadCasePdf'])->name('download.case.pdf');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Installment;
 use App\Models\Task as ModelsTask;
 use Illuminate\Http\Request;
 
@@ -15,12 +16,17 @@ class Task extends Controller
       set_page_meta(content: 'Tasks');
       $admin_installments = ModelsTask::with('installment')
                             ->where('assign_type','Admin' )
+                            ->where('status','not_complete')
                             ->get();
 
       $accounts_installments = ModelsTask::with('installment')
                             ->where('assign_type','Accounts' )
+                            ->where('status','not_complete')
                             ->get();
-      return view("admin.tasks.index", compact("admin_installments", "accounts_installments"));
+
+     $completed_tasks = ModelsTask::where('status', 'complete')->get();
+
+      return view("admin.tasks.index", compact("admin_installments", "accounts_installments", "completed_tasks"));
     }
 
     /**
@@ -69,22 +75,32 @@ class Task extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-{
-    $item = ModelsTask::find($id);
+    {
+        $item = ModelsTask::find($id);
 
-    // Check if the item exists
-    if (!$item) {
-        return back()->with('error', 'Item not found!');
+        // Check if the item exists
+        if (!$item) {
+            return back()->with('error', 'Item not found!');
+        }
+
+        // Delete the item if found
+        $item->delete();
+
+        // Flash success message
+        record_deleted_flash();
+        return redirect()->route('admin.tasks.index');
     }
 
-    // Delete the item if found
-    $item->delete();
+    public function markAsComplete($id){
+          $task_item = ModelsTask::find($id);
+          $task_item->status = 'complete';
+          $task_item->save();
+        // $installment_item = Installment::where('id', $task_item->installment_id)->first();
+        // $installment_item->status = 'complete';
+        // $installment_item->save();
 
-    // Flash success message
-    record_deleted_flash();
+        return redirect()->route('admin.tasks.index');
 
-
-    return redirect()->route('admin.tasks.index');
-}
+    }
 
 }
