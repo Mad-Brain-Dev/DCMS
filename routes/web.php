@@ -56,6 +56,10 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/printable/case/agreement/{id}', [CaseController::class, 'printableCaseAgreement'])->name('printable.case.agreement');
 //show printable case letter with details
 Route::get('/printable/letter/{id}', [CaseController::class, 'printableLetter'])->name('printable.case.letter');
+
+//printable debtor details
+Route::get('/cases/debtor/details/{id}', [CaseController::class, 'debtorDetails'])->name('cases.debtor.details');
+
 //show printable client agreement with details
 Route::get('/printable/client/agreement/{id}', [ClientController::class, 'printableClientAgreement'])->name('printable.client.agreement');
 //single case show to client

@@ -588,4 +588,9 @@ class CaseController extends Controller
             return $newSKUId;
         }
     }
+
+    public function debtorDetails($id){
+       $detail = Cases::where('id', $id)->first();
+       return view('admin.debtor.debtor-details');
+    }
 }
