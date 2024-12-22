@@ -66,7 +66,7 @@
                         <div class="">
                             <h5 class="font-size-16 text-uppercase text-white">Completed</h5>
                             @foreach ($completed_tasks as $task)
-{{--                            <a href="{{ route('admin.tasks.show', $task->id) }}" class="text-dark">--}}
+                            <a href="{{ route('admin.tasks.show', $task->id) }}" class="text-dark">
                                 <div class="card">
                                     <div class="card-body">
                                         <tr>
@@ -82,7 +82,7 @@
                                         </tr>
                                     </div>
                                 </div>
-{{--                            </a>--}}
+                            </a>
                             @endforeach
                         </div>
                     </div>

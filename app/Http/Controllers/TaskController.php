@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cases;
 use App\Models\Installment;
+use App\Models\Task;
 use App\Models\Task as ModelsTask;
 use Illuminate\Http\Request;
 
-class Task extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -76,15 +78,28 @@ class Task extends Controller
      */
     public function destroy(string $id)
     {
-        $item = ModelsTask::find($id);
+        $item = Task::find($id);
 
         // Check if the item exists
         if (!$item) {
             return back()->with('error', 'Item not found!');
+        }else{
+            $installment = Installment::find($item->installment_id);
+            $installment->delete();
+
+            //update task status
+            $item->status = 'complete';
+            $item->save();
         }
 
-        // Delete the item if found
-        $item->delete();
+//        $ammount_paid = $installment->amount_paid;
+//        $case_id = $installment->case_id;
+//
+//        $case = Cases::find($case_id);
+//
+//        return $case;
+
+//        $case->total_amount = $case->total_amount + $ammount_paid;
 
         // Flash success message
         record_deleted_flash();

@@ -1,0 +1,122 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Cases;
+use App\Models\Installment;
+use App\Models\Task;
+use App\Models\Task as ModelsTask;
+use Illuminate\Http\Request;
+
+class TaskController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+      set_page_meta(content: 'Tasks');
+      $admin_installments = ModelsTask::with('installment')
+                            ->where('assign_type','Admin' )
+                            ->where('status','not_complete')
+                            ->get();
+
+      $accounts_installments = ModelsTask::with('installment')
+                            ->where('assign_type','Accounts' )
+                            ->where('status','not_complete')
+                            ->get();
+
+     $completed_tasks = ModelsTask::where('status', 'complete')->get();
+
+      return view("admin.tasks.index", compact("admin_installments", "accounts_installments", "completed_tasks"));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        set_page_meta(content: 'Tasks');
+        $tasks = ModelsTask::find($id);
+        return view("admin.tasks.show", compact("tasks"));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $item = Task::find($id);
+
+        $installment = Installment::find($item->installment_id);
+
+        $ammount_paid = $installment->amount_paid;
+        $case_id = $installment->case_id;
+
+        $case = Cases::find($case_id);
+
+        return $case;
+
+//        $case->total_amount = $case->total_amount + $ammount_paid;
+
+        dd();
+        // Check if the item exists
+        if (!$item) {
+            return back()->with('error', 'Item not found!');
+        }else{
+
+        }
+
+        // Delete the item if found
+        $item->delete();
+
+        // Flash success message
+        record_deleted_flash();
+        return redirect()->route('admin.tasks.index');
+    }
+
+    public function markAsComplete($id){
+          $task_item = ModelsTask::find($id);
+          $task_item->status = 'complete';
+          $task_item->save();
+        // $installment_item = Installment::where('id', $task_item->installment_id)->first();
+        // $installment_item->status = 'complete';
+        // $installment_item->save();
+
+        return redirect()->route('admin.tasks.index');
+
+    }
+
+}
