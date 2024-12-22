@@ -44,7 +44,7 @@ class CaseDataTable extends DataTable
 
 
 
-                 $buttons .= '<a class="dropdown-item" href="' . route('cases.debtor.details', $item->id) . '" title="Show"><i class="fas fa-paste"></i> Debtor Details </a>';
+                $buttons .= '<a class="dropdown-item" href="' . route('cases.debtor.details', $item->id) . '" title="Show"><i class="fas fa-paste"></i> Debtor Details </a>';
 
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
 

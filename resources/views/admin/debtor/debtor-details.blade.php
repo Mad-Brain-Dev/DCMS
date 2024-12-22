@@ -11,28 +11,39 @@
     <title>Debtor Details</title>
   </head>
   <body>
-    <div class="col-md-12">
-        <h5 class="text-center mt-3">Debtor Details</h5>
-        {{-- 1. Case Number
-        2. Client Name
-        2. Client Company
-        3. Debtor Name
-        4. Debtor Company
-        5. Guarantor Name
-        6. All Past Updates
-        7. New Update: (A box big enough for collector to write the latest update) --}}
-
-       <span>Case Number : 1234567</span>
-       <span>Client Name : 1234567</span>
-       <span>Client Company : 1234567</span>
-       <span>Debtor Name : 1234567</span>
-       <span>Debtor Company : 1234567</span>
-       <span>Guarantor Name : 1234567</span>
-
-
-
-
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center mt-3">Debtor Details</h5>
+                <h6>Case Number : {{ $debtor_details->case_sku }}</h6>
+                <h6>Client Name : {{ $debtor_details->clientDetails->name }}</h6>
+                <h6>Client Company : {{ $debtor_details->clientDetails->company_name }}</h6>
+                <h6>Debtor Name :  {{ $debtor_details->name }} </h6>
+             </div>
+        </div>
+        <div class="row mt-3">
+            @foreach ($installments_details as $installments_detail)
+            <div class="col-md-4">
+             <div class="card">
+                 <div class="card-body">
+                     <h6>Amount Paid : $ {{ number_format($installments_detail->amount_paid, 2, '.', ',') }}</h6>
+                     <h6>Payment Date : {{ date('m-d-Y', strtotime($installments_detail->date_of_payment)) }}</h6>
+                     <h6>Next Payment Amount : $ {{ number_format($installments_detail->next_payment_amount, 2, '.', ',') }}</h6>
+                     <h6>Next Payment Date : {{ date('m-d-Y', strtotime($installments_detail->next_payment_date)) }}</h6>
+                     <h6>Field Visit Date : {{ date('m-d-Y', strtotime($installments_detail->fv_date)) }}</h6>
+                     <h6>Field Visit Date : {{ $installments_detail->payment_method }}</h6>
+                 </div>
+            </div>
+            </div>
+            @endforeach
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="note"></div>
+            </div>
+        </div>
     </div>
+
 
 
     <!-- Optional JavaScript -->
@@ -40,5 +51,26 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <style>
+        .note{
+            height: 300px;
+            width: 100%;
+            border: 1px solid #e7e7e7;
+            margin-top: 20px;
+        }
+        @media print {
+        .col-md-4{
+            margin-bottom: 20px;
+            width: 50%;
+        }
+        .note{
+            height: 300px;
+            width: 100%;
+            border: 1px solid #e7e7e7;
+        }
+    }
+    </style>
+
   </body>
 </html>

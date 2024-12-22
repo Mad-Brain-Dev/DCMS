@@ -75,8 +75,9 @@ class Cases extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function clientDetails(){
-        return $this->belongsTo(Client::class);
+    public function clientDetails()
+    {
+        return $this->belongsTo(Client::class, 'client_id', 'id');
     }
 
     public function getUser()

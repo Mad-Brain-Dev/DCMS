@@ -49,7 +49,7 @@
                                     @if (empty($installment->next_payment_date))
                                         <span>N/A</span>
                                     @else
-                                        {{ date('d-m-Y', strtotime($installment->next_payment_date)) }}
+                                        {{ date('m-d-Y', strtotime($installment->next_payment_date)) }}
                                     @endif
                                 </span><br>
                                 {{-- <span>Legal Cost :
@@ -232,7 +232,7 @@
                         <ul class="timeline">
                             @foreach ($gn_updates as $gn_update)
                                 <li class="event"
-                                    data-date="{{ date('d-m-Y', strtotime($gn_update->created_at)) }}, {{ date('h:i a', strtotime($gn_update->created_at)) }} ">
+                                    data-date="{{ date('m-d-Y', strtotime($gn_update->created_at)) }}, {{ date('h:i a', strtotime($gn_update->created_at)) }} ">
                                     <div>
                                         @php
                                             $extension = substr($gn_update->gn_update, -3);
@@ -255,7 +255,7 @@
 
                                     </div>
                                     <h6 class="mt-2">Field Visited at:
-                                        {{ $gn_update->fv_date == null ? 'N/A' : date('d-m-Y', strtotime($gn_update->fv_date)) }}
+                                        {{ $gn_update->fv_date == null ? 'N/A' : date('m-d-Y', strtotime($gn_update->fv_date)) }}
                                     </h6>
                                     <span class="d-block">{{ $gn_update->gn_summary }}</span>
                                     <div>
@@ -434,7 +434,7 @@
                         <ul class="timeline">
                             @foreach ($fv_updates as $fv_update)
                                 <li class="event"
-                                    data-date="{{ date('d-m-Y', strtotime($fv_update->created_at)) }}, {{ date('h:i a', strtotime($fv_update->created_at)) }} ">
+                                    data-date="{{ date('m-d-Y', strtotime($fv_update->created_at)) }}, {{ date('h:i a', strtotime($fv_update->created_at)) }} ">
 
 
                                     @php
@@ -456,7 +456,7 @@
                                         </div>
                                     @endif
                                     <h6 class="mt-2">Field Visited at:
-                                        {{ $fv_update->fv_date == null ? 'N/A' : date('d-m-Y', strtotime($fv_update->fv_date)) }}
+                                        {{ $fv_update->fv_date == null ? 'N/A' : date('m-d-Y', strtotime($fv_update->fv_date)) }}
                                     </h6>
                                     <span class="d-block">{{ $fv_update->fv_summary }}</span>
                                     <div>

@@ -590,7 +590,8 @@ class CaseController extends Controller
     }
 
     public function debtorDetails($id){
-       $detail = Cases::where('id', $id)->first();
-       return view('admin.debtor.debtor-details');
+       $debtor_details = Cases::where('id', $id)->first();
+       $installments_details = Installment::where('case_id', $id)->get();
+       return view('admin.debtor.debtor-details',compact('debtor_details','installments_details'));
     }
 }
