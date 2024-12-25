@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('case_id')->nullable()->references('id')->on('cases')
             ->onDelete('cascade');
+            $table->foreignId('installment_id')->nullable();
             $table->string('gn_update')->nullable();
             $table->text('gn_summary')->nullable();
             $table->dateTime('fv_date')->nullable();

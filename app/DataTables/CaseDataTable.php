@@ -42,9 +42,9 @@ class CaseDataTable extends DataTable
                 //     $buttons .= '<a class="dropdown-item" href="' . route('printable.case.letter', $item->id) . '" title="Show"><i class="fas fa-paste"></i> Print Letter </a>';
                 // }
 
-
-
-                $buttons .= '<a class="dropdown-item" href="' . route('cases.debtor.details', $item->id) . '" title="Show"><i class="fas fa-paste"></i> Debtor Details </a>';
+                if (auth()->user()->can('Print Debtor Details')) {
+                    $buttons .= '<a class="dropdown-item" href="' . route('cases.debtor.details', $item->id) . '" title="Show"><i class="fas fa-paste"></i> Debtor Details </a>';
+                }
 
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
 

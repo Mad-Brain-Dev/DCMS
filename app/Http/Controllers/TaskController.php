@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cases;
+use App\Models\FieldVisitUpdate;
+use App\Models\GeneralCaseUpdate;
 use App\Models\Installment;
 use App\Models\Task;
 use App\Models\Task as ModelsTask;
@@ -84,9 +86,14 @@ class TaskController extends Controller
         if (!$item) {
             return back()->with('error', 'Item not found!');
         }else{
-            $installment = Installment::find($item->installment_id);
-            $installment->delete();
 
+            $installment = Installment::find($item->installment_id);
+            $gn_update = GeneralCaseUpdate::where('installment_id', $installment->id);
+            $fv_update = FieldVisitUpdate::where('installment_id', $installment->id);
+            $installment->delete();
+            $gn_update->delete();
+            $fv_update->delete();
+            $item->delete();
             //update task status
             $item->status = 'complete';
             $item->save();

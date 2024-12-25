@@ -251,6 +251,8 @@ class CaseController extends Controller
 
 
         if ($request->gn_updates) {
+
+
             foreach ($request->gn_updates as $key => $gn_update) {
                 $imageName = time() . rand(1000, 10000) . '.' . $gn_update->extension();
                 $gn_update->move(public_path('documents'), $imageName);
@@ -265,8 +267,6 @@ class CaseController extends Controller
                     'gn_update' => $imageName,
                 ]);
             }
-            record_updated_flash();
-            return back();
         } else {
             $gn_update =   GeneralCaseUpdate::create([
                 'case_id' => $request->case_id,
@@ -276,9 +276,11 @@ class CaseController extends Controller
                 // 'gn_update' => null,
 
             ]);
-            record_updated_flash();
-            return back();
         }
+        $gn_update->installment_id = $installment->id;
+        $gn_update->save();
+        record_updated_flash();
+        return back();
     }
 
     public function fieldVisitCaseCreate(Request $request)
@@ -345,6 +347,7 @@ class CaseController extends Controller
 
                 $fv_update =   FieldVisitUpdate::create([
                     'case_id' => $request->case_id,
+                    'installment_id' => $installment->id,
                     'remarks' => $request->remarks,
                     'fv_summary' => $request->fv_summary,
                     'fv_date' => $request->fv_date,
@@ -354,6 +357,7 @@ class CaseController extends Controller
         } else {
             $fv_update =   FieldVisitUpdate::create([
                 'case_id' => $request->case_id,
+                'installment_id' => $installment->id,
                 'remarks' => $request->remarks,
                 'fv_date' => $request->fv_date,
                 'fv_summary' => $request->gn_summary,
@@ -361,6 +365,8 @@ class CaseController extends Controller
 
             ]);
         }
+        $fv_update->installment_id = $installment->id;
+        $fv_update->save();
         record_updated_flash();
         return back();
     }

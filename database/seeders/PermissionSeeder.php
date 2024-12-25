@@ -53,6 +53,7 @@ class PermissionSeeder extends Seeder
             'Edit Case',
             'Print Warrant',
             'Print Letter',
+            'Print Debtor Details',
             'Delete Case',
         ],
         'Reports' => [
