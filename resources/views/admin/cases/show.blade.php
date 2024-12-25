@@ -143,7 +143,7 @@
                         <div class="mb-3">
                             <label class="form-label">Whom To Assign</label>
                             <select class="form-select" aria-label="Default select example" name="assign_type">
-                                <option selected>Select One Payment Method</option>
+                                <option selected>Select One</option>
                                 <option value="Admin">Admin</option>
                                 <option value="Accounts">Accounts</option>
                                 <option value="Noone">Don't assign to anyone</option>
@@ -175,7 +175,7 @@
                         <div class="mb-3">
                             <label class="form-label">Next Payment Amount</label>
                             <input type="number" step="0.01" min="0" max="10000000000000"
-                                name="next_payment_amount" class="form-control" placeholder="Enter Debt Interest/Annum"
+                                name="next_payment_amount" class="form-control" placeholder="Enter Next Payment Amount"
                                 id="next_payment_amount">
                             @error('next_payment_amount')
                                 <p class="error">{{ $message }}</p>
@@ -184,7 +184,7 @@
                         <div class="mb-3">
                             <label class="form-label">Next Payment Date</label>
                             <input type="date" name="next_payment_date" class="form-control"
-                                placeholder="Enter Interest Start Date">
+                                placeholder="Enter Next Payment Date">
                             @error('next_payment_date')
                                 <p class="error">{{ $message }}</p>
                             @enderror
@@ -340,7 +340,7 @@
                         <div class="mb-3">
                             <label class="form-label">Whom To Assign</label>
                             <select class="form-select" aria-label="Default select example" name="assign_type">
-                                <option selected>Select One Payment Method</option>
+                                <option selected>Select One</option>
                                 <option value="Admin">Admin</option>
                                 <option value="Accounts">Accounts</option>
                                 <option value="Noone">Don't assign to anyone</option>
@@ -372,7 +372,7 @@
                         <div class="mb-3">
                             <label class="form-label">Next Payment Amount</label>
                             <input type="number" step="0.01" min="0" max="10000000000000"
-                                name="next_payment_amount" class="form-control" placeholder="Enter Debt Interest/Annum"
+                                name="next_payment_amount" class="form-control" placeholder="Enter Next Payment Amount"
                                 id="next_payment_amount">
                             @error('next_payment_amount')
                                 <p class="error">{{ $message }}</p>
