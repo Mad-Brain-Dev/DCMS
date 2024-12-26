@@ -66,7 +66,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Date of Payment</label>
-                                <input type="date" name="payment_date" class="form-control">
+                                <input type="date" value="{{ old('date_of_payment', \Carbon\Carbon::parse($installment->date_of_payment)->format('Y-m-d')) }}" name="payment_date" class="form-control">
                                 @error('payment_date')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -83,7 +83,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Next Payment Date</label>
-                                <input type="date" name="next_payment_date" class="form-control"
+                                <input type="date" name="next_payment_date" value="{{ old('next_payment_date', \Carbon\Carbon::parse($installment->next_payment_date)->format('Y-m-d')) }}" class="form-control"
                                     placeholder="Enter Next Payment Date">
                                 @error('next_payment_date')
                                     <p class="error">{{ $message }}</p>
@@ -91,7 +91,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Field Visit Date</label>
-                                <input type="date" name="fv_date" class="form-control">
+                                <input type="date" name="fv_date" value="{{ old('fv_date', \Carbon\Carbon::parse($installment->fv_date)->format('Y-m-d')) }}" class="form-control">
                                 @error('fv_date')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -182,7 +182,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Date of Payment</label>
-                                <input type="date" name="payment_date" class="form-control">
+                                <input type="date" name="payment_date" value="{{ old('date_of_payment', \Carbon\Carbon::parse($installment->date_of_payment)->format('Y-m-d')) }}" class="form-control">
                                 @error('payment_date')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -199,14 +199,14 @@
                             <div class="mb-3">
                                 <label class="form-label">Next Payment Date</label>
                                 <input type="date" name="next_payment_date" class="form-control"
-                                    placeholder="Enter Interest Start Date">
+                                value="{{ old('date_of_payment', \Carbon\Carbon::parse($installment->next_payment_date)->format('Y-m-d')) }}"  placeholder="Enter Interest Start Date">
                                 @error('next_payment_date')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Field Visit Date</label>
-                                <input type="date" name="fv_date" class="form-control">
+                                <input type="date" name="fv_date" value="{{ old('date_of_payment', \Carbon\Carbon::parse($installment->fv_date)->format('Y-m-d')) }}" class="form-control">
                                 @error('fv_date')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
