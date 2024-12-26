@@ -111,7 +111,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Amount Paid</label>
-                            <input type="number" step="0.01" min="0" max="10000000000000" name="amount_paid"
+                            <input type="number" step="0.01" min="0" max="10000000000000" name="amount_paid" value="{{ old('amount_paid') }}"
                                 placeholder="Enter Paid Amount Here" class="form-control">
                             @error('amount_paid')
                                 <p class="error">{{ $message }}</p>
@@ -175,7 +175,7 @@
                         <div class="mb-3">
                             <label class="form-label">Next Payment Amount</label>
                             <input type="number" step="0.01" min="0" max="10000000000000"
-                                name="next_payment_amount" class="form-control" placeholder="Enter Next Payment Amount"
+                                name="next_payment_amount" value="{{ old('next_payment_amount') }}" class="form-control" placeholder="Enter Next Payment Amount"
                                 id="next_payment_amount">
                             @error('next_payment_amount')
                                 <p class="error">{{ $message }}</p>
@@ -198,14 +198,14 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Gn Summary</label>
-                            <textarea name="gn_summary" class="form-control" id="" rows="2"></textarea>
+                            <textarea name="gn_summary" class="form-control" id="" rows="2">{{ old("gn_summary") }}</textarea>
                             @error('gn_summary')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Remarks</label>
-                            <input type="text" name="remarks" class="form-control" placeholder="Enter Remarks Here">
+                            <input type="text" name="remarks" value="{{ old('remarks') }}" class="form-control" placeholder="Enter Remarks Here">
                             @error('remarks')
                                 <p class="error">{{ $message }}</p>
                             @enderror
@@ -310,7 +310,7 @@
                         <div class="mb-3">
                             <label class="form-label">Amount Paid</label>
                             <input type="number" step="0.01" min="0" max="10000000000000" name="amount_paid"
-                                placeholder="Enter Paid Amount Here" class="form-control">
+                            value="{{ old('amount_paid') }}" placeholder="Enter Paid Amount Here" class="form-control">
                             @error('amount_paid')
                                 <p class="error">{{ $message }}</p>
                             @enderror
@@ -372,7 +372,7 @@
                         <div class="mb-3">
                             <label class="form-label">Next Payment Amount</label>
                             <input type="number" step="0.01" min="0" max="10000000000000"
-                                name="next_payment_amount" class="form-control" placeholder="Enter Next Payment Amount"
+                                name="next_payment_amount" value="{{ old('next_payment_amount') }}" class="form-control" placeholder="Enter Next Payment Amount"
                                 id="next_payment_amount">
                             @error('next_payment_amount')
                                 <p class="error">{{ $message }}</p>
@@ -396,14 +396,14 @@
                         <input type="hidden" name="update_type" value="field_visit_update">
                         <div class="mb-3">
                             <label class="form-label">FV Summary</label>
-                            <textarea name="fv_summary" class="form-control" id="" rows="2"></textarea>
+                            <textarea name="fv_summary" class="form-control" id="" rows="2">{{ old("fv_summary") }}</textarea>
                             @error('fv_summary')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Remarks</label>
-                            <input type="text" name="remarks" class="form-control" placeholder="Enter Remarks Here">
+                            <input type="text" name="remarks" value="{{ old("remarks") }}" class="form-control" placeholder="Enter Remarks Here">
                             @error('remarks')
                                 <p class="error">{{ $message }}</p>
                             @enderror

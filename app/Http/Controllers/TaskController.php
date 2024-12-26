@@ -80,6 +80,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         // Find the task record
         $task = ModelsTask::findOrFail($id);
 
@@ -87,15 +88,15 @@ class TaskController extends Controller
         $request->validate([
             'gn_updates.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_date' => 'nullable',
-            'amount_paid' => 'required',
+            'amount_paid' => 'nullable',
             'legal_cost' => 'nullable',
-            'payment_date' => 'required',
+            'payment_date' => 'nullable',
             'collected_by_id' => 'nullable',
             'gn_summary' => 'nullable',
             'payment_method' => 'nullable',
-            'assign_type' => 'required',
-            'next_payment_date' => 'required',
-            'next_payment_amount' => 'required',
+            'assign_type' => 'nullable',
+            'next_payment_date' => 'nullable',
+            'next_payment_amount' => 'nullable',
             'fv_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_summary' => 'nullable',
             'remarks' => 'nullable',
@@ -225,7 +226,7 @@ class TaskController extends Controller
                     $fv_update->update([
                         'remarks' => $request->remarks,
                         'fv_date' => $request->fv_date,
-                        'gn_summary' => $request->fv_summary,
+                        'fv_summary' => $request->fv_summary,
                     ]);
                 } else {
                     // If no existing GeneralCaseUpdate record, create a new one
@@ -248,7 +249,7 @@ class TaskController extends Controller
         // Trigger any flash or session updates
         record_updated_flash();
 
-        return back()->with('success', 'Update successful');
+        return back();
     }
 
     /**

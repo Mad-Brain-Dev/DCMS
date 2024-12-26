@@ -20,7 +20,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Amount Paid</label>
                                 <input type="number" step="0.01" min="0" max="10000000000000" name="amount_paid"
-                                    placeholder="Enter Paid Amount Here" value="{{ $installment->amount_paid }}" class="form-control">
+                                    placeholder="Enter Paid Amount Here" value="{{ number_format($installment->amount_paid, 2, '.', ',') }}" class="form-control">
                                 @error('amount_paid')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -29,11 +29,11 @@
                                 <label class="form-label">Payment Method</label>
                                 <select class="form-select" aria-label="Default select example" name="payment_method">
                                     <option selected>Select One Payment Method</option>
-                                    <option value="Cash">Cash</option>
-                                    <option value="Check">Check</option>
-                                    <option value="Online">Online</option>
+                                    <option value="Cash" {{ old('payment_method', $installment->payment_method ?? '') == 'Cash' ? 'selected' : '' }}>Cash</option>
+                                    <option value="Check" {{ old('payment_method', $installment->payment_method ?? '') == 'Check' ? 'selected' : '' }}>Check</option>
+                                    <option value="Online" {{ old('payment_method', $installment->payment_method ?? '') == 'Online' ? 'selected' : '' }}>Online</option>
                                 </select>
-                                @error('paid_amount')
+                                @error('payment_method')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -41,8 +41,8 @@
                                 <label class="form-label">Whom To Assign</label>
                                 <select class="form-select" aria-label="Default select example" name="assign_type">
                                     <option selected>Select One</option>
-                                    <option value="Admin">Admin</option>
-                                    <option value="Accounts">Accounts</option>
+                                    <option value="Admin" {{ old('assign_type', $installment->assign_type ?? '') == 'Admin' ? 'selected' : '' }}>Admin</option>
+                                    <option value="Accounts" {{ old('assign_type', $installment->assign_type ?? '') == 'Accounts' ? 'selected' : '' }}>Accounts</option>
                                     <option value="Noone">Don't assign to anyone</option>
                                 </select>
                                 @error('assign_type')
@@ -51,11 +51,13 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Collected By</label>
-                                <select class="form-select select2" id="collected_by_id" name="collected_by_id"
-                                    aria-label="Default select example">
+                                <select class="form-select select2" id="collected_by_2" name="collected_by_id" aria-label="Default select example">
                                     <option selected disabled>Select Employee</option>
                                     @foreach ($employees as $employee)
-                                        <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                        <option value="{{ $employee->id }}"
+                                            {{ old('collected_by_id', $installment->collected_by_id ?? '') == $employee->id ? 'selected' : '' }}>
+                                            {{ $employee->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @error('collected_by_id')
@@ -71,7 +73,8 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Next Payment Amount</label>
-                                <input type="number" step="0.01" min="0" max="10000000000000" value="{{ $installment->next_payment_amount }}"
+                                <input type="number" step="0.01" min="0" max="10000000000000"
+                                value="{{ number_format($installment->next_payment_amount, 2, '.', ',') }}"
                                     name="next_payment_amount" class="form-control" placeholder="Enter Next Payment Amount"
                                     id="next_payment_amount">
                                 @error('next_payment_amount')
@@ -132,7 +135,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Amount Paid</label>
                                 <input type="number" step="0.01" min="0" max="10000000000000" name="amount_paid"
-                                    placeholder="Enter Paid Amount Here" class="form-control">
+                                    placeholder="Enter Paid Amount Here" value="{{ number_format($installment->amount_paid, 2, '.', ',') }}" class="form-control">
                                 @error('amount_paid')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -141,11 +144,11 @@
                                 <label class="form-label">Payment Method</label>
                                 <select class="form-select" aria-label="Default select example" name="payment_method">
                                     <option selected>Select One Payment Method</option>
-                                    <option value="Cash">Cash</option>
-                                    <option value="Check">Check</option>
-                                    <option value="Online">Online</option>
+                                    <option value="Cash" {{ old('payment_method', $installment->payment_method ?? '') == 'Cash' ? 'selected' : '' }}>Cash</option>
+                                    <option value="Check" {{ old('payment_method', $installment->payment_method ?? '') == 'Check' ? 'selected' : '' }}>Check</option>
+                                    <option value="Online" {{ old('payment_method', $installment->payment_method ?? '') == 'Online' ? 'selected' : '' }}>Online</option>
                                 </select>
-                                @error('paid_amount')
+                                @error('payment_method')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -153,8 +156,8 @@
                                 <label class="form-label">Whom To Assign</label>
                                 <select class="form-select" aria-label="Default select example" name="assign_type">
                                     <option selected>Select One</option>
-                                    <option value="Admin">Admin</option>
-                                    <option value="Accounts">Accounts</option>
+                                    <option value="Admin" {{ old('assign_type', $installment->assign_type ?? '') == 'Admin' ? 'selected' : '' }}>Admin</option>
+                                    <option value="Accounts" {{ old('assign_type', $installment->assign_type ?? '') == 'Accounts' ? 'selected' : '' }}>Accounts</option>
                                     <option value="Noone">Don't assign to anyone</option>
                                 </select>
                                 @error('assign_type')
@@ -163,13 +166,16 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Collected By</label>
-                                <select class="form-select select2" id="collected_by_2" name="collected_by_id"
-                                    aria-label="Default select example">
+                                <select class="form-select select2" id="collected_by_2" name="collected_by_id" aria-label="Default select example">
                                     <option selected disabled>Select Employee</option>
                                     @foreach ($employees as $employee)
-                                        <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                        <option value="{{ $employee->id }}"
+                                            {{ old('collected_by_id', $installment->collected_by_id ?? '') == $employee->id ? 'selected' : '' }}>
+                                            {{ $employee->name }}
+                                        </option>
                                     @endforeach
                                 </select>
+
                                 @error('collected_by_id')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
@@ -184,7 +190,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Next Payment Amount</label>
                                 <input type="number" step="0.01" min="0" max="10000000000000"
-                                    name="next_payment_amount" class="form-control" placeholder="Enter Next Payment Amount"
+                                    name="next_payment_amount" class="form-control" value="{{ number_format($installment->next_payment_amount, 2, '.', ',') }}" placeholder="Enter Next Payment Amount"
                                     id="next_payment_amount">
                                 @error('next_payment_amount')
                                     <p class="error">{{ $message }}</p>
@@ -207,14 +213,14 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">FV Summary</label>
-                                <textarea name="fv_summary" class="form-control" id="" rows="2"></textarea>
+                                <textarea name="fv_summary" class="form-control" id="" rows="2">{{ $fv_case_update->fv_summary }}</textarea>
                                 @error('fv_summary')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Remarks</label>
-                                <input type="text" name="remarks" class="form-control" placeholder="Enter Remarks Here">
+                                <input type="text" name="remarks" class="form-control" value="{{ $fv_case_update->remarks }}" placeholder="Enter Remarks Here">
                                 @error('remarks')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
