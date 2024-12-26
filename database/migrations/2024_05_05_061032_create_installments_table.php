@@ -21,6 +21,7 @@ return new class extends Migration
             // $table->string('save_by_user_type')->nullable();
             $table->float('next_payment_amount')->nullable();
             $table->string('payment_method')->nullable();
+            $table->string('update_type')->nullable();
             $table->string('assign_type')->nullable();
             $table->string('fv_date')->nullable();
             $table->string('status')->default('not_complete');

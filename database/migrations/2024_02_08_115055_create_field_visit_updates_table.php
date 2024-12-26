@@ -17,6 +17,7 @@ return new class extends Migration
             ->onDelete('cascade');
             $table->foreignId('installment_id')->nullable();
             $table->string('fv_update')->nullable();
+            $table->string('update_type')->default('field_visit');
             $table->string('fv_summary')->nullable();
             $table->dateTime('fv_date')->nullable();
             $table->string('remarks')->nullable();

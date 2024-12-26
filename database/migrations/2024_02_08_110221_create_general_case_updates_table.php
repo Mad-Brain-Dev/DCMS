@@ -17,6 +17,7 @@ return new class extends Migration
             ->onDelete('cascade');
             $table->foreignId('installment_id')->nullable();
             $table->string('gn_update')->nullable();
+            $table->string('update_type')->default('general');
             $table->text('gn_summary')->nullable();
             $table->dateTime('fv_date')->nullable();
             $table->string('remarks')->nullable();

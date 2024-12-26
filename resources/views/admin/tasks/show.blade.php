@@ -5,8 +5,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="d-flex justify-content-end gap-2">
-                {{-- <a class="btn btn-warning">Edit</a> --}}
                 <a class="btn btn-success" href="{{ route('admin.tasks.complete', $tasks->id) }}">Mark As Complete</a>
+                <a class="btn btn-warning" href="{{ route('admin.tasks.edit', $tasks->id) }}">Edit</a>
                 <form action="{{ route('admin.tasks.destroy', $tasks->id) }}" method="POST">
                     @csrf
                     @method('DELETE')

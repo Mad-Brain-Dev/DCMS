@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('content')
     <div class="row">
         <div class="col-md-12 parent-fixed">
@@ -118,6 +117,7 @@
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
+                        <input type="hidden" name="update_type" value="general_update">
                         {{-- @if ($case->legal_cost - $case->legal_cost_received != 0)
                             <div class="mb-3">
                                 <label class="form-label">Legal Cost</label>
@@ -393,6 +393,7 @@
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
+                        <input type="hidden" name="update_type" value="field_visit_update">
                         <div class="mb-3">
                             <label class="form-label">FV Summary</label>
                             <textarea name="fv_summary" class="form-control" id="" rows="2"></textarea>
