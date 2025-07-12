@@ -32,16 +32,37 @@ use App\Models\Client;
 Route::get('/', function () {
     return redirect()->route('login');
 });
-Route::get('/test-mail',function (){
-    $accounts = Cases::where('current_status','!=',GlobalConstant::CASE_CLOSED)->get();
-//   Mail::to('smauhp@gmail.com')->send(new ClientMail([]));
-//   Mail::to('smauhp@gmail.com')->send(new ClientMail([]));
-   dd('sent');
-});
+
+//Route::get('/send-test-email', function (Request $request) {
+//    Mail::raw('This is a test email from Laravel using Gmail SMTP.', function ($message) {
+//        $message->to('asrafporag@gmail.com'); // Replace with your test email
+//        $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+//    });
+//
+////    return [
+////        env('MAIL_FROM_ADDRESS'),
+////        env('MAIL_FROM_NAME'),
+////        env('MAIL_USERNAME'),
+////        env('MAIL_PASSWORD'),
+////        env('MAIL_MAILER'),
+////        env('MAIL_HOST'),
+////        env('MAIL_PORT'),
+////        env('MAIL_ENCRYPTION'),
+////
+////    ];
+//    return 'Test email sent!';
+//});
+
+//Route::get('/test-mail',function (){
+//    $accounts = Cases::where('current_status','!=',GlobalConstant::CASE_CLOSED)->get();
+////   Mail::to('smauhp@gmail.com')->send(new ClientMail([]));
+////   Mail::to('smauhp@gmail.com')->send(new ClientMail([]));
+//   dd('sent');
+//});
 Route::get('/execute-command', function () {
 //    return redirect()->route('login');
 //    Artisan::call('storage:link');
-    Artisan::call('migrate:fresh --seed');
+//    Artisan::call('migrate:fresh --seed');
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
     Artisan::call('route:clear');

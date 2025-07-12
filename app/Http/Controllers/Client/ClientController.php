@@ -67,10 +67,13 @@ class ClientController extends Controller
         $user->email = $request['email'];
         $user->password =  Hash::make("12345678");   // 12345678;
         $user->save();
+
         if ($user) {
             $data = $request->all();
             $data['user_id'] = $user->id;
+
             $client = Client::create($data);
+
             if ($user) {
                 $admin_fee_paid = new AdminFee();
                 $admin_fee_paid->admin_fee_amount = $request->admin_fee_paid;
@@ -78,7 +81,9 @@ class ClientController extends Controller
                 $admin_fee_paid->collection_date = date('Y-m-d H:i:s');
                 $admin_fee_paid->collected_by_id = $request->collected_by_id == null ? 2 : $request->collected_by_id;
                 $admin_fee_paid->save();
-                $client->client_id = $user->id;
+
+//                $client->client_id = $user->id;
+                $client->user_id = $user->id;
                 $client->save();
             }
             if ($client) {
