@@ -23,6 +23,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Twilio\Rest\Client as TwilioClient;
 
 class CaseController extends Controller
 {
@@ -150,10 +151,11 @@ class CaseController extends Controller
      */
     public function update(CaseEditRequest $request, string $id)
     {
-        $data = $request->validated();
-        $this->caseService->storeOrUpdate($data, $id);
-        record_created_flash();
+
         try {
+            $data = $request->validated();
+            $this->caseService->storeOrUpdate($data, $id);
+            record_created_flash();
         } catch (\Exception $e) {
         }
         return redirect()->route('admin.cases.index');
@@ -603,5 +605,38 @@ class CaseController extends Controller
        $debtor_details = Cases::where('id', $id)->first();
        $installments_details = Installment::where('case_id', $id)->get();
        return view('admin.debtor.debtor-details',compact('debtor_details','installments_details'));
+    }
+
+    public function updateAssignEmployee(Request $request)
+    {
+        $validated = $request->validate([
+            'case_id' => 'required',
+            'assigned_to_id' => 'required',
+        ]);
+
+        $case = Cases::find($validated['case_id']);
+        $case->assigned_to_id = $validated['assigned_to_id'];
+        $case->save();
+
+        //send Field Visit Notice SMS
+
+        // --- Send SMS with Twilio ---
+        if ($case && $case->phone) {
+            $sid    = config('services.twilio.sid');
+            $token  = config('services.twilio.token');
+            $from   = config('services.twilio.from'); // your Twilio phone number
+            $to     = $case->phone; // debtor’s phone number
+
+            $twilio = new TwilioClient($sid, $token);
+
+            $message = "Dear {$case->name}, your case #{$case->id} has been assigned to an employee. Please be available for a field visit.";
+
+            $twilio->messages->create($to, [
+                'from' => $from,
+                'body' => $message,
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Employee assigned and SMS sent successfully.');
     }
 }

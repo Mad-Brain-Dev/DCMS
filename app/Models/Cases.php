@@ -89,4 +89,9 @@ class Cases extends Model
         return $this->hasMany(Installment::class, 'case_id');
     }
 
+    public function assignedTo()
+    {
+        return $this->belongsTo(User::class,'assigned_to_id');
+    }
+
 }

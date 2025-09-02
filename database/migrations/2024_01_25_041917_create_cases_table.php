@@ -21,6 +21,7 @@ return new class extends Migration
             $table->dateTime('date_of_warrant')->nullable();
             //for client name
             $table->foreignId('client_id');
+            $table->foreignId('assigned_to_id')->nullable()->default(null);
             //for client details
             // $table->foreignId('user_id')->nullable();
             $table->string('collection_commission')->nullable();

@@ -161,6 +161,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::resource('roles', RoleController::class);
     //cases
     Route::resource('cases', CaseController::class);
+    Route::post('cases/update/assign/employee', [CaseController::class, 'updateAssignEmployee'])->name('cases.update.assign.employee');
     //tasks
     Route::resource('tasks', TaskController::class);
 

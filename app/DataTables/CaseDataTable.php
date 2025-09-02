@@ -23,8 +23,18 @@ class CaseDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
+        // Load employees ONCE for all rows
+        $employees = User::where('user_type', 'employee')->select('id','name')->orderBy('id')->get();
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($item) {
+            ->addColumn('action', function ($item) use ($employees) {
+
+                // Build <option> list in PHP (no Blade here)
+                $employeeOptions = '<option value="" disabled ' . ($item->assigned_to_id == null ? 'selected' : '') . '>Select Employee</option>';
+
+                foreach ($employees as $emp) {
+                    $selected = ($item->assigned_to_id !== null && $item->assigned_to_id == $emp->id) ? 'selected' : '';
+                    $employeeOptions .= '<option value="' . $emp->id . '" ' . $selected . '>' . e($emp->name) . '</option>';
+                }
                 $buttons = '';
 
 
@@ -45,9 +55,10 @@ class CaseDataTable extends DataTable
                 if (auth()->user()->can('Print Debtor Details')) {
                     $buttons .= '<a class="dropdown-item" href="' . route('cases.debtor.details', $item->id) . '" title="Show"><i class="fas fa-paste"></i> Debtor Details </a>';
                 }
-
-                // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
-
+                // Modal trigger
+                $buttons .= '<a class="dropdown-item" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop-' . $item->id . '">
+                            <i class="fas fa-paste"></i> Open Modal
+                         </a>';
                 if (auth()->user()->can('Delete Case')) {
                     $buttons .= '<form action="' . route('admin.cases.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
                     <input type="hidden" name="_token" value="' . csrf_token() . '">
@@ -56,12 +67,48 @@ class CaseDataTable extends DataTable
                     ';
                 }
 
-                return '<div class="btn-group dropleft">
-                <a href="#" onclick="return false;" class="btn btn-sm btn-dark text-white dropdown-toggle dropdown" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                <div class="dropdown-menu">
-                ' . $buttons . '
-                </div>
+                // Dropdown HTML
+                $dropdown = '<div class="btn-group dropleft">
+                            <a href="#" onclick="return false;" class="btn btn-sm btn-dark text-white dropdown-toggle dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </a>
+                            <div class="dropdown-menu">' . $buttons . '</div>
+                         </div>';
+
+                // Modal HTML (outside dropdown so it renders properly)
+                $modal = '
+                <div class="modal fade" id="staticBackdrop-' . $item->id . '" data-bs-backdrop="static"
+                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel-' . $item->id . '"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel-' . $item->id . '">Assign Employee to case # '.$item->case_sku.'</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="' . route('admin.cases.update.assign.employee') . '" method="post">
+                                <input type="hidden" name="_token" value="' . csrf_token() . '">
+                                <input type="hidden" name="_method" value="POST">
+                                <input type="hidden" name="case_id" value="'.$item->id.'">
+                                <div class="modal-body">
+                                    <div class="mb-3 form-group" style="text-align: left;">
+                                        <label class="form-label">Employee <span class="error">*</span></label>
+                                        <select name="assigned_to_id" class="form-control">
+                                            '.$employeeOptions.'
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>';
+
+                // Return both dropdown and modal
+                return $dropdown . $modal;
                 // })->editColumn('avatar', function ($item) {
                 //     return '<img class="ic-img-32" src="' . $item->avatar_url . '" alt="' . $item->last_name . '" />';
             })->editColumn('client_id', function ($item) {
@@ -69,24 +116,21 @@ class CaseDataTable extends DataTable
                 return $name;
             })
             ->editColumn('total_amount_owed', function ($item) {
-
-                //                return $item->total_amount_owed;
                 return number_format($item->total_amount_owed, 2);
             })
             ->editColumn('total_amount_balance', function ($item) {
 
                 return totalBalance($item->id);
             })
-            //->editColumn('status',function ($item){
-            //     $badge = $item->status == GlobalConstant::STATUS_ACTIVE ? "bg-success" : "bg-danger";
-            //     return '<span class="badge ' . $badge . '">' . Str::upper($item->status) . '</span>';
-            // })->editColumn('debtor_id',function ($item){
-            //     return '<span class="text-capitalize">' . $item->user_type. '</span>';
-            // })->filterColumn('first_name', function ($query, $keyword) {
-            //     $sql = "CONCAT(users.first_name,'-',users.last_name)  like ?";
-            //     $query->whereRaw($sql, ["%{$keyword}%"]);
-            // })
-            ->rawColumns(['action', 'avatar', 'status', 'debtor_id', 'total_amount_owed', 'total_amount_balance'])
+            ->editColumn('assigned_to_id', function ($item) {
+
+                if($item->assignedTo){
+                    return $item->assignedTo->name;
+                }else{
+                    return 'Not Assigned yet';
+                }
+            })
+            ->rawColumns(['action', 'avatar', 'status', 'debtor_id', 'total_amount_owed', 'total_amount_balance','assigned_to_id'])
             ->setRowId('id');
     }
 
@@ -133,6 +177,7 @@ class CaseDataTable extends DataTable
             Column::make('name', 'name')->title('Debtor Name'),
             Column::make('total_amount_owed', 'total_amount_owed')->title('Debt Amount'),
             Column::make('total_amount_balance', 'total_amount_balance')->title('Debt Balance'),
+            Column::make('assigned_to_id', 'assigned_to_id')->title('Assign To Employee'),
         ];
     }
 
