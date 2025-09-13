@@ -606,7 +606,6 @@ class CaseController extends Controller
        $installments_details = Installment::where('case_id', $id)->get();
        return view('admin.debtor.debtor-details',compact('debtor_details','installments_details'));
     }
-
     public function updateAssignEmployee(Request $request)
     {
         $validated = $request->validate([
@@ -618,18 +617,16 @@ class CaseController extends Controller
         $case->assigned_to_id = $validated['assigned_to_id'];
         $case->save();
 
-        //send Field Visit Notice SMS
-
         // --- Send SMS with Twilio ---
         if ($case && $case->phone) {
             $sid    = config('services.twilio.sid');
             $token  = config('services.twilio.token');
-            $from   = config('services.twilio.from'); // your Twilio phone number
-            $to     = $case->phone; // debtor’s phone number
+            $from   = config('services.twilio.from');
+            $to     = $case->phone;
 
             $twilio = new TwilioClient($sid, $token);
 
-            $message = "Dear {$case->name}, your case #{$case->id} has been assigned to an employee. Please be available for a field visit.";
+            $message = "Dear {$case->name}, your case #{$case->case_sku} has been assigned to an employee.This is to inform you that your outstanding balance of '$'{$case->total_amount_balance} remains unpaid. Please be available for a field visit.";
 
             $twilio->messages->create($to, [
                 'from' => $from,
