@@ -16,8 +16,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\ClientMail;
-//use App\Models\Client;
-use Twilio\Rest\Client;
+use App\Models\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,19 +50,6 @@ Route::get('/send-test-email', function (Request $request) {
 //        env('MAIL_ENCRYPTION'),
 //
 //    ];
-    return 'Test email sent!';
-});
-
-Route::get('/send-test-sms', function (Request $request) {
-
-    $account_sid = getenv("TWILIO_SID");
-    $auth_token = getenv("TWILIO_AUTH_TOKEN");
-    $twilio_number = getenv("TWILIO_PHONE");
-    $client = new Client($account_sid, $auth_token);
-    $recipients = "+8801618243878";
-    $message = "This is a test SMS from Laravel using Twilio.";
-    $client->messages->create($recipients,
-        ['from' => $twilio_number, 'body' => $message] );
     return 'Test email sent!';
 });
 
