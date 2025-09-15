@@ -23,6 +23,10 @@ class Installment extends Model
         'collected_by_id',
         'collection_date'
     ];
+
+    protected $casts = [
+        'next_payment_date' => 'date',
+    ];
     public function case()
     {
         return $this->belongsTo(Cases::class,'case_id');

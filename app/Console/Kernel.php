@@ -14,6 +14,11 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('interest:calculate-daily')->daily();
+
+        // Run daily at 8 AM
+        $schedule->command('installments:send-reminders')->dailyAt('08:00');
+
+        //* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
     }
 
     /**

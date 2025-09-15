@@ -19,6 +19,7 @@ use App\Models\Task;
 use App\Models\User;
 use App\Services\CaseService;
 use App\Services\Utils\FileUploadService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,25 @@ class CaseController extends Controller
     {
         set_page_meta('Cases');
         return $dataTable->render('admin.cases.index');
+
+
+        //testing installments 14,7,0
+//        $today = Carbon::today();
+//        $reminders = [0, 7, 0]; // days before payment
+//
+//        foreach ($reminders as $daysBefore) {
+//            $date = $today->copy()->addDays($daysBefore);
+//
+//            // Get installments with related case
+//            $installments = Installment::with('case')
+//                ->whereDate('next_payment_date', $date)
+//                ->get();
+//
+//            foreach ($installments as $installment) {
+//                $debtorPhone = $installment->case->phone ?? null;
+//                dd($debtorPhone);
+//            }
+//        }
     }
 
     /**
