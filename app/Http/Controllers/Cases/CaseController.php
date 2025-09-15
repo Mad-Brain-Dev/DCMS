@@ -624,7 +624,7 @@ class CaseController extends Controller
         if ($case && $case->phone) {
             $sid    = config('services.twilio.sid');
             $token  = config('services.twilio.token');
-            $from   = config('services.twilio.from'); // your Twilio phone number
+            $from   = config('services.twilio.from');
             $to     = $case->phone; // debtor’s phone number
 
             $twilio = new TwilioClient($sid, $token);
