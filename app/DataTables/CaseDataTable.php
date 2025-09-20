@@ -57,7 +57,7 @@ class CaseDataTable extends DataTable
                 }
                 // Modal trigger
                 $buttons .= '<a class="dropdown-item" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop-' . $item->id . '">
-                            <i class="fas fa-paste"></i> Open Modal
+                            <i class="fas fa-paste"></i> Assign Employee
                          </a>';
                 if (auth()->user()->can('Delete Case')) {
                     $buttons .= '<form action="' . route('admin.cases.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">

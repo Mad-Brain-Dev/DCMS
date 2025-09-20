@@ -26,7 +26,7 @@ class EmployeeDataTable extends DataTable
                 $buttons = '';
                 $buttons .= '<a class="dropdown-item" href="' . route('admin.employees.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
 
-                $buttons .= '<a class="dropdown-item" href="' . route('admin.employees.show', $item->id) . '" title="Edit"><i class="fa fa-eye" aria-hidden="true"></i> View </a>';
+//                $buttons .= '<a class="dropdown-item" href="' . route('admin.employees.show', $item->id) . '" title="Edit"><i class="fa fa-eye" aria-hidden="true"></i> View </a>';
 
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
                 $buttons .= '<form action="' . route('admin.employees.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">

@@ -16,5 +16,6 @@ class GeneralCaseUpdate extends Model
         'amount_paid',
         'case_id',
         'remarks',
+        'installment_id'
     ];
 }

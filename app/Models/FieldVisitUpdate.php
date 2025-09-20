@@ -14,6 +14,8 @@ class FieldVisitUpdate extends Model
         'case_id',
         'fv_summary',
         'fv_date',
-        'remarks'
+        'remarks',
+        'installment_id',
+        'update_type'
     ];
 }

@@ -48,6 +48,23 @@ class HomeController extends Controller
             $cst_case_status = Cases::where('current_status', 'CST')->get()->count('current_status');
             $afc_case_status = Cases::where('current_status', 'AFC')->get()->count('current_status');
             $ult_case_status = Cases::where('current_status', 'ULT')->get()->count('current_status');
+
+            if(Auth::user()->user_type == User::USER_TYPE_EMPLOYEE){
+                $pdg_case_status = Cases::where('current_status', 'PDG')->where('assigned_to_id',Auth::id())->get()->count('current_status');
+                $opn_case_status = Cases::where('current_status', 'OPN')->where('assigned_to_id',Auth::id())->get()->count('current_status');
+                $fld_case_status = Cases::where('current_status', 'FLD')->where('assigned_to_id',Auth::id())->get()->count('current_status');
+                $dsp_case_status = Cases::where('current_status', 'DSP')->where('assigned_to_id',Auth::id())->get()->count('current_status');
+                $inv_case_status = Cases::where('current_status', 'INV')->where('assigned_to_id',Auth::id())->get()->count('current_status');
+                $ngd_case_status = Cases::where('current_status', 'NGD')->where('assigned_to_id',Auth::id())->get()->count('current_status');
+                $ins_case_status = Cases::where('current_status', 'INS')->where('assigned_to_id',Auth::id())->get()->count('current_status');
+                $fst_case_status = Cases::where('current_status', 'FST')->where('assigned_to_id',Auth::id())->get()->count('current_status');
+                $pst_case_status = Cases::where('current_status', 'PST')->where('assigned_to_id',Auth::id())->get()->count('current_status');
+                $ohc_case_status = Cases::where('current_status', 'OHC')->where('assigned_to_id',Auth::id())->get()->count('current_status');
+                $ohm_case_status = Cases::where('current_status', 'OHM')->where('assigned_to_id',Auth::id())->get()->count('current_status');
+                $cst_case_status = Cases::where('current_status', 'CST')->where('assigned_to_id',Auth::id())->get()->count('current_status');
+                $afc_case_status = Cases::where('current_status', 'AFC')->where('assigned_to_id',Auth::id())->get()->count('current_status');
+                $ult_case_status = Cases::where('current_status', 'ULT')->where('assigned_to_id',Auth::id())->get()->count('current_status');
+            }
             return view('admin.dashboard.index', compact('case_number', 'total_amount_owed', 'total_admin_fee', 'total_amount_balance', 'total_amount_paid', 'pdg_case_status', 'opn_case_status', 'fld_case_status', 'dsp_case_status', 'inv_case_status', 'ngd_case_status', 'ins_case_status', 'fst_case_status', 'pst_case_status', 'ohc_case_status', 'ohm_case_status', 'cst_case_status', 'afc_case_status', 'ult_case_status'));
         } else {
             $client = Client::where('user_id', Auth::id())->first();

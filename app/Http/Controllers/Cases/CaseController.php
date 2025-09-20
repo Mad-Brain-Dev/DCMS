@@ -149,11 +149,16 @@ class CaseController extends Controller
         $gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
         $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
         $installment = Installment::where('case_id', $id)->latest()->first();
+        if ($installment){
+            $task = Task::where('installment_id', $installment->id)->first();
+        }else{
+            $task = null;
+        }
         $installmentByEmployees = Installment::where('case_id', $id)->select('collected_by_id', \DB::raw('SUM(amount_paid) as total_amounts'))
             ->groupBy('collected_by_id')
             ->orderBy('total_amounts', 'desc')
             ->get();
-        return view('admin.cases.show', compact('case', 'gn_updates', 'fv_updates', 'client_details', 'installment', 'installmentByEmployees', 'employees'));
+        return view('admin.cases.show', compact('case','task', 'gn_updates', 'fv_updates', 'client_details', 'installment', 'installmentByEmployees', 'employees'));
     }
 
     /**
@@ -228,7 +233,7 @@ class CaseController extends Controller
     {
 
         $request->validate([
-            'gn_updates.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
+            'gn_updates.*' => 'required',
             'fv_date' => 'nullable',
             'amount_paid' => 'required',
             'legal_cost' => 'nullable',
@@ -379,6 +384,7 @@ class CaseController extends Controller
                     'fv_date' => $request->fv_date,
                     'fv_update' => $imageName,
                 ]);
+
             }
         } else {
             $fv_update =   FieldVisitUpdate::create([
@@ -391,8 +397,8 @@ class CaseController extends Controller
 
             ]);
         }
-        $fv_update->installment_id = $installment->id;
-        $fv_update->save();
+//        $fv_update->installment_id = $installment->id;
+//        $fv_update->save();
         record_updated_flash();
         return back();
     }

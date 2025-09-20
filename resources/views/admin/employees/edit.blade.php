@@ -48,6 +48,15 @@
                                 @enderror
                             </div>
 
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Email <span class="error">*</span></label>
+                                <input type="email" name="email" class="form-control" required="" placeholder="Email"
+                                       value="{{ $employee->email }}">
+                                @error('email')
+                                <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
                             {{-- <div class="mb-3 col-md-6">
                                 <label class="form-label">Password <span class="error">*</span></label>
                                 <input type="password" name="password" id="password" class="form-control" required=""

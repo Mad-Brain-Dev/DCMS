@@ -3,19 +3,19 @@
     <div data-simplebar class="h-100">
         <!-- Sidemenu -->
         <div id="sidebar-menu">
-            <div class="top-logo mb-3 ms-3">
-                <img src="{{ asset('admin/images/logo-sm.png') }}" class="img-fluid" width="100px">
-            </div>
+{{--            <div class="top-logo mb-3 ms-3">--}}
+{{--                <img src="{{ asset('admin/images/logo-sm.png') }}" class="img-fluid" width="100px">--}}
+{{--            </div>--}}
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 {{-- <li class="menu-title">Main</li> --}}
-                @can('Show Dashborad')
+{{--                @can('Show Dashborad')--}}
                     <li class="">
                         <a href="{{ route('home') }}" class="">
                             <i class="fa fa-home"></i><span> Dashboard </span>
                         </a>
                     </li>
-                @endcan
+{{--                @endcan--}}
                 <li class="{{ request()->is('admin/users*') ? 'mm-active' : '' }}">
                     @can('Show Administration')
                         <a href="javascript: void(0);"
