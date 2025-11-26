@@ -18,16 +18,20 @@
                         <td class="text-end">{{ $client->name }}</td>
                     </tr>
                     <tr class="table-success">
-                        <th scope="row">NRIC</th>
+                        <th scope="row">ID</th>
                         <td class="text-end">{{ $client->nric }}</td>
                     </tr>
                     <tr class="table-info">
-                        <th scope="row">Company Name</th>
-                        <td class="text-end">{{ $client->company_name }}</td>
+                        <th scope="row">PIC Name</th>
+                        <td class="text-end">{{ $client->pic_name }}</td>
                     </tr>
                     <tr class="table-warning">
-                        <th scope="row">Company Uen</th>
-                        <td class="text-end">{{ $client->company_uen }}</td>
+                        <th scope="row">PIC Number</th>
+                        <td class="text-end">{{ $client->pic_number }}</td>
+                    </tr>
+                    <tr class="table-info">
+                        <th scope="row">PIC Email</th>
+                        <td class="text-end">{{ $client->pic_email }}</td>
                     </tr>
                     <tr class="table-danger">
                         <th scope="row">Phone</th>

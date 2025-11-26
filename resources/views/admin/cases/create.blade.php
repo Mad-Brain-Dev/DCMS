@@ -128,128 +128,174 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">DB Name <span class="error">*</span></label>
-                                <input type="text" name="name" class="form-control" placeholder="Enter DB Name"
-                                    value="{{ old('name') }}">
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <h4 class="text-capitalize">Debtor Area</h4>
                             </div>
-
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">DB NRIC</label>
-                                <input type="text" name="nric" class="form-control" placeholder="Enter DB NRIC"
-                                    value="{{ old('nric') }}">
-                                @error('nric')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">DB Company Name</label>
-                                <input type="text" name="company_name" class="form-control"
-                                    placeholder="Enter DB Company Name" value="{{ old('company_name') }}">
-                                @error('company_name')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">DB Company UEN</label>
-                                <input type="text" name="company_uen" class="form-control"
-                                    placeholder="Enter DB Company UEN" value="{{ old('company_uen') }}">
-                                @error('company_uen')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">DB Email</label>
-                                <input type="email" name="email" class="form-control" placeholder="Enter DB Email"
-                                    value="{{ old('email') }}">
-                                @error('email')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">DB Phone</label>
-                                <input type="text" name="phone" class="form-control" placeholder="Enter DB Phone"
-                                    value="{{ old('phone') }}">
-                                @error('phone')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">DB Address</label>
-                                <input type="text" name="adderss" class="form-control" placeholder="Enter DB Address"
-                                    value="{{ old('adderss') }}">
-                                @error('adderss')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Guarantor Name</label>
-                                <input type="text" name="guarantor_name" class="form-control"
-                                    placeholder="Enter guarantor name" value="{{ old('guarantor_name') }}">
-                            </div>
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Guarantor Address</label>
-                                <input type="text" name="guarantor_address" class="form-control"
-                                    placeholder="Enter guarantor Address" value="{{ old('guarantor_address') }}">
-                                @error('guarantor_address')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Remarks</label>
-                                <input type="text" name="remarks_one" class="form-control"
-                                    placeholder="Enter Remarks" value="{{ old('remarks_one') }}">
-                                @error('remarks_one')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Guarantor Name 2</label>
-                                <input type="text" name="guarantor_name2" class="form-control"
-                                    placeholder="Enter guarantor name 2" value="{{ old('guarantor_name2') }}">
-                            </div>
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Guarantor Address 2</label>
-                                <input type="text" name="guarantor_address2" class="form-control"
-                                    placeholder="Enter guarantor Address 2" value="{{ old('guarantor_address2') }}">
-                                @error('guarantor_address2')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Remarks 2</label>
-                                <input type="text" name="remarks_two" class="form-control"
-                                    placeholder="Enter Remarks 2" value="{{ old('remarks_two') }}">
-                                @error('remarks_two')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Guarantor Name 3</label>
-                                <input type="text" name="guarantor_name3" class="form-control"
-                                    placeholder="Enter guarantor name 3" value="{{ old('guarantor_name3') }}">
-                            </div>
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Guarantor Address 3</label>
-                                <input type="text" name="guarantor_address3" class="form-control"
-                                    placeholder="Enter guarantor Address 3" value="{{ old('guarantor_address3') }}">
-                                @error('guarantor_address3')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-md-3">
-                                <label class="form-label">Remarks 3</label>
-                                <input type="text" name="remarks_three" class="form-control"
-                                    placeholder="Enter Remarks 3" value="{{ old('remarks_three') }}">
-                                @error('remarks_three')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
+                            <div class="col-md-6 d-flex justify-content-end">
+                                <button id="add-debtor" class="btn btn-success btn-sm" type="button" title="Add Debtor">
+                                    <i class="fas fa-plus-circle"></i> Add Debtor
+                                </button>
                             </div>
                         </div>
+
+                        <div id="debtor-list">
+                            @php
+                                $oldDebtors = old('debtors', []);
+                                if (count($oldDebtors) === 0) {
+                                    $oldDebtors = [
+                                        ['name'=>'','nric'=>'','phone'=>'','email'=>'','address'=>'','remarks'=>'']
+                                    ];
+                                }
+                            @endphp
+
+                            @foreach($oldDebtors as $i => $debtor)
+                                <div class="card debtor-item mb-3" data-index="{{ $i }}" style="background-color: #eeeeee;">
+                                    <div class="card-body">
+                                        <div class="row mb-2">
+                                            <div class="col-md-6">
+                                                <h5 class="text-capitalize text-success text-decoration-underline debtor-title">Debtor {{ $i + 1 }}</h5>
+                                            </div>
+                                            <div class="col-md-6 d-flex justify-content-end">
+                                                <button class="btn btn-danger btn-sm remove-debtor" type="button" title="Delete">
+                                                    <i class="mdi mdi-trash-can-outline"></i> Delete
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="mb-3 col-md-3">
+                                                <label class="form-label">DB Name <span class="error">*</span></label>
+                                                <!-- Important: name attribute for server-side binding -->
+                                                <input type="text"
+                                                       name="debtors[{{ $i }}][name]"
+                                                       data-field="name"
+                                                       class="form-control"
+                                                       value="{{ $debtor['name'] ?? '' }}">
+                                                @error("debtors.$i.name")
+                                                <p class="error text-danger small">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-3 col-md-3">
+                                                <label class="form-label">DB ID</label>
+                                                <input type="text"
+                                                       name="debtors[{{ $i }}][nric]"
+                                                       data-field="nric"
+                                                       class="form-control"
+                                                       value="{{ $debtor['nric'] ?? '' }}">
+                                                @error("debtors.$i.nric")
+                                                <p class="error text-danger small">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-3 col-md-3">
+                                                <label class="form-label">DB Contact</label>
+                                                <input type="text"
+                                                       name="debtors[{{ $i }}][phone]"
+                                                       data-field="phone"
+                                                       class="form-control"
+                                                       value="{{ $debtor['phone'] ?? '' }}">
+                                                @error("debtors.$i.phone")
+                                                <p class="error text-danger small">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-3 col-md-3">
+                                                <label class="form-label">DB Email</label>
+                                                <input type="email"
+                                                       name="debtors[{{ $i }}][email]"
+                                                       data-field="email"
+                                                       class="form-control"
+                                                       value="{{ $debtor['email'] ?? '' }}">
+                                                @error("debtors.$i.email")
+                                                <p class="error text-danger small">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-3 col-md-3">
+                                                <label class="form-label">DB Address</label>
+                                                <input type="text"
+                                                       name="debtors[{{ $i }}][address]"
+                                                       data-field="address"
+                                                       class="form-control"
+                                                       value="{{ $debtor['address'] ?? '' }}">
+                                                @error("debtors.$i.address")
+                                                <p class="error text-danger small">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-3 col-md-9">
+                                                <label class="form-label">Remarks</label>
+                                                <textarea
+                                                    name="debtors[{{ $i }}][remarks]"
+                                                    data-field="remarks"
+                                                    cols="30" rows="2"
+                                                    class="form-control"
+                                                >{{ $debtor['remarks'] ?? '' }}</textarea>
+                                                @error("debtors.$i.remarks")
+                                                <p class="error text-danger small">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div> {{-- #debtor-list --}}
+
+                        {{-- Hidden template for new debtors (no server-side index) --}}
+                        <div id="debtor-template" class="d-none">
+                            <div class="card debtor-item mb-3" style="background-color: #eeeeee;">
+                                <div class="card-body">
+                                    <div class="row mb-2">
+                                        <div class="col-md-6">
+                                            <h5 class="text-capitalize text-success text-decoration-underline debtor-title">Debtor __NUM__</h5>
+                                        </div>
+                                        <div class="col-md-6 d-flex justify-content-end">
+                                            <button class="btn btn-danger btn-sm remove-debtor" type="button" title="Delete">
+                                                <i class="mdi mdi-trash-can-outline"></i> Delete
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="mb-3 col-md-3">
+                                            <label class="form-label">DB Name <span class="error">*</span></label>
+                                            <input type="text" data-field="name" class="form-control" value="">
+                                        </div>
+
+                                        <div class="mb-3 col-md-3">
+                                            <label class="form-label">DB ID</label>
+                                            <input type="text" data-field="nric" class="form-control" value="">
+                                        </div>
+
+                                        <div class="mb-3 col-md-3">
+                                            <label class="form-label">DB Contact</label>
+                                            <input type="text" data-field="phone" class="form-control" value="">
+                                        </div>
+
+                                        <div class="mb-3 col-md-3">
+                                            <label class="form-label">DB Email</label>
+                                            <input type="email" data-field="email" class="form-control" value="">
+                                        </div>
+
+                                        <div class="mb-3 col-md-3">
+                                            <label class="form-label">DB Address</label>
+                                            <input type="text" data-field="address" class="form-control" value="">
+                                        </div>
+
+                                        <div class="mb-3 col-md-9">
+                                            <label class="form-label">Remarks</label>
+                                            <textarea data-field="remarks" cols="30" rows="2" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="card">
@@ -406,8 +452,7 @@
             <div class="modal-content">
                 <div class="modal-footer d-flex justify-content-between" style="border: none;">
 
-                    <a href="{{ route('admin.cases.index') }}" class="btn btn-danger"
-                        class="btn btn-secondary">Close</a>
+                    <a href="{{ route('admin.cases.index') }}" class="btn btn-danger">Close</a>
                     <a class="btn btn-primary" id="letter" href="">Print Letter</a>
                     <a class="btn btn-success" id="agreement" href="">Print Warrant</a>
 
@@ -425,6 +470,64 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+    </script>
+    {{-- jQuery: simple add/remove + update names/titles --}}
+
+    <script>
+        jQuery(function($){
+            function updateNamesAndTitles() {
+                $('#debtor-list .debtor-item').each(function(index){
+                    $(this).attr('data-index', index);
+                    $(this).find('.debtor-title').text('Debtor ' + (index + 1));
+
+                    // For every element that has data-field, set the proper name
+                    $(this).find('[data-field]').each(function(){
+                        var field = $(this).data('field'); // e.g. name, nric...
+                        $(this).attr('name', 'debtors[' + index + '][' + field + ']');
+                    });
+                });
+
+                // disable remove buttons if only one debtor
+                if ($('#debtor-list .debtor-item').length <= 1) {
+                    $('#debtor-list .remove-debtor').prop('disabled', true).addClass('disabled');
+                } else {
+                    $('#debtor-list .remove-debtor').prop('disabled', false).removeClass('disabled');
+                }
+            }
+
+            // run on load (ensures server-rendered blocks also have correct names if not already)
+            updateNamesAndTitles();
+
+            // add debtor
+            $('#add-debtor').on('click', function(){
+                var tpl = $('#debtor-template').html();
+                var nextNum = $('#debtor-list .debtor-item').length + 1;
+                tpl = tpl.replace(/__NUM__/g, nextNum);
+                var $new = $(tpl);
+                $('#debtor-list').append($new);
+                updateNamesAndTitles();
+                $new.find('[data-field="name"]').focus();
+            });
+
+            // remove debtor (delegated)
+            $(document).on('click', '.remove-debtor', function(){
+                if ($('#debtor-list .debtor-item').length <= 1) return;
+                $(this).closest('.debtor-item').remove();
+                updateNamesAndTitles();
+            });
+
+            // UX: if there are validation errors, scroll to the first error and highlight
+            var $firstError = $('.text-danger').first();
+            if ($firstError.length) {
+                // scroll smoothly to the error
+                $('html, body').animate({ scrollTop: $firstError.offset().top - 120 }, 300);
+                // optional: briefly highlight the parent debtor card
+                $firstError.closest('.debtor-item').css('box-shadow','0 0 0 3px rgba(255,0,0,0.08)');
+            }
+
+            // Re-enable submit buttons if some other script disabled them before page-load
+            $('button[type="submit"]').prop('disabled', false);
         });
     </script>
     <script>
@@ -729,26 +832,29 @@
 
         });
 
-
         $("#frmAppl").on("submit", function(event) {
             event.preventDefault();
-            var error_ele = document.getElementsByClassName('err-msg');
-            if (error_ele.length > 0) {
-                for (var i = error_ele.length - 1; i >= 0; i--) {
-                    error_ele[i].remove();
-                }
-            }
 
-            // $.ajaxSetup({
-            //     headers: {
-            //         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            //     }
-            // });
+            // remove previous errors
+            $('.err-msg').remove();
+
+            var form = this;
+            var $form = $(form);
+
+            // Ensure CSRF token is sent (make sure meta exists in your layout)
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            if (csrfToken) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    }
+                });
+            }
 
             $.ajax({
                 url: "{{ route('admin.cases.store') }}",
                 type: "POST",
-                data: new FormData(this),
+                data: new FormData(form),
                 dataType: 'json',
                 contentType: false,
                 processData: false,
@@ -757,29 +863,115 @@
                     $("#submitBtn").prop('disabled', true);
                 },
                 success: function(data) {
+                    // Expecting JSON with success true/false
                     if (data.success) {
-                        console.log(data);
-                        $("#frmAppl")[0].reset();
+                        // reset form and show modal as before
+                        $form[0].reset();
                         $("#showMsg").modal('show');
-                        var url = "/printable/case/agreement/" + data.result.id
-                        var letterUrl = "/printable/letter/" + data.result.id
+
+                        var url = "/printable/case/agreement/" + data.result.id;
+                        var letterUrl = "/printable/letter/" + data.result.id;
 
                         $('#agreement').attr('href', url);
                         $('#letter').attr('href', letterUrl);
 
                     } else {
-                        $.each(data.error, function(key, value) {
-                            var el = $(document).find('[name="' + key + '"]');
-                            el.after($('<span class= "err-msg">' + value[0] + '</span>'));
-
-                        });
+                        // If backend returns structured errors in data.error or data.errors
+                        var errors = data.errors || data.error || {};
+                        showAjaxErrors(errors);
                     }
-                    $("#submitBtn").prop('disabled', false);
                 },
-                error: function(err) {
-                    $("#message").html("Some Error Occurred!")
+                error: function(xhr) {
+                    // Laravel validation failures typically return 422 with JSON { errors: { ... } }
+                    if (xhr.status === 422 && xhr.responseJSON) {
+                        var errors = xhr.responseJSON.errors || xhr.responseJSON.error || {};
+                        showAjaxErrors(errors);
+                    } else {
+                        // Generic error handling
+                        $("#message").html("Some Error Occurred!");
+                        console.error(xhr);
+                    }
+                },
+                complete: function() {
+                    // always re-enable submit
+                    $("#submitBtn").prop('disabled', false);
                 }
             });
+
+            // helper: convert Laravel dot-notation keys to bracket-style name and show errors
+            function showAjaxErrors(errors) {
+                // errors is an object like { "debtors.0.name": ["The debtors.0.name field is required."], "title": ["..."] }
+                var firstErrorEl = null;
+                $.each(errors, function(key, messages) {
+                    // key may be 'debtors.0.name' or 'title' etc.
+                    // Convert dot-notation to bracket notation: debtors.0.name -> debtors[0][name]
+                    var bracketName = key.replace(/\.(\d+)\./g, '[$1].') // intermediate: debtors[0].name
+                        .replace(/\./g, '][')           // debtors[0][name]
+                        .replace(/\]\[/g, '][')         // keep as is
+                        .replace(/^(.+)$/, '$1') ;      // no-op
+
+                    // Better approach: build bracket string piece by piece
+                    var parts = key.split('.');
+                    var bracket = parts[0];
+                    for (var i = 1; i < parts.length; i++) {
+                        // if numeric part -> [i] else -> [name]
+                        if (/^\d+$/.test(parts[i])) {
+                            bracket += '[' + parts[i] + ']';
+                        } else {
+                            bracket += '[' + parts[i] + ']';
+                        }
+                    }
+                    // bracket now like debtors[0][name] or title
+
+                    // Try to find element(s) by name attribute (input/select/textarea)
+                    // Use attribute selector with quotes to be safe for special characters
+                    var selector = '[name="' + bracket + '"]';
+                    var $el = $(selector);
+
+                    // If not found, try fallback: inputs that have data-field with last part and are inside debtor-item with same index
+                    if ($el.length === 0 && key.indexOf('debtors.') === 0) {
+                        // extract index and field
+                        var m = key.match(/^debtors\.(\d+)\.(.+)$/);
+                        if (m) {
+                            var idx = parseInt(m[1], 10);
+                            var field = m[2];
+                            $el = $('#debtor-list').find('.debtor-item').eq(idx).find('[data-field="' + field + '"]');
+                        }
+                    }
+
+                    // final fallback: try selector by name with dots replaced by brackets in an easier way
+                    if ($el.length === 0) {
+                        var alt = key.replace(/\./g, '][');
+                        alt = alt.replace(/^(.+)$/, '$1'); // no-op
+                        alt = alt.replace(/([^\]]+)\]\[/g, '$1][');
+                        $el = $('[name="' + alt + '"]');
+                    }
+
+                    // create error element
+                    var msg = Array.isArray(messages) ? messages[0] : messages;
+                    var $err = $('<span class="err-msg text-danger small"></span>').text(msg);
+
+                    if ($el.length) {
+                        // If multiple matched (rare), append after last
+                        $el.last().after($err);
+                        if (!firstErrorEl) firstErrorEl = $el.first();
+                    } else {
+                        // If no matching field found, append to top of form or a message container
+                        if (!firstErrorEl) {
+                            firstErrorEl = $form.find('input,textarea,select').first();
+                        }
+                        // Append generic error at top of form
+                        $form.prepend($err);
+                    }
+                });
+
+                // focus and scroll to the first error field
+                if (firstErrorEl && firstErrorEl.length) {
+                    var top = firstErrorEl.offset().top - 120;
+                    $('html, body').animate({ scrollTop: top }, 300);
+                    firstErrorEl.focus();
+                }
+            }
         });
     </script>
 @endpush

@@ -71,7 +71,6 @@ class ClientController extends Controller
         if ($user) {
             $data = $request->all();
             $data['user_id'] = $user->id;
-
             $client = Client::create($data);
 
             if ($user) {

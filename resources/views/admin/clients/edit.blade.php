@@ -31,7 +31,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">CL NRIC</span></label>
+                                <label class="form-label">CL ID</label>
                                 <input type="text" name="nric" class="form-control" placeholder="Enter CL NRIC"
                                     value="{{ $client->nric }}">
                                 @error('nric')
@@ -39,20 +39,44 @@
                                 @enderror
                             </div>
 
+{{--                            <div class="mb-3 col-md-3">--}}
+{{--                                <label class="form-label">Company Name</label>--}}
+{{--                                <input type="text" name="company_name" class="form-control"--}}
+{{--                                    placeholder="Enter CL Company Name" value="{{ $client->company_name }}">--}}
+{{--                                @error('company_name')--}}
+{{--                                    <p class="error">{{ $message }}</p>--}}
+{{--                                @enderror--}}
+{{--                            </div>--}}
+{{--                            <div class="mb-3 col-md-3">--}}
+{{--                                <label class="form-label">Company UEN</span></label>--}}
+{{--                                <input type="text" name="company_uen" class="form-control"--}}
+{{--                                    placeholder="Enter CL Company Uen" value="{{$client->company_uen}}">--}}
+{{--                                @error('company_uen')--}}
+{{--                                    <p class="error">{{ $message }}</p>--}}
+{{--                                @enderror--}}
+{{--                            </div>--}}
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">Company Name</span></label>
-                                <input type="text" name="company_name" class="form-control"
-                                    placeholder="Enter CL Company Name" value="{{ $client->company_name }}">
-                                @error('company_name')
-                                    <p class="error">{{ $message }}</p>
+                                <label class="form-label">PIC Name</label>
+                                <input type="text" name="pic_name" class="form-control"
+                                       placeholder="Enter PIC Name" value="{{$client->pic_name}}">
+                                @error('pic_name')
+                                <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
-                                <label class="form-label">Company UEN</span></label>
-                                <input type="text" name="company_uen" class="form-control"
-                                    placeholder="Enter CL Company Uen" value="{{$client->company_uen}}">
-                                @error('company_uen')
-                                    <p class="error">{{ $message }}</p>
+                                <label class="form-label">PIC Number</label>
+                                <input type="text" name="pic_number" class="form-control"
+                                       placeholder="Enter PIC Number" value="{{$client->pic_number}}">
+                                @error('pic_number')
+                                <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">PIC Email</label>
+                                <input type="text" name="pic_email" class="form-control"
+                                       placeholder="Enter PIC email" value="{{$client->pic_email}}">
+                                @error('pic_email')
+                                <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>

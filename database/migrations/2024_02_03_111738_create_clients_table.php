@@ -36,6 +36,9 @@ return new class extends Migration
             // $table->string('overseas_allowance')->nullable();
             $table->string('collection_commission')->nullable();
             $table->string('field_visit_per_case')->nullable();
+            $table->string('pic_name')->nullable();
+            $table->string('pic_number')->nullable();
+            $table->string('pic_email')->nullable();
             $table->timestamps();
         });
     }

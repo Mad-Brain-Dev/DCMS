@@ -11,6 +11,7 @@ use App\Http\Requests\CaseRequest;
 use App\Models\Cases;
 use App\Models\Client;
 use App\Models\CorrespondenceUpdate;
+use App\Models\Debtor;
 use App\Models\FieldVisitUpdate;
 use App\Models\GeneralCaseUpdate;
 use App\Models\Installment;
@@ -25,6 +26,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Twilio\Rest\Client as TwilioClient;
+use Illuminate\Support\Facades\DB;
 
 class CaseController extends Controller
 {
@@ -80,7 +82,8 @@ class CaseController extends Controller
     public function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), ['name' => 'required', 'client_id' => 'required']);
+//        $validator = Validator::make($request->all(), ['name' => 'required', 'client_id' => 'required']);
+        $validator = Validator::make($request->all(), ['client_id' => 'required']);
 
         if ($validator->fails()) {
             return response()->json([
@@ -107,16 +110,16 @@ class CaseController extends Controller
             "company_uen" => $request->company_uen,
             "email" => $request->email,
             "phone" => $request->phone,
-            "adderss" => $request->adderss,
-            "guarantor_name" => $request->guarantor_name,
-            "guarantor_address" => $request->guarantor_address,
-            "remarks_one" => $request->remarks_one,
-            "guarantor_name2" => $request->guarantor_name2,
-            "guarantor_address2" => $request->guarantor_address2,
-            "remarks_two" => $request->remarks_two,
-            "guarantor_name3" => $request->guarantor_name3,
-            "guarantor_address3" => $request->guarantor_address3,
-            "remarks_three" => $request->remarks_three,
+//            "adderss" => $request->adderss,
+//            "guarantor_name" => $request->guarantor_name,
+//            "guarantor_address" => $request->guarantor_address,
+//            "remarks_one" => $request->remarks_one,
+//            "guarantor_name2" => $request->guarantor_name2,
+//            "guarantor_address2" => $request->guarantor_address2,
+//            "remarks_two" => $request->remarks_two,
+//            "guarantor_name3" => $request->guarantor_name3,
+//            "guarantor_address3" => $request->guarantor_address3,
+//            "remarks_three" => $request->remarks_three,
             "debt_amount" => $request->debt_amount,
             "legal_cost" => $request->legal_cost,
             "total_interest" => $request->total_interest,
@@ -129,11 +132,58 @@ class CaseController extends Controller
             "remarks" => $request->remarks,
         ];
 
-        $result = Cases::create($data);
+        $case = Cases::create($data);
+
+        if ($case){
+            // Validation
+            $validated = $request->validate([
+                // Debtors array
+                'debtors' => 'required|array|min:1',
+                'debtors.*.name'    => 'required',
+                'debtors.*.nric'    => 'nullable|',
+                'debtors.*.phone'   => 'nullable',
+                'debtors.*.email'   => 'nullable|email',
+                'debtors.*.address' => 'nullable',
+                'debtors.*.remarks' => 'nullable',
+            ],[
+                // Custom validation messages
+
+                'debtors.*.name.required'    => 'Debtor name field is required.',
+                'debtors.*.email.email'      => 'Please enter a valid debtor email.',
+            ]);
+
+            DB::beginTransaction();
+
+            try {
+
+                // Create debtors
+                foreach ($validated['debtors'] as $debtorData) {
+                    // Attach each debtor to the case via relationship
+                    $case->debtors()->create([
+                        'name'    => $debtorData['name'] ?? null,
+                        'nric'    => $debtorData['nric'] ?? null,
+                        'phone'   => $debtorData['phone'] ?? null,
+                        'email'   => $debtorData['email'] ?? null,
+                        'address' => $debtorData['address'] ?? null,
+                        'remarks' => $debtorData['remarks'] ?? null,
+                    ]);
+                }
+
+                DB::commit();
+
+            } catch (\Throwable $e) {
+                DB::rollBack();
+
+                // Log the exception in real app (omitted here)
+                return back()
+                    ->withInput()
+                    ->withErrors(['save_error' => 'Unable to save case & debtors: ' . $e->getMessage()]);
+            }
+        }
         $data = [
             'status' => 200,
-            'success' => 'Data Fetched Successfully',
-            'result' =>  $result,
+            'success' => 'Case and debtors created successfully.',
+            'result' =>  $case,
         ];
         return response()->json($data);
     }
@@ -168,22 +218,164 @@ class CaseController extends Controller
     {
 
         $case = Cases::find($id);
-        return view('admin.cases.edit', compact('case'));
+        $debtors = $case->debtors;
+
+        return view('admin.cases.edit', compact('case','debtors'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(CaseEditRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
+        //        try {
+        //            $data = $request->validated();
+        //            $this->caseService->storeOrUpdate($data, $id);
+        //            record_created_flash();
+        //        } catch (\Exception $e) {
+        //        }
+        //
+        //        $validator = Validator::make($request->all(), ['client_id' => 'required']);
+        //
+        //        if ($validator->fails()) {
+        //            return response()->json([
+        //                'error' => $validator->errors()
+        //
+        //            ]);
+        //        }
 
+        // Validate case fields (add/remove rules for actual case fields)
+        $caseRules = [
+            'case_number' => 'nullable|string|max:100',
+            'date_of_warrant' => 'nullable|date',
+            'manager_ic' => 'nullable|string',
+            'collector_ic' => 'nullable|string',
+            'current_status' => 'nullable|string',
+            'case_summary' => 'nullable|string',
+            'collection_commission' => 'nullable|numeric',
+            'field_visit' => 'nullable|numeric',
+            'bal_field_visit' => 'nullable|numeric',
+            'name' => 'nullable|string',
+            'nric' => 'nullable|string',
+            'company_name' => 'nullable|string',
+            'company_uen' => 'nullable|string',
+            'email' => 'nullable|email',
+            'phone' => 'nullable|string',
+            'debt_amount' => 'nullable|numeric',
+            'legal_cost' => 'nullable|numeric',
+            'total_interest' => 'nullable|numeric',
+            'total_amount_owed' => 'nullable|numeric',
+            'debt_interest' => 'nullable|numeric',
+            'principal_interest' => 'nullable|string',
+            'interest_start_date' => 'nullable|date',
+            'interest_end_date' => 'nullable|date',
+            'remarks' => 'nullable|string',
+        ];
+
+        // Debtor validation rules
+        $debtorRules = [
+            'debtors' => 'required|array|min:1',
+            'debtors.*.name' => 'required|string|max:255',
+            'debtors.*.nric' => 'nullable|string|max:100',
+            'debtors.*.phone' => 'nullable|string|max:50',
+            'debtors.*.email' => 'nullable|email|max:255',
+            'debtors.*.address' => 'nullable|string|max:500',
+            'debtors.*.remarks' => 'nullable|string|max:1000',
+        ];
+
+        // Custom messages (clean)
+        $messages = [
+            'debtors.*.name.required' => 'Debtor name field is required.',
+            'debtors.*.email.email' => 'Please enter a valid debtor email.',
+        ];
+
+        // Merge rules and validate - this will redirect back with errors/old() on failure
+        $rules = array_merge($caseRules, $debtorRules);
+        $validated = $request->validate($rules, $messages);
+
+        // Prepare case data (use requested values or preserve existing later if needed)
+        $caseData = [
+            "case_number" => $validated['case_number'] ?? null,
+            // "case_sku" => $this->caseSkuId($case_number),
+            // "client_id" => $request->client_id,
+            "date_of_warrant" => $validated['date_of_warrant'] ?? null,
+            "manager_ic" => $validated['manager_ic'] ?? null,
+            "collector_ic" => $validated['collector_ic'] ?? null,
+            "current_status" => $validated['current_status'] ?? null,
+            "case_summary" => $validated['case_summary'] ?? null,
+            "collection_commission" => $validated['collection_commission'] ?? null,
+            "field_visit" => $validated['field_visit'] ?? null,
+            "bal_field_visit" => $validated['bal_field_visit'] ?? null,
+            "name" => $validated['name'] ?? null,
+            "nric" => $validated['nric'] ?? null,
+            "company_name" => $validated['company_name'] ?? null,
+            "company_uen" => $validated['company_uen'] ?? null,
+            "email" => $validated['email'] ?? null,
+            "phone" => $validated['phone'] ?? null,
+            // "adderss" => $request->adderss,
+            // "guarantor_name" => $request->guarantor_name,
+            // "guarantor_address" => $request->guarantor_address,
+            // "remarks_one" => $request->remarks_one,
+            // "guarantor_name2" => $request->guarantor_name2,
+            // "guarantor_address2" => $request->guarantor_address2,
+            // "remarks_two" => $request->remarks_two,
+            // "guarantor_name3" => $request->guarantor_name3,
+            // "guarantor_address3" => $request->guarantor_address3,
+            // "remarks_three" => $request->remarks_three,
+            "debt_amount" => $validated['debt_amount'] ?? null,
+            "legal_cost" => $validated['legal_cost'] ?? null,
+            "total_interest" => $validated['total_interest'] ?? null,
+            "total_amount_owed" => $validated['total_amount_owed'] ?? null,
+            "debt_interest" => $validated['debt_interest'] ?? null,
+            "interest_type" => $validated['principal_interest'] ?? null,
+            "interest_start_date" => $validated['interest_start_date'] ?? null,
+            "interest_end_date" => $validated['interest_end_date'] ?? null,
+            // "total_amount_balance" => $request->total_amount_balance,
+            "remarks" => $validated['remarks'] ?? null,
+        ];
+
+        // Find the case model instance
+        $case = Cases::findOrFail($id);
+
+        DB::beginTransaction();
         try {
-            $data = $request->validated();
-            $this->caseService->storeOrUpdate($data, $id);
-            record_created_flash();
-        } catch (\Exception $e) {
+            // Update case (returns true/false)
+            $case->update($caseData);
+
+            // Delete old debtors in one query (relationship)
+            $case->debtors()->delete();
+
+            // Prepare debtor rows (ensure keys match debtor table fillables)
+            $debtorsToInsert = [];
+            foreach ($validated['debtors'] as $d) {
+                $debtorsToInsert[] = [
+                    'name' => $d['name'] ?? null,
+                    'nric' => $d['nric'] ?? null,
+                    'phone' => $d['phone'] ?? null,
+                    'email' => $d['email'] ?? null,
+                    'address' => $d['address'] ?? null,
+                    'remarks' => $d['remarks'] ?? null,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+
+            if (!empty($debtorsToInsert)) {
+                // createMany will attach case_id automatically via relationship
+                $case->debtors()->createMany($debtorsToInsert);
+            }
+
+            DB::commit();
+
+            // Success: redirect to index with flash message
+            return redirect()->route('admin.cases.index')->with('success', 'Case & Debtors updated successfully.');
+
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            return back()
+                ->withInput()
+                ->withErrors(['save_error' => 'Unable to update case: ' . $e->getMessage()]);
         }
-        return redirect()->route('admin.cases.index');
     }
 
     /**

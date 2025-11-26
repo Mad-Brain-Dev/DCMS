@@ -29,6 +29,9 @@ class Client extends Model
         'admin_fee_paid',
         'admin_fee_balance',
         'field_visit_per_case',
+        'pic_name',
+        'pic_number',
+        'pic_email'
     ];
 
     public function cases()
