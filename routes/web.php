@@ -69,6 +69,20 @@ Route::get('/execute-command', function () {
     Artisan::call('optimize');
     dd('All commands : executed successfully');
 });
+
+Route::get('/contract', function () {
+    return view('template.contract');
+});
+
+Route::get('/lod', function () {
+    return view('template.lod');
+});
+Route::get('/tax', function () {
+    return view('template.tax');
+});
+Route::get('/warrant', function () {
+    return view('template.warrant');
+});
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
