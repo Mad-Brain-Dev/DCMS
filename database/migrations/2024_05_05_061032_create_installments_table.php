@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('status')->default('not_complete');
             $table->timestamp('date_of_payment')->nullable();
             $table->dateTime('next_payment_date')->nullable();
+            $table->string('underInstallment')->nullable();
             $table->timestamps();
         });
     }

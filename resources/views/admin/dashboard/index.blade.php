@@ -120,45 +120,13 @@
         <div class="col-md-6">
             <div class="">
                 <table class="table">
-                    {{-- <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Bill</th>
-                        <th>Payment Date</th>
-                        <th>Payment Status</th>
-                    </tr>
-                </thead> --}}
                     <tbody>
-
-                        <tr class="table-primary" id="pdg">
-                            <td>Pending (PDG)</td>
-                            <td class="text-end">{{ $pdg_case_status }}</td>
+                    @foreach($leftStatuses as $status)
+                        <tr class="{{$status->display_color}}" style="cursor: pointer;" id="{{$status->value}}">
+                            <td>{{$status->name}} ({{$status->short_name}})</td>
+                            <td class="text-end">{{ $statusCounts[$status->short_name] ?? 0 }}</td>
                         </tr>
-
-                        <tr class="table-success" id="opn">
-                            <td>OPN (Open)</td>
-                            <td class="text-end">{{ $opn_case_status }}</td>
-                        </tr>
-                        <tr class="table-info" id="fld">
-                            <td>Filed (FLD)</td>
-                            <td class="text-end">{{ $fld_case_status }}</td>
-                        </tr>
-                        <tr class="table-warning" id="dsp">
-                            <td>Despatched (DSP)</td>
-                            <td class="text-end">{{ $fld_case_status }}</td>
-                        </tr>
-                        <tr class="table-danger" id="inv">
-                            <td>Investigation Needed (INV)</td>
-                            <td class="text-end">{{ $inv_case_status }}</td>
-                        </tr>
-                        <tr class="table-light" id="ngd">
-                            <td>Negotiating with DB (NGD)</td>
-                            <td class="text-end">{{ $ngd_case_status }}</td>
-                        </tr>
-                        <tr class="table-primary" id="ins">
-                            <td>Under Instalment (INS)</td>
-                            <td class="text-end">{{ $ins_case_status }}</td>
-                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -166,43 +134,13 @@
         <div class="col-md-6">
             <div class="">
                 <table class="table">
-                    {{-- <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Bill</th>
-                        <th>Payment Date</th>
-                        <th>Payment Status</th>
-                    </tr>
-                </thead> --}}
                     <tbody>
-                        <tr class="table-primary" id="fst">
-                            <td>Fully Settled (FST)</td>
-                            <td class="text-end">{{ $fst_case_status }}</td>
+                    @foreach($rightStatuses as $status)
+                        <tr class="{{$status->display_color}}" style="cursor: pointer;" id="{{$status->value}}">
+                            <td>{{$status->name}} ({{$status->short_name}})</td>
+                            <td class="text-end">{{ $statusCounts[$status->short_name] ?? 0 }}</td>
                         </tr>
-                        <tr class="table-success" id="pst">
-                            <td>Partially Settled (PST)</td>
-                            <td class="text-end">{{ $pst_case_status }}</td>
-                        </tr>
-                        <tr class="table-info" id="ohc">
-                            <td>Case on Hold by Client (OHC)</td>
-                            <td class="text-end">{{ $ohc_case_status }}</td>
-                        </tr>
-                        <tr class="table-warning" id="ohm">
-                            <td>Case on Hold by Management (OHM)</td>
-                            <td class="text-end">{{ $ohm_case_status }}</td>
-                        </tr>
-                        <tr class="table-danger" id="cst">
-                            <td>Closed without Payment (CST)</td>
-                            <td class="text-end">{{ $cst_case_status }}</td>
-                        </tr>
-                        <tr class="table-light" id="afc">
-                            <td>Awaiting update fr Client (AFC)</td>
-                            <td class="text-end">{{ $afc_case_status }}</td>
-                        </tr>
-                        <tr class="table-primary" id="ult">
-                            <td>Under Litigation (ULT)</td>
-                            <td class="text-end">{{ $ult_case_status }}</td>
-                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -252,48 +190,55 @@
             });
         }
 
-        document.getElementById("pdg").onclick = function() {
-            window.location.href = "{{ route('get.case.status', 'pdg') }}";
-        }
-        document.getElementById("opn").onclick = function() {
-            window.location.href = "{{ route('get.case.status', 'opn') }}";
-        }
-        document.getElementById("fld").onclick = function() {
-            window.location.href = "{{ route('get.case.status', 'fld') }}";
-        }
-        document.getElementById("dsp").onclick = function() {
-            window.location.href = "{{ route('get.case.status', 'dsp') }}";
-        }
-        document.getElementById("inv").onclick = function() {
-            window.location.href = "{{ route('get.case.status', 'inv') }}";
-        }
-        document.getElementById("ngd").onclick = function() {
-            window.location.href = "{{ route('get.case.status', 'ngd') }}";
-        }
-        document.getElementById("ins").onclick = function() {
-            window.location.href = "{{ route('get.case.status', 'ins') }}";
-        }
-        document.getElementById("fst").onclick = function() {
-            window.location.href = "{{ route('get.case.status', 'fst') }}";
-        }
-        document.getElementById("pst").onclick = function() {
-            window.location.href = "{{ route('get.case.status', 'pst') }}";
-        }
-        document.getElementById("ohc").onclick = function() {
-            window.location.href = "{{ route('get.case.status', 'ohc') }}";
-        }
-        document.getElementById("ohm").onclick = function() {
-            window.location.href = "{{ route('get.case.status', 'ohm') }}";
-        }
-        document.getElementById("cst").onclick = function() {
-            window.location.href = "{{ route('get.case.status', 'cst') }}";
-        }
-        document.getElementById("afc").onclick = function() {
-            window.location.href = "{{ route('get.case.status', 'afc') }}";
-        }
-        document.getElementById("ult").onclick = function() {
-            window.location.href = "{{ route('get.case.status', 'ult') }}";
-        }
+        {{--document.getElementById("pdg").onclick = function() {--}}
+        {{--    window.location.href = "{{ route('get.case.status', 'pdg') }}";--}}
+        {{--}--}}
+        {{--document.getElementById("opn").onclick = function() {--}}
+        {{--    window.location.href = "{{ route('get.case.status', 'opn') }}";--}}
+        {{--}--}}
+        {{--document.getElementById("fld").onclick = function() {--}}
+        {{--    window.location.href = "{{ route('get.case.status', 'fld') }}";--}}
+        {{--}--}}
+        {{--document.getElementById("dsp").onclick = function() {--}}
+        {{--    window.location.href = "{{ route('get.case.status', 'dsp') }}";--}}
+        {{--}--}}
+        {{--document.getElementById("inv").onclick = function() {--}}
+        {{--    window.location.href = "{{ route('get.case.status', 'inv') }}";--}}
+        {{--}--}}
+        {{--document.getElementById("ngd").onclick = function() {--}}
+        {{--    window.location.href = "{{ route('get.case.status', 'ngd') }}";--}}
+        {{--}--}}
+        {{--document.getElementById("ins").onclick = function() {--}}
+        {{--    window.location.href = "{{ route('get.case.status', 'ins') }}";--}}
+        {{--}--}}
+        {{--document.getElementById("fst").onclick = function() {--}}
+        {{--    window.location.href = "{{ route('get.case.status', 'fst') }}";--}}
+        {{--}--}}
+        {{--document.getElementById("pst").onclick = function() {--}}
+        {{--    window.location.href = "{{ route('get.case.status', 'pst') }}";--}}
+        {{--}--}}
+        {{--document.getElementById("ohc").onclick = function() {--}}
+        {{--    window.location.href = "{{ route('get.case.status', 'ohc') }}";--}}
+        {{--}--}}
+        {{--document.getElementById("ohm").onclick = function() {--}}
+        {{--    window.location.href = "{{ route('get.case.status', 'ohm') }}";--}}
+        {{--}--}}
+        {{--document.getElementById("cst").onclick = function() {--}}
+        {{--    window.location.href = "{{ route('get.case.status', 'cst') }}";--}}
+        {{--}--}}
+        {{--document.getElementById("afc").onclick = function() {--}}
+        {{--    window.location.href = "{{ route('get.case.status', 'afc') }}";--}}
+        {{--}--}}
+        {{--document.getElementById("ult").onclick = function() {--}}
+        {{--    window.location.href = "{{ route('get.case.status', 'ult') }}";--}}
+        {{--}--}}
+
+        document.querySelectorAll("tr[id]").forEach(function(row) {
+            row.addEventListener("click", function() {
+                let status = this.id;
+                window.location.href = "{{ route('get.case.status', ':status') }}".replace(':status', status);
+            });
+        });
     </script>
 @endpush
 

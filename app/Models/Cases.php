@@ -94,6 +94,12 @@ class Cases extends Model
         return $this->hasMany(Installment::class, 'case_id');
     }
 
+    public function fieldVisitInstallments()
+    {
+        return $this->hasMany(Installment::class, 'case_id')
+            ->where('update_type', 'field_visit_update');
+    }
+
     public function assignedTo()
     {
         return $this->belongsTo(User::class,'assigned_to_id');

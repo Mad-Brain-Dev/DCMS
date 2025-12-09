@@ -18,4 +18,9 @@ class FieldVisitUpdate extends Model
         'installment_id',
         'update_type'
     ];
+
+    public function installment()
+    {
+        return $this->belongsTo(Installment::class,'installment_id');
+    }
 }

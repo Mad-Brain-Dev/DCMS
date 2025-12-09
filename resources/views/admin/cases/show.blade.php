@@ -3,95 +3,273 @@
     <div class="row">
         <div class="col-md-12 parent-fixed">
             <div class="fixed-content">
-                <div class="card bg-primary text-white" id="fixedDiv">
-                    <div class="card-body card-padding-start">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <span>Case No. : {{ $case->case_sku }}</span> <br>
-                                <span>Current Status : {{ $case->current_status }}</span> <br>
-                                <span>Bal Field Visit : {{ $case->bal_field_visit }}</span> <br>
-                                {{-- <span>Field Visits :  {{ $case->field_visit }}</span> <br>
-                                    <span>Bal Field Visits : {{ $case->bal_field_visit }}</span> <br> --}}
-                            </div>
-                            <div class="col-md-3">
-                                {{-- <span>Debt Interest/Annum : {{ $case->debt_interest }} %</span> <br>
-                                <span>Total Interest : $ {{ number_format($case->total_interest, 2, '.', ',') }} </span> <br> --}}
-                                {{-- <span>Total Installment : {{ $case->installment_number }}</span> <br>
-                                    <span>Per Installment Amount : {{ number_formatCase($case->per_installment_amount, 2, '.', ',') }} $</span> <br> --}}
-                                <span>Client Name : {{ $case->client->name }} </span> <br>
-                                <span>Debtor Name : {{ $case->name }} </span> <br>
-                                {{-- <span>Legal Cost Amount :$ {{ number_format($case->legal_cost, 2, '.', ',') }}</span> --}}
-                            </div>
-                            <div class="col-md-3">
-                                {{-- <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br> --}}
-                                <span>Total Amount Owed : $ {{ number_format($case->total_amount_owed, 2, '.', ',') }}
+                <div class="row" id="fixedDiv">
+                    <div class="col-md-12">
+                        <div class="card bg-primary text-white" >
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <span>Case No. : {{ $case->case_sku }}</span> <br>
+                                        <span>Client Name : {{ $case->client->name }} </span> <br>
+                                        <span>Current Status : {{ $case->current_status }}</span> <br>
+                                        {{--                                <span>Bal Field Visit : {{ $case->bal_field_visit }}</span> <br>--}}
+                                        {{-- <span>Field Visits :  {{ $case->field_visit }}</span> <br>
+                                            <span>Bal Field Visits : {{ $case->bal_field_visit }}</span> <br> --}}
+                                    </div>
+                                    <div class="col-md-2">
+                                        {{-- <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br> --}}
+                                        <span>Total Amount Owed : $ {{ number_format($case->total_amount_owed, 2, '.', ',') }}
                                 </span> <br>
-                                {{-- <span>Last Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br> --}}
-                                <span>Amount Balance : $ {{ totalBalance($case->id) }}</span><br>
-                                {{-- <span>Legal Cost Collected Amount : $
-                                    {{ number_format($case->legal_cost_received, 2, '.', ',') }}
-                                </span> --}}
+                                        {{-- <span>Last Amount Paid : {{ number_format($case->total_amount_paid, 2, '.', ',') }} $</span> <br> --}}
+                                        <span>Total Paid : $ {{totalPaid($case->id)}}</span><br>
+                                        <span>Current Balance : $ {{ totalBalance($case->id) }}</span><br>
+                                        {{-- <span>Legal Cost Collected Amount : $
+                                            {{ number_format($case->legal_cost_received, 2, '.', ',') }}
+                                        </span> --}}
 
+                                    </div>
+                                    <div class="col-md-4">
+                                        {{-- <span>Debt Interest/Annum : {{ $case->debt_interest }} %</span> <br>
+                                        <span>Total Interest : $ {{ number_format($case->total_interest, 2, '.', ',') }} </span> <br> --}}
+                                        {{-- <span>Total Installment : {{ $case->installment_number }}</span> <br>
+                                            <span>Per Installment Amount : {{ number_formatCase($case->per_installment_amount, 2, '.', ',') }} $</span> <br> --}}
+                                        <span><span class="text-decoration-underline">Case Remarks :</span> {{ $case->remarks }} </span> <br>
+                                        {{--                                <span>Debtor Name : {{ $case->name }} </span> <br>--}}
+                                        {{-- <span>Legal Cost Amount :$ {{ number_format($case->legal_cost, 2, '.', ',') }}</span> --}}
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="table-responsive">
+                                            <div class="card-title">All Debtors :</div>
+                                            <table class="table mb-0 text-white table-outer-border">
+                                                <thead>
+                                                <tr>
+                                                    <th>DB Name</th>
+                                                    <th>DB Phone</th>
+                                                    <th>DB Address</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($case->debtors as $debtor)
+                                                    <tr>
+                                                        <td>{{$debtor->name}}</td>
+                                                        <td>{{$debtor->phone}}</td>
+                                                        <td>{{$debtor->address}}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+{{--                                                                         <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br>--}}
+{{--                                                                        <span>Next Payment Amount :--}}
+
+{{--                                                                            @if (empty($installment->next_payment_amount))--}}
+{{--                                                                                <span>N/A</span>--}}
+{{--                                                                            @else--}}
+{{--                                                                                $ {{ number_format($installment->next_payment_amount, 2, '.', ',') }}--}}
+{{--                                                                            @endif--}}
+
+{{--                                                                        </span> <br>--}}
+{{--                                                                        <span>Next Payment Date :--}}
+{{--                                                                            @if (empty($installment->next_payment_date))--}}
+{{--                                                                                <span>N/A</span>--}}
+{{--                                                                            @else--}}
+{{--                                                                                {{ date('m-d-Y', strtotime($installment->next_payment_date)) }}--}}
+{{--                                                                            @endif--}}
+{{--                                                                        </span><br>--}}
+{{--                                                                         <span>Legal Cost :--}}
+{{--                                                                            {{ $case->legal_cost - $case->legal_cost_received == 0 ? 'Paid' : 'Unpaid' }} </span>--}}
+
+{{--                                                                         date('d-m-Y', strtotime($installment->next_payment_date))--}}
+                                    </div>
+
+                                </div>
                             </div>
-                            <div class="col-md-3">
-                                {{-- <span>Debt Amount : {{ number_format($case->debt_amount, 2, '.', ',') }} $</span> <br> --}}
-                                <span>Next Payment Amount :
+                        </div>
+                    </div>
+                    <div class="col-md-12" hidden="hidden">
+                        <div class="card bg-warning text-white" >
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5 class="card-title">All Payment Details:</h5>
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table mb-0 text-white table-outer-border">
+                                                <thead>
+                                                <tr>
+                                                    <th>Amount Paid</th>
+                                                    <th>Date Paid</th>
+                                                    <th>Collected by</th>
+                                                    <th>Payment Method</th>
+                                                    <th>Uploaded receipt</th>
+                                                    <th>Next payment Date</th>
+                                                    <th>Next payment amount</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($case->fieldVisitInstallments as $installment)
+                                                    <tr>
+                                                        <td>{{$installment->amount_paid}}</td>
+                                                        <td>{{$installment->date_of_payment}}</td>
+                                                        <td>{{user_fullname($installment->user)}}</td>
+                                                        <td>{{$installment->payment_method}}</td>
+                                                        <td>
+{{--                                                            <div class="">--}}
+{{--                                                                @foreach ($installment->fvUpdates as $fv_update)--}}
+{{--                                                                    <li class="event"--}}
+{{--                                                                        data-date="{{ date('m-d-Y', strtotime($fv_update->created_at)) }}, {{ date('h:i a', strtotime($fv_update->created_at)) }} ">--}}
 
-                                    @if (empty($installment->next_payment_amount))
-                                        <span>N/A</span>
-                                    @else
-                                        $ {{ number_format($installment->next_payment_amount, 2, '.', ',') }}
-                                    @endif
 
-                                </span> <br>
-                                <span>Next Payment Date :
-                                    @if (empty($installment->next_payment_date))
-                                        <span>N/A</span>
-                                    @else
-                                        {{ date('m-d-Y', strtotime($installment->next_payment_date)) }}
-                                    @endif
-                                </span><br>
-                                {{-- <span>Legal Cost :
-                                    {{ $case->legal_cost - $case->legal_cost_received == 0 ? 'Paid' : 'Unpaid' }} </span> --}}
+{{--                                                                        @php--}}
+{{--                                                                            $extension = substr($fv_update->fv_update, -3);--}}
+{{--                                                                        @endphp--}}
+{{--                                                                        @if ($fv_update->fv_update != null)--}}
+{{--                                                                            @if ($extension == 'pdf')--}}
+{{--                                                                                <iframe style="overflow: hidden"--}}
+{{--                                                                                        src="{{ asset('/documents/' . $fv_update->fv_update) }}" width="50"--}}
+{{--                                                                                        height="50"></iframe>--}}
+{{--                                                                            @else--}}
+{{--                                                                                <img src="{{ asset('/documents/' . $fv_update->fv_update) }}" width="50"--}}
+{{--                                                                                     height="50" />--}}
+{{--                                                                            @endif--}}
+{{--                                                                        @else--}}
+{{--                                                                            <div class="d-flex align-items-center justify-content-center"--}}
+{{--                                                                                 style="background: rgb(168, 168, 168); height: 100px; width: 100px; color: #ffffff; border-radius: 4px">--}}
+{{--                                                                                <small>No file to show</small>--}}
+{{--                                                                            </div>--}}
+{{--                                                                        @endif--}}
+{{--                                                                        <span class="d-block">{{ $fv_update->fv_summary }}</span>--}}
+{{--                                                                        <div class="d-flex">--}}
+{{--                                                                            <a href="#" class="btn  btn-primary mt-2 viewFVUpdate2" data-toggle="modal"--}}
+{{--                                                                               data-target="#exampleModal2">--}}
+{{--                                                                                <span class="fv_id d-none">{{ $fv_update->id }}</span>--}}
+{{--                                                                                <i class="far fa-eye"></i> View--}}
+{{--                                                                            </a>--}}
+{{--                                                                        </div>--}}
+{{--                                                                    </li>--}}
+{{--                                                                @endforeach--}}
+{{--                                                            </div>--}}
 
-                                {{-- date('d-m-Y', strtotime($installment->next_payment_date)) --}}
+                                                            <div class="">
+                                                                <ul class="list-unstyled">
+                                                                    @foreach ($installment->fvUpdates as $fv_update)
+                                                                        <li class="event"
+                                                                            data-date="{{ date('m-d-Y', strtotime($fv_update->created_at)) }}, {{ date('h:i a', strtotime($fv_update->created_at)) }}">
+                                                                            @php
+                                                                                $file = $fv_update->fv_update;
+                                                                                $extension = $file ? strtolower(pathinfo($file, PATHINFO_EXTENSION)) : null;
+                                                                                $fileUrl = $file ? asset('documents/'.$file) : null;
+                                                                            @endphp
+
+                                                                            @if ($file)
+                                                                                <a href="#" class="fv-thumb d-inline-block me-2" data-id="{{ $fv_update->id }}" data-file="{{ $file }}">
+                                                                                    @if(in_array($extension, ['pdf']))
+                                                                                        {{-- small pdf icon preview --}}
+                                                                                        <div class="thumb-pdf d-flex align-items-center justify-content-center">
+                                                                                            <small class="fw-bold">PDF</small>
+                                                                                        </div>
+                                                                                    @else
+                                                                                        <img src="{{ $fileUrl }}" alt="file thumbnail" class="img-thumbnail thumb-img" />
+                                                                                    @endif
+                                                                                </a>
+                                                                            @else
+                                                                                <div class="d-inline-flex align-items-center justify-content-center placeholder-thumb me-2">
+                                                                                    <small>No file</small>
+                                                                                </div>
+                                                                            @endif
+
+                                                                            <div class="d-inline-block align-middle">
+                                                                                <span class="d-block">{{ $fv_update->fv_summary }}</span>
+                                                                            </div>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            @if (empty($installment->next_payment_date))
+                                                                <span>N/A</span>
+                                                            @else
+                                                                {{ date('m-d-Y', strtotime($installment->next_payment_date)) }}
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @if (empty($installment->next_payment_amount))
+                                                                <span>N/A</span>
+                                                            @else
+                                                                $ {{ number_format($installment->next_payment_amount, 2, '.', ',') }}
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" hidden="hidden">
+                        <div class="card bg-lime text-white" >
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5 class="card-title">Next Payments:</h5>
+                                    <div class="col-md-2">
+                                        <span>Next Payment Amount :
 
+                                                                            @if (empty($installment->next_payment_amount))
+                                                <span>N/A</span>
+                                            @else
+                                                $ {{ number_format($installment->next_payment_amount, 2, '.', ',') }}
+                                            @endif
+
+                                                                        </span> <br>
+                                        <span>Next Payment Date :
+                                                                            @if (empty($installment->next_payment_date))
+                                                <span>N/A</span>
+                                            @else
+                                                {{ date('m-d-Y', strtotime($installment->next_payment_date)) }}
+                                            @endif
+                                                                        </span><br>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">SL</th>
-                                <th scope="col">Employee Name</th>
-                                <th scope="col">Total Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($installmentByEmployees as $installmentByEmployee)
-                                <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td> {{ $installmentByEmployee->user->name }}</td>
-                                    <td>{{ $installmentByEmployee->total_amounts != null ? '$ ' . number_format($installmentByEmployee->total_amounts, 2, '.', ',') : 'N/A' }}
-                                    </td>
-                                </tr>
-                            @endforeach
+{{--    <div class="row">--}}
+{{--        <div class="col-md-12">--}}
+{{--            <div class="card">--}}
+{{--                <div class="card-body">--}}
+{{--                    <table class="table">--}}
+{{--                        <thead>--}}
+{{--                            <tr>--}}
+{{--                                <th scope="col">SL</th>--}}
+{{--                                <th scope="col">Employee Name</th>--}}
+{{--                                <th scope="col">Total Amount</th>--}}
+{{--                            </tr>--}}
+{{--                        </thead>--}}
+{{--                        <tbody>--}}
+{{--                            @foreach ($installmentByEmployees as $installmentByEmployee)--}}
+{{--                                <tr>--}}
+{{--                                    <th scope="row">{{ $loop->iteration }}</th>--}}
+{{--                                    <td> {{ $installmentByEmployee->user->name }}</td>--}}
+{{--                                    <td>{{ $installmentByEmployee->total_amounts != null ? '$ ' . number_format($installmentByEmployee->total_amounts, 2, '.', ',') : 'N/A' }}--}}
+{{--                                    </td>--}}
+{{--                                </tr>--}}
+{{--                            @endforeach--}}
 
-                        </tbody>
-                    </table>
-                    {{-- {{ $installmentByEmployees->links() }} --}}
-                </div>
-            </div>
-        </div>
-    </div>
+{{--                        </tbody>--}}
+{{--                    </table>--}}
+{{--                    --}}{{-- {{ $installmentByEmployees->links() }} --}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <div class="row">
         <div class="col-md-4">
             <div id="success" class="text-success"></div>
@@ -121,14 +299,14 @@
 {{--                                <p class="error">{{ $message }}</p>--}}
 {{--                            @enderror--}}
 {{--                        </div>--}}
-                        <div class="mb-3">
-                            <label class="form-label">Amount Paid</label>
-                            <input type="number" step="0.01" min="0" max="10000000000000" name="amount_paid" value="{{ old('amount_paid') }}"
-                                placeholder="Enter Paid Amount Here" class="form-control">
-                            @error('amount_paid')
-                                <p class="error">{{ $message }}</p>
-                            @enderror
-                        </div>
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="form-label">Amount Paid</label>--}}
+{{--                            <input type="number" step="0.01" min="0" max="10000000000000" name="amount_paid" value="{{ old('amount_paid') }}"--}}
+{{--                                placeholder="Enter Paid Amount Here" class="form-control">--}}
+{{--                            @error('amount_paid')--}}
+{{--                                <p class="error">{{ $message }}</p>--}}
+{{--                            @enderror--}}
+{{--                        </div>--}}
                         <input type="hidden" name="update_type" value="general_update">
                         {{-- @if ($case->legal_cost - $case->legal_cost_received != 0)
                             <div class="mb-3">
@@ -140,23 +318,23 @@
                                 @enderror
                             </div>
                         @endif --}}
-                        <div class="mb-3">
-                            <label class="form-label">Payment Method</label>
-                            <select class="form-select" aria-label="Default select example" name="payment_method">
-                                <option value="" {{ old('payment_method') ? '' : 'selected' }}>Select One Payment Method</option>
-                                <option value="Cash" {{ old('payment_method') == 'Cash' ? 'selected' : '' }}>Cash</option>
-                                <option value="Check" {{ old('payment_method') == 'Check' ? 'selected' : '' }}>Check</option>
-                                <option value="Online" {{ old('payment_method') == 'Online' ? 'selected' : '' }}>Online</option>
-                            </select>
-                            @error('payment_method')
-                                <div style="color: red;">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="form-label">Payment Method</label>--}}
+{{--                            <select class="form-select" aria-label="Default select example" name="payment_method">--}}
+{{--                                <option value="" {{ old('payment_method') ? '' : 'selected' }}>Select One Payment Method</option>--}}
+{{--                                <option value="Cash" {{ old('payment_method') == 'Cash' ? 'selected' : '' }}>Cash</option>--}}
+{{--                                <option value="Check" {{ old('payment_method') == 'Check' ? 'selected' : '' }}>Check</option>--}}
+{{--                                <option value="Online" {{ old('payment_method') == 'Online' ? 'selected' : '' }}>Online</option>--}}
+{{--                            </select>--}}
+{{--                            @error('payment_method')--}}
+{{--                                <div style="color: red;">{{ $message }}</div>--}}
+{{--                            @enderror--}}
+{{--                        </div>--}}
+                        <div class="mb-3" hidden="hidden">
                             <label class="form-label">Whom To Assign</label>
                             <select class="form-select" aria-label="Default select example" name="assign_type">
                                 <option value="" {{ old('assign_type') == '' ? 'selected' : '' }}>Select One</option>
-                                <option value="Admin" {{ old('assign_type') == 'Admin' ? 'selected' : '' }}>Admin</option>
+                                <option value="Admin" {{ old('assign_type') == 'Admin' ? 'selected' : '' }} selected>Admin</option>
                                 <option value="Accounts" {{ old('assign_type') == 'Accounts' ? 'selected' : '' }}>Accounts</option>
                                 <option value="Noone" {{ old('assign_type') == 'Noone' ? 'selected' : '' }}>Don't assign to anyone</option>
                             </select>
@@ -165,46 +343,47 @@
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3" hidden="hidden">
                             <label class="form-label">Collected By</label>
-                            <select class="form-select select2" id="collected_by_2" name="collected_by_id" aria-label="Default select example">
-                                <option value="" {{ old('collected_by_id') == '' ? 'selected' : '' }} disabled>Select Employee</option>
-                                @foreach ($employees as $employee)
-                                    <option value="{{ $employee->id }}" {{ old('collected_by_id') == $employee->id ? 'selected' : '' }}>
-                                        {{ $employee->name }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <input class="form-control" name="collected_by_id" value="{{auth()->user()->id}}">
+{{--                            <select class="form-select select2" id="collected_by_2" name="collected_by_id" aria-label="Default select example">--}}
+{{--                                <option value="" {{ old('collected_by_id') == '' ? 'selected' : '' }} disabled>Select Employee</option>--}}
+{{--                                @foreach ($employees as $employee)--}}
+{{--                                    <option value="{{ $employee->id }}" {{ old('collected_by_id') == $employee->id ? 'selected' : '' }}>--}}
+{{--                                        {{ $employee->name }}--}}
+{{--                                    </option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
                             @error('collected_by_id')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="form-label">Date of payment</label>--}}
+{{--                            <input type="date" value="{{ old("payment_date") }}" name="payment_date" class="form-control">--}}
+{{--                            @error('payment_date')--}}
+{{--                                <p class="error">{{ $message }}</p>--}}
+{{--                            @enderror--}}
+{{--                        </div>--}}
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="form-label">Next Payment Amount</label>--}}
+{{--                            <input type="number" step="0.01" min="0" max="10000000000000"--}}
+{{--                                name="next_payment_amount" value="{{ old('next_payment_amount') }}" class="form-control" placeholder="Enter Next Payment Amount"--}}
+{{--                                id="next_payment_amount">--}}
+{{--                            @error('next_payment_amount')--}}
+{{--                                <p class="error">{{ $message }}</p>--}}
+{{--                            @enderror--}}
+{{--                        </div>--}}
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="form-label">Next Payment Date</label>--}}
+{{--                            <input type="date" value="{{ old("next_payment_date") }}" name="next_payment_date" class="form-control"--}}
+{{--                                placeholder="Enter Next Payment Date">--}}
+{{--                            @error('next_payment_date')--}}
+{{--                                <p class="error">{{ $message }}</p>--}}
+{{--                            @enderror--}}
+{{--                        </div>--}}
                         <div class="mb-3">
-                            <label class="form-label">Date of Payment</label>
-                            <input type="date" value="{{ old("payment_date") }}" name="payment_date" class="form-control">
-                            @error('payment_date')
-                                <p class="error">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Next Payment Amount</label>
-                            <input type="number" step="0.01" min="0" max="10000000000000"
-                                name="next_payment_amount" value="{{ old('next_payment_amount') }}" class="form-control" placeholder="Enter Next Payment Amount"
-                                id="next_payment_amount">
-                            @error('next_payment_amount')
-                                <p class="error">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Next Payment Date</label>
-                            <input type="date" value="{{ old("next_payment_date") }}" name="next_payment_date" class="form-control"
-                                placeholder="Enter Next Payment Date">
-                            @error('next_payment_date')
-                                <p class="error">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Field Visit Date</label>
+                            <label class="form-label">Update Date</label>
                             <input type="date" value="{{ old("fv_date") }}" name="fv_date" class="form-control">
                             @error('fv_date')
                                 <p class="error">{{ $message }}</p>
@@ -374,7 +553,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header text-center">Field Visit Update</div>
+                <div class="card-header text-center">Payment Updates</div>
                 <div class="card-body">
                     <form enctype="multipart/form-data" action="{{ route('field.visit.create') }}" method="POST">
                         @csrf
@@ -430,28 +609,29 @@
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3" hidden="hidden">
                             <label class="form-label">Whom To Assign</label>
                             <select class="form-select" aria-label="Default select example" name="assign_type">
                                 <option value="" {{ old('assign_type') == '' ? 'selected' : '' }}>Select One</option>
                                 <option value="Admin" {{ old('assign_type') == 'Admin' ? 'selected' : '' }}>Admin</option>
-                                <option value="Accounts" {{ old('assign_type') == 'Accounts' ? 'selected' : '' }}>Accounts</option>
+                                <option value="Accounts" {{ old('assign_type') == 'Accounts' ? 'selected' : '' }} selected>Accounts</option>
                                 <option value="Noone" {{ old('assign_type') == 'Noone' ? 'selected' : '' }}>Don't assign to anyone</option>
                             </select>
                             @error('assign_type')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3" hidden="hidden">
                             <label class="form-label">Collected By</label>
-                            <select class="form-select select2" id="collected_by_2" name="collected_by_id" aria-label="Default select example">
-                                <option value="" {{ old('collected_by_id') == '' ? 'selected' : '' }} disabled>Select Employee</option>
-                                @foreach ($employees as $employee)
-                                    <option value="{{ $employee->id }}" {{ old('collected_by_id') == $employee->id ? 'selected' : '' }}>
-                                        {{ $employee->name }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <input class="form-control" name="collected_by_id" value="{{auth()->user()->id}}">
+{{--                            <select class="form-select select2" id="collected_by_2" name="collected_by_id" aria-label="Default select example">--}}
+{{--                                <option value="" {{ old('collected_by_id') == '' ? 'selected' : '' }} disabled>Select Employee</option>--}}
+{{--                                @foreach ($employees as $employee)--}}
+{{--                                    <option value="{{ $employee->id }}" {{ old('collected_by_id') == $employee->id ? 'selected' : '' }}>--}}
+{{--                                        {{ $employee->name }}--}}
+{{--                                    </option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
                             @error('collected_by_id')
                                 <p class="error">{{ $message }}</p>
                             @enderror
@@ -481,14 +661,25 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Field Visit Date</label>
-                            <input type="date" value="{{ old("fv_date") }}" name="fv_date" class="form-control">
-                            @error('fv_date')
-                                <p class="error">{{ $message }}</p>
-                            @enderror
+                            <label class="form-label d-block">Under instalment</label>
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-secondary active">
+                                    <input type="radio" name="underInstallment" id="yes" autocomplete="off" checked> Yes
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="underInstallment" id="no" autocomplete="off"> No
+                                </label>
+                            </div>
                         </div>
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="form-label">Field Visit Date</label>--}}
+{{--                            <input type="date" value="{{ old("fv_date") }}" name="fv_date" class="form-control">--}}
+{{--                            @error('fv_date')--}}
+{{--                                <p class="error">{{ $message }}</p>--}}
+{{--                            @enderror--}}
+{{--                        </div>--}}
                         <input type="hidden" name="update_type" value="field_visit_update">
-                        <div class="mb-3">
+                        <div class="mb-3" hidden="hidden">
                             <label class="form-label">FV Summary</label>
                             <textarea name="fv_summary" class="form-control" id="" rows="2">{{ old("fv_summary") }}</textarea>
                             @error('fv_summary')
@@ -606,7 +797,7 @@
                                             <small>No file to show</small>
                                         </div>
                                     @endif
-                                    <h6 class="mt-2">Field Visited at:
+                                    <h6 class="mt-2">Date of payment:
                                         {{ $fv_update->fv_date == null ? 'N/A' : date('m-d-Y', strtotime($fv_update->fv_date)) }}
                                     </h6>
                                     <span class="d-block">{{ $fv_update->fv_summary }}</span>
@@ -930,32 +1121,86 @@
             })
 
             // Open Fv modal and load file
-            $('.viewFVUpdate2').click(function(e) {
-                var fv_update_id = $(this).find('.fv_id').text();
+            {{--$('.viewFVUpdate2').click(function(e) {--}}
+            {{--    var fv_update_id = $(this).find('.fv_id').text();--}}
+
+            {{--    $.ajax({--}}
+            {{--        type: 'get',--}}
+            {{--        url: '{{ route('single.field.vist.update') }}',--}}
+            {{--        data: { id: fv_update_id },--}}
+            {{--        success: (response) => {--}}
+            {{--            let fileUrl = "{{ asset('/documents/') }}/" + response.data.fv_update;--}}
+
+            {{--            $('#fv_image_preview, #fv_pdf_preview, #fv_file_preview').hide();--}}
+
+            {{--            const ext = fileUrl.split('.').pop().toLowerCase();--}}
+            {{--            if(['jpg','jpeg','png','gif','webp'].includes(ext)){--}}
+            {{--                $('#fv_image_preview').attr('src', fileUrl).show();--}}
+            {{--            } else if(ext === 'pdf'){--}}
+            {{--                $('#fv_pdf_preview').attr('src', fileUrl).show();--}}
+            {{--            } else {--}}
+            {{--                $('#fv_file_link').attr('href', fileUrl);--}}
+            {{--                $('#fv_file_preview').show();--}}
+            {{--            }--}}
+
+            {{--            $('#exampleModal2').modal('show');--}}
+            {{--        },--}}
+            {{--        error: function(response) {--}}
+            {{--            $('#error').text(response.responseJSON.message);--}}
+            {{--        }--}}
+            {{--    });--}}
+            {{--});--}}
+
+            $(document).on('click', '.fv-thumb, .viewFVUpdate2', function(e) {
+                e.preventDefault();
+
+                // prefer data-id (thumbnail or view button), fallback to nested span if present.
+                var fv_update_id = $(this).data('id') || $(this).find('.fv_id').text();
+
+                if (!fv_update_id) return;
 
                 $.ajax({
-                    type: 'get',
+                    type: 'GET',
                     url: '{{ route('single.field.vist.update') }}',
                     data: { id: fv_update_id },
-                    success: (response) => {
-                        let fileUrl = "{{ asset('/documents/') }}/" + response.data.fv_update;
+                    success: function(response) {
+                        var fileName = response.data.fv_update;
+                        var createdAt = response.data.created_at; // if your response provides created_at
+                        var fileUrl = fileName ? "{{ asset('/documents/') }}/" + fileName : null;
 
-                        $('#fv_image_preview, #fv_pdf_preview, #fv_file_preview').hide();
+                        // hide all preview areas
+                        $('#fv_image_preview, #fv_pdf_preview, #fv_file_preview').addClass('d-none').hide();
 
-                        const ext = fileUrl.split('.').pop().toLowerCase();
-                        if(['jpg','jpeg','png','gif','webp'].includes(ext)){
-                            $('#fv_image_preview').attr('src', fileUrl).show();
-                        } else if(ext === 'pdf'){
-                            $('#fv_pdf_preview').attr('src', fileUrl).show();
+                        if (!fileUrl) {
+                            $('#fv_file_link').attr('href', '#').text('No file available');
+                            $('#fv_file_preview').removeClass('d-none').show();
                         } else {
-                            $('#fv_file_link').attr('href', fileUrl);
-                            $('#fv_file_preview').show();
+                            var ext = fileUrl.split('.').pop().toLowerCase();
+                            if (['jpg','jpeg','png','gif','webp','bmp','svg'].includes(ext)) {
+                                $('#fv_image_preview').attr('src', fileUrl).removeClass('d-none').show();
+                            } else if (ext === 'pdf') {
+                                $('#fv_pdf_preview').attr('src', fileUrl).removeClass('d-none').show();
+                            } else {
+                                $('#fv_file_link').attr('href', fileUrl).text('Open / Download');
+                                $('#fv_file_preview').removeClass('d-none').show();
+                            }
                         }
 
-                        $('#exampleModal2').modal('show');
+                        // optional: show created date in footer if available
+                        if (createdAt) {
+                            $('#fv_preview_date').text(new Date(createdAt).toLocaleString());
+                        } else {
+                            $('#fv_preview_date').text('');
+                        }
+
+                        // show modal (Bootstrap 5)
+                        var modal = new bootstrap.Modal(document.getElementById('exampleModal2'));
+                        modal.show();
                     },
-                    error: function(response) {
-                        $('#error').text(response.responseJSON.message);
+                    error: function(xhr) {
+                        var msg = 'An error occurred';
+                        if (xhr && xhr.responseJSON && xhr.responseJSON.message) msg = xhr.responseJSON.message;
+                        alert(msg);
                     }
                 });
             });
@@ -1380,6 +1625,44 @@
             left: 0;
             right: -55.8px;
         }
+
+        .table-outer-border {
+            border: 1px solid #dee2e6; /* Adjust color as needed */
+        }
+
+        .thumb-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+        }
+
+        .thumb-pdf {
+            width: 50px;
+            height: 50px;
+            background: #f2f2f2;
+            color: #c0392b;
+            border-radius: 6px;
+            border: 1px solid rgba(0,0,0,0.06);
+            font-size: 12px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+
+        .placeholder-thumb {
+            width: 50px;
+            height: 50px;
+            background: #a8a8a8;
+            color: #fff;
+            border-radius: 6px;
+            font-size: 11px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fv-thumb { text-decoration: none; }
+        .fv-thumb:hover .thumb-img { transform: scale(1.03); transition: transform .12s ease-in-out; }
 
         /* .fixed-content{
                                                                                                                 position: fixed;

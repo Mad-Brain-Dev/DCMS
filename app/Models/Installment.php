@@ -21,7 +21,8 @@ class Installment extends Model
        ' status',
         'date_of_payment',
         'collected_by_id',
-        'collection_date'
+        'collection_date',
+        'underInstallment'
     ];
 
     protected $casts = [
@@ -35,6 +36,11 @@ class Installment extends Model
     public function user()
     {
         return $this->belongsTo(User::class,'collected_by_id');
+    }
+
+    public function fvUpdates()
+    {
+        return $this->hasMany(FieldVisitUpdate::class,'installment_id');
     }
 
 }

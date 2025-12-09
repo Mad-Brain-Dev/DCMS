@@ -43,4 +43,9 @@ class Client extends Model
     {
         return $this->hasMany(AdminFee::class,'client_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CaseEditRequest;
 use App\Http\Requests\CaseRequest;
 use App\Models\Cases;
+use App\Models\CaseStatus;
 use App\Models\Client;
 use App\Models\CorrespondenceUpdate;
 use App\Models\Debtor;
@@ -73,7 +74,8 @@ class CaseController extends Controller
     public function create(Request $request)
     {
         $clients = Client::all();
-        return view('admin.cases.create', compact('clients'));
+        $caseStatuses = CaseStatus::all();
+        return view('admin.cases.create', compact('clients','caseStatuses'));
     }
 
     /**
@@ -427,16 +429,16 @@ class CaseController extends Controller
         $request->validate([
             'gn_updates.*' => 'required',
             'fv_date' => 'nullable',
-            'amount_paid' => 'required',
+            'amount_paid' => 'nullable',
             'legal_cost' => 'nullable',
-            'payment_date' => 'required',
+            'payment_date' => 'nullable',
             'collected_by_id' => 'nullable',
             'gn_summary' => 'nullable',
             'update_type' => 'nullable',
             'payment_method' => 'nullable',
             'assign_type'=> 'required',
-            'next_payment_date' => 'required',
-            'next_payment_amount' => 'required',
+            'next_payment_date' => 'nullable',
+            'next_payment_amount' => 'nullable',
             'fv_update.*' => 'nullable|mimes:png,jpg,jpeg,pdf',
             'fv_summary' => 'nullable',
             'remarks' => 'nullable',
@@ -514,6 +516,7 @@ class CaseController extends Controller
             'payment_date' => 'required',
             'next_payment_date' => 'required',
             'next_payment_amount' => 'required',
+            'underInstallment' => 'nullable',
             'collected_by_id' => 'nullable',
             'payment_method' => 'nullable',
             'update_type' => 'nullable',
@@ -573,7 +576,7 @@ class CaseController extends Controller
                     'installment_id' => $installment->id,
                     'remarks' => $request->remarks,
                     'fv_summary' => $request->fv_summary,
-                    'fv_date' => $request->fv_date,
+                    'fv_date' => $request->payment_date,
                     'fv_update' => $imageName,
                 ]);
 
@@ -583,7 +586,7 @@ class CaseController extends Controller
                 'case_id' => $request->case_id,
                 'installment_id' => $installment->id,
                 'remarks' => $request->remarks,
-                'fv_date' => $request->fv_date,
+                'fv_date' => $request->payment_date,
                 'fv_summary' => $request->gn_summary,
                 // 'gn_update' => null,
 

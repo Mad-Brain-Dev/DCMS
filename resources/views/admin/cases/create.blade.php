@@ -55,37 +55,40 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Case Status</label>
-                                <select class="form-select select2" id="current_status" name="current_status"
+                                <select class="form-select" id="current_status" name="current_status"
                                     aria-label="Default select example">
                                     {{-- <option selected disabled>Select Case Status</option> --}}
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_PENDING }}">
-                                        {{ \App\Utils\GlobalConstant::CASE_PENDING }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_OPEN }}" selected>
-                                        {{ \App\Utils\GlobalConstant::CASE_OPEN }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_FIELD }}">
-                                        {{ \App\Utils\GlobalConstant::CASE_FIELD }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_DESPATCHED }}">
-                                        {{ \App\Utils\GlobalConstant::CASE_DESPATCHED }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_INVESTIGATION_NEEDED }}">
-                                        {{ \App\Utils\GlobalConstant::CASE_INVESTIGATION_NEEDED }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_NEGOTIATING_WITH_DB }}">
-                                        {{ \App\Utils\GlobalConstant::CASE_NEGOTIATING_WITH_DB }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_UNDER_INSTALMENT }}">
-                                        {{ \App\Utils\GlobalConstant::CASE_UNDER_INSTALMENT }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_FULLY_SETTELED }}">
-                                        {{ \App\Utils\GlobalConstant::CASE_FULLY_SETTELED }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_PARTIALLY_SETTELED }}">
-                                        {{ \App\Utils\GlobalConstant::CASE_PARTIALLY_SETTELED }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_CASE_ON_HOLD_BY_CLIENT }}">
-                                        {{ \App\Utils\GlobalConstant::CASE_CASE_ON_HOLD_BY_CLIENT }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_ON_HOLD_BY_MANAGEMENT }}">
-                                        {{ \App\Utils\GlobalConstant::CASE_ON_HOLD_BY_MANAGEMENT }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_CLOSED_WITHOUT_PAYMENT }}">
-                                        {{ \App\Utils\GlobalConstant::CASE_CLOSED_WITHOUT_PAYMENT }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_AWAITING_UPDATE_FR_CLIENT }}">
-                                        {{ \App\Utils\GlobalConstant::CASE_AWAITING_UPDATE_FR_CLIENT }}</option>
-                                    <option value="{{ \App\Utils\GlobalConstant::CASE_UNDER_LITIGATION }}">
-                                        {{ \App\Utils\GlobalConstant::CASE_UNDER_LITIGATION }}</option>
+                                    @foreach($caseStatuses as $status)
+                                        <option value="{{ $status->value }}">
+                                            {{ $status->name }} ({{$status->short_name}})
+                                        </option>
+                                    @endforeach
+{{--                                    <option value="{{ \App\Utils\GlobalConstant::CASE_OPEN }}" selected>--}}
+{{--                                        {{ \App\Utils\GlobalConstant::CASE_OPEN }}</option>--}}
+{{--                                    <option value="{{ \App\Utils\GlobalConstant::CASE_FIELD }}">--}}
+{{--                                        {{ \App\Utils\GlobalConstant::CASE_FIELD }}</option>--}}
+{{--                                    <option value="{{ \App\Utils\GlobalConstant::CASE_DESPATCHED }}">--}}
+{{--                                        {{ \App\Utils\GlobalConstant::CASE_DESPATCHED }}</option>--}}
+{{--                                    <option value="{{ \App\Utils\GlobalConstant::CASE_INVESTIGATION_NEEDED }}">--}}
+{{--                                        {{ \App\Utils\GlobalConstant::CASE_INVESTIGATION_NEEDED }}</option>--}}
+{{--                                    <option value="{{ \App\Utils\GlobalConstant::CASE_NEGOTIATING_WITH_DB }}">--}}
+{{--                                        {{ \App\Utils\GlobalConstant::CASE_NEGOTIATING_WITH_DB }}</option>--}}
+{{--                                    <option value="{{ \App\Utils\GlobalConstant::CASE_UNDER_INSTALMENT }}">--}}
+{{--                                        {{ \App\Utils\GlobalConstant::CASE_UNDER_INSTALMENT }}</option>--}}
+{{--                                    <option value="{{ \App\Utils\GlobalConstant::CASE_FULLY_SETTELED }}">--}}
+{{--                                        {{ \App\Utils\GlobalConstant::CASE_FULLY_SETTELED }}</option>--}}
+{{--                                    <option value="{{ \App\Utils\GlobalConstant::CASE_PARTIALLY_SETTELED }}">--}}
+{{--                                        {{ \App\Utils\GlobalConstant::CASE_PARTIALLY_SETTELED }}</option>--}}
+{{--                                    <option value="{{ \App\Utils\GlobalConstant::CASE_CASE_ON_HOLD_BY_CLIENT }}">--}}
+{{--                                        {{ \App\Utils\GlobalConstant::CASE_CASE_ON_HOLD_BY_CLIENT }}</option>--}}
+{{--                                    <option value="{{ \App\Utils\GlobalConstant::CASE_ON_HOLD_BY_MANAGEMENT }}">--}}
+{{--                                        {{ \App\Utils\GlobalConstant::CASE_ON_HOLD_BY_MANAGEMENT }}</option>--}}
+{{--                                    <option value="{{ \App\Utils\GlobalConstant::CASE_CLOSED_WITHOUT_PAYMENT }}">--}}
+{{--                                        {{ \App\Utils\GlobalConstant::CASE_CLOSED_WITHOUT_PAYMENT }}</option>--}}
+{{--                                    <option value="{{ \App\Utils\GlobalConstant::CASE_AWAITING_UPDATE_FR_CLIENT }}">--}}
+{{--                                        {{ \App\Utils\GlobalConstant::CASE_AWAITING_UPDATE_FR_CLIENT }}</option>--}}
+{{--                                    <option value="{{ \App\Utils\GlobalConstant::CASE_UNDER_LITIGATION }}">--}}
+{{--                                        {{ \App\Utils\GlobalConstant::CASE_UNDER_LITIGATION }}</option>--}}
                                 </select>
                                 @error('current_status')
                                     <p class="error">{{ $message }}</p>

@@ -24,7 +24,7 @@
                     <div class="float-start bill">
                         <i class="fa fa-folder-open" aria-hidden="true"></i>
                     </div>
-                    <h5 class="font-size-16 text-uppercase text-white-50">Open Cases</h5>
+                    <h5 class="font-size-16 text-uppercase text-white-50">New Cases</h5>
                     <h4 class="fw-medium font-size-24"> {{ $open_cases }}</h4>
                 </div>
             </div>
@@ -73,12 +73,12 @@
                     <td class="text-end">{{ $client->nric }}</td>
                 </tr>
                 <tr class="table-light">
-                    <th scope="row">Company Name</th>
-                    <td class="text-end">{{ $client->company_name }}</td>
+                    <th scope="row">PIC Name</th>
+                    <td class="text-end">{{ $client->pic_name }}</td>
                 </tr>
                 <tr class="table-light">
-                    <th scope="row">Company Uen</th>
-                    <td class="text-end">{{ $client->company_uen }}</td>
+                    <th scope="row">PIC Number</th>
+                    <td class="text-end">{{ $client->pic_number }}</td>
                 </tr>
                 <tr class="table-light">
                     <th scope="row">Phone</th>

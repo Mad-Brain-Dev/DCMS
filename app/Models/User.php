@@ -68,4 +68,9 @@ class User extends Authenticatable
         return get_storage_image(self::FILE_STORE_PATH, $this->avatar, 'user');
     }
 
+    public function client()
+    {
+        return $this->hasOne(Client::class,'user_id','id');
+    }
+
 }

@@ -710,3 +710,13 @@ if (!function_exists('totalBalanceSum')) {
         return $balance = number_format($total_amount_owed - $installments,2);
     }
 }
+
+if (!function_exists('totalPaid')) {
+
+    function totalPaid($case_id)
+    {
+        $installments = Installment::where('case_id',$case_id)->sum('amount_paid');
+        $case = Cases::find($case_id);
+        return $totalPaid = number_format($case->total_amount_owed - $installments,2);
+    }
+}
