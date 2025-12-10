@@ -33,8 +33,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- <h>LOD</h> -->
            
             <div>
                 <div class="lod_heading_div">
