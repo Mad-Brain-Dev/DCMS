@@ -1870,13 +1870,11 @@ footer {
     font-size: 13px;
     font-weight: 700;
     padding-bottom: 15px;
-    /* text-align: center; */
     line-height: 0;
 }
 .tax-footer-text-2{
     font-size: 14px;
     font-weight: 400;
-    /* text-align: center; */
     line-height: 5px;
 }
 
