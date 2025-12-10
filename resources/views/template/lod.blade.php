@@ -35,7 +35,7 @@
             </div>
 
             <!-- <h>LOD</h> -->
-            <!-- lod is start -->
+           
             <div>
                 <div class="lod_heading_div">
                     <div class="lod_img">
