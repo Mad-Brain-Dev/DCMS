@@ -292,8 +292,8 @@
     </div>
 
     <footer class="warrant-footer">
-        Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098
-        Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net
+        111 North Bridge Road, #21-01, S' 179098 | 81 Tagore Lane, #04-07, S'787502<br/>
+        +65 8505 5484 | hello@securre.net | www.securre.net |  202331790G | L/DCA/2024/000179
     </footer>
     <!--second section end-->
 
