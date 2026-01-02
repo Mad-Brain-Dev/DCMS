@@ -31,7 +31,15 @@ class Client extends Model
         'field_visit_per_case',
         'pic_name',
         'pic_number',
-        'pic_email'
+        'pic_email',
+        'account_name',
+        'bank_name',
+        'account_number',
+        'bank_code',
+        'branch_code',
+        'bank_address',
+        'swift_code',
+        'payment_methods',
     ];
 
     public function cases()

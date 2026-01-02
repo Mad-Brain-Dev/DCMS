@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Admin\Bank\BankDetailsController;
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Profile\UserProfileController;
 use App\Http\Controllers\Admin\Report\ReportController;
@@ -195,6 +197,9 @@ Route::prefix('admin')->as('admin.')->group(function () {
 //    Route::get('reports/chart/installment-bar-chart', [ReportController::class, 'installmentBarChartData'])->name('reports.installmentBarChartData');
 //    Route::get('reports/table/debtor-balance-/data', [ReportController::class, 'debtorBalanceTableData'])->name('reports.debtorBalanceTableData');
     Route::get('reports/monthly/installment/by/{id}',[ReportController::class, 'monthlyInstallmentByID'])->name('reports.monthlyInstallmentByID');
+
+    //Bank details
+    Route::resource('bank-details', BankDetailsController::class);
 
 });
 

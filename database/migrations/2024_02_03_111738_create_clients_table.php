@@ -39,6 +39,15 @@ return new class extends Migration
             $table->string('pic_name')->nullable();
             $table->string('pic_number')->nullable();
             $table->string('pic_email')->nullable();
+            $table->string('account_name')->nullable();
+            $table->string('bank_name')->nullable();
+            $table->string('account_number')->nullable();
+            $table->string('bank_code')->nullable();
+            $table->string('branch_code')->nullable();
+            $table->string('bank_address')->nullable();
+            $table->string('swift_code')->nullable();
+            $table->string('payment_methods')->nullable();
+//            $table->string('payment_terms')->nullable();
             $table->timestamps();
         });
     }

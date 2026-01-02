@@ -40,6 +40,12 @@
                                 Roles
                             </a>
                         </li>
+                        <li class="{{ request()->is('admin/bank-details*') ? 'mm-active' : '' }}">
+                            <a href="{{ route('admin.bank-details.edit',1) }}"
+                               class="{{ request()->routeIs('admin.bank-details.edit',1) ? 'active' : '' }}">
+                                Bank Details
+                            </a>
+                        </li>
                         {{-- <li class="{{ request()->is('admin/cases*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.cases.index') }}"
                                 class="{{ request()->routeIs('admin.cases.index') ? 'active' : '' }}">

@@ -55,7 +55,18 @@ class ClientController extends Controller
     public function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), ['name' => 'required', 'abbr' => 'required|max:3|min:3']);
+        $validator = Validator::make($request->all(), ['name' => 'required',
+            'abbr' => 'required|max:3|min:3',
+            'account_name' => 'required',
+            'bank_name' => 'required',
+            'account_number' => 'required',
+            'bank_code' => 'required',
+            'branch_code' => 'required',
+            'bank_address' => 'required',
+            'swift_code' => 'required',
+            'payment_methods' => 'required',
+//            'payment_terms' => 'required',
+        ]);
 
         if ($validator->fails()) {
             return response()->json([
