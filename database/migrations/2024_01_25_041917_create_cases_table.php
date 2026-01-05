@@ -61,6 +61,7 @@ return new class extends Migration
             $table->string('interest_type')->nullable();
             $table->string('payment_method')->nullable();
             $table->dateTime('payment_date')->nullable();
+            $table->dateTime('update_seen_by_client')->nullable();
             $table->timestamps();
         });
     }

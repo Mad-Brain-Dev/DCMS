@@ -467,7 +467,10 @@ class CaseController extends Controller
             //     //$installment->save();
             $paid_amount->legal_cost_received = $paid_amount->legal_cost_received + $request->legal_cost;
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
+            $paid_amount->update_seen_by_client = 'pending';
             $paid_amount->save();
+
+            //TODO send general update email to client
         }
 
         $gn_updates = [];
@@ -517,6 +520,7 @@ class CaseController extends Controller
             'next_payment_date' => 'required',
             'next_payment_amount' => 'required',
             'underInstallment' => 'nullable',
+            'pay_to_who' => 'nullable',
             'collected_by_id' => 'nullable',
             'payment_method' => 'nullable',
             'update_type' => 'nullable',
@@ -526,6 +530,7 @@ class CaseController extends Controller
             'remarks' => 'nullable',
         ]);
         $paid_amount = Cases::findOrFail($request->case_id);
+
         $installment = Installment::create([
             'case_id' => $request->case_id,
             'amount_paid' => $request->amount_paid,
@@ -537,6 +542,8 @@ class CaseController extends Controller
             'assign_type'=> $request->assign_type,
             'fv_date' => $request->fv_date,
             'date_of_payment' => $request->payment_date,
+            'underInstallment' => $request->underInstallment,
+            'pay_to_who' => $request->pay_to_who,
 
         ]);
         Task::create([
@@ -549,7 +556,13 @@ class CaseController extends Controller
             //$installment->save();
             $paid_amount->legal_cost_received = $paid_amount->legal_cost_received + $request->legal_cost;
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
+            if ($installment->update_type === 'field_visit_update') {
+                $paid_amount->current_status = 'ins';
+            }
+            $paid_amount->update_seen_by_client = 'pending';
+
             $paid_amount->save();
+            //TODO send payment update email to client
         }
 
         $field_visit_number = Cases::where('id', '=', $request->case_id)->first();

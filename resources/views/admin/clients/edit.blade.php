@@ -112,6 +112,93 @@
                         </div>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="mb-3 col-md-4">
+                                <label class="form-label">Account Name <span class="error">*</span></label>
+                                <input type="text" name="account_name" class="form-control" required=""
+                                       placeholder="Account Name" value="{{ $client->account_name }}">
+                                @error('account_name')
+                                <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-4">
+                                <label class="form-label">Bank Name <span class="error">*</span></label>
+                                <input type="text" name="bank_name" class="form-control" required=""
+                                       placeholder="Bank Name" value="{{ $client->bank_name }}">
+                                @error('bank_name')
+                                <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-4">
+                                <label class="form-label">Account Number <span class="error">*</span></label>
+                                <input type="text" name="account_number" class="form-control" required="" placeholder="Account Number"
+                                       value="{{ $client->account_number }}">
+                                @error('account_number')
+                                <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-4">
+                                <label class="form-label">Bank Code <span class="error">*</span></label>
+                                <input type="text" name="bank_code" class="form-control" required="" placeholder="Bank Code"
+                                       value="{{ $client->bank_code }}">
+                                @error('bank_code')
+                                <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-4">
+                                <label class="form-label">Branch Code <span class="error">*</span></label>
+                                <input type="text" name="branch_code" class="form-control" required="" placeholder="Branch Code"
+                                       value="{{ $client->branch_code }}">
+                                @error('branch_code')
+                                <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-4">
+                                <label class="form-label">Bank Address <span class="error">*</span></label>
+                                <input type="text" name="bank_address" class="form-control" required="" placeholder="Bank Address"
+                                       value="{{ $client->bank_address }}">
+                                @error('bank_address')
+                                <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-4">
+                                <label class="form-label">Swift Code <span class="error">*</span></label>
+                                <input type="text" name="swift_code" class="form-control" required="" placeholder="Swift Code"
+                                       value="{{ $client->swift_code }}">
+                                @error('swift_code')
+                                <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-4">
+                                <label class="form-label">Payment Methods <span class="error">*</span></label>
+                                <input type="text" name="payment_methods" class="form-control" required="" placeholder="Payment Methods"
+                                       value="{{ $client->payment_methods }}">
+                                @error('payment_methods')
+                                <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            {{--                            <div class="mb-3 col-md-4">--}}
+                            {{--                                <label class="form-label">Payment Terms <span class="error">*</span></label>--}}
+                            {{--                                <input type="text" name="payment_terms" class="form-control" required="" placeholder="Payment Terms"--}}
+                            {{--                                       value="{{ old('payment_terms') }}">--}}
+                            {{--                                @error('payment_terms')--}}
+                            {{--                                <p class="error">{{ $message }}</p>--}}
+                            {{--                                @enderror--}}
+                            {{--                            </div>--}}
+                        </div>
+                    </div>
+                </div>
                 {{-- <div class="card">
                     <div class="card-body">
                         <div class="row">

@@ -28,6 +28,7 @@ return new class extends Migration
             $table->timestamp('date_of_payment')->nullable();
             $table->dateTime('next_payment_date')->nullable();
             $table->string('underInstallment')->nullable();
+            $table->string('pay_to_who')->nullable();
             $table->timestamps();
         });
     }

@@ -31,6 +31,14 @@ class ClientEditRequest extends FormRequest
             'company_uen' => ['nullable'],
             'phone'      => ['nullable'],
             'address' => ['nullable'],
+            'account_name' => ['required'],
+            'bank_name' => ['required'],
+            'account_number' => ['required'],
+            'bank_code' => ['required'],
+            'branch_code' => ['required'],
+            'bank_address' => ['required'],
+            'swift_code' => ['required'],
+            'payment_methods' => ['required'],
         ];
         return $rules;
     }

@@ -67,6 +67,7 @@ class Cases extends Model
         'next_payment_date',
         'next_payment_amount',
         'payment_date',
+        'update_seen_by_client',
 
     ];
 
