@@ -56,7 +56,13 @@ class CasesforPerticularClientDataTable extends DataTable
             //     $sql = "CONCAT(users.first_name,'-',users.last_name)  like ?";
             //     $query->whereRaw($sql, ["%{$keyword}%"]);
             // })
-            ->rawColumns(['action','debtor_id'])
+            ->addColumn('update_seen_by_client', fn($item) => $item->update_seen_by_client)
+            ->editColumn('seen_status', function ($item) {
+                return $item->update_seen_by_client === 'pending'
+                    ? '<span class="badge bg-warning">New Update</span>'
+                    : '<span class="badge bg-success">Seen</span>';
+            })
+            ->rawColumns(['action','debtor_id','seen_status'])
             ->setRowId('id');
 
     }
@@ -64,9 +70,18 @@ class CasesforPerticularClientDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
+//    public function query(Cases $model): QueryBuilder
+//    {
+//        return $model->newQuery()->where('client_id','=',Auth::user()->client->id)->orderBy('id', 'DESC')->select('cases.*');
+//    }
+
     public function query(Cases $model): QueryBuilder
     {
-        return $model->newQuery()->where('client_id','=',Auth::user()->id)->orderBy('id', 'DESC')->select('cases.*');
+        return $model->newQuery()
+            ->whereHas('client', function ($q) {
+                $q->where('user_id', Auth::id());
+            })
+            ->orderByDesc('id');
     }
 
     /**
@@ -78,6 +93,13 @@ class CasesforPerticularClientDataTable extends DataTable
                     ->setTableId('case-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
+                    ->rowCallback("
+                    function(row, data) {
+                        if (data.update_seen_by_client === 'pending') {
+                            $(row).addClass('client-update-pending');
+                        }
+                    }
+                    ")
                     //->dom('Bfrtip')
                     ->orderBy(1)
                     ->selectStyleSingle()
@@ -103,6 +125,7 @@ class CasesforPerticularClientDataTable extends DataTable
 //            Column::computed('DT_RowIndex', 'SL#'),
             Column::make('case_number', 'case_number')->title('Case Number'),
             Column::make('name', 'name')->title('Debtor Name'),
+            Column::make('update_seen_by_client', 'seen_status')->title('Seen Status'),
         ];
     }
 

@@ -26,3 +26,4 @@
 @push('script')
     @include('includes.scripts.datatable')
 @endpush
+

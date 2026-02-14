@@ -513,7 +513,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Payment Method</label>
                                         <select class="form-select" aria-label="Default select example" name="payment_method">
-                                            <option value="" {{ old('payment_method') ? '' : 'selected' }}>Select One Payment Method</option>
+                                            <option value="" {{ old('payment_method') ? '' : 'selected' }} selected disabled>Select</option>
                                             <option value="Cash" {{ old('payment_method') == 'Cash' ? 'selected' : '' }}>Cash</option>
                                             <option value="Check" {{ old('payment_method') == 'Check' ? 'selected' : '' }}>Check</option>
                                             <option value="Online" {{ old('payment_method') == 'Online' ? 'selected' : '' }}>Online</option>

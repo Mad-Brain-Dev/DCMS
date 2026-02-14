@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use App\Models\Role;
+use App\Models\Employee;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Utils\GlobalConstant;
@@ -90,5 +91,22 @@ class UserSeeder extends Seeder
                 $user->assignRole(['Admin']);
             }
         }
+        $employees = [
+            [
+                'user_id'        => 3,
+                'first_name'        => 'Employee',
+                'last_name'         => 'One',
+                'Name'         => 'Employee One',
+                'email'             => 'employee@app.com',
+                'status'            => GlobalConstant::STATUS_ACTIVE,
+                'phone'             => '012345678910',
+                'role' =>'Employee',
+                'commission_rate'=>5,
+            ],
+        ];
+        foreach ($employees as $employee){
+            Employee::create($employee);
+        }
+
     }
 }

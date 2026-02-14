@@ -10,7 +10,6 @@ use Symfony\Component\Translation\Test\ProviderFactoryTestCase;
 
 class Cases extends Model
 {
-    use HasFactory;
     public const CASE_TYPE_OUTSTANDING_LOAN    = 'Outstanding Loan';
     public const CASE_TYPE_UNPAID_BILLS    = 'Unpaid Bills';
     public const CASE_STATUS_OPEN    = 'Open';
@@ -103,7 +102,11 @@ class Cases extends Model
 
     public function assignedTo()
     {
-        return $this->belongsTo(User::class,'assigned_to_id');
+        return $this->belongsTo(Employee::class,'assigned_to_id');
+    }
+
+    public function status() {
+        return $this->belongsTo(CaseStatus::class, 'current_status', 'value');
     }
 
 }

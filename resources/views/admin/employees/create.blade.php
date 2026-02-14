@@ -67,9 +67,9 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-                            {{-- <div class="mb-3">
-                                <label class="form-label">Select Grade <span class="error">*</span></label>
-                                <select class="form-control select2" name="role[]" required multiple>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Select Role <span class="error">*</span></label>
+                                <select class="form-control select2" name="role" required>
                                     <option selected disabled>Select One</option>
                                     @forelse ($roles as $role)
                                         <option value="{{ $role->name }}"
@@ -81,7 +81,15 @@
                                 @error('role')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
-                            </div> --}}
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Commission Rate (in %)<span class="error">*</span></label>
+                                <input type="number" name="commission_rate" class="form-control" required=""
+                                       value="{{ old('commission_rate') }}">
+                                @error('commission_rate')
+                                <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 offset-md-6 col-md-6">

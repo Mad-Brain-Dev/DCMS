@@ -3,6 +3,8 @@
 namespace App\DataTables;
 
 use App\Models\Cases;
+use App\Models\Debtor;
+use App\Models\Employee;
 use App\Models\Installment;
 use App\Models\User;
 use App\Utils\GlobalConstant;
@@ -24,7 +26,7 @@ class CaseDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         // Load employees ONCE for all rows
-        $employees = User::where('user_type', 'employee')->select('id','name')->orderBy('id')->get();
+        $employees = Employee::where('role', 'Employee')->select('id','name')->orderBy('id')->get();
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($item) use ($employees) {
 
@@ -114,6 +116,9 @@ class CaseDataTable extends DataTable
             })->editColumn('client_id', function ($item) {
                 $name = $item->client->name;
                 return $name;
+            })
+            ->editColumn('name',function ($item){
+                return Debtor::where('case_id', $item->id)->firstOrFail()->name;
             })
             ->editColumn('total_amount_owed', function ($item) {
                 return number_format($item->total_amount_owed, 2);

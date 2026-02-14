@@ -39,16 +39,34 @@
 
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Manager IC</label>
-                                <input type="text" name="manager_ic" class="form-control"
-                                    placeholder="Enter Manager IC Name" value="{{ old('manager_ic') }}">
+{{--                                <input type="text" name="manager_ic" class="form-control"--}}
+{{--                                    placeholder="Enter Manager IC Name" value="{{ old('manager_ic') }}">--}}
+                                <select class="form-select select2 form-control" id="manager_ic" name="manager_ic">
+                                    <option selected disabled>Select Manager IC</option>
+                                    @foreach ($managers as $manager)
+                                        <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                    @endforeach
+                                    {{-- @error('client_id')
+                                        <p class="error"></p>
+                                    @enderror --}}
+                                </select>
                                 @error('manager_ic')
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Collector IC</label>
-                                <input type="text" name="collector_ic" class="form-control"
-                                    placeholder="Enter Collector IC Name" value="{{ old('collector_ic') }}">
+{{--                                <input type="text" name="collector_ic" class="form-control"--}}
+{{--                                    placeholder="Enter Collector IC Name" value="{{ old('collector_ic') }}">--}}
+                                <select class="form-select select2 form-control" id="collector_ic" name="collector_ic">
+                                    <option selected disabled>Select Collector IC</option>
+                                    @foreach ($collectors as $collector)
+                                        <option value="{{ $collector->id }}">{{ $collector->name }}</option>
+                                    @endforeach
+                                    {{-- @error('client_id')
+                                        <p class="error"></p>
+                                    @enderror --}}
+                                </select>
                                 @error('collector_ic')
                                     <p class="error">{{ $message }}</p>
                                 @enderror

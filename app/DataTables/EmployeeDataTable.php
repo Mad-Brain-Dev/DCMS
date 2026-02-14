@@ -44,7 +44,14 @@ class EmployeeDataTable extends DataTable
             })->editColumn('avatar', function ($item) {
                 return '<img class="ic-img-32" src="' . $item->avatar_url . '" alt="' . $item->last_name . '" />';
             })
-            ->rawColumns(['action', 'avatar'])
+            ->editColumn('status',function ($item){
+                $badge = $item->status == GlobalConstant::STATUS_ACTIVE ? "bg-success" : "bg-danger";
+                return '<span class="badge ' . $badge . '">' . Str::upper($item->status) . '</span>';
+            })
+            ->editColumn('role',function ($item){
+                return $item->employee ? $item->employee->role : 'No Role';
+            })
+            ->rawColumns(['action', 'avatar','status','role'])
             ->setRowId('id');
     }
 
@@ -88,11 +95,11 @@ class EmployeeDataTable extends DataTable
     {
 
         return [
-            //            Column::computed('DT_RowIndex', 'SL#'),
-            // Column::make('avatar', 'avatar')->title('Avatar'),
             Column::make('name', 'name')->title('Name'),
-            // Column::make('amount_paid', 'amount_paid')->title('Amount Collected'),
-
+            Column::make('email', 'email')->title('Email'),
+            Column::make('phone', 'phone')->title('Phone'),
+            Column::make('role', 'role')->title('Role'),
+            Column::make('status', 'status')->title('Status'),
         ];
     }
 

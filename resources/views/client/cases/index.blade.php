@@ -18,6 +18,11 @@
 
 @push('style')
     @include('includes.styles.datatable')
+    <style>
+        tr.client-update-pending {
+            background-color: #fff3cd !important; /* soft yellow */
+        }
+    </style>
 @endpush
 
 @push('script')

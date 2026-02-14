@@ -6,10 +6,17 @@ use App\DataTables\EmployeeDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployeeEditRequest;
 use App\Http\Requests\EmployeeRequest;
+use App\Models\Employee;
+use App\Models\Role;
 use App\Models\User;
 use App\Services\EmployeeEditService;
 use App\Services\EmployeeService;
+use App\Utils\GlobalConstant;
 use Illuminate\Http\Request;
+use App\Models\EmployeeCommission;
+use App\Models\EmployeePayment;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -35,8 +42,8 @@ class EmployeeController extends Controller
     public function create()
     {
         set_page_meta('Create Employee');
-        // $roles = Role::all();
-        return view('admin.employees.create');
+        $roles = Role::whereIn('name', ['Manager IC', 'Collector IC', 'Employee'])->get();
+        return view('admin.employees.create',compact('roles'));
 
     }
 
@@ -46,15 +53,35 @@ class EmployeeController extends Controller
     public function store(EmployeeRequest $request)
     {
         $data = $request->validated();
+        $userData = [
+            'first_name'=>$data['first_name'],
+            'last_name'=>$data['last_name'],
+            'email'=>$data['email'],
+            'phone'=>$data['phone'],
+            'password'=>$data['password'],
+            'status'=>GlobalConstant::STATUS_ACTIVE,
+        ];
 
         try {
-            $employee = $this->employeeService->storeOrUpdate($data, null);
+            $user = $this->employeeService->storeOrUpdate($userData, null);
             // $user->assignRole([$request->input('role')]);
-            if($employee){
-                $employee->user_type = User::USER_TYPE_EMPLOYEE;
-                $employee->name = $employee->first_name.' '.$employee->last_name;
-                $employee->save();
+            if($user){
+                $user->user_type = User::USER_TYPE_EMPLOYEE;
+                $user->name = $user->first_name.' '.$user->last_name;
+                $user->save();
+
+                $employee = Employee::create([
+                    'user_id'=>$user->id,
+                    'first_name'=>$user->first_name,
+                    'last_name'=>$user->last_name,
+                    'name'=>$user->name,
+                    'email'=>$user->email,
+                    'phone'=>$user->phone,
+                    'role'=>$data['role'],
+                    'commission_rate'=>$data['commission_rate'],
+                ]);
             }
+
             record_created_flash();
         } catch (\Exception $e) {
         }
@@ -120,4 +147,5 @@ class EmployeeController extends Controller
             return back();
         }
     }
+
 }

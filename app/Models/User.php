@@ -73,4 +73,9 @@ class User extends Authenticatable
         return $this->hasOne(Client::class,'user_id','id');
     }
 
+    public function employee()
+    {
+        return $this->hasOne(Employee::class,'user_id','id');
+    }
+
 }

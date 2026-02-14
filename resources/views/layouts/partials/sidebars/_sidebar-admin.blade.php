@@ -28,12 +28,6 @@
                                 Users
                             </a>
                         </li>
-                        <li class="{{ request()->is('admin/employees*') ? 'mm-active' : '' }}">
-                            <a href="{{ route('admin.employees.index') }}"
-                                class="{{ request()->routeIs('admin.employees.index') ? 'active' : '' }}">
-                                Employees
-                            </a>
-                        </li>
                         <li class="{{ request()->is('admin/roles*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.roles.index') }}"
                                 class="{{ request()->routeIs('admin.roles.index') ? 'active' : '' }}">
@@ -52,6 +46,27 @@
                                 Cases
                             </a>
                         </li> --}}
+                    </ul>
+                </li>
+                <li class="{{ request()->is('admin/employees*') || request()->is('admin/employee-payment*') ? 'mm-active' : '' }}">
+                    <a href="javascript: void(0);"
+                       class="has-arrow waves-effect {{ request()->is('admin/employees*') || request()->is('admin/employee-payment*') ? 'mm-active' : '' }}">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Team Management</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li class="{{ request()->is('admin/employees*') ? 'mm-active' : '' }}">
+                            <a href="{{ route('admin.employees.index') }}"
+                               class="{{ request()->routeIs('admin.employees.index') ? 'active' : '' }}">
+                                Employees
+                            </a>
+                        </li>
+                        <li class="{{ request()->is('admin/employee-payment*') ? 'mm-active' : '' }}">
+                            <a href="{{ route('admin.employee-payment.index') }}"
+                               class="{{ request()->routeIs('admin.employee-payment.index') ? 'active' : '' }}">
+                                Payment
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="{{ request()->is('admin/clients*') ? 'mm-active' : '' }}">

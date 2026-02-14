@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class CaseStatus extends Model
 {
-    use HasFactory;
     protected $fillable = [
         'name',
         'short_name',
-        'display_color',
+        'table_row_color',
+        'bg_color',
         'value',
     ];
 }

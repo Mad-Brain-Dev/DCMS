@@ -13,6 +13,7 @@ use App\Models\CaseStatus;
 use App\Models\Client;
 use App\Models\CorrespondenceUpdate;
 use App\Models\Debtor;
+use App\Models\Employee;
 use App\Models\FieldVisitUpdate;
 use App\Models\GeneralCaseUpdate;
 use App\Models\Installment;
@@ -28,6 +29,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Twilio\Rest\Client as TwilioClient;
 use Illuminate\Support\Facades\DB;
+use App\Models\EmployeeCommission;
 
 class CaseController extends Controller
 {
@@ -74,8 +76,12 @@ class CaseController extends Controller
     public function create(Request $request)
     {
         $clients = Client::all();
+        $employees = Employee::where('role', 'Employee')->select('id','name')->orderBy('id')->get();
+        $managers = Employee::where('role', 'Manager IC')->select('id','name')->orderBy('id')->get();
+        $collectors = Employee::where('role', 'Collector IC')->select('id','name')->orderBy('id')->get();
+
         $caseStatuses = CaseStatus::all();
-        return view('admin.cases.create', compact('clients','caseStatuses'));
+        return view('admin.cases.create', compact('clients','caseStatuses','employees','managers','collectors'));
     }
 
     /**
@@ -535,7 +541,8 @@ class CaseController extends Controller
             'case_id' => $request->case_id,
             'amount_paid' => $request->amount_paid,
             'next_payment_amount' => $request->next_payment_amount,
-            'collected_by_id' => $request->collected_by_id == null ? 2 : $request->collected_by_id,
+//            'collected_by_id' => $request->collected_by_id == null ? 2 : $request->collected_by_id,
+            'collected_by_id' => $request->collected_by_id,
             'next_payment_date' => $request->next_payment_date,
             'update_type' => $request->update_type,
             'payment_method' => $request->payment_method,
@@ -544,7 +551,6 @@ class CaseController extends Controller
             'date_of_payment' => $request->payment_date,
             'underInstallment' => $request->underInstallment,
             'pay_to_who' => $request->pay_to_who,
-
         ]);
         Task::create([
             'installment_id' => $installment->id,
@@ -560,6 +566,63 @@ class CaseController extends Controller
                 $paid_amount->current_status = 'ins';
             }
             $paid_amount->update_seen_by_client = 'pending';
+
+            // ====== COMMISSION GENERATION START ======
+            if ($installment->amount_paid > 0) {
+
+                $case = $paid_amount; // already fetched above
+
+                // Collect all responsible employee IDs
+                $employeeIds = array_filter([
+                    $case->assigned_to_id,
+                    $case->manager_ic,
+                    $case->collector_ic,
+                ]);
+
+                // Remove duplicates (if same person appears twice)
+                $employeeIds = array_unique($employeeIds);
+
+                foreach ($employeeIds as $employeeId) {
+
+                    $employee = Employee::find($employeeId);
+
+                    if (!$employee || !$employee->commission_rate) {
+                        continue; // skip if no commission rate
+                    }
+
+                    $commissionRate = $employee->commission_rate;
+                    $collectionAmount = $installment->amount_paid;
+
+                    $commissionAmount = ($collectionAmount * $commissionRate) / 100;
+
+//                    EmployeeCommission::create([
+//                        'employee_id'      => $employee->id,
+//                        'case_id'          => $case->id,
+//                        'installment_id'   => $installment->id,
+//                        'collection_amount'=> $collectionAmount,
+//                        'commission_rate'  => $commissionRate,
+//                        'commission_amount'=> $commissionAmount,
+//                        'commission_month' => Carbon::parse($installment->date_of_payment)->format('Y-m'),
+//                        'status'           => 'pending',
+//                    ]);
+
+                    EmployeeCommission::firstOrCreate(
+                        [
+                            'employee_id'   => $employee->id,
+                            'installment_id'=> $installment->id,
+                        ],
+                        [
+                            'case_id'           => $case->id,
+                            'collection_amount' => $collectionAmount,
+                            'commission_rate'   => $commissionRate,
+                            'commission_amount' => $commissionAmount,
+                            'commission_month'  => Carbon::parse($installment->date_of_payment)->format('Y-m'),
+                            'status'            => 'pending',
+                        ]
+                    );
+                }
+            }
+// ====== COMMISSION GENERATION END ======
 
             $paid_amount->save();
             //TODO send payment update email to client
@@ -849,6 +912,8 @@ class CaseController extends Controller
         ]);
 
         $case = Cases::find($validated['case_id']);
+
+        //TODO change to employee ID
         $case->assigned_to_id = $validated['assigned_to_id'];
         $case->save();
 

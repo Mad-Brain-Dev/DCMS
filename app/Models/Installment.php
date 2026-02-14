@@ -8,7 +8,6 @@ use Carbon\Carbon;
 
 class Installment extends Model
 {
-    use HasFactory;
     protected $fillable = [
         'case_id',
         'amount_paid',
@@ -42,6 +41,11 @@ class Installment extends Model
     public function fvUpdates()
     {
         return $this->hasMany(FieldVisitUpdate::class,'installment_id');
+    }
+
+    public function commissions()
+    {
+        return $this->hasMany(EmployeeCommission::class, 'installment_id');
     }
 
     public function paymentStatus()

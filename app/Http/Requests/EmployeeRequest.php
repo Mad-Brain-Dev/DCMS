@@ -28,6 +28,8 @@ class EmployeeRequest extends FormRequest
             'last_name'  => ['required'],
             'email'      => ['required', 'string', Rule::unique('users')->ignore($this->user)],
             'phone'      => ['required'],
+            'role'      => ['required'],
+            'commission_rate'   => ['required'],
             'password'   => [
                 'required', 'string', 'confirmed', Password::min(8)
                     ->mixedCase()

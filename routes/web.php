@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Bank\BankDetailsController;
 use App\Http\Controllers\Admin\Employee\EmployeeController;
+use App\Http\Controllers\Admin\Employee\Payment\EmployeePaymentController;
 use App\Http\Controllers\Admin\Profile\UserProfileController;
 use App\Http\Controllers\Admin\Report\ReportController;
 use App\Http\Controllers\Admin\Role\RoleController;
@@ -169,6 +170,19 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::resource('users', UsersController::class);
     // Employee
     Route::resource('employees', EmployeeController::class);
+    Route::resource('employee-payment', EmployeePaymentController::class);
+    Route::post('employee-payment/payment/store', [EmployeePaymentController::class, 'storePayment'])
+        ->name('employees.payment.store');
+    Route::get('employee-payment/payments/summary', [EmployeePaymentController::class, 'summary'])
+        ->name('employee.payment.summary');
+    Route::get('employee-payments/{employee}/monthly-breakdown',
+        [EmployeePaymentController::class, 'monthlyBreakdownAjax']
+    )->name('employee-payment.monthly-breakdown');
+    Route::get('employee-payments/{employee}/history',
+        [EmployeePaymentController::class, 'paymentHistory']
+    )->name('employee-payment.history');
+
+
     //Client
     Route::resource('clients', ClientController::class);
     //Debtor
