@@ -53,12 +53,12 @@ class EmployeePaymentController extends Controller
             })
             ->count();
 
-        $months = [];
-
-        for ($i = 0; $i < 12; $i++) {
-            $month = \Carbon\Carbon::now()->subMonths($i)->format('Y-m');
-            $months[$month] = \Carbon\Carbon::now()->subMonths($i)->format('F Y');
-        }
+//        $months = [];
+//
+//        for ($i = 0; $i < 12; $i++) {
+//            $month = \Carbon\Carbon::now()->subMonths($i)->format('Y-m');
+//            $months[$month] = \Carbon\Carbon::now()->subMonths($i)->format('F Y');
+//        }
 
         return $dataTable->render('admin.employees.payment.index', compact(
             'totalGenerated',
@@ -69,7 +69,7 @@ class EmployeePaymentController extends Controller
             'thisMonthPayable',
             'pendingEmployeeCount',
             'selectedMonth',
-            'months'
+//            'months'
         ));
     }
 

@@ -28,12 +28,12 @@
                                 Users
                             </a>
                         </li>
-                        <li class="{{ request()->is('admin/roles*') ? 'mm-active' : '' }}">
-                            <a href="{{ route('admin.roles.index') }}"
-                                class="{{ request()->routeIs('admin.roles.index') ? 'active' : '' }}">
-                                Roles
-                            </a>
-                        </li>
+{{--                        <li class="{{ request()->is('admin/roles*') ? 'mm-active' : '' }}">--}}
+{{--                            <a href="{{ route('admin.roles.index') }}"--}}
+{{--                                class="{{ request()->routeIs('admin.roles.index') ? 'active' : '' }}">--}}
+{{--                                Roles--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                         <li class="{{ request()->is('admin/bank-details*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.bank-details.edit',1) }}"
                                class="{{ request()->routeIs('admin.bank-details.edit',1) ? 'active' : '' }}">
@@ -79,6 +79,12 @@
                     <a href="{{ route('admin.cases.index') }}"
                         class="{{ request()->routeIs('admin.cases.index') ? 'active' : '' }}">
                         <span class="mdi mdi-briefcase-edit-outline pe-2"></span><span> Cases </span>
+                    </a>
+                </li>
+                <li class="{{ request()->is('admin/invoices*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.invoices.index') }}"
+                       class="{{ request()->routeIs('admin.invoices.index') ? 'active' : '' }}">
+                        <span class="fas fa-file-invoice-dollar pe-2"></span><span> Invoice Management </span>
                     </a>
                 </li>
                 <li class="{{ request()->is('admin/tasks*') ? 'mm-active' : '' }}">

@@ -90,7 +90,6 @@ class CaseController extends Controller
     public function store(Request $request)
     {
 
-//        $validator = Validator::make($request->all(), ['name' => 'required', 'client_id' => 'required']);
         $validator = Validator::make($request->all(), ['client_id' => 'required']);
 
         if ($validator->fails()) {
@@ -118,16 +117,6 @@ class CaseController extends Controller
             "company_uen" => $request->company_uen,
             "email" => $request->email,
             "phone" => $request->phone,
-//            "adderss" => $request->adderss,
-//            "guarantor_name" => $request->guarantor_name,
-//            "guarantor_address" => $request->guarantor_address,
-//            "remarks_one" => $request->remarks_one,
-//            "guarantor_name2" => $request->guarantor_name2,
-//            "guarantor_address2" => $request->guarantor_address2,
-//            "remarks_two" => $request->remarks_two,
-//            "guarantor_name3" => $request->guarantor_name3,
-//            "guarantor_address3" => $request->guarantor_address3,
-//            "remarks_three" => $request->remarks_three,
             "debt_amount" => $request->debt_amount,
             "legal_cost" => $request->legal_cost,
             "total_interest" => $request->total_interest,
@@ -202,11 +191,11 @@ class CaseController extends Controller
     {
         set_page_meta('Details');
         $case = Cases::find($id);
-        $employees = User::where('user_type', 'employee')->get();
         $client_details = Client::where('id', $case->client_id)->first();
         $gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
         $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
         $installment = Installment::where('case_id', $id)->latest()->first();
+        $debtors = Debtor::where('case_id', $id)->get();
         if ($installment){
             $task = Task::where('installment_id', $installment->id)->first();
         }else{
@@ -216,7 +205,7 @@ class CaseController extends Controller
             ->groupBy('collected_by_id')
             ->orderBy('total_amounts', 'desc')
             ->get();
-        return view('admin.cases.show', compact('case','task', 'gn_updates', 'fv_updates', 'client_details', 'installment', 'installmentByEmployees', 'employees'));
+        return view('admin.cases.show', compact('case','task', 'gn_updates', 'fv_updates', 'client_details', 'installment', 'installmentByEmployees', 'debtors'));
     }
 
     /**
@@ -535,13 +524,23 @@ class CaseController extends Controller
             'fv_summary' => 'nullable',
             'remarks' => 'nullable',
         ]);
-        $paid_amount = Cases::findOrFail($request->case_id);
+        $case = Cases::findOrFail($request->case_id);
+
+        $previousBalance = totalBalance($case->id);
+
+
+        $newBalance = $previousBalance - $request->amount_paid;
+        $newTotalPaid = totalPaid($case->id) + $request->amount_paid;
 
         $installment = Installment::create([
             'case_id' => $request->case_id,
+            'debtor_id' => $request->debtor_id,
             'amount_paid' => $request->amount_paid,
+            'balance_before' => $previousBalance,
+            'snapshot_total_paid' => $newTotalPaid,
+            'snapshot_total_balance' => $newBalance,
+            'snapshot_total_debt' => $case->total_amount_owed,
             'next_payment_amount' => $request->next_payment_amount,
-//            'collected_by_id' => $request->collected_by_id == null ? 2 : $request->collected_by_id,
             'collected_by_id' => $request->collected_by_id,
             'next_payment_date' => $request->next_payment_date,
             'update_type' => $request->update_type,
@@ -557,20 +556,15 @@ class CaseController extends Controller
             'assign_type'=> $request->assign_type,
         ]);
         if ($installment) {
-            //$installment->collected_by_id = $request->collected_by_id;
-            // $installment->save_by_user_type = auth()->user()->user_type;
-            //$installment->save();
-            $paid_amount->legal_cost_received = $paid_amount->legal_cost_received + $request->legal_cost;
-            $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
+//            $paid_amount->legal_cost_received = $paid_amount->legal_cost_received + $request->legal_cost;
+//            $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             if ($installment->update_type === 'field_visit_update') {
-                $paid_amount->current_status = 'ins';
+                $case->current_status = 'ins';
             }
-            $paid_amount->update_seen_by_client = 'pending';
+            $case->update_seen_by_client = 'pending';
 
             // ====== COMMISSION GENERATION START ======
             if ($installment->amount_paid > 0) {
-
-                $case = $paid_amount; // already fetched above
 
                 // Collect all responsible employee IDs
                 $employeeIds = array_filter([
@@ -595,17 +589,6 @@ class CaseController extends Controller
 
                     $commissionAmount = ($collectionAmount * $commissionRate) / 100;
 
-//                    EmployeeCommission::create([
-//                        'employee_id'      => $employee->id,
-//                        'case_id'          => $case->id,
-//                        'installment_id'   => $installment->id,
-//                        'collection_amount'=> $collectionAmount,
-//                        'commission_rate'  => $commissionRate,
-//                        'commission_amount'=> $commissionAmount,
-//                        'commission_month' => Carbon::parse($installment->date_of_payment)->format('Y-m'),
-//                        'status'           => 'pending',
-//                    ]);
-
                     EmployeeCommission::firstOrCreate(
                         [
                             'employee_id'   => $employee->id,
@@ -622,9 +605,9 @@ class CaseController extends Controller
                     );
                 }
             }
-// ====== COMMISSION GENERATION END ======
-
-            $paid_amount->save();
+            $case->total_amount_paid = $newTotalPaid;
+            $case->total_amount_balance = $newBalance;
+            $case->save();
             //TODO send payment update email to client
         }
 
@@ -899,8 +882,8 @@ class CaseController extends Controller
     }
 
     public function debtorDetails($id){
-       $debtor_details = Cases::where('id', $id)->first();
-       $installments_details = Installment::where('case_id', $id)->get();
+       $debtor_details = Cases::where('id', $id)->with('debtors')->first();
+       $installments_details = Installment::where('case_id', $id)->where('update_type','field_visit_update')->get();
        return view('admin.debtor.debtor-details',compact('debtor_details','installments_details'));
     }
 

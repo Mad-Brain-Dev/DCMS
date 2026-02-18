@@ -16,6 +16,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Services\ClientService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -89,7 +90,7 @@ class ClientController extends Controller
                 $admin_fee_paid->admin_fee_amount = $request->admin_fee_paid;
                 $admin_fee_paid->client_id = $client->id;
                 $admin_fee_paid->collection_date = date('Y-m-d H:i:s');
-                $admin_fee_paid->collected_by_id = $request->collected_by_id == null ? 2 : $request->collected_by_id;
+                $admin_fee_paid->collected_by_id = $request->collected_by_id == null ? Auth::user()->id : $request->collected_by_id;
                 $admin_fee_paid->save();
 
 //                $client->client_id = $user->id;
@@ -102,7 +103,7 @@ class ClientController extends Controller
                     'success' => 'Data Fetched Successfully',
                     'result' =>  $client,
                 ];
-                event(new NewClientCreated($client));
+//                event(new NewClientCreated($client)); //Uncomment this line to send email to client after client create
                 return response()->json($data);
             } else {
                 $data = [

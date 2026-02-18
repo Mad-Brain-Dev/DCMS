@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Debtor extends Model
 {
@@ -22,5 +23,10 @@ class Debtor extends Model
     public function case()
     {
         return $this->belongsTo(Cases::class, 'case_id');
+    }
+
+    public function installments(): HasMany
+    {
+        return $this->hasMany(Installment::class, 'debtor_id');
     }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Bank\BankDetailsController;
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Employee\Payment\EmployeePaymentController;
+use App\Http\Controllers\Admin\Invoice\InvoiceController;
 use App\Http\Controllers\Admin\Profile\UserProfileController;
 use App\Http\Controllers\Admin\Report\ReportController;
 use App\Http\Controllers\Admin\Role\RoleController;
@@ -214,6 +215,15 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
     //Bank details
     Route::resource('bank-details', BankDetailsController::class);
+
+    //invoice
+    Route::resource('invoices', InvoiceController::class);
+
+    Route::get('invoices/client/uninvoiced/installments', [InvoiceController::class, 'getClientInstallments'])
+        ->name('invoices.client-installments');
+    Route::patch('invoices/client/{invoice}/changeStatus',
+        [InvoiceController::class, 'updateStatus']
+    )->name('invoices.update-status');
 
 });
 

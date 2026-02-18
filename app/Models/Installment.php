@@ -5,12 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Installment extends Model
 {
     protected $fillable = [
         'case_id',
+        'debtor_id',
         'amount_paid',
+        'balance_before',
+        'balance_after',
+        'snapshot_total_paid',
+        'snapshot_total_balance',
+        'snapshot_total_debt',
         'next_payment_amount',
         'next_payment_date',
         'payment_method',
@@ -27,6 +34,7 @@ class Installment extends Model
 
     protected $casts = [
         'next_payment_date' => 'date',
+        'date_of_payment' => 'date',
     ];
     public function case()
     {
@@ -175,5 +183,25 @@ class Installment extends Model
             'tooltip' => 'Payment was made after the expected date.'
         ];
     }
+
+    public function invoices()
+    {
+        return $this->belongsToMany(
+            Invoice::class,
+            'invoice_installments'
+        );
+    }
+
+    public function debtor (): BelongsTo
+    {
+        return $this->belongsTo(Debtor::class,'debtor_id');
+    }
+
+    public function collectedBy (): BelongsTo
+    {
+        return $this->belongsTo(User::class,'collected_by_id');
+    }
+
+
 
 }

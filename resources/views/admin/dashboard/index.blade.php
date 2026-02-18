@@ -122,7 +122,7 @@
                 <table class="table">
                     <tbody>
                     @foreach($leftStatuses as $status)
-                        <tr class="{{$status->display_color}}" style="cursor: pointer;" id="{{$status->value}}">
+                        <tr class="{{$status->table_row_color}}" style="cursor: pointer;" id="{{$status->value}}">
                             <td>{{$status->name}} ({{$status->short_name}})</td>
                             <td class="text-end">{{ $statusCounts[$status->short_name] ?? 0 }}</td>
                         </tr>
@@ -136,7 +136,7 @@
                 <table class="table">
                     <tbody>
                     @foreach($rightStatuses as $status)
-                        <tr class="{{$status->display_color}}" style="cursor: pointer;" id="{{$status->value}}">
+                        <tr class="{{$status->table_row_color}}" style="cursor: pointer;" id="{{$status->value}}">
                             <td>{{$status->name}} ({{$status->short_name}})</td>
                             <td class="text-end">{{ $statusCounts[$status->short_name] ?? 0 }}</td>
                         </tr>

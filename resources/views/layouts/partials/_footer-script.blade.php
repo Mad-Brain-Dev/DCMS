@@ -26,6 +26,11 @@
 
 
 <script>
+    $(document).ready(function() {
+        $('input[type=number]').on('wheel', function(e) {
+            e.preventDefault();
+        });
+    });
     toastr.options =
     {
         "closeButton": true,

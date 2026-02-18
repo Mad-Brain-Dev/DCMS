@@ -6,11 +6,11 @@
         "normal": "ionicons_normal_48dedf54a1d47d844901b1954819a258"
     },
     "font awesome 5 brands": {
-        "normal": "font_awesome_5_brands_normal_435419d0815c876e01b28f37c1980992"
+        "normal": "font_awesome_5_brands_normal_5aa91754f1b8ab9921ec65040d0398d7"
     },
     "font awesome 5 free": {
-        "normal": "C:\\laragon\\www\\DCMS\\storage\\fonts\/font_awesome_5_free_normal_8a60fd2a0cc77ec5b4bee42e69d452a6",
-        "900": "font_awesome_5_free_900_02e5e740f5bdf9b97e727c75344a6813"
+        "normal": "font_awesome_5_free_normal_8f1c1da98dac9c284cefb97b004bd96e",
+        "900": "D:\\laragon\\www\\DCMS\\storage\\fonts\/font_awesome_5_free_900_85a3b14fbfc79f50bc9c42a8003db748"
     },
     "dripicons-v2": {
         "normal": "dripicons_v2_normal_83ff4a12422e9a3dab2f35d586ef58ea"
@@ -28,5 +28,63 @@
         "500": "C:\\laragon\\www\\DCMS\\storage\\fonts\/roboto_500_5774d6fb05eba3d096525f821dbe4137",
         "bold": "C:\\laragon\\www\\DCMS\\storage\\fonts\/roboto_bold_8db5cb5d0586c1e891426d13097b1d04",
         "900": "roboto_900_7bf41cacaff90e7097ddd49fb9296601"
+    },
+    "barlow": {
+        "100_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_100_italic_3654ce47c080ec69a71af7dee77d2af7",
+        "200_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_200_italic_6f52ed796f43ab06cd10c986ac240f43",
+        "300_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_300_italic_4026399910eaa2839788b2567cc4bc5f",
+        "italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_italic_e5467f288f3a2db0e0f4901c78e005f6",
+        "500_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_500_italic_0acc47237ffdbfa67f5a2868984b1d65",
+        "600_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_600_italic_f689955e95fd664caaa8fcb8fcf1abff",
+        "bold_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_bold_italic_cea24daf8dc2af7a743d50b719c126ed",
+        "800_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_800_italic_76eadecfde05243fd378ea342fc1d626",
+        "900_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_900_italic_2e5bd8630e118b5ac8ca14ecea79f5b7",
+        "100": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_100_7cb7fd217a50120b9d7ba8db47878890",
+        "200": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_200_23395572fe565a9c9dac177a566aeb9e",
+        "300": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_300_8bb5a6aee6e905d73ec889c351e17646",
+        "normal": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_normal_b7695b60dbf5f5eb9c4ece630c5c7968",
+        "500": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_500_2c9c6563c4da794416b34c648faa88ac",
+        "600": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_600_e6c47230346e68c6e23dc126454eb515",
+        "bold": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_bold_ddb68f772d29608c53f1c5afb9c3b4ea",
+        "800": "D:\\laragon\\www\\DCMS\\storage\\fonts\/barlow_800_dfbc50c15cf9cbfa7b4f629359caed55",
+        "900": "barlow_900_fa07fef7ad0fdb35edd83e9b85fff86a"
+    },
+    "open sans": {
+        "300_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/open_sans_300_italic_6d076855114db3a756225a500eeaf796",
+        "italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/open_sans_italic_3581d05c794ff7ccc3ccac55c27d28aa",
+        "500_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/open_sans_500_italic_69de92ea06195e0206f69fac1b446e29",
+        "600_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/open_sans_600_italic_113031d28afc8e52e8b1556007335e0b",
+        "bold_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/open_sans_bold_italic_746a020ddb33bcc2eb2fc958dcdc1963",
+        "800_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/open_sans_800_italic_7be9736fe1345ead08db9c4ac60713fe",
+        "300": "D:\\laragon\\www\\DCMS\\storage\\fonts\/open_sans_300_eee70ffe92919281b4c3090c42249006",
+        "normal": "D:\\laragon\\www\\DCMS\\storage\\fonts\/open_sans_normal_fb8cbc3fa85ff7c317acbf9e1e9dedf3",
+        "500": "D:\\laragon\\www\\DCMS\\storage\\fonts\/open_sans_500_5ada76603ad473fc765110a1148dea31",
+        "600": "D:\\laragon\\www\\DCMS\\storage\\fonts\/open_sans_600_ec324eb3d6349b67548441ed0c3449eb",
+        "bold": "D:\\laragon\\www\\DCMS\\storage\\fonts\/open_sans_bold_ff234b764b5e232c41da6e83e382f185",
+        "800": "open_sans_800_21b83e2adfe3a30f299224c843259ea3"
+    },
+    "playfair display": {
+        "italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/playfair_display_italic_bab3bae3f62f67e682f698e956a7d149",
+        "500_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/playfair_display_500_italic_e95060c97aec28ca995b127b12fea810",
+        "600_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/playfair_display_600_italic_be970edc640830d5c65326a03b66a69f",
+        "bold_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/playfair_display_bold_italic_1cffb2eca58523c39821701c0985fd0e",
+        "800_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/playfair_display_800_italic_7d0d750383f05549082dc87ebf7022de",
+        "900_italic": "D:\\laragon\\www\\DCMS\\storage\\fonts\/playfair_display_900_italic_808e890cc5f750b5c26739146ed5b6af",
+        "normal": "D:\\laragon\\www\\DCMS\\storage\\fonts\/playfair_display_normal_ec27347baaef350a626d943a8fab74c6",
+        "500": "D:\\laragon\\www\\DCMS\\storage\\fonts\/playfair_display_500_91bf4bd454b182f9e98cf4c96be8c8ba",
+        "600": "D:\\laragon\\www\\DCMS\\storage\\fonts\/playfair_display_600_555a1287914f9012e021a3b119eb30d7",
+        "bold": "D:\\laragon\\www\\DCMS\\storage\\fonts\/playfair_display_bold_1e531eb7e3e1e9744697b9dd01c254b4",
+        "800": "D:\\laragon\\www\\DCMS\\storage\\fonts\/playfair_display_800_f72f2e25e2e0baae80bb5e49c05df3ac",
+        "900": "playfair_display_900_50fdbe4bbbec819ad655c1852fc26931"
+    },
+    "font awesome 6 brands": {
+        "normal": "font_awesome_6_brands_normal_5aa91754f1b8ab9921ec65040d0398d7"
+    },
+    "font awesome 6 free": {
+        "normal": "D:\\laragon\\www\\DCMS\\storage\\fonts\/font_awesome_6_free_normal_8f1c1da98dac9c284cefb97b004bd96e",
+        "900": "font_awesome_6_free_900_85a3b14fbfc79f50bc9c42a8003db748"
+    },
+    "fontawesome": {
+        "normal": "fontawesome_normal_7a14673ce35632e39e645a3d6f1a41c1"
     }
 }

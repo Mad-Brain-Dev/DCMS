@@ -11,7 +11,7 @@
                             <div class="col-md-3">
                                 <span>Case No. : {{ $case->case_sku }}</span> <br>
                                 <span>Client Name : {{ $case->client->name }} </span> <br>
-                                <span>Current Status : {{ $case->current_status }}</span> <br>
+                                <span>Current Status : {{ getCaseStatus($case->current_status) }}</span> <br>
                                 <span>Next Payment Date :
                                                                             @if (empty($installment->next_payment_date))
                                         <span>N/A</span>
@@ -131,7 +131,7 @@
                                         <td>{{ $debtor->phone }}</td>
                                         <td>{{ $debtor->email }}</td>
                                         <td>{{ $debtor->address }}</td>
-                                        <td>{{ 100 }}</td>
+                                        <td>{{ $debtor->installments->sum('amount_paid') ?? 0 }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -560,7 +560,7 @@
                                         <label class="form-label">Next Payment Amount</label>
                                         <input type="number" step="0.01" min="0" max="10000000000000"
                                                name="next_payment_amount" value="{{ old('next_payment_amount') }}" class="form-control" placeholder="Enter Next Payment Amount"
-                                               id="next_payment_amount">
+                                               id="next_payment_amount" onwheel="return false;">
                                         @error('next_payment_amount')
                                         <p class="error">{{ $message }}</p>
                                         @enderror
@@ -569,6 +569,18 @@
                                         <label class="form-label">Next Payment Date</label>
                                         <input type="date" value="{{ old("next_payment_date") }}" name="next_payment_date" class="form-control"
                                                placeholder="Enter Interest Start Date">
+                                        @error('next_payment_date')
+                                        <p class="error">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Debtor</label>
+                                        <select class="form-select" aria-label="Default select example" name="debtor_id">
+                                            <option value="">Select Debtor</option>
+                                            @foreach ($debtors as $debtor)
+                                                <option value="{{ $debtor->id }}" {{ old('debtor_id') == $debtor->id ? 'selected' : '' }}>{{ $debtor->name }}</option>
+                                            @endforeach
+                                        </select>
                                         @error('next_payment_date')
                                         <p class="error">{{ $message }}</p>
                                         @enderror
@@ -588,10 +600,10 @@
                                         <label class="form-label d-block">Pay to who</label>
                                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                             <label class="btn btn-secondary active">
-                                                <input type="radio" name="pay_to_who" id="securre" autocomplete="off" checked> Securre
+                                                <input type="radio" name="pay_to_who" id="securre " autocomplete="off" value="securre" checked> Securre
                                             </label>
                                             <label class="btn btn-secondary">
-                                                <input type="radio" name="pay_to_who" id="client" autocomplete="off"> Client
+                                                <input type="radio" name="pay_to_who" id="client" autocomplete="off" value="client"> Client
                                             </label>
                                         </div>
                                     </div>
@@ -1116,7 +1128,7 @@
                                                         <td>{{ $debtor->phone }}</td>
                                                         <td>{{ $debtor->email }}</td>
                                                         <td>{{ $debtor->address }}</td>
-                                                        <td>{{ 100 }}</td>
+                                                        <td>{{ $debtor->installments->sum('amount_paid') ?? 0 }}</td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>

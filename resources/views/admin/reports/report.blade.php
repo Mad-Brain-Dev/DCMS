@@ -62,7 +62,7 @@
                                         <tbody class="table-body">
                                         @foreach($dbBalanceData as $item)
                                             <tr>
-                                                <td>{{$item->name}}</td>
+                                                <td>{{$item->installments->last()?->debtor->name??'-'}}</td>
                                                 <td>{{date('d-m-Y', strtotime($item->installments->last()?->date_of_payment))}}</td>
                                                 <td>$ {{$item->installments->last()?->date_of_payment != null ? number_format($item->installments->last()?->amount_paid, 2, '.', ','): 'N/A'}}</td>
                                                 <td>{{date('d-m-Y', strtotime($item->installments->last()?->next_payment_date))}}</td>

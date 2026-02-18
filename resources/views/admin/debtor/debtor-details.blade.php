@@ -23,11 +23,11 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h3 class="text-center mt-3 underline">Debtor Details</h5>
+                <h3 class="text-center mt-3 underline">Debtor Details</h3>
                     <h6>Case Number : {{ $debtor_details->case_sku }}</h6>
                     <h6>Client Name : {{ $debtor_details->clientDetails->name }}</h6>
-                    <h6>Client Company : {{ $debtor_details->clientDetails->company_name }}</h6>
-                    <h6>Debtor Name : {{ $debtor_details->name }} </h6>
+                    <h6>Client ID : {{ $debtor_details->client->nric }}</h6>
+                    <h6>Debtor Name : {{ $debtor_details->debtors[0]->name }} </h6>
             </div>
         </div>
         <div class="row mt-3">

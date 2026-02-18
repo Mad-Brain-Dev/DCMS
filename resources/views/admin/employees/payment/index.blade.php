@@ -1,32 +1,3 @@
-{{--@extends('layouts.master')--}}
-
-{{--@section('content')--}}
-{{--    <div class="row">--}}
-{{--        <div class="col-sm-12">--}}
-{{--            <div class="card">--}}
-{{--                <div class="card-body">--}}
-{{--                    <div class="d-flex justify-content-between">--}}
-{{--                        <h4 class="card-title mb-3">Employees</h4>--}}
-{{--                        @can('Employee Create')--}}
-{{--                        <a href="{{ route('admin.employees.create') }}" class="btn btn-sm btn-primary text-capitalize" style="padding-top: 8px;">Create Employee</a>--}}
-{{--                        @endcan--}}
-{{--                    </div>--}}
-{{--                    {!! $dataTable->table(['class'=>'table-responsive']) !!}--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
-{{--@endsection--}}
-
-{{--@push('style')--}}
-{{--    @include('includes.styles.datatable')--}}
-{{--@endpush--}}
-
-{{--@push('script')--}}
-{{--    @include('includes.scripts.datatable')--}}
-{{--@endpush--}}
-
 @extends('layouts.master')
 
 @section('content')
@@ -39,17 +10,14 @@
         <div class="col-12 mb-3">
             <div class="d-flex justify-content-between align-items-center">
                 <h4 class="mb-0"></h4>
-
                 <form method="GET" id="monthFilterForm" class="d-flex align-items-center">
                     <label class="me-2 fw-bold">Month:</label>
-                    <select name="month" class="form-select form-select-sm" style="width:200px;">
-                        @foreach($months as $value => $label)
-                            <option value="{{ $value }}"
-                                {{ $selectedMonth == $value ? 'selected' : '' }}>
-                                {{ $label }}
-                            </option>
-                        @endforeach
-                    </select>
+
+                    <input type="month"
+                           name="month"
+                           class="form-control form-control-sm shadow-sm"
+                           style="width:200px; border-radius:8px;"
+                           value="{{ request('month') ?? now()->format('Y-m') }}">
                 </form>
             </div>
         </div>
@@ -397,6 +365,9 @@
             });
         }
 
+        $('input[name="month"]').on('change', function () {
+            $('#monthFilterForm').submit();
+        });
 
     </script>
 @endpush

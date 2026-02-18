@@ -215,16 +215,6 @@ if (!function_exists('get_default_image')) {
 }
 
 
-if (!function_exists('generate_slug')) {
-    function generate_slug($value)
-    {
-        try {
-            return preg_replace('/\s+/u', '-', trim($value));
-        } catch (\Exception $e) {
-            return '';
-        }
-    }
-}
 if (!function_exists('record_custom_flash')) {
 
     function record_custom_flash($message = null)
@@ -579,7 +569,8 @@ if (!function_exists('totalBalance')) {
         $installment = Installment::where('case_id',$case_id)->sum('amount_paid');
         $case = Cases::find($case_id);
 
-        return $balance = number_format($case->total_amount_owed - $installment,2);
+//        return $balance = number_format($case->total_amount_owed - $installment,2);
+        return $case->total_amount_owed - $installment;
     }
 }
 
@@ -597,9 +588,45 @@ if (!function_exists('totalPaid')) {
 
     function totalPaid($case_id)
     {
+        return Installment::where('case_id',$case_id)->sum('amount_paid');
+    }
+}
+
+if (!function_exists('totalAmountOwed')) {
+
+    function totalAmountOwed($case_id)
+    {
         $installments = Installment::where('case_id',$case_id)->sum('amount_paid');
         $case = Cases::find($case_id);
         return $totalPaid = number_format($case->total_amount_owed - $installments,2);
     }
 }
 
+
+if (!function_exists('formatPaidTo')){
+    function formatPaidTo($value) {
+        if (!$value) {
+            return '-';
+        }
+
+        $value = strtolower($value);
+
+        if ($value === 'securre') {
+            return 'Securre';
+        }
+        if ($value === 'client') {
+            return 'Client';
+        }
+
+        return $value;
+    }
+}
+
+if (!function_exists('getCaseStatus')){
+    function getCaseStatus($value) {
+        if (!$value) {
+            return '-';
+        }
+        return CaseStatus::where('value',$value)->first()->name;
+    }
+}
