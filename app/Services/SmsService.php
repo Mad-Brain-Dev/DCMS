@@ -13,9 +13,10 @@ class SmsService
 
     public function __construct()
     {
-        $this->apiKey   = config('services.smsala.api_key');
-        $this->senderId = config('services.smsala.sender_id');
-        $this->baseUrl  = config('services.smsala.base_url');
+
+        $this->apiKey   = config('services.smsala.api_key') ?? '';
+        $this->senderId = config('services.smsala.sender_id') ?? '';
+        $this->baseUrl  = config('services.smsala.base_url') ?? '';
     }
 
     public function send(string $mobile, string $message): array
