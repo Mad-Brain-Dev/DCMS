@@ -37,7 +37,7 @@
             <div>
                 <div class="tax_heading_div">
                     <div class="tax_img">
-                        <img src="images/securre.png" alt="" />
+                        <img src="{{asset('images/securre.png')}}" alt="" />
                     </div>
 
                     <div class="tax_span_text">

@@ -70,7 +70,7 @@
                 <div class="statement_info_1">
                     <p>Statement #: <span class="stat_num">{{ $invoice->invoice_number }}</span></p>
                     <p>Date: <span class="stat_date">{{ $invoice->issued_date->format('F d, Y') }}</span></p>
-                    <p>Customer ID: <span class="stat_cus_id">{{ $client->abbr }}</span></p>
+                    <p>Customer ID: <span class="stat_cus_id">{{ $client->nric }}</span></p>
                     <p>Client Name: <span class="stat_cl_name">{{ $client->name }}</span></p>
                 </div>
 
