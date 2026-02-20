@@ -58,6 +58,30 @@ class UserSeeder extends Seeder
                 'phone'             => '012345678910',
             ],
             [
+                'first_name'        => 'Manager',
+                'last_name'         => 'One',
+                'Name'         => 'Manager One',
+                'email'             => 'manager@app.com',
+                'email_verified_at' => now(),
+                'password'          => Hash::make("12345678"),   // 12345678
+                'user_type'         => User::USER_TYPE_EMPLOYEE,
+                'status'            => GlobalConstant::STATUS_ACTIVE,
+                'remember_token'    => Str::random(60),
+                'phone'             => '012345644487',
+            ],
+            [
+                'first_name'        => 'Collector',
+                'last_name'         => 'One',
+                'Name'         => 'Collector One',
+                'email'             => 'collector@app.com',
+                'email_verified_at' => now(),
+                'password'          => Hash::make("12345678"),   // 12345678
+                'user_type'         => User::USER_TYPE_EMPLOYEE,
+                'status'            => GlobalConstant::STATUS_ACTIVE,
+                'remember_token'    => Str::random(60),
+                'phone'             => '012347895487',
+            ],
+            [
                 'first_name'        => 'Client',
                 'last_name'         => 'Last',
                 'Name'              => 'Client Lat',
@@ -102,6 +126,26 @@ class UserSeeder extends Seeder
                 'phone'             => '012345678910',
                 'role' =>'Employee',
                 'commission_rate'=>5,
+            ],
+            [
+                'user_id'        => 4,
+                'first_name'        => 'Manager',
+                'last_name'         => 'One',
+                'Name'         => 'Manager One',
+                'email'             => 'manager@app.com',
+                'status'            => GlobalConstant::STATUS_ACTIVE,
+                'role' =>'Manager IC',
+                'commission_rate'=>15,
+            ],
+            [
+                'user_id'        => 5,
+                'first_name'        => 'Collector',
+                'last_name'         => 'One',
+                'Name'         => 'Collector One',
+                'email'             => 'collector@app.com',
+                'status'            => GlobalConstant::STATUS_ACTIVE,
+                'role' =>'Collector IC',
+                'commission_rate'=>10,
             ],
         ];
         foreach ($employees as $employee){
