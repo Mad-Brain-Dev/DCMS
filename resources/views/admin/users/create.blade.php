@@ -83,8 +83,8 @@
                             </div> --}}
 
                             <div class="mb-3">
-                                <label class="form-label">Select Grade <span class="error">*</span></label>
-                                <select class="form-control select2" name="role[]" required multiple>
+                                <label class="form-label">Select Role <span class="error">*</span></label>
+                                <select class="form-control select2" name="role" required>
                                     <option selected disabled>Select One</option>
                                     @forelse ($roles as $role)
                                         <option value="{{ $role->name }}"

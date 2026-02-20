@@ -11,6 +11,8 @@ class Client extends Model
 
     protected $casts = [
         'date_of_agreement ' => 'datetime:Y-m-d',
+        'date_of_agreement'=>'date',
+        'date_of_expiry'=>'date'
       ];
     protected $fillable = [
         'name',

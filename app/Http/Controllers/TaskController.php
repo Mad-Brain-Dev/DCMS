@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cases;
+use App\Models\Employee;
 use App\Models\FieldVisitUpdate;
 use App\Models\GeneralCaseUpdate;
 use App\Models\Installment;
@@ -72,7 +73,7 @@ class TaskController extends Controller
         $general_case_update = GeneralCaseUpdate::where("installment_id", "=", $installment->id)->first();
         $fv_case_update = FieldVisitUpdate::where("installment_id", "=", $installment->id)->first();
 
-        $employees = User::where('user_type', 'employee')->get();
+        $employees = Employee::where('role', 'Employee')->get();
         return view("admin.tasks.edit", compact("employees", "installment", "task", "general_case_update", "fv_case_update"));
     }
 
@@ -106,71 +107,41 @@ class TaskController extends Controller
         // Find the existing installment record
         $installment = Installment::where('id', $task->installment_id)->first();
 
-        if($installment->update_update_type == "general"){
+        if($installment->update_type == "general_update"){
             if ($installment) {
                 // Update the installment record with new data
                 $installment->update([
-                    'amount_paid' => $request->amount_paid,
-                    'next_payment_amount' => $request->next_payment_amount,
-                    'collected_by_id' => $request->collected_by_id ?? 2, // Default to 2 if null
-                    'next_payment_date' => $request->next_payment_date,
-                    'payment_method' => $request->payment_method,
-                    'assign_type' => $request->assign_type,
+//                    'amount_paid' => $request->amount_paid,
+//                    'next_payment_amount' => $request->next_payment_amount,
+//                    'collected_by_id' => $request->collected_by_id ?? 2, // Default to 2 if null
+//                    'next_payment_date' => $request->next_payment_date,
+//                    'payment_method' => $request->payment_method,
+//                    'assign_type' => $request->assign_type,
                     'fv_date' => $request->fv_date,
-                    'date_of_payment' => $request->payment_date,
+//                    'date_of_payment' => $request->payment_date,
                 ]);
             } else {
                 // If installment doesn't exist, you may handle this case separately (e.g., create a new one or show an error).
                 return back()->withErrors('Installment not found');
             }
 
-//            // Handle the general case updates
-//            $gn_update = GeneralCaseUpdate::where('installment_id', $installment->id)->first();
-//
-//            // If file(s) are uploaded
-//            if ($request->gn_updates) {
-//                foreach ($request->gn_updates as $gn_update_file) {
-//                    $imageName = time() . rand(1000, 10000) . '.' . $gn_update_file->extension();
-//                    $gn_update_file->move(public_path('documents'), $imageName);
-//
-//                    // Update the GeneralCaseUpdate record with the new file and other details
-//                    if ($gn_update) {
-//                        $gn_update->update([
-//                            'remarks' => $request->remarks,
-//                            'fv_date' => $request->fv_date,
-//                            'gn_summary' => $request->gn_summary,
-//                            'gn_update' => $imageName,
-//                        ]);
-//                    } else {
-//                        // If no existing GeneralCaseUpdate record, create a new one
-//                        $gn_update = GeneralCaseUpdate::create([
-//                            'remarks' => $request->remarks,
-//                            'fv_date' => $request->fv_date,
-//                            'gn_summary' => $request->gn_summary,
-//                            'gn_update' => $imageName,
-//                        ]);
-//                    }
-//                }
-//            }
-
-            // Get all previous GN updates for this installment
-            $previous_gn_updates = GeneralCaseUpdate::where('installment_id', $installment->id)->get();
-
-// Delete all previous files
-            foreach ($previous_gn_updates as $gn_update) {
-                if ($gn_update && $gn_update->gn_update) {
-                    $previousFile = public_path('documents/' . $gn_update->gn_update);
-                    if (file_exists($previousFile)) {
-                        @unlink($previousFile); // suppress errors if file doesn't exist
-                    }
-                }
-            }
-
-// Delete the previous records from database
-            GeneralCaseUpdate::where('installment_id', $installment->id)->delete();
-
 // Now save the new uploaded file(s)
             if ($request->gn_updates) {
+                // Get all previous GN updates for this installment
+                $previous_gn_updates = GeneralCaseUpdate::where('installment_id', $installment->id)->get();
+
+// Delete all previous files
+                foreach ($previous_gn_updates as $gn_update) {
+                    if ($gn_update && $gn_update->gn_update) {
+                        $previousFile = public_path('documents/' . $gn_update->gn_update);
+                        if (file_exists($previousFile)) {
+                            @unlink($previousFile); // suppress errors if file doesn't exist
+                        }
+                    }
+                }
+
+// Delete the previous records from database
+                GeneralCaseUpdate::where('installment_id', $installment->id)->delete();
                 foreach ($request->gn_updates as $gn_update_file) {
                     $imageName = time() . rand(1000, 10000) . '.' . $gn_update_file->extension();
 
@@ -189,12 +160,16 @@ class TaskController extends Controller
                 }
             }else {
                 // If no file is uploaded, just update or create the GeneralCaseUpdate without gn_update file
-                if ($gn_update) {
-                    $gn_update->update([
-                        'remarks' => $request->remarks,
-                        'fv_date' => $request->fv_date,
-                        'gn_summary' => $request->gn_summary,
-                    ]);
+                $gn_updates =  GeneralCaseUpdate::where('installment_id', $installment->id)->get();
+                if ($gn_updates) {
+
+                    foreach ($gn_updates as $gn_update){
+                        $gn_update->remarks = $request->remarks;
+                        $gn_update->fv_date = $request->fv_date;
+                        $gn_update->gn_summary = $request->gn_summary;
+                        $gn_update->save();
+                    }
+
                 } else {
                     // If no existing GeneralCaseUpdate record, create a new one
                     $gn_update = GeneralCaseUpdate::create([
@@ -206,12 +181,6 @@ class TaskController extends Controller
                     ]);
                 }
             }
-
-            // Update the general case update with the installment ID
-//            if ($gn_update) {
-//                $gn_update->installment_id = $installment->id;
-//                $gn_update->save();
-//            }
 
         }
         else{
@@ -231,37 +200,6 @@ class TaskController extends Controller
                 // If installment doesn't exist, you may handle this case separately (e.g., create a new one or show an error).
                 return back()->withErrors('Installment not found');
             }
-
-//            // Handle the general case updates
-//            $fv_update = FieldVisitUpdate::where('installment_id', $installment->id)->first();
-//
-//            // If file(s) are uploaded
-//            if ($request->fv_updates) {
-//                foreach ($request->fv_updates as $fv_update_file) {
-//                    $imageName = time() . rand(1000, 10000) . '.' . $fv_update_file->extension();
-//                    $fv_update_file->move(public_path('documents'), $imageName);
-//
-//                    // Update the GeneralCaseUpdate record with the new file and other details
-//                    if ($fv_update) {
-//                        $fv_update->update([
-//                            'remarks' => $request->remarks,
-//                            'fv_date' => $request->fv_date,
-//                            'fv_summary' => $request->fv_summary,
-//                            'fv_update' => $imageName,
-//                        ]);
-//                    } else {
-//                        // If no existing GeneralCaseUpdate record, create a new one
-//                        $fv_update = FieldVisitUpdate::create([
-//                            'remarks' => $request->remarks,
-//                            'fv_date' => $request->fv_date,
-//                            'fv_summary' => $request->fv_summary,
-//                            'fv_update' => $imageName,
-//                        ]);
-//                    }
-//                }
-//            }
-            // Handle the Field Visit updates
-            // Get all previous FV updates for this installment
             $previous_fv_updates = FieldVisitUpdate::where('installment_id', $installment->id)->get();
 
 // Delete all previous files
@@ -296,13 +234,15 @@ class TaskController extends Controller
                     ]);
                 }
             } else {
+                $fv_updates = FieldVisitUpdate::where('installment_id', $installment->id)->delete();
                 // If no file is uploaded, just update or create the GeneralCaseUpdate without gn_update file
-                if ($fv_update) {
-                    $fv_update->update([
-                        'remarks' => $request->remarks,
-                        'fv_date' => $request->fv_date,
-                        'fv_summary' => $request->fv_summary,
-                    ]);
+                if ($fv_updates) {
+                    foreach ($fv_updates as $fv_update){
+                        $fv_update->remarks = $request->remarks;
+                        $fv_update->fv_date = $request->fv_date;
+                        $fv_update->fv_summary = $request->fv_summary;
+                        $fv_update->save();
+                    }
                 } else {
                     // If no existing GeneralCaseUpdate record, create a new one
                     $fv_update = FieldVisitUpdate::create([
@@ -314,12 +254,6 @@ class TaskController extends Controller
                     ]);
                 }
             }
-
-            // Update the general case update with the installment ID
-//            if ($fv_update) {
-//                $fv_update->installment_id = $installment->id;
-//                $fv_update->save();
-//            }
         }
 
 

@@ -24,7 +24,6 @@ class SendClientWelcomeMail
      */
     public function handle(NewClientCreated $event)
     {
-        $client = Client::first();
         Mail::to($event->client->email)->send(new ClientMail($event->client));
     }
 }

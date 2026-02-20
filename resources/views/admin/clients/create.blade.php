@@ -38,22 +38,6 @@
                                 @enderror
                             </div>
 
-{{--                            <div class="mb-3 col-md-3">--}}
-{{--                                <label class="form-label">Company Name</label>--}}
-{{--                                <input type="text" name="company_name" class="form-control"--}}
-{{--                                    placeholder="Enter CL Company Name" value="{{ old('company_name') }}">--}}
-{{--                                @error('company_name')--}}
-{{--                                    <p class="error">{{ $message }}</p>--}}
-{{--                                @enderror--}}
-{{--                            </div>--}}
-{{--                            <div class="mb-3 col-md-3">--}}
-{{--                                <label class="form-label">Company UEN</span></label>--}}
-{{--                                <input type="text" name="company_uen" class="form-control"--}}
-{{--                                    placeholder="Enter CL Company Uen" value="{{ old('company_uen') }}">--}}
-{{--                                @error('company_uen')--}}
-{{--                                    <p class="error">{{ $message }}</p>--}}
-{{--                                @enderror--}}
-{{--                            </div>--}}
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">PIC Name</label>
                                 <input type="text" name="pic_name" class="form-control"
@@ -277,14 +261,6 @@
                                 @enderror
                             </div>
 
-{{--                            <div class="mb-3 col-md-4">--}}
-{{--                                <label class="form-label">Payment Terms <span class="error">*</span></label>--}}
-{{--                                <input type="text" name="payment_terms" class="form-control" required="" placeholder="Payment Terms"--}}
-{{--                                       value="{{ old('payment_terms') }}">--}}
-{{--                                @error('payment_terms')--}}
-{{--                                <p class="error">{{ $message }}</p>--}}
-{{--                                @enderror--}}
-{{--                            </div>--}}
                         </div>
                     </div>
                 </div>

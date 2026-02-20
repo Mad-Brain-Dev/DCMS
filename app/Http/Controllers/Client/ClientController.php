@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\DataTables\ClientDataTable;
 use App\DataTables\TotalMonthlyAdminCollectedFee;
+use App\Events\ClientNotificationEvent;
 use App\Events\NewClientCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientEditRequest;
@@ -11,6 +12,7 @@ use App\Http\Requests\ClientRequest;
 use App\Models\AdminFee;
 use App\Models\Cases;
 use App\Models\Client;
+use App\Models\Employee;
 use App\Models\Installment;
 use App\Models\Role;
 use App\Models\User;
@@ -103,7 +105,7 @@ class ClientController extends Controller
                     'success' => 'Data Fetched Successfully',
                     'result' =>  $client,
                 ];
-//                event(new NewClientCreated($client)); //Uncomment this line to send email to client after client create
+                event(new ClientNotificationEvent($client, 'welcome'));
                 return response()->json($data);
             } else {
                 $data = [
@@ -122,7 +124,7 @@ class ClientController extends Controller
     {
         set_page_meta('Client Details');
         $client = Client::find($id);
-        $employees = User::where('user_type', 'employee')->get();
+        $employees = Employee::all();
         $cases = Cases::where('client_id', $client->client_id)->get();
         return view('admin.clients.show', compact('client', 'cases', 'employees'));
     }
@@ -171,7 +173,7 @@ class ClientController extends Controller
     public function printableClientAgreement($id)
     {
         $client_details = Client::find($id);
-        return view('admin.agreement.client-agreement', compact('client_details'));
+        return view('template.contract', compact('client_details'));
     }
     public function updateAdminFee(Request $request, $id)
     {

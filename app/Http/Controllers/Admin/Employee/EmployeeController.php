@@ -105,9 +105,8 @@ class EmployeeController extends Controller
         try {
             set_page_meta('Edit Employee');
             $employee = $this->employeeService->get($id);
-           // $userRole = $user->roles->pluck('name')->toArray();
-           // $roles = Role::latest()->get();
-            return view('admin.employees.edit', compact('employee'));
+            $roles = Role::whereIn('name', ['Manager IC', 'Collector IC', 'Employee'])->get();
+            return view('admin.employees.edit', compact('employee','roles'));
         } catch (\Exception $e) {
             log_error($e);
         }
@@ -120,11 +119,23 @@ class EmployeeController extends Controller
     public function update(EmployeeEditRequest $request, string $id)
     {
         $data = $request->validated();
+
         try {
-         $employee = $this->employeeEditService->storeOrUpdate($data, $id);
-         $edited_employee = User::find($id);
-         $edited_employee->name =  $edited_employee->first_name .' '. $edited_employee->last_name;
-         $edited_employee->save();
+            $employee = $this->employeeEditService->storeOrUpdate($data, $id);
+            $edited_employee = User::find($id);
+            $edited_employee->name =  $edited_employee->first_name .' '. $edited_employee->last_name;
+            $edited_employee->save();
+
+            $e = Employee::where('user_id',$id)->first();
+            $e->first_name = $edited_employee->first_name;
+            $e->last_name = $edited_employee->last_name;
+            $e->name = $edited_employee->name;
+            $e->email = $edited_employee->email;
+            $e->phone = $edited_employee->phone;
+            $e->role = $request->role;
+            $e->commission_rate = $request->commission_rate;
+            $e->save();
+
 
         //  $user->syncRoles([$request->input('role')]);
           record_updated_flash();
@@ -139,8 +150,9 @@ class EmployeeController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->employeeService->delete($id);
         try {
-            $this->employeeService->delete($id);
+
             record_deleted_flash();
             return back();
         } catch (\Exception $e) {

@@ -15,6 +15,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class ClientDataTable extends DataTable
 {
+
     /**
      * Build the DataTable class.
      *
@@ -121,7 +122,7 @@ class ClientDataTable extends DataTable
             // Column::make('avatar', 'avatar')->title('Avatar'),
             Column::make('name', 'name')->title('Name'),
             Column::make('company_name', 'company_name')->title('Total Case'),
-            Column::make('current_status', 'current_status')->title('Pending Case'),
+//            Column::make('current_status', 'current_status')->title('Pending Case'),
 
         ];
     }

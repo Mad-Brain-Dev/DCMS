@@ -127,11 +127,6 @@ if (!function_exists('days_ago_from_now')) {
 
         $data = $string ? implode(', ', $string) . ' ago' : 'just now';
         return $data;
-        //        Posted 0 days ago
-        //        $earlier = new DateTime(now());
-        //        $later = new DateTime($date);
-        //
-        //        return $later->diff($earlier)->format("%a"); //3
     }
 }
 
@@ -283,8 +278,9 @@ if (!function_exists('custom_flash')) {
 
     function custom_flash($title = null, $message = null)
     {
-        Session::flash('custom_title', $title);
-        Session::flash('custom_message', $message);
+//        Session::flash('custom_title', $title);
+//        Session::flash('custom_message', $message);
+        Session::flash($title, $message ?? 'Something is wrong!');
     }
 }
 
@@ -360,40 +356,6 @@ if (!function_exists('user_fullname')) {
     }
 }
 
-if (!function_exists('work_study_year_showing')) {
-
-    function work_study_year_showing($data)
-    {
-        if ($data->start_date && $data->end_date) {
-            $start = explode("-", $data->start_date);
-            $end = explode("-", $data->end_date);
-            return $start[0] . ' - ' . $end[0];
-        } elseif ($data->start_date && $data->is_present) {
-            $start = explode("-", $data->start_date);
-            return $start[0] . ' - Present ';
-        } else {
-            return 'N/A';
-        }
-    }
-}
-
-
-
-if (!function_exists('show_company_type')) {
-
-    function show_company_type($type)
-    {
-        if ($type == 'sponsorship') {
-            return 'Sponsorship';
-        } elseif ($type == 'seeking-students') {
-            return 'Seeking Students';
-        } elseif ($type == 'event') {
-            return 'Host Events / Seminars';
-        } else {
-            return '';
-        }
-    }
-}
 
 
 if (!function_exists('getImage')) {
@@ -407,14 +369,6 @@ if (!function_exists('getImage')) {
     }
 }
 
-if (!function_exists('show_company_name')) {
-
-    function show_company_name($user_id)
-    {
-        $user =  User::where('id', $user_id)->select('id', 'first_name', 'last_name', 'company_name')->first();
-        return $user->company_name;
-    }
-}
 
 if (!function_exists('show_limited_string')) {
 
@@ -424,32 +378,7 @@ if (!function_exists('show_limited_string')) {
     }
 }
 
-if (!function_exists('course_progress_pecentage')) {
 
-    function course_progress_pecentage($course_id)
-    {
-        $percentage = 0;
-        $completd = CompletedStudentCourse::where(['course_id' => $course_id, 'student_id' => auth()->id()])->count();
-        $total = CourseLesson::where('course_id', $course_id)->count();
-
-        if ($total > 0 && $completd > 0) {
-            $percentage = round(($completd / $total) * 100);
-        }
-        return $percentage;
-    }
-}
-
-if (!function_exists('is_completd_lesson')) {
-
-    function is_completd_lesson($cid, $mid, $lid)
-    {
-        $found = CompletedStudentCourse::where(['course_id' => $cid, 'module_id' => $mid, 'lesson_id' => $lid, 'student_id' => auth()->id()])->first();
-        if ($found) {
-            return true;
-        }
-        return false;
-    }
-}
 
 if (!function_exists('commission')) {
 
@@ -569,7 +498,6 @@ if (!function_exists('totalBalance')) {
         $installment = Installment::where('case_id',$case_id)->sum('amount_paid');
         $case = Cases::find($case_id);
 
-//        return $balance = number_format($case->total_amount_owed - $installment,2);
         return $case->total_amount_owed - $installment;
     }
 }
@@ -629,4 +557,36 @@ if (!function_exists('getCaseStatus')){
         }
         return CaseStatus::where('value',$value)->first()->name;
     }
+}
+
+if (!function_exists('buildInstallmentSms')){
+    function buildInstallmentSms($debtor,$installment)
+    {
+        $balance = totalBalance($installment->case_id);
+        $date = optional($installment->next_payment_date)->format('d M Y');
+        return "Hello {$debtor->name}(#{$installment->case->case_sku}),\n\n"
+            . "This is a gentle reminder of your {$installment->next_payment_amount} payment due by 4pm on {$date}.\n\n"
+            . "Please make payment via PayNow to 87428158.\n\n"
+            . "Kindly forward us the payment receipt via WhatsApp to 85055484.\n\n"
+            . "Thank you.\n\n"
+            . "Securre Network\n\n"
+            . "Current Bal: {$balance}";
+    }
+
+}
+
+if (!function_exists('buildFieldVisitSms')){
+    function buildFieldVisitSms($debtor,$case)
+    {
+        $balance = totalBalance($case->id);
+        return "Hello {$debtor->name}(#{$case->case_sku})\n\n"
+            . "This is to inform you that your outstanding balance of {$balance} remains unpaid.\n\n"
+            . "We have now assigned your case for a field visit.\n\n"
+            . "If you wish to avoid this, settle via PayNow to 87428158.\n\n"
+            . "Forward receipt via WhatsApp to 85055484.\n\n"
+            . "Thank you\n\n"
+            . "Securre Network";
+    }
+
+
 }

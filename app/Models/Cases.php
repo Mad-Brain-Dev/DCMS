@@ -61,6 +61,10 @@ class Cases extends Model
 
     ];
 
+    protected $casts = [
+        'date_of_warrant'=>'date'
+    ];
+
     public function client()
     {
         return $this->belongsTo(Client::class);

@@ -35,6 +35,7 @@ class Installment extends Model
     protected $casts = [
         'next_payment_date' => 'date',
         'date_of_payment' => 'date',
+        'fv_date' => 'date',
     ];
     public function case()
     {
@@ -49,6 +50,11 @@ class Installment extends Model
     public function fvUpdates()
     {
         return $this->hasMany(FieldVisitUpdate::class,'installment_id');
+    }
+
+    public function gnUpdates()
+    {
+        return $this->hasMany(GeneralCaseUpdate::class,'installment_id');
     }
 
     public function commissions()

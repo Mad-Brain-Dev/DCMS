@@ -29,21 +29,21 @@
                     <div class="d-flex justify-content-end pt-3">
                         <a href="{{ route('admin.cases.index') }}" class="btn btn-danger mr-1">Back</a>
                         <button class="btn btn-primary" onclick="printDocument()">Print</button>
-                        <a href="{{ route('printable.case.letter', 1) }}" class="btn btn-dark ml-1">Print Letter</a>
+                        <a href="{{ route('printable.case.warrant', $case_number->id) }}" class="btn btn-dark ml-1">Print Warrant</a>
                     </div>
                 </div>
             </div>
-           
+
             <div>
                 <div class="lod_heading_div">
                     <div class="lod_img">
-                        <img src="images/for_lod_page.png" alt="" />
+                        <img src="{{asset('images/for_lod_page.png')}}" alt="" />
                     </div>
 
                     <div class="lod_span_text">
                         <p><b>Debt Collection</b>, Factoring | Transportation | Logistics Services | 2001</p>
                     </div>
-                    
+
                 </div>
 
 
@@ -51,7 +51,7 @@
                     <!-- LEFT BOX -->
                     <div class="ref_box_group">
                         <div class="ref_label_box">Our Ref.:</div>
-                        <div class="ref_value_box red">CASE #</div>
+                        <div class="ref_value_box red">CASE # {{$case_number->case_sku}}</div>
                     </div>
 
                     <!-- RIGHT BOX -->
@@ -61,22 +61,81 @@
                     </div>
                 </div>
 
+                @php
+                    $debtors = $case_number->debtors->values(); // reset index
+                @endphp
 
                 <div class="name_add_row">
+
+                    {{-- LEFT COLUMN (1st & 3rd) --}}
                     <div class="first_3rd">
-                        <div class="name"><span>DB 1 Name</span></div>
-                        <div class="add"><span>DB 1 Address</span></div>
-                        <div class="name name_3rd"><span>DB 3 Name</span></div>
-                        <div class="add"><span>DB 3 Address</span></div>
+
+                        {{-- DB 1 --}}
+                        @if(isset($debtors[0]))
+                            <div class="name">
+                                <span>{{ $debtors[0]->name }}</span>
+                            </div>
+                            <div class="add">
+                                <span>{{ $debtors[0]->address }}</span>
+                            </div>
+                        @endif
+
+                        {{-- DB 3 --}}
+                        @if(isset($debtors[2]))
+                            <div class="name name_3rd">
+                                <span>{{ $debtors[2]->name }}</span>
+                            </div>
+                            <div class="add">
+                                <span>{{ $debtors[2]->address }}</span>
+                            </div>
+                        @endif
+
                     </div>
 
+
+                    {{-- RIGHT COLUMN (2nd & 4th) --}}
                     <div class="second_4th">
-                        <div class="name"><span>DB 2 Name</span></div>
-                        <div class="add"><span>DB 2 Address</span></div>
-                        <div class="name name_4th"><span>DB 4 Name</span></div>
-                        <div class="add"><span>DB 4 Address</span></div>
+
+                        {{-- DB 2 --}}
+                        @if(isset($debtors[1]))
+                            <div class="name">
+                                <span>{{ $debtors[1]->name }}</span>
+                            </div>
+                            <div class="add">
+                                <span>{{ $debtors[1]->address }}</span>
+                            </div>
+                        @endif
+
+                        {{-- DB 4 --}}
+                        @if(isset($debtors[3]))
+                            <div class="name name_4th">
+                                <span>{{ $debtors[3]->name }}</span>
+                            </div>
+                            <div class="add">
+                                <span>{{ $debtors[3]->address }}</span>
+                            </div>
+                        @endif
+
                     </div>
+
                 </div>
+
+
+{{--                <div class="name_add_row">--}}
+{{--                    <div class="first_3rd">--}}
+{{--                        <div class="name"><span>DB 1 Name</span></div>--}}
+{{--                        <div class="add"><span>DB 1 Address</span></div>--}}
+{{--                        <div class="name name_3rd"><span>DB 3 Name</span></div>--}}
+{{--                        <div class="add"><span>DB 3 Address</span></div>--}}
+{{--                    </div>--}}
+
+{{--                    <div class="second_4th">--}}
+{{--                        <div class="name"><span>DB 2 Name</span></div>--}}
+{{--                        <div class="add"><span>DB 2 Address</span></div>--}}
+{{--                        <div class="name name_4th"><span>DB 4 Name</span></div>--}}
+{{--                        <div class="add"><span>DB 4 Address</span></div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
 
 
@@ -85,13 +144,13 @@
                 </div>
 
                 <div class="ref">
-                    RE: DEBTS OWED TO - <span>CL NAME</span>
+                    RE: DEBTS OWED TO - <span>{{$case_number->client->name}}</span>
                 </div>
                 <div class="top-row">
                     <div></div>
                     <div class="right-box">
                         <a>BY HAND ONLY</a><br>
-                        <div class="date">11 Nov 2025</div>
+                        <div class="date">{{optional($case_number->created_at)->format('d M Y')}}</div>
                     </div>
                 </div>
 
@@ -100,15 +159,18 @@
                     <ol class="lod_ol_cls" type="1">
                         <li>
                             <p class="">
-                                Our firm represents <span>CL NAME</span>.
+                                Our firm represents <span>{{$case_number->client->name}}</span>.
                             </p>
                         </li>
 
                         <li>
+                            @php
+                                $formattedAmount = number_format($case_number->total_amount_owed, 2, '.', ',');
+                            @endphp
                             <p class="">
                                 Our Client has informed us that, despite repeated reminders, the following amount
                                 remains unpaid;<br />
-                                • <span>DEBT AMOUNT</span>.
+                                • <span>S${{ $formattedAmount }}</span>.
                             </p>
                         </li>
 
@@ -149,7 +211,13 @@
 
                         <li class="list_5">
                             <p class="">
-                                If the total amount due is not paid to our office by the <span>18 Nov 2025 at
+                                @php
+                                    use Carbon\Carbon;
+                                    $newDate = Carbon::parse($case_number->created_at)
+                                        ->addDays(7)
+                                        ->format('d M Y');
+                                @endphp
+                                If the total amount due is not paid to our office by the <span>{{$newDate}} at
                                     15:00hrs,</span> our next course of action will be enforced against you without
                                 further notice, and you will be made liable for any and all costs arising thereof.
                             </p>
@@ -190,7 +258,7 @@
                     <div class="lod_footer_div">
                         <div class="lod_f_img">
                             <p>Sincerely,</p>
-                            <img src="images/n_logo.png" alt="" />
+                            <img src="{{asset('images/n_logo.png')}}" alt="" />
                         </div>
 
                         <div class="lod_f_span_text">

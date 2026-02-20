@@ -41,28 +41,16 @@ class CasesforPerticularClientDataTable extends DataTable
                 ' . $buttons . '
                 </div>
                 </div>';
-            // })->editColumn('avatar', function ($item) {
-            //     return '<img class="ic-img-32" src="' . $item->avatar_url . '" alt="' . $item->last_name . '" />';
             })->editColumn('client_id', function ($item) {
-                $name = $item->client->name;
-                return $name;
+                return $item->debtors->first()->name;
              })
-            //->editColumn('status',function ($item){
-            //     $badge = $item->status == GlobalConstant::STATUS_ACTIVE ? "bg-success" : "bg-danger";
-            //     return '<span class="badge ' . $badge . '">' . Str::upper($item->status) . '</span>';
-            // })->editColumn('debtor_id',function ($item){
-            //     return '<span class="text-capitalize">' . $item->user_type. '</span>';
-            // })->filterColumn('first_name', function ($query, $keyword) {
-            //     $sql = "CONCAT(users.first_name,'-',users.last_name)  like ?";
-            //     $query->whereRaw($sql, ["%{$keyword}%"]);
-            // })
             ->addColumn('update_seen_by_client', fn($item) => $item->update_seen_by_client)
-            ->editColumn('seen_status', function ($item) {
+            ->editColumn('case_number', function ($item) {
                 return $item->update_seen_by_client === 'pending'
                     ? '<span class="badge bg-warning">New Update</span>'
                     : '<span class="badge bg-success">Seen</span>';
             })
-            ->rawColumns(['action','debtor_id','seen_status'])
+            ->rawColumns(['action','client_id','case_number'])
             ->setRowId('id');
 
     }
@@ -123,9 +111,9 @@ class CasesforPerticularClientDataTable extends DataTable
 
         return [
 //            Column::computed('DT_RowIndex', 'SL#'),
-            Column::make('case_number', 'case_number')->title('Case Number'),
-            Column::make('name', 'name')->title('Debtor Name'),
-            Column::make('update_seen_by_client', 'seen_status')->title('Seen Status'),
+            Column::make('case_sku', 'case_sku')->title('Case Number'),
+            Column::make('client_id', 'client_id')->title('Debtor Name'),
+            Column::make('case_number', 'case_number')->title('Seen Status'),
         ];
     }
 

@@ -57,41 +57,29 @@
                                 @enderror
                             </div>
 
-                            {{-- <div class="mb-3 col-md-6">
-                                <label class="form-label">Password <span class="error">*</span></label>
-                                <input type="password" name="password" id="password" class="form-control" required=""
-                                    placeholder="Password" value="">
-                                @error('password')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                                <span id="StrengthDisp" class="input_bellow_text">
-                                    Should contains Letters(uppercase & lowercase), Number and Special Characters.
-                                </span>
-                            </div>
-
                             <div class="mb-3 col-md-6">
-                                <label class="form-label">Confirm Password <span class="error">*</span></label>
-                                <input type="password" name="password_confirmation" class="form-control" required=""
-                                    placeholder="Confirm Password" value="">
-                                @error('password_confirmation')
-                                    <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div> --}}
-                            {{-- <div class="mb-3">
-                                <label class="form-label">Select Grade <span class="error">*</span></label>
-                                <select class="form-control select2" name="role[]" required multiple>
+                                <label class="form-label">Select Role <span class="error">*</span></label>
+                                <select class="form-control select2" name="role" required>
                                     <option selected disabled>Select One</option>
                                     @forelse ($roles as $role)
                                         <option value="{{ $role->name }}"
-                                            {{ old('role') == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
+                                            {{ $employee->employee->role == $role->name ? 'selected' : '' }}>{{ $role->name }}</option>
                                     @empty
                                         <option value="">Nothing in the list</option>
                                     @endforelse
                                 </select>
                                 @error('role')
-                                    <p class="error">{{ $message }}</p>
+                                <p class="error">{{ $message }}</p>
                                 @enderror
-                            </div> --}}
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Commission Rate (in %)<span class="error">*</span></label>
+                                <input type="number" name="commission_rate" class="form-control" required=""
+                                       value="{{ $employee->employee->commission_rate }}">
+                                @error('commission_rate')
+                                <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 offset-md-6 col-md-6">
@@ -100,7 +88,7 @@
                                         <i class="fa fa-save"></i> Save
                                     </button>
 
-                                    <a class="btn btn-secondary waves-effect" href="{{ route('admin.users.index') }}">
+                                    <a class="btn btn-secondary waves-effect" href="{{ route('admin.employees.index') }}">
                                         <i class="fa fa-times"></i> Cancel
                                     </a>
                                 </div>

@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Services\SmsService;
 use Illuminate\Console\Command;
 use App\Models\Installment;
 use Carbon\Carbon;
-use App\Services\TwilioService;
 
 class SendInstallmentReminders extends Command
 {
@@ -23,12 +23,12 @@ class SendInstallmentReminders extends Command
      */
     protected $description = 'Send SMS reminders for upcoming installment payments';
 
-    protected $twilio;
+    protected $smsService;
 
-    public function __construct(TwilioService $twilio)
+    public function __construct(SmsService $smsService)
     {
         parent::__construct();
-        $this->twilio = $twilio;
+        $this->smsService = $smsService;
     }
 
     /**
@@ -37,25 +37,30 @@ class SendInstallmentReminders extends Command
     public function handle()
     {
         $today = Carbon::today();
-        $reminders = [14, 7, 0]; // days before payment
+        $reminders = [14, 7, 0];
 
         foreach ($reminders as $daysBefore) {
+
             $date = $today->copy()->addDays($daysBefore);
 
-            // Get installments with related case
-            $installments = Installment::with('case')
+            $installments = Installment::with('case.debtors')
                 ->whereDate('next_payment_date', $date)
+                ->where('update_type','=','field_visit_update')
                 ->get();
 
             foreach ($installments as $installment) {
-                $debtorPhone = $installment->case->phone ?? null;
 
-                if ($debtorPhone) {
-                    $message = "Reminder: Your installment of {$installment->amount} is due on {$installment->next_payment_date->format('Y-m-d')}.";
-                    $this->twilio->sendSms($debtorPhone, $message);
+                $debtor = $installment->case->debtors->first();
 
-                    \Log::info("SMS sent to {$debtorPhone} for payment on {$installment->next_payment_date->format('Y-m-d')}");
+                if (!$debtor || !$debtor->phone) {
+                    continue;
                 }
+
+                $message = buildInstallmentSms($debtor,$installment);
+
+                $this->smsService->send($debtor->phone, $message);
+
+                \Log::info("SMS sent to {$debtor->phone} for payment on {$installment->next_payment_date->format('Y-m-d')}");
             }
         }
 

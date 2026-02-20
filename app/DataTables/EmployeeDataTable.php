@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Models\Employee;
 use App\Models\Installment;
 use App\Models\User;
 use App\Utils\GlobalConstant;

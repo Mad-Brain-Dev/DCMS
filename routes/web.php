@@ -95,6 +95,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/printable/case/agreement/{id}', [CaseController::class, 'printableCaseAgreement'])->name('printable.case.agreement');
 //show printable case letter with details
 Route::get('/printable/letter/{id}', [CaseController::class, 'printableLetter'])->name('printable.case.letter');
+Route::get('/printable/warrant/{id}', [CaseController::class, 'printableWarrant'])->name('printable.case.warrant');
 
 //printable debtor details
 Route::get('/cases/debtor/details/{id}', [CaseController::class, 'debtorDetails'])->name('cases.debtor.details');
@@ -102,7 +103,7 @@ Route::get('/cases/debtor/details/{id}', [CaseController::class, 'debtorDetails'
 //show printable client agreement with details
 Route::get('/printable/client/agreement/{id}', [ClientController::class, 'printableClientAgreement'])->name('printable.client.agreement');
 //single case show to client
-Route::get('/case/show/to/client', [CaseController::class, 'casesShowtoClient'])->name('case.show.client');
+Route::get('/case/show/to/client/{id}', [CaseController::class, 'casesShowtoClient'])->name('case.show.client');
 //case show to client in datatable
 Route::get('/case/show/to/perticular/client', [CaseController::class, 'casesForPerticularClient'])->name('case.show.perticual.client');
 // Date of agreement depend on client
@@ -166,7 +167,7 @@ Route::put('client/admin/fee/update/{id}', [ClientController::class, 'updateAdmi
 Route::put('update/total/amount/balance/{id}', [CaseController::class, 'updateTotalAmountBalance'])->name('update.total.amount.balance');
 
 //all routes for admin
-Route::prefix('admin')->as('admin.')->group(function () {
+Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
     // User
     Route::resource('users', UsersController::class);
     // Employee

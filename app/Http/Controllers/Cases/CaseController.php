@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cases;
 use App\DataTables\CaseDataTable;
 use App\DataTables\CaseDataTableByStatus;
 use App\DataTables\CasesforPerticularClientDataTable;
+use App\Events\ClientNotificationEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CaseEditRequest;
 use App\Http\Requests\CaseRequest;
@@ -21,6 +22,7 @@ use App\Models\MiscellaneousUpdate;
 use App\Models\Task;
 use App\Models\User;
 use App\Services\CaseService;
+use App\Services\SmsService;
 use App\Services\Utils\FileUploadService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -36,11 +38,13 @@ class CaseController extends Controller
     protected $caseService;
 
     protected $fileUploadService;
+    protected $smsService;
 
-    public function __construct(CaseService $caseService, FileUploadService $fileUploadService)
+    public function __construct(CaseService $caseService, FileUploadService $fileUploadService,SmsService $smsService)
     {
         $this->caseService = $caseService;
         $this->fileUploadService = $fileUploadService;
+        $this->smsService = $smsService;
     }
     /**
      * Display a listing of the resource.
@@ -50,24 +54,6 @@ class CaseController extends Controller
         set_page_meta('Cases');
         return $dataTable->render('admin.cases.index');
 
-
-        //testing installments 14,7,0
-//        $today = Carbon::today();
-//        $reminders = [0, 7, 0]; // days before payment
-//
-//        foreach ($reminders as $daysBefore) {
-//            $date = $today->copy()->addDays($daysBefore);
-//
-//            // Get installments with related case
-//            $installments = Installment::with('case')
-//                ->whereDate('next_payment_date', $date)
-//                ->get();
-//
-//            foreach ($installments as $installment) {
-//                $debtorPhone = $installment->case->phone ?? null;
-//                dd($debtorPhone);
-//            }
-//        }
     }
 
     /**
@@ -217,7 +203,12 @@ class CaseController extends Controller
         $case = Cases::find($id);
         $debtors = $case->debtors;
 
-        return view('admin.cases.edit', compact('case','debtors'));
+        $employees = Employee::where('role', 'Employee')->select('id','name')->orderBy('id')->get();
+        $managers = Employee::where('role', 'Manager IC')->select('id','name')->orderBy('id')->get();
+        $collectors = Employee::where('role', 'Collector IC')->select('id','name')->orderBy('id')->get();
+
+        $caseStatuses = CaseStatus::all();
+        return view('admin.cases.edit', compact('case','debtors','caseStatuses','employees','managers','collectors'));
     }
 
     /**
@@ -225,21 +216,6 @@ class CaseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //        try {
-        //            $data = $request->validated();
-        //            $this->caseService->storeOrUpdate($data, $id);
-        //            record_created_flash();
-        //        } catch (\Exception $e) {
-        //        }
-        //
-        //        $validator = Validator::make($request->all(), ['client_id' => 'required']);
-        //
-        //        if ($validator->fails()) {
-        //            return response()->json([
-        //                'error' => $validator->errors()
-        //
-        //            ]);
-        //        }
 
         // Validate case fields (add/remove rules for actual case fields)
         $caseRules = [
@@ -293,8 +269,6 @@ class CaseController extends Controller
         // Prepare case data (use requested values or preserve existing later if needed)
         $caseData = [
             "case_number" => $validated['case_number'] ?? null,
-            // "case_sku" => $this->caseSkuId($case_number),
-            // "client_id" => $request->client_id,
             "date_of_warrant" => $validated['date_of_warrant'] ?? null,
             "manager_ic" => $validated['manager_ic'] ?? null,
             "collector_ic" => $validated['collector_ic'] ?? null,
@@ -309,16 +283,6 @@ class CaseController extends Controller
             "company_uen" => $validated['company_uen'] ?? null,
             "email" => $validated['email'] ?? null,
             "phone" => $validated['phone'] ?? null,
-            // "adderss" => $request->adderss,
-            // "guarantor_name" => $request->guarantor_name,
-            // "guarantor_address" => $request->guarantor_address,
-            // "remarks_one" => $request->remarks_one,
-            // "guarantor_name2" => $request->guarantor_name2,
-            // "guarantor_address2" => $request->guarantor_address2,
-            // "remarks_two" => $request->remarks_two,
-            // "guarantor_name3" => $request->guarantor_name3,
-            // "guarantor_address3" => $request->guarantor_address3,
-            // "remarks_three" => $request->remarks_three,
             "debt_amount" => $validated['debt_amount'] ?? null,
             "legal_cost" => $validated['legal_cost'] ?? null,
             "total_interest" => $validated['total_interest'] ?? null,
@@ -327,7 +291,6 @@ class CaseController extends Controller
             "interest_type" => $validated['principal_interest'] ?? null,
             "interest_start_date" => $validated['interest_start_date'] ?? null,
             "interest_end_date" => $validated['interest_end_date'] ?? null,
-            // "total_amount_balance" => $request->total_amount_balance,
             "remarks" => $validated['remarks'] ?? null,
         ];
 
@@ -403,10 +366,28 @@ class CaseController extends Controller
         return $dataTable->render('client.cases.index');
     }
     //Single case show to client
-    public function casesShowtoClient()
+    public function casesShowtoClient($id)
     {
-        $cases = Cases::where('client_id', Auth::user()->id)->get();
-        return view('client.cases.show-to-client', compact('cases'));
+
+        $case = Cases::find($id);
+        $client_details = Client::where('id', $case->client_id)->first();
+        $gn_updates = GeneralCaseUpdate::where('case_id', $id)->latest()->get();
+        $fv_updates = FieldVisitUpdate::where('case_id', $id)->latest()->get();
+        $installment = Installment::where('case_id', $id)->latest()->first();
+        $debtors = Debtor::where('case_id', $id)->get();
+        if ($installment){
+            $task = Task::where('installment_id', $installment->id)->first();
+        }else{
+            $task = null;
+        }
+        $installmentByEmployees = Installment::where('case_id', $id)->select('collected_by_id', \DB::raw('SUM(amount_paid) as total_amounts'))
+            ->groupBy('collected_by_id')
+            ->orderBy('total_amounts', 'desc')
+            ->get();
+
+        $case->update_seen_by_client = 'seen';
+        $case->save();
+        return view('client.cases.show-to-client', compact('case','task', 'gn_updates', 'fv_updates', 'client_details', 'installment', 'installmentByEmployees', 'debtors'));
     }
     //Show date of agreement from client table when create cases
     public function dateOfAgreementForCase(Request $request)
@@ -464,8 +445,6 @@ class CaseController extends Controller
             $paid_amount->total_amount_balance = $paid_amount->total_amount_balance - $request->amount_paid;
             $paid_amount->update_seen_by_client = 'pending';
             $paid_amount->save();
-
-            //TODO send general update email to client
         }
 
         $gn_updates = [];
@@ -500,6 +479,9 @@ class CaseController extends Controller
         }
         $gn_update->installment_id = $installment->id;
         $gn_update->save();
+
+        //send general update email to client
+        event(new ClientNotificationEvent($paid_amount->client, 'general'));
         record_updated_flash();
         return back();
     }
@@ -608,7 +590,6 @@ class CaseController extends Controller
             $case->total_amount_paid = $newTotalPaid;
             $case->total_amount_balance = $newBalance;
             $case->save();
-            //TODO send payment update email to client
         }
 
         $field_visit_number = Cases::where('id', '=', $request->case_id)->first();
@@ -653,6 +634,9 @@ class CaseController extends Controller
         }
 //        $fv_update->installment_id = $installment->id;
 //        $fv_update->save();
+
+        //send payment update email to client
+        event(new ClientNotificationEvent($case->client, 'installment', []));
         record_updated_flash();
         return back();
     }
@@ -758,14 +742,19 @@ class CaseController extends Controller
 
         $case_number = Cases::find($id);
         $client_details = Client::where('id', $case_number->client_id)->first();
-        return view('admin.agreement.agreement', compact('case_number', 'client_details'));
+        return view('template.contract', compact('case_number', 'client_details'));
     }
 
     public function printableLetter($id)
     {
         $case_number = Cases::find($id);
-        $client_details = Client::where('id', $case_number->client_id)->first();
-        return view('admin.agreement.letter', compact('case_number', 'client_details'));
+        return view('template.lod', compact('case_number'));
+    }
+
+    public function printableWarrant($id)
+    {
+        $case = Cases::find($id);
+        return view('template.warrant', compact('case'));
     }
 
     public function updateTotalAmountBalance(Request $request, $id)
@@ -813,7 +802,7 @@ class CaseController extends Controller
             //     return redirect('admin/cases/'.$case->id);
             // }
             else {
-                session()->flash('status', 'No client matched your search');
+                custom_flash('error', 'No client matched your search');
                 return redirect()->back();
             }
         } else {
@@ -839,7 +828,7 @@ class CaseController extends Controller
             //     return redirect('admin/cases/'.$case->id);
             // }
             else {
-                session()->flash('status', 'No client matched your search');
+                custom_flash('error', 'No case matched your search');
                 return redirect()->back();
             }
         } else {
@@ -894,31 +883,21 @@ class CaseController extends Controller
             'assigned_to_id' => 'required',
         ]);
 
-        $case = Cases::find($validated['case_id']);
+        $case = Cases::with('debtors')->findOrFail($validated['case_id']);
 
-        //TODO change to employee ID
         $case->assigned_to_id = $validated['assigned_to_id'];
         $case->save();
 
-        //send Field Visit Notice SMS
+        // Send Field Visit Notice SMS
+        $debtor = $case->debtors->first();
 
-        // --- Send SMS with Twilio ---
-        if ($case && $case->phone) {
-            $sid    = config('services.twilio.sid');
-            $token  = config('services.twilio.token');
-            $from   = config('services.twilio.from');
-            $to     = $case->phone; // debtor’s phone number
+        if ($debtor && $debtor->phone) {
 
-            $twilio = new TwilioClient($sid, $token);
+            $message = buildFieldVisitSms($debtor,$case);
 
-            $message = "Dear {$case->name}, your case #{$case->id} has been assigned to an employee. Please be available for a field visit.";
-
-            $twilio->messages->create($to, [
-                'from' => $from,
-                'body' => $message,
-            ]);
+            $this->smsService->send($debtor->phone, $message);
         }
 
-        return redirect()->back()->with('success', 'Employee assigned and SMS sent successfully.');
+        return redirect()->back()->with('success', 'Employee assigned successfully.');
     }
 }

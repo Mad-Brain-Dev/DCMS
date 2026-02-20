@@ -27,18 +27,17 @@
             <div class="row">
                 <div class="col-md-12 buttons">
                     <div class="d-flex justify-content-end pt-3">
-                        <a href="{{ route('admin.cases.index') }}" class="btn btn-danger mr-1">Back</a>
+                        <a href="{{ route('admin.clients.index') }}" class="btn btn-danger mr-1">Back</a>
                         <button class="btn btn-primary" onclick="printDocument()">Print</button>
-                        <a href="{{ route('printable.case.letter', 1) }}" class="btn btn-dark ml-1">Print Letter</a>
                     </div>
                 </div>
             </div>
             <div class="contract_main">
 
                 <div class="contract_heading_div">
-                    <img class="securre_text_img" src="images/securre.png" alt="" />
+                    <img class="securre_text_img" src="{{asset('images/securre.png')}}" alt="" />
                     <span class="con_span_text">DEBT COLLECTION AGREEMENT</span>
-                    
+
                 </div>
 
 
@@ -47,13 +46,13 @@
                     <!-- LEFT BOX -->
                     <div class="box-group">
                         <div class="label-box">CLIENT ABBR</div>
-                        <div class="value-box red">ABC</div>
+                        <div class="value-box red">{{$client_details->abbr}}</div>
                     </div>
 
                     <!-- RIGHT BOX -->
                     <div class="box-group box_group_right">
                         <div class="label-box">DATE OF EXPIRY</div>
-                        <div class="value-box">10 Nov 2026</div>
+                        <div class="value-box">{{$client_details->date_of_expiry->format('d M Y')}}</div>
                     </div>
 
                 </div>
@@ -63,12 +62,12 @@
                         <li>
                             <p class="line">
                                 This Agreement, entered into as of today,
-                                <span class="blank date-blank">11 November 2025</span>,
+                                <span class="blank date-blank">{{optional($client_details->date_of_agreement)->format('d M Y')}}</span>,
                                 by and between us, <strong>Securee Collection Pte. Ltd.</strong> (hereon referred to as
                                 "SC") and
-                                <span class="client_name"><span class="red">CL NAME</span></span>
+                                <span class="client_name"><span class="red">{{$client_details->name}}</span></span>
                                 (hereon referred to as the "Client"), with ID Number:
-                                <span class="blank client_id"><span class="red">CL ID</span></span>.
+                                <span class="blank client_id"><span class="red">{{$client_details->nric}}</span></span>.
                             </p>
                         </li>
 
@@ -78,6 +77,7 @@
                                 <p> Whereas, the Client has solicited various firms for Debt Collection Services for the
                                     sole purpose of collecting upon their bad debts and/or financing the aforementioned
                                     bad debts via debt-factoring; and</p>
+
                             </div>
 
                             <div>
@@ -108,7 +108,7 @@
                             <div>
                                 <span class="alpha">(b) Administrative fees:</span>
                                 <p>The Client has agreed to pay an upfront fee of S$ <span class="admin_fee"><span
-                                            class="red">ADMIN FEE</span></span> , for filing, administrative, and
+                                            class="red">{{ number_format($client_details->admin_fee, 2, '.', ',') }}</span></span> , for filing, administrative, and
                                     registration costs to SC for the engagement of this service. It is also understood
                                     that this payment is non-refundable and payable in full upon the endorsement of this
                                     Agreement.</p>
@@ -117,7 +117,7 @@
                             <div>
                                 <span class="alpha">(c) Debt Commission:</span>
                                 <p>The commission payout on the successfully collected debt/s and interest (if any) will
-                                    be <span class="admin_fee interest"><span class="red"> 40% </span></span> . SC
+                                    be <span class="admin_fee interest"><span class="red"> {{ $client_details->collection_commission }}% </span></span> . SC
                                     reserves the right to review the commission structure subject to seven (07) days
                                     written notice to the Client.</p>
                             </div>
@@ -147,7 +147,7 @@
                             <div>
                                 <span class="alpha">(g) Number of visits:</span>
                                 <p>SC undertakes a Commitment to the Client of <span class="admin_fee g_sign"><span
-                                            class="red"> ~ </span></span> visits per case assigned to SC during the
+                                            class="red"> {{ $client_details->field_visit_per_case }} </span></span> visits per case assigned to SC during the
                                     validity of this agreement.</p>
                             </div>
                         </li>
@@ -278,7 +278,7 @@
 
                         <div class="row_for_left"><span class="label_1">Name:</span> Ravin Raj G.</div>
                         <div class="row_for_left"><span class="label_2">Designation:</span> Operations Director</div>
-                        <div class="row_for_left"><span class="label_3">Date:</span> 11 November 2025</div>
+                        <div class="row_for_left"><span class="label_3">Date:</span> {{optional($client_details->date_of_agreement)->format('d M Y')}}</div>
 
                         <div class="divider"></div>
                         <div class="divider_2"></div>
@@ -290,20 +290,20 @@
                         <p>For the Client;</p>
 
                         <div class="row_for_right">
-                            <span class="r_label_1">Signature/Stamp: <span class="signature">ABCD</span></span>
+                            <span class="r_label_1">Signature/Stamp: <span class="signature"></span></span>
                         </div>
 
                         <div class="row_for_right">
                             <span class="r_label_2">Client Name/s:</span>
-                            <span class="red r_signature_2 signature">CL NAME</span>
+                            <span class="red r_signature_2 signature">{{$client_details->name}}</span>
                         </div>
 
                         <div class="row_for_right">
                             <span class="r_label_3">Client ID Number:</span>
-                            <span class="red signature">CL ID</span>
+                            <span class="red signature">{{$client_details->nric}}</span>
                         </div>
 
-                        <div class="row_for_right"><span class="label r_date">Date:</span> 11 November 2025</div>
+                        <div class="row_for_right"><span class="label r_date">Date:</span> {{optional($client_details->date_of_agreement)->format('d M Y')}}</div>
                     </div>
                 </div>
 

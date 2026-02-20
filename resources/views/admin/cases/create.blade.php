@@ -864,7 +864,7 @@
                         $form[0].reset();
                         $("#showMsg").modal('show');
 
-                        var url = "/printable/case/agreement/" + data.result.id;
+                        var url = "/printable/warrant/" + data.result.id;
                         var letterUrl = "/printable/letter/" + data.result.id;
 
                         $('#agreement').attr('href', url);

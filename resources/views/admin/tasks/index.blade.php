@@ -16,7 +16,7 @@
                                             <td>
                                                 @if ($task->installment)
                                                     <h6>Case Number: {{ $task->installment->case->case_sku }}</h6>
-                                                    <h6>Field Visit Date: {{date('m-d-Y', strtotime($task->installment->fv_date))}}</h6>
+                                                    <h6>General Update Date: {{date('m-d-Y', strtotime($task->installment->fv_date))}}</h6>
                                                     <h6>Collected By: {{$task->installment->user->name}}</h6>
                                                 @else
                                                     No installment details
@@ -44,7 +44,7 @@
                                         <td>
                                             @if ($task->installment)
                                                 <h6>Case Number: {{ $task->installment->case->case_sku }}</h6>
-                                                <h6>Field Visit Date: {{date('m-d-Y', strtotime($task->installment->fv_date))}}</h6>
+                                                <h6>Payment Update Date: {{date('m-d-Y', strtotime($task->installment->fv_date))}}</h6>
                                                 <h6>Collected By: {{$task->installment->user->name}}</h6>
                                             @else
                                               No installment details
@@ -73,7 +73,7 @@
                                             <td>
                                                 @if ($task->installment)
                                                     <h6>Case Number: {{ $task->installment->case->case_sku }}</h6>
-                                                    <h6>Field Visit Date: {{date('m-d-Y', strtotime($task->installment->fv_date))}}</h6>
+                                                    <h6>{{$task->installment->update_type == 'general_update'? 'General Update':'Payment Update'}} Date: {{date('m-d-Y', strtotime($task->installment->fv_date))}}</h6>
                                                     <h6>Collected By: {{$task->installment->user->name}}</h6>
                                                 @else
                                                     Installment deleted

@@ -31,17 +31,29 @@
 
                                     <div class="mb-3 col-md-3">
                                         <label class="form-label">Manager IC</label>
-                                        <input type="text" name="manager_ic" class="form-control"
-                                            value="{{ $case->manager_ic }}">
+{{--                                        <input type="text" name="manager_ic" class="form-control"--}}
+{{--                                            value="{{ $case->manager_ic }}">--}}
+
+
+                                        <select class="form-select select2 form-control" id="manager_ic" name="manager_ic">
+                                            <option selected disabled>Select Manager IC</option>
+                                            @foreach ($managers as $manager)
+                                                <option value="{{ $manager->id }}" {{$case->manager_ic == $manager->id ? 'selected': ''}}>{{ $manager->name }}</option>
+                                            @endforeach
+                                        </select>
                                         @error('manager_ic')
-                                            <p class="error">{{ $message }}</p>
+                                        <p class="error">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="mb-3 col-md-3">
                                         <label class="form-label">Collector IC</label>
-                                        <input type="text" name="collector_ic" class="form-control"
-                                            value="{{ $case->collector_ic }}">
+                                        <select class="form-select select2 form-control" id="collector_ic" name="collector_ic">
+                                            <option selected disabled>Select Collector IC</option>
+                                            @foreach ($collectors as $collector)
+                                                <option value="{{ $collector->id }}" {{$case->collector_ic == $collector->id ? 'selected': ''}}>{{ $collector->name }}</option>
+                                            @endforeach
+                                        </select>
                                         @error('collector_ic')
                                             <p class="error">{{ $message }}</p>
                                         @enderror
@@ -52,58 +64,12 @@
                                             aria-label="Default select example">
                                             <option selected disabled>Select Case Status</option>
 
+                                            @foreach($caseStatuses as $status)
+                                                <option value="{{ $status->value }}" {{ $case->current_status == $status->value ? 'selected' : ''}}>
+                                                    {{ $status->name }} ({{$status->short_name}})
+                                                </option>
+                                            @endforeach
 
-                                            <option value="{{ \App\Utils\GlobalConstant::CASE_PENDING }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_PENDING ? 'selected' : ''}}>{{ \App\Utils\GlobalConstant::CASE_PENDING }}</option>
-                                            <option value="{{ \App\Utils\GlobalConstant::CASE_OPEN }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_OPEN ? 'selected' : ''}}>{{ \App\Utils\GlobalConstant::CASE_OPEN }}</option>
-
-                                            <option value="{{ \App\Utils\GlobalConstant::CASE_FIELD }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_FIELD ? 'selected' : ''}}>
-                                                {{ \App\Utils\GlobalConstant::CASE_FIELD }}</option>
-
-                                            <option value="{{ \App\Utils\GlobalConstant::CASE_DESPATCHED }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_DESPATCHED ? 'selected' : ''}}>
-                                                {{ \App\Utils\GlobalConstant::CASE_DESPATCHED }}</option>
-
-
-                                            <option value="{{ \App\Utils\GlobalConstant::CASE_INVESTIGATION_NEEDED }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_INVESTIGATION_NEEDED ? 'selected' : ''}}>
-                                                {{ \App\Utils\GlobalConstant::CASE_INVESTIGATION_NEEDED }}</option>
-
-
-                                            <option value="{{ \App\Utils\GlobalConstant::CASE_NEGOTIATING_WITH_DB }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_NEGOTIATING_WITH_DB ? 'selected' : ''}}>
-                                                {{ \App\Utils\GlobalConstant::CASE_NEGOTIATING_WITH_DB }}</option>
-
-
-                                            <option value="{{ \App\Utils\GlobalConstant::CASE_UNDER_INSTALMENT }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_UNDER_INSTALMENT ? 'selected' : ''}}>
-                                                {{ \App\Utils\GlobalConstant::CASE_UNDER_INSTALMENT }}</option>
-
-
-                                            <option value="{{ \App\Utils\GlobalConstant::CASE_FULLY_SETTELED }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_FULLY_SETTELED ? 'selected' : ''}}>
-                                                {{ \App\Utils\GlobalConstant::CASE_FULLY_SETTELED }}</option>
-
-
-                                            <option value="{{ \App\Utils\GlobalConstant::CASE_PARTIALLY_SETTELED }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_PARTIALLY_SETTELED ? 'selected' : ''}}>
-                                                {{ \App\Utils\GlobalConstant::CASE_PARTIALLY_SETTELED }}</option>
-
-
-                                            <option value="{{ \App\Utils\GlobalConstant::CASE_CASE_ON_HOLD_BY_CLIENT }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_CASE_ON_HOLD_BY_CLIENT ? 'selected' : ''}}>
-                                                {{ \App\Utils\GlobalConstant::CASE_CASE_ON_HOLD_BY_CLIENT }}</option>
-
-
-                                            <option value="{{ \App\Utils\GlobalConstant::CASE_ON_HOLD_BY_MANAGEMENT }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_ON_HOLD_BY_MANAGEMENT ? 'selected' : ''}}>
-                                                {{ \App\Utils\GlobalConstant::CASE_ON_HOLD_BY_MANAGEMENT }}</option>
-
-
-                                            <option value="{{ \App\Utils\GlobalConstant::CASE_CLOSED_WITHOUT_PAYMENT }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_CLOSED_WITHOUT_PAYMENT ? 'selected' : ''}}>
-                                                {{ \App\Utils\GlobalConstant::CASE_CLOSED_WITHOUT_PAYMENT }}</option>
-
-
-                                            <option value="{{ \App\Utils\GlobalConstant::CASE_AWAITING_UPDATE_FR_CLIENT }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_AWAITING_UPDATE_FR_CLIENT ? 'selected' : ''}}>
-                                                {{ \App\Utils\GlobalConstant::CASE_AWAITING_UPDATE_FR_CLIENT }}</option>
-
-
-                                            <option value="{{ \App\Utils\GlobalConstant::CASE_UNDER_LITIGATION }}" {{ $case->current_status == \App\Utils\GlobalConstant::CASE_UNDER_LITIGATION ? 'selected' : ''}}>
-                                                {{ \App\Utils\GlobalConstant::CASE_UNDER_LITIGATION }}</option>
-
-                                                <option value="{{ \App\Utils\GlobalConstant::CASE_CLOSED }}">
-                                                    {{ \App\Utils\GlobalConstant::CASE_CLOSED }}</option>
                                         </select>
                                         @error('current_status')
                                             <p class="error">{{ $message }}</p>

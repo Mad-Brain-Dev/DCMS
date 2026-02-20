@@ -13,7 +13,7 @@
                 @csrf
                 <div class="input-group">
                     <input type="search" id="search_client" required name="client_search" class="form-control"
-                        placeholder="Enter Client Name" aria-describedby="basic-addon1">
+                        placeholder="Enter client name" aria-describedby="basic-addon1">
                     <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
                 </div>
             </form>
@@ -23,7 +23,7 @@
                 @csrf
                 <div class="input-group">
                     <input type="search" id="search_case" required name="case_search" class="form-control"
-                        placeholder="Search Here">
+                        placeholder="Search case by case number">
                     <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
                 </div>
             </form>

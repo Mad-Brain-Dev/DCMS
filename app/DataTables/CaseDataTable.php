@@ -47,27 +47,24 @@ class CaseDataTable extends DataTable
                 if (auth()->user()->can('Case View')) {
                     $buttons .= '<a class="dropdown-item" href="' . route('admin.cases.show', $item->id) . '" title="Show"><i class="fa fa-eye" aria-hidden="true"></i> Show </a>';
                 }
-                // if (auth()->user()->can('Print Warrant')) {
-                //     $buttons .= '<a class="dropdown-item" href="' . route('printable.case.agreement', $item->id) . '" title="Show"><i class="fas fa-print"></i> Print Warrant </a>';
-                // }
-                // if (auth()->user()->can('Print Letter')) {
-                //     $buttons .= '<a class="dropdown-item" href="' . route('printable.case.letter', $item->id) . '" title="Show"><i class="fas fa-paste"></i> Print Letter </a>';
-                // }
+                $buttons .= '<a class="dropdown-item" href="' . route('printable.case.warrant', $item->id) . '" title="Warrant"><i class="fas fa-print"></i> Print Warrant </a>';
 
-                if (auth()->user()->can('Print Debtor Details')) {
-                    $buttons .= '<a class="dropdown-item" href="' . route('cases.debtor.details', $item->id) . '" title="Show"><i class="fas fa-paste"></i> Debtor Details </a>';
-                }
+
+                $buttons .= '<a class="dropdown-item" href="' . route('printable.case.letter', $item->id) . '" title="Latter"><i class="fas fa-print"></i> Print Letter </a>';
+
+
+                $buttons .= '<a class="dropdown-item" href="' . route('cases.debtor.details', $item->id) . '" title="Debtors"><i class="fas fa-paste"></i> Debtor Details </a>';
+
                 // Modal trigger
                 $buttons .= '<a class="dropdown-item" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop-' . $item->id . '">
-                            <i class="fas fa-paste"></i> Assign Employee
+                            <i class="fas fa-users-cog"></i> Assign Employee
                          </a>';
-                if (auth()->user()->can('Delete Case')) {
                     $buttons .= '<form action="' . route('admin.cases.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
                     <input type="hidden" name="_token" value="' . csrf_token() . '">
                     <input type="hidden" name="_method" value="DELETE">
                     <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Delete</button></form>
                     ';
-                }
+
 
                 // Dropdown HTML
                 $dropdown = '<div class="btn-group dropleft">

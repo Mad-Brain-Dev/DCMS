@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Cases;
+use App\Models\Employee;
 use App\Models\User;
 use App\Utils\GlobalConstant;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
@@ -49,20 +50,14 @@ class CaseDataTableByStatus extends DataTable
                 </div>';
             // })->editColumn('avatar', function ($item) {
             //     return '<img class="ic-img-32" src="' . $item->avatar_url . '" alt="' . $item->last_name . '" />';
-            })->editColumn('client_id', function ($item) {
-                $name = $item->client->name;
-                return $name;
+            })
+            ->editColumn('client_id', function ($item) {
+                return $item->client->name;
              })
-            //->editColumn('status',function ($item){
-            //     $badge = $item->status == GlobalConstant::STATUS_ACTIVE ? "bg-success" : "bg-danger";
-            //     return '<span class="badge ' . $badge . '">' . Str::upper($item->status) . '</span>';
-            // })->editColumn('debtor_id',function ($item){
-            //     return '<span class="text-capitalize">' . $item->user_type. '</span>';
-            // })->filterColumn('first_name', function ($query, $keyword) {
-            //     $sql = "CONCAT(users.first_name,'-',users.last_name)  like ?";
-            //     $query->whereRaw($sql, ["%{$keyword}%"]);
-            // })
-            ->rawColumns(['action', 'avatar', 'status','debtor_id'])
+            ->editColumn('name', function ($item) {
+                return $item->debtors->first()->name;
+            })
+            ->rawColumns(['action', 'name','client_id'])
             ->setRowId('id');
 
     }
@@ -73,7 +68,8 @@ class CaseDataTableByStatus extends DataTable
     public function query(Cases $model): QueryBuilder
     {
         if (Auth::user()->user_type == User::USER_TYPE_EMPLOYEE){
-            return $model->newQuery()->where('current_status', $this->status)->where('assigned_to_id', Auth::id())->orderBy('id', 'DESC')->select('cases.*');
+            $employee = Employee::where('user_id',Auth::user()->id)->first();
+            return $model->newQuery()->where('current_status', $this->status)->where('assigned_to_id', $employee->id)->orderBy('id', 'DESC')->select('cases.*');
         }else{
             return $model->newQuery()->where('current_status', $this->status)->orderBy('id', 'DESC')->select('cases.*');
         }
