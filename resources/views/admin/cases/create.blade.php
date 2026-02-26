@@ -86,6 +86,16 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Case Number</label>
+                                <input type="number"
+                                       name="case_serial"
+                                       class="form-control"
+                                       value="{{ old('case_serial') }}">
+                                @error('case_serial')
+                                <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
 {{--                            <div class="mb-3 col-md-3">--}}
 {{--                                <label class="form-label">Case Summary</label>--}}
 {{--                                <textarea name="case_summary" cols="30" rows="2" placeholder="Enter Case Summary Here" class="form-control"></textarea>--}}

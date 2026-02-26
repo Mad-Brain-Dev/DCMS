@@ -76,7 +76,7 @@ class CaseController extends Controller
     public function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), ['client_id' => 'required']);
+        $validator = Validator::make($request->all(), ['client_id' => 'required','case_serial' => 'required|digits:5']);
 
         if ($validator->fails()) {
             return response()->json([
@@ -85,9 +85,12 @@ class CaseController extends Controller
             ]);
         }
         $case_number = $request->case_number;
+        $cleaned = str_replace(' ', '', $case_number);
+        $case_sku = $cleaned.$request->case_serial;
         $data = [
             "case_number" => $case_number,
-            "case_sku" => $this->caseSkuId($case_number),
+//            "case_sku" => $this->caseSkuId($case_number),
+            "case_sku" => $case_sku,
             "client_id" => $request->client_id,
             "date_of_warrant" => $request->date_of_warrant,
             "manager_ic" => $request->manager_ic,
