@@ -121,6 +121,7 @@ class InvoiceDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(1)
+            ->parameters(['lengthMenu' => [10, 25, 50],])
             ->selectStyleSingle();
     }
 

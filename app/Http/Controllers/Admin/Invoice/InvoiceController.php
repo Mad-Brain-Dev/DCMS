@@ -75,6 +75,34 @@ class InvoiceController extends Controller
             $months[$month] = \Carbon\Carbon::now()->subMonths($i)->format('F Y');
         }
 
+        $clientSummary = null;
+
+        if ($clientId) {
+
+            $client = Client::find($clientId);
+
+            // Payment Count = number of installments under this client's cases
+            $paymentCount = Installment::whereHas('case', function ($q) use ($clientId) {
+                $q->where('client_id', $clientId);
+            })->count();
+
+            // Total Collected = sum of all installment amount_paid
+            $totalClientCollected = Installment::whereHas('case', function ($q) use ($clientId) {
+                $q->where('client_id', $clientId);
+            })->sum('amount_paid');
+
+            // Total Balance = sum of total_amount_balance from cases
+            $totalClientBalance = Cases::where('client_id', $clientId)
+                ->sum('total_amount_balance');
+
+            $clientSummary = [
+                'name' => $client->name ?? '',
+                'payment_count' => $paymentCount,
+                'total_collected' => $totalClientCollected,
+                'total_balance' => $totalClientBalance,
+            ];
+        }
+
         return $dataTable->render('admin.invoices.index', compact(
             'clients',
             'totalInvoices',
@@ -82,7 +110,8 @@ class InvoiceController extends Controller
             'totalFinalAmount',
             'totalOutstanding',
             'selectedMonth',
-            'months'
+            'months',
+            'clientSummary'
         ));
     }
 

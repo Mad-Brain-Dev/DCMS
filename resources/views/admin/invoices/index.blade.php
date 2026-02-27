@@ -3,7 +3,11 @@
 @section('content')
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 class="mb-0">Invoice Dashboard</h4>
+        <h4 class="mb-0">
+            {{ $clientSummary
+                ? "Showing invoice summary for: " . $clientSummary['name']
+                : 'Invoice Dashboard' }}
+        </h4>
 
         <a href="{{ route('admin.invoices.create') }}"
            class="btn btn-dark">
@@ -89,6 +93,52 @@
 
         </div>
 
+        @if(!empty($clientSummary))
+            <div class="row mb-4">
+
+                <div class="col-md-3">
+                    <div class="card shadow-sm border-0 bg-light">
+                        <div class="card-body">
+                            <small>Client Name</small>
+                            <h5 class="fw-bold">{{ $clientSummary['name'] }}</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card shadow-sm border-0 bg-light">
+                        <div class="card-body">
+                            <small>Payment Count</small>
+                            <h5 class="fw-bold">{{ $clientSummary['payment_count'] }}</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card shadow-sm border-0 bg-light">
+                        <div class="card-body">
+                            <small>Total Collected</small>
+                            <h5 class="fw-bold text-primary">
+                                $ {{ number_format($clientSummary['total_collected'], 2) }}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card shadow-sm border-0 bg-light">
+                        <div class="card-body">
+                            <small>Total Balance</small>
+                            <h5 class="fw-bold text-danger">
+                                $ {{ number_format($clientSummary['total_balance'], 2) }}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        @endif
+
 {{--        Filter section--}}
 
         <form method="GET" class="row mb-3">
@@ -105,7 +155,7 @@
                        value="{{ request('to') }}">
             </div>
 
-            <div class="col-md-3">
+            <div class="{{request()->hasAny(['from','to','client_id','status','month']) ? 'col-md-2' : 'col-md-3'}}">
                 <label>Client</label>
                 <select name="client_id" class="form-select">
                     <option value="">All</option>
@@ -122,14 +172,22 @@
                 <label>Status</label>
                 <select name="status" class="form-select">
                     <option value="">All</option>
-                    <option value="issued">Issued</option>
-                    <option value="paid">Paid</option>
+                    <option value="issued" {{ request('status') == 'issued' ? 'selected' : '' }}>Issued</option>
+                    <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>Paid</option>
                 </select>
             </div>
 
             <div class="col-md-1 d-flex align-items-end">
                 <button class="btn btn-dark w-100">Filter</button>
             </div>
+            @if(request()->hasAny(['from','to','client_id','status','month']))
+                <div class="col-md-1 d-flex align-items-end">
+                    <a href="{{ route('admin.invoices.index') }}"
+                       class="btn btn-secondary w-100">
+                        Clear
+                    </a>
+                </div>
+            @endif
 
         </form>
 

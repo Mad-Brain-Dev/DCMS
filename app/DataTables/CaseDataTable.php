@@ -156,15 +156,9 @@ class CaseDataTable extends DataTable
             //->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()
+            ->parameters(['lengthMenu' => [10, 25, 50],])
             ->addAction(['width' => '55px', 'class' => 'text-center', 'printable' => false, 'exportable' => false, 'title' => 'Action']);
-        //             ->buttons([
-        //                        Button::make('excel'),
-        //                        Button::make('csv'),
-        //                        Button::make('pdf'),
-        //                        Button::make('print'),
-        //                        Button::make('reset'),
-        //                        Button::make('reload')
-        //                    ]);
+
 
     }
 

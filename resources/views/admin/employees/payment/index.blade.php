@@ -125,7 +125,9 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h5 class="mb-3">Monthly Payment Details</h5>
-                    {!! $dataTable->table(['class' => 'table table-bordered table-hover w-100']) !!}
+                    <div class="table-responsive">
+                        {!! $dataTable->table(['class'=>'table table-bordered table-hover w-100']) !!}
+                    </div>
                 </div>
             </div>
         </div>

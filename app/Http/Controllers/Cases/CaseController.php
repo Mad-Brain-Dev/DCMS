@@ -595,10 +595,10 @@ class CaseController extends Controller
             $case->save();
         }
 
-        $field_visit_number = Cases::where('id', '=', $request->case_id)->first();
         // $remaining = $field_visit_number->bal_field_visit - 1;
-        $field_visit_number->bal_field_visit == $field_visit_number->bal_field_visit--;
-        $field_visit_number->save();
+//        $case->bal_field_visit == $case->bal_field_visit--;
+        $case->bal_field_visit = max(0, ($case->bal_field_visit ?? 0) - 1);
+        $case->save();
 
 
 

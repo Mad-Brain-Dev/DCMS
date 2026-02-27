@@ -11,7 +11,9 @@
                        <a href="{{route('admin.users.create')}}" class="btn btn-sm btn-primary text-capitalize" style="padding-top: 8px;">Create User</a>
                        @endcan
                     </div>
-                    {!! $dataTable->table(['class'=>'table-responsive']) !!}
+                    <div class="table-responsive">
+                        {!! $dataTable->table(['class'=>'table table-bordered table-hover w-100']) !!}
+                    </div>
                 </div>
             </div>
         </div>

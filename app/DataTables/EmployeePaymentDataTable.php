@@ -235,6 +235,7 @@ class EmployeePaymentDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(1)
+            ->parameters(['lengthMenu' => [10, 25, 50],])
             ->selectStyleSingle();
     }
 
@@ -251,7 +252,7 @@ class EmployeePaymentDataTable extends DataTable
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(120)
+                ->width(150)
                 ->addClass('text-center')
         ];
     }

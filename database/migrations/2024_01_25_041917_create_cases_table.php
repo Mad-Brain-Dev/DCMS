@@ -26,7 +26,8 @@ return new class extends Migration
             // $table->foreignId('user_id')->nullable();
             $table->string('collection_commission')->nullable();
             $table->string('field_visit')->nullable();
-            $table->string('bal_field_visit')->nullable();
+//            $table->string('bal_field_visit')->nullable();
+            $table->integer('bal_field_visit')->default(0);
             $table->string('manager_ic')->nullable();
             $table->string('collector_ic')->nullable();
             $table->string('name')->nullable();

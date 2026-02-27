@@ -8,7 +8,9 @@
                     <div class="d-flex justify-content-between">
                         <h4 class="card-title mb-3">Cases</h4>
                     </div>
-                    {!! $dataTable->table(['class'=>'table-responsive']) !!}
+                    <div class="table-responsive">
+                        {!! $dataTable->table(['class'=>'table table-bordered table-hover w-100']) !!}
+                    </div>
                 </div>
             </div>
         </div>

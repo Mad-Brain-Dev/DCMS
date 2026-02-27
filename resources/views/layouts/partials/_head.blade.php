@@ -4,7 +4,6 @@
 <title>{{get_page_meta()}} {{ config('settings.site_title') ?? config('app.name') }}</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <!-- App favicon -->
 <!--Favicon-->
 <link rel="icon" href="{{ asset('/storage/settings/favicon.ico') }}" />

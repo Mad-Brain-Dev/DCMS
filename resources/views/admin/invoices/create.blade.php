@@ -39,16 +39,48 @@
             </div>
         </div>
         <div class="col-md-12">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="mb-3">Client Summary</h5>
-                    <div class="d-flex justify-content-between">
-                        <h5>Client Name: <span id="bannerClientName"></span></h5>
-                        <h5>Payment Count: <span id="bannerPaymentCount"></span></h5>
-                        <h5>Total Collected: <span id="bannerTotalCollected"></span></h5>
-                        <h5>Total Balance: <span id="bannerTotalBalance"></span></h5>
+            <div class="row mb-4">
+                <h5 class="mb-3">Client Summary</h5>
+                <div class="col-md-3">
+                    <div class="card shadow-sm border-0 bg-light">
+                        <div class="card-body">
+                            <small>Client Name</small>
+                            <h5 class="fw-bold" id="bannerClientName">Please select a client</h5>
+                        </div>
                     </div>
                 </div>
+
+                <div class="col-md-3">
+                    <div class="card shadow-sm border-0 bg-light">
+                        <div class="card-body">
+                            <small>Payment Count</small>
+                            <h5 class="fw-bold" id="bannerPaymentCount">0</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card shadow-sm border-0 bg-light">
+                        <div class="card-body">
+                            <small>Total Collected</small>
+                            <h5 class="fw-bold text-primary" id="bannerTotalCollected">
+                                0
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card shadow-sm border-0 bg-light">
+                        <div class="card-body">
+                            <small>Total Balance</small>
+                            <h5 class="fw-bold text-danger" id="bannerTotalBalance">
+                                0
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -62,34 +94,41 @@
 
                     <h5 class="mb-3">Installments</h5>
 
-                    <form id="invoiceForm" method="POST" action="{{ route('admin.invoices.store') }}">
+                    <form id="invoiceForm"
+                          method="POST"
+                          action="{{ route('admin.invoices.store') }}">
                         @csrf
                         <input type="hidden" name="client_id" id="selectedClientId">
 
-                        <table class="table table-bordered table-hover">
-                            <thead class="table-light">
-                            <tr>
-                                <th width="30"><input type="checkbox" id="selectAll"></th>
-                                <th>Case #</th>
-                                <th>Debtor</th>
-                                <th>Date</th>
-                                <th>Amount</th>
-                                <th>Collected By</th>
-                                <th>Paid To</th>
-                                <th>Total Paid</th>
-                                <th>Total Balance</th>
-                                <th>Total Debt</th>
-                                <th>Next Payment</th>
-                            </tr>
-                            </thead>
-                            <tbody id="installmentTableBody">
-                            <tr>
-                                <td colspan="11" class="text-center text-muted">
-                                    Select client to load installments
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive shadow-sm rounded">
+                            <table class="table table-bordered table-hover align-middle mb-0">
+                                <thead class="table-light text-center">
+                                <tr>
+                                    <th width="30">
+                                        <input type="checkbox" id="selectAll">
+                                    </th>
+                                    <th>Case #</th>
+                                    <th>Debtor</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Collected By</th>
+                                    <th>Paid To</th>
+                                    <th>Total Paid</th>
+                                    <th>Total Balance</th>
+                                    <th>Total Debt</th>
+                                    <th>Next Payment</th>
+                                </tr>
+                                </thead>
+
+                                <tbody id="installmentTableBody">
+                                <tr>
+                                    <td colspan="11" class="text-center text-muted py-4">
+                                        Select client to load installments
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
                     </form>
 
