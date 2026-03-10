@@ -2192,3 +2192,360 @@ footer {
 }
 
 /* warrant end */
+
+
+
+
+
+
+/* new -> contract.blade */
+/* also this header for lod header part, because of both are same */
+
+        .top_of_header {
+           
+        }
+
+        .header {
+            display: flex;
+            padding-bottom: 10px;
+             margin-top: 50px;
+        }
+
+        .contract_logo_div {
+        margin-left: -60px;
+       
+        }
+
+        .securre_text_img1 {
+            width: 90%;
+        }
+
+        .logo span {
+            color: #000;
+        }
+
+        .tagline {
+            border-bottom: 10px solid #2c2c6c;
+            width: 70%;
+            margin-left: -30px;
+            padding-top: 15px;
+        }
+        .tag_text{
+         font-size: 20px;
+         color: #032b6f;
+        }
+/*  */
+/*  */
+/*  */
+
+        .title {
+            text-align: left;
+            margin-top: 20px;
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .text_section p {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .text_section p .span_1,
+        .text_section p .span_2,
+        .text_section p .span_3,
+        .text_section p .span_4,
+        .text_section p .span_5,
+        .span_8,
+        .span_9{
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            border-bottom: black solid 2px;
+            text-align: center;
+        }
+        .text_section p .span_1{
+            width: 50px;
+        }
+        .text_section p .span_2{
+            width: 120px;
+        }
+         .text_section p .span_3{
+            width: 40px;
+        }
+         .text_section p .span_4{
+            width: 300px;
+        }
+         .text_section p .span_5{
+            width: 150px;
+        }
+        .sc_shall_text li{
+            list-style: none;
+            margin-left: -20px;
+            margin-top: -20px;
+        }
+        .text_section .span_6,
+        .text_section .span_7{
+            width: 100%;
+            height: 60px;
+            border-bottom: rgb(147, 147, 147) solid 2px;
+        }
+         .text_section .span_7{
+            height: 20px;
+        }
+        .span_8{
+            width: 60px;
+        }
+        .span_9{
+            width: 110px;
+        }
+        .section {
+            margin-top: 25px;
+            padding-left: 30px;
+        }
+
+        .section-title {
+            font-weight: bold;
+        }
+
+        .sub-list {
+            list-style-type: lower-alpha;
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+         .sub-list li{
+            padding-left: 8px;
+        }
+        .directly_text{
+            padding: 0;
+            margin-left: 15px;
+            list-style-type: disc;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 11px;
+            color: #555;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+
+        .page {
+            text-align: right;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+
+
+/* // */
+        .details_container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.left{
+    width: 45%;
+}
+
+.right{
+    width: 45%;
+}
+
+.the_clients{
+    margin-bottom: 30px;
+}
+
+.line{
+    border-bottom: 2px dashed black;
+    width: 80%;
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+
+.form-row{
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.form-row span{
+    width: 150px;
+}
+
+.input-line{
+    flex: 1;
+    border-bottom: 2px solid black;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+
+.footer-section{
+    text-align: center;
+    padding: 20px;
+}
+
+.note{
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 15px;
+}
+body{
+    position: relative;
+}
+.divider{
+    border-top: 2px solid #2b4c7e;
+    position: absolute;
+    bottom: 70px;
+    left: 0;
+    width: 100%;
+    margin: 10px 0 20px;
+}
+
+.info{
+    font-size: 15px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.blue{
+    color: #1a5fb4;
+}
+
+.left h5{
+    font-size: 18px;
+}
+.right h3,
+.left h3{
+    font-size: 26x;
+}
+
+
+/* contract blade ends */
+
+
+
+/* new lod blade */
+ .lod_header .contract_logo_div {
+        margin-left: 0;
+       
+        }
+
+        .securre_text_img1 {
+            width: 90%;
+        }
+.top{
+    display: flex;
+    /* justify-content:space-between; */
+    margin-top: 20px;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+
+}
+
+.middle{
+    border-right:2px solid black;
+    border-left:2px solid black;
+}
+.left{
+    width: 33%;
+}
+.left h5,
+.middle h5{
+    font-size: 20px;
+    
+}
+.left p,
+.middle p{
+    font-size: 16px;
+    font-weight: 500;;
+}
+.middle{
+    padding-left: 20px;
+    width: 35%;
+    margin-top:20px;
+    padding-top: 10px;
+}
+
+.right{
+    margin-left:20px;
+}
+
+.box{
+    border:1px solid #aaa;
+    padding:3px 10px;
+}
+
+.date{
+    margin-top:15px;
+    font-weight: 600;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.claim{
+    margin-top:20px;
+}
+.claim p{
+    margin-bottom: 5px;
+}
+ol{
+    margin-top:15px;
+    line-height:1.6;
+}
+
+ul{
+    margin-top:8px;
+}
+
+.highlight{
+    color:black;
+    font-weight: 600;
+}
+
+.space{
+    margin-top:15px;
+}
+
+.highlight_client{
+    padding-left: 40px;
+    font-weight: 600;
+}
+
+.lod_text{
+    margin-left: -50px;
+}
+.lod_text ol li{
+    padding-left: 10px;
+}
+.lod_text ul li{
+    list-style-type: lower-alpha;
+}
+
+.lod_span_1,
+.lod_span_2,
+.lod_span_3,
+.lod_span_4,
+.lod_span_5
+{
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    border-bottom: black solid 2px;
+    text-align: center;
+}
+.lod_span_2{
+    width: 130px;
+}
+.lod_span_3{
+width: 100px;
+}
+.lod_span_4{
+    width: 170px;
+    color: #0a65c4;
+}
+.lod_span_5{
+    width: 130px;
+    color: #0a65c4;
+}
