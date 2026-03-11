@@ -1714,7 +1714,7 @@ footer {
 }
 
 .red-text {
-    color: red;
+    color: rgb(0, 0, 0);
 }
 
 /* Final row */
@@ -1940,7 +1940,7 @@ footer {
 
     .case-number {
         font-weight: bold;
-        color: red;
+        color: rgb(0, 0, 0);
         font-size: 22px;
         padding-left: 20px
     }
@@ -2014,7 +2014,7 @@ footer {
         margin-top: 10px;
     }
     .debt-placeholder {
-        color: red;
+        color: rgb(0, 0, 0);
         font-weight: 500;
         font-size: 18px;
         padding-top: 10px;
@@ -2028,7 +2028,7 @@ footer {
     }
 
     .red-num {
-        color: red;
+        color: rgb(0, 0, 0);
         font-weight: bold;
         padding-left: 40px;
         padding-right: 40px;
@@ -2173,7 +2173,7 @@ footer {
 }
 
 .endorse-value-red {
-    color: red;
+    color: rgb(0, 0, 0);
     font-weight: 500;
 
 }
