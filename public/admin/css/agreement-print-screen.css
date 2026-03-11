@@ -1265,7 +1265,7 @@ footer {
     }
  .signature{
       display: inline-block;
-      border-bottom: 2px dotted #000;
+      /* border-bottom: 2px dotted #000; */
       min-width: 70%;
       text-align: start;
       padding: 0 4px;
@@ -1603,6 +1603,7 @@ footer {
     display: flex;
     justify-content: space-between;
     border-bottom: 3px solid black;
+    margin-top: 40px;
 }
 .tax_img{
     width: 35%;
@@ -1642,7 +1643,7 @@ footer {
 }
 
 .display_2 p{
-    color: #fe5e5e;
+    color: #030303;
     line-height: 12px;
 }
 /* new */
@@ -1671,8 +1672,7 @@ footer {
     padding-left: 90px;
     font-weight: 500;
 }
-.this_will,
-.stat_cl_name
+.this_will
 {
     color: rgb(255, 58, 58);
 }
@@ -1685,9 +1685,11 @@ footer {
 
 .summary-table {
     width:90%;
+    height: 80px;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
     font-size: 15px;
+    margin-top: 30px;
 }
 
 .summary-table td{
@@ -1801,7 +1803,7 @@ footer {
 
     .remit-box {
     width: 100%;
-    margin-top: 30px;
+    margin-top: 80px;
     margin-bottom: 20px;
 }
 
@@ -1875,7 +1877,7 @@ footer {
 .tax-footer-text-2{
     font-size: 14px;
     font-weight: 400;
-    line-height: 5px;
+    line-height: 18px;
 }
 
 
@@ -2548,4 +2550,82 @@ width: 100px;
 .lod_span_5{
     width: 130px;
     color: #0a65c4;
+}
+
+
+
+
+
+.signature{
+}
+
+.sincerely{
+    padding-top: 20px;
+font-style: italic;
+}
+
+.top-section{
+display: flex;
+padding-left: 80px;
+}
+
+.lod_logo{
+   margin-right: 20px;
+}
+
+.lod_img1{
+    width: 110%;
+}
+
+.lod_footer_text{
+    line-height: 8px;
+    border-left: 2px solid #243b63;
+    padding-left: 20px;
+}
+.lod_a{
+    padding-left: 20px;
+}
+.lod_e{
+    padding-left: 8px;
+}
+.lod_lic{
+    padding-left: 10px;
+}
+.lod_footer_text h3{
+    font-size: 26px;
+margin: 0;
+color: #243b63;
+padding-bottom: 10px;
+}
+
+
+.lod_company{
+font-weight: bold;
+color: #243b63;
+}
+
+.lod_foot_divider{
+    width: 100%;
+border-bottom: 5px solid #243b63;
+margin-bottom: 20px;
+}
+
+.lod_divider_text p {
+    font-size: 13px;
+    font-weight: 400;
+    text-align: center;
+    color: #777575;
+}
+
+.lod_divider_text{
+    margin-top: 100px;
+    margin-bottom: -10px;
+}
+
+.footer_text{
+margin-top: 60px;
+margin-bottom: 30px;
+font-size: 15px;
+font-weight: 600;
+color: #333;
 }

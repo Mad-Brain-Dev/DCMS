@@ -22,15 +22,22 @@
 </head>
 
 <body>
-
-
     <div class="second-section">
         <div class="container mb-5">
+            <div class="row">
+                <div class="col-md-12 buttons">
+                    <div class="d-flex justify-content-end pt-3">
+                        <a href="{{ route('admin.cases.index') }}" class="btn btn-danger mr-1">Back</a>
+                        <button class="btn btn-primary" onclick="printDocument()">Print</button>
+                        <a href="{{ route('printable.case.letter', 1) }}" class="btn btn-dark ml-1">Print Letter</a>
+                    </div>
+                </div>
+            </div>
 
             <div>
                 <div class="tax_heading_div">
                     <div class="tax_img">
-                        <img src="{{ asset('images/securre.png') }}" alt="" />
+                        <img src="{{asset('images/securre.png')}}" alt="" />
                     </div>
 
                     <div class="tax_span_text">
@@ -60,27 +67,34 @@
 
                 <div class="statement_display">
                     <div class="statement_info_1">
-                        <p>Statement #: <span class="stat_num">001 (In seqeunce of issue)</span></p>
-
-                        <p>Date: <span class="stat_date">DATE (TODAY)</span></p>
-
-                        <p>Customer ID: <span class="stat_cus_id">CL ABBREVIATION</p>
+                        <p>Statement #: <span class="stat_num">001</span></p>
+                        <p>Date: <span class="stat_date">February 4, 2025</span></p>
+                        <p>Customer ID: <span class="stat_cus_id">A13 <span class="this_will">(This will change to
+                                    client abbr)</span></span></p>
                         <p>Client Name: <span class="stat_cl_name">CL NAME</span></p>
                     </div>
 
 
                     <div class="invoice-summary-box">
 
-                        <table class="summary-table border-4 border-black">
+                        <table class="summary-table">
+                            <tr>
+                                <td class="label-cell">
+                                    Payable to <span class="red-text">CL NAME</span>
+                                </td>
+                                <td colspan="4" class="amount-cell">$1,060.46</td>
+                            </tr>
+
+                            <tr>
+                                <td class="label-cell">
+                                    Payable to SECURRE
+                                </td>
+                                <td colspan="4" class="amount-cell">$55,002.51</td>
+                            </tr>
+
                             <tr class="final-row">
                                 <td class="final-left">FINAL INVOICE AMOUNT</td>
-                                <td colspan="4" class="final-right">($4,400.00)</td>
-                            </tr>
-                            <tr>
-                                <td class="label-cell final-left">
-                                    INVOICE PAYABLE TO
-                                </td>
-                                <td colspan="4" class="amount-cell final-right">CLIENT NAME</td>
+                                <td colspan="4" class="final-right">$53,942.05</td>
                             </tr>
                         </table>
 
@@ -91,6 +105,11 @@
 
 
                 <div class="report-box">
+                    <div class="report-header">
+                        <div class="report_header_chile_1">Payment Collected by <span class="highlight-red">CL
+                                NAME</span></div>
+                        <div class="highlight-red">Nett Amount is after deducting CL Commission</div>
+                    </div>
 
                     <table class="first_table">
                         <thead>
@@ -98,8 +117,8 @@
                                 <th>Date Paid</th>
                                 <th>Case #</th>
                                 <th>Debtor Name</th>
-                                <th>Collected By</th>
-                                <th>Collected Amt</th>
+                                <th>Amount</th>
+                                <th class="red-col">Nett Amount</th>
                                 <th>Nett Amount</th>
                                 <th>Balance</th>
                             </tr>
@@ -108,67 +127,106 @@
                         <tbody>
                             <tr>
                                 <td>16 Jan 2025</td>
-                                <td>123</td>
-                                <td>DB NAME</td>
-                                <td>Securre</td>
-                                <td>$1,000.00</td>
-                                <td>($400.00)</td>
-                                <td>$9,000.00</td>
+                                <td>10001</td>
+                                <td>ABC 1</td>
+                                <td>$2,651.16</td>
+                                <td>$1,590.70</td>
+                                <td>$636.28</td>
+                                <td>NIL</td>
                             </tr>
                             <tr>
                                 <td>20 Jan 2025</td>
-                                <td>124</td>
-                                <td>DB NAME</td>
-                                <td>Client Name</td>
-                                <td>$2,000.00</td>
+                                <td>10002</td>
+                                <td>ABC 2</td>
+                                <td>$500.00</td>
+                                <td>$300.00</td>
+                                <td>$120.00</td>
+                                <td>N/A</td>
+                            </tr>
+                            <tr>
+                                <td>21 Jan 2025</td>
+                                <td>10003</td>
+                                <td>ABC 3</td>
                                 <td>$800.00</td>
-                                <td>$8,000.00</td>
+                                <td>$480.00</td>
+                                <td>$192.00</td>
+                                <td>$2,736.90</td>
                             </tr>
                             <tr>
                                 <td>21 Jan 2025</td>
-                                <td>125</td>
-                                <td>DB NAME</td>
-                                <td>Client Name</td>
-                                <td>$3,000.00</td>
-                                <td>$1,200.00</td>
-                                <td>$7,000.00</td>
-                            </tr>
-                            <tr>
-                                <td>21 Jan 2025</td>
-                                <td>126</td>
-                                <td>DB NAME</td>
-                                <td>Securre</td>
-                                <td>$4,000.00</td>
-                                <td>($1,600.00)</td>
-                                <td>$6,000.00</td>
+                                <td>10004</td>
+                                <td>ABC 4</td>
+                                <td>$4,757.22</td>
+                                <td>$2,854.33</td>
+                                <td>$1,141.73</td>
+                                <td>NIL</td>
                             </tr>
                             <tr>
                                 <td>28 Jan 2025</td>
-                                <td>127</td>
-                                <td>DB NAME</td>
-                                <td>Securre</td>
-                                <td>$5,000.00</td>
-                                <td>($2,000.00)</td>
-                                <td>$5,000.00</td>
+                                <td>10005</td>
+                                <td>ABC 5</td>
+                                <td>$53,684.63</td>
+                                <td>$32,210.78</td>
+                                <td>$12,884.31</td>
+                                <td>NIL</td>
                             </tr>
                             <tr>
                                 <td>31 Jan 2025</td>
-                                <td>128</td>
-                                <td>DB NAME</td>
-                                <td>Securre</td>
-                                <td>($2,400.00)</td>
-                                <td class="first_table_position">$7,026.68</td>
-                                <td>$4,000.00</td>
+                                <td>10006</td>
+                                <td>ABC 6</td>
+                                <td>$29,277.84</td>
+                                <td class="first_table_position">$17,566.70</td>
+                                <td>$7,026.68</td>
+                                <td>NIL</td>
                             </tr>
                             <tr>
-                                <td colspan="5" class="no-border-bg">Final Amount:</td>
-                                <td class="first_table_position">($4,400.00)</td>
+                                <td colspan="4" class="no-border-bg">Payable to Secure:</td>
+                                <td class="first_table_position">$55,002.51</td>
                             </tr>
                         </tbody>
                     </table>
 
 
+                    <div class="report-box-2">
+                        <div class="report-header">
+                            <div class="report_header_chile_1"> Payment Collected by SECURRE COLLECTION PTE LTD
+                                <!-- <span class="highlight-red">CL NAME</span> -->
+                            </div>
+                            <div class="highlight-red">Nett Amount is after deducting Our Commission</div>
+                        </div>
 
+                        <table class="first_table">
+                            <thead>
+                                <tr>
+                                    <th>Date Paid</th>
+                                    <th>Case #</th>
+                                    <th>Debtor Name</th>
+                                    <th>Amount</th>
+                                    <th class="red-col">Nett Amount</th>
+                                    <th>Nett Amount</th>
+                                    <th>Balance</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>31 Jan 2025</td>
+                                    <td>10007</td>
+                                    <td>DEF 1</td>
+                                    <td>$2,651.16</td>
+                                    <td class="first_table_position">$1,060.46 </td>
+                                    <td>$424.19</td>
+                                    <td>NIL</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4" class="no-border-bg">Payable to Secure:</td>
+                                    <td class="first_table_position">$1,060.46</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
 
 
                     <div class="remit-box">
@@ -207,7 +265,7 @@
                             </tr>
                             <tr>
                                 <td class="left-col">Payment Methods</td>
-                                <td class="mid-col">TT/Cheque/PayNow ( 87428158 / 202331790G )</td>
+                                <td class="mid-col">TT, Cheque, or PayNow (87428158)</td>
                                 <td class="right-col highlight">CL PAYMENT METHODS</td>
                             </tr>
                             <tr>
@@ -223,9 +281,13 @@
                         <p class="tax-footer-text-1">For questions concerning this payment voucher, pleasecontact us
                             via WhatsApp at +65 8505 5484, or email at hello@securre.net</p>
                         <p class="tax-footer-text-2">Note: This document is strictly private, confidential and personal
-                            to the sender and its recipients and should not be copied, edited,</br>
-                            distributed or reproduced in whole or in part, nor passed to any third party. No signature
-                            is required from Securre Collection Pte Ltd</p>
+                            to the sender and its recipients and should not be copied, edited</p>
+                        <p class="tax-footer-text-2">distributed or reproduced in whole or in part, nor passed to any
+                            third party. No signature is required from Securre Collection Pte Ltd</p>
+                        <p class="tax-footer-text-2">Note: This document is strictly private, confidential and personal
+                            to the sender and its recipients and should not be copied, edited,</p>
+                        <p class="tax-footer-text-2">distributed or reproduced in whole or in part, nor passed to any
+                            third party. No signature is required from Securre Collection Pte Ltd</p>
                     </div>
 
 
@@ -233,12 +295,6 @@
                     <div>
                     </div>
                 </div>
-
-
-
-
-
-
 
                 <footer class="warrant-footer">
                     Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098

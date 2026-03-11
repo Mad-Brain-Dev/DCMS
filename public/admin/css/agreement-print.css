@@ -1283,7 +1283,7 @@ hr {
     }
  .signature{
       display: inline-block;
-      border-bottom: 2px dotted #000;
+      /* border-bottom: 2px dotted #000; */
       min-width: 70%;
       text-align: start;
       padding: 0 4px;
@@ -1625,6 +1625,7 @@ hr {
     display: flex;
     justify-content: space-between;
     border-bottom: 3px solid black;
+    margin-top: 40px;
 }
 .tax_img{
     width: 35%;
@@ -1664,7 +1665,7 @@ hr {
 }
 
 .display_2 p{
-    color: #fe5e5e;
+    color: #0a0a0a;
     line-height: 12px;
 }
 /* new */
@@ -1693,8 +1694,7 @@ hr {
     padding-left: 90px;
     font-weight: 500;
 }
-.this_will,
-.stat_cl_name
+.this_will
 {
     color: rgb(255, 58, 58);
 }
@@ -1823,7 +1823,7 @@ hr {
 
     .remit-box {
     width: 100%;
-    margin-top: 30px;
+    margin-top: 80px;
     margin-bottom: 20px;
 }
 
@@ -1898,7 +1898,7 @@ hr {
     font-size: 14px;
     font-weight: 400;
     /* text-align: center; */
-    line-height: 5px;
+    line-height: 18px;
 }
 /* Tax end */
 
@@ -2450,4 +2450,211 @@ hr {
 
 
 
-/*  */
+/* new lod blade start here*/
+ .lod_header .contract_logo_div {
+        margin-left: 0;
+       
+        }
+
+        .securre_text_img1 {
+            width: 85%;
+        }
+        .lod_tagline{
+            width: 85%;
+            margin-top: -10px;
+        }
+.top{
+    display: flex;
+    /* justify-content:space-between; */
+    margin-top: 20px;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+
+}
+
+.middle{
+    border-right:2px solid black;
+    border-left:2px solid black;
+}
+.left{
+    width: 33%;
+}
+.left h5,
+.middle h5{
+    font-size: 20px;
+    
+}
+.left p,
+.middle p{
+    font-size: 16px;
+    font-weight: 500;;
+}
+.middle{
+    padding-left: 20px;
+    width: 35%;
+    margin-top:20px;
+    padding-top: 10px;
+}
+
+.right{
+    margin-left:20px;
+}
+
+.box{
+    border:1px solid #aaa;
+    padding:3px 10px;
+}
+
+.date{
+    margin-top:15px;
+    font-weight: 600;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.claim{
+    margin-top:20px;
+}
+.claim p{
+    margin-bottom: 5px;
+}
+ol{
+    margin-top:15px;
+    line-height:1.6;
+}
+
+ul{
+    margin-top:8px;
+}
+
+.highlight{
+    color:black;
+    font-weight: 600;
+}
+
+.space{
+    margin-top:15px;
+}
+
+.highlight_client{
+    padding-left: 40px;
+    font-weight: 600;
+}
+
+.lod_text{
+    margin-left: -50px;
+}
+.lod_text ol li{
+    padding-left: 10px;
+}
+.lod_text ul li{
+    list-style-type: lower-alpha;
+}
+
+.lod_span_1,
+.lod_span_2,
+.lod_span_3,
+.lod_span_4,
+.lod_span_5
+{
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    border-bottom: black solid 2px;
+    text-align: center;
+}
+.lod_span_2{
+    width: 130px;
+}
+.lod_span_3{
+width: 100px;
+}
+.lod_span_4{
+    width: 170px;
+    color: #0a65c4;
+}
+.lod_span_5{
+    width: 130px;
+    color: #0a65c4;
+}
+
+
+
+
+
+.signature{
+}
+
+.sincerely{
+    padding-top: 20px;
+font-style: italic;
+}
+
+.top-section{
+display: flex;
+padding-left: 80px;
+}
+
+.lod_logo{
+   margin-right: 20px;
+}
+
+.lod_img1{
+    width: 110%;
+}
+
+.lod_footer_text{
+    line-height: 8px;
+    border-left: 2px solid #243b63;
+    padding-left: 20px;
+}
+.lod_a{
+    padding-left: 20px;
+}
+.lod_e{
+    padding-left: 8px;
+}
+.lod_lic{
+    padding-left: 10px;
+}
+.lod_footer_text h3{
+    font-size: 26px;
+margin: 0;
+color: #243b63;
+padding-bottom: 10px;
+}
+
+
+.lod_company{
+font-weight: bold;
+color: #243b63;
+}
+
+.lod_foot_divider{
+    width: 100%;
+border-bottom: 5px solid #243b63;
+margin-bottom: 20px;
+}
+
+.lod_divider_text p {
+    font-size: 13px;
+    font-weight: 400;
+    text-align: center;
+    color: #777575;
+}
+
+.lod_divider_text{
+    margin-top: 100px;
+    margin-bottom: -10px;
+}
+
+.footer_text{
+margin-top: 60px;
+margin-bottom: 30px;
+font-size: 15px;
+font-weight: 600;
+color: #333;
+}
+/* new lod blade end here*/
+
