@@ -48,10 +48,10 @@
                     </div>
 
                     <div class="display_2">
-                        <p>CL NAME</p>
-                        <p>CL ADDRESS</p>
-                        <p>CL CONTACT NUMBER</p>
-                        <p>CL EMAIL</p>
+                        <p>{{ $client->name }}</p>
+                        <p>{{ $client->address ?? '-' }}</p>
+                        <p>{{ $client->phone ?? '-' }}</p>
+                        <p>{{ $client->email ?? '-' }}</p>
                     </div>
                 </div>
 
@@ -60,12 +60,12 @@
 
                 <div class="statement_display">
                     <div class="statement_info_1">
-                        <p>Statement #: <span class="stat_num">001 (In seqeunce of issue)</span></p>
+                        <p>Statement #: <span class="stat_num">{{ $sequenceNumber }}</span></p>
 
-                        <p>Date: <span class="stat_date">DATE (TODAY)</span></p>
+                        <p>Date: <span class="stat_date">{{ now()?->format('d F, Y') }}</span></p>
 
-                        <p>Customer ID: <span class="stat_cus_id">CL ABBREVIATION</p>
-                        <p>Client Name: <span class="stat_cl_name">CL NAME</span></p>
+                        <p>Customer ID: <span class="stat_cus_id">{{ $clientAbbr }}</span></p>
+                        <p>Client Name: <span class="stat_cl_name">{{ $client->name }}</span></p>
                     </div>
 
 
@@ -74,13 +74,25 @@
                         <table class="summary-table border-4 border-black">
                             <tr class="final-row">
                                 <td class="final-left">FINAL INVOICE AMOUNT</td>
-                                <td colspan="4" class="final-right">($4,400.00)</td>
+                                <td colspan="4" class="final-right">
+                                    @php $amount = $invoice->final_invoice_amount; @endphp
+
+                                    @if($amount < 0)
+                                        (${{ number_format(abs($amount), 2) }})
+                                    @else
+                                        ${{ number_format($amount, 2) }}
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
                                 <td class="label-cell final-left">
                                     INVOICE PAYABLE TO
                                 </td>
-                                <td colspan="4" class="amount-cell final-right">CLIENT NAME</td>
+                                <td colspan="4" class="amount-cell final-right">
+                                    {{ $invoice->final_payable_to === 'client'
+                                        ? $client->name
+                                        : 'Securre' }}
+                                </td>
                             </tr>
                         </table>
 
@@ -105,65 +117,135 @@
                             </tr>
                         </thead>
 
+{{--                        <tbody>--}}
+{{--                            <tr>--}}
+{{--                                <td>16 Jan 2025</td>--}}
+{{--                                <td>123</td>--}}
+{{--                                <td>DB NAME</td>--}}
+{{--                                <td>Securre</td>--}}
+{{--                                <td>$1,000.00</td>--}}
+{{--                                <td>($400.00)</td>--}}
+{{--                                <td>$9,000.00</td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <td>20 Jan 2025</td>--}}
+{{--                                <td>124</td>--}}
+{{--                                <td>DB NAME</td>--}}
+{{--                                <td>Client Name</td>--}}
+{{--                                <td>$2,000.00</td>--}}
+{{--                                <td>$800.00</td>--}}
+{{--                                <td>$8,000.00</td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <td>21 Jan 2025</td>--}}
+{{--                                <td>125</td>--}}
+{{--                                <td>DB NAME</td>--}}
+{{--                                <td>Client Name</td>--}}
+{{--                                <td>$3,000.00</td>--}}
+{{--                                <td>$1,200.00</td>--}}
+{{--                                <td>$7,000.00</td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <td>21 Jan 2025</td>--}}
+{{--                                <td>126</td>--}}
+{{--                                <td>DB NAME</td>--}}
+{{--                                <td>Securre</td>--}}
+{{--                                <td>$4,000.00</td>--}}
+{{--                                <td>($1,600.00)</td>--}}
+{{--                                <td>$6,000.00</td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <td>28 Jan 2025</td>--}}
+{{--                                <td>127</td>--}}
+{{--                                <td>DB NAME</td>--}}
+{{--                                <td>Securre</td>--}}
+{{--                                <td>$5,000.00</td>--}}
+{{--                                <td>($2,000.00)</td>--}}
+{{--                                <td>$5,000.00</td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <td>31 Jan 2025</td>--}}
+{{--                                <td>128</td>--}}
+{{--                                <td>DB NAME</td>--}}
+{{--                                <td>Securre</td>--}}
+{{--                                <td>($2,400.00)</td>--}}
+{{--                                <td class="first_table_position">$7,026.68</td>--}}
+{{--                                <td>$4,000.00</td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <td colspan="5" class="no-border-bg">Final Amount:</td>--}}
+{{--                                <td class="first_table_position">($4,400.00)</td>--}}
+{{--                            </tr>--}}
+{{--                        </tbody>--}}
                         <tbody>
+
+                        @foreach($invoice->installments as $installment)
+
+                            @php
+                                $amount = $installment->pivot->amount_paid;
+                                $net = $installment->pivot->net_amount;
+                            @endphp
+
                             <tr>
-                                <td>16 Jan 2025</td>
-                                <td>123</td>
-                                <td>DB NAME</td>
-                                <td>Securre</td>
-                                <td>$1,000.00</td>
-                                <td>($400.00)</td>
-                                <td>$9,000.00</td>
+
+                                {{-- 1. Date Paid --}}
+                                <td>
+                                    {{ \Carbon\Carbon::parse($installment->payment_date)->format('d F, Y') }}
+                                </td>
+
+                                {{-- 2. Case Number (LAST 3 DIGITS ONLY) --}}
+                                <td>
+                                    {{ substr($installment->case->case_sku ?? '', -3) }}
+                                </td>
+
+                                {{-- 3. Debtor --}}
+                                <td>
+                                    {{ $installment->debtor->name ?? '-' }}
+                                </td>
+
+                                {{-- 4. Collected By --}}
+                                <td>
+                                    {{ $installment->pivot->collected_type === 'securre'
+                                        ? 'Securre'
+                                        : $clientAbbr }}
+                                </td>
+
+                                {{-- 5. Amount Collected --}}
+                                <td>
+                                    ${{ number_format($amount, 2) }}
+                                </td>
+
+                                {{-- 6. Nett Amount --}}
+                                <td>
+                                    @if($net < 0)
+                                        (${{ number_format(abs($net), 2) }})
+                                    @else
+                                        ${{ number_format($net, 2) }}
+                                    @endif
+                                </td>
+
+                                {{-- 7. Balance --}}
+                                <td>
+                                    ${{ number_format($installment->pivot->balance_snapshot, 2) }}
+                                </td>
+
                             </tr>
-                            <tr>
-                                <td>20 Jan 2025</td>
-                                <td>124</td>
-                                <td>DB NAME</td>
-                                <td>Client Name</td>
-                                <td>$2,000.00</td>
-                                <td>$800.00</td>
-                                <td>$8,000.00</td>
-                            </tr>
-                            <tr>
-                                <td>21 Jan 2025</td>
-                                <td>125</td>
-                                <td>DB NAME</td>
-                                <td>Client Name</td>
-                                <td>$3,000.00</td>
-                                <td>$1,200.00</td>
-                                <td>$7,000.00</td>
-                            </tr>
-                            <tr>
-                                <td>21 Jan 2025</td>
-                                <td>126</td>
-                                <td>DB NAME</td>
-                                <td>Securre</td>
-                                <td>$4,000.00</td>
-                                <td>($1,600.00)</td>
-                                <td>$6,000.00</td>
-                            </tr>
-                            <tr>
-                                <td>28 Jan 2025</td>
-                                <td>127</td>
-                                <td>DB NAME</td>
-                                <td>Securre</td>
-                                <td>$5,000.00</td>
-                                <td>($2,000.00)</td>
-                                <td>$5,000.00</td>
-                            </tr>
-                            <tr>
-                                <td>31 Jan 2025</td>
-                                <td>128</td>
-                                <td>DB NAME</td>
-                                <td>Securre</td>
-                                <td>($2,400.00)</td>
-                                <td class="first_table_position">$7,026.68</td>
-                                <td>$4,000.00</td>
-                            </tr>
-                            <tr>
-                                <td colspan="5" class="no-border-bg">Final Amount:</td>
-                                <td class="first_table_position">($4,400.00)</td>
-                            </tr>
+
+                        @endforeach
+
+                        {{-- FINAL ROW --}}
+                        <tr>
+                            <td colspan="5" class="no-border-bg">Final Amount:</td>
+
+                            <td>
+                                @if($invoice->final_invoice_amount < 0)
+                                    (${{ number_format(abs($invoice->final_invoice_amount), 2) }})
+                                @else
+                                    ${{ number_format($invoice->final_invoice_amount, 2) }}
+                                @endif
+                            </td>
+                        </tr>
+
                         </tbody>
                     </table>
 
@@ -177,42 +259,42 @@
                         <table class="remit-table">
                             <tr>
                                 <td class="left-col">Account Name:</td>
-                                <td class="mid-col">Secure Collection Pte Ltd</td>
-                                <td class="right-col highlight">CL NAME</td>
+                                <td class="mid-col">{{ $securreBank->account_name }}</td>
+                                <td class="right-col highlight">{{ $client->account_name }}</td>
                             </tr>
                             <tr>
                                 <td class="left-col">Bank Name</td>
-                                <td class="mid-col">CIMB Bank Berhad, Singapore</td>
-                                <td class="right-col highlight">CL BANK NAME</td>
+                                <td class="mid-col">{{$securreBank->bank_name}}</td>
+                                <td class="right-col highlight">{{$client->bank_name}}</td>
                             </tr>
                             <tr>
                                 <td class="left-col">Account Number</td>
-                                <td class="mid-col">2001038643</td>
-                                <td class="right-col highlight">CL ACCOUNT NUMBER</td>
+                                <td class="mid-col">{{$securreBank->account_number}}</td>
+                                <td class="right-col highlight">{{$client->account_number}}</td>
                             </tr>
                             <tr>
                                 <td class="left-col">Bank Code / Branch Code</td>
-                                <td class="mid-col">7986 / 001</td>
-                                <td class="right-col highlight">CL BANK CODE / BRANCH CODE</td>
+                                <td class="mid-col">{{$securreBank->bank_code}} / {{$securreBank->branch_code}}</td>
+                                <td class="right-col highlight">{{$client->bank_code}} / {{$client->branch_code}}</td>
                             </tr>
                             <tr>
                                 <td class="left-col">Bank Address</td>
-                                <td class="mid-col">30 Raffles Place, #04-01, Singapore 048622</td>
-                                <td class="right-col highlight">CL BANK ADDRESS</td>
+                                <td class="mid-col">{{$securreBank->bank_address}}</td>
+                                <td class="right-col highlight">{{$client->bank_address}}</td>
                             </tr>
                             <tr>
                                 <td class="left-col">Swift Code</td>
-                                <td class="mid-col">CIBBSGSG</td>
-                                <td class="right-col highlight">CL SWIFT CODE</td>
+                                <td class="mid-col">{{$securreBank->swift_code}}</td>
+                                <td class="right-col highlight">{{$client->swift_code}}</td>
                             </tr>
                             <tr>
                                 <td class="left-col">Payment Methods</td>
-                                <td class="mid-col">TT/Cheque/PayNow ( 87428158 / 202331790G )</td>
-                                <td class="right-col highlight">CL PAYMENT METHODS</td>
+                                <td class="mid-col">{{$securreBank->payment_methods}}</td>
+                                <td class="right-col highlight">{{$client->payment_methods}}</td>
                             </tr>
                             <tr>
                                 <td class="left-col">Payment Terms:</td>
-                                <td class="mid-col only-text" colspan="2">Immediate</td>
+                                <td class="mid-col only-text" colspan="2">{{$securreBank->payment_terms}}</td>
                             </tr>
                         </table>
                     </div>

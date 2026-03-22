@@ -274,6 +274,34 @@ class InvoiceController extends Controller
     /**
      * Display the specified resource.
      */
+//    public function show(Invoice $invoice)
+//    {
+//        $invoice->load([
+//            'client',
+//            'installments.case',
+//            'installments.debtor'
+//        ]);
+//
+//        $securreBank = BankDetail::first(); // assuming single tenant
+//
+//        $client = $invoice->client;
+//
+//        // Split installments by collected type
+//        $collectedByClient = $invoice->installments
+//            ->where('pivot.collected_type', 'client');
+//
+//        $collectedBySecurre = $invoice->installments
+//            ->where('pivot.collected_type', 'securre');
+//
+//        return view('template.tax', compact(
+//            'invoice',
+//            'client',
+//            'collectedByClient',
+//            'collectedBySecurre',
+//            'securreBank'
+//        ));
+//    }
+
     public function show(Invoice $invoice)
     {
         $invoice->load([
@@ -282,23 +310,22 @@ class InvoiceController extends Controller
             'installments.debtor'
         ]);
 
-        $securreBank = BankDetail::first(); // assuming single tenant
-
         $client = $invoice->client;
+        $securreBank = BankDetail::first();
 
-        // Split installments by collected type
-        $collectedByClient = $invoice->installments
-            ->where('pivot.collected_type', 'client');
+        // ✅ Sequence (use your DB structure)
+        $sequenceNumber = str_pad($invoice->sequence_number, 3, '0', STR_PAD_LEFT);
 
-        $collectedBySecurre = $invoice->installments
-            ->where('pivot.collected_type', 'securre');
+        // ✅ Client Abbreviation (use DB first, fallback)
+        $clientAbbr = $client->abbr
+            ?? strtoupper(substr($client->name, 0, 3));
 
-        return view('admin.invoices.show', compact(
+        return view('template.tax', compact(
             'invoice',
             'client',
-            'collectedByClient',
-            'collectedBySecurre',
-            'securreBank'
+            'securreBank',
+            'sequenceNumber',
+            'clientAbbr'
         ));
     }
 

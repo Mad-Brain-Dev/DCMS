@@ -85,8 +85,8 @@
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-4">
-                                <label class="form-label">Address</label>
-                                <input type="text" name="address" class="form-control" placeholder="Enter Address Here"
+                                <label class="form-label">CL Address</label>
+                                <input type="text" name="address" class="form-control" placeholder="Enter CL Address Here"
                                     value="{{ old('address') }}">
                                 @error('address')
                                     <p class="error">{{ $message }}</p>

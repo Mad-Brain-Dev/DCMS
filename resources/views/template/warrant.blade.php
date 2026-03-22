@@ -58,7 +58,7 @@
 
                         <div class="warrant-case-ref">
                             <span class="case-label">CASE REF. #:</span>
-                           <span class="case-number">CASE NUMBER</span>
+                           <span class="case-number">{{$case->case_sku}}</span>
                         </div>
                     </div>
                 </div>
@@ -69,17 +69,17 @@
                     <ol type="1">
                         <li>
                             <p>We, the undersigned, hereby appoint you to act for us ("Client"),
-                                <span class="warrant_cl_name"><span>CL NAME</span></span>,
+                                <span class="warrant_cl_name"><span>{{$case->client->name}}</span></span>,
                                 (NRIC/UEN #:
-                                <span class="warrant_cl_id"><span>CL ID</span></span>
+                                <span class="warrant_cl_id"><span>{{$case->client->nric}}</span></span>
                                 ), in connection with the below matter until it is completed, settled, resolved or the
                                 contractual agreement between us and you is terminated for whatsoever reason.
                                 You may contact PI
-                                <span class="warrant_pic_name"><span>PIC NAME</span></span>
+                                <span class="warrant_pic_name"><span>{{$case->client->pic_name}}</span></span>
                                 telephone at
-                                <span class="warrant_pic_num"><span>PIC NUMBER</span></span>,
+                                <span class="warrant_pic_num"><span>{{$case->client->pic_number}}</span></span>,
                                 alternatively via email
-                                <span class="warrant_pic_mail"><span>PIC EMAIL</span></span>,
+                                <span class="warrant_pic_mail"><span>{{$case->client->pic_email}}</span></span>,
                                 for instructions/updates.
                             </p>
                         </li>
@@ -112,53 +112,61 @@
                             Debt Amount in <br>
                             Singapore Dollars:
                         </p>
-                        <p class="debt-placeholder">DEBT IN WORDS</p>
+                        @php
+                            $amountInWords = ucfirst(numberToWords($case->total_amount_owed));
+                        @endphp
+                        <p class="debt-placeholder">{{ decimalToWords($case->total_amount_owed) }}</p>
                     </div>
+
+                    @php
+                        $formattedAmount = number_format($case->total_amount_owed, 2, '.', ',');
+                    @endphp
 
                     <div class="debt-right-side">
 
-                        ( SG <span class="red-num">DEBT</span> /+% )
+                        ( SG <span class="red-num">{{ $formattedAmount }}</span> /+% )
                     </div>
 
                 </div>
 
 
+                @foreach($case->debtors as $key=>$debtor)
                     <div class="debtor-section">
-                        <div class="debtor-header">DEBTOR </div>
+                        <div class="debtor-header">DEBTOR ({{$key+1}})</div>
 
                         <div class="debtor-row">
                             <div class="debtor-field-1">
-                                <p class="debtor-label">Full Name:<span class="debtor-value">DB 1 Name</span></p>
+                                <p class="debtor-label">Full Name:<span class="debtor-value">{{$debtor->name}}</span></p>
                             </div>
 
                             <div class="debtor-field-2">
-                                <p class="debtor-label">NRIC / UEN:<span class="debtor-value">DB 1 ID</span></p>
+                                <p class="debtor-label">NRIC / UEN:<span class="debtor-value">{{$debtor->nric}}</span></p>
                             </div>
                         </div>
 
                         <div class="debtor-row">
                             <div class="debtor-field-1">
                                 <p class="debtor-label debtor-label-add">Address:<span
-                                        class="debtor-value debtor-value-add">DB 1 Address</span></p>
+                                        class="debtor-value debtor-value-add">{{$debtor->address}}</span></p>
                             </div>
 
                             <div class="debtor-field-2">
-                                <p class="debtor-label">Contact No.:<span class="debtor-value">DB 1 Contact</span></p>
+                                <p class="debtor-label">Contact No.:<span class="debtor-value">{{$debtor->phone}}</span></p>
                             </div>
                         </div>
 
                         <div class="debtor-remarks">
-                            <p class="debtor-label">Remarks:<span class="remarks-line-1">ABCD</span></p>
+                            <p class="debtor-label">Remarks:<span class="remarks-line-1">{{$debtor->remarks}}</span></p>
                         </div>
                     </div>
-
+                @endforeach
                 <div class="endorse-section">
                     <div class="endorse-left">
                         <div class="endorse-title">CLIENT ENDORSEMENT</div>
 
-                        <p><span class="endorse-label-1">Persons' Name:</span> <span class="endorse-value-red">PIC NAME</span></p>
-                        <p><span class="endorse-label-2">Clients' Name:</span> <span class="endorse-value-red">CL NAME</span></p>
-                        <p><span class="endorse-label-3">NRIC No./UEN:</span> <span class="endorse-value-red">CL ID</span></p>
+                        <p><span class="endorse-label-1">Persons' Name:</span> <span class="endorse-value-red">{{$case->client->pic_name}}</span></p>
+                        <p><span class="endorse-label-2">Clients' Name:</span> <span class="endorse-value-red">{{$case->client->name}}</span></p>
+                        <p><span class="endorse-label-3">NRIC No./UEN:</span> <span class="endorse-value-red">{{$case->client->nric}}</span></p>
 
                         <p class="endorse-sign">Signature/Stamp:</p>
                     </div>
@@ -166,7 +174,7 @@
                     <div class="endorse-right">
                         <p>
                             <span class="endorse-label">Date of Warrant to Act:</span>
-                            <span class="endorse-date"><b>11 November 2025</b></span>
+                            <span class="endorse-date"><b>{{optional($case->date_of_warrant)->format('d F, Y')}}</b></span>
                         </p>
                     </div>
                 </div>

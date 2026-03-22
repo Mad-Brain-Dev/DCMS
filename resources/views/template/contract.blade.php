@@ -49,8 +49,20 @@
         <div class= "text_section">
 
             <p>
-                This Agreement is entered into on the <span class="span_1">4<sup>th</sup></span> day of <span
-                    class="span_2">March</span>, 20<span class="span_3">26</span> between:
+{{--                This Agreement is entered into on the <span class="span_1">4<sup>th</sup></span> day of <span--}}
+{{--                    class="span_2">March</span>, 20<span class="span_3">26</span> between:--}}
+                @php
+                    $date = $client_details->date_of_agreement;
+                @endphp
+
+                This Agreement is entered into on the
+                <span class="span_1">
+    {{ $date->format('j') }}<sup>{{ substr($date->format('jS'), -2) }}</sup>
+</span>
+                day of
+                <span class="span_2">{{ $date->format('F') }}</span>,
+                <span class="span_3">{{ $date->format('Y') }}</span>
+                between:
             </p>
 
             <p>
@@ -58,8 +70,8 @@
             </p>
 
             <p>
-                and <span class="span_4">Multi Ways Equipment Pte. Ltd.</span> (NRIC/UEN: <span
-                    class="span_5">200207318D</span>),
+                and <span class="span_4">{{$client_details->name}}</span> (NRIC/UEN: <span
+                    class="span_5">{{$client_details->nric}}</span>),
                 (hereinafter referred to as the “Client”).
             </p>
 
@@ -88,7 +100,7 @@
                 <ol class="sub-list">
 
                     <li>
-                        The Client agrees to pay SC a commission of <strong><span class="span_8">40%</span></strong> of
+                        The Client agrees to pay SC a commission of <strong><span class="span_8">{{ $client_details->collection_commission }}%</span></strong> of
                         the total amount recovered,
                         including any interest, settlement sum, or other benefit obtained from the debtor.
                     </li>
@@ -110,7 +122,7 @@
 
                     <li>
                         An administrative and/or enforcement fee of <strong>S$ <span
-                                class="span_9">15,000.00</span></strong> is agreed between
+                                class="span_9">{{ number_format($client_details->admin_fee, 2, '.', ',') }}</span></strong> is agreed between
                         the parties and shall be payable in accordance with this Agreement.
                     </li>
 
@@ -311,6 +323,9 @@
 
             <!-- Left Side -->
             <div class="left">
+                @php
+                    $date = $client_details->date_of_agreement;
+                @endphp
 
                 <h3>For Securre Collection Pte Ltd</h3>
                 <h5>(UEN: 202331790G)</h5>
@@ -319,7 +334,7 @@
 
                 <h5>Name: Ra’id Ravin Raj</h5>
                 <h5>Designation: Operations Director</h5>
-                <h5>Date: 4<sup>th</sup> March 2026</h5>
+                <h5>Date: {{ $date->format('j') }}<sup>{{ substr($date->format('jS'), -2) }}</sup> {{ $date->format('F') }} {{ $date->format('Y') }}</h5>
 
             </div>
 
@@ -331,17 +346,20 @@
 
                 <div class="form-row">
                     <span>Clients’ Name:</span>
-                    <div class="input-line"></div>
+                    <div class="input-line">{{$client_details->name}}</div>
                 </div>
 
                 <div class="form-row">
                     <span>Clients’ ID:</span>
-                    <div class="input-line"></div>
+                    <div class="input-line">{{$client_details->nric}}</div>
                 </div>
 
                 <div class="form-row">
+                    @php
+                        $date = $client_details->date_of_agreement;
+                    @endphp
                     <span>Date:</span>
-                    <div class="input-line"></div>
+                    <div class="input-line">{{ $date->format('j') }}<sup>{{ substr($date->format('jS'), -2) }}</sup> {{ $date->format('F') }} {{ $date->format('Y') }}</div>
                 </div>
 
                 <div class="form-row">

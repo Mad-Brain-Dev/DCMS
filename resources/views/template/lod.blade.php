@@ -44,28 +44,62 @@
 
         <!-- Top Section -->
         <div class="top">
+            @php
+                $debtors = $case_number->debtors->values();
+            @endphp
 
             <div class="left">
-                <h5 class="highlight">DEBTOR 1 NAME</h5>
-                <p class="highlight">DB1 Address</p>
+                {{-- DB 1 --}}
+                @if(isset($debtors[0]))
+                    <div class="name">
+                        <h5 class="highlight">{{ $debtors[0]->name }}</h5>
+                    </div>
+                    <div class="add">
+                        <p class="highlight">{{ $debtors[0]->address }}</p>
+                    </div>
+                @endif
 
-                <h5 class="highlight space">DEBTOR 3 NAME</h5>
-                <p class="highlight">DB3 Address</p>
+
+                {{-- DB 3 --}}
+                @if(isset($debtors[2]))
+                    <div class="name">
+                        <h5 class="highlight space">{{ $debtors[2]->name }}</h5>
+                    </div>
+                    <div class="add">
+                        <p class="highlight">{{ $debtors[2]->address }}</p>
+                    </div>
+                @endif
             </div>
 
             <div class="middle">
-                <h5 class="highlight">DEBTOR 2 NAME</h5>
-                <p class="highlight">DB2 Address</p>
+                {{-- DB 2 --}}
+                @if(isset($debtors[1]))
+                    <div class="name">
+                        <h5 class="highlight">{{ $debtors[1]->name }}</h5>
+                    </div>
+                    <div class="add">
+                        <p class="highlight">{{ $debtors[1]->address }}</p>
+                    </div>
+                @endif
 
-                <h5 class="highlight space">DEBTOR 4 NAME</h5>
-                <p class="highlight">DB4 Address</p>
+
+                {{-- DB 4 --}}
+                @if(isset($debtors[3]))
+                    <div class="name">
+                        <h5 class="highlight space">{{ $debtors[3]->name }}</h5>
+                    </div>
+                    <div class="add">
+                        <p class="highlight">{{ $debtors[3]->address }}</p>
+                    </div>
+                @endif
             </div>
 
             <div class="right">
-                <p><b>Our Ref.:</b> <span class="box highlight">ABC / 2026 / 000123</span></p>
+                <p><b>Our Ref.:</b> <span class="box highlight">{{$case_number->case_sku}}</span></p>
                 <p><b>Your Ref.:</b> <span class="box ">J M A</span></p>
 
-                <p class="date highlight">09 March, 2026</p>
+{{--                <p class="date highlight">09 March, 2026</p>--}}
+                <p class="date highlight">{{optional($case_number->created_at)->format('d F, Y')}}</p>
             </div>
 
         </div>
@@ -76,8 +110,11 @@
 
         <!-- Claim -->
         <div class="claim">
-            <p><b>CLAIMANT NAME:</b> <span class="highlight_client">CLIENT NAME</span></p>
-            <p><b>CLAIM AMOUNT:</b> <span class="highlight_client">S$ TOTAL DEBT AMOUNT</span></p>
+            <p><b>CLAIMANT NAME:</b> <span class="highlight_client">{{$case_number->client->name}}</span></p>
+            @php
+                $formattedAmount = number_format($case_number->total_amount_owed, 2, '.', ',');
+            @endphp
+            <p><b>CLAIM AMOUNT:</b> <span class="highlight_client">S$ {{ $formattedAmount }}</span></p>
         </div>
 
 
@@ -127,7 +164,13 @@
                 </li>
 
                 <li>
-                    If the full amount due is not received by <span class="lod_span_2">16 March 2026</span> at <span
+                    @php
+                        use Carbon\Carbon;
+                        $newDate = Carbon::parse($case_number->created_at)
+                            ->addDays(7)
+                            ->format('d F, Y');
+                    @endphp
+                    If the full amount due is not received by <span class="lod_span_2">{{$newDate}}</span> at <span
                         class = "lod_span_3">16:00 hours</span>, our Client will proceed with
                     the next
                     course of action without further notice to you, and you may be held liable for any additional costs

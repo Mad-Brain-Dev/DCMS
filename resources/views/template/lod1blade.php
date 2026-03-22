@@ -62,7 +62,7 @@
                 </div>
 
                 @php
-                    $debtors = $case_number->debtors->values(); // reset index
+                    $debtors = $case_number->debtors->values();
                 @endphp
 
                 <div class="name_add_row">
