@@ -23,7 +23,8 @@
     <style>
         @media print {
 
-            html, body {
+            html,
+            body {
                 width: 210mm;
                 margin: 0;
                 padding: 0;
@@ -43,7 +44,7 @@
                 top: 0;
                 left: 0;
                 right: 0;
-                height: 85px; 
+                height: 85px;
                 background: #fff;
                 z-index: 9999;
             }
@@ -54,7 +55,7 @@
                 bottom: 0;
                 left: 0;
                 right: 0;
-                height: 55px; 
+                height: 55px;
                 font-size: 9px;
                 background: #fff;
                 z-index: 9999;
@@ -62,8 +63,10 @@
 
             /* ===== CONTENT ===== */
             .container {
-                margin-top: 95px;   /* header height + small gap */
-                margin-bottom: 70px; /* footer height + gap */
+                margin-top: 95px;
+                /* header height + small gap */
+                margin-bottom: 70px;
+                /* footer height + gap */
                 padding: 0 !important;
             }
 
@@ -79,7 +82,8 @@
             }
 
             /* ===== CLEAN BOOTSTRAP ===== */
-            .row, .col-md-12 {
+            .row,
+            .col-md-12 {
                 display: block !important;
                 width: 100% !important;
                 margin: 0 !important;
@@ -109,9 +113,9 @@
                     </div>
 
                     <div class="tagline">
-                    <span class="tag_text">
-                        <b>Debt Collection, Factoring</b> | Transportation | Logistics Services | <b>© 2001</b>
-                    </span>
+                        <span class="tag_text">
+                            <b>Debt Collection, Factoring</b> | Transportation | Logistics Services | <b>© 2001</b>
+                        </span>
                     </div>
 
                 </div>
@@ -126,6 +130,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="">
 
 
@@ -134,16 +139,16 @@
                 <div class= "text_section">
 
                     <p>
-                        {{--                This Agreement is entered into on the <span class="span_1">4<sup>th</sup></span> day of <span--}}
-                        {{--                    class="span_2">March</span>, 20<span class="span_3">26</span> between:--}}
+                        {{--                This Agreement is entered into on the <span class="span_1">4<sup>th</sup></span> day of <span --}}
+                        {{--                    class="span_2">March</span>, 20<span class="span_3">26</span> between: --}}
                         @php
                             $date = $client_details->date_of_agreement;
                         @endphp
 
                         This Agreement is entered into on the
                         <span class="span_1">
-    {{ $date->format('j') }}<sup>{{ substr($date->format('jS'), -2) }}</sup>
-</span>
+                            {{ $date->format('j') }}<sup>{{ substr($date->format('jS'), -2) }}</sup>
+                        </span>
                         day of
                         <span class="span_2">{{ $date->format('F') }}</span>,
                         <span class="span_3">{{ $date->format('Y') }}</span>
@@ -151,12 +156,13 @@
                     </p>
 
                     <p>
-                        <strong>Securre Collection Pte. Ltd.,</strong> (UEN: 2023331790G) (hereinafter referred to as “SC”),
+                        <strong>Securre Collection Pte. Ltd.,</strong> (UEN: 2023331790G) (hereinafter referred to as
+                        “SC”),
                     </p>
 
                     <p>
-                        and <span class="span_4">{{$client_details->name}}</span> (NRIC/UEN: <span
-                            class="span_5">{{$client_details->nric}}</span>),
+                        and <span class="span_4">{{ $client_details->name }}</span> (NRIC/UEN: <span
+                            class="span_5">{{ $client_details->nric }}</span>),
                         (hereinafter referred to as the “Client”).
                     </p>
 
@@ -185,7 +191,8 @@
                         <ol class="sub-list">
 
                             <li>
-                                The Client agrees to pay SC a commission of <strong><span class="span_8">{{ $client_details->collection_commission }}%</span></strong> of
+                                The Client agrees to pay SC a commission of <strong><span
+                                        class="span_8">{{ $client_details->collection_commission }}%</span></strong> of
                                 the total amount recovered,
                                 including any interest, settlement sum, or other benefit obtained from the debtor.
                             </li>
@@ -207,7 +214,8 @@
 
                             <li>
                                 An administrative and/or enforcement fee of <strong>S$ <span
-                                        class="span_9">{{ number_format($client_details->admin_fee, 2, '.', ',') }}</span></strong> is agreed between
+                                        class="span_9">{{ number_format($client_details->admin_fee, 2, '.', ',') }}</span></strong>
+                                is agreed between
                                 the parties and shall be payable in accordance with this Agreement.
                             </li>
 
@@ -241,13 +249,16 @@
                         <p class="section-title">4. Direct Settlement / Non-Circumvention</p>
                         <ol class="sub-list">
                             <li>
-                                The Client shall not directly or indirectly negotiate, settle, compromise, or otherwise recover
+                                The Client shall not directly or indirectly negotiate, settle, compromise, or otherwise
+                                recover
                                 the
                                 assigned debt from the debtor without SC’s written knowledge.
                             </li>
                             <li>
-                                Where any payment, settlement, asset transfer, credit, goods, services, or other benefit is
-                                received by the Client from the debtor during the engagement period or as a result of SC’s
+                                Where any payment, settlement, asset transfer, credit, goods, services, or other benefit
+                                is
+                                received by the Client from the debtor during the engagement period or as a result of
+                                SC’s
                                 recovery efforts, SC’s commission shall remain immediately payable.
                             </li>
                         </ol>
@@ -260,14 +271,17 @@
                         <p class="section-title">5. Authority to Appoint Solicitors or Agents</p>
                         <ol class="sub-list">
                             <li>
-                                SC shall have the authority, where necessary, to appoint solicitors or third-party recovery
+                                SC shall have the authority, where necessary, to appoint solicitors or third-party
+                                recovery
                                 agents
-                                to assist in the recovery of debts. Any such solicitors or agents shall be deemed to act on
+                                to assist in the recovery of debts. Any such solicitors or agents shall be deemed to act
+                                on
                                 behalf
                                 of the Client
                             </li>
                             <li>
-                                Legal costs, professional fees, or enforcement costs may be recoverable from the debtor or
+                                Legal costs, professional fees, or enforcement costs may be recoverable from the debtor
+                                or
                                 otherwise payable in accordance with instructions provided by the Client.
                             </li>
                         </ol>
@@ -280,12 +294,14 @@
                         <p class="section-title">6. Client Obligations</p>
                         <ol class="sub-list">
                             <li>
-                                The Client warrants that all information provided to SC regarding the debtor and the debt is
+                                The Client warrants that all information provided to SC regarding the debtor and the
+                                debt is
                                 true,
                                 accurate and complete to the best of their knowledge.
                             </li>
                             <li>
-                                SC shall not be liable for any loss arising from inaccurate or incomplete information supplied
+                                SC shall not be liable for any loss arising from inaccurate or incomplete information
+                                supplied
                                 by
                                 the Client.
                             </li>
@@ -299,12 +315,15 @@
                         <p class="section-title">7. Settlement Authority</p>
                         <ol class="sub-list">
                             <li>
-                                SC may negotiate and recommend settlements with the debtor where commercially reasonable.
-                                Any settlement exceeding 25% reduction of the outstanding debt shall require the Client’s prior
+                                SC may negotiate and recommend settlements with the debtor where commercially
+                                reasonable.
+                                Any settlement exceeding 25% reduction of the outstanding debt shall require the
+                                Client’s prior
                                 written approval.
                             </li>
                             <li>
-                                SC shall not be liable for any loss arising from inaccurate or incomplete information supplied
+                                SC shall not be liable for any loss arising from inaccurate or incomplete information
+                                supplied
                                 by
                                 the Client.
                             </li>
@@ -327,7 +346,8 @@
                                 </ul>
                             </li>
                             <li>
-                                SC’s role is to use reasonable commercial efforts to recover debts but does not guarantee
+                                SC’s role is to use reasonable commercial efforts to recover debts but does not
+                                guarantee
                                 recovery.
                             </li>
                         </ol>
@@ -341,19 +361,25 @@
                         <p class="section-title">9. Post-Termination Recovery</p>
                         <ol class="sub-list">
                             <li>
-                                Where the Client, directly or indirectly, receives any payment, settlement, asset transfer,
+                                Where the Client, directly or indirectly, receives any payment, settlement, asset
+                                transfer,
                                 credit, goods,
-                                services, or any other benefit from the debtor at any time within twenty-four (24) months
+                                services, or any other benefit from the debtor at any time within twenty-four (24)
+                                months
                                 following the
-                                termination, cancellation, or expiry of this Agreement in relation to the assigned Case, such
+                                termination, cancellation, or expiry of this Agreement in relation to the assigned Case,
+                                such
                                 recovery shall
-                                be deemed to have arisen from SC’s recovery efforts and SC’s commission shall remain payable in
+                                be deemed to have arisen from SC’s recovery efforts and SC’s commission shall remain
+                                payable in
                                 full.
                             </li>
                             <li>
-                                For the avoidance of doubt, this obligation shall apply regardless of whether such recovery
+                                For the avoidance of doubt, this obligation shall apply regardless of whether such
+                                recovery
                                 occurs directly
-                                between the Client and the debtor, through legal proceedings, through third-party agents, or
+                                between the Client and the debtor, through legal proceedings, through third-party
+                                agents, or
                                 through any
                                 other arrangement whatsoever.
                             </li>
@@ -383,7 +409,8 @@
                         <p class="section-title">11. Entire Agreement</p>
                         <ol class="sub-list">
                             <li>
-                                This Agreement constitutes the entire agreement between the parties and supersedes all previous
+                                This Agreement constitutes the entire agreement between the parties and supersedes all
+                                previous
                                 discussions or understandings relating to the recovery of the assigned debt.
 
                             </li>
@@ -396,7 +423,8 @@
                         <p class="section-title">12.Governing Law</p>
                         <ol class="sub-list">
                             <li>
-                                This Agreement shall be governed by and construed in accordance with the laws of Singapore
+                                This Agreement shall be governed by and construed in accordance with the laws of
+                                Singapore
 
                             </li>
                         </ol>
@@ -421,7 +449,8 @@
 
                         <h5>Name: Ra’id Ravin Raj</h5>
                         <h5>Designation: Operations Director</h5>
-                        <h5>Date: {{ $date->format('j') }}<sup>{{ substr($date->format('jS'), -2) }}</sup> {{ $date->format('F') }} {{ $date->format('Y') }}</h5>
+                        <h5>Date: {{ $date->format('j') }}<sup>{{ substr($date->format('jS'), -2) }}</sup>
+                            {{ $date->format('F') }} {{ $date->format('Y') }}</h5>
 
                     </div>
 
@@ -433,12 +462,12 @@
 
                         <div class="form-row">
                             <span>Clients’ Name:</span>
-                            <div class="input-line">{{$client_details->name}}</div>
+                            <div class="input-line">{{ $client_details->name }}</div>
                         </div>
 
                         <div class="form-row">
                             <span>Clients’ ID:</span>
-                            <div class="input-line">{{$client_details->nric}}</div>
+                            <div class="input-line">{{ $client_details->nric }}</div>
                         </div>
 
                         <div class="form-row">
@@ -446,7 +475,9 @@
                                 $date = $client_details->date_of_agreement;
                             @endphp
                             <span>Date:</span>
-                            <div class="input-line">{{ $date->format('j') }}<sup>{{ substr($date->format('jS'), -2) }}</sup> {{ $date->format('F') }} {{ $date->format('Y') }}</div>
+                            <div class="input-line">
+                                {{ $date->format('j') }}<sup>{{ substr($date->format('jS'), -2) }}</sup>
+                                {{ $date->format('F') }} {{ $date->format('Y') }}</div>
                         </div>
 
                         <div class="form-row">
