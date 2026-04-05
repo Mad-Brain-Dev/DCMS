@@ -1,10 +1,9 @@
 .hide-print-button {
     display: none;
 }
-.client-agreement-header {
+.agreement_header {
     position: fixed;
     top: 30px;
-    left: 30px;
 }
 .divider-top {
     width: 100%;
@@ -14,7 +13,7 @@
 .for-bottom-border {
     position: relative;
 }
-.client-agreement-header::after {
+/* .client-agreement-header::after {
     position: absolute;
     content: "";
     height: 2px;
@@ -22,7 +21,7 @@
     background-color: #000;
     bottom: -10px;
     left: 30px;
-}
+} */
 hr {
     display: none;
 }
@@ -37,20 +36,35 @@ hr {
 }
 
 .logo {
-    width: 380px;
-    margin-right: 10px;
+    width: 300px;
+    /* margin-right: 10px; */
 }
-.for-margin-of-logo {
+/* .for-margin-of-logo {
     margin-left: 40px !important;
-}
+} */
 
 .debt-text {
-    margin-left: 10px;
-    padding-top: 24px;
-    font-size: 30px;
+    margin-left: 20px;
+    padding-top: 16px;
+    margin-bottom: 1px;
+    font-size: 16px;
     font-weight: 500;
     font-family: "Barlow", sans-serif;
+    position: relative;
+    color: #2b3e88;
 }
+.debt-text::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 117%;
+    height: 8px;
+    background: #1f2f72;
+}
+ .agreement-header{
+    margin-left: 0;
+  }
 
 .text-to {
     position: relative;
@@ -178,9 +192,9 @@ hr {
     box-sizing: border-box;
     padding-top: 150px;
 }
-.point-five {
+/* .point-five {
     padding-top: 150px;
-}
+} */
 
 .box-1st {
     border: 2px solid black;
@@ -277,6 +291,11 @@ hr {
     font-weight: 700;
     font-family: "Open Sans", sans-serif;
 } */
+
+
+.li_6{
+    padding-top: 210px;
+}
 
 .ol-start .first-ol {
     padding-right: 50px;

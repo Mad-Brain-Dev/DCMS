@@ -32,7 +32,6 @@
                 line-height: 1.5;
             }
 
-            /* 🔥 IMPORTANT: reduce top margin */
             @page {
                 size: A4;
                 margin: 15mm 15mm 20mm 15mm;
@@ -44,7 +43,7 @@
                 top: 0;
                 left: 0;
                 right: 0;
-                height: 85px; /* 🔥 reduced */
+                height: 85px; 
                 background: #fff;
                 z-index: 9999;
             }
@@ -55,7 +54,7 @@
                 bottom: 0;
                 left: 0;
                 right: 0;
-                height: 55px; /* 🔥 reduced */
+                height: 55px; 
                 font-size: 9px;
                 background: #fff;
                 z-index: 9999;
