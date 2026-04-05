@@ -3,7 +3,7 @@
 }
 .agreement_header {
     position: fixed;
-    top: 30px;
+    top: 100px;
 }
 .divider-top {
     width: 100%;
@@ -24,6 +24,9 @@
 } */
 hr {
     display: none;
+}
+.agreement_logo{
+    margin-bottom: -100px;
 }
 
 .buttons {
@@ -2284,10 +2287,14 @@ hr {
 
         .title {
             text-align: left;
-            margin-top: 20px;
-            margin-bottom: 40px;
+            margin-top: 180px;
+            margin-bottom: 60px;
             font-weight: 700;
-            text-decoration: underline;
+            /* width: 600px; */
+            display: inline-block;
+            border-bottom: 2px solid #000;
+            padding-bottom: 1px;
+            letter-spacing: 0.6px;
         }
 
         .text_section p {
@@ -2334,6 +2341,16 @@ hr {
             height: 60px;
             border-bottom: rgb(147, 147, 147) solid 2px;
         }
+
+        .for_padding_top{
+            padding-top: 219px;
+            /* margin-top: -50px; */
+        }
+
+        .for_padding_top_2{
+            padding-top: 300px;
+        }
+
          .text_section .span_7{
             height: 20px;
         }

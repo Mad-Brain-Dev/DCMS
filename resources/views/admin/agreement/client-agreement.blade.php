@@ -37,390 +37,434 @@
                                     Document</div>
                             </div>
                         </div>
-                        
+
                         <div class="agreement_header">
                             <div class="">
 
                                 <div class="agreement_logo d-flex">
                                     <img class="logo" src="{{ asset('images/image_1.png') }}" alt="">
-                                    
-                                    <span class="debt-text"><b>Debt Collection</b>, Factoring | Transportation | Logistics Services |
+
+                                    <span class="debt-text"><b>Debt Collection</b>, Factoring | Transportation |
+                                        Logistics Services |
                                         <b>© 2001</b>
-                                        
-                                         {{-- <span class="bottom_line"></span> --}}
-                                        </span>
-                                        
+
+                                        {{-- <span class="bottom_line"></span> --}}
+                                    </span>
+
                                 </div>
 
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
-                            <div class="col-7 ">
+
+
+                        {{-- start text --}}
+
+
+                        <div class="">
+
+
+                            <h3 class="title">SECURRE DEBT COLLECTION AGREEMENT</h3>
+
+                            <div class= "text_section">
+
+                                <p>
+                                    {{--                This Agreement is entered into on the <span class="span_1">4<sup>th</sup></span> day of <span --}}
+                                    {{--                    class="span_2">March</span>, 20<span class="span_3">26</span> between: --}}
+                                    @php
+                                        $date = $client_details->date_of_agreement;
+                                    @endphp
+
+                                    This Agreement is entered into on the
+                                    <span class="span_1">
+                                        {{ $date->format('j') }}<sup>{{ substr($date->format('jS'), -2) }}</sup>
+                                    </span>
+                                    day of
+                                    <span class="span_2">{{ $date->format('F') }}</span>,
+                                    <span class="span_3">{{ $date->format('Y') }}</span>
+                                    between:
+                                </p>
+
+                                <p>
+                                    <strong>Securre Collection Pte. Ltd.,</strong> (UEN: 2023331790G) (hereinafter
+                                    referred to as
+                                    “SC”),
+                                </p>
+
+                                <p>
+                                    and <span class="span_4">{{ $client_details->name }}</span> (NRIC/UEN: <span
+                                        class="span_5">{{ $client_details->nric }}</span>),
+                                    (hereinafter referred to as the “Client”).
+                                </p>
+
+                                <p class="span_6">Both parties agree as follows.</p>
+
+
+                                <div class="section">
+
+                                    <p class="section-title">1. Scope of Services</p>
+
+                                    <ul class="sc_shall_text">
+                                        <li>SC shall undertake debt recovery services on behalf of the Client for
+                                            outstanding
+                                            debts assigned by the Client to SC (“the Case”). SC may conduct recovery
+                                            through
+                                            communication, field visits, negotiations, or other lawful recovery methods
+                                            permitted
+                                            under the laws of Singapore.</li>
+                                    </ul>
+
+                                </div>
+
+                                <p class="span_7"></p>
+
+                                <div class="section">
+
+                                    <p class="section-title">2. Commission and Fees</p>
+
+                                    <ol class="sub-list">
+
+                                        <li>
+                                            The Client agrees to pay SC a commission of <strong><span
+                                                    class="span_8">{{ $client_details->collection_commission }}%</span></strong>
+                                            of
+                                            the total amount recovered,
+                                            including any interest, settlement sum, or other benefit obtained from the
+                                            debtor.
+                                        </li>
+
+                                        <li>
+                                            The commission shall be payable whether recovery is made:
+                                            <ul class="directly_text">
+                                                <li>directly by SC,</li>
+                                                <li>through legal proceedings,</li>
+                                                <li>through third-party agents, or</li>
+                                                <li>directly by the debtor to the Client following SC’s engagement.</li>
+                                            </ul>
+                                        </li>
+
+                                        <li>
+                                            Such commission shall become immediately due and payable upon receipt
+                                            of payment, settlement, or any benefit from the debtor.
+                                        </li>
+
+                                        <li>
+                                            An administrative and/or enforcement fee of <strong>S$ <span
+                                                    class="span_9">{{ number_format($client_details->admin_fee, 2, '.', ',') }}</span></strong>
+                                            is agreed between
+                                            the parties and shall be payable in accordance with this Agreement.
+                                        </li>
+
+                                    </ol>
+
+                                </div>
+
+                                <p class="span_7"></p>
+
+                                <div class="section">
+
+                                    <p class="section-title">3. Authority / Warrant to Act</p>
+
+                                    <ol class="sub-list">
+
+                                        <li>
+                                            The Client hereby authorises SC to act as its recovery representative in
+                                            respect of the assigned Case and grants SC a <b>Warrant to Act</b> (attached
+                                            herewith)
+                                            to communicate, negotiate, and pursue recovery from the debtor on the
+                                            Client’s behalf.
+                                        </li>
+
+                                    </ol>
+
+                                </div>
+
+                                <div class="page-break"></div>
+
+                                <p class="span_7"></p>
+
+                                <div class="section">
+                                    <p class="section-title">4. Direct Settlement / Non-Circumvention</p>
+                                    <ol class="sub-list">
+                                        <li>
+                                            The Client shall not directly or indirectly negotiate, settle, compromise,
+                                            or otherwise
+                                            recover
+                                            the
+                                            assigned debt from the debtor without SC’s written knowledge.
+                                        </li>
+                                        <li>
+                                            Where any payment, settlement, asset transfer, credit, goods, services, or
+                                            other benefit
+                                            is
+                                            received by the Client from the debtor during the engagement period or as a
+                                            result of
+                                            SC’s
+                                            recovery efforts, SC’s commission shall remain immediately payable.
+                                        </li>
+                                    </ol>
+                                </div>
+
+
+                               {{-- <p class="span_7"></p> --}}
+
+                                <div class="section for_padding_top">
+                                    <p class="section-title">5. Authority to Appoint Solicitors or Agents</p>
+                                    <ol class="sub-list">
+                                        <li>
+                                            SC shall have the authority, where necessary, to appoint solicitors or
+                                            third-party
+                                            recovery
+                                            agents
+                                            to assist in the recovery of debts. Any such solicitors or agents shall be
+                                            deemed to act
+                                            on
+                                            behalf
+                                            of the Client
+                                        </li>
+                                        <li>
+                                            Legal costs, professional fees, or enforcement costs may be recoverable from
+                                            the debtor
+                                            or
+                                            otherwise payable in accordance with instructions provided by the Client.
+                                        </li>
+                                    </ol>
+                                </div>
+
+
+                                <p class="span_7"></p>
+
+                                <div class="section">
+                                    <p class="section-title">6. Client Obligations</p>
+                                    <ol class="sub-list">
+                                        <li>
+                                            The Client warrants that all information provided to SC regarding the debtor
+                                            and the
+                                            debt is
+                                            true,
+                                            accurate and complete to the best of their knowledge.
+                                        </li>
+                                        <li>
+                                            SC shall not be liable for any loss arising from inaccurate or incomplete
+                                            information
+                                            supplied
+                                            by
+                                            the Client.
+                                        </li>
+                                    </ol>
+                                </div>
+
+
+                                <p class="span_7"></p>
+
+                                <div class="section">
+                                    <p class="section-title">7. Settlement Authority</p>
+                                    <ol class="sub-list">
+                                        <li>
+                                            SC may negotiate and recommend settlements with the debtor where
+                                            commercially
+                                            reasonable.
+                                            Any settlement exceeding 25% reduction of the outstanding debt shall require
+                                            the
+                                            Client’s prior
+                                            written approval.
+                                        </li>
+                                        <li>
+                                            SC shall not be liable for any loss arising from inaccurate or incomplete
+                                            information
+                                            supplied
+                                            by
+                                            the Client.
+                                        </li>
+                                    </ol>
+                                </div>
+
+
+                                <p class="span_7"></p>
+
+                                <div class="section">
+                                    <p class="section-title">8. Liability Limitation</p>
+                                    <ol class="sub-list">
+                                        <li>
+                                            SC shall not be liable for any losses arising from:
+                                            <ul class="directly_text">
+                                                <li>debtor insolvency or bankruptcy</li>
+                                                <li>debtor absconding or refusal to pay</li>
+                                                <li>legal proceedings commenced by the debtor</li>
+                                                <li>acts or omissions of solicitors or third-party agents</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            SC’s role is to use reasonable commercial efforts to recover debts but does
+                                            not
+                                            guarantee
+                                            recovery.
+                                        </li>
+                                    </ol>
+                                </div>
+
+                                <div class="page-break"></div>
+
+                                <p class="span_7"></p>
+
+                                <div class="section">
+                                    <p class="section-title">9. Post-Termination Recovery</p>
+                                    <ol class="sub-list">
+                                        <li>
+                                            Where the Client, directly or indirectly, receives any payment, settlement,
+                                            asset
+                                            transfer,
+                                            credit, goods,
+                                            services, or any other benefit from the debtor at any time within
+                                            twenty-four (24)
+                                            months
+                                            following the
+                                            termination, cancellation, or expiry of this Agreement in relation to the
+                                            assigned Case,
+                                            such
+                                            recovery shall
+                                            be deemed to have arisen from SC’s recovery efforts and SC’s commission
+                                            shall remain
+                                            payable in
+                                            full.
+                                        </li>
+                                        <li>
+                                            For the avoidance of doubt, this obligation shall apply regardless of
+                                            whether such
+                                            recovery
+                                            occurs directly
+                                            between the Client and the debtor, through legal proceedings, through
+                                            third-party
+                                            agents, or
+                                            through any
+                                            other arrangement whatsoever.
+                                        </li>
+                                    </ol>
+                                </div>
+
+
+                                {{-- <p class="span_7"></p> --}}
+
+                                <div class="section">
+                                    <p class="section-title for_padding_top_2">10. Case Duration</p>
+                                    <ol class="sub-list">
+                                        <li>
+                                            Each Case shall remain active for 90 days from the date of assignment,
+                                            unless repayment
+                                            arrangements are ongoing or otherwise extended by mutual agreement.
+
+                                        </li>
+                                        <li>
+                                            SC may terminate any Case where recovery becomes commercially unviable.
+                                        </li>
+                                    </ol>
+                                </div>
+
+                                <p class="span_7"></p>
+
+                                <div class="section">
+                                    <p class="section-title">11. Entire Agreement</p>
+                                    <ol class="sub-list">
+                                        <li>
+                                            This Agreement constitutes the entire agreement between the parties and
+                                            supersedes all
+                                            previous
+                                            discussions or understandings relating to the recovery of the assigned debt.
+
+                                        </li>
+                                    </ol>
+                                </div>
+
+                                <p class="span_7"></p>
+
+                                <div class="section">
+                                    <p class="section-title">12.Governing Law</p>
+                                    <ol class="sub-list">
+                                        <li>
+                                            This Agreement shall be governed by and construed in accordance with the
+                                            laws of
+                                            Singapore
+
+                                        </li>
+                                    </ol>
+                                </div>
+
+                                <p class="span_7"></p>
 
                             </div>
 
-                            <div class="col-5">
-                                <div class="row for-p2">
-                                    {{-- <span class="d-f-agreement">Date of
-                                        Agreement:</span><span class="date_of_agreement_top">{{ \Carbon\Carbon::parse($client_details->date_of_agreement)->format('d - F - Y') }}</span> --}}
-                                <div class="col-4 case-prov">DATE OF EXPIRY</div>
-                                <div class="col-5 box-2nd">
-                                    {{ date('d/m/Y', strtotime($client_details->date_of_expiry)) }}</div>
+                            <div class="details_container">
 
-                            </div>
-                            {{-- <div class="col-10 d-flex pt-3 pb-2 expiry">
-                                    <span class="d-f-expiry">Date of Expiry:</span> <span
-                                        class="date_of_expiry">{{ \Carbon\Carbon::parse($client_details->date_of_expiry)->format('d - F - Y') }}</span>
-                                </div> --}}
-                        </div>
-                    </div>
+                                <!-- Left Side -->
+                                <div class="left">
+                                    @php
+                                        $date = $client_details->date_of_agreement;
+                                    @endphp
+
+                                    <h3>For Securre Collection Pte Ltd</h3>
+                                    <h5>(UEN: 202331790G)</h5>
+
+                                    <div class="line"></div>
+
+                                    <h5>Name: Ra’id Ravin Raj</h5>
+                                    <h5>Designation: Operations Director</h5>
+                                    <h5>Date: {{ $date->format('j') }}<sup>{{ substr($date->format('jS'), -2) }}</sup>
+                                        {{ $date->format('F') }} {{ $date->format('Y') }}</h5>
+
+                                </div>
 
 
-                    <div class="row">
-                        <div class="ol-start mt-3">
-                            <ol class="first-ol">
-                                <li class="f-ol-li1"> This Agreement, entered into as of <span class="text-to">today,
-                                    </span> <span
-                                        class="to-margin">{{ date('d/m/Y', strtotime($client_details->date_of_agreement)) }}</span>
-                                    , by and between us, <b>Securre Collection Pte. Ltd.</b> (hereon referred to as
-                                    "SC")
-                                    <span class="text-and"> and </span><span
-                                        class="and-margin">{{ $client_details->name }}</span> (hereon referred to as
-                                    the
-                                    "Client").
-                                </li>
+                                <!-- Right Side -->
+                                <div class="right">
 
-                                <li>
-                                    <span> (a) Whereas, the Client have solicited various firms for Debt Collection
-                                        Services
-                                        for the sole purpose of collecting upon their bad <br /> <span
-                                            style="padding-left: 20px;"> and/or financing the aforementioned bad
-                                            debts via
-                                            debt-factoring; and,</span></span><br />
+                                    <h3 class="the_clients">For the clients;</h3>
 
-                                    (b) Whereas, SC has represented to the Client that it is fully capable of
-                                    performing the
-                                    services described in this Agreement, and the Client<br><span
-                                        style="padding-left: 20px;">
-                                        has relied on such representation to select SC to
-                                        provide the services; and, </span> <br />
-
-                                    (c) Whereas, the Client now desire to enter into an agreement setting forth
-                                    their rights
-                                    and obligations with regard to SC's good service <br> <span
-                                        style="padding-left: 20px;">representation.</span>
-                                </li>
-
-                                <li> Both parties hereto agree to the following;
-
-                                    <div class="try_it">
-                                        <div class="d-flex bd-highlight col-11 p-0 m-0 ">
-                                            <div class="both-child-1 col-md-3 pt-2 flex-fill bd-highlight">
-                                                (a) Scope of services:
-                                            </div>
-
-                                            <div class="both-child-2 col-md-9 pt-2 flex-fill bd-highlight">
-                                                SC has agreed to collect outstanding debts as owed to the Client by
-                                                its
-                                                debtors as handed over to SC
-                                                by the Client during the endorsement of this Agreement.
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex bd-highlight col-md-11 p-0 m-0">
-                                            <div class="col-md-3 pt-2 flex-fill bd-highlight">
-                                                (b) Administrative fees:
-                                            </div>
-
-                                            <div class=" col-md-9 pt-2 flex-fill bd-highlight">
-                                                The Client/s has agreed to pay an upfront fee of <span
-                                                    class="s-dollar-sign"> S$
-                                                    <span
-                                                        class="dollar-margin"><b>{{ number_format($client_details->admin_fee, 2, '.', ',') }}</b></span>
-                                                </span>, for filing, administrative,
-                                                and registration costs to SC for the engagement of this service. It
-                                                is also
-                                                understood that this payment
-                                                is non-refundable and payable in full upon the endorsement of this
-                                                Agreement.
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex bd-highlight col-md-11 p-0 m-0">
-                                            <div class=" col-md-3 pt-2 flex-fill bd-highlight">
-                                                (c) Debt Commission:
-                                            </div>
-
-                                            <div class=" col-md-9 pt-2 flex-fill bd-highlight">
-                                                The commission payout on the successfully collected debt/s and
-                                                interest (if
-                                                any) will <span class="text-be"> be <span class="be-margin"><b>
-                                                            {{ $client_details->collection_commission }}</b>
-                                                    </span></span>.
-                                                SC reserves the right to review the commission structure subject to
-                                                seven
-                                                (07) days written notice to the Client.
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex bd-highlight col-md-11 p-0 m-0">
-                                            <div class=" col-md-3 pt-2 flex-fill bd-highlight">
-                                                (d) Payout structure:
-                                            </div>
-
-                                            <div class=" col-md-9 pt-2 flex-fill bd-highlight">
-                                                SC undertakes to pay to the Client, on a monthly or "as received by
-                                                debtor"
-                                                basis, for all successful
-                                                collections of the debt minus the commission and/or any outstanding
-                                                fees,
-                                                payments and costs
-                                                calculated herein due to SC from the Client as set forth in section
-                                                3.(b)
-                                                and 3.(c).
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex bd-highlight col-md-11 p-0 m-0">
-                                            <div class=" col-md-3 pt-2 flex-fill bd-highlight">
-                                                (e) Scope of collection:
-                                            </div>
-
-                                            <div class=" col-md-9 pt-2 flex-fill bd-highlight">
-                                                SC reserves the right to collect from the debtor/s all expenses and
-                                                fees as
-                                                provided for, as prescribed in the 'Debt Collection Act (2022),
-                                                Singapore',
-                                                and these costs will be deducted from the payments made to SC on a
-                                                pro-rata
-                                                basis.
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex bd-highlight col-md-11 p-0 m-0">
-                                            <div class=" col-md-3 pt-2 flex-fill bd-highlight">
-                                                (f) Interest on debt:
-                                            </div>
-
-                                            <div class=" col-md-9 pt-2 flex-fill bd-highlight">
-                                                Interest on debt: Interests collected on debt/s in addition to the
-                                                capital
-                                                amount will also be paid over to the Client
-                                                subject to the stipulations in section 3.(b), 3.(c) and 3.(d).
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex bd-highlight col-md-11 p-0 m-0">
-                                            <div class=" col-md-3 pt-2 flex-fill bd-highlight">
-                                                (g) Number of visits:
-                                            </div>
-
-                                            <div class=" col-md-9 pt-2 flex-fill bd-highlight">
-                                                SC undertakes a committment to the Client<span class="text-of"> of
-                                                    <span class="of-margin"> <b>
-                                                            {{ $client_details->field_visit_per_case }}</b> </span>
-                                                </span>
-                                                visits per case assigned to SC during the validity
-                                                of this agreement.
-                                            </div>
-                                        </div>
+                                    <div class="form-row">
+                                        <span>Clients’ Name:</span>
+                                        <div class="input-line">{{ $client_details->name }}</div>
                                     </div>
-                                </li>
 
+                                    <div class="form-row">
+                                        <span>Clients’ ID:</span>
+                                        <div class="input-line">{{ $client_details->nric }}</div>
+                                    </div>
 
-                                <li>In addition to the above-mentioned fee, the respective
+                                    <div class="form-row">
+                                        @php
+                                            $date = $client_details->date_of_agreement;
+                                        @endphp
+                                        <span>Date:</span>
+                                        <div class="input-line">
+                                            {{ $date->format('j') }}<sup>{{ substr($date->format('jS'), -2) }}</sup>
+                                            {{ $date->format('F') }} {{ $date->format('Y') }}</div>
+                                    </div>
 
+                                    <div class="form-row">
+                                        <span>Signature/Stamp:</span>
+                                        <div class="input-line"></div>
+                                    </div>
 
-                                    In the event the the number of field visits for a particular case has reached
-                                    its
-                                    maximum prescribed at Clause 3.(g) before full payment from the debtor/s, we
-                                    shall be be
-                                    entitled to either;
+                                </div>
 
-                                    <ul class="four-ul">
-                                        <li style="margin-top: 8px;">4.1 Continue with the Agreement subject to
-                                            payment of
-                                            additional Enforcement Fees for further field visits to secure
-                                            repayment<br><span style="padding-left: 24px; ">from the debtor;
-                                                irregardless,
-                                                or,</span> </li>
-                                        <li class="" style="margin-top: 8px;">4.2 Terminate the Agreement
-                                            without any liability at no
-                                            cost to SC whatsoever.</li>
-                                    </ul>
-                                </li>
-
-
-                                <li>
-                                    In addition to the above-mentioned fees, the respective Debt Commission as per
-                                    the debt
-                                    amount recovered is payable to us, whether the debt is recovered in full or in
-                                    part, or
-                                    upon termination or expiry of this Agreement, as whatever the case may be.
-                                </li>
-
-                                <li class="li_6">
-                                    For the avoidance of doubt, the criteria for expiration of this Agreement
-                                    applies
-                                    severally to individual case/s referred to SC
-                                    by the Client.
-                                </li>
-
-                                <li>
-                                    This Agreement shall automatically expire and the relevant case file in our
-                                    records
-                                    shall cease in the following circumstances; 03-017Add: Peninsula Plaza, 111
-                                    North Bridge
-                                    Road, #21-01, Singapore 179098 Off: +65 8505 5484 | Email: hello@securre.net |
-                                    Web:
-                                    www.securre.net
-                                    <ul class="four-ul">
-                                        <li class="point-five" style="margin-top: 8px;">7.1 If after 90 days from
-                                            the date of this Agreement,
-                                            we are unable to obtain any repayment of the debt from the debtor; or
-                                        </li>
-
-                                        <li class="" style="margin-top: 8px;">7.2 In the case of a payment of
-                                            the debt by instalments
-                                            / partial-payment, a period of 120 days has lapsed since payment of the
-                                            <br>
-                                            <span style="padding-left: 24px;"> last instalment or part-payment by
-                                                the
-                                                debtor(s) and no further instalment / part-payment has been received
-                                                from
-                                                the </span> <br> <span style="padding-left: 24px;">debtor(s) (e.g.
-                                                the
-                                                debtor is undergoing bankruptcy / winding up proceedings or has
-                                                absconded).</span>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    The Client/s acknowledge and agree that all the information and documents
-                                    provided to us
-                                    in respect of each and every case is true and accurate to the best of their
-                                    knowledge
-                                    and information.
-                                </li>
-
-                                <li>
-                                    In the event that the information on the debtor (e.g. the residential address,
-                                    commercial address and as well as other contact details) provided by you to us
-                                    are
-                                    inaccurate, there shall be no refund of any of the fees whatsoever.
-                                </li>
-
-                                <li>
-                                    The contractual agreement between you and us is embodied in this
-                                    <b>Agreement</b> , the
-                                    <b>Terms and Conditions </b> as annexed hereto
-                                    and the <b>Warrant to Act</b>/s as attached herewith from Page 3 onwards.
-                                    Together,
-                                    these shall be indentified as the <b>"Contract Documents"</b> . Your execution
-                                    of this
-                                    Agreement confirms that you have read, understood and accepted any and all the
-                                    terms
-                                    as set out in the Contract Documents.
-                                </li>
-
-                                <li>
-                                    As per the terms of this Agreement set out in Clause 7., this Agreement shall be
-                                    considered void after the Date of Expiry as
-                                    stated unless renewed by SC at any time or by the Client within 14 days prior to
-                                    expiry
-                                    with SC's written approval.
-                                </li>
-
-                                <li>
-                                    This Agreement is void and unenforceable unless accompanied by the signature of
-                                    our
-                                    authorised agent or representative.
-                                </li>
-
-                            </ol>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="row another-row">
-                            <div class="col-5 sincere py-4">
-                                <h4>For Seccure Collection Pte. Ltd.</h4>
-                                <span class="director for-after">Name: <span class="ravin">Ravin Raj G.(Ops
-                                        Director)</span></span><br><br>
-                                <span class="director">Designation:</span><br><br>
-                                <span class="director">Date: <span
-                                        class="ravin-date">{{ date('d/m/Y', strtotime($client_details->date_of_agreement)) }}</span></span>
-                                <p class="enclosed"> * Enclosed herein: Warrant to Act, herewith: T&C.</p>
-                            </div>
-
-                            <div class="col-7 second-box py-4">
-                                <p>For the Client/s; </p>
-
-                                <span class="Client">Client Name/s: </span> <span
-                                    class="company_uen_2">{{ $client_details->name }}</span><br><br>
-
-                                <span class="company">Company Name: </span> <span
-                                    class="company_name">{{ $client_details->company_name }}</span><br><br>
-
-                                <span class="designation">Designation:</span>
-                                <span class="company_uen"></span><br><br>
-
-                                <span class="Date">Date: </span> <span
-                                    class="date_uen">{{ date('d/m/Y', strtotime($client_details->date_of_agreement)) }}</span><br><br><br>
-                                <span class="stamp">Signature/Stamp:</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 take-note">
-                        <span class="bg-dark text-white px-1 py-1"><span
-                                style="font-size: 15px; font-weight: 600;">PLEASE TAKE NOTE:</span>
-                        </span>
-                        <div class="col-12">
-                            <ol class="serve">
-                                <li class="pl-4">All payments shall be made via CASH/CHEQUE or PAYNOW and an
-                                    official
-                                    receipt will be issued.
-                                </li>
-                                <li class="pl-4 pt-2">Cheques should be made to Securre Collection Pte Ltd.
-                                    Internet
-                                    banking should be via PayNow to <span
-                                        style="text-decoration: underline;">"87428158"</span>
-                                </li>
-                                <li class="pl-4 pt-2">Bank transfer receipts should be submitted to us for bank
-                                    transfers.
-                                    (Upon receiving full payment your case file will be allocated accordingly and an
-                                    official receipts will be issued via email/letter accordingly.
-                                </li>
-                                <li class="pl-4 pt-2">All case updates communications should be via email <span
-                                        class="hello_securre_mail">hello@securre.net</span> or via our App/Website.
-                                    Login
-                                    details will be
-                                    issued to you within 14 working days upon full payment of registration fees.
-                                </li>
-                                <li class="pl-4 pt-2">All communications on payments should be via email to <span
-                                        class="hello_securre_web">dcms@securre.net</span> (cc: hello@securre.net).
-                                </li>
-                                <li class="pl-4 pt-2">1st case update will be within 10-14 working days,
-                                    subsequently,
-                                    fortnightly. Any and all updates will be made available in your login 24hrs/day,
-                                    everyday.
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
 
+
+                        {{-- end text --}}
+
+
+
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
     <footer class="agreement-footer">
 
-{{-- Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098
-        Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net--}}
+        {{-- Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098
+        Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net --}}
 
-         <div class="footer-section">
+        <div class="footer-section">
             <p class="note">
                 Note: This document is strictly private, confidential and personal to the sender and its recipients</br>
                 and should not be copied, edited, distributed or reproduced in whole or in part, nor passed to any third
