@@ -18,7 +18,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"  />
     <link rel="stylesheet" href="{{ asset('admin/css/agreement-print-screen.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('admin/css/agreement-print.css') }}" media="print">
-    <title>DCMS</title>
+    <title>Invoice-{{ $invoice->invoice_number }}</title>
 </head>
 
 <body>
@@ -26,8 +26,17 @@
 
     <div class="second-section">
         <div class="container mb-5">
-
-            <div>
+            <div class="row">
+                <div class="col-md-12 buttons">
+                    @if(!request('print'))
+                        <div class="d-flex justify-content-end pt-3">
+                            <a href="{{ route('admin.invoices.index') }}" class="btn btn-danger mr-1">Back</a>
+                            <button class="btn btn-primary" onclick="window.print()">Print</button>
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <div id="invoiceArea">
                 <div class="tax_heading_div">
                     <div class="tax_img">
                         <img src="{{ asset('images/securre.png') }}" alt="" />
@@ -317,15 +326,6 @@
                 </div>
 
 
-
-
-
-
-
-                <footer class="warrant-footer">
-                    Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098
-                    Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net
-                </footer>
                 <!--second section end-->
 
 

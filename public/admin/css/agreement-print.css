@@ -1228,7 +1228,7 @@ hr {
         width: 42%;
         position: relative;
     }
-    
+
     .divider::after{
         position: absolute;
         content: '';
@@ -1968,7 +1968,7 @@ hr {
     }
 
     /* new */
-    
+
     .clause-line {
         margin-top: 20px;
         padding-left: 40px;
@@ -2016,7 +2016,7 @@ hr {
 
     /* new */
 
-    
+
     .debt-box-wrapper {
         border: 3px solid #000;
         padding: 10px;
@@ -2228,7 +2228,7 @@ hr {
 /* new -> contract.blade  start  */
 
         .top_of_header {
-           
+
         }
 
         .header {
@@ -2239,7 +2239,7 @@ hr {
 
         .contract_logo_div {
         margin-left: -60px;
-       
+
         }
 
         .securre_text_img1 {
@@ -2453,7 +2453,7 @@ hr {
 /* new lod blade start here*/
  .lod_header .contract_logo_div {
         margin-left: 0;
-       
+
         }
 
         .securre_text_img1 {
@@ -2483,7 +2483,7 @@ hr {
 .left h5,
 .middle h5{
     font-size: 20px;
-    
+
 }
 .left p,
 .middle p{
@@ -2634,7 +2634,7 @@ color: #243b63;
 .lod_foot_divider{
     width: 100%;
 border-bottom: 5px solid #243b63;
-margin-bottom: 20px;
+margin-bottom: 50px;
 }
 
 .lod_divider_text p {
@@ -2645,13 +2645,13 @@ margin-bottom: 20px;
 }
 
 .lod_divider_text{
-    margin-top: 100px;
+    margin-top: 70px;
     margin-bottom: -10px;
 }
 
 .footer_text{
-margin-top: 60px;
-margin-bottom: 30px;
+/*margin-top: 60px;*/
+/*margin-bottom: 30px;*/
 font-size: 15px;
 font-weight: 600;
 color: #333;

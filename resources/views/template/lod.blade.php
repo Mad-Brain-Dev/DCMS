@@ -24,6 +24,15 @@
 <body>
 
     <div class="container">
+        <div class="row">
+            <div class="col-md-12 buttons">
+                <div class="d-flex justify-content-end pt-3">
+                    <a href="{{ route('admin.cases.index') }}" class="btn btn-danger mr-1">Back</a>
+                    <button class="btn btn-primary" onclick="printDocument()">Print</button>
+                    <a href="{{ route('printable.case.warrant', $case_number->id) }}" class="btn btn-dark ml-1">Print Warrant</a>
+                </div>
+            </div>
+        </div>
         <div class= "lod_header top_of_header">
             <div class="header">
 
@@ -96,7 +105,7 @@
 
             <div class="right">
                 <p><b>Our Ref.:</b> <span class="box highlight">{{$case_number->case_sku}}</span></p>
-                <p><b>Your Ref.:</b> <span class="box ">J M A</span></p>
+                <p><b>Your Ref.:</b> <span class="box" style="display: inline-block; width: 100px;">J M A</span></p>
 
 {{--                <p class="date highlight">09 March, 2026</p>--}}
                 <p class="date highlight">{{optional($case_number->created_at)->format('d F, Y')}}</p>
@@ -258,10 +267,10 @@
 
 
 
-    <footer class="warrant-footer">
-        Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098
-        Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net
-    </footer>
+{{--    <footer class="warrant-footer">--}}
+{{--        Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098--}}
+{{--        Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net--}}
+{{--    </footer>--}}
     <!--second section end-->
 
 
