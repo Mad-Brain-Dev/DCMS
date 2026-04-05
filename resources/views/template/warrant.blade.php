@@ -63,8 +63,6 @@
                     </div>
                 </div>
 
-
-
                 <div class="clause-line">
                     <ol type="1">
                         <li>
@@ -180,8 +178,6 @@
                 </div>
 
             </div>
-
-
         </div>
     </div>
     </div>

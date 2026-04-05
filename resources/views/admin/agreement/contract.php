@@ -39,15 +39,11 @@
                         </div>
                         <div class="row first-row justify-content-center client-agreement-header">
                             <div class="col-md-12">
-
                                 <div class="align-items-start d-flex for-bottom-border for-margin-of-logo">
                                     <img class="logo" src="{{ asset('images/image_1.png') }}" alt=""><span
-                                        class="debt-text">Debt Collection, Factoring | Transportation | Logistics
-                                        Services |
-                                        © 2001</span>
+                                        class="debt-text">DEBT
+                                        COLLECTION AGREEMENT</span>
                                 </div>
-
-
                             </div>
                         </div>
                         <hr>
