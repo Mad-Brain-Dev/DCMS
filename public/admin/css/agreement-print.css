@@ -548,6 +548,7 @@ hr {
     bottom: 0;
 }
 .take-note {
+    padding-top: 220px;
     /* margin-top: 150px !important; */
     /* display: inline-block; */
 }
@@ -2427,6 +2428,7 @@ hr {
 .footer-section{
     text-align: center;
     padding: 20px;
+    margin-left: 80px;
 }
 
 .note{
@@ -2441,8 +2443,8 @@ hr {
     border-top: 2px solid #2b4c7e;
     position: absolute;
     bottom: 70px;
-    left: 0;
-    width: 100%;
+    left: 10px;
+    width: 107%;
     margin: 10px 0 20px;
 }
 

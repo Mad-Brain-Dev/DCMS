@@ -372,7 +372,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 take-note" style="margin-bottom: 100px;">
+                    <div class="col-12 take-note">
                         <span class="bg-dark text-white px-1 py-1"><span
                                 style="font-size: 15px; font-weight: 600;">PLEASE TAKE NOTE:</span>
                         </span>
