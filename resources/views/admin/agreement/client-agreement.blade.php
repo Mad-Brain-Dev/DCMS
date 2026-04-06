@@ -179,7 +179,7 @@
 
                                 </div>
 
-                                <div class="page-break"></div>
+                                 <div class="page-break"></div>
 
                                 <p class="span_7"></p>
 
@@ -205,10 +205,9 @@
                                     </ol>
                                 </div>
 
+                                {{-- <p class="span_7"></p> --}}
 
-                               {{-- <p class="span_7"></p> --}}
-
-                                <div class="section for_padding_top">
+                                <div class="section none_section for_padding_top">
                                     <p class="section-title">5. Authority to Appoint Solicitors or Agents</p>
                                     <ol class="sub-list">
                                         <li>
@@ -345,107 +344,111 @@
 
                                 {{-- <p class="span_7"></p> --}}
 
-                                <div class="section">
-                                    <p class="section-title for_padding_top_2">10. Case Duration</p>
-                                    <ol class="sub-list">
-                                        <li>
-                                            Each Case shall remain active for 90 days from the date of assignment,
-                                            unless repayment
-                                            arrangements are ongoing or otherwise extended by mutual agreement.
+                                
+                                    <div class="none_section section for_padding_top_2">
+                                        <p class="section-title">10. Case Duration</p>
+                                        <ol class="sub-list">
+                                            <li>
+                                                Each Case shall remain active for 90 days from the date of assignment,
+                                                unless repayment
+                                                arrangements are ongoing or otherwise extended by mutual agreement.
 
-                                        </li>
-                                        <li>
-                                            SC may terminate any Case where recovery becomes commercially unviable.
-                                        </li>
-                                    </ol>
-                                </div>
-
-                                <p class="span_7"></p>
-
-                                <div class="section">
-                                    <p class="section-title">11. Entire Agreement</p>
-                                    <ol class="sub-list">
-                                        <li>
-                                            This Agreement constitutes the entire agreement between the parties and
-                                            supersedes all
-                                            previous
-                                            discussions or understandings relating to the recovery of the assigned debt.
-
-                                        </li>
-                                    </ol>
-                                </div>
-
-                                <p class="span_7"></p>
-
-                                <div class="section">
-                                    <p class="section-title">12.Governing Law</p>
-                                    <ol class="sub-list">
-                                        <li>
-                                            This Agreement shall be governed by and construed in accordance with the
-                                            laws of
-                                            Singapore
-
-                                        </li>
-                                    </ol>
-                                </div>
-
-                                <p class="span_7"></p>
-
-                            </div>
-
-                            <div class="details_container">
-
-                                <!-- Left Side -->
-                                <div class="left">
-                                    @php
-                                        $date = $client_details->date_of_agreement;
-                                    @endphp
-
-                                    <h3>For Securre Collection Pte Ltd</h3>
-                                    <h5>(UEN: 202331790G)</h5>
-
-                                    <div class="line"></div>
-
-                                    <h5>Name: Ra’id Ravin Raj</h5>
-                                    <h5>Designation: Operations Director</h5>
-                                    <h5>Date: {{ $date->format('j') }}<sup>{{ substr($date->format('jS'), -2) }}</sup>
-                                        {{ $date->format('F') }} {{ $date->format('Y') }}</h5>
-
-                                </div>
-
-
-                                <!-- Right Side -->
-                                <div class="right">
-
-                                    <h3 class="the_clients">For the clients;</h3>
-
-                                    <div class="form-row">
-                                        <span>Clients’ Name:</span>
-                                        <div class="input-line">{{ $client_details->name }}</div>
+                                            </li>
+                                            <li>
+                                                SC may terminate any Case where recovery becomes commercially unviable.
+                                            </li>
+                                        </ol>
                                     </div>
 
-                                    <div class="form-row">
-                                        <span>Clients’ ID:</span>
-                                        <div class="input-line">{{ $client_details->nric }}</div>
+                                    <p class="span_7"></p>
+
+                                    <div class="section">
+                                        <p class="section-title">11. Entire Agreement</p>
+                                        <ol class="sub-list">
+                                            <li>
+                                                This Agreement constitutes the entire agreement between the parties and
+                                                supersedes all
+                                                previous
+                                                discussions or understandings relating to the recovery of the assigned
+                                                debt.
+
+                                            </li>
+                                        </ol>
                                     </div>
 
-                                    <div class="form-row">
+                                    <p class="span_7"></p>
+
+                                    <div class="section">
+                                        <p class="section-title">12.Governing Law</p>
+                                        <ol class="sub-list">
+                                            <li>
+                                                This Agreement shall be governed by and construed in accordance with the
+                                                laws of
+                                                Singapore
+
+                                            </li>
+                                        </ol>
+                                    </div>
+
+                                    <p class="span_7"></p>
+
+                               {{-- </div> --}}
+
+                                <div class="details_container">
+
+                                    <!-- Left Side -->
+                                    <div class="left">
                                         @php
                                             $date = $client_details->date_of_agreement;
                                         @endphp
-                                        <span>Date:</span>
-                                        <div class="input-line">
+
+                                        <h3>For Securre Collection Pte Ltd</h3>
+                                        <h5>(UEN: 202331790G)</h5>
+
+                                        <div class="line"></div>
+
+                                        <h5>Name: Ra’id Ravin Raj</h5>
+                                        <h5>Designation: Operations Director</h5>
+                                        <h5>Date:
                                             {{ $date->format('j') }}<sup>{{ substr($date->format('jS'), -2) }}</sup>
-                                            {{ $date->format('F') }} {{ $date->format('Y') }}</div>
+                                            {{ $date->format('F') }} {{ $date->format('Y') }}</h5>
+
                                     </div>
 
-                                    <div class="form-row">
-                                        <span>Signature/Stamp:</span>
-                                        <div class="input-line"></div>
+
+                                    <!-- Right Side -->
+                                    <div class="right">
+
+                                        <h3 class="the_clients">For the clients;</h3>
+
+                                        <div class="form-row">
+                                            <span>Clients’ Name:</span>
+                                            <div class="input-line">{{ $client_details->name }}</div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <span>Clients’ ID:</span>
+                                            <div class="input-line">{{ $client_details->nric }}</div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            @php
+                                                $date = $client_details->date_of_agreement;
+                                            @endphp
+                                            <span>Date:</span>
+                                            <div class="input-line">
+                                                {{ $date->format('j') }}<sup>{{ substr($date->format('jS'), -2) }}</sup>
+                                                {{ $date->format('F') }} {{ $date->format('Y') }}</div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <span>Signature/Stamp:</span>
+                                            <div class="input-line"></div>
+                                        </div>
+
                                     </div>
 
                                 </div>
-
                             </div>
                         </div>
 

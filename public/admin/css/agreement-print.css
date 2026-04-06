@@ -3,7 +3,7 @@
 }
 .agreement_header {
     position: fixed;
-    top: 100px;
+    top: 90px;
 }
 .divider-top {
     width: 100%;
@@ -2343,12 +2343,15 @@ hr {
         }
 
         .for_padding_top{
-            padding-top: 219px;
+            padding-top: 200px;
             /* margin-top: -50px; */
         }
 
         .for_padding_top_2{
-            padding-top: 300px;
+            padding-top: 290px;
+            transform: translateY(-90px);
+            margin-bottom: -90px;
+            /* margin-top: -10px !important; */
         }
 
          .text_section .span_7{
@@ -2362,6 +2365,9 @@ hr {
         }
         .section {
             margin-top: 25px;
+            padding-left: 30px;
+        }
+        .none_section{
             padding-left: 30px;
         }
 
@@ -2402,7 +2408,7 @@ hr {
         .details_container{
     display: flex;
     justify-content: space-between;
-    margin-top: 150px;
+    margin-top: 60px;
 }
 
 .left{
