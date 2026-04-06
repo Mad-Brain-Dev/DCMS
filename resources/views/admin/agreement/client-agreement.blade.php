@@ -104,7 +104,7 @@
 
                                     <p class="section-title">1. Scope of Services</p>
 
-                                    <ul class="sc_shall_text">
+                                    <ul class="sc_shall_text_1">
                                         <li>SC shall undertake debt recovery services on behalf of the Client for
                                             outstanding
                                             debts assigned by the Client to SC (“the Case”). SC may conduct recovery
@@ -268,13 +268,13 @@
                                             Client’s prior
                                             written approval.
                                         </li>
-                                        <li>
+                                       {{-- <li>
                                             SC shall not be liable for any loss arising from inaccurate or incomplete
                                             information
                                             supplied
                                             by
                                             the Client.
-                                        </li>
+                                        </li> --}}
                                     </ol>
                                 </div>
 
@@ -342,10 +342,10 @@
                                 </div>
 
 
-                                {{-- <p class="span_7"></p> --}}
+                                  <p class="span_7"></p>
 
                                 
-                                    <div class="none_section section for_padding_top_2">
+                                    <div class="section">
                                         <p class="section-title">10. Case Duration</p>
                                         <ol class="sub-list">
                                             <li>
@@ -360,11 +360,11 @@
                                         </ol>
                                     </div>
 
-                                    <p class="span_7"></p>
+                                    {{-- <p class="span_7"></p> --}}
 
-                                    <div class="section">
+                                    <div class="section none_section for_padding_top_2">
                                         <p class="section-title">11. Entire Agreement</p>
-                                        <ol class="sub-list">
+                                        <ul class="sc_shall_text_11">
                                             <li>
                                                 This Agreement constitutes the entire agreement between the parties and
                                                 supersedes all
@@ -373,21 +373,21 @@
                                                 debt.
 
                                             </li>
-                                        </ol>
+                                        </ul>
                                     </div>
 
                                     <p class="span_7"></p>
 
                                     <div class="section">
                                         <p class="section-title">12.Governing Law</p>
-                                        <ol class="sub-list">
+                                        <ul class="sc_shall_text_12">
                                             <li>
                                                 This Agreement shall be governed by and construed in accordance with the
                                                 laws of
                                                 Singapore
 
                                             </li>
-                                        </ol>
+                                        </ul>
                                     </div>
 
                                     <p class="span_7"></p>

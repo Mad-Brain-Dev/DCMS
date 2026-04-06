@@ -2298,10 +2298,20 @@ footer {
          .text_section p .span_5{
             width: 150px;
         }
-        .sc_shall_text li{
+        .sc_shall_text_1,
+        .sc_shall_text_11,
+        .sc_shall_text_12{
             list-style: none;
-            margin-left: -20px;
             margin-top: -20px;
+        }
+        .sc_shall_text_1{
+            margin-left: -20px;
+        }
+         .sc_shall_text_11{
+            margin-left: -12px;
+        }
+        .sc_shall_text_12{
+            margin-left: -15px;
         }
         .text_section .span_6,
         .text_section .span_7{
