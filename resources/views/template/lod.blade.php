@@ -29,7 +29,8 @@
                 <div class="d-flex justify-content-end pt-3">
                     <a href="{{ route('admin.cases.index') }}" class="btn btn-danger mr-1">Back</a>
                     <button class="btn btn-primary" onclick="printDocument()">Print</button>
-                    <a href="{{ route('printable.case.warrant', $case_number->id) }}" class="btn btn-dark ml-1">Print Warrant</a>
+                    <a href="{{ route('printable.case.warrant', $case_number->id) }}" class="btn btn-dark ml-1">Print
+                        Warrant</a>
                 </div>
             </div>
         </div>
@@ -59,7 +60,7 @@
 
             <div class="left">
                 {{-- DB 1 --}}
-                @if(isset($debtors[0]))
+                @if (isset($debtors[0]))
                     <div class="name">
                         <h5 class="highlight">{{ $debtors[0]->name }}</h5>
                     </div>
@@ -70,7 +71,7 @@
 
 
                 {{-- DB 3 --}}
-                @if(isset($debtors[2]))
+                @if (isset($debtors[2]))
                     <div class="name">
                         <h5 class="highlight space">{{ $debtors[2]->name }}</h5>
                     </div>
@@ -82,7 +83,7 @@
 
             <div class="middle">
                 {{-- DB 2 --}}
-                @if(isset($debtors[1]))
+                @if (isset($debtors[1]))
                     <div class="name">
                         <h5 class="highlight">{{ $debtors[1]->name }}</h5>
                     </div>
@@ -93,7 +94,7 @@
 
 
                 {{-- DB 4 --}}
-                @if(isset($debtors[3]))
+                @if (isset($debtors[3]))
                     <div class="name">
                         <h5 class="highlight space">{{ $debtors[3]->name }}</h5>
                     </div>
@@ -104,11 +105,34 @@
             </div>
 
             <div class="right">
-                <p><b>Our Ref.:</b> <span class="box highlight">{{$case_number->case_sku}}</span></p>
-                <p><b>Your Ref.:</b> <span class="box" style="display: inline-block; width: 100px;">J M A</span></p>
+                {{-- <p><b>Our Ref.:</b> <span class="box highlight">{{$case_number->case_sku}}</span></p>
+                <p><b>Your Ref.:</b> <span class="box" style="display: inline-block; width: 200px;">J M A</span></p> --}}
 
-{{--                <p class="date highlight">09 March, 2026</p>--}}
-                <p class="date highlight">{{optional($case_number->created_at)->format('d F, Y')}}</p>
+
+
+
+                <div class="ref-container">
+
+                    <div class="ref-row">
+                        <div class="label level_1">Our Ref.:</div>
+                        <div class="box">
+                            <span class="highlight">ABC / 2026 / 000123</span>
+                        </div>
+                    </div>
+
+                    <div class="ref-row">
+                        <div class="label">Your Ref.:</div>
+                        <div class="box box_2">JMA</div>
+                    </div>
+
+                </div>
+
+
+
+
+
+                {{--                <p class="date highlight">09 March, 2026</p> --}}
+                <p class="date highlight">{{ optional($case_number->created_at)->format('d F, Y') }}</p>
             </div>
 
         </div>
@@ -119,7 +143,7 @@
 
         <!-- Claim -->
         <div class="claim">
-            <p><b>CLAIMANT NAME:</b> <span class="highlight_client">{{$case_number->client->name}}</span></p>
+            <p><b>CLAIMANT NAME:</b> <span class="highlight_client">{{ $case_number->client->name }}</span></p>
             @php
                 $formattedAmount = number_format($case_number->total_amount_owed, 2, '.', ',');
             @endphp
@@ -132,7 +156,8 @@
             <ol>
 
                 <li>
-                    Our firm acts for the above-mentioned Claimant in relation to the outstanding debt/s owed by you.
+                     Our firm acts for the above-mentioned Claimant in relation to the outstanding debt/s owed by
+                        you.
                 </li>
 
                 <li>
@@ -175,12 +200,10 @@
                 <li>
                     @php
                         use Carbon\Carbon;
-                        $newDate = Carbon::parse($case_number->created_at)
-                            ->addDays(7)
-                            ->format('d F, Y');
+                        $newDate = Carbon::parse($case_number->created_at)->addDays(7)->format('d F, Y');
                     @endphp
-                    If the full amount due is not received by <span class="lod_span_2">{{$newDate}}</span> at <span
-                        class = "lod_span_3">16:00 hours</span>, our Client will proceed with
+                    If the full amount due is not received by <span class="lod_span_2">{{ $newDate }}</span> at
+                    <span class = "lod_span_3">16:00 hours</span>, our Client will proceed with
                     the next
                     course of action without further notice to you, and you may be held liable for any additional costs
                     incurred.
@@ -241,10 +264,10 @@
 
             </div>
 
-    </div>
+        </div>
 
-    <div>
-       <div class="lod_divider_text">
+        <div>
+            <div class="lod_divider_text">
                 <p>
                     Note: This document is strictly private, confidential and personal to the sender and its recipients
                     and should not be copied, edited,</br>
@@ -267,10 +290,10 @@
 
 
 
-{{--    <footer class="warrant-footer">--}}
-{{--        Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098--}}
-{{--        Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net--}}
-{{--    </footer>--}}
+    {{--    <footer class="warrant-footer"> --}}
+    {{--        Add: Peninsula Plaza, 111 North Bridge Road, #21-01, Singapore 179098 --}}
+    {{--        Off: +65 8505 5484 | Email: hello@securre.net | Web: www.securre.net --}}
+    {{--    </footer> --}}
     <!--second section end-->
 
 

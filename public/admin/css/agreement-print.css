@@ -2712,3 +2712,46 @@ color: #333;
 }
 /* new lod blade end here*/
 
+
+/* >> lod */
+
+  .ref-container {
+    width: 400px;
+  }
+
+  .ref-row {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    /* margin-bottom: 6px; */
+  }
+
+  .label {
+    width: 120px; 
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .level_1{
+    padding-left: 7px;
+  }
+
+  .box {
+    width: 240px;
+    height: 28px;
+    border: 2px solid #bfbfbf;
+    /* background-color: #eaeaea; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 8px;
+    margin-left: -35px;
+  }
+  .box_2{
+    border-top: none;
+  }
+
+  .highlight {
+    color: red;
+    font-weight: bold;
+  }
+  /* lod >> */
