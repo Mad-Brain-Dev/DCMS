@@ -1033,7 +1033,7 @@ hr {
     position: fixed;
     bottom: 30px;
     font-size: 14px;
-    left: 100px;
+    left: 120px;
 }
 .agreement-footer {
     position: fixed;
@@ -2185,11 +2185,11 @@ hr {
 }
 
 .endorse-left {
-    width: 55%;
+    width: 40%;
 }
 
 .endorse-right {
-    width: 35%;
+    width: 57%;
     text-align: right;
     padding-top: 30px;
 }
@@ -2240,7 +2240,8 @@ hr {
 
 .warrant-footer{
     color: #1F3A8A;
-    margin-left: -45px;
+    margin-left: -30px;
+    padding-top: 30px;
 }
 /* warrant end */
 
