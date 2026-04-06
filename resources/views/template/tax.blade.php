@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="tax_span_text">
-                        <p>DEBT COLLECTION INVOICE </p>
+                        <p>DEBT COLLECTION INVOICE</p>
                     </div>
                 </div>
 
