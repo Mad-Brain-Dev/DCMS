@@ -116,13 +116,13 @@
                     <div class="ref-row">
                         <div class="label level_1">Our Ref.:</div>
                         <div class="box">
-                            <span class="highlight">ABC / 2026 / 000123</span>
+                            <span class="">ABC / 2026 / 000123</span>
                         </div>
                     </div>
 
                     <div class="ref-row">
                         <div class="label">Your Ref.:</div>
-                        <div class="box box_2">JMA</div>
+                        <div class="box box_2"></div>
                     </div>
 
                 </div>
@@ -130,9 +130,8 @@
 
 
 
-
                 {{--                <p class="date highlight">09 March, 2026</p> --}}
-                <p class="date highlight">{{ optional($case_number->created_at)->format('d F, Y') }}</p>
+                <p class="date">{{ optional($case_number->created_at)->format('d F, Y') }}</p>
             </div>
 
         </div>
