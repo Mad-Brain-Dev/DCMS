@@ -1400,12 +1400,12 @@ footer {
      }
     .name{
         font-size: 20px;
-        color: rgb(255, 0, 0);
+        /* color: rgb(255, 0, 0); */
         font-weight: 600;
     }
     .add{
         font-size: 20px;
-        color: rgb(255, 106, 106);
+        /* color: rgb(255, 106, 106); */
     }
 
     .name_3rd,
@@ -1868,7 +1868,7 @@ footer {
 }
 
 .highlight {
-    color: red;
+    /* color: red; */
 }
 
 .only-text {
@@ -2696,7 +2696,7 @@ color: #333;
   }
 
   .highlight {
-    color: red;
+    /* color: red; */
     font-weight: bold;
   }
   /* lod >> */

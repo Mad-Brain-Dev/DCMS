@@ -1893,10 +1893,6 @@ hr {
     padding-left: 10px;
 }
 
-.highlight {
-    color: red;
-}
-
 .only-text {
     text-align: center;
     color: black;
@@ -2752,7 +2748,7 @@ color: #333;
   }
 
   .highlight {
-    color: red;
+    /* color: red; */
     font-weight: bold;
   }
   /* lod >> */
