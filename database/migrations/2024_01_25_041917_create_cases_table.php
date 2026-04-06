@@ -55,7 +55,7 @@ return new class extends Migration
             $table->dateTime('next_payment_date')->nullable();
             $table->dateTime('interest_end_date')->nullable();
             $table->float('total_interest')->nullable();
-            $table->float('total_amount_owed')->nullable();
+            $table->decimal('total_amount_owed', 15, 2)->default(0);
             $table->float('total_amount_paid')->nullable();
             $table->float('next_payment_amount')->nullable();
             $table->float('total_amount_balance')->nullable();

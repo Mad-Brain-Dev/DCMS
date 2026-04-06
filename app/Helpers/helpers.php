@@ -404,49 +404,121 @@ if (!function_exists('is_admin_fee_collected')) {
 }
 
 // Function to convert number to words
-function numberToWords($num) {
-    $ones = array(
-        0 => "Zero", 1 => "One", 2 => "Two", 3 => "Three", 4 => "Four",
-        5 => "Five", 6 => "Six", 7 => "Seven", 8 => "Eight", 9 => "Nine",
-        10 => "Ten", 11 => "Eleven", 12 => "Twelve", 13 => "Thirteen", 14 => "Fourteen",
-        15 => "Fifteen", 16 => "Sixteen", 17 => "Seventeen", 18 => "Eighteen", 19 => "Nineteen"
-    );
+//function numberToWords($num) {
+//    $ones = array(
+//        0 => "Zero", 1 => "One", 2 => "Two", 3 => "Three", 4 => "Four",
+//        5 => "Five", 6 => "Six", 7 => "Seven", 8 => "Eight", 9 => "Nine",
+//        10 => "Ten", 11 => "Eleven", 12 => "Twelve", 13 => "Thirteen", 14 => "Fourteen",
+//        15 => "Fifteen", 16 => "Sixteen", 17 => "Seventeen", 18 => "Eighteen", 19 => "Nineteen"
+//    );
+//
+//    $tens = array(
+//        0 => "", 1 => "Ten", 2 => "Twenty", 3 => "Thirty", 4 => "Forty",
+//        5 => "Fifty", 6 => "Sixty", 7 => "Seventy", 8 => "Eighty", 9 => "Ninety"
+//    );
+//
+//    $hundreds = array(
+//        "Hundred", "Thousand,", "Million,", "Billion,", "Trillion,", "Quadrillion,"
+//    );
+//
+//    if ($num < 20) {
+//        return $ones[$num];
+//    } elseif ($num < 100) {
+//        return $tens[floor($num / 10)] . ($num % 10 ? "-" . $ones[$num % 10] : "");
+//    } elseif ($num < 1000) {
+//        return $ones[floor($num / 100)] . " " . $hundreds[0] . ($num % 100 ? " and " . numberToWords($num % 100) : "");
+//    } else {
+//        for ($i = 1, $unit = 1000; $unit <= pow(1000, count($hundreds)); $i++, $unit *= 1000) {
+//            if ($num < $unit * 1000) {
+//                return numberToWords(floor($num / $unit)) . " " . $hundreds[$i] . ($num % $unit ? " " . numberToWords($num % $unit) : "");
+//            }
+//        }
+//    }
+//}
 
-    $tens = array(
-        0 => "", 1 => "Ten", 2 => "Twenty", 3 => "Thirty", 4 => "Forty",
-        5 => "Fifty", 6 => "Sixty", 7 => "Seventy", 8 => "Eighty", 9 => "Ninety"
-    );
+function numberToWords($num)
+{
+    $num = (int)$num;
 
-    $hundreds = array(
-        "Hundred", "Thousand,", "Million,", "Billion,", "Trillion,", "Quadrillion,"
-    );
+    if ($num === 0) return "Zero";
+
+    $ones = [
+        "", "One", "Two", "Three", "Four", "Five",
+        "Six", "Seven", "Eight", "Nine", "Ten",
+        "Eleven", "Twelve", "Thirteen", "Fourteen",
+        "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"
+    ];
+
+    $tens = [
+        "", "", "Twenty", "Thirty", "Forty",
+        "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"
+    ];
+
+    $units = [
+        "", "Thousand", "Million", "Billion", "Trillion"
+    ];
 
     if ($num < 20) {
         return $ones[$num];
-    } elseif ($num < 100) {
-        return $tens[floor($num / 10)] . ($num % 10 ? "-" . $ones[$num % 10] : "");
-    } elseif ($num < 1000) {
-        return $ones[floor($num / 100)] . " " . $hundreds[0] . ($num % 100 ? " and " . numberToWords($num % 100) : "");
-    } else {
-        for ($i = 1, $unit = 1000; $unit <= pow(1000, count($hundreds)); $i++, $unit *= 1000) {
-            if ($num < $unit * 1000) {
-                return numberToWords(floor($num / $unit)) . " " . $hundreds[$i] . ($num % $unit ? " " . numberToWords($num % $unit) : "");
-            }
-        }
     }
+
+    if ($num < 100) {
+        return $tens[intval($num / 10)] . ($num % 10 ? "-" . $ones[$num % 10] : "");
+    }
+
+    if ($num < 1000) {
+        return $ones[intval($num / 100)] . " Hundred" . ($num % 100 ? " and " . numberToWords($num % 100) : "");
+    }
+
+    $i = 0;
+    $words = "";
+
+    while ($num > 0) {
+        $chunk = $num % 1000;
+
+        if ($chunk) {
+            $words = numberToWords($chunk) . " " . $units[$i] . " " . $words;
+        }
+
+        $num = intval($num / 1000);
+        $i++;
+    }
+
+    return trim($words);
 }
 
 // Function to convert decimal number to words
-function decimalToWords($num) {
-    $num_parts = explode(".", $num);
+//function decimalToWords($num) {
+//    $num_parts = explode(".", $num);
+//
+//    $integer_part = $num_parts[0];
+//    $fractional_part = isset($num_parts[1]) ? $num_parts[1] : 0;
+//
+//    $integer_words = numberToWords($integer_part);
+//    $fractional_words = $fractional_part ? numberToWords($fractional_part) : "Zero";
+//
+//    return $integer_words . " and Cents " . $fractional_words;
+//}
 
-    $integer_part = $num_parts[0];
-    $fractional_part = isset($num_parts[1]) ? $num_parts[1] : 0;
+function decimalToWords($num)
+{
+    if (!is_numeric($num)) {
+        return 'Zero Dollars and Zero Cents';
+    }
+
+    $num = number_format((float)$num, 2, '.', '');
+
+    [$integer_part, $fractional_part] = explode('.', $num);
+
+    $integer_part = (int)$integer_part;
+    $fractional_part = (int)$fractional_part;
 
     $integer_words = numberToWords($integer_part);
-    $fractional_words = $fractional_part ? numberToWords($fractional_part) : "Zero";
+    $fractional_words = $fractional_part > 0
+        ? numberToWords($fractional_part)
+        : "Zero";
 
-    return $integer_words . " and Cents " . $fractional_words;
+    return $integer_words . " Dollars and " . $fractional_words . " Cents";
 }
 
 //daily compound interest
