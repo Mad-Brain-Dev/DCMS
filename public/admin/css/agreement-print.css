@@ -2247,9 +2247,6 @@ hr {
 
 /* new -> contract.blade  start  */
 
-        .top_of_header {
-
-        }
 
         .header {
             display: flex;
@@ -2308,30 +2305,30 @@ hr {
         .span_9{
             display: inline-block;
             width: 50px;
-            height: 24px;
+            height: 28px;
             border-bottom: black solid 2px;
             text-align: center;
         }
         .text_section p .span_1{
-            width: 50px;
+            width: 65px;
         }
         .text_section p .span_2{
-            width: 120px;
+            width: 140px;
         }
          .text_section p .span_3{
-            width: 40px;
+            width: 55px;
         }
          .text_section p .span_4{
-            width: 300px;
+            width: 320px;
         }
          .text_section p .span_5{
-            width: 150px;
+            width: 220px;
         }
         .sc_shall_text_1,
         .sc_shall_text_11,
         .sc_shall_text_12{
             list-style: none;
-            margin-top: -20px;
+            /* margin-top: -5px; */
         }
         .sc_shall_text_1{
             margin-left: -20px;
@@ -2350,8 +2347,9 @@ hr {
         }
 
         .for_padding_top{
-            padding-top: 180px;
-            /* margin-top: -50px; */
+            padding-top: 290px;
+            transform: translateY(-105px);
+            margin-bottom: -105px;
         }
 
         .for_padding_top_2{
@@ -2380,12 +2378,15 @@ hr {
 
         .section-title {
             font-weight: bold;
+            margin-bottom: -6px;
+            /* color: red; */
+            font-size: 20px !important;
         }
 
         .sub-list {
             list-style-type: lower-alpha;
             margin-left: 20px;
-            margin-top: 8px;
+            margin-top: 3px;
         }
          .sub-list li{
             padding-left: 8px;
@@ -2415,36 +2416,42 @@ hr {
         .details_container{
     display: flex;
     justify-content: space-between;
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
-.left{
-    width: 45%;
+.agree_left{
+    width: 55%;
 }
-
-.right{
-    width: 45%;
+.agree_left h3{
+    font-weight: 700;
+    font-size: 26px;
 }
-
+.agree_right{
+    width: 40%;
+}
+.agree_right h3{
+    font-weight: 700;
+    font-size: 26px;
+}
 .the_clients{
     margin-bottom: 30px;
 }
 
 .line{
     border-bottom: 2px dashed black;
-    width: 80%;
-    margin-top: 100px;
+    width: 54%;
+    margin-top: 70px;
     margin-bottom: 20px;
 }
 
 .form-row{
     display: flex;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .form-row span{
-    width: 150px;
+    width: 120px;
 }
 
 .input-line{
@@ -2453,7 +2460,6 @@ hr {
     margin-left: 10px;
     margin-top: 20px;
 }
-
 
 .footer-section{
     text-align: center;
@@ -2493,7 +2499,8 @@ hr {
 }
 .right h3,
 .left h3{
-    font-size: 26x;
+    font-size: 22x;
+    font-weight: 700;
 }
 
 /* new -> contract.blade end */
@@ -2634,8 +2641,6 @@ width: 100px;
 
 
 
-.signature{
-}
 
 .sincerely{
     padding-top: 20px;
@@ -2752,3 +2757,23 @@ color: #333;
     font-weight: bold;
   }
   /* lod >> */
+
+  .new_font{
+    font-size: 18px !important;
+  }
+
+  .page_cnt_parent{
+    position: relative;
+  }
+  .page_cnt{
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: -40px;
+    padding-right: 30px;
+    font-size: 20px;
+    font-style: italic;
+    color: #5e5e5e;
+    font-weight: 400;
+  }

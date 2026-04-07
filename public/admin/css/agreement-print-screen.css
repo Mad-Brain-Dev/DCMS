@@ -2219,9 +2219,6 @@ footer {
 /* new -> contract.blade */
 /* also this header for lod header part, because of both are same */
 
-        .top_of_header {
-
-        }
 
         .header {
             display: flex;
@@ -2302,7 +2299,7 @@ footer {
         .sc_shall_text_11,
         .sc_shall_text_12{
             list-style: none;
-            margin-top: -20px;
+            /* margin-top: -4px; */
         }
         .sc_shall_text_1{
             margin-left: -20px;
@@ -2335,6 +2332,7 @@ footer {
 
         .section-title {
             font-weight: bold;
+            margin-bottom: -8px;
         }
 
         .sub-list {
@@ -2369,24 +2367,31 @@ footer {
 /* // */
         .details_container{
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    margin-top: 60px;
 }
 
-.left{
-    width: 45%;
+.agree_left{
+    width: 58%;
 }
-
-.right{
-    width: 45%;
+.agree_left h3{
+    font-weight: 700;
+    font-size: 26px;
 }
-
+.agree_right{
+    width: 40%;
+}
+.agree_right h3{
+    font-weight: 700;
+    font-size: 26px;
+}
 .the_clients{
     margin-bottom: 30px;
 }
 
 .line{
     border-bottom: 2px dashed black;
-    width: 80%;
+    width: 48%;
     margin-top: 100px;
     margin-bottom: 20px;
 }
@@ -2583,9 +2588,6 @@ width: 100px;
 
 
 
-.signature{
-}
-
 .sincerely{
     padding-top: 20px;
 font-style: italic;
@@ -2700,3 +2702,8 @@ color: #333;
     font-weight: bold;
   }
   /* lod >> */
+
+
+  .page_cnt{
+    display: none;
+  }
