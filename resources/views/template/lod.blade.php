@@ -116,7 +116,7 @@
                     <div class="ref-row">
                         <div class="label level_1">Our Ref.:</div>
                         <div class="box">
-                            <span class="">ABC / 2026 / 000123</span>
+                            <span class="">{{$case_number->case_sku}}</span>
                         </div>
                     </div>
 

@@ -58,7 +58,7 @@
 
                         <div class="warrant-case-ref">
                             <span class="case-label">CASE REF. #:</span>
-                           <span class="case-number">{{$case->case_sku}}</span>
+                            <span class="case-number">{{ $case->case_sku }}</span>
                         </div>
                     </div>
                 </div>
@@ -67,17 +67,17 @@
                     <ol type="1">
                         <li>
                             <p>We, the undersigned, hereby appoint you to act for us ("Client"),
-                                <span class="warrant_cl_name"><span>{{$case->client->name}}</span></span>,
+                                <span class="warrant_cl_name"><span>{{ $case->client->name }}</span></span>,
                                 (NRIC/UEN #:
-                                <span class="warrant_cl_id"><span>{{$case->client->nric}}</span></span>
+                                <span class="warrant_cl_id"><span>{{ $case->client->nric }}</span></span>
                                 ), in connection with the below matter until it is completed, settled, resolved or the
                                 contractual agreement between us and you is terminated for whatsoever reason.
                                 You may contact PI
-                                <span class="warrant_pic_name"><span>{{$case->client->pic_name}}</span></span>
+                                <span class="warrant_pic_name"><span>{{ $case->client->pic_name }}</span></span>
                                 telephone at
-                                <span class="warrant_pic_num"><span>{{$case->client->pic_number}}</span></span>,
+                                <span class="warrant_pic_num"><span>{{ $case->client->pic_number }}</span></span>,
                                 alternatively via email
-                                <span class="warrant_pic_mail"><span>{{$case->client->pic_email}}</span></span>,
+                                <span class="warrant_pic_mail"><span>{{ $case->client->pic_email }}</span></span>,
                                 for instructions/updates.
                             </p>
                         </li>
@@ -128,43 +128,166 @@
                 </div>
 
 
-                @foreach($case->debtors as $key=>$debtor)
+                @foreach ($case->debtors as $key => $debtor)
                     <div class="debtor-section">
-                        <div class="debtor-header">DEBTOR ({{$key+1}})</div>
+                        <div class="debtor-header">DEBTOR ({{ $key + 1 }})</div>
 
                         <div class="debtor-row">
                             <div class="debtor-field-1">
-                                <p class="debtor-label">Full Name:<span class="debtor-value">{{$debtor->name}}</span></p>
+                                <p class="debtor-label">Full Name:<span class="debtor-value">{{ $debtor->name }}</span>
+                                </p>
                             </div>
 
                             <div class="debtor-field-2">
-                                <p class="debtor-label">NRIC / UEN:<span class="debtor-value">{{$debtor->nric}}</span></p>
+                                <p class="debtor-label">NRIC / UEN:<span
+                                        class="debtor-value">{{ $debtor->nric }}</span></p>
                             </div>
                         </div>
 
                         <div class="debtor-row">
                             <div class="debtor-field-1">
                                 <p class="debtor-label debtor-label-add">Address:<span
-                                        class="debtor-value debtor-value-add">{{$debtor->address}}</span></p>
+                                        class="debtor-value debtor-value-add">{{ $debtor->address }}</span></p>
                             </div>
 
                             <div class="debtor-field-2">
-                                <p class="debtor-label">Contact No.:<span class="debtor-value">{{$debtor->phone}}</span></p>
+                                <p class="debtor-label">Contact No.:<span
+                                        class="debtor-value">{{ $debtor->phone }}</span></p>
                             </div>
                         </div>
 
                         <div class="debtor-remarks">
-                            <p class="debtor-label">Remarks:<span class="remarks-line-1">{{$debtor->remarks}}</span></p>
+                            <p class="debtor-label">Remarks:<span class="remarks-line-1">{{ $debtor->remarks }}</span>
+                            </p>
                         </div>
                     </div>
                 @endforeach
+
+
+
+
+             <div class="debtor-section">
+                    <div class="debtor-header">DEBTOR ({{ $key + 1 }})</div>
+
+                    <div class="debtor-row">
+                        <div class="debtor-field-1">
+                            <p class="debtor-label">Full Name:<span class="debtor-value">{{ $debtor->name }}</span>
+                            </p>
+                        </div>
+
+                        <div class="debtor-field-2">
+                            <p class="debtor-label">NRIC / UEN:<span class="debtor-value">{{ $debtor->nric }}</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="debtor-row">
+                        <div class="debtor-field-1">
+                            <p class="debtor-label debtor-label-add">Address:<span
+                                    class="debtor-value debtor-value-add">{{ $debtor->address }}</span></p>
+                        </div>
+
+                        <div class="debtor-field-2">
+                            <p class="debtor-label">Contact No.:<span class="debtor-value">{{ $debtor->phone }}</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="debtor-remarks">
+                        <p class="debtor-label">Remarks:<span class="remarks-line-1">{{ $debtor->remarks }}</span>
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="debtor-section">
+                    <div class="debtor-header">DEBTOR ({{ $key + 1 }})</div>
+
+                    <div class="debtor-row">
+                        <div class="debtor-field-1">
+                            <p class="debtor-label">Full Name:<span class="debtor-value">{{ $debtor->name }}</span>
+                            </p>
+                        </div>
+
+                        <div class="debtor-field-2">
+                            <p class="debtor-label">NRIC / UEN:<span class="debtor-value">{{ $debtor->nric }}</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="debtor-row">
+                        <div class="debtor-field-1">
+                            <p class="debtor-label debtor-label-add">Address:<span
+                                    class="debtor-value debtor-value-add">{{ $debtor->address }}</span></p>
+                        </div>
+
+                        <div class="debtor-field-2">
+                            <p class="debtor-label">Contact No.:<span
+                                    class="debtor-value">{{ $debtor->phone }}</span></p>
+                        </div>
+                    </div>
+
+                    <div class="debtor-remarks">
+                        <p class="debtor-label">Remarks:<span class="remarks-line-1">{{ $debtor->remarks }}</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="debtor-section">
+                    <div class="debtor-header">DEBTOR ({{ $key + 1 }})</div>
+
+                    <div class="debtor-row">
+                        <div class="debtor-field-1">
+                            <p class="debtor-label">Full Name:<span class="debtor-value">{{ $debtor->name }}</span>
+                            </p>
+                        </div>
+
+                        <div class="debtor-field-2">
+                            <p class="debtor-label">NRIC / UEN:<span class="debtor-value">{{ $debtor->nric }}</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="debtor-row">
+                        <div class="debtor-field-1">
+                            <p class="debtor-label debtor-label-add">Address:<span
+                                    class="debtor-value debtor-value-add">{{ $debtor->address }}</span></p>
+                        </div>
+
+                        <div class="debtor-field-2">
+                            <p class="debtor-label">Contact No.:<span
+                                    class="debtor-value">{{ $debtor->phone }}</span></p>
+                        </div>
+                    </div>
+
+                    <div class="debtor-remarks">
+                        <p class="debtor-label">Remarks:<span class="remarks-line-1">{{ $debtor->remarks }}</span>
+                        </p>
+                    </div>
+
+                    <div class="debtor-final-summary">                      <p class="debtor-label">Final Summary:<span class="summary-line-1">ABC</span> <br />
+                          <span class="summary-line-2">XYZ</span>
+                      </p>                 </div>
+                </div> 
+
+
+
+
+
+
+
+
+
                 <div class="endorse-section">
                     <div class="endorse-left">
                         <div class="endorse-title">CLIENT ENDORSEMENT</div>
 
-                        <p><span class="endorse-label-1">Persons' Name:</span> <span class="endorse-value-red">{{$case->client->pic_name}}</span></p>
-                        <p><span class="endorse-label-2">Clients' Name:</span> <span class="endorse-value-red">{{$case->client->name}}</span></p>
-                        <p><span class="endorse-label-3">NRIC No./UEN:</span> <span class="endorse-value-red">{{$case->client->nric}}</span></p>
+                        <p><span class="endorse-label-1">Persons' Name:</span> <span
+                                class="endorse-value-red">{{ $case->client->pic_name }}</span></p>
+                        <p><span class="endorse-label-2">Clients' Name:</span> <span
+                                class="endorse-value-red">{{ $case->client->name }}</span></p>
+                        <p><span class="endorse-label-3">NRIC No./UEN:</span> <span
+                                class="endorse-value-red">{{ $case->client->nric }}</span></p>
 
                         <p class="endorse-sign">Signature/Stamp:</p>
                     </div>
@@ -172,7 +295,8 @@
                     <div class="endorse-right">
                         <p>
                             <span class="endorse-label">Date of Warrant to Act:</span>
-                            <span class="endorse-date"><b>{{optional($case->date_of_warrant)->format('d F, Y')}}</b></span>
+                            <span
+                                class="endorse-date"><b>{{ optional($case->date_of_warrant)->format('d F, Y') }}</b></span>
                         </p>
                     </div>
                 </div>
@@ -185,8 +309,8 @@
 
 
     <footer class="warrant-footer">
-        111 North Bridge Road, #21-01, S' 179098 | 81 Tagore Lane, #04-07, S'787502<br/>
-        +65 8505 5484 | hello@securre.net | www.securre.net |  202331790G | L/DCA/2024/000179
+        111 North Bridge Road, #21-01, S' 179098 | 81 Tagore Lane, #04-07, S'787502<br />
+        +65 8505 5484 | hello@securre.net | www.securre.net | 202331790G | L/DCA/2024/000179
     </footer>
     <!--second section end-->
 

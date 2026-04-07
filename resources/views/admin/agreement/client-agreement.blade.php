@@ -68,7 +68,7 @@
 
                             <div class= "text_section">
 
-                                <p>
+                                <p class="new_font">
                                     {{--                This Agreement is entered into on the <span class="span_1">4<sup>th</sup></span> day of <span --}}
                                     {{--                    class="span_2">March</span>, 20<span class="span_3">26</span> between: --}}
                                     @php
@@ -85,26 +85,26 @@
                                     between:
                                 </p>
 
-                                <p>
+                                <p class="new_font">
                                     <strong>Securre Collection Pte. Ltd.,</strong> (UEN: 2023331790G) (hereinafter
                                     referred to as
                                     “SC”),
                                 </p>
 
-                                <p>
+                                <p class="new_font">
                                     and <span class="span_4">{{ $client_details->name }}</span> (NRIC/UEN: <span
                                         class="span_5">{{ $client_details->nric }}</span>),
                                     (hereinafter referred to as the “Client”).
                                 </p>
 
-                                <p class="span_6">Both parties agree as follows.</p>
+                                <p class="span_6 new_font">Both parties agree as follows.</p>
 
 
                                 <div class="section">
 
                                     <p class="section-title">1. Scope of Services</p>
 
-                                    <ul class="sc_shall_text_1">
+                                    <ul class="sc_shall_text_1 new_font">
                                         <li>SC shall undertake debt recovery services on behalf of the Client for
                                             outstanding
                                             debts assigned by the Client to SC (“the Case”). SC may conduct recovery
@@ -122,7 +122,7 @@
 
                                     <p class="section-title">2. Commission and Fees</p>
 
-                                    <ol class="sub-list">
+                                    <ol class="sub-list new_font">
 
                                         <li>
                                             The Client agrees to pay SC a commission of <strong><span
@@ -135,7 +135,7 @@
 
                                         <li>
                                             The commission shall be payable whether recovery is made:
-                                            <ul class="directly_text">
+                                            <ul class="directly_text new_font">
                                                 <li>directly by SC,</li>
                                                 <li>through legal proceedings,</li>
                                                 <li>through third-party agents, or</li>
@@ -161,11 +161,11 @@
 
                                 <p class="span_7"></p>
 
-                                <div class="section">
+                                <div class="section page_cnt_parent">
 
                                     <p class="section-title">3. Authority / Warrant to Act</p>
 
-                                    <ol class="sub-list">
+                                    <ol class="sub-list new_font">
 
                                         <li>
                                             The Client hereby authorises SC to act as its recovery representative in
@@ -177,15 +177,17 @@
 
                                     </ol>
 
+                                    <span class="page_cnt">(Page 1 of 3)</span>
                                 </div>
 
                                  <div class="page-break"></div>
 
-                                <p class="span_7"></p>
 
-                                <div class="section">
+                                 {{-- <p class="span_7"></p> --}}
+
+                                <div class="section none_section for_padding_top">
                                     <p class="section-title">4. Direct Settlement / Non-Circumvention</p>
-                                    <ol class="sub-list">
+                                    <ol class="sub-list new_font">
                                         <li>
                                             The Client shall not directly or indirectly negotiate, settle, compromise,
                                             or otherwise
@@ -205,11 +207,12 @@
                                     </ol>
                                 </div>
 
-                                {{-- <p class="span_7"></p> --}}
+                                <p class="span_7"></p>
+                               
 
-                                <div class="section none_section for_padding_top">
+                                <div class="section">
                                     <p class="section-title">5. Authority to Appoint Solicitors or Agents</p>
-                                    <ol class="sub-list">
+                                    <ol class="sub-list new_font">
                                         <li>
                                             SC shall have the authority, where necessary, to appoint solicitors or
                                             third-party
@@ -235,7 +238,7 @@
 
                                 <div class="section">
                                     <p class="section-title">6. Client Obligations</p>
-                                    <ol class="sub-list">
+                                    <ol class="sub-list new_font">
                                         <li>
                                             The Client warrants that all information provided to SC regarding the debtor
                                             and the
@@ -258,7 +261,7 @@
 
                                 <div class="section">
                                     <p class="section-title">7. Settlement Authority</p>
-                                    <ol class="sub-list">
+                                    <ol class="sub-list new_font">
                                         <li>
                                             SC may negotiate and recommend settlements with the debtor where
                                             commercially
@@ -281,9 +284,9 @@
 
                                 <p class="span_7"></p>
 
-                                <div class="section">
+                                <div class="section page_cnt_parent">
                                     <p class="section-title">8. Liability Limitation</p>
-                                    <ol class="sub-list">
+                                    <ol class="sub-list new_font">
                                         <li>
                                             SC shall not be liable for any losses arising from:
                                             <ul class="directly_text">
@@ -300,15 +303,16 @@
                                             recovery.
                                         </li>
                                     </ol>
+                                    <span class="page_cnt">(Page 2 of 3)</span>
                                 </div>
 
                                 <div class="page-break"></div>
 
-                                <p class="span_7"></p>
+                                {{-- <p class="span_7"></p> --}}
 
-                                <div class="section">
+                                <div class="section none_section for_padding_top_2">
                                     <p class="section-title">9. Post-Termination Recovery</p>
-                                    <ol class="sub-list">
+                                    <ol class="sub-list new_font">
                                         <li>
                                             Where the Client, directly or indirectly, receives any payment, settlement,
                                             asset
@@ -347,7 +351,7 @@
                                 
                                     <div class="section">
                                         <p class="section-title">10. Case Duration</p>
-                                        <ol class="sub-list">
+                                        <ol class="sub-list new_font">
                                             <li>
                                                 Each Case shall remain active for 90 days from the date of assignment,
                                                 unless repayment
@@ -360,11 +364,11 @@
                                         </ol>
                                     </div>
 
-                                    {{-- <p class="span_7"></p> --}}
+                                    <p class="span_7"></p>
 
-                                    <div class="section none_section for_padding_top_2">
+                                    <div class="section">
                                         <p class="section-title">11. Entire Agreement</p>
-                                        <ul class="sc_shall_text_11">
+                                        <ul class="sc_shall_text_11 new_font">
                                             <li>
                                                 This Agreement constitutes the entire agreement between the parties and
                                                 supersedes all
@@ -380,7 +384,7 @@
 
                                     <div class="section">
                                         <p class="section-title">12.Governing Law</p>
-                                        <ul class="sc_shall_text_12">
+                                        <ul class="sc_shall_text_12 new_font">
                                             <li>
                                                 This Agreement shall be governed by and construed in accordance with the
                                                 laws of
@@ -394,10 +398,10 @@
 
                                {{-- </div> --}}
 
-                                <div class="details_container">
+                                <div class="details_container page_cnt_parent">
 
                                     <!-- Left Side -->
-                                    <div class="left">
+                                    <div class="agree_left">
                                         @php
                                             $date = $client_details->date_of_agreement;
                                         @endphp
@@ -417,7 +421,7 @@
 
 
                                     <!-- Right Side -->
-                                    <div class="right">
+                                    <div class="agree_right">
 
                                         <h3 class="the_clients">For the clients;</h3>
 
@@ -447,6 +451,8 @@
                                         </div>
 
                                     </div>
+
+                                    <span class="page_cnt">(Page 3 of 3)</span>
 
                                 </div>
                             </div>
