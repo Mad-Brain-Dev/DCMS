@@ -487,7 +487,7 @@ function numberToWords($num)
     return trim($words);
 }
 
-// Function to convert decimal number to words
+//// Function to convert decimal number to words
 //function decimalToWords($num) {
 //    $num_parts = explode(".", $num);
 //
