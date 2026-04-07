@@ -1029,12 +1029,6 @@ hr {
     text-decoration: underline;
 }
 
-.warrant-footer {
-    position: fixed;
-    bottom: 30px;
-    font-size: 14px;
-    left: 120px;
-}
 .agreement-footer {
     position: fixed;
     bottom: 30px;
@@ -1700,6 +1694,7 @@ hr {
 }
 .statement_info_1{
     padding-left: 5px;
+    padding-bottom: 10px;
     /* width: 48%; */
 }
 .statement_info_1 p{
@@ -1728,13 +1723,15 @@ hr {
   width: 52%;
   display: flex;
   justify-content: right;
+  align-items: end;
 }
 
 .summary-table {
     width:90%;
+    height: 60px;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .summary-table td{
@@ -1748,7 +1745,7 @@ hr {
 
 /* Normal rows */
 .label-cell {
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
     font-weight: bold;
 }
@@ -2233,11 +2230,13 @@ hr {
     margin-bottom: 0;
 }
 
-
-.warrant-footer{
+.warrant-footer {
+    position: fixed;
+    bottom: -180px;
+    left: 120px;
+    font-size: 14px;
     color: #1F3A8A;
-    margin-left: -30px;
-    padding-top: 30px;
+    margin-left: -40px;
 }
 /* warrant end */
 
@@ -2622,19 +2621,26 @@ ul{
     border-bottom: black solid 2px;
     text-align: center;
 }
+.lod_span_1{
+    border-bottom: black solid 1px;
+}
 .lod_span_2{
-    width: 130px;
+    width: 146px;
+    font-weight: 700;
 }
 .lod_span_3{
-width: 100px;
+width: 90px;
+font-weight: 700;
 }
 .lod_span_4{
     width: 170px;
-    color: #0a65c4;
+    color: #0b3664;
+    border-bottom: #0b3664 solid 1px;
 }
 .lod_span_5{
-    width: 130px;
-    color: #0a65c4;
+    width: 120px;
+    color: #0b3664;
+    border-bottom: #0b3664 solid 1px;
 }
 
 
