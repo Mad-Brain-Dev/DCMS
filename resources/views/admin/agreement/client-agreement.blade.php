@@ -284,7 +284,7 @@
 
                                 <p class="span_7"></p>
 
-                                <div class="section">
+                                <div class="section page_cnt_parent">
                                     <p class="section-title">8. Liability Limitation</p>
                                     <ol class="sub-list new_font">
                                         <li>
@@ -303,6 +303,7 @@
                                             recovery.
                                         </li>
                                     </ol>
+                                    <span class="page_cnt">(Page 2 of 3)</span>
                                 </div>
 
                                 <div class="page-break"></div>
@@ -397,7 +398,7 @@
 
                                {{-- </div> --}}
 
-                                <div class="details_container">
+                                <div class="details_container page_cnt_parent">
 
                                     <!-- Left Side -->
                                     <div class="agree_left">
@@ -450,6 +451,8 @@
                                         </div>
 
                                     </div>
+
+                                    <span class="page_cnt">(Page 3 of 3)</span>
 
                                 </div>
                             </div>
