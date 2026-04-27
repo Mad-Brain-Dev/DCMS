@@ -194,6 +194,7 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
     //cases
     Route::resource('cases', CaseController::class);
     Route::post('cases/update/assign/employee', [CaseController::class, 'updateAssignEmployee'])->name('cases.update.assign.employee');
+    Route::get('cases/check/existing/serial', [CaseController::class, 'checkSerial'])->name('cases.checkSerial');
     //tasks
     Route::resource('tasks', TaskController::class);
 

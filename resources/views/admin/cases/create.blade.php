@@ -88,10 +88,13 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label class="form-label">Case Number</label>
-                                <input type="number"
+                                <input type="text"
                                        name="case_serial"
+                                       minlength="5"
                                        class="form-control"
                                        value="{{ old('case_serial') }}">
+                                <small id="case-feedback" class="text-muted"></small>
+                                <div id="case-suggestions" class="mt-1"></div>
                                 @error('case_serial')
                                 <p class="error">{{ $message }}</p>
                                 @enderror
@@ -976,6 +979,153 @@
                     $('html, body').animate({ scrollTop: top }, 300);
                     firstErrorEl.focus();
                 }
+            }
+        });
+
+        {{--$(document).on('keyup change', 'input[name="case_serial"], #client_id', function () {--}}
+
+        {{--    let caseSerial = $('input[name="case_serial"]').val();--}}
+        {{--    let caseNumber = $('#case_number').val();--}}
+
+        {{--    if (!caseSerial || caseSerial.length < 1 || !caseNumber) return;--}}
+
+        {{--    $.ajax({--}}
+        {{--        url: "{{ route('admin.cases.checkSerial') }}",--}}
+        {{--        method: "GET",--}}
+        {{--        data: {--}}
+        {{--            case_serial: caseSerial,--}}
+        {{--            case_number: caseNumber--}}
+        {{--        },--}}
+        {{--        success: function (res) {--}}
+
+        {{--            let feedback = '';--}}
+        {{--            let suggestions = '';--}}
+
+        {{--            // ❌ Duplicate--}}
+        {{--            if (res.exists) {--}}
+        {{--                feedback = `<span class="text-danger">❌ This case number already exists</span>`;--}}
+        {{--            } else {--}}
+        {{--                feedback = `<span class="text-success">✅ Available</span>`;--}}
+        {{--            }--}}
+
+        {{--            // 💡 Suggest next--}}
+        {{--            // feedback += `<br><span class="text-info">💡 Suggested: <strong>${res.next_serial}</strong></span>`;--}}
+        {{--            feedback += `--}}
+        {{--                <br>--}}
+        {{--                <span class="text-info">--}}
+        {{--                    💡 Suggested: <strong id="suggested-value">${res.next_serial}</strong>--}}
+        {{--                </span>--}}
+        {{--                <br>--}}
+        {{--                <button type="button" id="use-suggestion" class="btn btn-sm btn-outline-primary mt-1">--}}
+        {{--                    Use Suggested--}}
+        {{--                </button>--}}
+        {{--            `;--}}
+
+        {{--            $('#case-feedback').html(feedback);--}}
+
+        {{--            // 🔍 Similar list--}}
+        {{--            if (res.similar.length > 0) {--}}
+        {{--                suggestions += `<div class="border p-2 rounded bg-light">`;--}}
+        {{--                suggestions += `<strong>Similar cases:</strong><br>`;--}}
+
+        {{--                res.similar.forEach(function (item) {--}}
+
+        {{--                    // highlight matching part--}}
+        {{--                    let highlighted = item.replace(caseSerial, `<span class="badge bg-danger text-white">${caseSerial}</span>`);--}}
+
+        {{--                    suggestions += `<div>${highlighted}</div>`;--}}
+        {{--                });--}}
+
+        {{--                suggestions += `</div>`;--}}
+        {{--            }--}}
+
+        {{--            $('#case-suggestions').html(suggestions);--}}
+        {{--        }--}}
+        {{--    });--}}
+        {{--});--}}
+
+        $(document).on('keyup change', 'input[name="case_serial"], #client_id', function () {
+
+            let caseSerial = $('input[name="case_serial"]').val();
+            let caseNumber = $('#case_number').val();
+
+            // reset if empty
+            if (!caseSerial || caseSerial.length < 1 || !caseNumber) {
+                $('#case-feedback').html('');
+                $('#case-suggestions').html('');
+                return;
+            }
+
+            $.ajax({
+                url: "{{ route('admin.cases.checkSerial') }}",
+                method: "GET",
+                data: {
+                    case_serial: caseSerial,
+                    case_number: caseNumber
+                },
+                success: function (res) {
+
+                    let feedback = '';
+                    let suggestions = '';
+
+                    // ❌ / ✅ Availability
+                    if (res.exists) {
+                        feedback = `<span class="text-danger fw-bold">❌ This case number already exists</span>`;
+                    } else {
+                        feedback = `<span class="text-success fw-bold">✅ Available</span>`;
+                    }
+
+                    // 💡 Suggested + button
+                    feedback += `
+                <br>
+                <span class="text-info">
+                    💡 Suggested: <strong id="suggested-value">${(res.next_serial ? res.next_serial : 'N/A')}</strong>
+                </span>
+                <br>
+                <button type="button" id="use-suggestion" class="btn btn-sm btn-outline-primary mt-1">
+                    Use Suggested
+                </button>
+            `;
+
+                    $('#case-feedback').html(feedback);
+
+                    // 🔍 Similar cases with strong highlight
+                    if (res.similar && res.similar.length > 0) {
+
+                        suggestions += `
+                    <div class="border p-2 rounded bg-light mt-1">
+                        <strong>Similar cases:</strong>
+                `;
+
+                        // escape regex special chars
+                        let escapedSerial = caseSerial.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                        let regex = new RegExp(escapedSerial, 'g');
+
+                        res.similar.forEach(function (item) {
+
+                            let highlighted = item.replace(
+                                regex,
+                                `<span class="bg-danger text-white px-1 rounded">${caseSerial}</span>`
+                            );
+
+                            suggestions += `<div class="mt-1">${highlighted}</div>`;
+                        });
+
+                        suggestions += `</div>`;
+                    }
+
+                    $('#case-suggestions').html(suggestions);
+                }
+            });
+        });
+
+
+        // ✅ Use Suggested Button (robust)
+        $(document).on('click', '#use-suggestion', function () {
+            let suggested = $('#suggested-value').text();
+
+            if (suggested) {
+                $('input[name="case_serial"]').val(suggested).trigger('change');
             }
         });
     </script>

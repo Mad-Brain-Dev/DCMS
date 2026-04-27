@@ -76,7 +76,7 @@ class CaseController extends Controller
     public function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), ['client_id' => 'required','case_serial' => 'required|digits:5']);
+        $validator = Validator::make($request->all(), ['client_id' => 'required','case_serial' => 'required|string|max:50']);
 
         if ($validator->fails()) {
             return response()->json([
@@ -903,4 +903,82 @@ class CaseController extends Controller
 
         return redirect()->back()->with('success', 'Employee assigned successfully.');
     }
+
+//    public function checkSerial(Request $request)
+//    {
+//        $case_number = str_replace(' ', '', $request->case_number);
+//        $serial = $request->case_serial;
+//
+//        $case_sku = $case_number . $serial;
+//
+//        // Check exact match
+//        $exists = Cases::where('case_sku', $case_sku)->exists();
+//
+//        // Get similar matches
+//        $similar = Cases::where('case_sku', 'LIKE', $case_number . '%')
+//            ->orderBy('case_sku', 'desc')
+//            ->limit(5)
+//            ->pluck('case_sku');
+//
+//        // Get next suggested serial
+//        $last = Cases::where('case_sku', 'LIKE', $case_number . '%')
+//            ->orderBy('case_sku', 'desc')
+//            ->first();
+//
+//        $nextSerial = '001';
+//
+//        if ($last) {
+//            preg_match('/(\d{3})$/', $last->case_sku, $matches);
+//            if (isset($matches[1])) {
+//                $nextSerial = str_pad(((int)$matches[1]) + 1, 3, '0', STR_PAD_LEFT);
+//            }
+//        }
+//
+//        return response()->json([
+//            'exists' => $exists,
+//            'similar' => $similar,
+//            'next_serial' => $nextSerial
+//        ]);
+//    }
+
+    public function checkSerial(Request $request)
+    {
+        $case_number = str_replace(' ', '', $request->case_number);
+        $serial = $request->case_serial;
+
+        $case_sku = $case_number . $serial;
+
+        // Check exact match
+        $exists = Cases::where('case_sku', $case_sku)->exists();
+
+        // Similar matches
+        $similar = Cases::where('case_sku', 'LIKE', $case_number . '%')
+            ->orderBy('case_sku', 'desc')
+            ->limit(5)
+            ->pluck('case_sku');
+
+        // Suggest next ONLY if numeric
+        $last = Cases::where('case_sku', 'LIKE', $case_number . '%')
+            ->orderBy('case_sku', 'desc')
+            ->first();
+
+        $nextSerial = null;
+
+        if ($last) {
+            $lastSerial = str_replace($case_number, '', $last->case_sku);
+
+            if (ctype_digit($lastSerial)) {
+                $nextSerial = str_pad(((int)$lastSerial) + 1, strlen($lastSerial), '0', STR_PAD_LEFT);
+            }
+        }
+
+        return response()->json([
+            'exists' => $exists,
+            'similar' => $similar,
+            'next_serial' => $nextSerial
+        ]);
+    }
+
+
+
 }
