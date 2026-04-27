@@ -86,7 +86,7 @@
                                     <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="mb-3 col-md-3">
+                            <div class="mb-3 col-md-4">
                                 <label class="form-label">Case Number</label>
                                 <input type="text"
                                        name="case_serial"
