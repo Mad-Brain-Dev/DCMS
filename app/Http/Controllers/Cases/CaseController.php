@@ -76,7 +76,7 @@ class CaseController extends Controller
     public function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), ['client_id' => 'required','case_serial' => 'required|string|max:50']);
+        $validator = Validator::make($request->all(), ['client_id' => 'required','case_serial' => 'required|string|min:5|max:50']);
 
         if ($validator->fails()) {
             return response()->json([

@@ -92,6 +92,7 @@
                                        name="case_serial"
                                        minlength="5"
                                        class="form-control"
+                                       placeholder="Enter at least 5 characters (e.g. 00001 or PK-0001)"
                                        value="{{ old('case_serial') }}">
                                 <small id="case-feedback" class="text-muted"></small>
                                 <div id="case-suggestions" class="mt-1"></div>
