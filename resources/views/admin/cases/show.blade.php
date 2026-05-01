@@ -37,7 +37,7 @@
 
                             </div>
                             <div class="col-md-6">
-                                <span><span class="text-decoration-underline">Case Remarks :</span> {{ $case->remarks }} </span> <br>
+                                <span><span class="">Case Remarks :</span> {{ $case->remarks }} </span> <br>
                             </div>
 
                         </div>
@@ -586,7 +586,7 @@
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label d-block">Under instalment</label>
+                                        <label class="form-label d-block">Under Instalment?</label>
                                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                             <label class="btn btn-secondary active">
                                                 <input type="radio" name="underInstallment" id="yes" autocomplete="off" checked> Yes
@@ -597,7 +597,7 @@
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label d-block">Pay to who</label>
+                                        <label class="form-label d-block">Paid to Whom?</label>
                                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                             <label class="btn btn-secondary active">
                                                 <input type="radio" name="pay_to_who" id="securre " autocomplete="off" value="securre" checked> Securre

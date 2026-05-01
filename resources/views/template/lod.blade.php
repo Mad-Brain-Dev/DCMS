@@ -142,11 +142,11 @@
 
         <!-- Claim -->
         <div class="claim">
-            <p><b>CLAIMANT NAME:</b> <span class="highlight_client">{{ $case_number->client->name }}</span></p>
+            <p><b>CLAIMANT NAME:</b> <span class="highlight_client" style="text-align: left">{{ $case_number->client->name }}</span></p>
             @php
                 $formattedAmount = number_format($case_number->total_amount_owed, 2, '.', ',');
             @endphp
-            <p><b>CLAIM AMOUNT:</b> <span class="highlight_client">S$ {{ $formattedAmount }}</span></p>
+            <p><b>CLAIM AMOUNT:</b> <span class="highlight_client" style="text-align: left;padding-left: 48px;">S$ {{ $formattedAmount }}</span></p>
         </div>
 
 

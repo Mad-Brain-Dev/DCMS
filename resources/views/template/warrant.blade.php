@@ -113,7 +113,7 @@
                         @php
                             $amountInWords = ucfirst(numberToWords($case->total_amount_owed));
                         @endphp
-                        <p class="debt-placeholder">{{ decimalToWords($case->total_amount_owed ?? 0) }}</p>
+                        <p class="debt-placeholder" style="text-align: left;">{{ decimalToWords($case->total_amount_owed ?? 0) }}</p>
                     </div>
 
                     @php
@@ -268,7 +268,7 @@
                     <div class="debtor-final-summary">                      <p class="debtor-label">Final Summary:<span class="summary-line-1">ABC</span> <br />
                           <span class="summary-line-2">XYZ</span>
                       </p>                 </div>
-                </div> 
+                </div>
 
 
 
