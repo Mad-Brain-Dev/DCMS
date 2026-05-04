@@ -165,7 +165,7 @@
                 <div class="debtor-section">
                     <div class="debtor-final-summary">
                         <p class="debtor-label">Final Summary:
-                            <span class="summary-line-1">{{$case->case_summary}}</span>
+                            <span class="summary-line-1">{{$case->remarks}}</span>
                         </p>
                     </div>
                 </div>
