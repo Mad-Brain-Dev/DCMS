@@ -73,7 +73,7 @@
                                 ), in connection with the below matter until it is completed, settled, resolved or the
                                 contractual agreement between us and you is terminated for whatsoever reason.
                                 You may contact PI
-                                <span class="warrant_pic_name"><span>{{ $case->client->pic_name }}</span></span>
+                                <span class="warrant_pic_name" style="margin-left: 5px;"><span>{{ $case->client->pic_name }}</span></span>
                                 telephone at
                                 <span class="warrant_pic_num"><span>{{ $case->client->pic_number }}</span></span>,
                                 alternatively via email
