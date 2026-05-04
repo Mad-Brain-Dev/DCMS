@@ -71,7 +71,7 @@
                     <div class="statement_info_1">
                         <p>Statement #: <span class="stat_num">{{ $sequenceNumber }}</span></p>
 
-                        <p>Date: <span class="stat_date">{{ now()?->format('d F, Y') }}</span></p>
+                        <p>Date: <span class="stat_date">{{ now()?->format('jS F, Y') }}</span></p>
 
                         <p>Customer ID: <span class="stat_cus_id">{{ $clientAbbr }}</span></p>
                         <p>Client Name: <span class="stat_cl_name">{{ $client->name }}</span></p>
@@ -199,7 +199,7 @@
 
                                 {{-- 1. Date Paid --}}
                                 <td>
-                                    {{ \Carbon\Carbon::parse($installment->payment_date)->format('d F, Y') }}
+                                    {{ \Carbon\Carbon::parse($installment->payment_date)->format('jS F, Y') }}
                                 </td>
 
                                 {{-- 2. Case Number (LAST 3 DIGITS ONLY) --}}

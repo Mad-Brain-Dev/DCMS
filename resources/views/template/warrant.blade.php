@@ -162,113 +162,120 @@
                         </div>
                     </div>
                 @endforeach
-
-
-
-
-             <div class="debtor-section">
-                    <div class="debtor-header">DEBTOR ({{ $key + 1 }})</div>
-
-                    <div class="debtor-row">
-                        <div class="debtor-field-1">
-                            <p class="debtor-label">Full Name:<span class="debtor-value">{{ $debtor->name }}</span>
-                            </p>
-                        </div>
-
-                        <div class="debtor-field-2">
-                            <p class="debtor-label">NRIC / UEN:<span class="debtor-value">{{ $debtor->nric }}</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="debtor-row">
-                        <div class="debtor-field-1">
-                            <p class="debtor-label debtor-label-add">Address:<span
-                                    class="debtor-value debtor-value-add">{{ $debtor->address }}</span></p>
-                        </div>
-
-                        <div class="debtor-field-2">
-                            <p class="debtor-label">Contact No.:<span class="debtor-value">{{ $debtor->phone }}</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="debtor-remarks">
-                        <p class="debtor-label">Remarks:<span class="remarks-line-1">{{ $debtor->remarks }}</span>
-                        </p>
-                    </div>
-                </div>
-
-
                 <div class="debtor-section">
-                    <div class="debtor-header">DEBTOR ({{ $key + 1 }})</div>
-
-                    <div class="debtor-row">
-                        <div class="debtor-field-1">
-                            <p class="debtor-label">Full Name:<span class="debtor-value">{{ $debtor->name }}</span>
-                            </p>
-                        </div>
-
-                        <div class="debtor-field-2">
-                            <p class="debtor-label">NRIC / UEN:<span class="debtor-value">{{ $debtor->nric }}</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="debtor-row">
-                        <div class="debtor-field-1">
-                            <p class="debtor-label debtor-label-add">Address:<span
-                                    class="debtor-value debtor-value-add">{{ $debtor->address }}</span></p>
-                        </div>
-
-                        <div class="debtor-field-2">
-                            <p class="debtor-label">Contact No.:<span
-                                    class="debtor-value">{{ $debtor->phone }}</span></p>
-                        </div>
-                    </div>
-
-                    <div class="debtor-remarks">
-                        <p class="debtor-label">Remarks:<span class="remarks-line-1">{{ $debtor->remarks }}</span>
+                    <div class="debtor-final-summary">
+                        <p class="debtor-label">Final Summary:
+                            <span class="summary-line-1">{{$case->case_summary}}</span>
                         </p>
                     </div>
                 </div>
 
-                <div class="debtor-section">
-                    <div class="debtor-header">DEBTOR ({{ $key + 1 }})</div>
 
-                    <div class="debtor-row">
-                        <div class="debtor-field-1">
-                            <p class="debtor-label">Full Name:<span class="debtor-value">{{ $debtor->name }}</span>
-                            </p>
-                        </div>
 
-                        <div class="debtor-field-2">
-                            <p class="debtor-label">NRIC / UEN:<span class="debtor-value">{{ $debtor->nric }}</span>
-                            </p>
-                        </div>
-                    </div>
 
-                    <div class="debtor-row">
-                        <div class="debtor-field-1">
-                            <p class="debtor-label debtor-label-add">Address:<span
-                                    class="debtor-value debtor-value-add">{{ $debtor->address }}</span></p>
-                        </div>
+{{--             <div class="debtor-section">--}}
+{{--                    <div class="debtor-header">DEBTOR ({{ $key + 1 }})</div>--}}
 
-                        <div class="debtor-field-2">
-                            <p class="debtor-label">Contact No.:<span
-                                    class="debtor-value">{{ $debtor->phone }}</span></p>
-                        </div>
-                    </div>
+{{--                    <div class="debtor-row">--}}
+{{--                        <div class="debtor-field-1">--}}
+{{--                            <p class="debtor-label">Full Name:<span class="debtor-value">{{ $debtor->name }}</span>--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
 
-                    <div class="debtor-remarks">
-                        <p class="debtor-label">Remarks:<span class="remarks-line-1">{{ $debtor->remarks }}</span>
-                        </p>
-                    </div>
+{{--                        <div class="debtor-field-2">--}}
+{{--                            <p class="debtor-label">NRIC / UEN:<span class="debtor-value">{{ $debtor->nric }}</span>--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
-                    <div class="debtor-final-summary">                      <p class="debtor-label">Final Summary:<span class="summary-line-1">ABC</span> <br />
-                          <span class="summary-line-2">XYZ</span>
-                      </p>                 </div>
-                </div>
+{{--                    <div class="debtor-row">--}}
+{{--                        <div class="debtor-field-1">--}}
+{{--                            <p class="debtor-label debtor-label-add">Address:<span--}}
+{{--                                    class="debtor-value debtor-value-add">{{ $debtor->address }}</span></p>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="debtor-field-2">--}}
+{{--                            <p class="debtor-label">Contact No.:<span class="debtor-value">{{ $debtor->phone }}</span>--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+{{--                    <div class="debtor-remarks">--}}
+{{--                        <p class="debtor-label">Remarks:<span class="remarks-line-1">{{ $debtor->remarks }}</span>--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--             </div>--}}
+{{--                <div class="debtor-section">--}}
+{{--                    <div class="debtor-header">DEBTOR ({{ $key + 1 }})</div>--}}
+
+{{--                    <div class="debtor-row">--}}
+{{--                        <div class="debtor-field-1">--}}
+{{--                            <p class="debtor-label">Full Name:<span class="debtor-value">{{ $debtor->name }}</span>--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="debtor-field-2">--}}
+{{--                            <p class="debtor-label">NRIC / UEN:<span class="debtor-value">{{ $debtor->nric }}</span>--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+{{--                    <div class="debtor-row">--}}
+{{--                        <div class="debtor-field-1">--}}
+{{--                            <p class="debtor-label debtor-label-add">Address:<span--}}
+{{--                                    class="debtor-value debtor-value-add">{{ $debtor->address }}</span></p>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="debtor-field-2">--}}
+{{--                            <p class="debtor-label">Contact No.:<span--}}
+{{--                                    class="debtor-value">{{ $debtor->phone }}</span></p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+{{--                    <div class="debtor-remarks">--}}
+{{--                        <p class="debtor-label">Remarks:<span class="remarks-line-1">{{ $debtor->remarks }}</span>--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+{{--                <div class="debtor-section">--}}
+{{--                    <div class="debtor-header">DEBTOR ({{ $key + 1 }})</div>--}}
+
+{{--                    <div class="debtor-row">--}}
+{{--                        <div class="debtor-field-1">--}}
+{{--                            <p class="debtor-label">Full Name:<span class="debtor-value">{{ $debtor->name }}</span>--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="debtor-field-2">--}}
+{{--                            <p class="debtor-label">NRIC / UEN:<span class="debtor-value">{{ $debtor->nric }}</span>--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+{{--                    <div class="debtor-row">--}}
+{{--                        <div class="debtor-field-1">--}}
+{{--                            <p class="debtor-label debtor-label-add">Address:<span--}}
+{{--                                    class="debtor-value debtor-value-add">{{ $debtor->address }}</span></p>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="debtor-field-2">--}}
+{{--                            <p class="debtor-label">Contact No.:<span--}}
+{{--                                    class="debtor-value">{{ $debtor->phone }}</span></p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+{{--                    <div class="debtor-remarks">--}}
+{{--                        <p class="debtor-label">Remarks:<span class="remarks-line-1">{{ $debtor->remarks }}</span>--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+
+{{--                    <div class="debtor-final-summary">--}}
+{{--                        <p class="debtor-label">Final Summary:<span class="summary-line-1">ABC</span> <br />--}}
+{{--                          <span class="summary-line-2">XYZ</span>--}}
+{{--                      </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
 
 
@@ -282,7 +289,7 @@
                     <div class="endorse-left">
                         <div class="endorse-title">CLIENT ENDORSEMENT</div>
 
-                        <p><span class="endorse-label-1">Persons' Name:</span> <span
+                        <p><span class="endorse-label-1">PIC Name:</span> <span
                                 class="endorse-value-red">{{ $case->client->pic_name }}</span></p>
                         <p><span class="endorse-label-2">Clients' Name:</span> <span
                                 class="endorse-value-red">{{ $case->client->name }}</span></p>
@@ -296,14 +303,13 @@
                         <p>
                             <span class="endorse-label">Date of Warrant to Act:</span>
                             <span
-                                class="endorse-date"><b>{{ optional($case->date_of_warrant)->format('d F, Y') }}</b></span>
+                                class="endorse-date"><b>{{ optional($case->date_of_warrant)->format('jS F, Y') }}</b></span>
                         </p>
                     </div>
                 </div>
 
             </div>
         </div>
-    </div>
     </div>
 
 

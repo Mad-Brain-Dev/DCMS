@@ -131,7 +131,7 @@
 
 
                 {{--                <p class="date highlight">09 March, 2026</p> --}}
-                <p class="date">{{ optional($case_number->created_at)->format('d F, Y') }}</p>
+                <p class="date">{{ optional($case_number->created_at)->format('jS F, Y') }}</p>
             </div>
 
         </div>
