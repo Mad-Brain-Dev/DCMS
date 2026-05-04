@@ -81,7 +81,7 @@ class InvoiceController extends Controller
 
             $client = Client::find($clientId);
 
-            // Payment Count = number of installments under this client's cases
+            // Payment Count = number of installments under this client's all cases
             $paymentCount = Installment::whereHas('case', function ($q) use ($clientId) {
                 $q->where('client_id', $clientId);
             })->count();

@@ -108,7 +108,8 @@
                 <div class="col-md-3">
                     <div class="card shadow-sm border-0 bg-light">
                         <div class="card-body">
-                            <small>Payment Count</small>
+                            <small>Installment Count</small><br>
+                            <small class="text-black-50">Number of installments under this client's all cases</small>
                             <h5 class="fw-bold">{{ $clientSummary['payment_count'] }}</h5>
                         </div>
                     </div>
@@ -117,7 +118,8 @@
                 <div class="col-md-3">
                     <div class="card shadow-sm border-0 bg-light">
                         <div class="card-body">
-                            <small>Total Collected</small>
+                            <small>Total Collected</small><br>
+                            <small class="text-black-50">Sum of all installment amount paid</small>
                             <h5 class="fw-bold text-primary">
                                 $ {{ number_format($clientSummary['total_collected'], 2) }}
                             </h5>
@@ -128,7 +130,8 @@
                 <div class="col-md-3">
                     <div class="card shadow-sm border-0 bg-light">
                         <div class="card-body">
-                            <small>Total Balance</small>
+                            <small>Total Balance</small><br>
+                            <small class="text-black-50">Sum of total balance amount from all cases</small>
                             <h5 class="fw-bold text-danger">
                                 $ {{ number_format($clientSummary['total_balance'], 2) }}
                             </h5>
